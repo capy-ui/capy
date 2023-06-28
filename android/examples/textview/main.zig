@@ -91,7 +91,7 @@ pub const AndroidApp = struct {
 
         const Instance = struct {
             fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.C) c_int {
-                const data_struct = @ptrCast(*Data, @alignCast(@alignOf(Data), data.?));
+                const data_struct = @as(*Data, @ptrCast(@alignCast(@alignOf(Data), data.?)));
                 const self_ptr = data_struct.self;
                 defer self_ptr.allocator.destroy(data_struct);
 

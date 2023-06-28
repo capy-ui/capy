@@ -41,7 +41,7 @@ pub const Graphics = struct {
 
     pub fn createFromHdc(hdc: win32.HDC) GpError!Graphics {
         var peer: c.GpGraphics = undefined;
-        try gdipWrap(c.GdipCreateFromHDC(@ptrCast(std.os.windows.HDC, hdc), &peer));
+        try gdipWrap(c.GdipCreateFromHDC(@as(std.os.windows.HDC, @ptrCast(hdc)), &peer));
         return Graphics{ .peer = peer };
     }
 };

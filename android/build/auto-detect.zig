@@ -99,8 +99,8 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
         const DWORD = u32;
 
         // const HKEY_CLASSES_ROOT = @intToPtr(HKEY, 0x80000000);
-        const HKEY_CURRENT_USER = @ptrFromInt(HKEY, 0x80000001);
-        const HKEY_LOCAL_MACHINE = @ptrFromInt(HKEY, 0x80000002);
+        const HKEY_CURRENT_USER = @as(HKEY, @ptrFromInt(0x80000001));
+        const HKEY_LOCAL_MACHINE = @as(HKEY, @ptrFromInt(0x80000002));
         // const HKEY_USERS = @intToPtr(HKEY, 0x80000003);
 
         // const RRF_RT_ANY: DWORD = 0xFFFF;
@@ -141,7 +141,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
 
                 // get the data
                 const buffer = allocator.alloc(u8, len) catch unreachable;
-                len = @intCast(DWORD, buffer.len);
+                len = @as(DWORD, @intCast(buffer.len));
                 res = RegGetValueA(key, null, value, RRF_RT_REG_SZ, null, buffer.ptr, &len);
                 if (res == ERROR_SUCCESS) {
                     for (buffer[0..len], 0..) |c, i| {

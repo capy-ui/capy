@@ -450,107 +450,107 @@ pub const ICOMAdminCatalog = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_GetCollection(self: *const T, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).GetCollection(@ptrCast(*const ICOMAdminCatalog, self), bstrCollName, ppCatalogCollection);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).GetCollection(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrCollName, ppCatalogCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_Connect(self: *const T, bstrCatalogServerName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).Connect(@ptrCast(*const ICOMAdminCatalog, self), bstrCatalogServerName, ppCatalogCollection);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrCatalogServerName, ppCatalogCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_get_MajorVersion(self: *const T, plMajorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ICOMAdminCatalog, self), plMajorVersion);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const ICOMAdminCatalog, @ptrCast(self)), plMajorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_get_MinorVersion(self: *const T, plMinorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ICOMAdminCatalog, self), plMinorVersion);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const ICOMAdminCatalog, @ptrCast(self)), plMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_GetCollectionByQuery(self: *const T, bstrCollName: ?BSTR, ppsaVarQuery: ?*?*SAFEARRAY, ppCatalogCollection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).GetCollectionByQuery(@ptrCast(*const ICOMAdminCatalog, self), bstrCollName, ppsaVarQuery, ppCatalogCollection);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).GetCollectionByQuery(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrCollName, ppsaVarQuery, ppCatalogCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_ImportComponent(self: *const T, bstrApplIDOrName: ?BSTR, bstrCLSIDOrProgID: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).ImportComponent(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIDOrName, bstrCLSIDOrProgID);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).ImportComponent(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIDOrName, bstrCLSIDOrProgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_InstallComponent(self: *const T, bstrApplIDOrName: ?BSTR, bstrDLL: ?BSTR, bstrTLB: ?BSTR, bstrPSDLL: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).InstallComponent(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIDOrName, bstrDLL, bstrTLB, bstrPSDLL);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).InstallComponent(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIDOrName, bstrDLL, bstrTLB, bstrPSDLL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_ShutdownApplication(self: *const T, bstrApplIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).ShutdownApplication(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIDOrName);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).ShutdownApplication(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_ExportApplication(self: *const T, bstrApplIDOrName: ?BSTR, bstrApplicationFile: ?BSTR, lOptions: COMAdminApplicationExportOptions) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).ExportApplication(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIDOrName, bstrApplicationFile, lOptions);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).ExportApplication(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIDOrName, bstrApplicationFile, lOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_InstallApplication(self: *const T, bstrApplicationFile: ?BSTR, bstrDestinationDirectory: ?BSTR, lOptions: COMAdminApplicationInstallOptions, bstrUserId: ?BSTR, bstrPassword: ?BSTR, bstrRSN: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).InstallApplication(@ptrCast(*const ICOMAdminCatalog, self), bstrApplicationFile, bstrDestinationDirectory, lOptions, bstrUserId, bstrPassword, bstrRSN);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).InstallApplication(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplicationFile, bstrDestinationDirectory, lOptions, bstrUserId, bstrPassword, bstrRSN);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_StopRouter(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).StopRouter(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).StopRouter(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_RefreshRouter(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).RefreshRouter(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).RefreshRouter(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_StartRouter(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).StartRouter(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).StartRouter(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_Reserved1(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).Reserved1(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_Reserved2(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).Reserved2(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).Reserved2(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_InstallMultipleComponents(self: *const T, bstrApplIDOrName: ?BSTR, ppsaVarFileNames: ?*?*SAFEARRAY, ppsaVarCLSIDs: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).InstallMultipleComponents(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIDOrName, ppsaVarFileNames, ppsaVarCLSIDs);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).InstallMultipleComponents(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIDOrName, ppsaVarFileNames, ppsaVarCLSIDs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_GetMultipleComponentsInfo(self: *const T, bstrApplIdOrName: ?BSTR, ppsaVarFileNames: ?*?*SAFEARRAY, ppsaVarCLSIDs: ?*?*SAFEARRAY, ppsaVarClassNames: ?*?*SAFEARRAY, ppsaVarFileFlags: ?*?*SAFEARRAY, ppsaVarComponentFlags: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).GetMultipleComponentsInfo(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIdOrName, ppsaVarFileNames, ppsaVarCLSIDs, ppsaVarClassNames, ppsaVarFileFlags, ppsaVarComponentFlags);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).GetMultipleComponentsInfo(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIdOrName, ppsaVarFileNames, ppsaVarCLSIDs, ppsaVarClassNames, ppsaVarFileFlags, ppsaVarComponentFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_RefreshComponents(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).RefreshComponents(@ptrCast(*const ICOMAdminCatalog, self));
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).RefreshComponents(@as(*const ICOMAdminCatalog, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_BackupREGDB(self: *const T, bstrBackupFilePath: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).BackupREGDB(@ptrCast(*const ICOMAdminCatalog, self), bstrBackupFilePath);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).BackupREGDB(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrBackupFilePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_RestoreREGDB(self: *const T, bstrBackupFilePath: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).RestoreREGDB(@ptrCast(*const ICOMAdminCatalog, self), bstrBackupFilePath);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).RestoreREGDB(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrBackupFilePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_QueryApplicationFile(self: *const T, bstrApplicationFile: ?BSTR, pbstrApplicationName: ?*?BSTR, pbstrApplicationDescription: ?*?BSTR, pbHasUsers: ?*i16, pbIsProxy: ?*i16, ppsaVarFileNames: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).QueryApplicationFile(@ptrCast(*const ICOMAdminCatalog, self), bstrApplicationFile, pbstrApplicationName, pbstrApplicationDescription, pbHasUsers, pbIsProxy, ppsaVarFileNames);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).QueryApplicationFile(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplicationFile, pbstrApplicationName, pbstrApplicationDescription, pbHasUsers, pbIsProxy, ppsaVarFileNames);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_StartApplication(self: *const T, bstrApplIdOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).StartApplication(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIdOrName);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).StartApplication(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIdOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_ServiceCheck(self: *const T, lService: i32, plStatus: ?*i32) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).ServiceCheck(@ptrCast(*const ICOMAdminCatalog, self), lService, plStatus);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).ServiceCheck(@as(*const ICOMAdminCatalog, @ptrCast(self)), lService, plStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_InstallMultipleEventClasses(self: *const T, bstrApplIdOrName: ?BSTR, ppsaVarFileNames: ?*?*SAFEARRAY, ppsaVarCLSIDS: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).InstallMultipleEventClasses(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIdOrName, ppsaVarFileNames, ppsaVarCLSIDS);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).InstallMultipleEventClasses(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIdOrName, ppsaVarFileNames, ppsaVarCLSIDS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_InstallEventClass(self: *const T, bstrApplIdOrName: ?BSTR, bstrDLL: ?BSTR, bstrTLB: ?BSTR, bstrPSDLL: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).InstallEventClass(@ptrCast(*const ICOMAdminCatalog, self), bstrApplIdOrName, bstrDLL, bstrTLB, bstrPSDLL);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).InstallEventClass(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrApplIdOrName, bstrDLL, bstrTLB, bstrPSDLL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog_GetEventClassesForIID(self: *const T, bstrIID: ?BSTR, ppsaVarCLSIDs: ?*?*SAFEARRAY, ppsaVarProgIDs: ?*?*SAFEARRAY, ppsaVarDescriptions: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog.VTable, self.vtable).GetEventClassesForIID(@ptrCast(*const ICOMAdminCatalog, self), bstrIID, ppsaVarCLSIDs, ppsaVarProgIDs, ppsaVarDescriptions);
+                return @as(*const ICOMAdminCatalog.VTable, @ptrCast(self.vtable)).GetEventClassesForIID(@as(*const ICOMAdminCatalog, @ptrCast(self)), bstrIID, ppsaVarCLSIDs, ppsaVarProgIDs, ppsaVarDescriptions);
             }
         };
     }
@@ -997,127 +997,127 @@ pub const ICOMAdminCatalog2 = extern struct {
             pub usingnamespace ICOMAdminCatalog.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_GetCollectionByQuery2(self: *const T, bstrCollectionName: ?BSTR, pVarQueryStrings: ?*VARIANT, ppCatalogCollection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).GetCollectionByQuery2(@ptrCast(*const ICOMAdminCatalog2, self), bstrCollectionName, pVarQueryStrings, ppCatalogCollection);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).GetCollectionByQuery2(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrCollectionName, pVarQueryStrings, ppCatalogCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_GetApplicationInstanceIDFromProcessID(self: *const T, lProcessID: i32, pbstrApplicationInstanceID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).GetApplicationInstanceIDFromProcessID(@ptrCast(*const ICOMAdminCatalog2, self), lProcessID, pbstrApplicationInstanceID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).GetApplicationInstanceIDFromProcessID(@as(*const ICOMAdminCatalog2, @ptrCast(self)), lProcessID, pbstrApplicationInstanceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_ShutdownApplicationInstances(self: *const T, pVarApplicationInstanceID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).ShutdownApplicationInstances(@ptrCast(*const ICOMAdminCatalog2, self), pVarApplicationInstanceID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).ShutdownApplicationInstances(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarApplicationInstanceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_PauseApplicationInstances(self: *const T, pVarApplicationInstanceID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).PauseApplicationInstances(@ptrCast(*const ICOMAdminCatalog2, self), pVarApplicationInstanceID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).PauseApplicationInstances(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarApplicationInstanceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_ResumeApplicationInstances(self: *const T, pVarApplicationInstanceID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).ResumeApplicationInstances(@ptrCast(*const ICOMAdminCatalog2, self), pVarApplicationInstanceID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).ResumeApplicationInstances(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarApplicationInstanceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_RecycleApplicationInstances(self: *const T, pVarApplicationInstanceID: ?*VARIANT, lReasonCode: i32) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).RecycleApplicationInstances(@ptrCast(*const ICOMAdminCatalog2, self), pVarApplicationInstanceID, lReasonCode);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).RecycleApplicationInstances(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarApplicationInstanceID, lReasonCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_AreApplicationInstancesPaused(self: *const T, pVarApplicationInstanceID: ?*VARIANT, pVarBoolPaused: ?*i16) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).AreApplicationInstancesPaused(@ptrCast(*const ICOMAdminCatalog2, self), pVarApplicationInstanceID, pVarBoolPaused);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).AreApplicationInstancesPaused(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarApplicationInstanceID, pVarBoolPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_DumpApplicationInstance(self: *const T, bstrApplicationInstanceID: ?BSTR, bstrDirectory: ?BSTR, lMaxImages: i32, pbstrDumpFile: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).DumpApplicationInstance(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationInstanceID, bstrDirectory, lMaxImages, pbstrDumpFile);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).DumpApplicationInstance(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationInstanceID, bstrDirectory, lMaxImages, pbstrDumpFile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_get_IsApplicationInstanceDumpSupported(self: *const T, pVarBoolDumpSupported: ?*i16) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).get_IsApplicationInstanceDumpSupported(@ptrCast(*const ICOMAdminCatalog2, self), pVarBoolDumpSupported);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).get_IsApplicationInstanceDumpSupported(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pVarBoolDumpSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_CreateServiceForApplication(self: *const T, bstrApplicationIDOrName: ?BSTR, bstrServiceName: ?BSTR, bstrStartType: ?BSTR, bstrErrorControl: ?BSTR, bstrDependencies: ?BSTR, bstrRunAs: ?BSTR, bstrPassword: ?BSTR, bDesktopOk: i16) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).CreateServiceForApplication(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, bstrServiceName, bstrStartType, bstrErrorControl, bstrDependencies, bstrRunAs, bstrPassword, bDesktopOk);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).CreateServiceForApplication(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, bstrServiceName, bstrStartType, bstrErrorControl, bstrDependencies, bstrRunAs, bstrPassword, bDesktopOk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_DeleteServiceForApplication(self: *const T, bstrApplicationIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).DeleteServiceForApplication(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).DeleteServiceForApplication(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_GetPartitionID(self: *const T, bstrApplicationIDOrName: ?BSTR, pbstrPartitionID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).GetPartitionID(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, pbstrPartitionID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).GetPartitionID(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, pbstrPartitionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_GetPartitionName(self: *const T, bstrApplicationIDOrName: ?BSTR, pbstrPartitionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).GetPartitionName(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, pbstrPartitionName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).GetPartitionName(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, pbstrPartitionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_put_CurrentPartition(self: *const T, bstrPartitionIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).put_CurrentPartition(@ptrCast(*const ICOMAdminCatalog2, self), bstrPartitionIDOrName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).put_CurrentPartition(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrPartitionIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_get_CurrentPartitionID(self: *const T, pbstrPartitionID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).get_CurrentPartitionID(@ptrCast(*const ICOMAdminCatalog2, self), pbstrPartitionID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).get_CurrentPartitionID(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pbstrPartitionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_get_CurrentPartitionName(self: *const T, pbstrPartitionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).get_CurrentPartitionName(@ptrCast(*const ICOMAdminCatalog2, self), pbstrPartitionName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).get_CurrentPartitionName(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pbstrPartitionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_get_GlobalPartitionID(self: *const T, pbstrGlobalPartitionID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).get_GlobalPartitionID(@ptrCast(*const ICOMAdminCatalog2, self), pbstrGlobalPartitionID);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).get_GlobalPartitionID(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pbstrGlobalPartitionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_FlushPartitionCache(self: *const T) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).FlushPartitionCache(@ptrCast(*const ICOMAdminCatalog2, self));
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).FlushPartitionCache(@as(*const ICOMAdminCatalog2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_CopyApplications(self: *const T, bstrSourcePartitionIDOrName: ?BSTR, pVarApplicationID: ?*VARIANT, bstrDestinationPartitionIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).CopyApplications(@ptrCast(*const ICOMAdminCatalog2, self), bstrSourcePartitionIDOrName, pVarApplicationID, bstrDestinationPartitionIDOrName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).CopyApplications(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrSourcePartitionIDOrName, pVarApplicationID, bstrDestinationPartitionIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_CopyComponents(self: *const T, bstrSourceApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, bstrDestinationApplicationIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).CopyComponents(@ptrCast(*const ICOMAdminCatalog2, self), bstrSourceApplicationIDOrName, pVarCLSIDOrProgID, bstrDestinationApplicationIDOrName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).CopyComponents(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrSourceApplicationIDOrName, pVarCLSIDOrProgID, bstrDestinationApplicationIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_MoveComponents(self: *const T, bstrSourceApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, bstrDestinationApplicationIDOrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).MoveComponents(@ptrCast(*const ICOMAdminCatalog2, self), bstrSourceApplicationIDOrName, pVarCLSIDOrProgID, bstrDestinationApplicationIDOrName);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).MoveComponents(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrSourceApplicationIDOrName, pVarCLSIDOrProgID, bstrDestinationApplicationIDOrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_AliasComponent(self: *const T, bstrSrcApplicationIDOrName: ?BSTR, bstrCLSIDOrProgID: ?BSTR, bstrDestApplicationIDOrName: ?BSTR, bstrNewProgId: ?BSTR, bstrNewClsid: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).AliasComponent(@ptrCast(*const ICOMAdminCatalog2, self), bstrSrcApplicationIDOrName, bstrCLSIDOrProgID, bstrDestApplicationIDOrName, bstrNewProgId, bstrNewClsid);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).AliasComponent(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrSrcApplicationIDOrName, bstrCLSIDOrProgID, bstrDestApplicationIDOrName, bstrNewProgId, bstrNewClsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_IsSafeToDelete(self: *const T, bstrDllName: ?BSTR, pCOMAdminInUse: ?*COMAdminInUse) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).IsSafeToDelete(@ptrCast(*const ICOMAdminCatalog2, self), bstrDllName, pCOMAdminInUse);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).IsSafeToDelete(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrDllName, pCOMAdminInUse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_ImportUnconfiguredComponents(self: *const T, bstrApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, pVarComponentType: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).ImportUnconfiguredComponents(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).ImportUnconfiguredComponents(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_PromoteUnconfiguredComponents(self: *const T, bstrApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, pVarComponentType: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).PromoteUnconfiguredComponents(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).PromoteUnconfiguredComponents(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_ImportComponents(self: *const T, bstrApplicationIDOrName: ?BSTR, pVarCLSIDOrProgID: ?*VARIANT, pVarComponentType: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).ImportComponents(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).ImportComponents(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationIDOrName, pVarCLSIDOrProgID, pVarComponentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_get_Is64BitCatalogServer(self: *const T, pbIs64Bit: ?*i16) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).get_Is64BitCatalogServer(@ptrCast(*const ICOMAdminCatalog2, self), pbIs64Bit);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).get_Is64BitCatalogServer(@as(*const ICOMAdminCatalog2, @ptrCast(self)), pbIs64Bit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_ExportPartition(self: *const T, bstrPartitionIDOrName: ?BSTR, bstrPartitionFileName: ?BSTR, lOptions: COMAdminApplicationExportOptions) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).ExportPartition(@ptrCast(*const ICOMAdminCatalog2, self), bstrPartitionIDOrName, bstrPartitionFileName, lOptions);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).ExportPartition(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrPartitionIDOrName, bstrPartitionFileName, lOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_InstallPartition(self: *const T, bstrFileName: ?BSTR, bstrDestDirectory: ?BSTR, lOptions: COMAdminApplicationInstallOptions, bstrUserID: ?BSTR, bstrPassword: ?BSTR, bstrRSN: ?BSTR) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).InstallPartition(@ptrCast(*const ICOMAdminCatalog2, self), bstrFileName, bstrDestDirectory, lOptions, bstrUserID, bstrPassword, bstrRSN);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).InstallPartition(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrFileName, bstrDestDirectory, lOptions, bstrUserID, bstrPassword, bstrRSN);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_QueryApplicationFile2(self: *const T, bstrApplicationFile: ?BSTR, ppFilesForImport: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).QueryApplicationFile2(@ptrCast(*const ICOMAdminCatalog2, self), bstrApplicationFile, ppFilesForImport);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).QueryApplicationFile2(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrApplicationFile, ppFilesForImport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMAdminCatalog2_GetComponentVersionCount(self: *const T, bstrCLSIDOrProgID: ?BSTR, plVersionCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICOMAdminCatalog2.VTable, self.vtable).GetComponentVersionCount(@ptrCast(*const ICOMAdminCatalog2, self), bstrCLSIDOrProgID, plVersionCount);
+                return @as(*const ICOMAdminCatalog2.VTable, @ptrCast(self.vtable)).GetComponentVersionCount(@as(*const ICOMAdminCatalog2, @ptrCast(self)), bstrCLSIDOrProgID, plVersionCount);
             }
         };
     }
@@ -1230,31 +1230,31 @@ pub const ICatalogObject = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_get_Value(self: *const T, bstrPropName: ?BSTR, pvarRetVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).get_Value(@ptrCast(*const ICatalogObject, self), bstrPropName, pvarRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ICatalogObject, @ptrCast(self)), bstrPropName, pvarRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_put_Value(self: *const T, bstrPropName: ?BSTR, val: VARIANT) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).put_Value(@ptrCast(*const ICatalogObject, self), bstrPropName, val);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ICatalogObject, @ptrCast(self)), bstrPropName, val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_get_Key(self: *const T, pvarRetVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).get_Key(@ptrCast(*const ICatalogObject, self), pvarRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).get_Key(@as(*const ICatalogObject, @ptrCast(self)), pvarRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_get_Name(self: *const T, pvarRetVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).get_Name(@ptrCast(*const ICatalogObject, self), pvarRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICatalogObject, @ptrCast(self)), pvarRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_IsPropertyReadOnly(self: *const T, bstrPropName: ?BSTR, pbRetVal: ?*i16) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).IsPropertyReadOnly(@ptrCast(*const ICatalogObject, self), bstrPropName, pbRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).IsPropertyReadOnly(@as(*const ICatalogObject, @ptrCast(self)), bstrPropName, pbRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_get_Valid(self: *const T, pbRetVal: ?*i16) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).get_Valid(@ptrCast(*const ICatalogObject, self), pbRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).get_Valid(@as(*const ICatalogObject, @ptrCast(self)), pbRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogObject_IsPropertyWriteOnly(self: *const T, bstrPropName: ?BSTR, pbRetVal: ?*i16) HRESULT {
-                return @ptrCast(*const ICatalogObject.VTable, self.vtable).IsPropertyWriteOnly(@ptrCast(*const ICatalogObject, self), bstrPropName, pbRetVal);
+                return @as(*const ICatalogObject.VTable, @ptrCast(self.vtable)).IsPropertyWriteOnly(@as(*const ICatalogObject, @ptrCast(self)), bstrPropName, pbRetVal);
             }
         };
     }
@@ -1464,67 +1464,67 @@ pub const ICatalogCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get__NewEnum(self: *const T, ppEnumVariant: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICatalogCollection, self), ppEnumVariant);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICatalogCollection, @ptrCast(self)), ppEnumVariant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_Item(self: *const T, lIndex: i32, ppCatalogObject: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_Item(@ptrCast(*const ICatalogCollection, self), lIndex, ppCatalogObject);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICatalogCollection, @ptrCast(self)), lIndex, ppCatalogObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_Count(self: *const T, plObjectCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_Count(@ptrCast(*const ICatalogCollection, self), plObjectCount);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICatalogCollection, @ptrCast(self)), plObjectCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_Remove(self: *const T, lIndex: i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).Remove(@ptrCast(*const ICatalogCollection, self), lIndex);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICatalogCollection, @ptrCast(self)), lIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_Add(self: *const T, ppCatalogObject: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).Add(@ptrCast(*const ICatalogCollection, self), ppCatalogObject);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ICatalogCollection, @ptrCast(self)), ppCatalogObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_Populate(self: *const T) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).Populate(@ptrCast(*const ICatalogCollection, self));
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).Populate(@as(*const ICatalogCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_SaveChanges(self: *const T, pcChanges: ?*i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).SaveChanges(@ptrCast(*const ICatalogCollection, self), pcChanges);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).SaveChanges(@as(*const ICatalogCollection, @ptrCast(self)), pcChanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_GetCollection(self: *const T, bstrCollName: ?BSTR, varObjectKey: VARIANT, ppCatalogCollection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).GetCollection(@ptrCast(*const ICatalogCollection, self), bstrCollName, varObjectKey, ppCatalogCollection);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).GetCollection(@as(*const ICatalogCollection, @ptrCast(self)), bstrCollName, varObjectKey, ppCatalogCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_Name(self: *const T, pVarNamel: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_Name(@ptrCast(*const ICatalogCollection, self), pVarNamel);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICatalogCollection, @ptrCast(self)), pVarNamel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_AddEnabled(self: *const T, pVarBool: ?*i16) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_AddEnabled(@ptrCast(*const ICatalogCollection, self), pVarBool);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_AddEnabled(@as(*const ICatalogCollection, @ptrCast(self)), pVarBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_RemoveEnabled(self: *const T, pVarBool: ?*i16) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_RemoveEnabled(@ptrCast(*const ICatalogCollection, self), pVarBool);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_RemoveEnabled(@as(*const ICatalogCollection, @ptrCast(self)), pVarBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_GetUtilInterface(self: *const T, ppIDispatch: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).GetUtilInterface(@ptrCast(*const ICatalogCollection, self), ppIDispatch);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).GetUtilInterface(@as(*const ICatalogCollection, @ptrCast(self)), ppIDispatch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_DataStoreMajorVersion(self: *const T, plMajorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_DataStoreMajorVersion(@ptrCast(*const ICatalogCollection, self), plMajorVersion);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_DataStoreMajorVersion(@as(*const ICatalogCollection, @ptrCast(self)), plMajorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_get_DataStoreMinorVersion(self: *const T, plMinorVersionl: ?*i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).get_DataStoreMinorVersion(@ptrCast(*const ICatalogCollection, self), plMinorVersionl);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).get_DataStoreMinorVersion(@as(*const ICatalogCollection, @ptrCast(self)), plMinorVersionl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_PopulateByKey(self: *const T, psaKeys: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).PopulateByKey(@ptrCast(*const ICatalogCollection, self), psaKeys);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).PopulateByKey(@as(*const ICatalogCollection, @ptrCast(self)), psaKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogCollection_PopulateByQuery(self: *const T, bstrQueryString: ?BSTR, lQueryType: i32) HRESULT {
-                return @ptrCast(*const ICatalogCollection.VTable, self.vtable).PopulateByQuery(@ptrCast(*const ICatalogCollection, self), bstrQueryString, lQueryType);
+                return @as(*const ICatalogCollection.VTable, @ptrCast(self.vtable)).PopulateByQuery(@as(*const ICatalogCollection, @ptrCast(self)), bstrQueryString, lQueryType);
             }
         };
     }
@@ -2066,15 +2066,15 @@ pub const ISecurityIdentityColl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityIdentityColl_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISecurityIdentityColl.VTable, self.vtable).get_Count(@ptrCast(*const ISecurityIdentityColl, self), plCount);
+                return @as(*const ISecurityIdentityColl.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISecurityIdentityColl, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityIdentityColl_get_Item(self: *const T, name: ?BSTR, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISecurityIdentityColl.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityIdentityColl, self), name, pItem);
+                return @as(*const ISecurityIdentityColl.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISecurityIdentityColl, @ptrCast(self)), name, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityIdentityColl_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISecurityIdentityColl.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityIdentityColl, self), ppEnum);
+                return @as(*const ISecurityIdentityColl.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISecurityIdentityColl, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -2135,15 +2135,15 @@ pub const ISecurityCallersColl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallersColl_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get_Count(@ptrCast(*const ISecurityCallersColl, self), plCount);
+                return @as(*const ISecurityCallersColl.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISecurityCallersColl, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallersColl_get_Item(self: *const T, lIndex: i32, pObj: ?*?*ISecurityIdentityColl) HRESULT {
-                return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityCallersColl, self), lIndex, pObj);
+                return @as(*const ISecurityCallersColl.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISecurityCallersColl, @ptrCast(self)), lIndex, pObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallersColl_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISecurityCallersColl.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityCallersColl, self), ppEnum);
+                return @as(*const ISecurityCallersColl.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISecurityCallersColl, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -2240,27 +2240,27 @@ pub const ISecurityCallContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).get_Count(@ptrCast(*const ISecurityCallContext, self), plCount);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISecurityCallContext, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_get_Item(self: *const T, name: ?BSTR, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).get_Item(@ptrCast(*const ISecurityCallContext, self), name, pItem);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISecurityCallContext, @ptrCast(self)), name, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISecurityCallContext, self), ppEnum);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISecurityCallContext, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_IsCallerInRole(self: *const T, bstrRole: ?BSTR, pfInRole: ?*i16) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).IsCallerInRole(@ptrCast(*const ISecurityCallContext, self), bstrRole, pfInRole);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).IsCallerInRole(@as(*const ISecurityCallContext, @ptrCast(self)), bstrRole, pfInRole);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_IsSecurityEnabled(self: *const T, pfIsEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).IsSecurityEnabled(@ptrCast(*const ISecurityCallContext, self), pfIsEnabled);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).IsSecurityEnabled(@as(*const ISecurityCallContext, @ptrCast(self)), pfIsEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityCallContext_IsUserInRole(self: *const T, pUser: ?*VARIANT, bstrRole: ?BSTR, pfInRole: ?*i16) HRESULT {
-                return @ptrCast(*const ISecurityCallContext.VTable, self.vtable).IsUserInRole(@ptrCast(*const ISecurityCallContext, self), pUser, bstrRole, pfInRole);
+                return @as(*const ISecurityCallContext.VTable, @ptrCast(self.vtable)).IsUserInRole(@as(*const ISecurityCallContext, @ptrCast(self)), pUser, bstrRole, pfInRole);
             }
         };
     }
@@ -2290,7 +2290,7 @@ pub const IGetSecurityCallContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetSecurityCallContext_GetSecurityCallContext(self: *const T, ppObject: ?*?*ISecurityCallContext) HRESULT {
-                return @ptrCast(*const IGetSecurityCallContext.VTable, self.vtable).GetSecurityCallContext(@ptrCast(*const IGetSecurityCallContext, self), ppObject);
+                return @as(*const IGetSecurityCallContext.VTable, @ptrCast(self.vtable)).GetSecurityCallContext(@as(*const IGetSecurityCallContext, @ptrCast(self)), ppObject);
             }
         };
     }
@@ -2350,19 +2350,19 @@ pub const SecurityProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn SecurityProperty_GetDirectCallerName(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const SecurityProperty.VTable, self.vtable).GetDirectCallerName(@ptrCast(*const SecurityProperty, self), bstrUserName);
+                return @as(*const SecurityProperty.VTable, @ptrCast(self.vtable)).GetDirectCallerName(@as(*const SecurityProperty, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn SecurityProperty_GetDirectCreatorName(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const SecurityProperty.VTable, self.vtable).GetDirectCreatorName(@ptrCast(*const SecurityProperty, self), bstrUserName);
+                return @as(*const SecurityProperty.VTable, @ptrCast(self.vtable)).GetDirectCreatorName(@as(*const SecurityProperty, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn SecurityProperty_GetOriginalCallerName(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const SecurityProperty.VTable, self.vtable).GetOriginalCallerName(@ptrCast(*const SecurityProperty, self), bstrUserName);
+                return @as(*const SecurityProperty.VTable, @ptrCast(self.vtable)).GetOriginalCallerName(@as(*const SecurityProperty, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn SecurityProperty_GetOriginalCreatorName(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const SecurityProperty.VTable, self.vtable).GetOriginalCreatorName(@ptrCast(*const SecurityProperty, self), bstrUserName);
+                return @as(*const SecurityProperty.VTable, @ptrCast(self.vtable)).GetOriginalCreatorName(@as(*const SecurityProperty, @ptrCast(self)), bstrUserName);
             }
         };
     }
@@ -2432,23 +2432,23 @@ pub const ContextInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo_IsInTransaction(self: *const T, pbIsInTx: ?*i16) HRESULT {
-                return @ptrCast(*const ContextInfo.VTable, self.vtable).IsInTransaction(@ptrCast(*const ContextInfo, self), pbIsInTx);
+                return @as(*const ContextInfo.VTable, @ptrCast(self.vtable)).IsInTransaction(@as(*const ContextInfo, @ptrCast(self)), pbIsInTx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo_GetTransaction(self: *const T, ppTx: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ContextInfo.VTable, self.vtable).GetTransaction(@ptrCast(*const ContextInfo, self), ppTx);
+                return @as(*const ContextInfo.VTable, @ptrCast(self.vtable)).GetTransaction(@as(*const ContextInfo, @ptrCast(self)), ppTx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo_GetTransactionId(self: *const T, pbstrTxId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo.VTable, self.vtable).GetTransactionId(@ptrCast(*const ContextInfo, self), pbstrTxId);
+                return @as(*const ContextInfo.VTable, @ptrCast(self.vtable)).GetTransactionId(@as(*const ContextInfo, @ptrCast(self)), pbstrTxId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo_GetActivityId(self: *const T, pbstrActivityId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo.VTable, self.vtable).GetActivityId(@ptrCast(*const ContextInfo, self), pbstrActivityId);
+                return @as(*const ContextInfo.VTable, @ptrCast(self.vtable)).GetActivityId(@as(*const ContextInfo, @ptrCast(self)), pbstrActivityId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo_GetContextId(self: *const T, pbstrCtxId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo.VTable, self.vtable).GetContextId(@ptrCast(*const ContextInfo, self), pbstrCtxId);
+                return @as(*const ContextInfo.VTable, @ptrCast(self.vtable)).GetContextId(@as(*const ContextInfo, @ptrCast(self)), pbstrCtxId);
             }
         };
     }
@@ -2498,15 +2498,15 @@ pub const ContextInfo2 = extern struct {
             pub usingnamespace ContextInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo2_GetPartitionId(self: *const T, __MIDL__ContextInfo20000: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo2.VTable, self.vtable).GetPartitionId(@ptrCast(*const ContextInfo2, self), __MIDL__ContextInfo20000);
+                return @as(*const ContextInfo2.VTable, @ptrCast(self.vtable)).GetPartitionId(@as(*const ContextInfo2, @ptrCast(self)), __MIDL__ContextInfo20000);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo2_GetApplicationId(self: *const T, __MIDL__ContextInfo20001: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo2.VTable, self.vtable).GetApplicationId(@ptrCast(*const ContextInfo2, self), __MIDL__ContextInfo20001);
+                return @as(*const ContextInfo2.VTable, @ptrCast(self.vtable)).GetApplicationId(@as(*const ContextInfo2, @ptrCast(self)), __MIDL__ContextInfo20001);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ContextInfo2_GetApplicationInstanceId(self: *const T, __MIDL__ContextInfo20002: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ContextInfo2.VTable, self.vtable).GetApplicationInstanceId(@ptrCast(*const ContextInfo2, self), __MIDL__ContextInfo20002);
+                return @as(*const ContextInfo2.VTable, @ptrCast(self.vtable)).GetApplicationInstanceId(@as(*const ContextInfo2, @ptrCast(self)), __MIDL__ContextInfo20002);
             }
         };
     }
@@ -2669,55 +2669,55 @@ pub const ObjectContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_CreateInstance(self: *const T, bstrProgID: ?BSTR, pObject: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).CreateInstance(@ptrCast(*const ObjectContext, self), bstrProgID, pObject);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ObjectContext, @ptrCast(self)), bstrProgID, pObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_SetComplete(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).SetComplete(@ptrCast(*const ObjectContext, self));
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).SetComplete(@as(*const ObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_SetAbort(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).SetAbort(@ptrCast(*const ObjectContext, self));
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).SetAbort(@as(*const ObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_EnableCommit(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).EnableCommit(@ptrCast(*const ObjectContext, self));
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).EnableCommit(@as(*const ObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_DisableCommit(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).DisableCommit(@ptrCast(*const ObjectContext, self));
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).DisableCommit(@as(*const ObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_IsInTransaction(self: *const T, pbIsInTx: ?*i16) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).IsInTransaction(@ptrCast(*const ObjectContext, self), pbIsInTx);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).IsInTransaction(@as(*const ObjectContext, @ptrCast(self)), pbIsInTx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_IsSecurityEnabled(self: *const T, pbIsEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).IsSecurityEnabled(@ptrCast(*const ObjectContext, self), pbIsEnabled);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).IsSecurityEnabled(@as(*const ObjectContext, @ptrCast(self)), pbIsEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_IsCallerInRole(self: *const T, bstrRole: ?BSTR, pbInRole: ?*i16) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).IsCallerInRole(@ptrCast(*const ObjectContext, self), bstrRole, pbInRole);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).IsCallerInRole(@as(*const ObjectContext, @ptrCast(self)), bstrRole, pbInRole);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).get_Count(@ptrCast(*const ObjectContext, self), plCount);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ObjectContext, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_get_Item(self: *const T, name: ?BSTR, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).get_Item(@ptrCast(*const ObjectContext, self), name, pItem);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ObjectContext, @ptrCast(self)), name, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_get__NewEnum(self: *const T, ppEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).get__NewEnum(@ptrCast(*const ObjectContext, self), ppEnum);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ObjectContext, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_get_Security(self: *const T, ppSecurityProperty: ?*?*SecurityProperty) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).get_Security(@ptrCast(*const ObjectContext, self), ppSecurityProperty);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).get_Security(@as(*const ObjectContext, @ptrCast(self)), ppSecurityProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectContext_get_ContextInfo(self: *const T, ppContextInfo: ?*?*ContextInfo) HRESULT {
-                return @ptrCast(*const ObjectContext.VTable, self.vtable).get_ContextInfo(@ptrCast(*const ObjectContext, self), ppContextInfo);
+                return @as(*const ObjectContext.VTable, @ptrCast(self.vtable)).get_ContextInfo(@as(*const ObjectContext, @ptrCast(self)), ppContextInfo);
             }
         };
     }
@@ -2767,15 +2767,15 @@ pub const ITransactionContextEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContextEx_CreateInstance(self: *const T, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ITransactionContextEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ITransactionContextEx, self), rclsid, riid, pObject);
+                return @as(*const ITransactionContextEx.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ITransactionContextEx, @ptrCast(self)), rclsid, riid, pObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContextEx_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ITransactionContextEx.VTable, self.vtable).Commit(@ptrCast(*const ITransactionContextEx, self));
+                return @as(*const ITransactionContextEx.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITransactionContextEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContextEx_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const ITransactionContextEx.VTable, self.vtable).Abort(@ptrCast(*const ITransactionContextEx, self));
+                return @as(*const ITransactionContextEx.VTable, @ptrCast(self.vtable)).Abort(@as(*const ITransactionContextEx, @ptrCast(self)));
             }
         };
     }
@@ -2823,15 +2823,15 @@ pub const ITransactionContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContext_CreateInstance(self: *const T, pszProgId: ?BSTR, pObject: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ITransactionContext.VTable, self.vtable).CreateInstance(@ptrCast(*const ITransactionContext, self), pszProgId, pObject);
+                return @as(*const ITransactionContext.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ITransactionContext, @ptrCast(self)), pszProgId, pObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContext_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ITransactionContext.VTable, self.vtable).Commit(@ptrCast(*const ITransactionContext, self));
+                return @as(*const ITransactionContext.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITransactionContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionContext_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const ITransactionContext.VTable, self.vtable).Abort(@ptrCast(*const ITransactionContext, self));
+                return @as(*const ITransactionContext.VTable, @ptrCast(self.vtable)).Abort(@as(*const ITransactionContext, @ptrCast(self)));
             }
         };
     }
@@ -2867,7 +2867,7 @@ pub const ICreateWithTransactionEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICreateWithTransactionEx_CreateInstance(self: *const T, pTransaction: ?*ITransaction, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICreateWithTransactionEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ICreateWithTransactionEx, self), pTransaction, rclsid, riid, pObject);
+                return @as(*const ICreateWithTransactionEx.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ICreateWithTransactionEx, @ptrCast(self)), pTransaction, rclsid, riid, pObject);
             }
         };
     }
@@ -2903,7 +2903,7 @@ pub const ICreateWithLocalTransaction = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICreateWithLocalTransaction_CreateInstanceWithSysTx(self: *const T, pTransaction: ?*IUnknown, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICreateWithLocalTransaction.VTable, self.vtable).CreateInstanceWithSysTx(@ptrCast(*const ICreateWithLocalTransaction, self), pTransaction, rclsid, riid, pObject);
+                return @as(*const ICreateWithLocalTransaction.VTable, @ptrCast(self.vtable)).CreateInstanceWithSysTx(@as(*const ICreateWithLocalTransaction, @ptrCast(self)), pTransaction, rclsid, riid, pObject);
             }
         };
     }
@@ -2939,7 +2939,7 @@ pub const ICreateWithTipTransactionEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICreateWithTipTransactionEx_CreateInstance(self: *const T, bstrTipUrl: ?BSTR, rclsid: ?*const Guid, riid: ?*const Guid, pObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICreateWithTipTransactionEx.VTable, self.vtable).CreateInstance(@ptrCast(*const ICreateWithTipTransactionEx, self), bstrTipUrl, rclsid, riid, pObject);
+                return @as(*const ICreateWithTipTransactionEx.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ICreateWithTipTransactionEx, @ptrCast(self)), bstrTipUrl, rclsid, riid, pObject);
             }
         };
     }
@@ -3039,23 +3039,23 @@ pub const IComLTxEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComLTxEvents_OnLtxTransactionStart(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidLtx: Guid, tsid: Guid, fRoot: BOOL, nIsolationLevel: i32) HRESULT {
-                return @ptrCast(*const IComLTxEvents.VTable, self.vtable).OnLtxTransactionStart(@ptrCast(*const IComLTxEvents, self), pInfo, guidLtx, tsid, fRoot, nIsolationLevel);
+                return @as(*const IComLTxEvents.VTable, @ptrCast(self.vtable)).OnLtxTransactionStart(@as(*const IComLTxEvents, @ptrCast(self)), pInfo, guidLtx, tsid, fRoot, nIsolationLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComLTxEvents_OnLtxTransactionPrepare(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidLtx: Guid, fVote: BOOL) HRESULT {
-                return @ptrCast(*const IComLTxEvents.VTable, self.vtable).OnLtxTransactionPrepare(@ptrCast(*const IComLTxEvents, self), pInfo, guidLtx, fVote);
+                return @as(*const IComLTxEvents.VTable, @ptrCast(self.vtable)).OnLtxTransactionPrepare(@as(*const IComLTxEvents, @ptrCast(self)), pInfo, guidLtx, fVote);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComLTxEvents_OnLtxTransactionAbort(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidLtx: Guid) HRESULT {
-                return @ptrCast(*const IComLTxEvents.VTable, self.vtable).OnLtxTransactionAbort(@ptrCast(*const IComLTxEvents, self), pInfo, guidLtx);
+                return @as(*const IComLTxEvents.VTable, @ptrCast(self.vtable)).OnLtxTransactionAbort(@as(*const IComLTxEvents, @ptrCast(self)), pInfo, guidLtx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComLTxEvents_OnLtxTransactionCommit(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidLtx: Guid) HRESULT {
-                return @ptrCast(*const IComLTxEvents.VTable, self.vtable).OnLtxTransactionCommit(@ptrCast(*const IComLTxEvents, self), pInfo, guidLtx);
+                return @as(*const IComLTxEvents.VTable, @ptrCast(self.vtable)).OnLtxTransactionCommit(@as(*const IComLTxEvents, @ptrCast(self)), pInfo, guidLtx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComLTxEvents_OnLtxTransactionPromote(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidLtx: Guid, txnId: Guid) HRESULT {
-                return @ptrCast(*const IComLTxEvents.VTable, self.vtable).OnLtxTransactionPromote(@ptrCast(*const IComLTxEvents, self), pInfo, guidLtx, txnId);
+                return @as(*const IComLTxEvents.VTable, @ptrCast(self.vtable)).OnLtxTransactionPromote(@as(*const IComLTxEvents, @ptrCast(self)), pInfo, guidLtx, txnId);
             }
         };
     }
@@ -3087,7 +3087,7 @@ pub const IComUserEvent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComUserEvent_OnUserEvent(self: *const T, pInfo: ?*COMSVCSEVENTINFO, pvarEvent: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IComUserEvent.VTable, self.vtable).OnUserEvent(@ptrCast(*const IComUserEvent, self), pInfo, pvarEvent);
+                return @as(*const IComUserEvent.VTable, @ptrCast(self.vtable)).OnUserEvent(@as(*const IComUserEvent, @ptrCast(self)), pInfo, pvarEvent);
             }
         };
     }
@@ -3279,47 +3279,47 @@ pub const IComThreadEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadStart(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, dwThread: u32, dwTheadCnt: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadStart(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, dwThread, dwTheadCnt);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadStart(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, dwThread, dwTheadCnt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadTerminate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, dwThread: u32, dwTheadCnt: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadTerminate(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, dwThread, dwTheadCnt);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadTerminate(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, dwThread, dwTheadCnt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadBindToApartment(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, AptID: u64, dwActCnt: u32, dwLowCnt: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadBindToApartment(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, AptID, dwActCnt, dwLowCnt);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadBindToApartment(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, AptID, dwActCnt, dwLowCnt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadUnBind(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, AptID: u64, dwActCnt: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadUnBind(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, AptID, dwActCnt);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadUnBind(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, AptID, dwActCnt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadWorkEnque(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, MsgWorkID: u64, QueueLen: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadWorkEnque(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, MsgWorkID, QueueLen);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadWorkEnque(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, MsgWorkID, QueueLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadWorkPrivate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, MsgWorkID: u64) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadWorkPrivate(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, MsgWorkID);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadWorkPrivate(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, MsgWorkID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadWorkPublic(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, MsgWorkID: u64, QueueLen: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadWorkPublic(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, MsgWorkID, QueueLen);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadWorkPublic(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, MsgWorkID, QueueLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadWorkRedirect(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, MsgWorkID: u64, QueueLen: u32, ThreadNum: u64) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadWorkRedirect(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, MsgWorkID, QueueLen, ThreadNum);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadWorkRedirect(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, MsgWorkID, QueueLen, ThreadNum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadWorkReject(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ThreadID: u64, MsgWorkID: u64, QueueLen: u32) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadWorkReject(@ptrCast(*const IComThreadEvents, self), pInfo, ThreadID, MsgWorkID, QueueLen);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadWorkReject(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, ThreadID, MsgWorkID, QueueLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadAssignApartment(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, AptID: u64) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadAssignApartment(@ptrCast(*const IComThreadEvents, self), pInfo, guidActivity, AptID);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadAssignApartment(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, guidActivity, AptID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComThreadEvents_OnThreadUnassignApartment(self: *const T, pInfo: ?*COMSVCSEVENTINFO, AptID: u64) HRESULT {
-                return @ptrCast(*const IComThreadEvents.VTable, self.vtable).OnThreadUnassignApartment(@ptrCast(*const IComThreadEvents, self), pInfo, AptID);
+                return @as(*const IComThreadEvents.VTable, @ptrCast(self.vtable)).OnThreadUnassignApartment(@as(*const IComThreadEvents, @ptrCast(self)), pInfo, AptID);
             }
         };
     }
@@ -3375,15 +3375,15 @@ pub const IComAppEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComAppEvents_OnAppActivation(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComAppEvents.VTable, self.vtable).OnAppActivation(@ptrCast(*const IComAppEvents, self), pInfo, guidApp);
+                return @as(*const IComAppEvents.VTable, @ptrCast(self.vtable)).OnAppActivation(@as(*const IComAppEvents, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComAppEvents_OnAppShutdown(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComAppEvents.VTable, self.vtable).OnAppShutdown(@ptrCast(*const IComAppEvents, self), pInfo, guidApp);
+                return @as(*const IComAppEvents.VTable, @ptrCast(self.vtable)).OnAppShutdown(@as(*const IComAppEvents, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComAppEvents_OnAppForceShutdown(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComAppEvents.VTable, self.vtable).OnAppForceShutdown(@ptrCast(*const IComAppEvents, self), pInfo, guidApp);
+                return @as(*const IComAppEvents.VTable, @ptrCast(self.vtable)).OnAppForceShutdown(@as(*const IComAppEvents, @ptrCast(self)), pInfo, guidApp);
             }
         };
     }
@@ -3435,11 +3435,11 @@ pub const IComInstanceEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComInstanceEvents_OnObjectCreate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, clsid: ?*const Guid, tsid: ?*const Guid, CtxtID: u64, ObjectID: u64) HRESULT {
-                return @ptrCast(*const IComInstanceEvents.VTable, self.vtable).OnObjectCreate(@ptrCast(*const IComInstanceEvents, self), pInfo, guidActivity, clsid, tsid, CtxtID, ObjectID);
+                return @as(*const IComInstanceEvents.VTable, @ptrCast(self.vtable)).OnObjectCreate(@as(*const IComInstanceEvents, @ptrCast(self)), pInfo, guidActivity, clsid, tsid, CtxtID, ObjectID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComInstanceEvents_OnObjectDestroy(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComInstanceEvents.VTable, self.vtable).OnObjectDestroy(@ptrCast(*const IComInstanceEvents, self), pInfo, CtxtID);
+                return @as(*const IComInstanceEvents.VTable, @ptrCast(self.vtable)).OnObjectDestroy(@as(*const IComInstanceEvents, @ptrCast(self)), pInfo, CtxtID);
             }
         };
     }
@@ -3513,19 +3513,19 @@ pub const IComTransactionEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransactionEvents_OnTransactionStart(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid, tsid: ?*const Guid, fRoot: BOOL) HRESULT {
-                return @ptrCast(*const IComTransactionEvents.VTable, self.vtable).OnTransactionStart(@ptrCast(*const IComTransactionEvents, self), pInfo, guidTx, tsid, fRoot);
+                return @as(*const IComTransactionEvents.VTable, @ptrCast(self.vtable)).OnTransactionStart(@as(*const IComTransactionEvents, @ptrCast(self)), pInfo, guidTx, tsid, fRoot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransactionEvents_OnTransactionPrepare(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid, fVoteYes: BOOL) HRESULT {
-                return @ptrCast(*const IComTransactionEvents.VTable, self.vtable).OnTransactionPrepare(@ptrCast(*const IComTransactionEvents, self), pInfo, guidTx, fVoteYes);
+                return @as(*const IComTransactionEvents.VTable, @ptrCast(self.vtable)).OnTransactionPrepare(@as(*const IComTransactionEvents, @ptrCast(self)), pInfo, guidTx, fVoteYes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransactionEvents_OnTransactionAbort(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComTransactionEvents.VTable, self.vtable).OnTransactionAbort(@ptrCast(*const IComTransactionEvents, self), pInfo, guidTx);
+                return @as(*const IComTransactionEvents.VTable, @ptrCast(self.vtable)).OnTransactionAbort(@as(*const IComTransactionEvents, @ptrCast(self)), pInfo, guidTx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransactionEvents_OnTransactionCommit(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComTransactionEvents.VTable, self.vtable).OnTransactionCommit(@ptrCast(*const IComTransactionEvents, self), pInfo, guidTx);
+                return @as(*const IComTransactionEvents.VTable, @ptrCast(self.vtable)).OnTransactionCommit(@as(*const IComTransactionEvents, @ptrCast(self)), pInfo, guidTx);
             }
         };
     }
@@ -3601,15 +3601,15 @@ pub const IComMethodEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethodEvents_OnMethodCall(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, iMeth: u32) HRESULT {
-                return @ptrCast(*const IComMethodEvents.VTable, self.vtable).OnMethodCall(@ptrCast(*const IComMethodEvents, self), pInfo, oid, guidCid, guidRid, iMeth);
+                return @as(*const IComMethodEvents.VTable, @ptrCast(self.vtable)).OnMethodCall(@as(*const IComMethodEvents, @ptrCast(self)), pInfo, oid, guidCid, guidRid, iMeth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethodEvents_OnMethodReturn(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, iMeth: u32, hresult: HRESULT) HRESULT {
-                return @ptrCast(*const IComMethodEvents.VTable, self.vtable).OnMethodReturn(@ptrCast(*const IComMethodEvents, self), pInfo, oid, guidCid, guidRid, iMeth, hresult);
+                return @as(*const IComMethodEvents.VTable, @ptrCast(self.vtable)).OnMethodReturn(@as(*const IComMethodEvents, @ptrCast(self)), pInfo, oid, guidCid, guidRid, iMeth, hresult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethodEvents_OnMethodException(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, iMeth: u32) HRESULT {
-                return @ptrCast(*const IComMethodEvents.VTable, self.vtable).OnMethodException(@ptrCast(*const IComMethodEvents, self), pInfo, oid, guidCid, guidRid, iMeth);
+                return @as(*const IComMethodEvents.VTable, @ptrCast(self.vtable)).OnMethodException(@as(*const IComMethodEvents, @ptrCast(self)), pInfo, oid, guidCid, guidRid, iMeth);
             }
         };
     }
@@ -3705,27 +3705,27 @@ pub const IComObjectEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnObjectActivate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64, ObjectID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnObjectActivate(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID, ObjectID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnObjectActivate(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID, ObjectID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnObjectDeactivate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64, ObjectID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnObjectDeactivate(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID, ObjectID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnObjectDeactivate(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID, ObjectID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnDisableCommit(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnDisableCommit(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnDisableCommit(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnEnableCommit(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnEnableCommit(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnEnableCommit(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnSetComplete(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnSetComplete(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnSetComplete(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectEvents_OnSetAbort(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComObjectEvents.VTable, self.vtable).OnSetAbort(@ptrCast(*const IComObjectEvents, self), pInfo, CtxtID);
+                return @as(*const IComObjectEvents.VTable, @ptrCast(self.vtable)).OnSetAbort(@as(*const IComObjectEvents, @ptrCast(self)), pInfo, CtxtID);
             }
         };
     }
@@ -3837,23 +3837,23 @@ pub const IComResourceEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComResourceEvents_OnResourceCreate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjectID: u64, pszType: ?[*:0]const u16, resId: u64, enlisted: BOOL) HRESULT {
-                return @ptrCast(*const IComResourceEvents.VTable, self.vtable).OnResourceCreate(@ptrCast(*const IComResourceEvents, self), pInfo, ObjectID, pszType, resId, enlisted);
+                return @as(*const IComResourceEvents.VTable, @ptrCast(self.vtable)).OnResourceCreate(@as(*const IComResourceEvents, @ptrCast(self)), pInfo, ObjectID, pszType, resId, enlisted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComResourceEvents_OnResourceAllocate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjectID: u64, pszType: ?[*:0]const u16, resId: u64, enlisted: BOOL, NumRated: u32, Rating: u32) HRESULT {
-                return @ptrCast(*const IComResourceEvents.VTable, self.vtable).OnResourceAllocate(@ptrCast(*const IComResourceEvents, self), pInfo, ObjectID, pszType, resId, enlisted, NumRated, Rating);
+                return @as(*const IComResourceEvents.VTable, @ptrCast(self.vtable)).OnResourceAllocate(@as(*const IComResourceEvents, @ptrCast(self)), pInfo, ObjectID, pszType, resId, enlisted, NumRated, Rating);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComResourceEvents_OnResourceRecycle(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjectID: u64, pszType: ?[*:0]const u16, resId: u64) HRESULT {
-                return @ptrCast(*const IComResourceEvents.VTable, self.vtable).OnResourceRecycle(@ptrCast(*const IComResourceEvents, self), pInfo, ObjectID, pszType, resId);
+                return @as(*const IComResourceEvents.VTable, @ptrCast(self.vtable)).OnResourceRecycle(@as(*const IComResourceEvents, @ptrCast(self)), pInfo, ObjectID, pszType, resId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComResourceEvents_OnResourceDestroy(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjectID: u64, hr: HRESULT, pszType: ?[*:0]const u16, resId: u64) HRESULT {
-                return @ptrCast(*const IComResourceEvents.VTable, self.vtable).OnResourceDestroy(@ptrCast(*const IComResourceEvents, self), pInfo, ObjectID, hr, pszType, resId);
+                return @as(*const IComResourceEvents.VTable, @ptrCast(self.vtable)).OnResourceDestroy(@as(*const IComResourceEvents, @ptrCast(self)), pInfo, ObjectID, hr, pszType, resId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComResourceEvents_OnResourceTrack(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjectID: u64, pszType: ?[*:0]const u16, resId: u64, enlisted: BOOL) HRESULT {
-                return @ptrCast(*const IComResourceEvents.VTable, self.vtable).OnResourceTrack(@ptrCast(*const IComResourceEvents, self), pInfo, ObjectID, pszType, resId, enlisted);
+                return @as(*const IComResourceEvents.VTable, @ptrCast(self.vtable)).OnResourceTrack(@as(*const IComResourceEvents, @ptrCast(self)), pInfo, ObjectID, pszType, resId, enlisted);
             }
         };
     }
@@ -3929,11 +3929,11 @@ pub const IComSecurityEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComSecurityEvents_OnAuthenticate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, ObjectID: u64, guidIID: ?*const Guid, iMeth: u32, cbByteOrig: u32, pSidOriginalUser: [*:0]u8, cbByteCur: u32, pSidCurrentUser: [*:0]u8, bCurrentUserInpersonatingInProc: BOOL) HRESULT {
-                return @ptrCast(*const IComSecurityEvents.VTable, self.vtable).OnAuthenticate(@ptrCast(*const IComSecurityEvents, self), pInfo, guidActivity, ObjectID, guidIID, iMeth, cbByteOrig, pSidOriginalUser, cbByteCur, pSidCurrentUser, bCurrentUserInpersonatingInProc);
+                return @as(*const IComSecurityEvents.VTable, @ptrCast(self.vtable)).OnAuthenticate(@as(*const IComSecurityEvents, @ptrCast(self)), pInfo, guidActivity, ObjectID, guidIID, iMeth, cbByteOrig, pSidOriginalUser, cbByteCur, pSidCurrentUser, bCurrentUserInpersonatingInProc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComSecurityEvents_OnAuthenticateFail(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, ObjectID: u64, guidIID: ?*const Guid, iMeth: u32, cbByteOrig: u32, pSidOriginalUser: [*:0]u8, cbByteCur: u32, pSidCurrentUser: [*:0]u8, bCurrentUserInpersonatingInProc: BOOL) HRESULT {
-                return @ptrCast(*const IComSecurityEvents.VTable, self.vtable).OnAuthenticateFail(@ptrCast(*const IComSecurityEvents, self), pInfo, guidActivity, ObjectID, guidIID, iMeth, cbByteOrig, pSidOriginalUser, cbByteCur, pSidCurrentUser, bCurrentUserInpersonatingInProc);
+                return @as(*const IComSecurityEvents.VTable, @ptrCast(self.vtable)).OnAuthenticateFail(@as(*const IComSecurityEvents, @ptrCast(self)), pInfo, guidActivity, ObjectID, guidIID, iMeth, cbByteOrig, pSidOriginalUser, cbByteCur, pSidCurrentUser, bCurrentUserInpersonatingInProc);
             }
         };
     }
@@ -4025,19 +4025,19 @@ pub const IComObjectPoolEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents_OnObjPoolPutObject(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, nReason: i32, dwAvailable: u32, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents.VTable, self.vtable).OnObjPoolPutObject(@ptrCast(*const IComObjectPoolEvents, self), pInfo, guidObject, nReason, dwAvailable, oid);
+                return @as(*const IComObjectPoolEvents.VTable, @ptrCast(self.vtable)).OnObjPoolPutObject(@as(*const IComObjectPoolEvents, @ptrCast(self)), pInfo, guidObject, nReason, dwAvailable, oid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents_OnObjPoolGetObject(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, dwAvailable: u32, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents.VTable, self.vtable).OnObjPoolGetObject(@ptrCast(*const IComObjectPoolEvents, self), pInfo, guidActivity, guidObject, dwAvailable, oid);
+                return @as(*const IComObjectPoolEvents.VTable, @ptrCast(self.vtable)).OnObjPoolGetObject(@as(*const IComObjectPoolEvents, @ptrCast(self)), pInfo, guidActivity, guidObject, dwAvailable, oid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents_OnObjPoolRecycleToTx(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, guidTx: ?*const Guid, objid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents.VTable, self.vtable).OnObjPoolRecycleToTx(@ptrCast(*const IComObjectPoolEvents, self), pInfo, guidActivity, guidObject, guidTx, objid);
+                return @as(*const IComObjectPoolEvents.VTable, @ptrCast(self.vtable)).OnObjPoolRecycleToTx(@as(*const IComObjectPoolEvents, @ptrCast(self)), pInfo, guidActivity, guidObject, guidTx, objid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents_OnObjPoolGetFromTx(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, guidTx: ?*const Guid, objid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents.VTable, self.vtable).OnObjPoolGetFromTx(@ptrCast(*const IComObjectPoolEvents, self), pInfo, guidActivity, guidObject, guidTx, objid);
+                return @as(*const IComObjectPoolEvents.VTable, @ptrCast(self.vtable)).OnObjPoolGetFromTx(@as(*const IComObjectPoolEvents, @ptrCast(self)), pInfo, guidActivity, guidObject, guidTx, objid);
             }
         };
     }
@@ -4143,23 +4143,23 @@ pub const IComObjectPoolEvents2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents2_OnObjPoolCreateObject(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, dwObjsCreated: u32, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents2.VTable, self.vtable).OnObjPoolCreateObject(@ptrCast(*const IComObjectPoolEvents2, self), pInfo, guidObject, dwObjsCreated, oid);
+                return @as(*const IComObjectPoolEvents2.VTable, @ptrCast(self.vtable)).OnObjPoolCreateObject(@as(*const IComObjectPoolEvents2, @ptrCast(self)), pInfo, guidObject, dwObjsCreated, oid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents2_OnObjPoolDestroyObject(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, dwObjsCreated: u32, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents2.VTable, self.vtable).OnObjPoolDestroyObject(@ptrCast(*const IComObjectPoolEvents2, self), pInfo, guidObject, dwObjsCreated, oid);
+                return @as(*const IComObjectPoolEvents2.VTable, @ptrCast(self.vtable)).OnObjPoolDestroyObject(@as(*const IComObjectPoolEvents2, @ptrCast(self)), pInfo, guidObject, dwObjsCreated, oid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents2_OnObjPoolCreateDecision(self: *const T, pInfo: ?*COMSVCSEVENTINFO, dwThreadsWaiting: u32, dwAvail: u32, dwCreated: u32, dwMin: u32, dwMax: u32) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents2.VTable, self.vtable).OnObjPoolCreateDecision(@ptrCast(*const IComObjectPoolEvents2, self), pInfo, dwThreadsWaiting, dwAvail, dwCreated, dwMin, dwMax);
+                return @as(*const IComObjectPoolEvents2.VTable, @ptrCast(self.vtable)).OnObjPoolCreateDecision(@as(*const IComObjectPoolEvents2, @ptrCast(self)), pInfo, dwThreadsWaiting, dwAvail, dwCreated, dwMin, dwMax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents2_OnObjPoolTimeout(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, guidActivity: ?*const Guid, dwTimeout: u32) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents2.VTable, self.vtable).OnObjPoolTimeout(@ptrCast(*const IComObjectPoolEvents2, self), pInfo, guidObject, guidActivity, dwTimeout);
+                return @as(*const IComObjectPoolEvents2.VTable, @ptrCast(self.vtable)).OnObjPoolTimeout(@as(*const IComObjectPoolEvents2, @ptrCast(self)), pInfo, guidObject, guidActivity, dwTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPoolEvents2_OnObjPoolCreatePool(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, dwMin: u32, dwMax: u32, dwTimeout: u32) HRESULT {
-                return @ptrCast(*const IComObjectPoolEvents2.VTable, self.vtable).OnObjPoolCreatePool(@ptrCast(*const IComObjectPoolEvents2, self), pInfo, guidObject, dwMin, dwMax, dwTimeout);
+                return @as(*const IComObjectPoolEvents2.VTable, @ptrCast(self.vtable)).OnObjPoolCreatePool(@as(*const IComObjectPoolEvents2, @ptrCast(self)), pInfo, guidObject, dwMin, dwMax, dwTimeout);
             }
         };
     }
@@ -4195,7 +4195,7 @@ pub const IComObjectConstructionEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectConstructionEvents_OnObjectConstruct(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, sConstructString: ?[*:0]const u16, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectConstructionEvents.VTable, self.vtable).OnObjectConstruct(@ptrCast(*const IComObjectConstructionEvents, self), pInfo, guidObject, sConstructString, oid);
+                return @as(*const IComObjectConstructionEvents.VTable, @ptrCast(self.vtable)).OnObjectConstruct(@as(*const IComObjectConstructionEvents, @ptrCast(self)), pInfo, guidObject, sConstructString, oid);
             }
         };
     }
@@ -4317,31 +4317,31 @@ pub const IComActivityEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityCreate(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityCreate(@ptrCast(*const IComActivityEvents, self), pInfo, guidActivity);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityCreate(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidActivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityDestroy(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityDestroy(@ptrCast(*const IComActivityEvents, self), pInfo, guidActivity);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityDestroy(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidActivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityEnter(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidCurrent: ?*const Guid, guidEntered: ?*const Guid, dwThread: u32) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityEnter(@ptrCast(*const IComActivityEvents, self), pInfo, guidCurrent, guidEntered, dwThread);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityEnter(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidCurrent, guidEntered, dwThread);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityTimeout(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidCurrent: ?*const Guid, guidEntered: ?*const Guid, dwThread: u32, dwTimeout: u32) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityTimeout(@ptrCast(*const IComActivityEvents, self), pInfo, guidCurrent, guidEntered, dwThread, dwTimeout);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityTimeout(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidCurrent, guidEntered, dwThread, dwTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityReenter(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidCurrent: ?*const Guid, dwThread: u32, dwCallDepth: u32) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityReenter(@ptrCast(*const IComActivityEvents, self), pInfo, guidCurrent, dwThread, dwCallDepth);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityReenter(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidCurrent, dwThread, dwCallDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityLeave(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidCurrent: ?*const Guid, guidLeft: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityLeave(@ptrCast(*const IComActivityEvents, self), pInfo, guidCurrent, guidLeft);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityLeave(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidCurrent, guidLeft);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComActivityEvents_OnActivityLeaveSame(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidCurrent: ?*const Guid, dwCallDepth: u32) HRESULT {
-                return @ptrCast(*const IComActivityEvents.VTable, self.vtable).OnActivityLeaveSame(@ptrCast(*const IComActivityEvents, self), pInfo, guidCurrent, dwCallDepth);
+                return @as(*const IComActivityEvents.VTable, @ptrCast(self.vtable)).OnActivityLeaveSame(@as(*const IComActivityEvents, @ptrCast(self)), pInfo, guidCurrent, dwCallDepth);
             }
         };
     }
@@ -4379,7 +4379,7 @@ pub const IComIdentityEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComIdentityEvents_OnIISRequestInfo(self: *const T, pInfo: ?*COMSVCSEVENTINFO, ObjId: u64, pszClientIP: ?[*:0]const u16, pszServerIP: ?[*:0]const u16, pszURL: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IComIdentityEvents.VTable, self.vtable).OnIISRequestInfo(@ptrCast(*const IComIdentityEvents, self), pInfo, ObjId, pszClientIP, pszServerIP, pszURL);
+                return @as(*const IComIdentityEvents.VTable, @ptrCast(self.vtable)).OnIISRequestInfo(@as(*const IComIdentityEvents, @ptrCast(self)), pInfo, ObjId, pszClientIP, pszServerIP, pszURL);
             }
         };
     }
@@ -4515,31 +4515,31 @@ pub const IComQCEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCRecord(self: *const T, pInfo: ?*COMSVCSEVENTINFO, objid: u64, szQueue: *[60]u16, guidMsgId: ?*const Guid, guidWorkFlowId: ?*const Guid, msmqhr: HRESULT) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCRecord(@ptrCast(*const IComQCEvents, self), pInfo, objid, szQueue, guidMsgId, guidWorkFlowId, msmqhr);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCRecord(@as(*const IComQCEvents, @ptrCast(self)), pInfo, objid, szQueue, guidMsgId, guidWorkFlowId, msmqhr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCQueueOpen(self: *const T, pInfo: ?*COMSVCSEVENTINFO, szQueue: *[60]u16, QueueID: u64, hr: HRESULT) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCQueueOpen(@ptrCast(*const IComQCEvents, self), pInfo, szQueue, QueueID, hr);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCQueueOpen(@as(*const IComQCEvents, @ptrCast(self)), pInfo, szQueue, QueueID, hr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCReceive(self: *const T, pInfo: ?*COMSVCSEVENTINFO, QueueID: u64, guidMsgId: ?*const Guid, guidWorkFlowId: ?*const Guid, hr: HRESULT) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCReceive(@ptrCast(*const IComQCEvents, self), pInfo, QueueID, guidMsgId, guidWorkFlowId, hr);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCReceive(@as(*const IComQCEvents, @ptrCast(self)), pInfo, QueueID, guidMsgId, guidWorkFlowId, hr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCReceiveFail(self: *const T, pInfo: ?*COMSVCSEVENTINFO, QueueID: u64, msmqhr: HRESULT) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCReceiveFail(@ptrCast(*const IComQCEvents, self), pInfo, QueueID, msmqhr);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCReceiveFail(@as(*const IComQCEvents, @ptrCast(self)), pInfo, QueueID, msmqhr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCMoveToReTryQueue(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidMsgId: ?*const Guid, guidWorkFlowId: ?*const Guid, RetryIndex: u32) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCMoveToReTryQueue(@ptrCast(*const IComQCEvents, self), pInfo, guidMsgId, guidWorkFlowId, RetryIndex);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCMoveToReTryQueue(@as(*const IComQCEvents, @ptrCast(self)), pInfo, guidMsgId, guidWorkFlowId, RetryIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCMoveToDeadQueue(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidMsgId: ?*const Guid, guidWorkFlowId: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCMoveToDeadQueue(@ptrCast(*const IComQCEvents, self), pInfo, guidMsgId, guidWorkFlowId);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCMoveToDeadQueue(@as(*const IComQCEvents, @ptrCast(self)), pInfo, guidMsgId, guidWorkFlowId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComQCEvents_OnQCPlayback(self: *const T, pInfo: ?*COMSVCSEVENTINFO, objid: u64, guidMsgId: ?*const Guid, guidWorkFlowId: ?*const Guid, hr: HRESULT) HRESULT {
-                return @ptrCast(*const IComQCEvents.VTable, self.vtable).OnQCPlayback(@ptrCast(*const IComQCEvents, self), pInfo, objid, guidMsgId, guidWorkFlowId, hr);
+                return @as(*const IComQCEvents.VTable, @ptrCast(self.vtable)).OnQCPlayback(@as(*const IComQCEvents, @ptrCast(self)), pInfo, objid, guidMsgId, guidWorkFlowId, hr);
             }
         };
     }
@@ -4575,7 +4575,7 @@ pub const IComExceptionEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComExceptionEvents_OnExceptionUser(self: *const T, pInfo: ?*COMSVCSEVENTINFO, code: u32, address: u64, pszStackTrace: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IComExceptionEvents.VTable, self.vtable).OnExceptionUser(@ptrCast(*const IComExceptionEvents, self), pInfo, code, address, pszStackTrace);
+                return @as(*const IComExceptionEvents.VTable, @ptrCast(self.vtable)).OnExceptionUser(@as(*const IComExceptionEvents, @ptrCast(self)), pInfo, code, address, pszStackTrace);
             }
         };
     }
@@ -4632,15 +4632,15 @@ pub const ILBEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILBEvents_TargetUp(self: *const T, bstrServerName: ?BSTR, bstrClsidEng: ?BSTR) HRESULT {
-                return @ptrCast(*const ILBEvents.VTable, self.vtable).TargetUp(@ptrCast(*const ILBEvents, self), bstrServerName, bstrClsidEng);
+                return @as(*const ILBEvents.VTable, @ptrCast(self.vtable)).TargetUp(@as(*const ILBEvents, @ptrCast(self)), bstrServerName, bstrClsidEng);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILBEvents_TargetDown(self: *const T, bstrServerName: ?BSTR, bstrClsidEng: ?BSTR) HRESULT {
-                return @ptrCast(*const ILBEvents.VTable, self.vtable).TargetDown(@ptrCast(*const ILBEvents, self), bstrServerName, bstrClsidEng);
+                return @as(*const ILBEvents.VTable, @ptrCast(self.vtable)).TargetDown(@as(*const ILBEvents, @ptrCast(self)), bstrServerName, bstrClsidEng);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILBEvents_EngineDefined(self: *const T, bstrPropName: ?BSTR, varPropValue: ?*VARIANT, bstrClsidEng: ?BSTR) HRESULT {
-                return @ptrCast(*const ILBEvents.VTable, self.vtable).EngineDefined(@ptrCast(*const ILBEvents, self), bstrPropName, varPropValue, bstrClsidEng);
+                return @as(*const ILBEvents.VTable, @ptrCast(self.vtable)).EngineDefined(@as(*const ILBEvents, @ptrCast(self)), bstrPropName, varPropValue, bstrClsidEng);
             }
         };
     }
@@ -4860,63 +4860,63 @@ pub const IComCRMEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMRecoveryStart(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMRecoveryStart(@ptrCast(*const IComCRMEvents, self), pInfo, guidApp);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMRecoveryStart(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMRecoveryDone(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMRecoveryDone(@ptrCast(*const IComCRMEvents, self), pInfo, guidApp);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMRecoveryDone(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMCheckpoint(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMCheckpoint(@ptrCast(*const IComCRMEvents, self), pInfo, guidApp);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMCheckpoint(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMBegin(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid, guidActivity: Guid, guidTx: Guid, szProgIdCompensator: *[64]u16, szDescription: *[64]u16) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMBegin(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID, guidActivity, guidTx, szProgIdCompensator, szDescription);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMBegin(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID, guidActivity, guidTx, szProgIdCompensator, szDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMPrepare(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMPrepare(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMPrepare(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMCommit(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMCommit(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMCommit(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMAbort(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMAbort(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMAbort(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMIndoubt(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMIndoubt(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMIndoubt(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMDone(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMDone(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMDone(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMRelease(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMRelease(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMRelease(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMAnalyze(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid, dwCrmRecordType: u32, dwRecordSize: u32) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMAnalyze(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID, dwCrmRecordType, dwRecordSize);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMAnalyze(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID, dwCrmRecordType, dwRecordSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMWrite(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid, fVariants: BOOL, dwRecordSize: u32) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMWrite(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID, fVariants, dwRecordSize);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMWrite(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID, fVariants, dwRecordSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMForget(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMForget(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMForget(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMForce(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMForce(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMForce(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComCRMEvents_OnCRMDeliver(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidClerkCLSID: Guid, fVariants: BOOL, dwRecordSize: u32) HRESULT {
-                return @ptrCast(*const IComCRMEvents.VTable, self.vtable).OnCRMDeliver(@ptrCast(*const IComCRMEvents, self), pInfo, guidClerkCLSID, fVariants, dwRecordSize);
+                return @as(*const IComCRMEvents.VTable, @ptrCast(self.vtable)).OnCRMDeliver(@as(*const IComCRMEvents, @ptrCast(self)), pInfo, guidClerkCLSID, fVariants, dwRecordSize);
             }
         };
     }
@@ -4998,15 +4998,15 @@ pub const IComMethod2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethod2Events_OnMethodCall2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, dwThread: u32, iMeth: u32) HRESULT {
-                return @ptrCast(*const IComMethod2Events.VTable, self.vtable).OnMethodCall2(@ptrCast(*const IComMethod2Events, self), pInfo, oid, guidCid, guidRid, dwThread, iMeth);
+                return @as(*const IComMethod2Events.VTable, @ptrCast(self.vtable)).OnMethodCall2(@as(*const IComMethod2Events, @ptrCast(self)), pInfo, oid, guidCid, guidRid, dwThread, iMeth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethod2Events_OnMethodReturn2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, dwThread: u32, iMeth: u32, hresult: HRESULT) HRESULT {
-                return @ptrCast(*const IComMethod2Events.VTable, self.vtable).OnMethodReturn2(@ptrCast(*const IComMethod2Events, self), pInfo, oid, guidCid, guidRid, dwThread, iMeth, hresult);
+                return @as(*const IComMethod2Events.VTable, @ptrCast(self.vtable)).OnMethodReturn2(@as(*const IComMethod2Events, @ptrCast(self)), pInfo, oid, guidCid, guidRid, dwThread, iMeth, hresult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMethod2Events_OnMethodException2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, oid: u64, guidCid: ?*const Guid, guidRid: ?*const Guid, dwThread: u32, iMeth: u32) HRESULT {
-                return @ptrCast(*const IComMethod2Events.VTable, self.vtable).OnMethodException2(@ptrCast(*const IComMethod2Events, self), pInfo, oid, guidCid, guidRid, dwThread, iMeth);
+                return @as(*const IComMethod2Events.VTable, @ptrCast(self.vtable)).OnMethodException2(@as(*const IComMethod2Events, @ptrCast(self)), pInfo, oid, guidCid, guidRid, dwThread, iMeth);
             }
         };
     }
@@ -5036,7 +5036,7 @@ pub const IComTrackingInfoEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoEvents_OnNewTrackingInfo(self: *const T, pToplevelCollection: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IComTrackingInfoEvents.VTable, self.vtable).OnNewTrackingInfo(@ptrCast(*const IComTrackingInfoEvents, self), pToplevelCollection);
+                return @as(*const IComTrackingInfoEvents.VTable, @ptrCast(self.vtable)).OnNewTrackingInfo(@as(*const IComTrackingInfoEvents, @ptrCast(self)), pToplevelCollection);
             }
         };
     }
@@ -5099,15 +5099,15 @@ pub const IComTrackingInfoCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoCollection_Type(self: *const T, pType: ?*TRACKING_COLL_TYPE) HRESULT {
-                return @ptrCast(*const IComTrackingInfoCollection.VTable, self.vtable).Type(@ptrCast(*const IComTrackingInfoCollection, self), pType);
+                return @as(*const IComTrackingInfoCollection.VTable, @ptrCast(self.vtable)).Type(@as(*const IComTrackingInfoCollection, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoCollection_Count(self: *const T, pCount: ?*u32) HRESULT {
-                return @ptrCast(*const IComTrackingInfoCollection.VTable, self.vtable).Count(@ptrCast(*const IComTrackingInfoCollection, self), pCount);
+                return @as(*const IComTrackingInfoCollection.VTable, @ptrCast(self.vtable)).Count(@as(*const IComTrackingInfoCollection, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoCollection_Item(self: *const T, ulIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IComTrackingInfoCollection.VTable, self.vtable).Item(@ptrCast(*const IComTrackingInfoCollection, self), ulIndex, riid, ppv);
+                return @as(*const IComTrackingInfoCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const IComTrackingInfoCollection, @ptrCast(self)), ulIndex, riid, ppv);
             }
         };
     }
@@ -5139,7 +5139,7 @@ pub const IComTrackingInfoObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoObject_GetValue(self: *const T, szPropertyName: ?PWSTR, pvarOut: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IComTrackingInfoObject.VTable, self.vtable).GetValue(@ptrCast(*const IComTrackingInfoObject, self), szPropertyName, pvarOut);
+                return @as(*const IComTrackingInfoObject.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IComTrackingInfoObject, @ptrCast(self)), szPropertyName, pvarOut);
             }
         };
     }
@@ -5181,11 +5181,11 @@ pub const IComTrackingInfoProperties = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoProperties_PropCount(self: *const T, pCount: ?*u32) HRESULT {
-                return @ptrCast(*const IComTrackingInfoProperties.VTable, self.vtable).PropCount(@ptrCast(*const IComTrackingInfoProperties, self), pCount);
+                return @as(*const IComTrackingInfoProperties.VTable, @ptrCast(self.vtable)).PropCount(@as(*const IComTrackingInfoProperties, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTrackingInfoProperties_GetPropName(self: *const T, ulIndex: u32, ppszPropName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IComTrackingInfoProperties.VTable, self.vtable).GetPropName(@ptrCast(*const IComTrackingInfoProperties, self), ulIndex, ppszPropName);
+                return @as(*const IComTrackingInfoProperties.VTable, @ptrCast(self.vtable)).GetPropName(@as(*const IComTrackingInfoProperties, @ptrCast(self)), ulIndex, ppszPropName);
             }
         };
     }
@@ -5273,23 +5273,23 @@ pub const IComApp2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComApp2Events_OnAppActivation2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid, guidProcess: Guid) HRESULT {
-                return @ptrCast(*const IComApp2Events.VTable, self.vtable).OnAppActivation2(@ptrCast(*const IComApp2Events, self), pInfo, guidApp, guidProcess);
+                return @as(*const IComApp2Events.VTable, @ptrCast(self.vtable)).OnAppActivation2(@as(*const IComApp2Events, @ptrCast(self)), pInfo, guidApp, guidProcess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComApp2Events_OnAppShutdown2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComApp2Events.VTable, self.vtable).OnAppShutdown2(@ptrCast(*const IComApp2Events, self), pInfo, guidApp);
+                return @as(*const IComApp2Events.VTable, @ptrCast(self.vtable)).OnAppShutdown2(@as(*const IComApp2Events, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComApp2Events_OnAppForceShutdown2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid) HRESULT {
-                return @ptrCast(*const IComApp2Events.VTable, self.vtable).OnAppForceShutdown2(@ptrCast(*const IComApp2Events, self), pInfo, guidApp);
+                return @as(*const IComApp2Events.VTable, @ptrCast(self.vtable)).OnAppForceShutdown2(@as(*const IComApp2Events, @ptrCast(self)), pInfo, guidApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComApp2Events_OnAppPaused2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid, bPaused: BOOL) HRESULT {
-                return @ptrCast(*const IComApp2Events.VTable, self.vtable).OnAppPaused2(@ptrCast(*const IComApp2Events, self), pInfo, guidApp, bPaused);
+                return @as(*const IComApp2Events.VTable, @ptrCast(self.vtable)).OnAppPaused2(@as(*const IComApp2Events, @ptrCast(self)), pInfo, guidApp, bPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComApp2Events_OnAppRecycle2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidApp: Guid, guidProcess: Guid, lReason: i32) HRESULT {
-                return @ptrCast(*const IComApp2Events.VTable, self.vtable).OnAppRecycle2(@ptrCast(*const IComApp2Events, self), pInfo, guidApp, guidProcess, lReason);
+                return @as(*const IComApp2Events.VTable, @ptrCast(self.vtable)).OnAppRecycle2(@as(*const IComApp2Events, @ptrCast(self)), pInfo, guidApp, guidProcess, lReason);
             }
         };
     }
@@ -5365,19 +5365,19 @@ pub const IComTransaction2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransaction2Events_OnTransactionStart2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid, tsid: ?*const Guid, fRoot: BOOL, nIsolationLevel: i32) HRESULT {
-                return @ptrCast(*const IComTransaction2Events.VTable, self.vtable).OnTransactionStart2(@ptrCast(*const IComTransaction2Events, self), pInfo, guidTx, tsid, fRoot, nIsolationLevel);
+                return @as(*const IComTransaction2Events.VTable, @ptrCast(self.vtable)).OnTransactionStart2(@as(*const IComTransaction2Events, @ptrCast(self)), pInfo, guidTx, tsid, fRoot, nIsolationLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransaction2Events_OnTransactionPrepare2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid, fVoteYes: BOOL) HRESULT {
-                return @ptrCast(*const IComTransaction2Events.VTable, self.vtable).OnTransactionPrepare2(@ptrCast(*const IComTransaction2Events, self), pInfo, guidTx, fVoteYes);
+                return @as(*const IComTransaction2Events.VTable, @ptrCast(self.vtable)).OnTransactionPrepare2(@as(*const IComTransaction2Events, @ptrCast(self)), pInfo, guidTx, fVoteYes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransaction2Events_OnTransactionAbort2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComTransaction2Events.VTable, self.vtable).OnTransactionAbort2(@ptrCast(*const IComTransaction2Events, self), pInfo, guidTx);
+                return @as(*const IComTransaction2Events.VTable, @ptrCast(self.vtable)).OnTransactionAbort2(@as(*const IComTransaction2Events, @ptrCast(self)), pInfo, guidTx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComTransaction2Events_OnTransactionCommit2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidTx: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComTransaction2Events.VTable, self.vtable).OnTransactionCommit2(@ptrCast(*const IComTransaction2Events, self), pInfo, guidTx);
+                return @as(*const IComTransaction2Events.VTable, @ptrCast(self.vtable)).OnTransactionCommit2(@as(*const IComTransaction2Events, @ptrCast(self)), pInfo, guidTx);
             }
         };
     }
@@ -5431,11 +5431,11 @@ pub const IComInstance2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComInstance2Events_OnObjectCreate2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, clsid: ?*const Guid, tsid: ?*const Guid, CtxtID: u64, ObjectID: u64, guidPartition: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComInstance2Events.VTable, self.vtable).OnObjectCreate2(@ptrCast(*const IComInstance2Events, self), pInfo, guidActivity, clsid, tsid, CtxtID, ObjectID, guidPartition);
+                return @as(*const IComInstance2Events.VTable, @ptrCast(self.vtable)).OnObjectCreate2(@as(*const IComInstance2Events, @ptrCast(self)), pInfo, guidActivity, clsid, tsid, CtxtID, ObjectID, guidPartition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComInstance2Events_OnObjectDestroy2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, CtxtID: u64) HRESULT {
-                return @ptrCast(*const IComInstance2Events.VTable, self.vtable).OnObjectDestroy2(@ptrCast(*const IComInstance2Events, self), pInfo, CtxtID);
+                return @as(*const IComInstance2Events.VTable, @ptrCast(self.vtable)).OnObjectDestroy2(@as(*const IComInstance2Events, @ptrCast(self)), pInfo, CtxtID);
             }
         };
     }
@@ -5531,19 +5531,19 @@ pub const IComObjectPool2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPool2Events_OnObjPoolPutObject2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, nReason: i32, dwAvailable: u32, oid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPool2Events.VTable, self.vtable).OnObjPoolPutObject2(@ptrCast(*const IComObjectPool2Events, self), pInfo, guidObject, nReason, dwAvailable, oid);
+                return @as(*const IComObjectPool2Events.VTable, @ptrCast(self.vtable)).OnObjPoolPutObject2(@as(*const IComObjectPool2Events, @ptrCast(self)), pInfo, guidObject, nReason, dwAvailable, oid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPool2Events_OnObjPoolGetObject2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, dwAvailable: u32, oid: u64, guidPartition: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComObjectPool2Events.VTable, self.vtable).OnObjPoolGetObject2(@ptrCast(*const IComObjectPool2Events, self), pInfo, guidActivity, guidObject, dwAvailable, oid, guidPartition);
+                return @as(*const IComObjectPool2Events.VTable, @ptrCast(self.vtable)).OnObjPoolGetObject2(@as(*const IComObjectPool2Events, @ptrCast(self)), pInfo, guidActivity, guidObject, dwAvailable, oid, guidPartition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPool2Events_OnObjPoolRecycleToTx2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, guidTx: ?*const Guid, objid: u64) HRESULT {
-                return @ptrCast(*const IComObjectPool2Events.VTable, self.vtable).OnObjPoolRecycleToTx2(@ptrCast(*const IComObjectPool2Events, self), pInfo, guidActivity, guidObject, guidTx, objid);
+                return @as(*const IComObjectPool2Events.VTable, @ptrCast(self.vtable)).OnObjPoolRecycleToTx2(@as(*const IComObjectPool2Events, @ptrCast(self)), pInfo, guidActivity, guidObject, guidTx, objid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectPool2Events_OnObjPoolGetFromTx2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidActivity: ?*const Guid, guidObject: ?*const Guid, guidTx: ?*const Guid, objid: u64, guidPartition: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComObjectPool2Events.VTable, self.vtable).OnObjPoolGetFromTx2(@ptrCast(*const IComObjectPool2Events, self), pInfo, guidActivity, guidObject, guidTx, objid, guidPartition);
+                return @as(*const IComObjectPool2Events.VTable, @ptrCast(self.vtable)).OnObjPoolGetFromTx2(@as(*const IComObjectPool2Events, @ptrCast(self)), pInfo, guidActivity, guidObject, guidTx, objid, guidPartition);
             }
         };
     }
@@ -5581,7 +5581,7 @@ pub const IComObjectConstruction2Events = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComObjectConstruction2Events_OnObjectConstruct2(self: *const T, pInfo: ?*COMSVCSEVENTINFO, guidObject: ?*const Guid, sConstructString: ?[*:0]const u16, oid: u64, guidPartition: ?*const Guid) HRESULT {
-                return @ptrCast(*const IComObjectConstruction2Events.VTable, self.vtable).OnObjectConstruct2(@ptrCast(*const IComObjectConstruction2Events, self), pInfo, guidObject, sConstructString, oid, guidPartition);
+                return @as(*const IComObjectConstruction2Events.VTable, @ptrCast(self.vtable)).OnObjectConstruct2(@as(*const IComObjectConstruction2Events, @ptrCast(self)), pInfo, guidObject, sConstructString, oid, guidPartition);
             }
         };
     }
@@ -5629,11 +5629,11 @@ pub const ISystemAppEventData = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemAppEventData_Startup(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemAppEventData.VTable, self.vtable).Startup(@ptrCast(*const ISystemAppEventData, self));
+                return @as(*const ISystemAppEventData.VTable, @ptrCast(self.vtable)).Startup(@as(*const ISystemAppEventData, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemAppEventData_OnDataChanged(self: *const T, dwPID: u32, dwMask: u32, dwNumberSinks: u32, bstrDwMethodMask: ?BSTR, dwReason: u32, u64TraceHandle: u64) HRESULT {
-                return @ptrCast(*const ISystemAppEventData.VTable, self.vtable).OnDataChanged(@ptrCast(*const ISystemAppEventData, self), dwPID, dwMask, dwNumberSinks, bstrDwMethodMask, dwReason, u64TraceHandle);
+                return @as(*const ISystemAppEventData.VTable, @ptrCast(self.vtable)).OnDataChanged(@as(*const ISystemAppEventData, @ptrCast(self)), dwPID, dwMask, dwNumberSinks, bstrDwMethodMask, dwReason, u64TraceHandle);
             }
         };
     }
@@ -5712,23 +5712,23 @@ pub const IMtsEvents = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEvents_get_PackageName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMtsEvents.VTable, self.vtable).get_PackageName(@ptrCast(*const IMtsEvents, self), pVal);
+                return @as(*const IMtsEvents.VTable, @ptrCast(self.vtable)).get_PackageName(@as(*const IMtsEvents, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEvents_get_PackageGuid(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMtsEvents.VTable, self.vtable).get_PackageGuid(@ptrCast(*const IMtsEvents, self), pVal);
+                return @as(*const IMtsEvents.VTable, @ptrCast(self.vtable)).get_PackageGuid(@as(*const IMtsEvents, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEvents_PostEvent(self: *const T, vEvent: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMtsEvents.VTable, self.vtable).PostEvent(@ptrCast(*const IMtsEvents, self), vEvent);
+                return @as(*const IMtsEvents.VTable, @ptrCast(self.vtable)).PostEvent(@as(*const IMtsEvents, @ptrCast(self)), vEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEvents_get_FireEvents(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IMtsEvents.VTable, self.vtable).get_FireEvents(@ptrCast(*const IMtsEvents, self), pVal);
+                return @as(*const IMtsEvents.VTable, @ptrCast(self.vtable)).get_FireEvents(@as(*const IMtsEvents, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEvents_GetProcessID(self: *const T, id: ?*i32) HRESULT {
-                return @ptrCast(*const IMtsEvents.VTable, self.vtable).GetProcessID(@ptrCast(*const IMtsEvents, self), id);
+                return @as(*const IMtsEvents.VTable, @ptrCast(self.vtable)).GetProcessID(@as(*const IMtsEvents, @ptrCast(self)), id);
             }
         };
     }
@@ -5815,23 +5815,23 @@ pub const IMtsEventInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEventInfo_get_Names(self: *const T, pUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_Names(@ptrCast(*const IMtsEventInfo, self), pUnk);
+                return @as(*const IMtsEventInfo.VTable, @ptrCast(self.vtable)).get_Names(@as(*const IMtsEventInfo, @ptrCast(self)), pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEventInfo_get_DisplayName(self: *const T, sDisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_DisplayName(@ptrCast(*const IMtsEventInfo, self), sDisplayName);
+                return @as(*const IMtsEventInfo.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IMtsEventInfo, @ptrCast(self)), sDisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEventInfo_get_EventID(self: *const T, sGuidEventID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_EventID(@ptrCast(*const IMtsEventInfo, self), sGuidEventID);
+                return @as(*const IMtsEventInfo.VTable, @ptrCast(self.vtable)).get_EventID(@as(*const IMtsEventInfo, @ptrCast(self)), sGuidEventID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEventInfo_get_Count(self: *const T, lCount: ?*i32) HRESULT {
-                return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_Count(@ptrCast(*const IMtsEventInfo, self), lCount);
+                return @as(*const IMtsEventInfo.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMtsEventInfo, @ptrCast(self)), lCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsEventInfo_get_Value(self: *const T, sKey: ?BSTR, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMtsEventInfo.VTable, self.vtable).get_Value(@ptrCast(*const IMtsEventInfo, self), sKey, pVal);
+                return @as(*const IMtsEventInfo.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IMtsEventInfo, @ptrCast(self)), sKey, pVal);
             }
         };
     }
@@ -5861,7 +5861,7 @@ pub const IMTSLocator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSLocator_GetEventDispatcher(self: *const T, pUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMTSLocator.VTable, self.vtable).GetEventDispatcher(@ptrCast(*const IMTSLocator, self), pUnk);
+                return @as(*const IMTSLocator.VTable, @ptrCast(self.vtable)).GetEventDispatcher(@as(*const IMTSLocator, @ptrCast(self)), pUnk);
             }
         };
     }
@@ -5914,15 +5914,15 @@ pub const IMtsGrp = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsGrp_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IMtsGrp.VTable, self.vtable).get_Count(@ptrCast(*const IMtsGrp, self), pVal);
+                return @as(*const IMtsGrp.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMtsGrp, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsGrp_Item(self: *const T, lIndex: i32, ppUnkDispatcher: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMtsGrp.VTable, self.vtable).Item(@ptrCast(*const IMtsGrp, self), lIndex, ppUnkDispatcher);
+                return @as(*const IMtsGrp.VTable, @ptrCast(self.vtable)).Item(@as(*const IMtsGrp, @ptrCast(self)), lIndex, ppUnkDispatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMtsGrp_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IMtsGrp.VTable, self.vtable).Refresh(@ptrCast(*const IMtsGrp, self));
+                return @as(*const IMtsGrp.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMtsGrp, @ptrCast(self)));
             }
         };
     }
@@ -6030,31 +6030,31 @@ pub const IMessageMover = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_get_SourcePath(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).get_SourcePath(@ptrCast(*const IMessageMover, self), pVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).get_SourcePath(@as(*const IMessageMover, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_put_SourcePath(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).put_SourcePath(@ptrCast(*const IMessageMover, self), newVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).put_SourcePath(@as(*const IMessageMover, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_get_DestPath(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).get_DestPath(@ptrCast(*const IMessageMover, self), pVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).get_DestPath(@as(*const IMessageMover, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_put_DestPath(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).put_DestPath(@ptrCast(*const IMessageMover, self), newVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).put_DestPath(@as(*const IMessageMover, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_get_CommitBatchSize(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).get_CommitBatchSize(@ptrCast(*const IMessageMover, self), pVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).get_CommitBatchSize(@as(*const IMessageMover, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_put_CommitBatchSize(self: *const T, newVal: i32) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).put_CommitBatchSize(@ptrCast(*const IMessageMover, self), newVal);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).put_CommitBatchSize(@as(*const IMessageMover, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMessageMover_MoveMessages(self: *const T, plMessagesMoved: ?*i32) HRESULT {
-                return @ptrCast(*const IMessageMover.VTable, self.vtable).MoveMessages(@ptrCast(*const IMessageMover, self), plMessagesMoved);
+                return @as(*const IMessageMover.VTable, @ptrCast(self.vtable)).MoveMessages(@as(*const IMessageMover, @ptrCast(self)), plMessagesMoved);
             }
         };
     }
@@ -6113,15 +6113,15 @@ pub const IEventServerTrace = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventServerTrace_StartTraceGuid(self: *const T, bstrguidEvent: ?BSTR, bstrguidFilter: ?BSTR, lPidFilter: i32) HRESULT {
-                return @ptrCast(*const IEventServerTrace.VTable, self.vtable).StartTraceGuid(@ptrCast(*const IEventServerTrace, self), bstrguidEvent, bstrguidFilter, lPidFilter);
+                return @as(*const IEventServerTrace.VTable, @ptrCast(self.vtable)).StartTraceGuid(@as(*const IEventServerTrace, @ptrCast(self)), bstrguidEvent, bstrguidFilter, lPidFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventServerTrace_StopTraceGuid(self: *const T, bstrguidEvent: ?BSTR, bstrguidFilter: ?BSTR, lPidFilter: i32) HRESULT {
-                return @ptrCast(*const IEventServerTrace.VTable, self.vtable).StopTraceGuid(@ptrCast(*const IEventServerTrace, self), bstrguidEvent, bstrguidFilter, lPidFilter);
+                return @as(*const IEventServerTrace.VTable, @ptrCast(self.vtable)).StopTraceGuid(@as(*const IEventServerTrace, @ptrCast(self)), bstrguidEvent, bstrguidFilter, lPidFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventServerTrace_EnumTraceGuid(self: *const T, plCntGuids: ?*i32, pbstrGuidList: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventServerTrace.VTable, self.vtable).EnumTraceGuid(@ptrCast(*const IEventServerTrace, self), plCntGuids, pbstrGuidList);
+                return @as(*const IEventServerTrace.VTable, @ptrCast(self.vtable)).EnumTraceGuid(@as(*const IEventServerTrace, @ptrCast(self)), plCntGuids, pbstrGuidList);
             }
         };
     }
@@ -6437,31 +6437,31 @@ pub const IGetAppTrackerData = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetApplicationProcesses(self: *const T, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumApplicationProcesses: ?*u32, ApplicationProcesses: ?[*]?*ApplicationProcessSummary) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationProcesses(@ptrCast(*const IGetAppTrackerData, self), PartitionId, ApplicationId, Flags, NumApplicationProcesses, ApplicationProcesses);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationProcesses(@as(*const IGetAppTrackerData, @ptrCast(self)), PartitionId, ApplicationId, Flags, NumApplicationProcesses, ApplicationProcesses);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetApplicationProcessDetails(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, Flags: u32, Summary: ?*ApplicationProcessSummary, Statistics: ?*ApplicationProcessStatistics, RecycleInfo: ?*ApplicationProcessRecycleInfo, AnyComponentsHangMonitored: ?*BOOL) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationProcessDetails(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, Flags, Summary, Statistics, RecycleInfo, AnyComponentsHangMonitored);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationProcessDetails(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, Flags, Summary, Statistics, RecycleInfo, AnyComponentsHangMonitored);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetApplicationsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, Flags: u32, NumApplicationsInProcess: ?*u32, Applications: ?[*]?*ApplicationSummary) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetApplicationsInProcess(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, PartitionId, Flags, NumApplicationsInProcess, Applications);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationsInProcess(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, PartitionId, Flags, NumApplicationsInProcess, Applications);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetComponentsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumComponentsInProcess: ?*u32, Components: ?[*]?*ComponentSummary) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetComponentsInProcess(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, PartitionId, ApplicationId, Flags, NumComponentsInProcess, Components);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetComponentsInProcess(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, PartitionId, ApplicationId, Flags, NumComponentsInProcess, Components);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetComponentDetails(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, Clsid: ?*const Guid, Flags: u32, Summary: ?*ComponentSummary, Statistics: ?*ComponentStatistics, HangMonitorInfo: ?*ComponentHangMonitorInfo) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetComponentDetails(@ptrCast(*const IGetAppTrackerData, self), ApplicationInstanceId, ProcessId, Clsid, Flags, Summary, Statistics, HangMonitorInfo);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetComponentDetails(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, Clsid, Flags, Summary, Statistics, HangMonitorInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetTrackerDataAsCollectionObject(self: *const T, TopLevelCollection: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetTrackerDataAsCollectionObject(@ptrCast(*const IGetAppTrackerData, self), TopLevelCollection);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetTrackerDataAsCollectionObject(@as(*const IGetAppTrackerData, @ptrCast(self)), TopLevelCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetAppTrackerData_GetSuggestedPollingInterval(self: *const T, PollingIntervalInSeconds: ?*u32) HRESULT {
-                return @ptrCast(*const IGetAppTrackerData.VTable, self.vtable).GetSuggestedPollingInterval(@ptrCast(*const IGetAppTrackerData, self), PollingIntervalInSeconds);
+                return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetSuggestedPollingInterval(@as(*const IGetAppTrackerData, @ptrCast(self)), PollingIntervalInSeconds);
             }
         };
     }
@@ -6507,11 +6507,11 @@ pub const IDispenserManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserManager_RegisterDispenser(self: *const T, __MIDL__IDispenserManager0000: ?*IDispenserDriver, szDispenserName: ?[*:0]const u16, __MIDL__IDispenserManager0001: ?*?*IHolder) HRESULT {
-                return @ptrCast(*const IDispenserManager.VTable, self.vtable).RegisterDispenser(@ptrCast(*const IDispenserManager, self), __MIDL__IDispenserManager0000, szDispenserName, __MIDL__IDispenserManager0001);
+                return @as(*const IDispenserManager.VTable, @ptrCast(self.vtable)).RegisterDispenser(@as(*const IDispenserManager, @ptrCast(self)), __MIDL__IDispenserManager0000, szDispenserName, __MIDL__IDispenserManager0001);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserManager_GetContext(self: *const T, __MIDL__IDispenserManager0002: ?*usize, __MIDL__IDispenserManager0003: ?*usize) HRESULT {
-                return @ptrCast(*const IDispenserManager.VTable, self.vtable).GetContext(@ptrCast(*const IDispenserManager, self), __MIDL__IDispenserManager0002, __MIDL__IDispenserManager0003);
+                return @as(*const IDispenserManager.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IDispenserManager, @ptrCast(self)), __MIDL__IDispenserManager0002, __MIDL__IDispenserManager0003);
             }
         };
     }
@@ -6615,35 +6615,35 @@ pub const IHolder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_AllocResource(self: *const T, __MIDL__IHolder0000: usize, __MIDL__IHolder0001: ?*usize) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).AllocResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0000, __MIDL__IHolder0001);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).AllocResource(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0000, __MIDL__IHolder0001);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_FreeResource(self: *const T, __MIDL__IHolder0002: usize) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).FreeResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0002);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).FreeResource(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0002);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_TrackResource(self: *const T, __MIDL__IHolder0003: usize) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).TrackResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0003);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).TrackResource(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0003);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_TrackResourceS(self: *const T, __MIDL__IHolder0004: ?*u16) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).TrackResourceS(@ptrCast(*const IHolder, self), __MIDL__IHolder0004);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).TrackResourceS(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0004);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_UntrackResource(self: *const T, __MIDL__IHolder0005: usize, __MIDL__IHolder0006: BOOL) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).UntrackResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0005, __MIDL__IHolder0006);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).UntrackResource(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0005, __MIDL__IHolder0006);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_UntrackResourceS(self: *const T, __MIDL__IHolder0007: ?*u16, __MIDL__IHolder0008: BOOL) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).UntrackResourceS(@ptrCast(*const IHolder, self), __MIDL__IHolder0007, __MIDL__IHolder0008);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).UntrackResourceS(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0007, __MIDL__IHolder0008);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).Close(@ptrCast(*const IHolder, self));
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).Close(@as(*const IHolder, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHolder_RequestDestroyResource(self: *const T, __MIDL__IHolder0009: usize) HRESULT {
-                return @ptrCast(*const IHolder.VTable, self.vtable).RequestDestroyResource(@ptrCast(*const IHolder, self), __MIDL__IHolder0009);
+                return @as(*const IHolder.VTable, @ptrCast(self.vtable)).RequestDestroyResource(@as(*const IHolder, @ptrCast(self)), __MIDL__IHolder0009);
             }
         };
     }
@@ -6735,27 +6735,27 @@ pub const IDispenserDriver = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_CreateResource(self: *const T, ResTypId: usize, pResId: ?*usize, pSecsFreeBeforeDestroy: ?*i32) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).CreateResource(@ptrCast(*const IDispenserDriver, self), ResTypId, pResId, pSecsFreeBeforeDestroy);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).CreateResource(@as(*const IDispenserDriver, @ptrCast(self)), ResTypId, pResId, pSecsFreeBeforeDestroy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_RateResource(self: *const T, ResTypId: usize, ResId: usize, fRequiresTransactionEnlistment: BOOL, pRating: ?*u32) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).RateResource(@ptrCast(*const IDispenserDriver, self), ResTypId, ResId, fRequiresTransactionEnlistment, pRating);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).RateResource(@as(*const IDispenserDriver, @ptrCast(self)), ResTypId, ResId, fRequiresTransactionEnlistment, pRating);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_EnlistResource(self: *const T, ResId: usize, TransId: usize) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).EnlistResource(@ptrCast(*const IDispenserDriver, self), ResId, TransId);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).EnlistResource(@as(*const IDispenserDriver, @ptrCast(self)), ResId, TransId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_ResetResource(self: *const T, ResId: usize) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).ResetResource(@ptrCast(*const IDispenserDriver, self), ResId);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).ResetResource(@as(*const IDispenserDriver, @ptrCast(self)), ResId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_DestroyResource(self: *const T, ResId: usize) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).DestroyResource(@ptrCast(*const IDispenserDriver, self), ResId);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).DestroyResource(@as(*const IDispenserDriver, @ptrCast(self)), ResId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispenserDriver_DestroyResourceS(self: *const T, ResId: ?*u16) HRESULT {
-                return @ptrCast(*const IDispenserDriver.VTable, self.vtable).DestroyResourceS(@ptrCast(*const IDispenserDriver, self), ResId);
+                return @as(*const IDispenserDriver.VTable, @ptrCast(self.vtable)).DestroyResourceS(@as(*const IDispenserDriver, @ptrCast(self)), ResId);
             }
         };
     }
@@ -6845,31 +6845,31 @@ pub const ITransactionProxy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_Commit(self: *const T, guid: Guid) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).Commit(@ptrCast(*const ITransactionProxy, self), guid);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITransactionProxy, @ptrCast(self)), guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).Abort(@ptrCast(*const ITransactionProxy, self));
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).Abort(@as(*const ITransactionProxy, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_Promote(self: *const T, pTransaction: ?*?*ITransaction) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).Promote(@ptrCast(*const ITransactionProxy, self), pTransaction);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).Promote(@as(*const ITransactionProxy, @ptrCast(self)), pTransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_CreateVoter(self: *const T, pTxAsync: ?*ITransactionVoterNotifyAsync2, ppBallot: ?*?*ITransactionVoterBallotAsync2) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).CreateVoter(@ptrCast(*const ITransactionProxy, self), pTxAsync, ppBallot);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).CreateVoter(@as(*const ITransactionProxy, @ptrCast(self)), pTxAsync, ppBallot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_GetIsolationLevel(self: *const T, __MIDL__ITransactionProxy0000: ?*i32) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).GetIsolationLevel(@ptrCast(*const ITransactionProxy, self), __MIDL__ITransactionProxy0000);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).GetIsolationLevel(@as(*const ITransactionProxy, @ptrCast(self)), __MIDL__ITransactionProxy0000);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_GetIdentifier(self: *const T, pbstrIdentifier: ?*Guid) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).GetIdentifier(@ptrCast(*const ITransactionProxy, self), pbstrIdentifier);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const ITransactionProxy, @ptrCast(self)), pbstrIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProxy_IsReusable(self: *const T, pfIsReusable: ?*BOOL) HRESULT {
-                return @ptrCast(*const ITransactionProxy.VTable, self.vtable).IsReusable(@ptrCast(*const ITransactionProxy, self), pfIsReusable);
+                return @as(*const ITransactionProxy.VTable, @ptrCast(self.vtable)).IsReusable(@as(*const ITransactionProxy, @ptrCast(self)), pfIsReusable);
             }
         };
     }
@@ -6908,11 +6908,11 @@ pub const IContextSecurityPerimeter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextSecurityPerimeter_GetPerimeterFlag(self: *const T, pFlag: ?*BOOL) HRESULT {
-                return @ptrCast(*const IContextSecurityPerimeter.VTable, self.vtable).GetPerimeterFlag(@ptrCast(*const IContextSecurityPerimeter, self), pFlag);
+                return @as(*const IContextSecurityPerimeter.VTable, @ptrCast(self.vtable)).GetPerimeterFlag(@as(*const IContextSecurityPerimeter, @ptrCast(self)), pFlag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextSecurityPerimeter_SetPerimeterFlag(self: *const T, fFlag: BOOL) HRESULT {
-                return @ptrCast(*const IContextSecurityPerimeter.VTable, self.vtable).SetPerimeterFlag(@ptrCast(*const IContextSecurityPerimeter, self), fFlag);
+                return @as(*const IContextSecurityPerimeter.VTable, @ptrCast(self.vtable)).SetPerimeterFlag(@as(*const IContextSecurityPerimeter, @ptrCast(self)), fFlag);
             }
         };
     }
@@ -6941,7 +6941,7 @@ pub const ITxProxyHolder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITxProxyHolder_GetIdentifier(self: *const T, pGuidLtx: ?*Guid) void {
-                return @ptrCast(*const ITxProxyHolder.VTable, self.vtable).GetIdentifier(@ptrCast(*const ITxProxyHolder, self), pGuidLtx);
+                return @as(*const ITxProxyHolder.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const ITxProxyHolder, @ptrCast(self)), pGuidLtx);
             }
         };
     }
@@ -7035,35 +7035,35 @@ pub const IObjectContext = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_CreateInstance(self: *const T, rclsid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).CreateInstance(@ptrCast(*const IObjectContext, self), rclsid, riid, ppv);
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IObjectContext, @ptrCast(self)), rclsid, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_SetComplete(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).SetComplete(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).SetComplete(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_SetAbort(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).SetAbort(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).SetAbort(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_EnableCommit(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).EnableCommit(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).EnableCommit(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_DisableCommit(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).DisableCommit(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).DisableCommit(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_IsInTransaction(self: *const T) BOOL {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).IsInTransaction(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).IsInTransaction(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_IsSecurityEnabled(self: *const T) BOOL {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).IsSecurityEnabled(@ptrCast(*const IObjectContext, self));
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).IsSecurityEnabled(@as(*const IObjectContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContext_IsCallerInRole(self: *const T, bstrRole: ?BSTR, pfIsInRole: ?*BOOL) HRESULT {
-                return @ptrCast(*const IObjectContext.VTable, self.vtable).IsCallerInRole(@ptrCast(*const IObjectContext, self), bstrRole, pfIsInRole);
+                return @as(*const IObjectContext.VTable, @ptrCast(self.vtable)).IsCallerInRole(@as(*const IObjectContext, @ptrCast(self)), bstrRole, pfIsInRole);
             }
         };
     }
@@ -7107,15 +7107,15 @@ pub const IObjectControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectControl_Activate(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectControl.VTable, self.vtable).Activate(@ptrCast(*const IObjectControl, self));
+                return @as(*const IObjectControl.VTable, @ptrCast(self.vtable)).Activate(@as(*const IObjectControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectControl_Deactivate(self: *const T) void {
-                return @ptrCast(*const IObjectControl.VTable, self.vtable).Deactivate(@ptrCast(*const IObjectControl, self));
+                return @as(*const IObjectControl.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IObjectControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectControl_CanBePooled(self: *const T) BOOL {
-                return @ptrCast(*const IObjectControl.VTable, self.vtable).CanBePooled(@ptrCast(*const IObjectControl, self));
+                return @as(*const IObjectControl.VTable, @ptrCast(self.vtable)).CanBePooled(@as(*const IObjectControl, @ptrCast(self)));
             }
         };
     }
@@ -7177,19 +7177,19 @@ pub const IEnumNames = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNames_Next(self: *const T, celt: u32, rgname: ?*?BSTR, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumNames.VTable, self.vtable).Next(@ptrCast(*const IEnumNames, self), celt, rgname, pceltFetched);
+                return @as(*const IEnumNames.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNames, @ptrCast(self)), celt, rgname, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNames_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumNames.VTable, self.vtable).Skip(@ptrCast(*const IEnumNames, self), celt);
+                return @as(*const IEnumNames.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNames, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNames_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumNames.VTable, self.vtable).Reset(@ptrCast(*const IEnumNames, self));
+                return @as(*const IEnumNames.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNames, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNames_Clone(self: *const T, ppenum: ?*?*IEnumNames) HRESULT {
-                return @ptrCast(*const IEnumNames.VTable, self.vtable).Clone(@ptrCast(*const IEnumNames, self), ppenum);
+                return @as(*const IEnumNames.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNames, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -7259,23 +7259,23 @@ pub const ISecurityProperty = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityProperty_GetDirectCreatorSID(self: *const T, pSID: ?*?PSID) HRESULT {
-                return @ptrCast(*const ISecurityProperty.VTable, self.vtable).GetDirectCreatorSID(@ptrCast(*const ISecurityProperty, self), pSID);
+                return @as(*const ISecurityProperty.VTable, @ptrCast(self.vtable)).GetDirectCreatorSID(@as(*const ISecurityProperty, @ptrCast(self)), pSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityProperty_GetOriginalCreatorSID(self: *const T, pSID: ?*?PSID) HRESULT {
-                return @ptrCast(*const ISecurityProperty.VTable, self.vtable).GetOriginalCreatorSID(@ptrCast(*const ISecurityProperty, self), pSID);
+                return @as(*const ISecurityProperty.VTable, @ptrCast(self.vtable)).GetOriginalCreatorSID(@as(*const ISecurityProperty, @ptrCast(self)), pSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityProperty_GetDirectCallerSID(self: *const T, pSID: ?*?PSID) HRESULT {
-                return @ptrCast(*const ISecurityProperty.VTable, self.vtable).GetDirectCallerSID(@ptrCast(*const ISecurityProperty, self), pSID);
+                return @as(*const ISecurityProperty.VTable, @ptrCast(self.vtable)).GetDirectCallerSID(@as(*const ISecurityProperty, @ptrCast(self)), pSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityProperty_GetOriginalCallerSID(self: *const T, pSID: ?*?PSID) HRESULT {
-                return @ptrCast(*const ISecurityProperty.VTable, self.vtable).GetOriginalCallerSID(@ptrCast(*const ISecurityProperty, self), pSID);
+                return @as(*const ISecurityProperty.VTable, @ptrCast(self.vtable)).GetOriginalCallerSID(@as(*const ISecurityProperty, @ptrCast(self)), pSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityProperty_ReleaseSID(self: *const T, pSID: ?PSID) HRESULT {
-                return @ptrCast(*const ISecurityProperty.VTable, self.vtable).ReleaseSID(@ptrCast(*const ISecurityProperty, self), pSID);
+                return @as(*const ISecurityProperty.VTable, @ptrCast(self.vtable)).ReleaseSID(@as(*const ISecurityProperty, @ptrCast(self)), pSID);
             }
         };
     }
@@ -7321,15 +7321,15 @@ pub const ObjectControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectControl_Activate(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectControl.VTable, self.vtable).Activate(@ptrCast(*const ObjectControl, self));
+                return @as(*const ObjectControl.VTable, @ptrCast(self.vtable)).Activate(@as(*const ObjectControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectControl_Deactivate(self: *const T) HRESULT {
-                return @ptrCast(*const ObjectControl.VTable, self.vtable).Deactivate(@ptrCast(*const ObjectControl, self));
+                return @as(*const ObjectControl.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const ObjectControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ObjectControl_CanBePooled(self: *const T, pbPoolable: ?*i16) HRESULT {
-                return @ptrCast(*const ObjectControl.VTable, self.vtable).CanBePooled(@ptrCast(*const ObjectControl, self), pbPoolable);
+                return @as(*const ObjectControl.VTable, @ptrCast(self.vtable)).CanBePooled(@as(*const ObjectControl, @ptrCast(self)), pbPoolable);
             }
         };
     }
@@ -7375,11 +7375,11 @@ pub const ISharedProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedProperty_get_Value(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISharedProperty.VTable, self.vtable).get_Value(@ptrCast(*const ISharedProperty, self), pVal);
+                return @as(*const ISharedProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISharedProperty, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedProperty_put_Value(self: *const T, val: VARIANT) HRESULT {
-                return @ptrCast(*const ISharedProperty.VTable, self.vtable).put_Value(@ptrCast(*const ISharedProperty, self), val);
+                return @as(*const ISharedProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISharedProperty, @ptrCast(self)), val);
             }
         };
     }
@@ -7457,19 +7457,19 @@ pub const ISharedPropertyGroup = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroup_CreatePropertyByPosition(self: *const T, Index: i32, fExists: ?*i16, ppProp: ?*?*ISharedProperty) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).CreatePropertyByPosition(@ptrCast(*const ISharedPropertyGroup, self), Index, fExists, ppProp);
+                return @as(*const ISharedPropertyGroup.VTable, @ptrCast(self.vtable)).CreatePropertyByPosition(@as(*const ISharedPropertyGroup, @ptrCast(self)), Index, fExists, ppProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroup_get_PropertyByPosition(self: *const T, Index: i32, ppProperty: ?*?*ISharedProperty) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).get_PropertyByPosition(@ptrCast(*const ISharedPropertyGroup, self), Index, ppProperty);
+                return @as(*const ISharedPropertyGroup.VTable, @ptrCast(self.vtable)).get_PropertyByPosition(@as(*const ISharedPropertyGroup, @ptrCast(self)), Index, ppProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroup_CreateProperty(self: *const T, Name: ?BSTR, fExists: ?*i16, ppProp: ?*?*ISharedProperty) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).CreateProperty(@ptrCast(*const ISharedPropertyGroup, self), Name, fExists, ppProp);
+                return @as(*const ISharedPropertyGroup.VTable, @ptrCast(self.vtable)).CreateProperty(@as(*const ISharedPropertyGroup, @ptrCast(self)), Name, fExists, ppProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroup_get_Property(self: *const T, Name: ?BSTR, ppProperty: ?*?*ISharedProperty) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroup.VTable, self.vtable).get_Property(@ptrCast(*const ISharedPropertyGroup, self), Name, ppProperty);
+                return @as(*const ISharedPropertyGroup.VTable, @ptrCast(self.vtable)).get_Property(@as(*const ISharedPropertyGroup, @ptrCast(self)), Name, ppProperty);
             }
         };
     }
@@ -7535,15 +7535,15 @@ pub const ISharedPropertyGroupManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroupManager_CreatePropertyGroup(self: *const T, Name: ?BSTR, dwIsoMode: ?*i32, dwRelMode: ?*i32, fExists: ?*i16, ppGroup: ?*?*ISharedPropertyGroup) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).CreatePropertyGroup(@ptrCast(*const ISharedPropertyGroupManager, self), Name, dwIsoMode, dwRelMode, fExists, ppGroup);
+                return @as(*const ISharedPropertyGroupManager.VTable, @ptrCast(self.vtable)).CreatePropertyGroup(@as(*const ISharedPropertyGroupManager, @ptrCast(self)), Name, dwIsoMode, dwRelMode, fExists, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroupManager_get_Group(self: *const T, Name: ?BSTR, ppGroup: ?*?*ISharedPropertyGroup) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).get_Group(@ptrCast(*const ISharedPropertyGroupManager, self), Name, ppGroup);
+                return @as(*const ISharedPropertyGroupManager.VTable, @ptrCast(self.vtable)).get_Group(@as(*const ISharedPropertyGroupManager, @ptrCast(self)), Name, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISharedPropertyGroupManager_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISharedPropertyGroupManager.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISharedPropertyGroupManager, self), retval);
+                return @as(*const ISharedPropertyGroupManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISharedPropertyGroupManager, @ptrCast(self)), retval);
             }
         };
     }
@@ -7573,7 +7573,7 @@ pub const IObjectConstruct = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectConstruct_Construct(self: *const T, pCtorObj: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IObjectConstruct.VTable, self.vtable).Construct(@ptrCast(*const IObjectConstruct, self), pCtorObj);
+                return @as(*const IObjectConstruct.VTable, @ptrCast(self.vtable)).Construct(@as(*const IObjectConstruct, @ptrCast(self)), pCtorObj);
             }
         };
     }
@@ -7606,7 +7606,7 @@ pub const IObjectConstructString = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectConstructString_get_ConstructString(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IObjectConstructString.VTable, self.vtable).get_ConstructString(@ptrCast(*const IObjectConstructString, self), pVal);
+                return @as(*const IObjectConstructString.VTable, @ptrCast(self.vtable)).get_ConstructString(@as(*const IObjectConstructString, @ptrCast(self)), pVal);
             }
         };
     }
@@ -7636,7 +7636,7 @@ pub const IObjectContextActivity = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextActivity_GetActivityId(self: *const T, pGUID: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextActivity.VTable, self.vtable).GetActivityId(@ptrCast(*const IObjectContextActivity, self), pGUID);
+                return @as(*const IObjectContextActivity.VTable, @ptrCast(self.vtable)).GetActivityId(@as(*const IObjectContextActivity, @ptrCast(self)), pGUID);
             }
         };
     }
@@ -7704,23 +7704,23 @@ pub const IObjectContextInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo_IsInTransaction(self: *const T) BOOL {
-                return @ptrCast(*const IObjectContextInfo.VTable, self.vtable).IsInTransaction(@ptrCast(*const IObjectContextInfo, self));
+                return @as(*const IObjectContextInfo.VTable, @ptrCast(self.vtable)).IsInTransaction(@as(*const IObjectContextInfo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo_GetTransaction(self: *const T, pptrans: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IObjectContextInfo.VTable, self.vtable).GetTransaction(@ptrCast(*const IObjectContextInfo, self), pptrans);
+                return @as(*const IObjectContextInfo.VTable, @ptrCast(self.vtable)).GetTransaction(@as(*const IObjectContextInfo, @ptrCast(self)), pptrans);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo_GetTransactionId(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo.VTable, self.vtable).GetTransactionId(@ptrCast(*const IObjectContextInfo, self), pGuid);
+                return @as(*const IObjectContextInfo.VTable, @ptrCast(self.vtable)).GetTransactionId(@as(*const IObjectContextInfo, @ptrCast(self)), pGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo_GetActivityId(self: *const T, pGUID: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo.VTable, self.vtable).GetActivityId(@ptrCast(*const IObjectContextInfo, self), pGUID);
+                return @as(*const IObjectContextInfo.VTable, @ptrCast(self.vtable)).GetActivityId(@as(*const IObjectContextInfo, @ptrCast(self)), pGUID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo_GetContextId(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo.VTable, self.vtable).GetContextId(@ptrCast(*const IObjectContextInfo, self), pGuid);
+                return @as(*const IObjectContextInfo.VTable, @ptrCast(self.vtable)).GetContextId(@as(*const IObjectContextInfo, @ptrCast(self)), pGuid);
             }
         };
     }
@@ -7770,15 +7770,15 @@ pub const IObjectContextInfo2 = extern struct {
             pub usingnamespace IObjectContextInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo2_GetPartitionId(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo2.VTable, self.vtable).GetPartitionId(@ptrCast(*const IObjectContextInfo2, self), pGuid);
+                return @as(*const IObjectContextInfo2.VTable, @ptrCast(self.vtable)).GetPartitionId(@as(*const IObjectContextInfo2, @ptrCast(self)), pGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo2_GetApplicationId(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo2.VTable, self.vtable).GetApplicationId(@ptrCast(*const IObjectContextInfo2, self), pGuid);
+                return @as(*const IObjectContextInfo2.VTable, @ptrCast(self.vtable)).GetApplicationId(@as(*const IObjectContextInfo2, @ptrCast(self)), pGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextInfo2_GetApplicationInstanceId(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IObjectContextInfo2.VTable, self.vtable).GetApplicationInstanceId(@ptrCast(*const IObjectContextInfo2, self), pGuid);
+                return @as(*const IObjectContextInfo2.VTable, @ptrCast(self.vtable)).GetApplicationInstanceId(@as(*const IObjectContextInfo2, @ptrCast(self)), pGuid);
             }
         };
     }
@@ -7818,11 +7818,11 @@ pub const ITransactionStatus = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionStatus_SetTransactionStatus(self: *const T, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const ITransactionStatus.VTable, self.vtable).SetTransactionStatus(@ptrCast(*const ITransactionStatus, self), hrStatus);
+                return @as(*const ITransactionStatus.VTable, @ptrCast(self.vtable)).SetTransactionStatus(@as(*const ITransactionStatus, @ptrCast(self)), hrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionStatus_GetTransactionStatus(self: *const T, pHrStatus: ?*HRESULT) HRESULT {
-                return @ptrCast(*const ITransactionStatus.VTable, self.vtable).GetTransactionStatus(@ptrCast(*const ITransactionStatus, self), pHrStatus);
+                return @as(*const ITransactionStatus.VTable, @ptrCast(self.vtable)).GetTransactionStatus(@as(*const ITransactionStatus, @ptrCast(self)), pHrStatus);
             }
         };
     }
@@ -7852,7 +7852,7 @@ pub const IObjectContextTip = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectContextTip_GetTipUrl(self: *const T, pTipUrl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IObjectContextTip.VTable, self.vtable).GetTipUrl(@ptrCast(*const IObjectContextTip, self), pTipUrl);
+                return @as(*const IObjectContextTip.VTable, @ptrCast(self.vtable)).GetTipUrl(@as(*const IObjectContextTip, @ptrCast(self)), pTipUrl);
             }
         };
     }
@@ -7888,11 +7888,11 @@ pub const IPlaybackControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlaybackControl_FinalClientRetry(self: *const T) HRESULT {
-                return @ptrCast(*const IPlaybackControl.VTable, self.vtable).FinalClientRetry(@ptrCast(*const IPlaybackControl, self));
+                return @as(*const IPlaybackControl.VTable, @ptrCast(self.vtable)).FinalClientRetry(@as(*const IPlaybackControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlaybackControl_FinalServerRetry(self: *const T) HRESULT {
-                return @ptrCast(*const IPlaybackControl.VTable, self.vtable).FinalServerRetry(@ptrCast(*const IPlaybackControl, self));
+                return @as(*const IPlaybackControl.VTable, @ptrCast(self.vtable)).FinalServerRetry(@as(*const IPlaybackControl, @ptrCast(self)));
             }
         };
     }
@@ -7944,15 +7944,15 @@ pub const IGetContextProperties = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetContextProperties_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IGetContextProperties.VTable, self.vtable).Count(@ptrCast(*const IGetContextProperties, self), plCount);
+                return @as(*const IGetContextProperties.VTable, @ptrCast(self.vtable)).Count(@as(*const IGetContextProperties, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetContextProperties_GetProperty(self: *const T, name: ?BSTR, pProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGetContextProperties.VTable, self.vtable).GetProperty(@ptrCast(*const IGetContextProperties, self), name, pProperty);
+                return @as(*const IGetContextProperties.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IGetContextProperties, @ptrCast(self)), name, pProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetContextProperties_EnumNames(self: *const T, ppenum: ?*?*IEnumNames) HRESULT {
-                return @ptrCast(*const IGetContextProperties.VTable, self.vtable).EnumNames(@ptrCast(*const IGetContextProperties, self), ppenum);
+                return @as(*const IGetContextProperties.VTable, @ptrCast(self.vtable)).EnumNames(@as(*const IGetContextProperties, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -8019,19 +8019,19 @@ pub const IContextState = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextState_SetDeactivateOnReturn(self: *const T, bDeactivate: i16) HRESULT {
-                return @ptrCast(*const IContextState.VTable, self.vtable).SetDeactivateOnReturn(@ptrCast(*const IContextState, self), bDeactivate);
+                return @as(*const IContextState.VTable, @ptrCast(self.vtable)).SetDeactivateOnReturn(@as(*const IContextState, @ptrCast(self)), bDeactivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextState_GetDeactivateOnReturn(self: *const T, pbDeactivate: ?*i16) HRESULT {
-                return @ptrCast(*const IContextState.VTable, self.vtable).GetDeactivateOnReturn(@ptrCast(*const IContextState, self), pbDeactivate);
+                return @as(*const IContextState.VTable, @ptrCast(self.vtable)).GetDeactivateOnReturn(@as(*const IContextState, @ptrCast(self)), pbDeactivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextState_SetMyTransactionVote(self: *const T, txVote: TransactionVote) HRESULT {
-                return @ptrCast(*const IContextState.VTable, self.vtable).SetMyTransactionVote(@ptrCast(*const IContextState, self), txVote);
+                return @as(*const IContextState.VTable, @ptrCast(self.vtable)).SetMyTransactionVote(@as(*const IContextState, @ptrCast(self)), txVote);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextState_GetMyTransactionVote(self: *const T, ptxVote: ?*TransactionVote) HRESULT {
-                return @ptrCast(*const IContextState.VTable, self.vtable).GetMyTransactionVote(@ptrCast(*const IContextState, self), ptxVote);
+                return @as(*const IContextState.VTable, @ptrCast(self.vtable)).GetMyTransactionVote(@as(*const IContextState, @ptrCast(self)), ptxVote);
             }
         };
     }
@@ -8061,7 +8061,7 @@ pub const IPoolManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPoolManager_ShutdownPool(self: *const T, CLSIDOrProgID: ?BSTR) HRESULT {
-                return @ptrCast(*const IPoolManager.VTable, self.vtable).ShutdownPool(@ptrCast(*const IPoolManager, self), CLSIDOrProgID);
+                return @as(*const IPoolManager.VTable, @ptrCast(self.vtable)).ShutdownPool(@as(*const IPoolManager, @ptrCast(self)), CLSIDOrProgID);
             }
         };
     }
@@ -8099,11 +8099,11 @@ pub const ISelectCOMLBServer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISelectCOMLBServer_Init(self: *const T) HRESULT {
-                return @ptrCast(*const ISelectCOMLBServer.VTable, self.vtable).Init(@ptrCast(*const ISelectCOMLBServer, self));
+                return @as(*const ISelectCOMLBServer.VTable, @ptrCast(self.vtable)).Init(@as(*const ISelectCOMLBServer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISelectCOMLBServer_GetLBServer(self: *const T, pUnk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ISelectCOMLBServer.VTable, self.vtable).GetLBServer(@ptrCast(*const ISelectCOMLBServer, self), pUnk);
+                return @as(*const ISelectCOMLBServer.VTable, @ptrCast(self.vtable)).GetLBServer(@as(*const ISelectCOMLBServer, @ptrCast(self)), pUnk);
             }
         };
     }
@@ -8167,19 +8167,19 @@ pub const ICOMLBArguments = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMLBArguments_GetCLSID(self: *const T, pCLSID: ?*Guid) HRESULT {
-                return @ptrCast(*const ICOMLBArguments.VTable, self.vtable).GetCLSID(@ptrCast(*const ICOMLBArguments, self), pCLSID);
+                return @as(*const ICOMLBArguments.VTable, @ptrCast(self.vtable)).GetCLSID(@as(*const ICOMLBArguments, @ptrCast(self)), pCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMLBArguments_SetCLSID(self: *const T, pCLSID: ?*Guid) HRESULT {
-                return @ptrCast(*const ICOMLBArguments.VTable, self.vtable).SetCLSID(@ptrCast(*const ICOMLBArguments, self), pCLSID);
+                return @as(*const ICOMLBArguments.VTable, @ptrCast(self.vtable)).SetCLSID(@as(*const ICOMLBArguments, @ptrCast(self)), pCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMLBArguments_GetMachineName(self: *const T, cchSvr: u32, szServerName: [*:0]u16) HRESULT {
-                return @ptrCast(*const ICOMLBArguments.VTable, self.vtable).GetMachineName(@ptrCast(*const ICOMLBArguments, self), cchSvr, szServerName);
+                return @as(*const ICOMLBArguments.VTable, @ptrCast(self.vtable)).GetMachineName(@as(*const ICOMLBArguments, @ptrCast(self)), cchSvr, szServerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICOMLBArguments_SetMachineName(self: *const T, cchSvr: u32, szServerName: [*:0]u16) HRESULT {
-                return @ptrCast(*const ICOMLBArguments.VTable, self.vtable).SetMachineName(@ptrCast(*const ICOMLBArguments, self), cchSvr, szServerName);
+                return @as(*const ICOMLBArguments.VTable, @ptrCast(self.vtable)).SetMachineName(@as(*const ICOMLBArguments, @ptrCast(self)), cchSvr, szServerName);
             }
         };
     }
@@ -8272,31 +8272,31 @@ pub const ICrmLogControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_get_TransactionUOW(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).get_TransactionUOW(@ptrCast(*const ICrmLogControl, self), pVal);
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).get_TransactionUOW(@as(*const ICrmLogControl, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_RegisterCompensator(self: *const T, lpcwstrProgIdCompensator: ?[*:0]const u16, lpcwstrDescription: ?[*:0]const u16, lCrmRegFlags: i32) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).RegisterCompensator(@ptrCast(*const ICrmLogControl, self), lpcwstrProgIdCompensator, lpcwstrDescription, lCrmRegFlags);
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).RegisterCompensator(@as(*const ICrmLogControl, @ptrCast(self)), lpcwstrProgIdCompensator, lpcwstrDescription, lCrmRegFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_WriteLogRecordVariants(self: *const T, pLogRecord: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).WriteLogRecordVariants(@ptrCast(*const ICrmLogControl, self), pLogRecord);
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).WriteLogRecordVariants(@as(*const ICrmLogControl, @ptrCast(self)), pLogRecord);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_ForceLog(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).ForceLog(@ptrCast(*const ICrmLogControl, self));
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).ForceLog(@as(*const ICrmLogControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_ForgetLogRecord(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).ForgetLogRecord(@ptrCast(*const ICrmLogControl, self));
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).ForgetLogRecord(@as(*const ICrmLogControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_ForceTransactionToAbort(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).ForceTransactionToAbort(@ptrCast(*const ICrmLogControl, self));
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).ForceTransactionToAbort(@as(*const ICrmLogControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmLogControl_WriteLogRecord(self: *const T, rgBlob: [*]BLOB, cBlob: u32) HRESULT {
-                return @ptrCast(*const ICrmLogControl.VTable, self.vtable).WriteLogRecord(@ptrCast(*const ICrmLogControl, self), rgBlob, cBlob);
+                return @as(*const ICrmLogControl.VTable, @ptrCast(self.vtable)).WriteLogRecord(@as(*const ICrmLogControl, @ptrCast(self)), rgBlob, cBlob);
             }
         };
     }
@@ -8416,43 +8416,43 @@ pub const ICrmCompensatorVariants = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_SetLogControlVariants(self: *const T, pLogControl: ?*ICrmLogControl) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).SetLogControlVariants(@ptrCast(*const ICrmCompensatorVariants, self), pLogControl);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).SetLogControlVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), pLogControl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_BeginPrepareVariants(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).BeginPrepareVariants(@ptrCast(*const ICrmCompensatorVariants, self));
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).BeginPrepareVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_PrepareRecordVariants(self: *const T, pLogRecord: ?*VARIANT, pbForget: ?*i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).PrepareRecordVariants(@ptrCast(*const ICrmCompensatorVariants, self), pLogRecord, pbForget);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).PrepareRecordVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), pLogRecord, pbForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_EndPrepareVariants(self: *const T, pbOkToPrepare: ?*i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).EndPrepareVariants(@ptrCast(*const ICrmCompensatorVariants, self), pbOkToPrepare);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).EndPrepareVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), pbOkToPrepare);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_BeginCommitVariants(self: *const T, bRecovery: i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).BeginCommitVariants(@ptrCast(*const ICrmCompensatorVariants, self), bRecovery);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).BeginCommitVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), bRecovery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_CommitRecordVariants(self: *const T, pLogRecord: ?*VARIANT, pbForget: ?*i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).CommitRecordVariants(@ptrCast(*const ICrmCompensatorVariants, self), pLogRecord, pbForget);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).CommitRecordVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), pLogRecord, pbForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_EndCommitVariants(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).EndCommitVariants(@ptrCast(*const ICrmCompensatorVariants, self));
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).EndCommitVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_BeginAbortVariants(self: *const T, bRecovery: i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).BeginAbortVariants(@ptrCast(*const ICrmCompensatorVariants, self), bRecovery);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).BeginAbortVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), bRecovery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_AbortRecordVariants(self: *const T, pLogRecord: ?*VARIANT, pbForget: ?*i16) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).AbortRecordVariants(@ptrCast(*const ICrmCompensatorVariants, self), pLogRecord, pbForget);
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).AbortRecordVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)), pLogRecord, pbForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensatorVariants_EndAbortVariants(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensatorVariants.VTable, self.vtable).EndAbortVariants(@ptrCast(*const ICrmCompensatorVariants, self));
+                return @as(*const ICrmCompensatorVariants.VTable, @ptrCast(self.vtable)).EndAbortVariants(@as(*const ICrmCompensatorVariants, @ptrCast(self)));
             }
         };
     }
@@ -8578,43 +8578,43 @@ pub const ICrmCompensator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_SetLogControl(self: *const T, pLogControl: ?*ICrmLogControl) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).SetLogControl(@ptrCast(*const ICrmCompensator, self), pLogControl);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).SetLogControl(@as(*const ICrmCompensator, @ptrCast(self)), pLogControl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_BeginPrepare(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).BeginPrepare(@ptrCast(*const ICrmCompensator, self));
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).BeginPrepare(@as(*const ICrmCompensator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_PrepareRecord(self: *const T, crmLogRec: CrmLogRecordRead, pfForget: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).PrepareRecord(@ptrCast(*const ICrmCompensator, self), crmLogRec, pfForget);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).PrepareRecord(@as(*const ICrmCompensator, @ptrCast(self)), crmLogRec, pfForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_EndPrepare(self: *const T, pfOkToPrepare: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).EndPrepare(@ptrCast(*const ICrmCompensator, self), pfOkToPrepare);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).EndPrepare(@as(*const ICrmCompensator, @ptrCast(self)), pfOkToPrepare);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_BeginCommit(self: *const T, fRecovery: BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).BeginCommit(@ptrCast(*const ICrmCompensator, self), fRecovery);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).BeginCommit(@as(*const ICrmCompensator, @ptrCast(self)), fRecovery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_CommitRecord(self: *const T, crmLogRec: CrmLogRecordRead, pfForget: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).CommitRecord(@ptrCast(*const ICrmCompensator, self), crmLogRec, pfForget);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).CommitRecord(@as(*const ICrmCompensator, @ptrCast(self)), crmLogRec, pfForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_EndCommit(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).EndCommit(@ptrCast(*const ICrmCompensator, self));
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).EndCommit(@as(*const ICrmCompensator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_BeginAbort(self: *const T, fRecovery: BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).BeginAbort(@ptrCast(*const ICrmCompensator, self), fRecovery);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).BeginAbort(@as(*const ICrmCompensator, @ptrCast(self)), fRecovery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_AbortRecord(self: *const T, crmLogRec: CrmLogRecordRead, pfForget: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).AbortRecord(@ptrCast(*const ICrmCompensator, self), crmLogRec, pfForget);
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).AbortRecord(@as(*const ICrmCompensator, @ptrCast(self)), crmLogRec, pfForget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmCompensator_EndAbort(self: *const T) HRESULT {
-                return @ptrCast(*const ICrmCompensator.VTable, self.vtable).EndAbort(@ptrCast(*const ICrmCompensator, self));
+                return @as(*const ICrmCompensator.VTable, @ptrCast(self.vtable)).EndAbort(@as(*const ICrmCompensator, @ptrCast(self)));
             }
         };
     }
@@ -8708,23 +8708,23 @@ pub const ICrmMonitorLogRecords = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorLogRecords_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICrmMonitorLogRecords.VTable, self.vtable).get_Count(@ptrCast(*const ICrmMonitorLogRecords, self), pVal);
+                return @as(*const ICrmMonitorLogRecords.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICrmMonitorLogRecords, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorLogRecords_get_TransactionState(self: *const T, pVal: ?*CrmTransactionState) HRESULT {
-                return @ptrCast(*const ICrmMonitorLogRecords.VTable, self.vtable).get_TransactionState(@ptrCast(*const ICrmMonitorLogRecords, self), pVal);
+                return @as(*const ICrmMonitorLogRecords.VTable, @ptrCast(self.vtable)).get_TransactionState(@as(*const ICrmMonitorLogRecords, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorLogRecords_get_StructuredRecords(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const ICrmMonitorLogRecords.VTable, self.vtable).get_StructuredRecords(@ptrCast(*const ICrmMonitorLogRecords, self), pVal);
+                return @as(*const ICrmMonitorLogRecords.VTable, @ptrCast(self.vtable)).get_StructuredRecords(@as(*const ICrmMonitorLogRecords, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorLogRecords_GetLogRecord(self: *const T, dwIndex: u32, pCrmLogRec: ?*CrmLogRecordRead) HRESULT {
-                return @ptrCast(*const ICrmMonitorLogRecords.VTable, self.vtable).GetLogRecord(@ptrCast(*const ICrmMonitorLogRecords, self), dwIndex, pCrmLogRec);
+                return @as(*const ICrmMonitorLogRecords.VTable, @ptrCast(self.vtable)).GetLogRecord(@as(*const ICrmMonitorLogRecords, @ptrCast(self)), dwIndex, pCrmLogRec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorLogRecords_GetLogRecordVariants(self: *const T, IndexNumber: VARIANT, pLogRecord: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorLogRecords.VTable, self.vtable).GetLogRecordVariants(@ptrCast(*const ICrmMonitorLogRecords, self), IndexNumber, pLogRecord);
+                return @as(*const ICrmMonitorLogRecords.VTable, @ptrCast(self.vtable)).GetLogRecordVariants(@as(*const ICrmMonitorLogRecords, @ptrCast(self)), IndexNumber, pLogRecord);
             }
         };
     }
@@ -8830,31 +8830,31 @@ pub const ICrmMonitorClerks = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_Item(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).Item(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).Item(@as(*const ICrmMonitorClerks, @ptrCast(self)), Index, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICrmMonitorClerks, self), pVal);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICrmMonitorClerks, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).get_Count(@ptrCast(*const ICrmMonitorClerks, self), pVal);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICrmMonitorClerks, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_ProgIdCompensator(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).ProgIdCompensator(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).ProgIdCompensator(@as(*const ICrmMonitorClerks, @ptrCast(self)), Index, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_Description(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).Description(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).Description(@as(*const ICrmMonitorClerks, @ptrCast(self)), Index, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_TransactionUOW(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).TransactionUOW(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).TransactionUOW(@as(*const ICrmMonitorClerks, @ptrCast(self)), Index, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitorClerks_ActivityId(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitorClerks.VTable, self.vtable).ActivityId(@ptrCast(*const ICrmMonitorClerks, self), Index, pItem);
+                return @as(*const ICrmMonitorClerks.VTable, @ptrCast(self.vtable)).ActivityId(@as(*const ICrmMonitorClerks, @ptrCast(self)), Index, pItem);
             }
         };
     }
@@ -8896,11 +8896,11 @@ pub const ICrmMonitor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitor_GetClerks(self: *const T, pClerks: ?*?*ICrmMonitorClerks) HRESULT {
-                return @ptrCast(*const ICrmMonitor.VTable, self.vtable).GetClerks(@ptrCast(*const ICrmMonitor, self), pClerks);
+                return @as(*const ICrmMonitor.VTable, @ptrCast(self.vtable)).GetClerks(@as(*const ICrmMonitor, @ptrCast(self)), pClerks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmMonitor_HoldClerk(self: *const T, Index: VARIANT, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmMonitor.VTable, self.vtable).HoldClerk(@ptrCast(*const ICrmMonitor, self), Index, pItem);
+                return @as(*const ICrmMonitor.VTable, @ptrCast(self.vtable)).HoldClerk(@as(*const ICrmMonitor, @ptrCast(self)), Index, pItem);
             }
         };
     }
@@ -8964,19 +8964,19 @@ pub const ICrmFormatLogRecords = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmFormatLogRecords_GetColumnCount(self: *const T, plColumnCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICrmFormatLogRecords.VTable, self.vtable).GetColumnCount(@ptrCast(*const ICrmFormatLogRecords, self), plColumnCount);
+                return @as(*const ICrmFormatLogRecords.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICrmFormatLogRecords, @ptrCast(self)), plColumnCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmFormatLogRecords_GetColumnHeaders(self: *const T, pHeaders: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmFormatLogRecords.VTable, self.vtable).GetColumnHeaders(@ptrCast(*const ICrmFormatLogRecords, self), pHeaders);
+                return @as(*const ICrmFormatLogRecords.VTable, @ptrCast(self.vtable)).GetColumnHeaders(@as(*const ICrmFormatLogRecords, @ptrCast(self)), pHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmFormatLogRecords_GetColumn(self: *const T, CrmLogRec: CrmLogRecordRead, pFormattedLogRecord: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmFormatLogRecords.VTable, self.vtable).GetColumn(@ptrCast(*const ICrmFormatLogRecords, self), CrmLogRec, pFormattedLogRecord);
+                return @as(*const ICrmFormatLogRecords.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const ICrmFormatLogRecords, @ptrCast(self)), CrmLogRec, pFormattedLogRecord);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICrmFormatLogRecords_GetColumnVariants(self: *const T, LogRecord: VARIANT, pFormattedLogRecord: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICrmFormatLogRecords.VTable, self.vtable).GetColumnVariants(@ptrCast(*const ICrmFormatLogRecords, self), LogRecord, pFormattedLogRecord);
+                return @as(*const ICrmFormatLogRecords.VTable, @ptrCast(self.vtable)).GetColumnVariants(@as(*const ICrmFormatLogRecords, @ptrCast(self)), LogRecord, pFormattedLogRecord);
             }
         };
     }
@@ -9092,7 +9092,7 @@ pub const IServiceIISIntrinsicsConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceIISIntrinsicsConfig_IISIntrinsicsConfig(self: *const T, iisIntrinsicsConfig: CSC_IISIntrinsicsConfig) HRESULT {
-                return @ptrCast(*const IServiceIISIntrinsicsConfig.VTable, self.vtable).IISIntrinsicsConfig(@ptrCast(*const IServiceIISIntrinsicsConfig, self), iisIntrinsicsConfig);
+                return @as(*const IServiceIISIntrinsicsConfig.VTable, @ptrCast(self.vtable)).IISIntrinsicsConfig(@as(*const IServiceIISIntrinsicsConfig, @ptrCast(self)), iisIntrinsicsConfig);
             }
         };
     }
@@ -9122,7 +9122,7 @@ pub const IServiceComTIIntrinsicsConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceComTIIntrinsicsConfig_ComTIIntrinsicsConfig(self: *const T, comtiIntrinsicsConfig: CSC_COMTIIntrinsicsConfig) HRESULT {
-                return @ptrCast(*const IServiceComTIIntrinsicsConfig.VTable, self.vtable).ComTIIntrinsicsConfig(@ptrCast(*const IServiceComTIIntrinsicsConfig, self), comtiIntrinsicsConfig);
+                return @as(*const IServiceComTIIntrinsicsConfig.VTable, @ptrCast(self.vtable)).ComTIIntrinsicsConfig(@as(*const IServiceComTIIntrinsicsConfig, @ptrCast(self)), comtiIntrinsicsConfig);
             }
         };
     }
@@ -9172,15 +9172,15 @@ pub const IServiceSxsConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceSxsConfig_SxsConfig(self: *const T, scsConfig: CSC_SxsConfig) HRESULT {
-                return @ptrCast(*const IServiceSxsConfig.VTable, self.vtable).SxsConfig(@ptrCast(*const IServiceSxsConfig, self), scsConfig);
+                return @as(*const IServiceSxsConfig.VTable, @ptrCast(self.vtable)).SxsConfig(@as(*const IServiceSxsConfig, @ptrCast(self)), scsConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceSxsConfig_SxsName(self: *const T, szSxsName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IServiceSxsConfig.VTable, self.vtable).SxsName(@ptrCast(*const IServiceSxsConfig, self), szSxsName);
+                return @as(*const IServiceSxsConfig.VTable, @ptrCast(self.vtable)).SxsName(@as(*const IServiceSxsConfig, @ptrCast(self)), szSxsName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceSxsConfig_SxsDirectory(self: *const T, szSxsDirectory: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IServiceSxsConfig.VTable, self.vtable).SxsDirectory(@ptrCast(*const IServiceSxsConfig, self), szSxsDirectory);
+                return @as(*const IServiceSxsConfig.VTable, @ptrCast(self.vtable)).SxsDirectory(@as(*const IServiceSxsConfig, @ptrCast(self)), szSxsDirectory);
             }
         };
     }
@@ -9214,7 +9214,7 @@ pub const ICheckSxsConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICheckSxsConfig_IsSameSxsConfig(self: *const T, wszSxsName: ?[*:0]const u16, wszSxsDirectory: ?[*:0]const u16, wszSxsAppName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ICheckSxsConfig.VTable, self.vtable).IsSameSxsConfig(@ptrCast(*const ICheckSxsConfig, self), wszSxsName, wszSxsDirectory, wszSxsAppName);
+                return @as(*const ICheckSxsConfig.VTable, @ptrCast(self.vtable)).IsSameSxsConfig(@as(*const ICheckSxsConfig, @ptrCast(self)), wszSxsName, wszSxsDirectory, wszSxsAppName);
             }
         };
     }
@@ -9244,7 +9244,7 @@ pub const IServiceInheritanceConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceInheritanceConfig_ContainingContextTreatment(self: *const T, inheritanceConfig: CSC_InheritanceConfig) HRESULT {
-                return @ptrCast(*const IServiceInheritanceConfig.VTable, self.vtable).ContainingContextTreatment(@ptrCast(*const IServiceInheritanceConfig, self), inheritanceConfig);
+                return @as(*const IServiceInheritanceConfig.VTable, @ptrCast(self.vtable)).ContainingContextTreatment(@as(*const IServiceInheritanceConfig, @ptrCast(self)), inheritanceConfig);
             }
         };
     }
@@ -9284,11 +9284,11 @@ pub const IServiceThreadPoolConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceThreadPoolConfig_SelectThreadPool(self: *const T, threadPool: CSC_ThreadPool) HRESULT {
-                return @ptrCast(*const IServiceThreadPoolConfig.VTable, self.vtable).SelectThreadPool(@ptrCast(*const IServiceThreadPoolConfig, self), threadPool);
+                return @as(*const IServiceThreadPoolConfig.VTable, @ptrCast(self.vtable)).SelectThreadPool(@as(*const IServiceThreadPoolConfig, @ptrCast(self)), threadPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceThreadPoolConfig_SetBindingInfo(self: *const T, binding: CSC_Binding) HRESULT {
-                return @ptrCast(*const IServiceThreadPoolConfig.VTable, self.vtable).SetBindingInfo(@ptrCast(*const IServiceThreadPoolConfig, self), binding);
+                return @as(*const IServiceThreadPoolConfig.VTable, @ptrCast(self.vtable)).SetBindingInfo(@as(*const IServiceThreadPoolConfig, @ptrCast(self)), binding);
             }
         };
     }
@@ -9358,23 +9358,23 @@ pub const IServiceTransactionConfigBase = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfigBase_ConfigureTransaction(self: *const T, transactionConfig: CSC_TransactionConfig) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfigBase.VTable, self.vtable).ConfigureTransaction(@ptrCast(*const IServiceTransactionConfigBase, self), transactionConfig);
+                return @as(*const IServiceTransactionConfigBase.VTable, @ptrCast(self.vtable)).ConfigureTransaction(@as(*const IServiceTransactionConfigBase, @ptrCast(self)), transactionConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfigBase_IsolationLevel(self: *const T, option: COMAdminTxIsolationLevelOptions) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfigBase.VTable, self.vtable).IsolationLevel(@ptrCast(*const IServiceTransactionConfigBase, self), option);
+                return @as(*const IServiceTransactionConfigBase.VTable, @ptrCast(self.vtable)).IsolationLevel(@as(*const IServiceTransactionConfigBase, @ptrCast(self)), option);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfigBase_TransactionTimeout(self: *const T, ulTimeoutSec: u32) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfigBase.VTable, self.vtable).TransactionTimeout(@ptrCast(*const IServiceTransactionConfigBase, self), ulTimeoutSec);
+                return @as(*const IServiceTransactionConfigBase.VTable, @ptrCast(self.vtable)).TransactionTimeout(@as(*const IServiceTransactionConfigBase, @ptrCast(self)), ulTimeoutSec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfigBase_BringYourOwnTransaction(self: *const T, szTipURL: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfigBase.VTable, self.vtable).BringYourOwnTransaction(@ptrCast(*const IServiceTransactionConfigBase, self), szTipURL);
+                return @as(*const IServiceTransactionConfigBase.VTable, @ptrCast(self.vtable)).BringYourOwnTransaction(@as(*const IServiceTransactionConfigBase, @ptrCast(self)), szTipURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfigBase_NewTransactionDescription(self: *const T, szTxDesc: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfigBase.VTable, self.vtable).NewTransactionDescription(@ptrCast(*const IServiceTransactionConfigBase, self), szTxDesc);
+                return @as(*const IServiceTransactionConfigBase.VTable, @ptrCast(self.vtable)).NewTransactionDescription(@as(*const IServiceTransactionConfigBase, @ptrCast(self)), szTxDesc);
             }
         };
     }
@@ -9404,7 +9404,7 @@ pub const IServiceTransactionConfig = extern struct {
             pub usingnamespace IServiceTransactionConfigBase.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTransactionConfig_ConfigureBYOT(self: *const T, pITxByot: ?*ITransaction) HRESULT {
-                return @ptrCast(*const IServiceTransactionConfig.VTable, self.vtable).ConfigureBYOT(@ptrCast(*const IServiceTransactionConfig, self), pITxByot);
+                return @as(*const IServiceTransactionConfig.VTable, @ptrCast(self.vtable)).ConfigureBYOT(@as(*const IServiceTransactionConfig, @ptrCast(self)), pITxByot);
             }
         };
     }
@@ -9434,7 +9434,7 @@ pub const IServiceSysTxnConfig = extern struct {
             pub usingnamespace IServiceTransactionConfig.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceSysTxnConfig_ConfigureBYOTSysTxn(self: *const T, pTxProxy: ?*ITransactionProxy) HRESULT {
-                return @ptrCast(*const IServiceSysTxnConfig.VTable, self.vtable).ConfigureBYOTSysTxn(@ptrCast(*const IServiceSysTxnConfig, self), pTxProxy);
+                return @as(*const IServiceSysTxnConfig.VTable, @ptrCast(self.vtable)).ConfigureBYOTSysTxn(@as(*const IServiceSysTxnConfig, @ptrCast(self)), pTxProxy);
             }
         };
     }
@@ -9464,7 +9464,7 @@ pub const IServiceSynchronizationConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceSynchronizationConfig_ConfigureSynchronization(self: *const T, synchConfig: CSC_SynchronizationConfig) HRESULT {
-                return @ptrCast(*const IServiceSynchronizationConfig.VTable, self.vtable).ConfigureSynchronization(@ptrCast(*const IServiceSynchronizationConfig, self), synchConfig);
+                return @as(*const IServiceSynchronizationConfig.VTable, @ptrCast(self.vtable)).ConfigureSynchronization(@as(*const IServiceSynchronizationConfig, @ptrCast(self)), synchConfig);
             }
         };
     }
@@ -9498,7 +9498,7 @@ pub const IServiceTrackerConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceTrackerConfig_TrackerConfig(self: *const T, trackerConfig: CSC_TrackerConfig, szTrackerAppName: ?[*:0]const u16, szTrackerCtxName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IServiceTrackerConfig.VTable, self.vtable).TrackerConfig(@ptrCast(*const IServiceTrackerConfig, self), trackerConfig, szTrackerAppName, szTrackerCtxName);
+                return @as(*const IServiceTrackerConfig.VTable, @ptrCast(self.vtable)).TrackerConfig(@as(*const IServiceTrackerConfig, @ptrCast(self)), trackerConfig, szTrackerAppName, szTrackerCtxName);
             }
         };
     }
@@ -9538,11 +9538,11 @@ pub const IServicePartitionConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePartitionConfig_PartitionConfig(self: *const T, partitionConfig: CSC_PartitionConfig) HRESULT {
-                return @ptrCast(*const IServicePartitionConfig.VTable, self.vtable).PartitionConfig(@ptrCast(*const IServicePartitionConfig, self), partitionConfig);
+                return @as(*const IServicePartitionConfig.VTable, @ptrCast(self.vtable)).PartitionConfig(@as(*const IServicePartitionConfig, @ptrCast(self)), partitionConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePartitionConfig_PartitionID(self: *const T, guidPartitionID: ?*const Guid) HRESULT {
-                return @ptrCast(*const IServicePartitionConfig.VTable, self.vtable).PartitionID(@ptrCast(*const IServicePartitionConfig, self), guidPartitionID);
+                return @as(*const IServicePartitionConfig.VTable, @ptrCast(self.vtable)).PartitionID(@as(*const IServicePartitionConfig, @ptrCast(self)), guidPartitionID);
             }
         };
     }
@@ -9570,7 +9570,7 @@ pub const IServiceCall = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceCall_OnCall(self: *const T) HRESULT {
-                return @ptrCast(*const IServiceCall.VTable, self.vtable).OnCall(@ptrCast(*const IServiceCall, self));
+                return @as(*const IServiceCall.VTable, @ptrCast(self.vtable)).OnCall(@as(*const IServiceCall, @ptrCast(self)));
             }
         };
     }
@@ -9600,7 +9600,7 @@ pub const IAsyncErrorNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAsyncErrorNotify_OnError(self: *const T, hr: HRESULT) HRESULT {
-                return @ptrCast(*const IAsyncErrorNotify.VTable, self.vtable).OnError(@ptrCast(*const IAsyncErrorNotify, self), hr);
+                return @as(*const IAsyncErrorNotify.VTable, @ptrCast(self.vtable)).OnError(@as(*const IAsyncErrorNotify, @ptrCast(self)), hr);
             }
         };
     }
@@ -9656,19 +9656,19 @@ pub const IServiceActivity = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceActivity_SynchronousCall(self: *const T, pIServiceCall: ?*IServiceCall) HRESULT {
-                return @ptrCast(*const IServiceActivity.VTable, self.vtable).SynchronousCall(@ptrCast(*const IServiceActivity, self), pIServiceCall);
+                return @as(*const IServiceActivity.VTable, @ptrCast(self.vtable)).SynchronousCall(@as(*const IServiceActivity, @ptrCast(self)), pIServiceCall);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceActivity_AsynchronousCall(self: *const T, pIServiceCall: ?*IServiceCall) HRESULT {
-                return @ptrCast(*const IServiceActivity.VTable, self.vtable).AsynchronousCall(@ptrCast(*const IServiceActivity, self), pIServiceCall);
+                return @as(*const IServiceActivity.VTable, @ptrCast(self.vtable)).AsynchronousCall(@as(*const IServiceActivity, @ptrCast(self)), pIServiceCall);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceActivity_BindToCurrentThread(self: *const T) HRESULT {
-                return @ptrCast(*const IServiceActivity.VTable, self.vtable).BindToCurrentThread(@ptrCast(*const IServiceActivity, self));
+                return @as(*const IServiceActivity.VTable, @ptrCast(self.vtable)).BindToCurrentThread(@as(*const IServiceActivity, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServiceActivity_UnbindFromThread(self: *const T) HRESULT {
-                return @ptrCast(*const IServiceActivity.VTable, self.vtable).UnbindFromThread(@ptrCast(*const IServiceActivity, self));
+                return @as(*const IServiceActivity.VTable, @ptrCast(self.vtable)).UnbindFromThread(@as(*const IServiceActivity, @ptrCast(self)));
             }
         };
     }
@@ -9788,43 +9788,43 @@ pub const IThreadPoolKnobs = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_GetMaxThreads(self: *const T, plcMaxThreads: ?*i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).GetMaxThreads(@ptrCast(*const IThreadPoolKnobs, self), plcMaxThreads);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetMaxThreads(@as(*const IThreadPoolKnobs, @ptrCast(self)), plcMaxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_GetCurrentThreads(self: *const T, plcCurrentThreads: ?*i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).GetCurrentThreads(@ptrCast(*const IThreadPoolKnobs, self), plcCurrentThreads);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetCurrentThreads(@as(*const IThreadPoolKnobs, @ptrCast(self)), plcCurrentThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_SetMaxThreads(self: *const T, lcMaxThreads: i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).SetMaxThreads(@ptrCast(*const IThreadPoolKnobs, self), lcMaxThreads);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetMaxThreads(@as(*const IThreadPoolKnobs, @ptrCast(self)), lcMaxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_GetDeleteDelay(self: *const T, pmsecDeleteDelay: ?*i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).GetDeleteDelay(@ptrCast(*const IThreadPoolKnobs, self), pmsecDeleteDelay);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetDeleteDelay(@as(*const IThreadPoolKnobs, @ptrCast(self)), pmsecDeleteDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_SetDeleteDelay(self: *const T, msecDeleteDelay: i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).SetDeleteDelay(@ptrCast(*const IThreadPoolKnobs, self), msecDeleteDelay);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetDeleteDelay(@as(*const IThreadPoolKnobs, @ptrCast(self)), msecDeleteDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_GetMaxQueuedRequests(self: *const T, plcMaxQueuedRequests: ?*i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).GetMaxQueuedRequests(@ptrCast(*const IThreadPoolKnobs, self), plcMaxQueuedRequests);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetMaxQueuedRequests(@as(*const IThreadPoolKnobs, @ptrCast(self)), plcMaxQueuedRequests);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_GetCurrentQueuedRequests(self: *const T, plcCurrentQueuedRequests: ?*i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).GetCurrentQueuedRequests(@ptrCast(*const IThreadPoolKnobs, self), plcCurrentQueuedRequests);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetCurrentQueuedRequests(@as(*const IThreadPoolKnobs, @ptrCast(self)), plcCurrentQueuedRequests);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_SetMaxQueuedRequests(self: *const T, lcMaxQueuedRequests: i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).SetMaxQueuedRequests(@ptrCast(*const IThreadPoolKnobs, self), lcMaxQueuedRequests);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetMaxQueuedRequests(@as(*const IThreadPoolKnobs, @ptrCast(self)), lcMaxQueuedRequests);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_SetMinThreads(self: *const T, lcMinThreads: i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).SetMinThreads(@ptrCast(*const IThreadPoolKnobs, self), lcMinThreads);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetMinThreads(@as(*const IThreadPoolKnobs, @ptrCast(self)), lcMinThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThreadPoolKnobs_SetQueueDepth(self: *const T, lcQueueDepth: i32) HRESULT {
-                return @ptrCast(*const IThreadPoolKnobs.VTable, self.vtable).SetQueueDepth(@ptrCast(*const IThreadPoolKnobs, self), lcQueueDepth);
+                return @as(*const IThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetQueueDepth(@as(*const IThreadPoolKnobs, @ptrCast(self)), lcQueueDepth);
             }
         };
     }
@@ -9953,47 +9953,47 @@ pub const IComStaThreadPoolKnobs = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_SetMinThreadCount(self: *const T, minThreads: u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).SetMinThreadCount(@ptrCast(*const IComStaThreadPoolKnobs, self), minThreads);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetMinThreadCount(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), minThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetMinThreadCount(self: *const T, minThreads: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetMinThreadCount(@ptrCast(*const IComStaThreadPoolKnobs, self), minThreads);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetMinThreadCount(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), minThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_SetMaxThreadCount(self: *const T, maxThreads: u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).SetMaxThreadCount(@ptrCast(*const IComStaThreadPoolKnobs, self), maxThreads);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetMaxThreadCount(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), maxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetMaxThreadCount(self: *const T, maxThreads: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetMaxThreadCount(@ptrCast(*const IComStaThreadPoolKnobs, self), maxThreads);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetMaxThreadCount(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), maxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_SetActivityPerThread(self: *const T, activitiesPerThread: u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).SetActivityPerThread(@ptrCast(*const IComStaThreadPoolKnobs, self), activitiesPerThread);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetActivityPerThread(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), activitiesPerThread);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetActivityPerThread(self: *const T, activitiesPerThread: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetActivityPerThread(@ptrCast(*const IComStaThreadPoolKnobs, self), activitiesPerThread);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetActivityPerThread(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), activitiesPerThread);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_SetActivityRatio(self: *const T, activityRatio: f64) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).SetActivityRatio(@ptrCast(*const IComStaThreadPoolKnobs, self), activityRatio);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetActivityRatio(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), activityRatio);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetActivityRatio(self: *const T, activityRatio: ?*f64) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetActivityRatio(@ptrCast(*const IComStaThreadPoolKnobs, self), activityRatio);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetActivityRatio(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), activityRatio);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetThreadCount(self: *const T, pdwThreads: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetThreadCount(@ptrCast(*const IComStaThreadPoolKnobs, self), pdwThreads);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetThreadCount(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), pdwThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_GetQueueDepth(self: *const T, pdwQDepth: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).GetQueueDepth(@ptrCast(*const IComStaThreadPoolKnobs, self), pdwQDepth);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).GetQueueDepth(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), pdwQDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs_SetQueueDepth(self: *const T, dwQDepth: i32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs.VTable, self.vtable).SetQueueDepth(@ptrCast(*const IComStaThreadPoolKnobs, self), dwQDepth);
+                return @as(*const IComStaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).SetQueueDepth(@as(*const IComStaThreadPoolKnobs, @ptrCast(self)), dwQDepth);
             }
         };
     }
@@ -10052,19 +10052,19 @@ pub const IComMtaThreadPoolKnobs = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMtaThreadPoolKnobs_MTASetMaxThreadCount(self: *const T, dwMaxThreads: u32) HRESULT {
-                return @ptrCast(*const IComMtaThreadPoolKnobs.VTable, self.vtable).MTASetMaxThreadCount(@ptrCast(*const IComMtaThreadPoolKnobs, self), dwMaxThreads);
+                return @as(*const IComMtaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).MTASetMaxThreadCount(@as(*const IComMtaThreadPoolKnobs, @ptrCast(self)), dwMaxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMtaThreadPoolKnobs_MTAGetMaxThreadCount(self: *const T, pdwMaxThreads: ?*u32) HRESULT {
-                return @ptrCast(*const IComMtaThreadPoolKnobs.VTable, self.vtable).MTAGetMaxThreadCount(@ptrCast(*const IComMtaThreadPoolKnobs, self), pdwMaxThreads);
+                return @as(*const IComMtaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).MTAGetMaxThreadCount(@as(*const IComMtaThreadPoolKnobs, @ptrCast(self)), pdwMaxThreads);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMtaThreadPoolKnobs_MTASetThrottleValue(self: *const T, dwThrottle: u32) HRESULT {
-                return @ptrCast(*const IComMtaThreadPoolKnobs.VTable, self.vtable).MTASetThrottleValue(@ptrCast(*const IComMtaThreadPoolKnobs, self), dwThrottle);
+                return @as(*const IComMtaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).MTASetThrottleValue(@as(*const IComMtaThreadPoolKnobs, @ptrCast(self)), dwThrottle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComMtaThreadPoolKnobs_MTAGetThrottleValue(self: *const T, pdwThrottle: ?*u32) HRESULT {
-                return @ptrCast(*const IComMtaThreadPoolKnobs.VTable, self.vtable).MTAGetThrottleValue(@ptrCast(*const IComMtaThreadPoolKnobs, self), pdwThrottle);
+                return @as(*const IComMtaThreadPoolKnobs.VTable, @ptrCast(self.vtable)).MTAGetThrottleValue(@as(*const IComMtaThreadPoolKnobs, @ptrCast(self)), pdwThrottle);
             }
         };
     }
@@ -10183,43 +10183,43 @@ pub const IComStaThreadPoolKnobs2 = extern struct {
             pub usingnamespace IComStaThreadPoolKnobs.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_GetMaxCPULoad(self: *const T, pdwLoad: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).GetMaxCPULoad(@ptrCast(*const IComStaThreadPoolKnobs2, self), pdwLoad);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).GetMaxCPULoad(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pdwLoad);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_SetMaxCPULoad(self: *const T, pdwLoad: i32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).SetMaxCPULoad(@ptrCast(*const IComStaThreadPoolKnobs2, self), pdwLoad);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).SetMaxCPULoad(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pdwLoad);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_GetCPUMetricEnabled(self: *const T, pbMetricEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).GetCPUMetricEnabled(@ptrCast(*const IComStaThreadPoolKnobs2, self), pbMetricEnabled);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).GetCPUMetricEnabled(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pbMetricEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_SetCPUMetricEnabled(self: *const T, bMetricEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).SetCPUMetricEnabled(@ptrCast(*const IComStaThreadPoolKnobs2, self), bMetricEnabled);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).SetCPUMetricEnabled(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), bMetricEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_GetCreateThreadsAggressively(self: *const T, pbMetricEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).GetCreateThreadsAggressively(@ptrCast(*const IComStaThreadPoolKnobs2, self), pbMetricEnabled);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).GetCreateThreadsAggressively(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pbMetricEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_SetCreateThreadsAggressively(self: *const T, bMetricEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).SetCreateThreadsAggressively(@ptrCast(*const IComStaThreadPoolKnobs2, self), bMetricEnabled);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).SetCreateThreadsAggressively(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), bMetricEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_GetMaxCSR(self: *const T, pdwCSR: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).GetMaxCSR(@ptrCast(*const IComStaThreadPoolKnobs2, self), pdwCSR);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).GetMaxCSR(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pdwCSR);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_SetMaxCSR(self: *const T, dwCSR: i32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).SetMaxCSR(@ptrCast(*const IComStaThreadPoolKnobs2, self), dwCSR);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).SetMaxCSR(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), dwCSR);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_GetWaitTimeForThreadCleanup(self: *const T, pdwThreadCleanupWaitTime: ?*u32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).GetWaitTimeForThreadCleanup(@ptrCast(*const IComStaThreadPoolKnobs2, self), pdwThreadCleanupWaitTime);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).GetWaitTimeForThreadCleanup(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), pdwThreadCleanupWaitTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IComStaThreadPoolKnobs2_SetWaitTimeForThreadCleanup(self: *const T, dwThreadCleanupWaitTime: i32) HRESULT {
-                return @ptrCast(*const IComStaThreadPoolKnobs2.VTable, self.vtable).SetWaitTimeForThreadCleanup(@ptrCast(*const IComStaThreadPoolKnobs2, self), dwThreadCleanupWaitTime);
+                return @as(*const IComStaThreadPoolKnobs2.VTable, @ptrCast(self.vtable)).SetWaitTimeForThreadCleanup(@as(*const IComStaThreadPoolKnobs2, @ptrCast(self)), dwThreadCleanupWaitTime);
             }
         };
     }
@@ -10257,11 +10257,11 @@ pub const IProcessInitializer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProcessInitializer_Startup(self: *const T, punkProcessControl: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IProcessInitializer.VTable, self.vtable).Startup(@ptrCast(*const IProcessInitializer, self), punkProcessControl);
+                return @as(*const IProcessInitializer.VTable, @ptrCast(self.vtable)).Startup(@as(*const IProcessInitializer, @ptrCast(self)), punkProcessControl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProcessInitializer_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IProcessInitializer.VTable, self.vtable).Shutdown(@ptrCast(*const IProcessInitializer, self));
+                return @as(*const IProcessInitializer.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IProcessInitializer, @ptrCast(self)));
             }
         };
     }
@@ -10411,43 +10411,43 @@ pub const IServicePoolConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_put_MaxPoolSize(self: *const T, dwMaxPool: u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).put_MaxPoolSize(@ptrCast(*const IServicePoolConfig, self), dwMaxPool);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).put_MaxPoolSize(@as(*const IServicePoolConfig, @ptrCast(self)), dwMaxPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_get_MaxPoolSize(self: *const T, pdwMaxPool: ?*u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).get_MaxPoolSize(@ptrCast(*const IServicePoolConfig, self), pdwMaxPool);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).get_MaxPoolSize(@as(*const IServicePoolConfig, @ptrCast(self)), pdwMaxPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_put_MinPoolSize(self: *const T, dwMinPool: u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).put_MinPoolSize(@ptrCast(*const IServicePoolConfig, self), dwMinPool);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).put_MinPoolSize(@as(*const IServicePoolConfig, @ptrCast(self)), dwMinPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_get_MinPoolSize(self: *const T, pdwMinPool: ?*u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).get_MinPoolSize(@ptrCast(*const IServicePoolConfig, self), pdwMinPool);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).get_MinPoolSize(@as(*const IServicePoolConfig, @ptrCast(self)), pdwMinPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_put_CreationTimeout(self: *const T, dwCreationTimeout: u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).put_CreationTimeout(@ptrCast(*const IServicePoolConfig, self), dwCreationTimeout);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).put_CreationTimeout(@as(*const IServicePoolConfig, @ptrCast(self)), dwCreationTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_get_CreationTimeout(self: *const T, pdwCreationTimeout: ?*u32) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).get_CreationTimeout(@ptrCast(*const IServicePoolConfig, self), pdwCreationTimeout);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).get_CreationTimeout(@as(*const IServicePoolConfig, @ptrCast(self)), pdwCreationTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_put_TransactionAffinity(self: *const T, fTxAffinity: BOOL) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).put_TransactionAffinity(@ptrCast(*const IServicePoolConfig, self), fTxAffinity);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).put_TransactionAffinity(@as(*const IServicePoolConfig, @ptrCast(self)), fTxAffinity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_get_TransactionAffinity(self: *const T, pfTxAffinity: ?*BOOL) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).get_TransactionAffinity(@ptrCast(*const IServicePoolConfig, self), pfTxAffinity);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).get_TransactionAffinity(@as(*const IServicePoolConfig, @ptrCast(self)), pfTxAffinity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_put_ClassFactory(self: *const T, pFactory: ?*IClassFactory) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).put_ClassFactory(@ptrCast(*const IServicePoolConfig, self), pFactory);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).put_ClassFactory(@as(*const IServicePoolConfig, @ptrCast(self)), pFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePoolConfig_get_ClassFactory(self: *const T, pFactory: ?*?*IClassFactory) HRESULT {
-                return @ptrCast(*const IServicePoolConfig.VTable, self.vtable).get_ClassFactory(@ptrCast(*const IServicePoolConfig, self), pFactory);
+                return @as(*const IServicePoolConfig.VTable, @ptrCast(self.vtable)).get_ClassFactory(@as(*const IServicePoolConfig, @ptrCast(self)), pFactory);
             }
         };
     }
@@ -10497,15 +10497,15 @@ pub const IServicePool = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePool_Initialize(self: *const T, pPoolConfig: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IServicePool.VTable, self.vtable).Initialize(@ptrCast(*const IServicePool, self), pPoolConfig);
+                return @as(*const IServicePool.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IServicePool, @ptrCast(self)), pPoolConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePool_GetObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IServicePool.VTable, self.vtable).GetObject(@ptrCast(*const IServicePool, self), riid, ppv);
+                return @as(*const IServicePool.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IServicePool, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServicePool_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IServicePool.VTable, self.vtable).Shutdown(@ptrCast(*const IServicePool, self));
+                return @as(*const IServicePool.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IServicePool, @ptrCast(self)));
             }
         };
     }
@@ -10535,7 +10535,7 @@ pub const IManagedPooledObj = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedPooledObj_SetHeld(self: *const T, m_bHeld: BOOL) HRESULT {
-                return @ptrCast(*const IManagedPooledObj.VTable, self.vtable).SetHeld(@ptrCast(*const IManagedPooledObj, self), m_bHeld);
+                return @as(*const IManagedPooledObj.VTable, @ptrCast(self.vtable)).SetHeld(@as(*const IManagedPooledObj, @ptrCast(self)), m_bHeld);
             }
         };
     }
@@ -10563,7 +10563,7 @@ pub const IManagedPoolAction = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedPoolAction_LastRelease(self: *const T) HRESULT {
-                return @ptrCast(*const IManagedPoolAction.VTable, self.vtable).LastRelease(@ptrCast(*const IManagedPoolAction, self));
+                return @as(*const IManagedPoolAction.VTable, @ptrCast(self.vtable)).LastRelease(@as(*const IManagedPoolAction, @ptrCast(self)));
             }
         };
     }
@@ -10625,19 +10625,19 @@ pub const IManagedObjectInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedObjectInfo_GetIUnknown(self: *const T, pUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IManagedObjectInfo.VTable, self.vtable).GetIUnknown(@ptrCast(*const IManagedObjectInfo, self), pUnk);
+                return @as(*const IManagedObjectInfo.VTable, @ptrCast(self.vtable)).GetIUnknown(@as(*const IManagedObjectInfo, @ptrCast(self)), pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedObjectInfo_GetIObjectControl(self: *const T, pCtrl: ?*?*IObjectControl) HRESULT {
-                return @ptrCast(*const IManagedObjectInfo.VTable, self.vtable).GetIObjectControl(@ptrCast(*const IManagedObjectInfo, self), pCtrl);
+                return @as(*const IManagedObjectInfo.VTable, @ptrCast(self.vtable)).GetIObjectControl(@as(*const IManagedObjectInfo, @ptrCast(self)), pCtrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedObjectInfo_SetInPool(self: *const T, bInPool: BOOL, pPooledObj: ?*IManagedPooledObj) HRESULT {
-                return @ptrCast(*const IManagedObjectInfo.VTable, self.vtable).SetInPool(@ptrCast(*const IManagedObjectInfo, self), bInPool, pPooledObj);
+                return @as(*const IManagedObjectInfo.VTable, @ptrCast(self.vtable)).SetInPool(@as(*const IManagedObjectInfo, @ptrCast(self)), bInPool, pPooledObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedObjectInfo_SetWrapperStrength(self: *const T, bStrong: BOOL) HRESULT {
-                return @ptrCast(*const IManagedObjectInfo.VTable, self.vtable).SetWrapperStrength(@ptrCast(*const IManagedObjectInfo, self), bStrong);
+                return @as(*const IManagedObjectInfo.VTable, @ptrCast(self.vtable)).SetWrapperStrength(@as(*const IManagedObjectInfo, @ptrCast(self)), bStrong);
             }
         };
     }
@@ -10685,11 +10685,11 @@ pub const IAppDomainHelper = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAppDomainHelper_Initialize(self: *const T, pUnkAD: ?*IUnknown, __MIDL__IAppDomainHelper0000: isize, pPool: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IAppDomainHelper.VTable, self.vtable).Initialize(@ptrCast(*const IAppDomainHelper, self), pUnkAD, __MIDL__IAppDomainHelper0000, pPool);
+                return @as(*const IAppDomainHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAppDomainHelper, @ptrCast(self)), pUnkAD, __MIDL__IAppDomainHelper0000, pPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAppDomainHelper_DoCallback(self: *const T, pUnkAD: ?*IUnknown, __MIDL__IAppDomainHelper0001: isize, pPool: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IAppDomainHelper.VTable, self.vtable).DoCallback(@ptrCast(*const IAppDomainHelper, self), pUnkAD, __MIDL__IAppDomainHelper0001, pPool);
+                return @as(*const IAppDomainHelper.VTable, @ptrCast(self.vtable)).DoCallback(@as(*const IAppDomainHelper, @ptrCast(self)), pUnkAD, __MIDL__IAppDomainHelper0001, pPool);
             }
         };
     }
@@ -10725,7 +10725,7 @@ pub const IAssemblyLocator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAssemblyLocator_GetModules(self: *const T, applicationDir: ?BSTR, applicationName: ?BSTR, assemblyName: ?BSTR, pModules: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IAssemblyLocator.VTable, self.vtable).GetModules(@ptrCast(*const IAssemblyLocator, self), applicationDir, applicationName, assemblyName, pModules);
+                return @as(*const IAssemblyLocator.VTable, @ptrCast(self.vtable)).GetModules(@as(*const IAssemblyLocator, @ptrCast(self)), applicationDir, applicationName, assemblyName, pModules);
             }
         };
     }
@@ -10767,11 +10767,11 @@ pub const IManagedActivationEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedActivationEvents_CreateManagedStub(self: *const T, pInfo: ?*IManagedObjectInfo, fDist: BOOL) HRESULT {
-                return @ptrCast(*const IManagedActivationEvents.VTable, self.vtable).CreateManagedStub(@ptrCast(*const IManagedActivationEvents, self), pInfo, fDist);
+                return @as(*const IManagedActivationEvents.VTable, @ptrCast(self.vtable)).CreateManagedStub(@as(*const IManagedActivationEvents, @ptrCast(self)), pInfo, fDist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManagedActivationEvents_DestroyManagedStub(self: *const T, pInfo: ?*IManagedObjectInfo) HRESULT {
-                return @ptrCast(*const IManagedActivationEvents.VTable, self.vtable).DestroyManagedStub(@ptrCast(*const IManagedActivationEvents, self), pInfo);
+                return @as(*const IManagedActivationEvents.VTable, @ptrCast(self.vtable)).DestroyManagedStub(@as(*const IManagedActivationEvents, @ptrCast(self)), pInfo);
             }
         };
     }
@@ -10823,11 +10823,11 @@ pub const ISendMethodEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISendMethodEvents_SendMethodCall(self: *const T, pIdentity: ?*const anyopaque, riid: ?*const Guid, dwMeth: u32) HRESULT {
-                return @ptrCast(*const ISendMethodEvents.VTable, self.vtable).SendMethodCall(@ptrCast(*const ISendMethodEvents, self), pIdentity, riid, dwMeth);
+                return @as(*const ISendMethodEvents.VTable, @ptrCast(self.vtable)).SendMethodCall(@as(*const ISendMethodEvents, @ptrCast(self)), pIdentity, riid, dwMeth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISendMethodEvents_SendMethodReturn(self: *const T, pIdentity: ?*const anyopaque, riid: ?*const Guid, dwMeth: u32, hrCall: HRESULT, hrServer: HRESULT) HRESULT {
-                return @ptrCast(*const ISendMethodEvents.VTable, self.vtable).SendMethodReturn(@ptrCast(*const ISendMethodEvents, self), pIdentity, riid, dwMeth, hrCall, hrServer);
+                return @as(*const ISendMethodEvents.VTable, @ptrCast(self.vtable)).SendMethodReturn(@as(*const ISendMethodEvents, @ptrCast(self)), pIdentity, riid, dwMeth, hrCall, hrServer);
             }
         };
     }
@@ -10871,11 +10871,11 @@ pub const ITransactionResourcePool = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionResourcePool_PutResource(self: *const T, pPool: ?*IObjPool, pUnk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ITransactionResourcePool.VTable, self.vtable).PutResource(@ptrCast(*const ITransactionResourcePool, self), pPool, pUnk);
+                return @as(*const ITransactionResourcePool.VTable, @ptrCast(self.vtable)).PutResource(@as(*const ITransactionResourcePool, @ptrCast(self)), pPool, pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionResourcePool_GetResource(self: *const T, pPool: ?*IObjPool, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ITransactionResourcePool.VTable, self.vtable).GetResource(@ptrCast(*const ITransactionResourcePool, self), pPool, ppUnk);
+                return @as(*const ITransactionResourcePool.VTable, @ptrCast(self.vtable)).GetResource(@as(*const ITransactionResourcePool, @ptrCast(self)), pPool, ppUnk);
             }
         };
     }
@@ -10903,7 +10903,7 @@ pub const IMTSCall = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSCall_OnCall(self: *const T) HRESULT {
-                return @ptrCast(*const IMTSCall.VTable, self.vtable).OnCall(@ptrCast(*const IMTSCall, self));
+                return @as(*const IMTSCall.VTable, @ptrCast(self.vtable)).OnCall(@as(*const IMTSCall, @ptrCast(self)));
             }
         };
     }
@@ -10977,23 +10977,23 @@ pub const IContextProperties = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextProperties_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IContextProperties.VTable, self.vtable).Count(@ptrCast(*const IContextProperties, self), plCount);
+                return @as(*const IContextProperties.VTable, @ptrCast(self.vtable)).Count(@as(*const IContextProperties, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextProperties_GetProperty(self: *const T, name: ?BSTR, pProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IContextProperties.VTable, self.vtable).GetProperty(@ptrCast(*const IContextProperties, self), name, pProperty);
+                return @as(*const IContextProperties.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IContextProperties, @ptrCast(self)), name, pProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextProperties_EnumNames(self: *const T, ppenum: ?*?*IEnumNames) HRESULT {
-                return @ptrCast(*const IContextProperties.VTable, self.vtable).EnumNames(@ptrCast(*const IContextProperties, self), ppenum);
+                return @as(*const IContextProperties.VTable, @ptrCast(self.vtable)).EnumNames(@as(*const IContextProperties, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextProperties_SetProperty(self: *const T, name: ?BSTR, property: VARIANT) HRESULT {
-                return @ptrCast(*const IContextProperties.VTable, self.vtable).SetProperty(@ptrCast(*const IContextProperties, self), name, property);
+                return @as(*const IContextProperties.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IContextProperties, @ptrCast(self)), name, property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContextProperties_RemoveProperty(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IContextProperties.VTable, self.vtable).RemoveProperty(@ptrCast(*const IContextProperties, self), name);
+                return @as(*const IContextProperties.VTable, @ptrCast(self.vtable)).RemoveProperty(@as(*const IContextProperties, @ptrCast(self)), name);
             }
         };
     }
@@ -11071,31 +11071,31 @@ pub const IObjPool = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved1(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved1(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const IObjPool, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved2(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved2(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved2(@as(*const IObjPool, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved3(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved3(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved3(@as(*const IObjPool, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved4(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved4(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved4(@as(*const IObjPool, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_PutEndTx(self: *const T, pObj: ?*IUnknown) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).PutEndTx(@ptrCast(*const IObjPool, self), pObj);
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).PutEndTx(@as(*const IObjPool, @ptrCast(self)), pObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved5(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved5(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved5(@as(*const IObjPool, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjPool_Reserved6(self: *const T) void {
-                return @ptrCast(*const IObjPool.VTable, self.vtable).Reserved6(@ptrCast(*const IObjPool, self));
+                return @as(*const IObjPool.VTable, @ptrCast(self.vtable)).Reserved6(@as(*const IObjPool, @ptrCast(self)));
             }
         };
     }
@@ -11261,75 +11261,75 @@ pub const ITransactionProperty = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved1(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved1(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved2(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved2(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved2(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved3(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved3(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved3(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved4(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved4(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved4(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved5(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved5(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved5(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved6(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved6(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved6(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved7(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved7(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved7(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved8(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved8(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved8(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved9(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved9(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved9(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_GetTransactionResourcePool(self: *const T, ppTxPool: ?*?*ITransactionResourcePool) HRESULT {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).GetTransactionResourcePool(@ptrCast(*const ITransactionProperty, self), ppTxPool);
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).GetTransactionResourcePool(@as(*const ITransactionProperty, @ptrCast(self)), ppTxPool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved10(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved10(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved10(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved11(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved11(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved11(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved12(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved12(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved12(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved13(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved13(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved13(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved14(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved14(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved14(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved15(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved15(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved15(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved16(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved16(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved16(@as(*const ITransactionProperty, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransactionProperty_Reserved17(self: *const T) void {
-                return @ptrCast(*const ITransactionProperty.VTable, self.vtable).Reserved17(@ptrCast(*const ITransactionProperty, self));
+                return @as(*const ITransactionProperty.VTable, @ptrCast(self.vtable)).Reserved17(@as(*const ITransactionProperty, @ptrCast(self)));
             }
         };
     }
@@ -11393,23 +11393,23 @@ pub const IMTSActivity = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSActivity_SynchronousCall(self: *const T, pCall: ?*IMTSCall) HRESULT {
-                return @ptrCast(*const IMTSActivity.VTable, self.vtable).SynchronousCall(@ptrCast(*const IMTSActivity, self), pCall);
+                return @as(*const IMTSActivity.VTable, @ptrCast(self.vtable)).SynchronousCall(@as(*const IMTSActivity, @ptrCast(self)), pCall);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSActivity_AsyncCall(self: *const T, pCall: ?*IMTSCall) HRESULT {
-                return @ptrCast(*const IMTSActivity.VTable, self.vtable).AsyncCall(@ptrCast(*const IMTSActivity, self), pCall);
+                return @as(*const IMTSActivity.VTable, @ptrCast(self.vtable)).AsyncCall(@as(*const IMTSActivity, @ptrCast(self)), pCall);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSActivity_Reserved1(self: *const T) void {
-                return @ptrCast(*const IMTSActivity.VTable, self.vtable).Reserved1(@ptrCast(*const IMTSActivity, self));
+                return @as(*const IMTSActivity.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const IMTSActivity, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSActivity_BindToCurrentThread(self: *const T) HRESULT {
-                return @ptrCast(*const IMTSActivity.VTable, self.vtable).BindToCurrentThread(@ptrCast(*const IMTSActivity, self));
+                return @as(*const IMTSActivity.VTable, @ptrCast(self.vtable)).BindToCurrentThread(@as(*const IMTSActivity, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMTSActivity_UnbindFromThread(self: *const T) HRESULT {
-                return @ptrCast(*const IMTSActivity.VTable, self.vtable).UnbindFromThread(@ptrCast(*const IMTSActivity, self));
+                return @as(*const IMTSActivity.VTable, @ptrCast(self.vtable)).UnbindFromThread(@as(*const IMTSActivity, @ptrCast(self)));
             }
         };
     }

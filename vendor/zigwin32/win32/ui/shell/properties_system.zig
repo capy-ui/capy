@@ -46,7 +46,7 @@ pub const IInitializeWithFile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInitializeWithFile_Initialize(self: *const T, pszFilePath: ?[*:0]const u16, grfMode: u32) HRESULT {
-                return @ptrCast(*const IInitializeWithFile.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithFile, self), pszFilePath, grfMode);
+                return @as(*const IInitializeWithFile.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithFile, @ptrCast(self)), pszFilePath, grfMode);
             }
         };
     }
@@ -78,7 +78,7 @@ pub const IInitializeWithStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInitializeWithStream_Initialize(self: *const T, pstream: ?*IStream, grfMode: u32) HRESULT {
-                return @ptrCast(*const IInitializeWithStream.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithStream, self), pstream, grfMode);
+                return @as(*const IInitializeWithStream.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IInitializeWithStream, @ptrCast(self)), pstream, grfMode);
             }
         };
     }
@@ -151,23 +151,23 @@ pub const IPropertyStore = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStore_GetCount(self: *const T, cProps: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyStore.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyStore, self), cProps);
+                return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyStore, @ptrCast(self)), cProps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStore_GetAt(self: *const T, iProp: u32, pkey: ?*PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IPropertyStore.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyStore, self), iProp, pkey);
+                return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyStore, @ptrCast(self)), iProp, pkey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStore_GetValue(self: *const T, key: ?*const PROPERTYKEY, pv: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyStore.VTable, self.vtable).GetValue(@ptrCast(*const IPropertyStore, self), key, pv);
+                return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IPropertyStore, @ptrCast(self)), key, pv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStore_SetValue(self: *const T, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyStore.VTable, self.vtable).SetValue(@ptrCast(*const IPropertyStore, self), key, propvar);
+                return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IPropertyStore, @ptrCast(self)), key, propvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStore_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const IPropertyStore.VTable, self.vtable).Commit(@ptrCast(*const IPropertyStore, self));
+                return @as(*const IPropertyStore.VTable, @ptrCast(self.vtable)).Commit(@as(*const IPropertyStore, @ptrCast(self)));
             }
         };
     }
@@ -233,19 +233,19 @@ pub const INamedPropertyStore = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INamedPropertyStore_GetNamedValue(self: *const T, pszName: ?[*:0]const u16, ppropvar: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, ppropvar);
+                return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNamedValue(@as(*const INamedPropertyStore, @ptrCast(self)), pszName, ppropvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INamedPropertyStore_SetNamedValue(self: *const T, pszName: ?[*:0]const u16, propvar: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).SetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, propvar);
+                return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).SetNamedValue(@as(*const INamedPropertyStore, @ptrCast(self)), pszName, propvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INamedPropertyStore_GetNameCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameCount(@ptrCast(*const INamedPropertyStore, self), pdwCount);
+                return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const INamedPropertyStore, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INamedPropertyStore_GetNameAt(self: *const T, iProp: u32, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameAt(@ptrCast(*const INamedPropertyStore, self), iProp, pbstrName);
+                return @as(*const INamedPropertyStore.VTable, @ptrCast(self.vtable)).GetNameAt(@as(*const INamedPropertyStore, @ptrCast(self)), iProp, pbstrName);
             }
         };
     }
@@ -318,11 +318,11 @@ pub const IObjectWithPropertyKey = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectWithPropertyKey_SetPropertyKey(self: *const T, key: ?*const PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).SetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), key);
+                return @as(*const IObjectWithPropertyKey.VTable, @ptrCast(self.vtable)).SetPropertyKey(@as(*const IObjectWithPropertyKey, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectWithPropertyKey_GetPropertyKey(self: *const T, pkey: ?*PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), pkey);
+                return @as(*const IObjectWithPropertyKey.VTable, @ptrCast(self.vtable)).GetPropertyKey(@as(*const IObjectWithPropertyKey, @ptrCast(self)), pkey);
             }
         };
     }
@@ -363,7 +363,7 @@ pub const IPropertyChange = extern struct {
             pub usingnamespace IObjectWithPropertyKey.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChange_ApplyToPropVariant(self: *const T, propvarIn: ?*const PROPVARIANT, ppropvarOut: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyChange.VTable, self.vtable).ApplyToPropVariant(@ptrCast(*const IPropertyChange, self), propvarIn, ppropvarOut);
+                return @as(*const IPropertyChange.VTable, @ptrCast(self.vtable)).ApplyToPropVariant(@as(*const IPropertyChange, @ptrCast(self)), propvarIn, ppropvarOut);
             }
         };
     }
@@ -459,31 +459,31 @@ pub const IPropertyChangeArray = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_GetCount(self: *const T, pcOperations: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyChangeArray, self), pcOperations);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyChangeArray, @ptrCast(self)), pcOperations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_GetAt(self: *const T, iIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyChangeArray, self), iIndex, riid, ppv);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_InsertAt(self: *const T, iIndex: u32, ppropChange: ?*IPropertyChange) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).InsertAt(@ptrCast(*const IPropertyChangeArray, self), iIndex, ppropChange);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex, ppropChange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_Append(self: *const T, ppropChange: ?*IPropertyChange) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).Append(@ptrCast(*const IPropertyChangeArray, self), ppropChange);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).Append(@as(*const IPropertyChangeArray, @ptrCast(self)), ppropChange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_AppendOrReplace(self: *const T, ppropChange: ?*IPropertyChange) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).AppendOrReplace(@ptrCast(*const IPropertyChangeArray, self), ppropChange);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).AppendOrReplace(@as(*const IPropertyChangeArray, @ptrCast(self)), ppropChange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_RemoveAt(self: *const T, iIndex: u32) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).RemoveAt(@ptrCast(*const IPropertyChangeArray, self), iIndex);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IPropertyChangeArray, @ptrCast(self)), iIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyChangeArray_IsKeyInArray(self: *const T, key: ?*const PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).IsKeyInArray(@ptrCast(*const IPropertyChangeArray, self), key);
+                return @as(*const IPropertyChangeArray.VTable, @ptrCast(self.vtable)).IsKeyInArray(@as(*const IPropertyChangeArray, @ptrCast(self)), key);
             }
         };
     }
@@ -513,7 +513,7 @@ pub const IPropertyStoreCapabilities = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreCapabilities_IsPropertyWritable(self: *const T, key: ?*const PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IPropertyStoreCapabilities.VTable, self.vtable).IsPropertyWritable(@ptrCast(*const IPropertyStoreCapabilities, self), key);
+                return @as(*const IPropertyStoreCapabilities.VTable, @ptrCast(self.vtable)).IsPropertyWritable(@as(*const IPropertyStoreCapabilities, @ptrCast(self)), key);
             }
         };
     }
@@ -596,19 +596,19 @@ pub const IPropertyStoreCache = extern struct {
             pub usingnamespace IPropertyStore.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreCache_GetState(self: *const T, key: ?*const PROPERTYKEY, pstate: ?*PSC_STATE) HRESULT {
-                return @ptrCast(*const IPropertyStoreCache.VTable, self.vtable).GetState(@ptrCast(*const IPropertyStoreCache, self), key, pstate);
+                return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).GetState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, pstate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreCache_GetValueAndState(self: *const T, key: ?*const PROPERTYKEY, ppropvar: ?*PROPVARIANT, pstate: ?*PSC_STATE) HRESULT {
-                return @ptrCast(*const IPropertyStoreCache.VTable, self.vtable).GetValueAndState(@ptrCast(*const IPropertyStoreCache, self), key, ppropvar, pstate);
+                return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).GetValueAndState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, ppropvar, pstate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreCache_SetState(self: *const T, key: ?*const PROPERTYKEY, state: PSC_STATE) HRESULT {
-                return @ptrCast(*const IPropertyStoreCache.VTable, self.vtable).SetState(@ptrCast(*const IPropertyStoreCache, self), key, state);
+                return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).SetState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, state);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreCache_SetValueAndState(self: *const T, key: ?*const PROPERTYKEY, ppropvar: ?*const PROPVARIANT, state: PSC_STATE) HRESULT {
-                return @ptrCast(*const IPropertyStoreCache.VTable, self.vtable).SetValueAndState(@ptrCast(*const IPropertyStoreCache, self), key, ppropvar, state);
+                return @as(*const IPropertyStoreCache.VTable, @ptrCast(self.vtable)).SetValueAndState(@as(*const IPropertyStoreCache, @ptrCast(self)), key, ppropvar, state);
             }
         };
     }
@@ -689,23 +689,23 @@ pub const IPropertyEnumType = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType_GetEnumType(self: *const T, penumtype: ?*PROPENUMTYPE) HRESULT {
-                return @ptrCast(*const IPropertyEnumType.VTable, self.vtable).GetEnumType(@ptrCast(*const IPropertyEnumType, self), penumtype);
+                return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetEnumType(@as(*const IPropertyEnumType, @ptrCast(self)), penumtype);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType_GetValue(self: *const T, ppropvar: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyEnumType.VTable, self.vtable).GetValue(@ptrCast(*const IPropertyEnumType, self), ppropvar);
+                return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType_GetRangeMinValue(self: *const T, ppropvarMin: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyEnumType.VTable, self.vtable).GetRangeMinValue(@ptrCast(*const IPropertyEnumType, self), ppropvarMin);
+                return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetRangeMinValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvarMin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType_GetRangeSetValue(self: *const T, ppropvarSet: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyEnumType.VTable, self.vtable).GetRangeSetValue(@ptrCast(*const IPropertyEnumType, self), ppropvarSet);
+                return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetRangeSetValue(@as(*const IPropertyEnumType, @ptrCast(self)), ppropvarSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType_GetDisplayText(self: *const T, ppszDisplay: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyEnumType.VTable, self.vtable).GetDisplayText(@ptrCast(*const IPropertyEnumType, self), ppszDisplay);
+                return @as(*const IPropertyEnumType.VTable, @ptrCast(self.vtable)).GetDisplayText(@as(*const IPropertyEnumType, @ptrCast(self)), ppszDisplay);
             }
         };
     }
@@ -735,7 +735,7 @@ pub const IPropertyEnumType2 = extern struct {
             pub usingnamespace IPropertyEnumType.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumType2_GetImageReference(self: *const T, ppszImageRes: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyEnumType2.VTable, self.vtable).GetImageReference(@ptrCast(*const IPropertyEnumType2, self), ppszImageRes);
+                return @as(*const IPropertyEnumType2.VTable, @ptrCast(self.vtable)).GetImageReference(@as(*const IPropertyEnumType2, @ptrCast(self)), ppszImageRes);
             }
         };
     }
@@ -805,19 +805,19 @@ pub const IPropertyEnumTypeList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumTypeList_GetCount(self: *const T, pctypes: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyEnumTypeList, self), pctypes);
+                return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyEnumTypeList, @ptrCast(self)), pctypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumTypeList_GetAt(self: *const T, itype: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyEnumTypeList, self), itype, riid, ppv);
+                return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyEnumTypeList, @ptrCast(self)), itype, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumTypeList_GetConditionAt(self: *const T, nIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetConditionAt(@ptrCast(*const IPropertyEnumTypeList, self), nIndex, riid, ppv);
+                return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).GetConditionAt(@as(*const IPropertyEnumTypeList, @ptrCast(self)), nIndex, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyEnumTypeList_FindMatchingIndex(self: *const T, propvarCmp: ?*const PROPVARIANT, pnIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).FindMatchingIndex(@ptrCast(*const IPropertyEnumTypeList, self), propvarCmp, pnIndex);
+                return @as(*const IPropertyEnumTypeList.VTable, @ptrCast(self.vtable)).FindMatchingIndex(@as(*const IPropertyEnumTypeList, @ptrCast(self)), propvarCmp, pnIndex);
             }
         };
     }
@@ -1266,87 +1266,87 @@ pub const IPropertyDescription = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetPropertyKey(self: *const T, pkey: ?*PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IPropertyDescription, self), pkey);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetPropertyKey(@as(*const IPropertyDescription, @ptrCast(self)), pkey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetCanonicalName(self: *const T, ppszName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetCanonicalName(@ptrCast(*const IPropertyDescription, self), ppszName);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetCanonicalName(@as(*const IPropertyDescription, @ptrCast(self)), ppszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetPropertyType(self: *const T, pvartype: ?*u16) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetPropertyType(@ptrCast(*const IPropertyDescription, self), pvartype);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetPropertyType(@as(*const IPropertyDescription, @ptrCast(self)), pvartype);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetDisplayName(self: *const T, ppszName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyDescription, self), ppszName);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IPropertyDescription, @ptrCast(self)), ppszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetEditInvitation(self: *const T, ppszInvite: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetEditInvitation(@ptrCast(*const IPropertyDescription, self), ppszInvite);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetEditInvitation(@as(*const IPropertyDescription, @ptrCast(self)), ppszInvite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetTypeFlags(self: *const T, mask: PROPDESC_TYPE_FLAGS, ppdtFlags: ?*PROPDESC_TYPE_FLAGS) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetTypeFlags(@ptrCast(*const IPropertyDescription, self), mask, ppdtFlags);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetTypeFlags(@as(*const IPropertyDescription, @ptrCast(self)), mask, ppdtFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetViewFlags(self: *const T, ppdvFlags: ?*PROPDESC_VIEW_FLAGS) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetViewFlags(@ptrCast(*const IPropertyDescription, self), ppdvFlags);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetViewFlags(@as(*const IPropertyDescription, @ptrCast(self)), ppdvFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetDefaultColumnWidth(self: *const T, pcxChars: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetDefaultColumnWidth(@ptrCast(*const IPropertyDescription, self), pcxChars);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDefaultColumnWidth(@as(*const IPropertyDescription, @ptrCast(self)), pcxChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetDisplayType(self: *const T, pdisplaytype: ?*PROPDESC_DISPLAYTYPE) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetDisplayType(@ptrCast(*const IPropertyDescription, self), pdisplaytype);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetDisplayType(@as(*const IPropertyDescription, @ptrCast(self)), pdisplaytype);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetColumnState(self: *const T, pcsFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetColumnState(@ptrCast(*const IPropertyDescription, self), pcsFlags);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetColumnState(@as(*const IPropertyDescription, @ptrCast(self)), pcsFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetGroupingRange(self: *const T, pgr: ?*PROPDESC_GROUPING_RANGE) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetGroupingRange(@ptrCast(*const IPropertyDescription, self), pgr);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetGroupingRange(@as(*const IPropertyDescription, @ptrCast(self)), pgr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetRelativeDescriptionType(self: *const T, prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetRelativeDescriptionType(@ptrCast(*const IPropertyDescription, self), prdt);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetRelativeDescriptionType(@as(*const IPropertyDescription, @ptrCast(self)), prdt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetRelativeDescription(self: *const T, propvar1: ?*const PROPVARIANT, propvar2: ?*const PROPVARIANT, ppszDesc1: ?*?PWSTR, ppszDesc2: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetRelativeDescription(@ptrCast(*const IPropertyDescription, self), propvar1, propvar2, ppszDesc1, ppszDesc2);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetRelativeDescription(@as(*const IPropertyDescription, @ptrCast(self)), propvar1, propvar2, ppszDesc1, ppszDesc2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetSortDescription(self: *const T, psd: ?*PROPDESC_SORTDESCRIPTION) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetSortDescription(@ptrCast(*const IPropertyDescription, self), psd);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetSortDescription(@as(*const IPropertyDescription, @ptrCast(self)), psd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetSortDescriptionLabel(self: *const T, fDescending: BOOL, ppszDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetSortDescriptionLabel(@ptrCast(*const IPropertyDescription, self), fDescending, ppszDescription);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetSortDescriptionLabel(@as(*const IPropertyDescription, @ptrCast(self)), fDescending, ppszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetAggregationType(self: *const T, paggtype: ?*PROPDESC_AGGREGATION_TYPE) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetAggregationType(@ptrCast(*const IPropertyDescription, self), paggtype);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetAggregationType(@as(*const IPropertyDescription, @ptrCast(self)), paggtype);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetConditionType(self: *const T, pcontype: ?*PROPDESC_CONDITION_TYPE, popDefault: ?*CONDITION_OPERATION) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetConditionType(@ptrCast(*const IPropertyDescription, self), pcontype, popDefault);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetConditionType(@as(*const IPropertyDescription, @ptrCast(self)), pcontype, popDefault);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_GetEnumTypeList(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetEnumTypeList(@ptrCast(*const IPropertyDescription, self), riid, ppv);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).GetEnumTypeList(@as(*const IPropertyDescription, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_CoerceToCanonicalValue(self: *const T, ppropvar: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).CoerceToCanonicalValue(@ptrCast(*const IPropertyDescription, self), ppropvar);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).CoerceToCanonicalValue(@as(*const IPropertyDescription, @ptrCast(self)), ppropvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_FormatForDisplay(self: *const T, propvar: ?*const PROPVARIANT, pdfFlags: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyDescription, self), propvar, pdfFlags, ppszDisplay);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertyDescription, @ptrCast(self)), propvar, pdfFlags, ppszDisplay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription_IsValueCanonical(self: *const T, propvar: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IPropertyDescription.VTable, self.vtable).IsValueCanonical(@ptrCast(*const IPropertyDescription, self), propvar);
+                return @as(*const IPropertyDescription.VTable, @ptrCast(self.vtable)).IsValueCanonical(@as(*const IPropertyDescription, @ptrCast(self)), propvar);
             }
         };
     }
@@ -1378,7 +1378,7 @@ pub const IPropertyDescription2 = extern struct {
             pub usingnamespace IPropertyDescription.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescription2_GetImageReferenceForValue(self: *const T, propvar: ?*const PROPVARIANT, ppszImageRes: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescription2.VTable, self.vtable).GetImageReferenceForValue(@ptrCast(*const IPropertyDescription2, self), propvar, ppszImageRes);
+                return @as(*const IPropertyDescription2.VTable, @ptrCast(self.vtable)).GetImageReferenceForValue(@as(*const IPropertyDescription2, @ptrCast(self)), propvar, ppszImageRes);
             }
         };
     }
@@ -1422,11 +1422,11 @@ pub const IPropertyDescriptionAliasInfo = extern struct {
             pub usingnamespace IPropertyDescription.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionAliasInfo_GetSortByAlias(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetSortByAlias(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
+                return @as(*const IPropertyDescriptionAliasInfo.VTable, @ptrCast(self.vtable)).GetSortByAlias(@as(*const IPropertyDescriptionAliasInfo, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionAliasInfo_GetAdditionalSortByAliases(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetAdditionalSortByAliases(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
+                return @as(*const IPropertyDescriptionAliasInfo.VTable, @ptrCast(self.vtable)).GetAdditionalSortByAliases(@as(*const IPropertyDescriptionAliasInfo, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -1516,19 +1516,19 @@ pub const IPropertyDescriptionSearchInfo = extern struct {
             pub usingnamespace IPropertyDescription.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionSearchInfo_GetSearchInfoFlags(self: *const T, ppdsiFlags: ?*PROPDESC_SEARCHINFO_FLAGS) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionSearchInfo.VTable, self.vtable).GetSearchInfoFlags(@ptrCast(*const IPropertyDescriptionSearchInfo, self), ppdsiFlags);
+                return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetSearchInfoFlags(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppdsiFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionSearchInfo_GetColumnIndexType(self: *const T, ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionSearchInfo.VTable, self.vtable).GetColumnIndexType(@ptrCast(*const IPropertyDescriptionSearchInfo, self), ppdciType);
+                return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetColumnIndexType(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppdciType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionSearchInfo_GetProjectionString(self: *const T, ppszProjection: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionSearchInfo.VTable, self.vtable).GetProjectionString(@ptrCast(*const IPropertyDescriptionSearchInfo, self), ppszProjection);
+                return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetProjectionString(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), ppszProjection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionSearchInfo_GetMaxSize(self: *const T, pcbMaxSize: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionSearchInfo.VTable, self.vtable).GetMaxSize(@ptrCast(*const IPropertyDescriptionSearchInfo, self), pcbMaxSize);
+                return @as(*const IPropertyDescriptionSearchInfo.VTable, @ptrCast(self.vtable)).GetMaxSize(@as(*const IPropertyDescriptionSearchInfo, @ptrCast(self)), pcbMaxSize);
             }
         };
     }
@@ -1562,7 +1562,7 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
             pub usingnamespace IPropertyDescription.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionRelatedPropertyInfo_GetRelatedProperty(self: *const T, pszRelationshipName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionRelatedPropertyInfo.VTable, self.vtable).GetRelatedProperty(@ptrCast(*const IPropertyDescriptionRelatedPropertyInfo, self), pszRelationshipName, riid, ppv);
+                return @as(*const IPropertyDescriptionRelatedPropertyInfo.VTable, @ptrCast(self.vtable)).GetRelatedProperty(@as(*const IPropertyDescriptionRelatedPropertyInfo, @ptrCast(self)), pszRelationshipName, riid, ppv);
             }
         };
     }
@@ -1717,39 +1717,39 @@ pub const IPropertySystem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_GetPropertyDescription(self: *const T, propkey: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertySystem, self), propkey, riid, ppv);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescription(@as(*const IPropertySystem, @ptrCast(self)), propkey, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_GetPropertyDescriptionByName(self: *const T, pszCanonicalName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionByName(@ptrCast(*const IPropertySystem, self), pszCanonicalName, riid, ppv);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionByName(@as(*const IPropertySystem, @ptrCast(self)), pszCanonicalName, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_GetPropertyDescriptionListFromString(self: *const T, pszPropList: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionListFromString(@ptrCast(*const IPropertySystem, self), pszPropList, riid, ppv);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).GetPropertyDescriptionListFromString(@as(*const IPropertySystem, @ptrCast(self)), pszPropList, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_EnumeratePropertyDescriptions(self: *const T, filterOn: PROPDESC_ENUMFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).EnumeratePropertyDescriptions(@ptrCast(*const IPropertySystem, self), filterOn, riid, ppv);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).EnumeratePropertyDescriptions(@as(*const IPropertySystem, @ptrCast(self)), filterOn, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_FormatForDisplay(self: *const T, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, pszText: [*:0]u16, cchText: u32) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertySystem, self), key, propvar, pdff, pszText, cchText);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertySystem, @ptrCast(self)), key, propvar, pdff, pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_FormatForDisplayAlloc(self: *const T, key: ?*const PROPERTYKEY, propvar: ?*const PROPVARIANT, pdff: PROPDESC_FORMAT_FLAGS, ppszDisplay: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).FormatForDisplayAlloc(@ptrCast(*const IPropertySystem, self), key, propvar, pdff, ppszDisplay);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).FormatForDisplayAlloc(@as(*const IPropertySystem, @ptrCast(self)), key, propvar, pdff, ppszDisplay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_RegisterPropertySchema(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).RegisterPropertySchema(@ptrCast(*const IPropertySystem, self), pszPath);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).RegisterPropertySchema(@as(*const IPropertySystem, @ptrCast(self)), pszPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_UnregisterPropertySchema(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).UnregisterPropertySchema(@ptrCast(*const IPropertySystem, self), pszPath);
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).UnregisterPropertySchema(@as(*const IPropertySystem, @ptrCast(self)), pszPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystem_RefreshPropertySchema(self: *const T) HRESULT {
-                return @ptrCast(*const IPropertySystem.VTable, self.vtable).RefreshPropertySchema(@ptrCast(*const IPropertySystem, self));
+                return @as(*const IPropertySystem.VTable, @ptrCast(self.vtable)).RefreshPropertySchema(@as(*const IPropertySystem, @ptrCast(self)));
             }
         };
     }
@@ -1793,11 +1793,11 @@ pub const IPropertyDescriptionList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionList_GetCount(self: *const T, pcElem: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyDescriptionList, self), pcElem);
+                return @as(*const IPropertyDescriptionList.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IPropertyDescriptionList, @ptrCast(self)), pcElem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyDescriptionList_GetAt(self: *const T, iElem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyDescriptionList, self), iElem, riid, ppv);
+                return @as(*const IPropertyDescriptionList.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPropertyDescriptionList, @ptrCast(self)), iElem, riid, ppv);
             }
         };
     }
@@ -1851,11 +1851,11 @@ pub const IPropertyStoreFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreFactory_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IPropertyStoreFactory, self), flags, pUnkFactory, riid, ppv);
+                return @as(*const IPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetPropertyStore(@as(*const IPropertyStoreFactory, @ptrCast(self)), flags, pUnkFactory, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyStoreFactory_GetPropertyStoreForKeys(self: *const T, rgKeys: ?*const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStoreForKeys(@ptrCast(*const IPropertyStoreFactory, self), rgKeys, cKeys, flags, riid, ppv);
+                return @as(*const IPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetPropertyStoreForKeys(@as(*const IPropertyStoreFactory, @ptrCast(self)), rgKeys, cKeys, flags, riid, ppv);
             }
         };
     }
@@ -1891,7 +1891,7 @@ pub const IDelayedPropertyStoreFactory = extern struct {
             pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
+                return @as(*const IDelayedPropertyStoreFactory.VTable, @ptrCast(self.vtable)).GetDelayedPropertyStore(@as(*const IDelayedPropertyStoreFactory, @ptrCast(self)), flags, dwStoreId, riid, ppv);
             }
         };
     }
@@ -1960,15 +1960,15 @@ pub const IPersistSerializedPropStorage = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistSerializedPropStorage_SetFlags(self: *const T, flags: i32) HRESULT {
-                return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetFlags(@ptrCast(*const IPersistSerializedPropStorage, self), flags);
+                return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistSerializedPropStorage_SetPropertyStorage(self: *const T, psps: ?*SERIALIZEDPROPSTORAGE, cb: u32) HRESULT {
-                return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), psps, cb);
+                return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).SetPropertyStorage(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), psps, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistSerializedPropStorage_GetPropertyStorage(self: *const T, ppsps: ?*?*SERIALIZEDPROPSTORAGE, pcb: ?*u32) HRESULT {
-                return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).GetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), ppsps, pcb);
+                return @as(*const IPersistSerializedPropStorage.VTable, @ptrCast(self.vtable)).GetPropertyStorage(@as(*const IPersistSerializedPropStorage, @ptrCast(self)), ppsps, pcb);
             }
         };
     }
@@ -2014,11 +2014,11 @@ pub const IPersistSerializedPropStorage2 = extern struct {
             pub usingnamespace IPersistSerializedPropStorage.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistSerializedPropStorage2_GetPropertyStorageSize(self: *const T, pcb: ?*u32) HRESULT {
-                return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageSize(@ptrCast(*const IPersistSerializedPropStorage2, self), pcb);
+                return @as(*const IPersistSerializedPropStorage2.VTable, @ptrCast(self.vtable)).GetPropertyStorageSize(@as(*const IPersistSerializedPropStorage2, @ptrCast(self)), pcb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistSerializedPropStorage2_GetPropertyStorageBuffer(self: *const T, psps: ?*SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageBuffer(@ptrCast(*const IPersistSerializedPropStorage2, self), psps, cb, pcbWritten);
+                return @as(*const IPersistSerializedPropStorage2.VTable, @ptrCast(self.vtable)).GetPropertyStorageBuffer(@as(*const IPersistSerializedPropStorage2, @ptrCast(self)), psps, cb, pcbWritten);
             }
         };
     }
@@ -2045,7 +2045,7 @@ pub const IPropertySystemChangeNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertySystemChangeNotify_SchemaRefreshed(self: *const T) HRESULT {
-                return @ptrCast(*const IPropertySystemChangeNotify.VTable, self.vtable).SchemaRefreshed(@ptrCast(*const IPropertySystemChangeNotify, self));
+                return @as(*const IPropertySystemChangeNotify.VTable, @ptrCast(self.vtable)).SchemaRefreshed(@as(*const IPropertySystemChangeNotify, @ptrCast(self)));
             }
         };
     }
@@ -2081,7 +2081,7 @@ pub const ICreateObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICreateObject_CreateObject(self: *const T, clsid: ?*const Guid, pUnkOuter: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
+                return @as(*const ICreateObject.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const ICreateObject, @ptrCast(self)), clsid, pUnkOuter, riid, ppv);
             }
         };
     }
@@ -2377,35 +2377,35 @@ pub const IPropertyUI = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_ParsePropertyName(self: *const T, pszName: ?[*:0]const u16, pfmtid: ?*Guid, ppid: ?*u32, pchEaten: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).ParsePropertyName(@ptrCast(*const IPropertyUI, self), pszName, pfmtid, ppid, pchEaten);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).ParsePropertyName(@as(*const IPropertyUI, @ptrCast(self)), pszName, pfmtid, ppid, pchEaten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetCannonicalName(self: *const T, fmtid: ?*const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetCannonicalName(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetCannonicalName(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetDisplayName(self: *const T, fmtid: ?*const Guid, pid: u32, flags: PROPERTYUI_NAME_FLAGS, pwszText: [*:0]u16, cchText: u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyUI, self), fmtid, pid, flags, pwszText, cchText);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, flags, pwszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetPropertyDescription(self: *const T, fmtid: ?*const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetPropertyDescription(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetDefaultWidth(self: *const T, fmtid: ?*const Guid, pid: u32, pcxChars: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDefaultWidth(@ptrCast(*const IPropertyUI, self), fmtid, pid, pcxChars);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetDefaultWidth(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pcxChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetFlags(self: *const T, fmtid: ?*const Guid, pid: u32, pflags: ?*PROPERTYUI_FLAGS) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetFlags(@ptrCast(*const IPropertyUI, self), fmtid, pid, pflags);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pflags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_FormatForDisplay(self: *const T, fmtid: ?*const Guid, pid: u32, ppropvar: ?*const PROPVARIANT, puiff: PROPERTYUI_FORMAT_FLAGS, pwszText: [*:0]u16, cchText: u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyUI, self), fmtid, pid, ppropvar, puiff, pwszText, cchText);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).FormatForDisplay(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, ppropvar, puiff, pwszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPropertyUI_GetHelpInfo(self: *const T, fmtid: ?*const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: ?*u32) HRESULT {
-                return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszHelpFile, cch, puHelpID);
+                return @as(*const IPropertyUI.VTable, @ptrCast(self.vtable)).GetHelpInfo(@as(*const IPropertyUI, @ptrCast(self)), fmtid, pid, pwszHelpFile, cch, puHelpID);
             }
         };
     }

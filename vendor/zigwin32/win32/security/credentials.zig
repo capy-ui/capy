@@ -153,7 +153,7 @@ pub const CRED_FLAGS = enum(u32) {
         VALID_FLAGS: u1 = 0,
         VALID_INPUT_FLAGS: u1 = 0,
     }) CRED_FLAGS {
-        return @enumFromInt(CRED_FLAGS, (if (o.PASSWORD_FOR_CERT == 1) @intFromEnum(CRED_FLAGS.PASSWORD_FOR_CERT) else 0) | (if (o.PROMPT_NOW == 1) @intFromEnum(CRED_FLAGS.PROMPT_NOW) else 0) | (if (o.USERNAME_TARGET == 1) @intFromEnum(CRED_FLAGS.USERNAME_TARGET) else 0) | (if (o.OWF_CRED_BLOB == 1) @intFromEnum(CRED_FLAGS.OWF_CRED_BLOB) else 0) | (if (o.REQUIRE_CONFIRMATION == 1) @intFromEnum(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0) | (if (o.WILDCARD_MATCH == 1) @intFromEnum(CRED_FLAGS.WILDCARD_MATCH) else 0) | (if (o.VSM_PROTECTED == 1) @intFromEnum(CRED_FLAGS.VSM_PROTECTED) else 0) | (if (o.NGC_CERT == 1) @intFromEnum(CRED_FLAGS.NGC_CERT) else 0) | (if (o.VALID_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_FLAGS) else 0) | (if (o.VALID_INPUT_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_INPUT_FLAGS) else 0));
+        return @as(CRED_FLAGS, @enumFromInt((if (o.PASSWORD_FOR_CERT == 1) @intFromEnum(CRED_FLAGS.PASSWORD_FOR_CERT) else 0) | (if (o.PROMPT_NOW == 1) @intFromEnum(CRED_FLAGS.PROMPT_NOW) else 0) | (if (o.USERNAME_TARGET == 1) @intFromEnum(CRED_FLAGS.USERNAME_TARGET) else 0) | (if (o.OWF_CRED_BLOB == 1) @intFromEnum(CRED_FLAGS.OWF_CRED_BLOB) else 0) | (if (o.REQUIRE_CONFIRMATION == 1) @intFromEnum(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0) | (if (o.WILDCARD_MATCH == 1) @intFromEnum(CRED_FLAGS.WILDCARD_MATCH) else 0) | (if (o.VSM_PROTECTED == 1) @intFromEnum(CRED_FLAGS.VSM_PROTECTED) else 0) | (if (o.NGC_CERT == 1) @intFromEnum(CRED_FLAGS.NGC_CERT) else 0) | (if (o.VALID_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_FLAGS) else 0) | (if (o.VALID_INPUT_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_INPUT_FLAGS) else 0)));
     }
 };
 pub const CRED_FLAGS_PASSWORD_FOR_CERT = CRED_FLAGS.PASSWORD_FOR_CERT;
@@ -235,7 +235,7 @@ pub const CREDUI_FLAGS = enum(u32) {
         USERNAME_TARGET_CREDENTIALS: u1 = 0,
         VALIDATE_USERNAME: u1 = 0,
     }) CREDUI_FLAGS {
-        return @enumFromInt(CREDUI_FLAGS, (if (o.ALWAYS_SHOW_UI == 1) @intFromEnum(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0) | (if (o.COMPLETE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.COMPLETE_USERNAME) else 0) | (if (o.DO_NOT_PERSIST == 1) @intFromEnum(CREDUI_FLAGS.DO_NOT_PERSIST) else 0) | (if (o.EXCLUDE_CERTIFICATES == 1) @intFromEnum(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0) | (if (o.EXPECT_CONFIRMATION == 1) @intFromEnum(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.INCORRECT_PASSWORD == 1) @intFromEnum(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0) | (if (o.KEEP_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.KEEP_USERNAME) else 0) | (if (o.PASSWORD_ONLY_OK == 1) @intFromEnum(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0) | (if (o.PERSIST == 1) @intFromEnum(CREDUI_FLAGS.PERSIST) else 0) | (if (o.REQUEST_ADMINISTRATOR == 1) @intFromEnum(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0) | (if (o.REQUIRE_CERTIFICATE == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0) | (if (o.REQUIRE_SMARTCARD == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0) | (if (o.SERVER_CREDENTIAL == 1) @intFromEnum(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0) | (if (o.SHOW_SAVE_CHECK_BOX == 1) @intFromEnum(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0) | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0) | (if (o.VALIDATE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.VALIDATE_USERNAME) else 0));
+        return @as(CREDUI_FLAGS, @enumFromInt((if (o.ALWAYS_SHOW_UI == 1) @intFromEnum(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0) | (if (o.COMPLETE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.COMPLETE_USERNAME) else 0) | (if (o.DO_NOT_PERSIST == 1) @intFromEnum(CREDUI_FLAGS.DO_NOT_PERSIST) else 0) | (if (o.EXCLUDE_CERTIFICATES == 1) @intFromEnum(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0) | (if (o.EXPECT_CONFIRMATION == 1) @intFromEnum(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.INCORRECT_PASSWORD == 1) @intFromEnum(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0) | (if (o.KEEP_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.KEEP_USERNAME) else 0) | (if (o.PASSWORD_ONLY_OK == 1) @intFromEnum(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0) | (if (o.PERSIST == 1) @intFromEnum(CREDUI_FLAGS.PERSIST) else 0) | (if (o.REQUEST_ADMINISTRATOR == 1) @intFromEnum(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0) | (if (o.REQUIRE_CERTIFICATE == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0) | (if (o.REQUIRE_SMARTCARD == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0) | (if (o.SERVER_CREDENTIAL == 1) @intFromEnum(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0) | (if (o.SHOW_SAVE_CHECK_BOX == 1) @intFromEnum(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0) | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0) | (if (o.VALIDATE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.VALIDATE_USERNAME) else 0)));
     }
 };
 pub const CREDUI_FLAGS_ALWAYS_SHOW_UI = CREDUI_FLAGS.ALWAYS_SHOW_UI;
@@ -269,7 +269,7 @@ pub const CRED_ENUMERATE_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         S: u1 = 0,
     }) CRED_ENUMERATE_FLAGS {
-        return @enumFromInt(CRED_ENUMERATE_FLAGS, (if (o.S == 1) @intFromEnum(CRED_ENUMERATE_FLAGS.S) else 0));
+        return @as(CRED_ENUMERATE_FLAGS, @enumFromInt((if (o.S == 1) @intFromEnum(CRED_ENUMERATE_FLAGS.S) else 0)));
     }
 };
 pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS.S;
@@ -296,7 +296,7 @@ pub const CREDUIWIN_FLAGS = enum(u32) {
         PREPROMPTING: u1 = 0,
         PACK_32_WOW: u1 = 0,
     }) CREDUIWIN_FLAGS {
-        return @enumFromInt(CREDUIWIN_FLAGS, (if (o.GENERIC == 1) @intFromEnum(CREDUIWIN_FLAGS.GENERIC) else 0) | (if (o.CHECKBOX == 1) @intFromEnum(CREDUIWIN_FLAGS.CHECKBOX) else 0) | (if (o.AUTHPACKAGE_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0) | (if (o.IN_CRED_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0) | (if (o.ENUMERATE_ADMINS == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0) | (if (o.ENUMERATE_CURRENT_USER == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0) | (if (o.SECURE_PROMPT == 1) @intFromEnum(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0) | (if (o.PREPROMPTING == 1) @intFromEnum(CREDUIWIN_FLAGS.PREPROMPTING) else 0) | (if (o.PACK_32_WOW == 1) @intFromEnum(CREDUIWIN_FLAGS.PACK_32_WOW) else 0));
+        return @as(CREDUIWIN_FLAGS, @enumFromInt((if (o.GENERIC == 1) @intFromEnum(CREDUIWIN_FLAGS.GENERIC) else 0) | (if (o.CHECKBOX == 1) @intFromEnum(CREDUIWIN_FLAGS.CHECKBOX) else 0) | (if (o.AUTHPACKAGE_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0) | (if (o.IN_CRED_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0) | (if (o.ENUMERATE_ADMINS == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0) | (if (o.ENUMERATE_CURRENT_USER == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0) | (if (o.SECURE_PROMPT == 1) @intFromEnum(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0) | (if (o.PREPROMPTING == 1) @intFromEnum(CREDUIWIN_FLAGS.PREPROMPTING) else 0) | (if (o.PACK_32_WOW == 1) @intFromEnum(CREDUIWIN_FLAGS.PACK_32_WOW) else 0)));
     }
 };
 pub const CREDUIWIN_GENERIC = CREDUIWIN_FLAGS.GENERIC;
@@ -346,7 +346,7 @@ pub const CRED_PACK_FLAGS = enum(u32) {
         GENERIC_CREDENTIALS: u1 = 0,
         ID_PROVIDER_CREDENTIALS: u1 = 0,
     }) CRED_PACK_FLAGS {
-        return @enumFromInt(CRED_PACK_FLAGS, (if (o.PROTECTED_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.PROTECTED_CREDENTIALS) else 0) | (if (o.WOW_BUFFER == 1) @intFromEnum(CRED_PACK_FLAGS.WOW_BUFFER) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.ID_PROVIDER_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS) else 0));
+        return @as(CRED_PACK_FLAGS, @enumFromInt((if (o.PROTECTED_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.PROTECTED_CREDENTIALS) else 0) | (if (o.WOW_BUFFER == 1) @intFromEnum(CRED_PACK_FLAGS.WOW_BUFFER) else 0) | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.GENERIC_CREDENTIALS) else 0) | (if (o.ID_PROVIDER_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS) else 0)));
     }
 };
 pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS.PROTECTED_CREDENTIALS;
@@ -374,7 +374,7 @@ pub const KeyCredentialManagerOperationErrorStates = enum(u32) {
         HardwareFailure: u1 = 0,
         PinExistsFailure: u1 = 0,
     }) KeyCredentialManagerOperationErrorStates {
-        return @enumFromInt(KeyCredentialManagerOperationErrorStates, (if (o.None == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.None) else 0) | (if (o.DeviceJoinFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0) | (if (o.TokenFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0) | (if (o.CertificateFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0) | (if (o.RemoteSessionFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0) | (if (o.PolicyFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0) | (if (o.HardwareFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0) | (if (o.PinExistsFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0));
+        return @as(KeyCredentialManagerOperationErrorStates, @enumFromInt((if (o.None == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.None) else 0) | (if (o.DeviceJoinFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0) | (if (o.TokenFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0) | (if (o.CertificateFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0) | (if (o.RemoteSessionFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0) | (if (o.PolicyFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0) | (if (o.HardwareFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0) | (if (o.PinExistsFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0)));
     }
 };
 pub const KeyCredentialManagerOperationErrorStateNone = KeyCredentialManagerOperationErrorStates.None;

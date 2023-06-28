@@ -656,7 +656,7 @@ pub const IXMLDOMImplementation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMImplementation_hasFeature(self: *const T, feature: ?BSTR, version: ?BSTR, hasFeature: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMImplementation.VTable, self.vtable).hasFeature(@ptrCast(*const IXMLDOMImplementation, self), feature, version, hasFeature);
+                return @as(*const IXMLDOMImplementation.VTable, @ptrCast(self.vtable)).hasFeature(@as(*const IXMLDOMImplementation, @ptrCast(self)), feature, version, hasFeature);
             }
         };
     }
@@ -1135,147 +1135,147 @@ pub const IXMLDOMNode = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nodeName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nodeName(@ptrCast(*const IXMLDOMNode, self), name);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeName(@as(*const IXMLDOMNode, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nodeValue(self: *const T, value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nodeValue(@ptrCast(*const IXMLDOMNode, self), value);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeValue(@as(*const IXMLDOMNode, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_put_nodeValue(self: *const T, value: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).put_nodeValue(@ptrCast(*const IXMLDOMNode, self), value);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_nodeValue(@as(*const IXMLDOMNode, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nodeType(self: *const T, type_: ?*DOMNodeType) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nodeType(@ptrCast(*const IXMLDOMNode, self), type_);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeType(@as(*const IXMLDOMNode, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_parentNode(self: *const T, parent: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_parentNode(@ptrCast(*const IXMLDOMNode, self), parent);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_parentNode(@as(*const IXMLDOMNode, @ptrCast(self)), parent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_childNodes(self: *const T, childList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_childNodes(@ptrCast(*const IXMLDOMNode, self), childList);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_childNodes(@as(*const IXMLDOMNode, @ptrCast(self)), childList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_firstChild(self: *const T, firstChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_firstChild(@ptrCast(*const IXMLDOMNode, self), firstChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_firstChild(@as(*const IXMLDOMNode, @ptrCast(self)), firstChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_lastChild(self: *const T, lastChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_lastChild(@ptrCast(*const IXMLDOMNode, self), lastChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_lastChild(@as(*const IXMLDOMNode, @ptrCast(self)), lastChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_previousSibling(self: *const T, previousSibling: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_previousSibling(@ptrCast(*const IXMLDOMNode, self), previousSibling);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_previousSibling(@as(*const IXMLDOMNode, @ptrCast(self)), previousSibling);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nextSibling(self: *const T, nextSibling: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nextSibling(@ptrCast(*const IXMLDOMNode, self), nextSibling);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nextSibling(@as(*const IXMLDOMNode, @ptrCast(self)), nextSibling);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_attributes(self: *const T, attributeMap: ?*?*IXMLDOMNamedNodeMap) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_attributes(@ptrCast(*const IXMLDOMNode, self), attributeMap);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const IXMLDOMNode, @ptrCast(self)), attributeMap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_insertBefore(self: *const T, newChild: ?*IXMLDOMNode, refChild: VARIANT, outNewChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).insertBefore(@ptrCast(*const IXMLDOMNode, self), newChild, refChild, outNewChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).insertBefore(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, refChild, outNewChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_replaceChild(self: *const T, newChild: ?*IXMLDOMNode, oldChild: ?*IXMLDOMNode, outOldChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).replaceChild(@ptrCast(*const IXMLDOMNode, self), newChild, oldChild, outOldChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).replaceChild(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, oldChild, outOldChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_removeChild(self: *const T, childNode: ?*IXMLDOMNode, oldChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).removeChild(@ptrCast(*const IXMLDOMNode, self), childNode, oldChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLDOMNode, @ptrCast(self)), childNode, oldChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_appendChild(self: *const T, newChild: ?*IXMLDOMNode, outNewChild: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).appendChild(@ptrCast(*const IXMLDOMNode, self), newChild, outNewChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).appendChild(@as(*const IXMLDOMNode, @ptrCast(self)), newChild, outNewChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_hasChildNodes(self: *const T, hasChild: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).hasChildNodes(@ptrCast(*const IXMLDOMNode, self), hasChild);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).hasChildNodes(@as(*const IXMLDOMNode, @ptrCast(self)), hasChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_ownerDocument(self: *const T, XMLDOMDocument: ?*?*IXMLDOMDocument) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_ownerDocument(@ptrCast(*const IXMLDOMNode, self), XMLDOMDocument);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_ownerDocument(@as(*const IXMLDOMNode, @ptrCast(self)), XMLDOMDocument);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_cloneNode(self: *const T, deep: i16, cloneRoot: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).cloneNode(@ptrCast(*const IXMLDOMNode, self), deep, cloneRoot);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).cloneNode(@as(*const IXMLDOMNode, @ptrCast(self)), deep, cloneRoot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nodeTypeString(self: *const T, nodeType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nodeTypeString(@ptrCast(*const IXMLDOMNode, self), nodeType);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeTypeString(@as(*const IXMLDOMNode, @ptrCast(self)), nodeType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_text(self: *const T, text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_text(@ptrCast(*const IXMLDOMNode, self), text);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLDOMNode, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_put_text(self: *const T, text: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).put_text(@ptrCast(*const IXMLDOMNode, self), text);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLDOMNode, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_specified(self: *const T, isSpecified: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_specified(@ptrCast(*const IXMLDOMNode, self), isSpecified);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_specified(@as(*const IXMLDOMNode, @ptrCast(self)), isSpecified);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_definition(self: *const T, definitionNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_definition(@ptrCast(*const IXMLDOMNode, self), definitionNode);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_definition(@as(*const IXMLDOMNode, @ptrCast(self)), definitionNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_nodeTypedValue(self: *const T, typedValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_nodeTypedValue(@ptrCast(*const IXMLDOMNode, self), typedValue);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_nodeTypedValue(@as(*const IXMLDOMNode, @ptrCast(self)), typedValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_put_nodeTypedValue(self: *const T, typedValue: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).put_nodeTypedValue(@ptrCast(*const IXMLDOMNode, self), typedValue);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_nodeTypedValue(@as(*const IXMLDOMNode, @ptrCast(self)), typedValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_dataType(self: *const T, dataTypeName: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_dataType(@ptrCast(*const IXMLDOMNode, self), dataTypeName);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_dataType(@as(*const IXMLDOMNode, @ptrCast(self)), dataTypeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_put_dataType(self: *const T, dataTypeName: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).put_dataType(@ptrCast(*const IXMLDOMNode, self), dataTypeName);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).put_dataType(@as(*const IXMLDOMNode, @ptrCast(self)), dataTypeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_xml(self: *const T, xmlString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_xml(@ptrCast(*const IXMLDOMNode, self), xmlString);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_xml(@as(*const IXMLDOMNode, @ptrCast(self)), xmlString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_transformNode(self: *const T, stylesheet: ?*IXMLDOMNode, xmlString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).transformNode(@ptrCast(*const IXMLDOMNode, self), stylesheet, xmlString);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).transformNode(@as(*const IXMLDOMNode, @ptrCast(self)), stylesheet, xmlString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_selectNodes(self: *const T, queryString: ?BSTR, resultList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).selectNodes(@ptrCast(*const IXMLDOMNode, self), queryString, resultList);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).selectNodes(@as(*const IXMLDOMNode, @ptrCast(self)), queryString, resultList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_selectSingleNode(self: *const T, queryString: ?BSTR, resultNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).selectSingleNode(@ptrCast(*const IXMLDOMNode, self), queryString, resultNode);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).selectSingleNode(@as(*const IXMLDOMNode, @ptrCast(self)), queryString, resultNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_parsed(self: *const T, isParsed: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_parsed(@ptrCast(*const IXMLDOMNode, self), isParsed);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_parsed(@as(*const IXMLDOMNode, @ptrCast(self)), isParsed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_namespaceURI(self: *const T, namespaceURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_namespaceURI(@ptrCast(*const IXMLDOMNode, self), namespaceURI);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const IXMLDOMNode, @ptrCast(self)), namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_prefix(self: *const T, prefixString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_prefix(@ptrCast(*const IXMLDOMNode, self), prefixString);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_prefix(@as(*const IXMLDOMNode, @ptrCast(self)), prefixString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_get_baseName(self: *const T, nameString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).get_baseName(@ptrCast(*const IXMLDOMNode, self), nameString);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).get_baseName(@as(*const IXMLDOMNode, @ptrCast(self)), nameString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNode_transformNodeToObject(self: *const T, stylesheet: ?*IXMLDOMNode, outputObject: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNode.VTable, self.vtable).transformNodeToObject(@ptrCast(*const IXMLDOMNode, self), stylesheet, outputObject);
+                return @as(*const IXMLDOMNode.VTable, @ptrCast(self.vtable)).transformNodeToObject(@as(*const IXMLDOMNode, @ptrCast(self)), stylesheet, outputObject);
             }
         };
     }
@@ -1718,135 +1718,135 @@ pub const IXMLDOMDocument = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_doctype(self: *const T, documentType: ?*?*IXMLDOMDocumentType) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_doctype(@ptrCast(*const IXMLDOMDocument, self), documentType);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDOMDocument, @ptrCast(self)), documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_implementation(self: *const T, impl: ?*?*IXMLDOMImplementation) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_implementation(@ptrCast(*const IXMLDOMDocument, self), impl);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_implementation(@as(*const IXMLDOMDocument, @ptrCast(self)), impl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_documentElement(self: *const T, DOMElement: ?*?*IXMLDOMElement) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_documentElement(@ptrCast(*const IXMLDOMDocument, self), DOMElement);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_documentElement(@as(*const IXMLDOMDocument, @ptrCast(self)), DOMElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_putref_documentElement(self: *const T, DOMElement: ?*IXMLDOMElement) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).putref_documentElement(@ptrCast(*const IXMLDOMDocument, self), DOMElement);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).putref_documentElement(@as(*const IXMLDOMDocument, @ptrCast(self)), DOMElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createElement(self: *const T, tagName: ?BSTR, element: ?*?*IXMLDOMElement) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createElement(@ptrCast(*const IXMLDOMDocument, self), tagName, element);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDOMDocument, @ptrCast(self)), tagName, element);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createDocumentFragment(self: *const T, docFrag: ?*?*IXMLDOMDocumentFragment) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createDocumentFragment(@ptrCast(*const IXMLDOMDocument, self), docFrag);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createDocumentFragment(@as(*const IXMLDOMDocument, @ptrCast(self)), docFrag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createTextNode(self: *const T, data: ?BSTR, text: ?*?*IXMLDOMText) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createTextNode(@ptrCast(*const IXMLDOMDocument, self), data, text);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createTextNode(@as(*const IXMLDOMDocument, @ptrCast(self)), data, text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createComment(self: *const T, data: ?BSTR, comment: ?*?*IXMLDOMComment) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createComment(@ptrCast(*const IXMLDOMDocument, self), data, comment);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createComment(@as(*const IXMLDOMDocument, @ptrCast(self)), data, comment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createCDATASection(self: *const T, data: ?BSTR, cdata: ?*?*IXMLDOMCDATASection) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createCDATASection(@ptrCast(*const IXMLDOMDocument, self), data, cdata);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createCDATASection(@as(*const IXMLDOMDocument, @ptrCast(self)), data, cdata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createProcessingInstruction(self: *const T, target: ?BSTR, data: ?BSTR, pi: ?*?*IXMLDOMProcessingInstruction) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createProcessingInstruction(@ptrCast(*const IXMLDOMDocument, self), target, data, pi);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createProcessingInstruction(@as(*const IXMLDOMDocument, @ptrCast(self)), target, data, pi);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createAttribute(self: *const T, name: ?BSTR, attribute: ?*?*IXMLDOMAttribute) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createAttribute(@ptrCast(*const IXMLDOMDocument, self), name, attribute);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createAttribute(@as(*const IXMLDOMDocument, @ptrCast(self)), name, attribute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createEntityReference(self: *const T, name: ?BSTR, entityRef: ?*?*IXMLDOMEntityReference) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createEntityReference(@ptrCast(*const IXMLDOMDocument, self), name, entityRef);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createEntityReference(@as(*const IXMLDOMDocument, @ptrCast(self)), name, entityRef);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_getElementsByTagName(self: *const T, tagName: ?BSTR, resultList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).getElementsByTagName(@ptrCast(*const IXMLDOMDocument, self), tagName, resultList);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).getElementsByTagName(@as(*const IXMLDOMDocument, @ptrCast(self)), tagName, resultList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_createNode(self: *const T, Type: VARIANT, name: ?BSTR, namespaceURI: ?BSTR, node: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).createNode(@ptrCast(*const IXMLDOMDocument, self), Type, name, namespaceURI, node);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).createNode(@as(*const IXMLDOMDocument, @ptrCast(self)), Type, name, namespaceURI, node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_nodeFromID(self: *const T, idString: ?BSTR, node: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).nodeFromID(@ptrCast(*const IXMLDOMDocument, self), idString, node);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).nodeFromID(@as(*const IXMLDOMDocument, @ptrCast(self)), idString, node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_load(self: *const T, xmlSource: VARIANT, isSuccessful: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).load(@ptrCast(*const IXMLDOMDocument, self), xmlSource, isSuccessful);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).load(@as(*const IXMLDOMDocument, @ptrCast(self)), xmlSource, isSuccessful);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_readyState(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLDOMDocument, self), value);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDOMDocument, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_parseError(self: *const T, errorObj: ?*?*IXMLDOMParseError) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_parseError(@ptrCast(*const IXMLDOMDocument, self), errorObj);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_parseError(@as(*const IXMLDOMDocument, @ptrCast(self)), errorObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_url(self: *const T, urlString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_url(@ptrCast(*const IXMLDOMDocument, self), urlString);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_url(@as(*const IXMLDOMDocument, @ptrCast(self)), urlString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_async(self: *const T, isAsync: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_async(@ptrCast(*const IXMLDOMDocument, self), isAsync);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_async(@as(*const IXMLDOMDocument, @ptrCast(self)), isAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_async(self: *const T, isAsync: i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_async(@ptrCast(*const IXMLDOMDocument, self), isAsync);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_async(@as(*const IXMLDOMDocument, @ptrCast(self)), isAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_abort(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).abort(@ptrCast(*const IXMLDOMDocument, self));
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLDOMDocument, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_loadXML(self: *const T, bstrXML: ?BSTR, isSuccessful: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).loadXML(@ptrCast(*const IXMLDOMDocument, self), bstrXML, isSuccessful);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).loadXML(@as(*const IXMLDOMDocument, @ptrCast(self)), bstrXML, isSuccessful);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_save(self: *const T, destination: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).save(@ptrCast(*const IXMLDOMDocument, self), destination);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).save(@as(*const IXMLDOMDocument, @ptrCast(self)), destination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_validateOnParse(self: *const T, isValidating: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_validateOnParse(@ptrCast(*const IXMLDOMDocument, self), isValidating);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_validateOnParse(@as(*const IXMLDOMDocument, @ptrCast(self)), isValidating);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_validateOnParse(self: *const T, isValidating: i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_validateOnParse(@ptrCast(*const IXMLDOMDocument, self), isValidating);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_validateOnParse(@as(*const IXMLDOMDocument, @ptrCast(self)), isValidating);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_resolveExternals(self: *const T, isResolving: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_resolveExternals(@ptrCast(*const IXMLDOMDocument, self), isResolving);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_resolveExternals(@as(*const IXMLDOMDocument, @ptrCast(self)), isResolving);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_resolveExternals(self: *const T, isResolving: i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_resolveExternals(@ptrCast(*const IXMLDOMDocument, self), isResolving);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_resolveExternals(@as(*const IXMLDOMDocument, @ptrCast(self)), isResolving);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_get_preserveWhiteSpace(self: *const T, isPreserving: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).get_preserveWhiteSpace(@ptrCast(*const IXMLDOMDocument, self), isPreserving);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).get_preserveWhiteSpace(@as(*const IXMLDOMDocument, @ptrCast(self)), isPreserving);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_preserveWhiteSpace(self: *const T, isPreserving: i16) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_preserveWhiteSpace(@ptrCast(*const IXMLDOMDocument, self), isPreserving);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_preserveWhiteSpace(@as(*const IXMLDOMDocument, @ptrCast(self)), isPreserving);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_onreadystatechange(self: *const T, readystatechangeSink: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_onreadystatechange(@ptrCast(*const IXMLDOMDocument, self), readystatechangeSink);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLDOMDocument, @ptrCast(self)), readystatechangeSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_ondataavailable(self: *const T, ondataavailableSink: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_ondataavailable(@ptrCast(*const IXMLDOMDocument, self), ondataavailableSink);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_ondataavailable(@as(*const IXMLDOMDocument, @ptrCast(self)), ondataavailableSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument_put_ontransformnode(self: *const T, ontransformnodeSink: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument.VTable, self.vtable).put_ontransformnode(@ptrCast(*const IXMLDOMDocument, self), ontransformnodeSink);
+                return @as(*const IXMLDOMDocument.VTable, @ptrCast(self.vtable)).put_ontransformnode(@as(*const IXMLDOMDocument, @ptrCast(self)), ontransformnodeSink);
             }
         };
     }
@@ -1924,23 +1924,23 @@ pub const IXMLDOMNodeList = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNodeList_get_item(self: *const T, index: i32, listItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNodeList.VTable, self.vtable).get_item(@ptrCast(*const IXMLDOMNodeList, self), index, listItem);
+                return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMNodeList, @ptrCast(self)), index, listItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNodeList_get_length(self: *const T, listLength: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMNodeList.VTable, self.vtable).get_length(@ptrCast(*const IXMLDOMNodeList, self), listLength);
+                return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMNodeList, @ptrCast(self)), listLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNodeList_nextNode(self: *const T, nextItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNodeList.VTable, self.vtable).nextNode(@ptrCast(*const IXMLDOMNodeList, self), nextItem);
+                return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).nextNode(@as(*const IXMLDOMNodeList, @ptrCast(self)), nextItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNodeList_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMNodeList.VTable, self.vtable).reset(@ptrCast(*const IXMLDOMNodeList, self));
+                return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMNodeList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNodeList_get__newEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXMLDOMNodeList.VTable, self.vtable).get__newEnum(@ptrCast(*const IXMLDOMNodeList, self), ppUnk);
+                return @as(*const IXMLDOMNodeList.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNodeList, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -2082,43 +2082,43 @@ pub const IXMLDOMNamedNodeMap = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_getNamedItem(self: *const T, name: ?BSTR, namedItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).getNamedItem(@ptrCast(*const IXMLDOMNamedNodeMap, self), name, namedItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).getNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), name, namedItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_setNamedItem(self: *const T, newItem: ?*IXMLDOMNode, nameItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).setNamedItem(@ptrCast(*const IXMLDOMNamedNodeMap, self), newItem, nameItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).setNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), newItem, nameItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_removeNamedItem(self: *const T, name: ?BSTR, namedItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).removeNamedItem(@ptrCast(*const IXMLDOMNamedNodeMap, self), name, namedItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).removeNamedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), name, namedItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_get_item(self: *const T, index: i32, listItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).get_item(@ptrCast(*const IXMLDOMNamedNodeMap, self), index, listItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), index, listItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_get_length(self: *const T, listLength: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).get_length(@ptrCast(*const IXMLDOMNamedNodeMap, self), listLength);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), listLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_getQualifiedItem(self: *const T, baseName: ?BSTR, namespaceURI: ?BSTR, qualifiedItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).getQualifiedItem(@ptrCast(*const IXMLDOMNamedNodeMap, self), baseName, namespaceURI, qualifiedItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).getQualifiedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), baseName, namespaceURI, qualifiedItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_removeQualifiedItem(self: *const T, baseName: ?BSTR, namespaceURI: ?BSTR, qualifiedItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).removeQualifiedItem(@ptrCast(*const IXMLDOMNamedNodeMap, self), baseName, namespaceURI, qualifiedItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).removeQualifiedItem(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), baseName, namespaceURI, qualifiedItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_nextNode(self: *const T, nextItem: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).nextNode(@ptrCast(*const IXMLDOMNamedNodeMap, self), nextItem);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).nextNode(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), nextItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).reset(@ptrCast(*const IXMLDOMNamedNodeMap, self));
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNamedNodeMap_get__newEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXMLDOMNamedNodeMap.VTable, self.vtable).get__newEnum(@ptrCast(*const IXMLDOMNamedNodeMap, self), ppUnk);
+                return @as(*const IXMLDOMNamedNodeMap.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMNamedNodeMap, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -2238,35 +2238,35 @@ pub const IXMLDOMCharacterData = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_get_data(self: *const T, data: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).get_data(@ptrCast(*const IXMLDOMCharacterData, self), data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).get_data(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_put_data(self: *const T, data: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).put_data(@ptrCast(*const IXMLDOMCharacterData, self), data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).put_data(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_get_length(self: *const T, dataLength: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).get_length(@ptrCast(*const IXMLDOMCharacterData, self), dataLength);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMCharacterData, @ptrCast(self)), dataLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_substringData(self: *const T, offset: i32, count: i32, data: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).substringData(@ptrCast(*const IXMLDOMCharacterData, self), offset, count, data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).substringData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_appendData(self: *const T, data: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).appendData(@ptrCast(*const IXMLDOMCharacterData, self), data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).appendData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_insertData(self: *const T, offset: i32, data: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).insertData(@ptrCast(*const IXMLDOMCharacterData, self), offset, data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).insertData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_deleteData(self: *const T, offset: i32, count: i32) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).deleteData(@ptrCast(*const IXMLDOMCharacterData, self), offset, count);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).deleteData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMCharacterData_replaceData(self: *const T, offset: i32, count: i32, data: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMCharacterData.VTable, self.vtable).replaceData(@ptrCast(*const IXMLDOMCharacterData, self), offset, count, data);
+                return @as(*const IXMLDOMCharacterData.VTable, @ptrCast(self.vtable)).replaceData(@as(*const IXMLDOMCharacterData, @ptrCast(self)), offset, count, data);
             }
         };
     }
@@ -2324,15 +2324,15 @@ pub const IXMLDOMAttribute = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMAttribute_get_name(self: *const T, attributeName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMAttribute.VTable, self.vtable).get_name(@ptrCast(*const IXMLDOMAttribute, self), attributeName);
+                return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMAttribute_get_value(self: *const T, attributeValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMAttribute.VTable, self.vtable).get_value(@ptrCast(*const IXMLDOMAttribute, self), attributeValue);
+                return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).get_value(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMAttribute_put_value(self: *const T, attributeValue: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMAttribute.VTable, self.vtable).put_value(@ptrCast(*const IXMLDOMAttribute, self), attributeValue);
+                return @as(*const IXMLDOMAttribute.VTable, @ptrCast(self.vtable)).put_value(@as(*const IXMLDOMAttribute, @ptrCast(self)), attributeValue);
             }
         };
     }
@@ -2454,39 +2454,39 @@ pub const IXMLDOMElement = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_get_tagName(self: *const T, tagName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).get_tagName(@ptrCast(*const IXMLDOMElement, self), tagName);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLDOMElement, @ptrCast(self)), tagName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_getAttribute(self: *const T, name: ?BSTR, value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).getAttribute(@ptrCast(*const IXMLDOMElement, self), name, value);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_setAttribute(self: *const T, name: ?BSTR, value: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).setAttribute(@ptrCast(*const IXMLDOMElement, self), name, value);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_removeAttribute(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).removeAttribute(@ptrCast(*const IXMLDOMElement, self), name);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLDOMElement, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_getAttributeNode(self: *const T, name: ?BSTR, attributeNode: ?*?*IXMLDOMAttribute) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).getAttributeNode(@ptrCast(*const IXMLDOMElement, self), name, attributeNode);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), name, attributeNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_setAttributeNode(self: *const T, DOMAttribute: ?*IXMLDOMAttribute, attributeNode: ?*?*IXMLDOMAttribute) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).setAttributeNode(@ptrCast(*const IXMLDOMElement, self), DOMAttribute, attributeNode);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).setAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), DOMAttribute, attributeNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_removeAttributeNode(self: *const T, DOMAttribute: ?*IXMLDOMAttribute, attributeNode: ?*?*IXMLDOMAttribute) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).removeAttributeNode(@ptrCast(*const IXMLDOMElement, self), DOMAttribute, attributeNode);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).removeAttributeNode(@as(*const IXMLDOMElement, @ptrCast(self)), DOMAttribute, attributeNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_getElementsByTagName(self: *const T, tagName: ?BSTR, resultList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).getElementsByTagName(@ptrCast(*const IXMLDOMElement, self), tagName, resultList);
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).getElementsByTagName(@as(*const IXMLDOMElement, @ptrCast(self)), tagName, resultList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMElement_normalize(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMElement.VTable, self.vtable).normalize(@ptrCast(*const IXMLDOMElement, self));
+                return @as(*const IXMLDOMElement.VTable, @ptrCast(self.vtable)).normalize(@as(*const IXMLDOMElement, @ptrCast(self)));
             }
         };
     }
@@ -2517,7 +2517,7 @@ pub const IXMLDOMText = extern struct {
             pub usingnamespace IXMLDOMCharacterData.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMText_splitText(self: *const T, offset: i32, rightHandTextNode: ?*?*IXMLDOMText) HRESULT {
-                return @ptrCast(*const IXMLDOMText.VTable, self.vtable).splitText(@ptrCast(*const IXMLDOMText, self), offset, rightHandTextNode);
+                return @as(*const IXMLDOMText.VTable, @ptrCast(self.vtable)).splitText(@as(*const IXMLDOMText, @ptrCast(self)), offset, rightHandTextNode);
             }
         };
     }
@@ -2590,15 +2590,15 @@ pub const IXMLDOMProcessingInstruction = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMProcessingInstruction_get_target(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMProcessingInstruction.VTable, self.vtable).get_target(@ptrCast(*const IXMLDOMProcessingInstruction, self), name);
+                return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).get_target(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMProcessingInstruction_get_data(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMProcessingInstruction.VTable, self.vtable).get_data(@ptrCast(*const IXMLDOMProcessingInstruction, self), value);
+                return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).get_data(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMProcessingInstruction_put_data(self: *const T, value: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMProcessingInstruction.VTable, self.vtable).put_data(@ptrCast(*const IXMLDOMProcessingInstruction, self), value);
+                return @as(*const IXMLDOMProcessingInstruction.VTable, @ptrCast(self.vtable)).put_data(@as(*const IXMLDOMProcessingInstruction, @ptrCast(self)), value);
             }
         };
     }
@@ -2671,15 +2671,15 @@ pub const IXMLDOMDocumentType = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocumentType_get_name(self: *const T, rootName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMDocumentType.VTable, self.vtable).get_name(@ptrCast(*const IXMLDOMDocumentType, self), rootName);
+                return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLDOMDocumentType, @ptrCast(self)), rootName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocumentType_get_entities(self: *const T, entityMap: ?*?*IXMLDOMNamedNodeMap) HRESULT {
-                return @ptrCast(*const IXMLDOMDocumentType.VTable, self.vtable).get_entities(@ptrCast(*const IXMLDOMDocumentType, self), entityMap);
+                return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_entities(@as(*const IXMLDOMDocumentType, @ptrCast(self)), entityMap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocumentType_get_notations(self: *const T, notationMap: ?*?*IXMLDOMNamedNodeMap) HRESULT {
-                return @ptrCast(*const IXMLDOMDocumentType.VTable, self.vtable).get_notations(@ptrCast(*const IXMLDOMDocumentType, self), notationMap);
+                return @as(*const IXMLDOMDocumentType.VTable, @ptrCast(self.vtable)).get_notations(@as(*const IXMLDOMDocumentType, @ptrCast(self)), notationMap);
             }
         };
     }
@@ -2724,11 +2724,11 @@ pub const IXMLDOMNotation = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNotation_get_publicId(self: *const T, publicID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNotation.VTable, self.vtable).get_publicId(@ptrCast(*const IXMLDOMNotation, self), publicID);
+                return @as(*const IXMLDOMNotation.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IXMLDOMNotation, @ptrCast(self)), publicID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMNotation_get_systemId(self: *const T, systemID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMNotation.VTable, self.vtable).get_systemId(@ptrCast(*const IXMLDOMNotation, self), systemID);
+                return @as(*const IXMLDOMNotation.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IXMLDOMNotation, @ptrCast(self)), systemID);
             }
         };
     }
@@ -2786,15 +2786,15 @@ pub const IXMLDOMEntity = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMEntity_get_publicId(self: *const T, publicID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMEntity.VTable, self.vtable).get_publicId(@ptrCast(*const IXMLDOMEntity, self), publicID);
+                return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IXMLDOMEntity, @ptrCast(self)), publicID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMEntity_get_systemId(self: *const T, systemID: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMEntity.VTable, self.vtable).get_systemId(@ptrCast(*const IXMLDOMEntity, self), systemID);
+                return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IXMLDOMEntity, @ptrCast(self)), systemID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMEntity_get_notationName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMEntity.VTable, self.vtable).get_notationName(@ptrCast(*const IXMLDOMEntity, self), name);
+                return @as(*const IXMLDOMEntity.VTable, @ptrCast(self.vtable)).get_notationName(@as(*const IXMLDOMEntity, @ptrCast(self)), name);
             }
         };
     }
@@ -2919,31 +2919,31 @@ pub const IXMLDOMParseError = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_errorCode(self: *const T, errorCode: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_errorCode(@ptrCast(*const IXMLDOMParseError, self), errorCode);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_errorCode(@as(*const IXMLDOMParseError, @ptrCast(self)), errorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_url(self: *const T, urlString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_url(@ptrCast(*const IXMLDOMParseError, self), urlString);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_url(@as(*const IXMLDOMParseError, @ptrCast(self)), urlString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_reason(self: *const T, reasonString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_reason(@ptrCast(*const IXMLDOMParseError, self), reasonString);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_reason(@as(*const IXMLDOMParseError, @ptrCast(self)), reasonString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_srcText(self: *const T, sourceString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_srcText(@ptrCast(*const IXMLDOMParseError, self), sourceString);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_srcText(@as(*const IXMLDOMParseError, @ptrCast(self)), sourceString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_line(self: *const T, lineNumber: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_line(@ptrCast(*const IXMLDOMParseError, self), lineNumber);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_line(@as(*const IXMLDOMParseError, @ptrCast(self)), lineNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_linepos(self: *const T, linePosition: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_linepos(@ptrCast(*const IXMLDOMParseError, self), linePosition);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_linepos(@as(*const IXMLDOMParseError, @ptrCast(self)), linePosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError_get_filepos(self: *const T, filePosition: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError.VTable, self.vtable).get_filepos(@ptrCast(*const IXMLDOMParseError, self), filePosition);
+                return @as(*const IXMLDOMParseError.VTable, @ptrCast(self.vtable)).get_filepos(@as(*const IXMLDOMParseError, @ptrCast(self)), filePosition);
             }
         };
     }
@@ -3084,39 +3084,39 @@ pub const IXTLRuntime = extern struct {
             pub usingnamespace IXMLDOMNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_uniqueID(self: *const T, pNode: ?*IXMLDOMNode, pID: ?*i32) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).uniqueID(@ptrCast(*const IXTLRuntime, self), pNode, pID);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).uniqueID(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_depth(self: *const T, pNode: ?*IXMLDOMNode, pDepth: ?*i32) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).depth(@ptrCast(*const IXTLRuntime, self), pNode, pDepth);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).depth(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_childNumber(self: *const T, pNode: ?*IXMLDOMNode, pNumber: ?*i32) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).childNumber(@ptrCast(*const IXTLRuntime, self), pNode, pNumber);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).childNumber(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_ancestorChildNumber(self: *const T, bstrNodeName: ?BSTR, pNode: ?*IXMLDOMNode, pNumber: ?*i32) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).ancestorChildNumber(@ptrCast(*const IXTLRuntime, self), bstrNodeName, pNode, pNumber);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).ancestorChildNumber(@as(*const IXTLRuntime, @ptrCast(self)), bstrNodeName, pNode, pNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_absoluteChildNumber(self: *const T, pNode: ?*IXMLDOMNode, pNumber: ?*i32) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).absoluteChildNumber(@ptrCast(*const IXTLRuntime, self), pNode, pNumber);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).absoluteChildNumber(@as(*const IXTLRuntime, @ptrCast(self)), pNode, pNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_formatIndex(self: *const T, lIndex: i32, bstrFormat: ?BSTR, pbstrFormattedString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).formatIndex(@ptrCast(*const IXTLRuntime, self), lIndex, bstrFormat, pbstrFormattedString);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatIndex(@as(*const IXTLRuntime, @ptrCast(self)), lIndex, bstrFormat, pbstrFormattedString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_formatNumber(self: *const T, dblNumber: f64, bstrFormat: ?BSTR, pbstrFormattedString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).formatNumber(@ptrCast(*const IXTLRuntime, self), dblNumber, bstrFormat, pbstrFormattedString);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatNumber(@as(*const IXTLRuntime, @ptrCast(self)), dblNumber, bstrFormat, pbstrFormattedString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_formatDate(self: *const T, varDate: VARIANT, bstrFormat: ?BSTR, varDestLocale: VARIANT, pbstrFormattedString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).formatDate(@ptrCast(*const IXTLRuntime, self), varDate, bstrFormat, varDestLocale, pbstrFormattedString);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatDate(@as(*const IXTLRuntime, @ptrCast(self)), varDate, bstrFormat, varDestLocale, pbstrFormattedString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXTLRuntime_formatTime(self: *const T, varTime: VARIANT, bstrFormat: ?BSTR, varDestLocale: VARIANT, pbstrFormattedString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXTLRuntime.VTable, self.vtable).formatTime(@ptrCast(*const IXTLRuntime, self), varTime, bstrFormat, varDestLocale, pbstrFormattedString);
+                return @as(*const IXTLRuntime.VTable, @ptrCast(self.vtable)).formatTime(@as(*const IXTLRuntime, @ptrCast(self)), varTime, bstrFormat, varDestLocale, pbstrFormattedString);
             }
         };
     }
@@ -3324,59 +3324,59 @@ pub const IXMLHttpRequest = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_open(self: *const T, bstrMethod: ?BSTR, bstrUrl: ?BSTR, varAsync: VARIANT, bstrUser: VARIANT, bstrPassword: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).open(@ptrCast(*const IXMLHttpRequest, self), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).open(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_setRequestHeader(self: *const T, bstrHeader: ?BSTR, bstrValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).setRequestHeader(@ptrCast(*const IXMLHttpRequest, self), bstrHeader, bstrValue);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).setRequestHeader(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrHeader, bstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_getResponseHeader(self: *const T, bstrHeader: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).getResponseHeader(@ptrCast(*const IXMLHttpRequest, self), bstrHeader, pbstrValue);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).getResponseHeader(@as(*const IXMLHttpRequest, @ptrCast(self)), bstrHeader, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_getAllResponseHeaders(self: *const T, pbstrHeaders: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).getAllResponseHeaders(@ptrCast(*const IXMLHttpRequest, self), pbstrHeaders);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).getAllResponseHeaders(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_send(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).send(@ptrCast(*const IXMLHttpRequest, self), varBody);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).send(@as(*const IXMLHttpRequest, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_abort(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).abort(@ptrCast(*const IXMLHttpRequest, self));
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLHttpRequest, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_status(self: *const T, plStatus: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_status(@ptrCast(*const IXMLHttpRequest, self), plStatus);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_status(@as(*const IXMLHttpRequest, @ptrCast(self)), plStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_statusText(self: *const T, pbstrStatus: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_statusText(@ptrCast(*const IXMLHttpRequest, self), pbstrStatus);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_statusText(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_responseXML(self: *const T, ppBody: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseXML(@ptrCast(*const IXMLHttpRequest, self), ppBody);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseXML(@as(*const IXMLHttpRequest, @ptrCast(self)), ppBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_responseText(self: *const T, pbstrBody: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseText(@ptrCast(*const IXMLHttpRequest, self), pbstrBody);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseText(@as(*const IXMLHttpRequest, @ptrCast(self)), pbstrBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_responseBody(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseBody(@ptrCast(*const IXMLHttpRequest, self), pvarBody);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseBody(@as(*const IXMLHttpRequest, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_responseStream(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_responseStream(@ptrCast(*const IXMLHttpRequest, self), pvarBody);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_responseStream(@as(*const IXMLHttpRequest, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_get_readyState(self: *const T, plState: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLHttpRequest, self), plState);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLHttpRequest, @ptrCast(self)), plState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHttpRequest_put_onreadystatechange(self: *const T, pReadyStateSink: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IXMLHttpRequest.VTable, self.vtable).put_onreadystatechange(@ptrCast(*const IXMLHttpRequest, self), pReadyStateSink);
+                return @as(*const IXMLHttpRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHttpRequest, @ptrCast(self)), pReadyStateSink);
             }
         };
     }
@@ -3460,23 +3460,23 @@ pub const IXMLDSOControl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDSOControl_get_XMLDocument(self: *const T, ppDoc: ?*?*IXMLDOMDocument) HRESULT {
-                return @ptrCast(*const IXMLDSOControl.VTable, self.vtable).get_XMLDocument(@ptrCast(*const IXMLDSOControl, self), ppDoc);
+                return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_XMLDocument(@as(*const IXMLDSOControl, @ptrCast(self)), ppDoc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDSOControl_put_XMLDocument(self: *const T, ppDoc: ?*IXMLDOMDocument) HRESULT {
-                return @ptrCast(*const IXMLDSOControl.VTable, self.vtable).put_XMLDocument(@ptrCast(*const IXMLDSOControl, self), ppDoc);
+                return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).put_XMLDocument(@as(*const IXMLDSOControl, @ptrCast(self)), ppDoc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDSOControl_get_JavaDSOCompatible(self: *const T, fJavaDSOCompatible: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXMLDSOControl.VTable, self.vtable).get_JavaDSOCompatible(@ptrCast(*const IXMLDSOControl, self), fJavaDSOCompatible);
+                return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_JavaDSOCompatible(@as(*const IXMLDSOControl, @ptrCast(self)), fJavaDSOCompatible);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDSOControl_put_JavaDSOCompatible(self: *const T, fJavaDSOCompatible: BOOL) HRESULT {
-                return @ptrCast(*const IXMLDSOControl.VTable, self.vtable).put_JavaDSOCompatible(@ptrCast(*const IXMLDSOControl, self), fJavaDSOCompatible);
+                return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).put_JavaDSOCompatible(@as(*const IXMLDSOControl, @ptrCast(self)), fJavaDSOCompatible);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDSOControl_get_readyState(self: *const T, state: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDSOControl.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLDSOControl, self), state);
+                return @as(*const IXMLDSOControl.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDSOControl, @ptrCast(self)), state);
             }
         };
     }
@@ -3548,19 +3548,19 @@ pub const IXMLElementCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElementCollection_put_length(self: *const T, v: i32) HRESULT {
-                return @ptrCast(*const IXMLElementCollection.VTable, self.vtable).put_length(@ptrCast(*const IXMLElementCollection, self), v);
+                return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).put_length(@as(*const IXMLElementCollection, @ptrCast(self)), v);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElementCollection_get_length(self: *const T, p: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLElementCollection.VTable, self.vtable).get_length(@ptrCast(*const IXMLElementCollection, self), p);
+                return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLElementCollection, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElementCollection_get__newEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXMLElementCollection.VTable, self.vtable).get__newEnum(@ptrCast(*const IXMLElementCollection, self), ppUnk);
+                return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLElementCollection, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElementCollection_item(self: *const T, var1: VARIANT, var2: VARIANT, ppDisp: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IXMLElementCollection.VTable, self.vtable).item(@ptrCast(*const IXMLElementCollection, self), var1, var2, ppDisp);
+                return @as(*const IXMLElementCollection.VTable, @ptrCast(self.vtable)).item(@as(*const IXMLElementCollection, @ptrCast(self)), var1, var2, ppDisp);
             }
         };
     }
@@ -3762,59 +3762,59 @@ pub const IXMLDocument = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_root(self: *const T, p: ?*?*IXMLElement) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_root(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_root(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_fileSize(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_fileSize(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileSize(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_fileModifiedDate(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_fileModifiedDate(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileModifiedDate(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_fileUpdatedDate(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_fileUpdatedDate(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_fileUpdatedDate(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_URL(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_URL(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_URL(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_put_URL(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).put_URL(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).put_URL(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_mimeType(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_mimeType(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_mimeType(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_readyState(self: *const T, pl: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLDocument, self), pl);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDocument, @ptrCast(self)), pl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_charset(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_charset(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_charset(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_put_charset(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).put_charset(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).put_charset(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_version(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_version(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_version(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_doctype(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_doctype(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_get_dtdURL(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).get_dtdURL(@ptrCast(*const IXMLDocument, self), p);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).get_dtdURL(@as(*const IXMLDocument, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument_createElement(self: *const T, vType: VARIANT, var1: VARIANT, ppElem: ?*?*IXMLElement) HRESULT {
-                return @ptrCast(*const IXMLDocument.VTable, self.vtable).createElement(@ptrCast(*const IXMLDocument, self), vType, var1, ppElem);
+                return @as(*const IXMLDocument.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDocument, @ptrCast(self)), vType, var1, ppElem);
             }
         };
     }
@@ -4042,67 +4042,67 @@ pub const IXMLDocument2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_root(self: *const T, p: ?*?*IXMLElement2) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_root(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_root(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_fileSize(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_fileSize(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileSize(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_fileModifiedDate(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_fileModifiedDate(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileModifiedDate(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_fileUpdatedDate(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_fileUpdatedDate(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_fileUpdatedDate(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_URL(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_URL(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_URL(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_put_URL(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).put_URL(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_URL(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_mimeType(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_mimeType(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_mimeType(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_readyState(self: *const T, pl: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLDocument2, self), pl);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLDocument2, @ptrCast(self)), pl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_charset(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_charset(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_charset(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_put_charset(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).put_charset(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_charset(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_version(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_version(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_version(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_doctype(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_doctype(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_doctype(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_dtdURL(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_dtdURL(@ptrCast(*const IXMLDocument2, self), p);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_dtdURL(@as(*const IXMLDocument2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_createElement(self: *const T, vType: VARIANT, var1: VARIANT, ppElem: ?*?*IXMLElement2) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).createElement(@ptrCast(*const IXMLDocument2, self), vType, var1, ppElem);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).createElement(@as(*const IXMLDocument2, @ptrCast(self)), vType, var1, ppElem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_get_async(self: *const T, pf: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).get_async(@ptrCast(*const IXMLDocument2, self), pf);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).get_async(@as(*const IXMLDocument2, @ptrCast(self)), pf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDocument2_put_async(self: *const T, f: i16) HRESULT {
-                return @ptrCast(*const IXMLDocument2.VTable, self.vtable).put_async(@ptrCast(*const IXMLDocument2, self), f);
+                return @as(*const IXMLDocument2.VTable, @ptrCast(self.vtable)).put_async(@as(*const IXMLDocument2, @ptrCast(self)), f);
             }
         };
     }
@@ -4270,51 +4270,51 @@ pub const IXMLElement = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_get_tagName(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).get_tagName(@ptrCast(*const IXMLElement, self), p);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLElement, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_put_tagName(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).put_tagName(@ptrCast(*const IXMLElement, self), p);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).put_tagName(@as(*const IXMLElement, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_get_parent(self: *const T, ppParent: ?*?*IXMLElement) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).get_parent(@ptrCast(*const IXMLElement, self), ppParent);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IXMLElement, @ptrCast(self)), ppParent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_setAttribute(self: *const T, strPropertyName: ?BSTR, PropertyValue: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).setAttribute(@ptrCast(*const IXMLElement, self), strPropertyName, PropertyValue);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_getAttribute(self: *const T, strPropertyName: ?BSTR, PropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).getAttribute(@ptrCast(*const IXMLElement, self), strPropertyName, PropertyValue);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_removeAttribute(self: *const T, strPropertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).removeAttribute(@ptrCast(*const IXMLElement, self), strPropertyName);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLElement, @ptrCast(self)), strPropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_get_children(self: *const T, pp: ?*?*IXMLElementCollection) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).get_children(@ptrCast(*const IXMLElement, self), pp);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_children(@as(*const IXMLElement, @ptrCast(self)), pp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_get_type(self: *const T, plType: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).get_type(@ptrCast(*const IXMLElement, self), plType);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const IXMLElement, @ptrCast(self)), plType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_get_text(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).get_text(@ptrCast(*const IXMLElement, self), p);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLElement, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_put_text(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).put_text(@ptrCast(*const IXMLElement, self), p);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLElement, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_addChild(self: *const T, pChildElem: ?*IXMLElement, lIndex: i32, lReserved: i32) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).addChild(@ptrCast(*const IXMLElement, self), pChildElem, lIndex, lReserved);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).addChild(@as(*const IXMLElement, @ptrCast(self)), pChildElem, lIndex, lReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement_removeChild(self: *const T, pChildElem: ?*IXMLElement) HRESULT {
-                return @ptrCast(*const IXMLElement.VTable, self.vtable).removeChild(@ptrCast(*const IXMLElement, self), pChildElem);
+                return @as(*const IXMLElement.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLElement, @ptrCast(self)), pChildElem);
             }
         };
     }
@@ -4495,55 +4495,55 @@ pub const IXMLElement2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_tagName(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_tagName(@ptrCast(*const IXMLElement2, self), p);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_tagName(@as(*const IXMLElement2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_put_tagName(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).put_tagName(@ptrCast(*const IXMLElement2, self), p);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).put_tagName(@as(*const IXMLElement2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_parent(self: *const T, ppParent: ?*?*IXMLElement2) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_parent(@ptrCast(*const IXMLElement2, self), ppParent);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IXMLElement2, @ptrCast(self)), ppParent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_setAttribute(self: *const T, strPropertyName: ?BSTR, PropertyValue: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).setAttribute(@ptrCast(*const IXMLElement2, self), strPropertyName, PropertyValue);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_getAttribute(self: *const T, strPropertyName: ?BSTR, PropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).getAttribute(@ptrCast(*const IXMLElement2, self), strPropertyName, PropertyValue);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).getAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_removeAttribute(self: *const T, strPropertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).removeAttribute(@ptrCast(*const IXMLElement2, self), strPropertyName);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IXMLElement2, @ptrCast(self)), strPropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_children(self: *const T, pp: ?*?*IXMLElementCollection) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_children(@ptrCast(*const IXMLElement2, self), pp);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_children(@as(*const IXMLElement2, @ptrCast(self)), pp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_type(self: *const T, plType: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_type(@ptrCast(*const IXMLElement2, self), plType);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_type(@as(*const IXMLElement2, @ptrCast(self)), plType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_text(self: *const T, p: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_text(@ptrCast(*const IXMLElement2, self), p);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_text(@as(*const IXMLElement2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_put_text(self: *const T, p: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).put_text(@ptrCast(*const IXMLElement2, self), p);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).put_text(@as(*const IXMLElement2, @ptrCast(self)), p);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_addChild(self: *const T, pChildElem: ?*IXMLElement2, lIndex: i32, lReserved: i32) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).addChild(@ptrCast(*const IXMLElement2, self), pChildElem, lIndex, lReserved);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).addChild(@as(*const IXMLElement2, @ptrCast(self)), pChildElem, lIndex, lReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_removeChild(self: *const T, pChildElem: ?*IXMLElement2) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).removeChild(@ptrCast(*const IXMLElement2, self), pChildElem);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).removeChild(@as(*const IXMLElement2, @ptrCast(self)), pChildElem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLElement2_get_attributes(self: *const T, pp: ?*?*IXMLElementCollection) HRESULT {
-                return @ptrCast(*const IXMLElement2.VTable, self.vtable).get_attributes(@ptrCast(*const IXMLElement2, self), pp);
+                return @as(*const IXMLElement2.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const IXMLElement2, @ptrCast(self)), pp);
             }
         };
     }
@@ -4588,11 +4588,11 @@ pub const IXMLAttribute = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLAttribute_get_name(self: *const T, n: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLAttribute.VTable, self.vtable).get_name(@ptrCast(*const IXMLAttribute, self), n);
+                return @as(*const IXMLAttribute.VTable, @ptrCast(self.vtable)).get_name(@as(*const IXMLAttribute, @ptrCast(self)), n);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLAttribute_get_value(self: *const T, v: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLAttribute.VTable, self.vtable).get_value(@ptrCast(*const IXMLAttribute, self), v);
+                return @as(*const IXMLAttribute.VTable, @ptrCast(self.vtable)).get_value(@as(*const IXMLAttribute, @ptrCast(self)), v);
             }
         };
     }
@@ -4621,7 +4621,7 @@ pub const IXMLError = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLError_GetErrorInfo(self: *const T, pErrorReturn: ?*XML_ERROR) HRESULT {
-                return @ptrCast(*const IXMLError.VTable, self.vtable).GetErrorInfo(@ptrCast(*const IXMLError, self), pErrorReturn);
+                return @as(*const IXMLError.VTable, @ptrCast(self.vtable)).GetErrorInfo(@as(*const IXMLError, @ptrCast(self)), pErrorReturn);
             }
         };
     }
@@ -4746,27 +4746,27 @@ pub const IXMLDOMDocument2 = extern struct {
             pub usingnamespace IXMLDOMDocument.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_get_namespaces(self: *const T, namespaceCollection: ?*?*IXMLDOMSchemaCollection) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).get_namespaces(@ptrCast(*const IXMLDOMDocument2, self), namespaceCollection);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).get_namespaces(@as(*const IXMLDOMDocument2, @ptrCast(self)), namespaceCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_get_schemas(self: *const T, otherCollection: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).get_schemas(@ptrCast(*const IXMLDOMDocument2, self), otherCollection);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).get_schemas(@as(*const IXMLDOMDocument2, @ptrCast(self)), otherCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_putref_schemas(self: *const T, otherCollection: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).putref_schemas(@ptrCast(*const IXMLDOMDocument2, self), otherCollection);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).putref_schemas(@as(*const IXMLDOMDocument2, @ptrCast(self)), otherCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_validate(self: *const T, errorObj: ?*?*IXMLDOMParseError) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).validate(@ptrCast(*const IXMLDOMDocument2, self), errorObj);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).validate(@as(*const IXMLDOMDocument2, @ptrCast(self)), errorObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_setProperty(self: *const T, name: ?BSTR, value: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).setProperty(@ptrCast(*const IXMLDOMDocument2, self), name, value);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).setProperty(@as(*const IXMLDOMDocument2, @ptrCast(self)), name, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument2_getProperty(self: *const T, name: ?BSTR, value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument2.VTable, self.vtable).getProperty(@ptrCast(*const IXMLDOMDocument2, self), name, value);
+                return @as(*const IXMLDOMDocument2.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IXMLDOMDocument2, @ptrCast(self)), name, value);
             }
         };
     }
@@ -4811,11 +4811,11 @@ pub const IXMLDOMDocument3 = extern struct {
             pub usingnamespace IXMLDOMDocument2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument3_validateNode(self: *const T, node: ?*IXMLDOMNode, errorObj: ?*?*IXMLDOMParseError) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument3.VTable, self.vtable).validateNode(@ptrCast(*const IXMLDOMDocument3, self), node, errorObj);
+                return @as(*const IXMLDOMDocument3.VTable, @ptrCast(self.vtable)).validateNode(@as(*const IXMLDOMDocument3, @ptrCast(self)), node, errorObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMDocument3_importNode(self: *const T, node: ?*IXMLDOMNode, deep: i16, clone: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMDocument3.VTable, self.vtable).importNode(@ptrCast(*const IXMLDOMDocument3, self), node, deep, clone);
+                return @as(*const IXMLDOMDocument3.VTable, @ptrCast(self.vtable)).importNode(@as(*const IXMLDOMDocument3, @ptrCast(self)), node, deep, clone);
             }
         };
     }
@@ -4919,31 +4919,31 @@ pub const IXMLDOMSchemaCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_add(self: *const T, namespaceURI: ?BSTR, @"var": VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).add(@ptrCast(*const IXMLDOMSchemaCollection, self), namespaceURI, @"var");
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).add(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI, @"var");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_get(self: *const T, namespaceURI: ?BSTR, schemaNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).get(@ptrCast(*const IXMLDOMSchemaCollection, self), namespaceURI, schemaNode);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI, schemaNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_remove(self: *const T, namespaceURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).remove(@ptrCast(*const IXMLDOMSchemaCollection, self), namespaceURI);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).remove(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_get_length(self: *const T, length: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).get_length(@ptrCast(*const IXMLDOMSchemaCollection, self), length);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_get_namespaceURI(self: *const T, index: i32, length: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).get_namespaceURI(@ptrCast(*const IXMLDOMSchemaCollection, self), index, length);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), index, length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_addCollection(self: *const T, otherCollection: ?*IXMLDOMSchemaCollection) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).addCollection(@ptrCast(*const IXMLDOMSchemaCollection, self), otherCollection);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).addCollection(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), otherCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection_get__newEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection.VTable, self.vtable).get__newEnum(@ptrCast(*const IXMLDOMSchemaCollection, self), ppUnk);
+                return @as(*const IXMLDOMSchemaCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMSchemaCollection, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -5085,47 +5085,47 @@ pub const IXMLDOMSelection = extern struct {
             pub usingnamespace IXMLDOMNodeList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_get_expr(self: *const T, expression: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).get_expr(@ptrCast(*const IXMLDOMSelection, self), expression);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).get_expr(@as(*const IXMLDOMSelection, @ptrCast(self)), expression);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_put_expr(self: *const T, expression: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).put_expr(@ptrCast(*const IXMLDOMSelection, self), expression);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).put_expr(@as(*const IXMLDOMSelection, @ptrCast(self)), expression);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_get_context(self: *const T, ppNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).get_context(@ptrCast(*const IXMLDOMSelection, self), ppNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).get_context(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_putref_context(self: *const T, pNode: ?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).putref_context(@ptrCast(*const IXMLDOMSelection, self), pNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).putref_context(@as(*const IXMLDOMSelection, @ptrCast(self)), pNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_peekNode(self: *const T, ppNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).peekNode(@ptrCast(*const IXMLDOMSelection, self), ppNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).peekNode(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_matches(self: *const T, pNode: ?*IXMLDOMNode, ppNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).matches(@ptrCast(*const IXMLDOMSelection, self), pNode, ppNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).matches(@as(*const IXMLDOMSelection, @ptrCast(self)), pNode, ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_removeNext(self: *const T, ppNode: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).removeNext(@ptrCast(*const IXMLDOMSelection, self), ppNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).removeNext(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_removeAll(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).removeAll(@ptrCast(*const IXMLDOMSelection, self));
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).removeAll(@as(*const IXMLDOMSelection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_clone(self: *const T, ppNode: ?*?*IXMLDOMSelection) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).clone(@ptrCast(*const IXMLDOMSelection, self), ppNode);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).clone(@as(*const IXMLDOMSelection, @ptrCast(self)), ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_getProperty(self: *const T, name: ?BSTR, value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).getProperty(@ptrCast(*const IXMLDOMSelection, self), name, value);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IXMLDOMSelection, @ptrCast(self)), name, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSelection_setProperty(self: *const T, name: ?BSTR, value: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLDOMSelection.VTable, self.vtable).setProperty(@ptrCast(*const IXMLDOMSelection, self), name, value);
+                return @as(*const IXMLDOMSelection.VTable, @ptrCast(self.vtable)).setProperty(@as(*const IXMLDOMSelection, @ptrCast(self)), name, value);
             }
         };
     }
@@ -5195,19 +5195,19 @@ pub const IXMLDOMParseError2 = extern struct {
             pub usingnamespace IXMLDOMParseError.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError2_get_errorXPath(self: *const T, xpathexpr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError2.VTable, self.vtable).get_errorXPath(@ptrCast(*const IXMLDOMParseError2, self), xpathexpr);
+                return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_errorXPath(@as(*const IXMLDOMParseError2, @ptrCast(self)), xpathexpr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError2_get_allErrors(self: *const T, allErrors: ?*?*IXMLDOMParseErrorCollection) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError2.VTable, self.vtable).get_allErrors(@ptrCast(*const IXMLDOMParseError2, self), allErrors);
+                return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_allErrors(@as(*const IXMLDOMParseError2, @ptrCast(self)), allErrors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError2_errorParameters(self: *const T, index: i32, param1: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError2.VTable, self.vtable).errorParameters(@ptrCast(*const IXMLDOMParseError2, self), index, param1);
+                return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).errorParameters(@as(*const IXMLDOMParseError2, @ptrCast(self)), index, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseError2_get_errorParametersCount(self: *const T, count: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseError2.VTable, self.vtable).get_errorParametersCount(@ptrCast(*const IXMLDOMParseError2, self), count);
+                return @as(*const IXMLDOMParseError2.VTable, @ptrCast(self.vtable)).get_errorParametersCount(@as(*const IXMLDOMParseError2, @ptrCast(self)), count);
             }
         };
     }
@@ -5288,23 +5288,23 @@ pub const IXMLDOMParseErrorCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseErrorCollection_get_item(self: *const T, index: i32, @"error": ?*?*IXMLDOMParseError2) HRESULT {
-                return @ptrCast(*const IXMLDOMParseErrorCollection.VTable, self.vtable).get_item(@ptrCast(*const IXMLDOMParseErrorCollection, self), index, @"error");
+                return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), index, @"error");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseErrorCollection_get_length(self: *const T, length: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLDOMParseErrorCollection.VTable, self.vtable).get_length(@ptrCast(*const IXMLDOMParseErrorCollection, self), length);
+                return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseErrorCollection_get_next(self: *const T, @"error": ?*?*IXMLDOMParseError2) HRESULT {
-                return @ptrCast(*const IXMLDOMParseErrorCollection.VTable, self.vtable).get_next(@ptrCast(*const IXMLDOMParseErrorCollection, self), @"error");
+                return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get_next(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), @"error");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseErrorCollection_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMParseErrorCollection.VTable, self.vtable).reset(@ptrCast(*const IXMLDOMParseErrorCollection, self));
+                return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).reset(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMParseErrorCollection_get__newEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXMLDOMParseErrorCollection.VTable, self.vtable).get__newEnum(@ptrCast(*const IXMLDOMParseErrorCollection, self), ppunk);
+                return @as(*const IXMLDOMParseErrorCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IXMLDOMParseErrorCollection, @ptrCast(self)), ppunk);
             }
         };
     }
@@ -5496,59 +5496,59 @@ pub const IXSLProcessor = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_put_input(self: *const T, @"var": VARIANT) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).put_input(@ptrCast(*const IXSLProcessor, self), @"var");
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).put_input(@as(*const IXSLProcessor, @ptrCast(self)), @"var");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_input(self: *const T, pVar: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_input(@ptrCast(*const IXSLProcessor, self), pVar);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_input(@as(*const IXSLProcessor, @ptrCast(self)), pVar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_ownerTemplate(self: *const T, ppTemplate: ?*?*IXSLTemplate) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_ownerTemplate(@ptrCast(*const IXSLProcessor, self), ppTemplate);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_ownerTemplate(@as(*const IXSLProcessor, @ptrCast(self)), ppTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_setStartMode(self: *const T, mode: ?BSTR, namespaceURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).setStartMode(@ptrCast(*const IXSLProcessor, self), mode, namespaceURI);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).setStartMode(@as(*const IXSLProcessor, @ptrCast(self)), mode, namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_startMode(self: *const T, mode: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_startMode(@ptrCast(*const IXSLProcessor, self), mode);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_startMode(@as(*const IXSLProcessor, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_startModeURI(self: *const T, namespaceURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_startModeURI(@ptrCast(*const IXSLProcessor, self), namespaceURI);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_startModeURI(@as(*const IXSLProcessor, @ptrCast(self)), namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_put_output(self: *const T, output: VARIANT) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).put_output(@ptrCast(*const IXSLProcessor, self), output);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).put_output(@as(*const IXSLProcessor, @ptrCast(self)), output);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_output(self: *const T, pOutput: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_output(@ptrCast(*const IXSLProcessor, self), pOutput);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_output(@as(*const IXSLProcessor, @ptrCast(self)), pOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_transform(self: *const T, pDone: ?*i16) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).transform(@ptrCast(*const IXSLProcessor, self), pDone);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).transform(@as(*const IXSLProcessor, @ptrCast(self)), pDone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).reset(@ptrCast(*const IXSLProcessor, self));
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).reset(@as(*const IXSLProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_readyState(self: *const T, pReadyState: ?*i32) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_readyState(@ptrCast(*const IXSLProcessor, self), pReadyState);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXSLProcessor, @ptrCast(self)), pReadyState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_addParameter(self: *const T, baseName: ?BSTR, parameter: VARIANT, namespaceURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).addParameter(@ptrCast(*const IXSLProcessor, self), baseName, parameter, namespaceURI);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).addParameter(@as(*const IXSLProcessor, @ptrCast(self)), baseName, parameter, namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_addObject(self: *const T, obj: ?*IDispatch, namespaceURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).addObject(@ptrCast(*const IXSLProcessor, self), obj, namespaceURI);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).addObject(@as(*const IXSLProcessor, @ptrCast(self)), obj, namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLProcessor_get_stylesheet(self: *const T, stylesheet: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXSLProcessor.VTable, self.vtable).get_stylesheet(@ptrCast(*const IXSLProcessor, self), stylesheet);
+                return @as(*const IXSLProcessor.VTable, @ptrCast(self.vtable)).get_stylesheet(@as(*const IXSLProcessor, @ptrCast(self)), stylesheet);
             }
         };
     }
@@ -5600,15 +5600,15 @@ pub const IXSLTemplate = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLTemplate_putref_stylesheet(self: *const T, stylesheet: ?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXSLTemplate.VTable, self.vtable).putref_stylesheet(@ptrCast(*const IXSLTemplate, self), stylesheet);
+                return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).putref_stylesheet(@as(*const IXSLTemplate, @ptrCast(self)), stylesheet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLTemplate_get_stylesheet(self: *const T, stylesheet: ?*?*IXMLDOMNode) HRESULT {
-                return @ptrCast(*const IXSLTemplate.VTable, self.vtable).get_stylesheet(@ptrCast(*const IXSLTemplate, self), stylesheet);
+                return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).get_stylesheet(@as(*const IXSLTemplate, @ptrCast(self)), stylesheet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXSLTemplate_createProcessor(self: *const T, ppProcessor: ?*?*IXSLProcessor) HRESULT {
-                return @ptrCast(*const IXSLTemplate.VTable, self.vtable).createProcessor(@ptrCast(*const IXSLTemplate, self), ppProcessor);
+                return @as(*const IXSLTemplate.VTable, @ptrCast(self.vtable)).createProcessor(@as(*const IXSLTemplate, @ptrCast(self)), ppProcessor);
             }
         };
     }
@@ -5801,59 +5801,59 @@ pub const IXMLHTTPRequest = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_open(self: *const T, bstrMethod: ?BSTR, bstrUrl: ?BSTR, varAsync: VARIANT, bstrUser: VARIANT, bstrPassword: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).open(@ptrCast(*const IXMLHTTPRequest, self), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).open(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrMethod, bstrUrl, varAsync, bstrUser, bstrPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_setRequestHeader(self: *const T, bstrHeader: ?BSTR, bstrValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).setRequestHeader(@ptrCast(*const IXMLHTTPRequest, self), bstrHeader, bstrValue);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setRequestHeader(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrHeader, bstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_getResponseHeader(self: *const T, bstrHeader: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).getResponseHeader(@ptrCast(*const IXMLHTTPRequest, self), bstrHeader, pbstrValue);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getResponseHeader(@as(*const IXMLHTTPRequest, @ptrCast(self)), bstrHeader, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_getAllResponseHeaders(self: *const T, pbstrHeaders: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).getAllResponseHeaders(@ptrCast(*const IXMLHTTPRequest, self), pbstrHeaders);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getAllResponseHeaders(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_send(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).send(@ptrCast(*const IXMLHTTPRequest, self), varBody);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).send(@as(*const IXMLHTTPRequest, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_abort(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).abort(@ptrCast(*const IXMLHTTPRequest, self));
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).abort(@as(*const IXMLHTTPRequest, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_status(self: *const T, plStatus: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_status(@ptrCast(*const IXMLHTTPRequest, self), plStatus);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_status(@as(*const IXMLHTTPRequest, @ptrCast(self)), plStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_statusText(self: *const T, pbstrStatus: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_statusText(@ptrCast(*const IXMLHTTPRequest, self), pbstrStatus);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_statusText(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_responseXML(self: *const T, ppBody: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_responseXML(@ptrCast(*const IXMLHTTPRequest, self), ppBody);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseXML(@as(*const IXMLHTTPRequest, @ptrCast(self)), ppBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_responseText(self: *const T, pbstrBody: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_responseText(@ptrCast(*const IXMLHTTPRequest, self), pbstrBody);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseText(@as(*const IXMLHTTPRequest, @ptrCast(self)), pbstrBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_responseBody(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_responseBody(@ptrCast(*const IXMLHTTPRequest, self), pvarBody);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseBody(@as(*const IXMLHTTPRequest, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_responseStream(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_responseStream(@ptrCast(*const IXMLHTTPRequest, self), pvarBody);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_responseStream(@as(*const IXMLHTTPRequest, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_get_readyState(self: *const T, plState: ?*i32) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).get_readyState(@ptrCast(*const IXMLHTTPRequest, self), plState);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).get_readyState(@as(*const IXMLHTTPRequest, @ptrCast(self)), plState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest_put_onreadystatechange(self: *const T, pReadyStateSink: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest.VTable, self.vtable).put_onreadystatechange(@ptrCast(*const IXMLHTTPRequest, self), pReadyStateSink);
+                return @as(*const IXMLHTTPRequest.VTable, @ptrCast(self.vtable)).put_onreadystatechange(@as(*const IXMLHTTPRequest, @ptrCast(self)), pReadyStateSink);
             }
         };
     }
@@ -5961,19 +5961,19 @@ pub const IServerXMLHTTPRequest = extern struct {
             pub usingnamespace IXMLHTTPRequest.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest_setTimeouts(self: *const T, resolveTimeout: i32, connectTimeout: i32, sendTimeout: i32, receiveTimeout: i32) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest.VTable, self.vtable).setTimeouts(@ptrCast(*const IServerXMLHTTPRequest, self), resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
+                return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setTimeouts(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), resolveTimeout, connectTimeout, sendTimeout, receiveTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest_waitForResponse(self: *const T, timeoutInSeconds: VARIANT, isSuccessful: ?*i16) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest.VTable, self.vtable).waitForResponse(@ptrCast(*const IServerXMLHTTPRequest, self), timeoutInSeconds, isSuccessful);
+                return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).waitForResponse(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), timeoutInSeconds, isSuccessful);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest_getOption(self: *const T, option: SERVERXMLHTTP_OPTION, value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest.VTable, self.vtable).getOption(@ptrCast(*const IServerXMLHTTPRequest, self), option, value);
+                return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).getOption(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), option, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest_setOption(self: *const T, option: SERVERXMLHTTP_OPTION, value: VARIANT) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest.VTable, self.vtable).setOption(@ptrCast(*const IServerXMLHTTPRequest, self), option, value);
+                return @as(*const IServerXMLHTTPRequest.VTable, @ptrCast(self.vtable)).setOption(@as(*const IServerXMLHTTPRequest, @ptrCast(self)), option, value);
             }
         };
     }
@@ -6018,11 +6018,11 @@ pub const IServerXMLHTTPRequest2 = extern struct {
             pub usingnamespace IServerXMLHTTPRequest.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest2_setProxy(self: *const T, proxySetting: SXH_PROXY_SETTING, varProxyServer: VARIANT, varBypassList: VARIANT) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest2.VTable, self.vtable).setProxy(@ptrCast(*const IServerXMLHTTPRequest2, self), proxySetting, varProxyServer, varBypassList);
+                return @as(*const IServerXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).setProxy(@as(*const IServerXMLHTTPRequest2, @ptrCast(self)), proxySetting, varProxyServer, varBypassList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IServerXMLHTTPRequest2_setProxyCredentials(self: *const T, bstrUserName: ?BSTR, bstrPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IServerXMLHTTPRequest2.VTable, self.vtable).setProxyCredentials(@ptrCast(*const IServerXMLHTTPRequest2, self), bstrUserName, bstrPassword);
+                return @as(*const IServerXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).setProxyCredentials(@as(*const IServerXMLHTTPRequest2, @ptrCast(self)), bstrUserName, bstrPassword);
             }
         };
     }
@@ -6229,75 +6229,75 @@ pub const ISAXXMLReader = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getFeature(self: *const T, pwchName: ?[*:0]const u16, pvfValue: ?*i16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getFeature(@ptrCast(*const ISAXXMLReader, self), pwchName, pvfValue);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getFeature(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, pvfValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putFeature(self: *const T, pwchName: ?[*:0]const u16, vfValue: i16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putFeature(@ptrCast(*const ISAXXMLReader, self), pwchName, vfValue);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putFeature(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, vfValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getProperty(self: *const T, pwchName: ?[*:0]const u16, pvarValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getProperty(@ptrCast(*const ISAXXMLReader, self), pwchName, pvarValue);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getProperty(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putProperty(self: *const T, pwchName: ?[*:0]const u16, varValue: VARIANT) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putProperty(@ptrCast(*const ISAXXMLReader, self), pwchName, varValue);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putProperty(@as(*const ISAXXMLReader, @ptrCast(self)), pwchName, varValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getEntityResolver(self: *const T, ppResolver: ?*?*ISAXEntityResolver) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getEntityResolver(@ptrCast(*const ISAXXMLReader, self), ppResolver);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getEntityResolver(@as(*const ISAXXMLReader, @ptrCast(self)), ppResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putEntityResolver(self: *const T, pResolver: ?*ISAXEntityResolver) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putEntityResolver(@ptrCast(*const ISAXXMLReader, self), pResolver);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putEntityResolver(@as(*const ISAXXMLReader, @ptrCast(self)), pResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getContentHandler(self: *const T, ppHandler: ?*?*ISAXContentHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getContentHandler(@ptrCast(*const ISAXXMLReader, self), ppHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getContentHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putContentHandler(self: *const T, pHandler: ?*ISAXContentHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putContentHandler(@ptrCast(*const ISAXXMLReader, self), pHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putContentHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getDTDHandler(self: *const T, ppHandler: ?*?*ISAXDTDHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getDTDHandler(@ptrCast(*const ISAXXMLReader, self), ppHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getDTDHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putDTDHandler(self: *const T, pHandler: ?*ISAXDTDHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putDTDHandler(@ptrCast(*const ISAXXMLReader, self), pHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putDTDHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getErrorHandler(self: *const T, ppHandler: ?*?*ISAXErrorHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getErrorHandler(@ptrCast(*const ISAXXMLReader, self), ppHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getErrorHandler(@as(*const ISAXXMLReader, @ptrCast(self)), ppHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putErrorHandler(self: *const T, pHandler: ?*ISAXErrorHandler) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putErrorHandler(@ptrCast(*const ISAXXMLReader, self), pHandler);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putErrorHandler(@as(*const ISAXXMLReader, @ptrCast(self)), pHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getBaseURL(self: *const T, ppwchBaseUrl: ?*const ?*u16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getBaseURL(@ptrCast(*const ISAXXMLReader, self), ppwchBaseUrl);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), ppwchBaseUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putBaseURL(self: *const T, pwchBaseUrl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putBaseURL(@ptrCast(*const ISAXXMLReader, self), pwchBaseUrl);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchBaseUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_getSecureBaseURL(self: *const T, ppwchSecureBaseUrl: ?*const ?*u16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).getSecureBaseURL(@ptrCast(*const ISAXXMLReader, self), ppwchSecureBaseUrl);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).getSecureBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), ppwchSecureBaseUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_putSecureBaseURL(self: *const T, pwchSecureBaseUrl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).putSecureBaseURL(@ptrCast(*const ISAXXMLReader, self), pwchSecureBaseUrl);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).putSecureBaseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchSecureBaseUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_parse(self: *const T, varInput: VARIANT) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).parse(@ptrCast(*const ISAXXMLReader, self), varInput);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).parse(@as(*const ISAXXMLReader, @ptrCast(self)), varInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLReader_parseURL(self: *const T, pwchUrl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISAXXMLReader.VTable, self.vtable).parseURL(@ptrCast(*const ISAXXMLReader, self), pwchUrl);
+                return @as(*const ISAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const ISAXXMLReader, @ptrCast(self)), pwchUrl);
             }
         };
     }
@@ -6336,11 +6336,11 @@ pub const ISAXXMLFilter = extern struct {
             pub usingnamespace ISAXXMLReader.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLFilter_getParent(self: *const T, ppReader: ?*?*ISAXXMLReader) HRESULT {
-                return @ptrCast(*const ISAXXMLFilter.VTable, self.vtable).getParent(@ptrCast(*const ISAXXMLFilter, self), ppReader);
+                return @as(*const ISAXXMLFilter.VTable, @ptrCast(self.vtable)).getParent(@as(*const ISAXXMLFilter, @ptrCast(self)), ppReader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXXMLFilter_putParent(self: *const T, pReader: ?*ISAXXMLReader) HRESULT {
-                return @ptrCast(*const ISAXXMLFilter.VTable, self.vtable).putParent(@ptrCast(*const ISAXXMLFilter, self), pReader);
+                return @as(*const ISAXXMLFilter.VTable, @ptrCast(self.vtable)).putParent(@as(*const ISAXXMLFilter, @ptrCast(self)), pReader);
             }
         };
     }
@@ -6399,19 +6399,19 @@ pub const ISAXLocator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLocator_getColumnNumber(self: *const T, pnColumn: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXLocator.VTable, self.vtable).getColumnNumber(@ptrCast(*const ISAXLocator, self), pnColumn);
+                return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getColumnNumber(@as(*const ISAXLocator, @ptrCast(self)), pnColumn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLocator_getLineNumber(self: *const T, pnLine: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXLocator.VTable, self.vtable).getLineNumber(@ptrCast(*const ISAXLocator, self), pnLine);
+                return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getLineNumber(@as(*const ISAXLocator, @ptrCast(self)), pnLine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLocator_getPublicId(self: *const T, ppwchPublicId: ?*const ?*u16) HRESULT {
-                return @ptrCast(*const ISAXLocator.VTable, self.vtable).getPublicId(@ptrCast(*const ISAXLocator, self), ppwchPublicId);
+                return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getPublicId(@as(*const ISAXLocator, @ptrCast(self)), ppwchPublicId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLocator_getSystemId(self: *const T, ppwchSystemId: ?*const ?*u16) HRESULT {
-                return @ptrCast(*const ISAXLocator.VTable, self.vtable).getSystemId(@ptrCast(*const ISAXLocator, self), ppwchSystemId);
+                return @as(*const ISAXLocator.VTable, @ptrCast(self.vtable)).getSystemId(@as(*const ISAXLocator, @ptrCast(self)), ppwchSystemId);
             }
         };
     }
@@ -6444,7 +6444,7 @@ pub const ISAXEntityResolver = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXEntityResolver_resolveEntity(self: *const T, pwchPublicId: ?[*:0]const u16, pwchSystemId: ?[*:0]const u16, pvarInput: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISAXEntityResolver.VTable, self.vtable).resolveEntity(@ptrCast(*const ISAXEntityResolver, self), pwchPublicId, pwchSystemId, pvarInput);
+                return @as(*const ISAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const ISAXEntityResolver, @ptrCast(self)), pwchPublicId, pwchSystemId, pvarInput);
             }
         };
     }
@@ -6611,47 +6611,47 @@ pub const ISAXContentHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_putDocumentLocator(self: *const T, pLocator: ?*ISAXLocator) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).putDocumentLocator(@ptrCast(*const ISAXContentHandler, self), pLocator);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).putDocumentLocator(@as(*const ISAXContentHandler, @ptrCast(self)), pLocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_startDocument(self: *const T) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).startDocument(@ptrCast(*const ISAXContentHandler, self));
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startDocument(@as(*const ISAXContentHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_endDocument(self: *const T) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).endDocument(@ptrCast(*const ISAXContentHandler, self));
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endDocument(@as(*const ISAXContentHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_startPrefixMapping(self: *const T, pwchPrefix: ?[*:0]const u16, cchPrefix: i32, pwchUri: ?[*:0]const u16, cchUri: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).startPrefixMapping(@ptrCast(*const ISAXContentHandler, self), pwchPrefix, cchPrefix, pwchUri, cchUri);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startPrefixMapping(@as(*const ISAXContentHandler, @ptrCast(self)), pwchPrefix, cchPrefix, pwchUri, cchUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_endPrefixMapping(self: *const T, pwchPrefix: ?[*:0]const u16, cchPrefix: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).endPrefixMapping(@ptrCast(*const ISAXContentHandler, self), pwchPrefix, cchPrefix);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endPrefixMapping(@as(*const ISAXContentHandler, @ptrCast(self)), pwchPrefix, cchPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_startElement(self: *const T, pwchNamespaceUri: ?[*:0]const u16, cchNamespaceUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pwchQName: ?[*:0]const u16, cchQName: i32, pAttributes: ?*ISAXAttributes) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).startElement(@ptrCast(*const ISAXContentHandler, self), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName, pAttributes);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).startElement(@as(*const ISAXContentHandler, @ptrCast(self)), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName, pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_endElement(self: *const T, pwchNamespaceUri: ?[*:0]const u16, cchNamespaceUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pwchQName: ?[*:0]const u16, cchQName: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).endElement(@ptrCast(*const ISAXContentHandler, self), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).endElement(@as(*const ISAXContentHandler, @ptrCast(self)), pwchNamespaceUri, cchNamespaceUri, pwchLocalName, cchLocalName, pwchQName, cchQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_characters(self: *const T, pwchChars: ?[*:0]const u16, cchChars: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).characters(@ptrCast(*const ISAXContentHandler, self), pwchChars, cchChars);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).characters(@as(*const ISAXContentHandler, @ptrCast(self)), pwchChars, cchChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_ignorableWhitespace(self: *const T, pwchChars: ?[*:0]const u16, cchChars: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).ignorableWhitespace(@ptrCast(*const ISAXContentHandler, self), pwchChars, cchChars);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).ignorableWhitespace(@as(*const ISAXContentHandler, @ptrCast(self)), pwchChars, cchChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_processingInstruction(self: *const T, pwchTarget: ?[*:0]const u16, cchTarget: i32, pwchData: ?[*:0]const u16, cchData: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).processingInstruction(@ptrCast(*const ISAXContentHandler, self), pwchTarget, cchTarget, pwchData, cchData);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).processingInstruction(@as(*const ISAXContentHandler, @ptrCast(self)), pwchTarget, cchTarget, pwchData, cchData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXContentHandler_skippedEntity(self: *const T, pwchName: ?[*:0]const u16, cchName: i32) HRESULT {
-                return @ptrCast(*const ISAXContentHandler.VTable, self.vtable).skippedEntity(@ptrCast(*const ISAXContentHandler, self), pwchName, cchName);
+                return @as(*const ISAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const ISAXContentHandler, @ptrCast(self)), pwchName, cchName);
             }
         };
     }
@@ -6714,11 +6714,11 @@ pub const ISAXDTDHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDTDHandler_notationDecl(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) HRESULT {
-                return @ptrCast(*const ISAXDTDHandler.VTable, self.vtable).notationDecl(@ptrCast(*const ISAXDTDHandler, self), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+                return @as(*const ISAXDTDHandler.VTable, @ptrCast(self.vtable)).notationDecl(@as(*const ISAXDTDHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDTDHandler_unparsedEntityDecl(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32, pwchNotationName: ?[*:0]const u16, cchNotationName: i32) HRESULT {
-                return @ptrCast(*const ISAXDTDHandler.VTable, self.vtable).unparsedEntityDecl(@ptrCast(*const ISAXDTDHandler, self), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId, pwchNotationName, cchNotationName);
+                return @as(*const ISAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const ISAXDTDHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId, pwchNotationName, cchNotationName);
             }
         };
     }
@@ -6779,15 +6779,15 @@ pub const ISAXErrorHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXErrorHandler_error(self: *const T, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) HRESULT {
-                return @ptrCast(*const ISAXErrorHandler.VTable, self.vtable).@"error"(@ptrCast(*const ISAXErrorHandler, self), pLocator, pwchErrorMessage, hrErrorCode);
+                return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).@"error"(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXErrorHandler_fatalError(self: *const T, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) HRESULT {
-                return @ptrCast(*const ISAXErrorHandler.VTable, self.vtable).fatalError(@ptrCast(*const ISAXErrorHandler, self), pLocator, pwchErrorMessage, hrErrorCode);
+                return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).fatalError(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXErrorHandler_ignorableWarning(self: *const T, pLocator: ?*ISAXLocator, pwchErrorMessage: ?[*:0]const u16, hrErrorCode: HRESULT) HRESULT {
-                return @ptrCast(*const ISAXErrorHandler.VTable, self.vtable).ignorableWarning(@ptrCast(*const ISAXErrorHandler, self), pLocator, pwchErrorMessage, hrErrorCode);
+                return @as(*const ISAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const ISAXErrorHandler, @ptrCast(self)), pLocator, pwchErrorMessage, hrErrorCode);
             }
         };
     }
@@ -6886,31 +6886,31 @@ pub const ISAXLexicalHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_startDTD(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).startDTD(@ptrCast(*const ISAXLexicalHandler, self), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startDTD(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_endDTD(self: *const T) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).endDTD(@ptrCast(*const ISAXLexicalHandler, self));
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endDTD(@as(*const ISAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_startEntity(self: *const T, pwchName: ?[*:0]const u16, cchName: i32) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).startEntity(@ptrCast(*const ISAXLexicalHandler, self), pwchName, cchName);
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startEntity(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_endEntity(self: *const T, pwchName: ?[*:0]const u16, cchName: i32) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).endEntity(@ptrCast(*const ISAXLexicalHandler, self), pwchName, cchName);
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endEntity(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchName, cchName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_startCDATA(self: *const T) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).startCDATA(@ptrCast(*const ISAXLexicalHandler, self));
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).startCDATA(@as(*const ISAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_endCDATA(self: *const T) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).endCDATA(@ptrCast(*const ISAXLexicalHandler, self));
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).endCDATA(@as(*const ISAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXLexicalHandler_comment(self: *const T, pwchChars: ?[*:0]const u16, cchChars: i32) HRESULT {
-                return @ptrCast(*const ISAXLexicalHandler.VTable, self.vtable).comment(@ptrCast(*const ISAXLexicalHandler, self), pwchChars, cchChars);
+                return @as(*const ISAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const ISAXLexicalHandler, @ptrCast(self)), pwchChars, cchChars);
             }
         };
     }
@@ -7009,19 +7009,19 @@ pub const ISAXDeclHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDeclHandler_elementDecl(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchModel: ?[*:0]const u16, cchModel: i32) HRESULT {
-                return @ptrCast(*const ISAXDeclHandler.VTable, self.vtable).elementDecl(@ptrCast(*const ISAXDeclHandler, self), pwchName, cchName, pwchModel, cchModel);
+                return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).elementDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchModel, cchModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDeclHandler_attributeDecl(self: *const T, pwchElementName: ?[*:0]const u16, cchElementName: i32, pwchAttributeName: ?[*:0]const u16, cchAttributeName: i32, pwchType: ?[*:0]const u16, cchType: i32, pwchValueDefault: ?[*:0]const u16, cchValueDefault: i32, pwchValue: ?[*:0]const u16, cchValue: i32) HRESULT {
-                return @ptrCast(*const ISAXDeclHandler.VTable, self.vtable).attributeDecl(@ptrCast(*const ISAXDeclHandler, self), pwchElementName, cchElementName, pwchAttributeName, cchAttributeName, pwchType, cchType, pwchValueDefault, cchValueDefault, pwchValue, cchValue);
+                return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).attributeDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchElementName, cchElementName, pwchAttributeName, cchAttributeName, pwchType, cchType, pwchValueDefault, cchValueDefault, pwchValue, cchValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDeclHandler_internalEntityDecl(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchValue: ?[*:0]const u16, cchValue: i32) HRESULT {
-                return @ptrCast(*const ISAXDeclHandler.VTable, self.vtable).internalEntityDecl(@ptrCast(*const ISAXDeclHandler, self), pwchName, cchName, pwchValue, cchValue);
+                return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).internalEntityDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchValue, cchValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXDeclHandler_externalEntityDecl(self: *const T, pwchName: ?[*:0]const u16, cchName: i32, pwchPublicId: ?[*:0]const u16, cchPublicId: i32, pwchSystemId: ?[*:0]const u16, cchSystemId: i32) HRESULT {
-                return @ptrCast(*const ISAXDeclHandler.VTable, self.vtable).externalEntityDecl(@ptrCast(*const ISAXDeclHandler, self), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
+                return @as(*const ISAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const ISAXDeclHandler, @ptrCast(self)), pwchName, cchName, pwchPublicId, cchPublicId, pwchSystemId, cchSystemId);
             }
         };
     }
@@ -7246,55 +7246,55 @@ pub const ISAXAttributes = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getLength(self: *const T, pnLength: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getLength(@ptrCast(*const ISAXAttributes, self), pnLength);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getLength(@as(*const ISAXAttributes, @ptrCast(self)), pnLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getURI(self: *const T, nIndex: i32, ppwchUri: ?*const ?*u16, pcchUri: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getURI(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchUri, pcchUri);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getURI(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchUri, pcchUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getLocalName(self: *const T, nIndex: i32, ppwchLocalName: ?*const ?*u16, pcchLocalName: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getLocalName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchLocalName, pcchLocalName);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getLocalName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchLocalName, pcchLocalName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getQName(self: *const T, nIndex: i32, ppwchQName: ?*const ?*u16, pcchQName: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getQName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchQName, pcchQName);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getQName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchQName, pcchQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getName(self: *const T, nIndex: i32, ppwchUri: ?*const ?*u16, pcchUri: ?*i32, ppwchLocalName: ?*const ?*u16, pcchLocalName: ?*i32, ppwchQName: ?*const ?*u16, pcchQName: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getName(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchUri, pcchUri, ppwchLocalName, pcchLocalName, ppwchQName, pcchQName);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getName(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchUri, pcchUri, ppwchLocalName, pcchLocalName, ppwchQName, pcchQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getIndexFromName(self: *const T, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, pnIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getIndexFromName(@ptrCast(*const ISAXAttributes, self), pwchUri, cchUri, pwchLocalName, cchLocalName, pnIndex);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, pnIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getIndexFromQName(self: *const T, pwchQName: ?[*:0]const u16, cchQName: i32, pnIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getIndexFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, pnIndex);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, pnIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getType(self: *const T, nIndex: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getType(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchType, pcchType);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getType(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchType, pcchType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getTypeFromName(self: *const T, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getTypeFromName(@ptrCast(*const ISAXAttributes, self), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchType, pcchType);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchType, pcchType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getTypeFromQName(self: *const T, pwchQName: ?[*:0]const u16, cchQName: i32, ppwchType: ?*const ?*u16, pcchType: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getTypeFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, ppwchType, pcchType);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, ppwchType, pcchType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getValue(self: *const T, nIndex: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValue(@ptrCast(*const ISAXAttributes, self), nIndex, ppwchValue, pcchValue);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValue(@as(*const ISAXAttributes, @ptrCast(self)), nIndex, ppwchValue, pcchValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getValueFromName(self: *const T, pwchUri: ?[*:0]const u16, cchUri: i32, pwchLocalName: ?[*:0]const u16, cchLocalName: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValueFromName(@ptrCast(*const ISAXAttributes, self), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchValue, pcchValue);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromName(@as(*const ISAXAttributes, @ptrCast(self)), pwchUri, cchUri, pwchLocalName, cchLocalName, ppwchValue, pcchValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISAXAttributes_getValueFromQName(self: *const T, pwchQName: ?[*:0]const u16, cchQName: i32, ppwchValue: ?*const ?*u16, pcchValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISAXAttributes.VTable, self.vtable).getValueFromQName(@ptrCast(*const ISAXAttributes, self), pwchQName, cchQName, ppwchValue, pcchValue);
+                return @as(*const ISAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const ISAXAttributes, @ptrCast(self)), pwchQName, cchQName, ppwchValue, pcchValue);
             }
         };
     }
@@ -7525,75 +7525,75 @@ pub const IVBSAXXMLReader = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_getFeature(self: *const T, strName: ?BSTR, fValue: ?*i16) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).getFeature(@ptrCast(*const IVBSAXXMLReader, self), strName, fValue);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).getFeature(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putFeature(self: *const T, strName: ?BSTR, fValue: i16) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putFeature(@ptrCast(*const IVBSAXXMLReader, self), strName, fValue);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putFeature(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_getProperty(self: *const T, strName: ?BSTR, varValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).getProperty(@ptrCast(*const IVBSAXXMLReader, self), strName, varValue);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, varValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putProperty(self: *const T, strName: ?BSTR, varValue: VARIANT) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putProperty(@ptrCast(*const IVBSAXXMLReader, self), strName, varValue);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putProperty(@as(*const IVBSAXXMLReader, @ptrCast(self)), strName, varValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_entityResolver(self: *const T, oResolver: ?*?*IVBSAXEntityResolver) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_entityResolver(@ptrCast(*const IVBSAXXMLReader, self), oResolver);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_entityResolver(@as(*const IVBSAXXMLReader, @ptrCast(self)), oResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putref_entityResolver(self: *const T, oResolver: ?*IVBSAXEntityResolver) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putref_entityResolver(@ptrCast(*const IVBSAXXMLReader, self), oResolver);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_entityResolver(@as(*const IVBSAXXMLReader, @ptrCast(self)), oResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_contentHandler(self: *const T, oHandler: ?*?*IVBSAXContentHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_contentHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_contentHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putref_contentHandler(self: *const T, oHandler: ?*IVBSAXContentHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putref_contentHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_contentHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_dtdHandler(self: *const T, oHandler: ?*?*IVBSAXDTDHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_dtdHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_dtdHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putref_dtdHandler(self: *const T, oHandler: ?*IVBSAXDTDHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putref_dtdHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_dtdHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_errorHandler(self: *const T, oHandler: ?*?*IVBSAXErrorHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_errorHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_errorHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_putref_errorHandler(self: *const T, oHandler: ?*IVBSAXErrorHandler) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).putref_errorHandler(@ptrCast(*const IVBSAXXMLReader, self), oHandler);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).putref_errorHandler(@as(*const IVBSAXXMLReader, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_baseURL(self: *const T, strBaseURL: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_baseURL(@ptrCast(*const IVBSAXXMLReader, self), strBaseURL);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_baseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strBaseURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_put_baseURL(self: *const T, strBaseURL: ?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).put_baseURL(@ptrCast(*const IVBSAXXMLReader, self), strBaseURL);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).put_baseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strBaseURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_get_secureBaseURL(self: *const T, strSecureBaseURL: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).get_secureBaseURL(@ptrCast(*const IVBSAXXMLReader, self), strSecureBaseURL);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).get_secureBaseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strSecureBaseURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_put_secureBaseURL(self: *const T, strSecureBaseURL: ?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).put_secureBaseURL(@ptrCast(*const IVBSAXXMLReader, self), strSecureBaseURL);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).put_secureBaseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strSecureBaseURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_parse(self: *const T, varInput: VARIANT) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).parse(@ptrCast(*const IVBSAXXMLReader, self), varInput);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).parse(@as(*const IVBSAXXMLReader, @ptrCast(self)), varInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLReader_parseURL(self: *const T, strURL: ?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXXMLReader.VTable, self.vtable).parseURL(@ptrCast(*const IVBSAXXMLReader, self), strURL);
+                return @as(*const IVBSAXXMLReader.VTable, @ptrCast(self.vtable)).parseURL(@as(*const IVBSAXXMLReader, @ptrCast(self)), strURL);
             }
         };
     }
@@ -7635,11 +7635,11 @@ pub const IVBSAXXMLFilter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLFilter_get_parent(self: *const T, oReader: ?*?*IVBSAXXMLReader) HRESULT {
-                return @ptrCast(*const IVBSAXXMLFilter.VTable, self.vtable).get_parent(@ptrCast(*const IVBSAXXMLFilter, self), oReader);
+                return @as(*const IVBSAXXMLFilter.VTable, @ptrCast(self.vtable)).get_parent(@as(*const IVBSAXXMLFilter, @ptrCast(self)), oReader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXXMLFilter_putref_parent(self: *const T, oReader: ?*IVBSAXXMLReader) HRESULT {
-                return @ptrCast(*const IVBSAXXMLFilter.VTable, self.vtable).putref_parent(@ptrCast(*const IVBSAXXMLFilter, self), oReader);
+                return @as(*const IVBSAXXMLFilter.VTable, @ptrCast(self.vtable)).putref_parent(@as(*const IVBSAXXMLFilter, @ptrCast(self)), oReader);
             }
         };
     }
@@ -7710,19 +7710,19 @@ pub const IVBSAXLocator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLocator_get_columnNumber(self: *const T, nColumn: ?*i32) HRESULT {
-                return @ptrCast(*const IVBSAXLocator.VTable, self.vtable).get_columnNumber(@ptrCast(*const IVBSAXLocator, self), nColumn);
+                return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_columnNumber(@as(*const IVBSAXLocator, @ptrCast(self)), nColumn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLocator_get_lineNumber(self: *const T, nLine: ?*i32) HRESULT {
-                return @ptrCast(*const IVBSAXLocator.VTable, self.vtable).get_lineNumber(@ptrCast(*const IVBSAXLocator, self), nLine);
+                return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_lineNumber(@as(*const IVBSAXLocator, @ptrCast(self)), nLine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLocator_get_publicId(self: *const T, strPublicId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLocator.VTable, self.vtable).get_publicId(@ptrCast(*const IVBSAXLocator, self), strPublicId);
+                return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_publicId(@as(*const IVBSAXLocator, @ptrCast(self)), strPublicId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLocator_get_systemId(self: *const T, strSystemId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLocator.VTable, self.vtable).get_systemId(@ptrCast(*const IVBSAXLocator, self), strSystemId);
+                return @as(*const IVBSAXLocator.VTable, @ptrCast(self.vtable)).get_systemId(@as(*const IVBSAXLocator, @ptrCast(self)), strSystemId);
             }
         };
     }
@@ -7755,7 +7755,7 @@ pub const IVBSAXEntityResolver = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXEntityResolver_resolveEntity(self: *const T, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR, varInput: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IVBSAXEntityResolver.VTable, self.vtable).resolveEntity(@ptrCast(*const IVBSAXEntityResolver, self), strPublicId, strSystemId, varInput);
+                return @as(*const IVBSAXEntityResolver.VTable, @ptrCast(self.vtable)).resolveEntity(@as(*const IVBSAXEntityResolver, @ptrCast(self)), strPublicId, strSystemId, varInput);
             }
         };
     }
@@ -7894,47 +7894,47 @@ pub const IVBSAXContentHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_putref_documentLocator(self: *const T, oLocator: ?*IVBSAXLocator) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).putref_documentLocator(@ptrCast(*const IVBSAXContentHandler, self), oLocator);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).putref_documentLocator(@as(*const IVBSAXContentHandler, @ptrCast(self)), oLocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_startDocument(self: *const T) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).startDocument(@ptrCast(*const IVBSAXContentHandler, self));
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startDocument(@as(*const IVBSAXContentHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_endDocument(self: *const T) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).endDocument(@ptrCast(*const IVBSAXContentHandler, self));
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endDocument(@as(*const IVBSAXContentHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_startPrefixMapping(self: *const T, strPrefix: ?*?BSTR, strURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).startPrefixMapping(@ptrCast(*const IVBSAXContentHandler, self), strPrefix, strURI);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startPrefixMapping(@as(*const IVBSAXContentHandler, @ptrCast(self)), strPrefix, strURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_endPrefixMapping(self: *const T, strPrefix: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).endPrefixMapping(@ptrCast(*const IVBSAXContentHandler, self), strPrefix);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endPrefixMapping(@as(*const IVBSAXContentHandler, @ptrCast(self)), strPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_startElement(self: *const T, strNamespaceURI: ?*?BSTR, strLocalName: ?*?BSTR, strQName: ?*?BSTR, oAttributes: ?*IVBSAXAttributes) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).startElement(@ptrCast(*const IVBSAXContentHandler, self), strNamespaceURI, strLocalName, strQName, oAttributes);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).startElement(@as(*const IVBSAXContentHandler, @ptrCast(self)), strNamespaceURI, strLocalName, strQName, oAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_endElement(self: *const T, strNamespaceURI: ?*?BSTR, strLocalName: ?*?BSTR, strQName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).endElement(@ptrCast(*const IVBSAXContentHandler, self), strNamespaceURI, strLocalName, strQName);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).endElement(@as(*const IVBSAXContentHandler, @ptrCast(self)), strNamespaceURI, strLocalName, strQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_characters(self: *const T, strChars: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).characters(@ptrCast(*const IVBSAXContentHandler, self), strChars);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).characters(@as(*const IVBSAXContentHandler, @ptrCast(self)), strChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_ignorableWhitespace(self: *const T, strChars: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).ignorableWhitespace(@ptrCast(*const IVBSAXContentHandler, self), strChars);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).ignorableWhitespace(@as(*const IVBSAXContentHandler, @ptrCast(self)), strChars);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_processingInstruction(self: *const T, strTarget: ?*?BSTR, strData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).processingInstruction(@ptrCast(*const IVBSAXContentHandler, self), strTarget, strData);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).processingInstruction(@as(*const IVBSAXContentHandler, @ptrCast(self)), strTarget, strData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXContentHandler_skippedEntity(self: *const T, strName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXContentHandler.VTable, self.vtable).skippedEntity(@ptrCast(*const IVBSAXContentHandler, self), strName);
+                return @as(*const IVBSAXContentHandler.VTable, @ptrCast(self.vtable)).skippedEntity(@as(*const IVBSAXContentHandler, @ptrCast(self)), strName);
             }
         };
     }
@@ -7983,11 +7983,11 @@ pub const IVBSAXDTDHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDTDHandler_notationDecl(self: *const T, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDTDHandler.VTable, self.vtable).notationDecl(@ptrCast(*const IVBSAXDTDHandler, self), strName, strPublicId, strSystemId);
+                return @as(*const IVBSAXDTDHandler.VTable, @ptrCast(self.vtable)).notationDecl(@as(*const IVBSAXDTDHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDTDHandler_unparsedEntityDecl(self: *const T, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR, strNotationName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDTDHandler.VTable, self.vtable).unparsedEntityDecl(@ptrCast(*const IVBSAXDTDHandler, self), strName, strPublicId, strSystemId, strNotationName);
+                return @as(*const IVBSAXDTDHandler.VTable, @ptrCast(self.vtable)).unparsedEntityDecl(@as(*const IVBSAXDTDHandler, @ptrCast(self)), strName, strPublicId, strSystemId, strNotationName);
             }
         };
     }
@@ -8048,15 +8048,15 @@ pub const IVBSAXErrorHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXErrorHandler_error(self: *const T, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) HRESULT {
-                return @ptrCast(*const IVBSAXErrorHandler.VTable, self.vtable).@"error"(@ptrCast(*const IVBSAXErrorHandler, self), oLocator, strErrorMessage, nErrorCode);
+                return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).@"error"(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXErrorHandler_fatalError(self: *const T, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) HRESULT {
-                return @ptrCast(*const IVBSAXErrorHandler.VTable, self.vtable).fatalError(@ptrCast(*const IVBSAXErrorHandler, self), oLocator, strErrorMessage, nErrorCode);
+                return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).fatalError(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXErrorHandler_ignorableWarning(self: *const T, oLocator: ?*IVBSAXLocator, strErrorMessage: ?*?BSTR, nErrorCode: i32) HRESULT {
-                return @ptrCast(*const IVBSAXErrorHandler.VTable, self.vtable).ignorableWarning(@ptrCast(*const IVBSAXErrorHandler, self), oLocator, strErrorMessage, nErrorCode);
+                return @as(*const IVBSAXErrorHandler.VTable, @ptrCast(self.vtable)).ignorableWarning(@as(*const IVBSAXErrorHandler, @ptrCast(self)), oLocator, strErrorMessage, nErrorCode);
             }
         };
     }
@@ -8143,31 +8143,31 @@ pub const IVBSAXLexicalHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_startDTD(self: *const T, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).startDTD(@ptrCast(*const IVBSAXLexicalHandler, self), strName, strPublicId, strSystemId);
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startDTD(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_endDTD(self: *const T) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).endDTD(@ptrCast(*const IVBSAXLexicalHandler, self));
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endDTD(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_startEntity(self: *const T, strName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).startEntity(@ptrCast(*const IVBSAXLexicalHandler, self), strName);
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startEntity(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_endEntity(self: *const T, strName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).endEntity(@ptrCast(*const IVBSAXLexicalHandler, self), strName);
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endEntity(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_startCDATA(self: *const T) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).startCDATA(@ptrCast(*const IVBSAXLexicalHandler, self));
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).startCDATA(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_endCDATA(self: *const T) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).endCDATA(@ptrCast(*const IVBSAXLexicalHandler, self));
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).endCDATA(@as(*const IVBSAXLexicalHandler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXLexicalHandler_comment(self: *const T, strChars: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXLexicalHandler.VTable, self.vtable).comment(@ptrCast(*const IVBSAXLexicalHandler, self), strChars);
+                return @as(*const IVBSAXLexicalHandler.VTable, @ptrCast(self.vtable)).comment(@as(*const IVBSAXLexicalHandler, @ptrCast(self)), strChars);
             }
         };
     }
@@ -8242,19 +8242,19 @@ pub const IVBSAXDeclHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDeclHandler_elementDecl(self: *const T, strName: ?*?BSTR, strModel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDeclHandler.VTable, self.vtable).elementDecl(@ptrCast(*const IVBSAXDeclHandler, self), strName, strModel);
+                return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).elementDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDeclHandler_attributeDecl(self: *const T, strElementName: ?*?BSTR, strAttributeName: ?*?BSTR, strType: ?*?BSTR, strValueDefault: ?*?BSTR, strValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDeclHandler.VTable, self.vtable).attributeDecl(@ptrCast(*const IVBSAXDeclHandler, self), strElementName, strAttributeName, strType, strValueDefault, strValue);
+                return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).attributeDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strElementName, strAttributeName, strType, strValueDefault, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDeclHandler_internalEntityDecl(self: *const T, strName: ?*?BSTR, strValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDeclHandler.VTable, self.vtable).internalEntityDecl(@ptrCast(*const IVBSAXDeclHandler, self), strName, strValue);
+                return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).internalEntityDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXDeclHandler_externalEntityDecl(self: *const T, strName: ?*?BSTR, strPublicId: ?*?BSTR, strSystemId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXDeclHandler.VTable, self.vtable).externalEntityDecl(@ptrCast(*const IVBSAXDeclHandler, self), strName, strPublicId, strSystemId);
+                return @as(*const IVBSAXDeclHandler.VTable, @ptrCast(self.vtable)).externalEntityDecl(@as(*const IVBSAXDeclHandler, @ptrCast(self)), strName, strPublicId, strSystemId);
             }
         };
     }
@@ -8424,51 +8424,51 @@ pub const IVBSAXAttributes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_get_length(self: *const T, nLength: ?*i32) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).get_length(@ptrCast(*const IVBSAXAttributes, self), nLength);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).get_length(@as(*const IVBSAXAttributes, @ptrCast(self)), nLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getURI(self: *const T, nIndex: i32, strURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getURI(@ptrCast(*const IVBSAXAttributes, self), nIndex, strURI);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getURI(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getLocalName(self: *const T, nIndex: i32, strLocalName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getLocalName(@ptrCast(*const IVBSAXAttributes, self), nIndex, strLocalName);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getLocalName(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strLocalName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getQName(self: *const T, nIndex: i32, strQName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getQName(@ptrCast(*const IVBSAXAttributes, self), nIndex, strQName);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getQName(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getIndexFromName(self: *const T, strURI: ?BSTR, strLocalName: ?BSTR, nIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getIndexFromName(@ptrCast(*const IVBSAXAttributes, self), strURI, strLocalName, nIndex);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, nIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getIndexFromQName(self: *const T, strQName: ?BSTR, nIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getIndexFromQName(@ptrCast(*const IVBSAXAttributes, self), strQName, nIndex);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getIndexFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, nIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getType(self: *const T, nIndex: i32, strType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getType(@ptrCast(*const IVBSAXAttributes, self), nIndex, strType);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getType(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getTypeFromName(self: *const T, strURI: ?BSTR, strLocalName: ?BSTR, strType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getTypeFromName(@ptrCast(*const IVBSAXAttributes, self), strURI, strLocalName, strType);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, strType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getTypeFromQName(self: *const T, strQName: ?BSTR, strType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getTypeFromQName(@ptrCast(*const IVBSAXAttributes, self), strQName, strType);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getTypeFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, strType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getValue(self: *const T, nIndex: i32, strValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getValue(@ptrCast(*const IVBSAXAttributes, self), nIndex, strValue);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValue(@as(*const IVBSAXAttributes, @ptrCast(self)), nIndex, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getValueFromName(self: *const T, strURI: ?BSTR, strLocalName: ?BSTR, strValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getValueFromName(@ptrCast(*const IVBSAXAttributes, self), strURI, strLocalName, strValue);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromName(@as(*const IVBSAXAttributes, @ptrCast(self)), strURI, strLocalName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBSAXAttributes_getValueFromQName(self: *const T, strQName: ?BSTR, strValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IVBSAXAttributes.VTable, self.vtable).getValueFromQName(@ptrCast(*const IVBSAXAttributes, self), strQName, strValue);
+                return @as(*const IVBSAXAttributes.VTable, @ptrCast(self.vtable)).getValueFromQName(@as(*const IVBSAXAttributes, @ptrCast(self)), strQName, strValue);
             }
         };
     }
@@ -8703,71 +8703,71 @@ pub const IMXWriter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_output(self: *const T, varDestination: VARIANT) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_output(@ptrCast(*const IMXWriter, self), varDestination);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_output(@as(*const IMXWriter, @ptrCast(self)), varDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_output(self: *const T, varDestination: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_output(@ptrCast(*const IMXWriter, self), varDestination);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_output(@as(*const IMXWriter, @ptrCast(self)), varDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_encoding(self: *const T, strEncoding: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_encoding(@ptrCast(*const IMXWriter, self), strEncoding);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_encoding(@as(*const IMXWriter, @ptrCast(self)), strEncoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_encoding(self: *const T, strEncoding: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_encoding(@ptrCast(*const IMXWriter, self), strEncoding);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_encoding(@as(*const IMXWriter, @ptrCast(self)), strEncoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_byteOrderMark(self: *const T, fWriteByteOrderMark: i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_byteOrderMark(@ptrCast(*const IMXWriter, self), fWriteByteOrderMark);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_byteOrderMark(@as(*const IMXWriter, @ptrCast(self)), fWriteByteOrderMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_byteOrderMark(self: *const T, fWriteByteOrderMark: ?*i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_byteOrderMark(@ptrCast(*const IMXWriter, self), fWriteByteOrderMark);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_byteOrderMark(@as(*const IMXWriter, @ptrCast(self)), fWriteByteOrderMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_indent(self: *const T, fIndentMode: i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_indent(@ptrCast(*const IMXWriter, self), fIndentMode);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_indent(@as(*const IMXWriter, @ptrCast(self)), fIndentMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_indent(self: *const T, fIndentMode: ?*i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_indent(@ptrCast(*const IMXWriter, self), fIndentMode);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_indent(@as(*const IMXWriter, @ptrCast(self)), fIndentMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_standalone(self: *const T, fValue: i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_standalone(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_standalone(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_standalone(self: *const T, fValue: ?*i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_standalone(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_standalone(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_omitXMLDeclaration(self: *const T, fValue: i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_omitXMLDeclaration(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_omitXMLDeclaration(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_omitXMLDeclaration(self: *const T, fValue: ?*i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_omitXMLDeclaration(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_omitXMLDeclaration(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_version(self: *const T, strVersion: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_version(@ptrCast(*const IMXWriter, self), strVersion);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_version(@as(*const IMXWriter, @ptrCast(self)), strVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_version(self: *const T, strVersion: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_version(@ptrCast(*const IMXWriter, self), strVersion);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_version(@as(*const IMXWriter, @ptrCast(self)), strVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_put_disableOutputEscaping(self: *const T, fValue: i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).put_disableOutputEscaping(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).put_disableOutputEscaping(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_get_disableOutputEscaping(self: *const T, fValue: ?*i16) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).get_disableOutputEscaping(@ptrCast(*const IMXWriter, self), fValue);
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).get_disableOutputEscaping(@as(*const IMXWriter, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXWriter_flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMXWriter.VTable, self.vtable).flush(@ptrCast(*const IMXWriter, self));
+                return @as(*const IMXWriter.VTable, @ptrCast(self.vtable)).flush(@as(*const IMXWriter, @ptrCast(self)));
             }
         };
     }
@@ -8924,47 +8924,47 @@ pub const IMXAttributes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_addAttribute(self: *const T, strURI: ?BSTR, strLocalName: ?BSTR, strQName: ?BSTR, strType: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).addAttribute(@ptrCast(*const IMXAttributes, self), strURI, strLocalName, strQName, strType, strValue);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).addAttribute(@as(*const IMXAttributes, @ptrCast(self)), strURI, strLocalName, strQName, strType, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_addAttributeFromIndex(self: *const T, varAtts: VARIANT, nIndex: i32) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).addAttributeFromIndex(@ptrCast(*const IMXAttributes, self), varAtts, nIndex);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).addAttributeFromIndex(@as(*const IMXAttributes, @ptrCast(self)), varAtts, nIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_clear(self: *const T) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).clear(@ptrCast(*const IMXAttributes, self));
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).clear(@as(*const IMXAttributes, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_removeAttribute(self: *const T, nIndex: i32) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).removeAttribute(@ptrCast(*const IMXAttributes, self), nIndex);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).removeAttribute(@as(*const IMXAttributes, @ptrCast(self)), nIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setAttribute(self: *const T, nIndex: i32, strURI: ?BSTR, strLocalName: ?BSTR, strQName: ?BSTR, strType: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setAttribute(@ptrCast(*const IMXAttributes, self), nIndex, strURI, strLocalName, strQName, strType, strValue);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setAttribute(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strURI, strLocalName, strQName, strType, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setAttributes(self: *const T, varAtts: VARIANT) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setAttributes(@ptrCast(*const IMXAttributes, self), varAtts);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setAttributes(@as(*const IMXAttributes, @ptrCast(self)), varAtts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setLocalName(self: *const T, nIndex: i32, strLocalName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setLocalName(@ptrCast(*const IMXAttributes, self), nIndex, strLocalName);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setLocalName(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strLocalName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setQName(self: *const T, nIndex: i32, strQName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setQName(@ptrCast(*const IMXAttributes, self), nIndex, strQName);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setQName(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setType(self: *const T, nIndex: i32, strType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setType(@ptrCast(*const IMXAttributes, self), nIndex, strType);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setType(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setURI(self: *const T, nIndex: i32, strURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setURI(@ptrCast(*const IMXAttributes, self), nIndex, strURI);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setURI(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXAttributes_setValue(self: *const T, nIndex: i32, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IMXAttributes.VTable, self.vtable).setValue(@ptrCast(*const IMXAttributes, self), nIndex, strValue);
+                return @as(*const IMXAttributes.VTable, @ptrCast(self.vtable)).setValue(@as(*const IMXAttributes, @ptrCast(self)), nIndex, strValue);
             }
         };
     }
@@ -9007,15 +9007,15 @@ pub const IMXReaderControl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXReaderControl_abort(self: *const T) HRESULT {
-                return @ptrCast(*const IMXReaderControl.VTable, self.vtable).abort(@ptrCast(*const IMXReaderControl, self));
+                return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).abort(@as(*const IMXReaderControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXReaderControl_resume(self: *const T) HRESULT {
-                return @ptrCast(*const IMXReaderControl.VTable, self.vtable).@"resume"(@ptrCast(*const IMXReaderControl, self));
+                return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).@"resume"(@as(*const IMXReaderControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXReaderControl_suspend(self: *const T) HRESULT {
-                return @ptrCast(*const IMXReaderControl.VTable, self.vtable).@"suspend"(@ptrCast(*const IMXReaderControl, self));
+                return @as(*const IMXReaderControl.VTable, @ptrCast(self.vtable)).@"suspend"(@as(*const IMXReaderControl, @ptrCast(self)));
             }
         };
     }
@@ -9044,7 +9044,7 @@ pub const IMXSchemaDeclHandler = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXSchemaDeclHandler_schemaElementDecl(self: *const T, oSchemaElement: ?*ISchemaElement) HRESULT {
-                return @ptrCast(*const IMXSchemaDeclHandler.VTable, self.vtable).schemaElementDecl(@ptrCast(*const IMXSchemaDeclHandler, self), oSchemaElement);
+                return @as(*const IMXSchemaDeclHandler.VTable, @ptrCast(self.vtable)).schemaElementDecl(@as(*const IMXSchemaDeclHandler, @ptrCast(self)), oSchemaElement);
             }
         };
     }
@@ -9104,15 +9104,15 @@ pub const IMXNamespacePrefixes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespacePrefixes_get_item(self: *const T, index: i32, prefix: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMXNamespacePrefixes.VTable, self.vtable).get_item(@ptrCast(*const IMXNamespacePrefixes, self), index, prefix);
+                return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get_item(@as(*const IMXNamespacePrefixes, @ptrCast(self)), index, prefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespacePrefixes_get_length(self: *const T, length: ?*i32) HRESULT {
-                return @ptrCast(*const IMXNamespacePrefixes.VTable, self.vtable).get_length(@ptrCast(*const IMXNamespacePrefixes, self), length);
+                return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get_length(@as(*const IMXNamespacePrefixes, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespacePrefixes_get__newEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXNamespacePrefixes.VTable, self.vtable).get__newEnum(@ptrCast(*const IMXNamespacePrefixes, self), ppUnk);
+                return @as(*const IMXNamespacePrefixes.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const IMXNamespacePrefixes, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -9253,47 +9253,47 @@ pub const IVBMXNamespaceManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_put_allowOverride(self: *const T, fOverride: i16) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).put_allowOverride(@ptrCast(*const IVBMXNamespaceManager, self), fOverride);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).put_allowOverride(@as(*const IVBMXNamespaceManager, @ptrCast(self)), fOverride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_get_allowOverride(self: *const T, fOverride: ?*i16) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).get_allowOverride(@ptrCast(*const IVBMXNamespaceManager, self), fOverride);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).get_allowOverride(@as(*const IVBMXNamespaceManager, @ptrCast(self)), fOverride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).reset(@ptrCast(*const IVBMXNamespaceManager, self));
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).reset(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_pushContext(self: *const T) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).pushContext(@ptrCast(*const IVBMXNamespaceManager, self));
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_pushNodeContext(self: *const T, contextNode: ?*IXMLDOMNode, fDeep: i16) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).pushNodeContext(@ptrCast(*const IVBMXNamespaceManager, self), contextNode, fDeep);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushNodeContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)), contextNode, fDeep);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_popContext(self: *const T) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).popContext(@ptrCast(*const IVBMXNamespaceManager, self));
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).popContext(@as(*const IVBMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_declarePrefix(self: *const T, prefix: ?BSTR, namespaceURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).declarePrefix(@ptrCast(*const IVBMXNamespaceManager, self), prefix, namespaceURI);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).declarePrefix(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefix, namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_getDeclaredPrefixes(self: *const T, prefixes: ?*?*IMXNamespacePrefixes) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).getDeclaredPrefixes(@ptrCast(*const IVBMXNamespaceManager, self), prefixes);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getDeclaredPrefixes(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefixes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_getPrefixes(self: *const T, namespaceURI: ?BSTR, prefixes: ?*?*IMXNamespacePrefixes) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).getPrefixes(@ptrCast(*const IVBMXNamespaceManager, self), namespaceURI, prefixes);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getPrefixes(@as(*const IVBMXNamespaceManager, @ptrCast(self)), namespaceURI, prefixes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_getURI(self: *const T, prefix: ?BSTR, uri: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).getURI(@ptrCast(*const IVBMXNamespaceManager, self), prefix, uri);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURI(@as(*const IVBMXNamespaceManager, @ptrCast(self)), prefix, uri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVBMXNamespaceManager_getURIFromNode(self: *const T, strPrefix: ?BSTR, contextNode: ?*IXMLDOMNode, uri: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IVBMXNamespaceManager.VTable, self.vtable).getURIFromNode(@ptrCast(*const IVBMXNamespaceManager, self), strPrefix, contextNode, uri);
+                return @as(*const IVBMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURIFromNode(@as(*const IVBMXNamespaceManager, @ptrCast(self)), strPrefix, contextNode, uri);
             }
         };
     }
@@ -9426,43 +9426,43 @@ pub const IMXNamespaceManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_putAllowOverride(self: *const T, fOverride: i16) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).putAllowOverride(@ptrCast(*const IMXNamespaceManager, self), fOverride);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).putAllowOverride(@as(*const IMXNamespaceManager, @ptrCast(self)), fOverride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_getAllowOverride(self: *const T, fOverride: ?*i16) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).getAllowOverride(@ptrCast(*const IMXNamespaceManager, self), fOverride);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getAllowOverride(@as(*const IMXNamespaceManager, @ptrCast(self)), fOverride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).reset(@ptrCast(*const IMXNamespaceManager, self));
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).reset(@as(*const IMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_pushContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).pushContext(@ptrCast(*const IMXNamespaceManager, self));
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushContext(@as(*const IMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_pushNodeContext(self: *const T, contextNode: ?*IXMLDOMNode, fDeep: i16) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).pushNodeContext(@ptrCast(*const IMXNamespaceManager, self), contextNode, fDeep);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).pushNodeContext(@as(*const IMXNamespaceManager, @ptrCast(self)), contextNode, fDeep);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_popContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).popContext(@ptrCast(*const IMXNamespaceManager, self));
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).popContext(@as(*const IMXNamespaceManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_declarePrefix(self: *const T, prefix: ?[*:0]const u16, namespaceURI: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).declarePrefix(@ptrCast(*const IMXNamespaceManager, self), prefix, namespaceURI);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).declarePrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), prefix, namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_getDeclaredPrefix(self: *const T, nIndex: i32, pwchPrefix: [*:0]u16, pcchPrefix: ?*i32) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).getDeclaredPrefix(@ptrCast(*const IMXNamespaceManager, self), nIndex, pwchPrefix, pcchPrefix);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getDeclaredPrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), nIndex, pwchPrefix, pcchPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_getPrefix(self: *const T, pwszNamespaceURI: ?[*:0]const u16, nIndex: i32, pwchPrefix: [*:0]u16, pcchPrefix: ?*i32) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).getPrefix(@ptrCast(*const IMXNamespaceManager, self), pwszNamespaceURI, nIndex, pwchPrefix, pcchPrefix);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getPrefix(@as(*const IMXNamespaceManager, @ptrCast(self)), pwszNamespaceURI, nIndex, pwchPrefix, pcchPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXNamespaceManager_getURI(self: *const T, pwchPrefix: ?[*:0]const u16, pContextNode: ?*IXMLDOMNode, pwchUri: [*:0]u16, pcchUri: ?*i32) HRESULT {
-                return @ptrCast(*const IMXNamespaceManager.VTable, self.vtable).getURI(@ptrCast(*const IMXNamespaceManager, self), pwchPrefix, pContextNode, pwchUri, pcchUri);
+                return @as(*const IMXNamespaceManager.VTable, @ptrCast(self.vtable)).getURI(@as(*const IMXNamespaceManager, @ptrCast(self)), pwchPrefix, pContextNode, pwchUri, pcchUri);
             }
         };
     }
@@ -9621,51 +9621,51 @@ pub const IMXXMLFilter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_getFeature(self: *const T, strName: ?BSTR, fValue: ?*i16) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).getFeature(@ptrCast(*const IMXXMLFilter, self), strName, fValue);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).getFeature(@as(*const IMXXMLFilter, @ptrCast(self)), strName, fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putFeature(self: *const T, strName: ?BSTR, fValue: i16) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putFeature(@ptrCast(*const IMXXMLFilter, self), strName, fValue);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putFeature(@as(*const IMXXMLFilter, @ptrCast(self)), strName, fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_getProperty(self: *const T, strName: ?BSTR, varValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).getProperty(@ptrCast(*const IMXXMLFilter, self), strName, varValue);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).getProperty(@as(*const IMXXMLFilter, @ptrCast(self)), strName, varValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putProperty(self: *const T, strName: ?BSTR, varValue: VARIANT) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putProperty(@ptrCast(*const IMXXMLFilter, self), strName, varValue);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putProperty(@as(*const IMXXMLFilter, @ptrCast(self)), strName, varValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_get_entityResolver(self: *const T, oResolver: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).get_entityResolver(@ptrCast(*const IMXXMLFilter, self), oResolver);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_entityResolver(@as(*const IMXXMLFilter, @ptrCast(self)), oResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putref_entityResolver(self: *const T, oResolver: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putref_entityResolver(@ptrCast(*const IMXXMLFilter, self), oResolver);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_entityResolver(@as(*const IMXXMLFilter, @ptrCast(self)), oResolver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_get_contentHandler(self: *const T, oHandler: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).get_contentHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_contentHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putref_contentHandler(self: *const T, oHandler: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putref_contentHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_contentHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_get_dtdHandler(self: *const T, oHandler: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).get_dtdHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_dtdHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putref_dtdHandler(self: *const T, oHandler: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putref_dtdHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_dtdHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_get_errorHandler(self: *const T, oHandler: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).get_errorHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).get_errorHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMXXMLFilter_putref_errorHandler(self: *const T, oHandler: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMXXMLFilter.VTable, self.vtable).putref_errorHandler(@ptrCast(*const IMXXMLFilter, self), oHandler);
+                return @as(*const IMXXMLFilter.VTable, @ptrCast(self.vtable)).putref_errorHandler(@as(*const IMXXMLFilter, @ptrCast(self)), oHandler);
             }
         };
     }
@@ -9963,23 +9963,23 @@ pub const IXMLDOMSchemaCollection2 = extern struct {
             pub usingnamespace IXMLDOMSchemaCollection.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection2_validate(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection2.VTable, self.vtable).validate(@ptrCast(*const IXMLDOMSchemaCollection2, self));
+                return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).validate(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection2_put_validateOnLoad(self: *const T, validateOnLoad: i16) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection2.VTable, self.vtable).put_validateOnLoad(@ptrCast(*const IXMLDOMSchemaCollection2, self), validateOnLoad);
+                return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).put_validateOnLoad(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), validateOnLoad);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection2_get_validateOnLoad(self: *const T, validateOnLoad: ?*i16) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection2.VTable, self.vtable).get_validateOnLoad(@ptrCast(*const IXMLDOMSchemaCollection2, self), validateOnLoad);
+                return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).get_validateOnLoad(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), validateOnLoad);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection2_getSchema(self: *const T, namespaceURI: ?BSTR, schema: ?*?*ISchema) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection2.VTable, self.vtable).getSchema(@ptrCast(*const IXMLDOMSchemaCollection2, self), namespaceURI, schema);
+                return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).getSchema(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), namespaceURI, schema);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLDOMSchemaCollection2_getDeclaration(self: *const T, node: ?*IXMLDOMNode, item: ?*?*ISchemaItem) HRESULT {
-                return @ptrCast(*const IXMLDOMSchemaCollection2.VTable, self.vtable).getDeclaration(@ptrCast(*const IXMLDOMSchemaCollection2, self), node, item);
+                return @as(*const IXMLDOMSchemaCollection2.VTable, @ptrCast(self.vtable)).getDeclaration(@as(*const IXMLDOMSchemaCollection2, @ptrCast(self)), node, item);
             }
         };
     }
@@ -10039,15 +10039,15 @@ pub const ISchemaStringCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaStringCollection_get_item(self: *const T, index: i32, bstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaStringCollection.VTable, self.vtable).get_item(@ptrCast(*const ISchemaStringCollection, self), index, bstr);
+                return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const ISchemaStringCollection, @ptrCast(self)), index, bstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaStringCollection_get_length(self: *const T, length: ?*i32) HRESULT {
-                return @ptrCast(*const ISchemaStringCollection.VTable, self.vtable).get_length(@ptrCast(*const ISchemaStringCollection, self), length);
+                return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaStringCollection, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaStringCollection_get__newEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISchemaStringCollection.VTable, self.vtable).get__newEnum(@ptrCast(*const ISchemaStringCollection, self), ppunk);
+                return @as(*const ISchemaStringCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaStringCollection, @ptrCast(self)), ppunk);
             }
         };
     }
@@ -10133,23 +10133,23 @@ pub const ISchemaItemCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItemCollection_get_item(self: *const T, index: i32, item: ?*?*ISchemaItem) HRESULT {
-                return @ptrCast(*const ISchemaItemCollection.VTable, self.vtable).get_item(@ptrCast(*const ISchemaItemCollection, self), index, item);
+                return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get_item(@as(*const ISchemaItemCollection, @ptrCast(self)), index, item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItemCollection_itemByName(self: *const T, name: ?BSTR, item: ?*?*ISchemaItem) HRESULT {
-                return @ptrCast(*const ISchemaItemCollection.VTable, self.vtable).itemByName(@ptrCast(*const ISchemaItemCollection, self), name, item);
+                return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).itemByName(@as(*const ISchemaItemCollection, @ptrCast(self)), name, item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItemCollection_itemByQName(self: *const T, name: ?BSTR, namespaceURI: ?BSTR, item: ?*?*ISchemaItem) HRESULT {
-                return @ptrCast(*const ISchemaItemCollection.VTable, self.vtable).itemByQName(@ptrCast(*const ISchemaItemCollection, self), name, namespaceURI, item);
+                return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).itemByQName(@as(*const ISchemaItemCollection, @ptrCast(self)), name, namespaceURI, item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItemCollection_get_length(self: *const T, length: ?*i32) HRESULT {
-                return @ptrCast(*const ISchemaItemCollection.VTable, self.vtable).get_length(@ptrCast(*const ISchemaItemCollection, self), length);
+                return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaItemCollection, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItemCollection_get__newEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISchemaItemCollection.VTable, self.vtable).get__newEnum(@ptrCast(*const ISchemaItemCollection, self), ppunk);
+                return @as(*const ISchemaItemCollection.VTable, @ptrCast(self.vtable)).get__newEnum(@as(*const ISchemaItemCollection, @ptrCast(self)), ppunk);
             }
         };
     }
@@ -10258,31 +10258,31 @@ pub const ISchemaItem = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_name(@ptrCast(*const ISchemaItem, self), name);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_name(@as(*const ISchemaItem, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_namespaceURI(self: *const T, namespaceURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_namespaceURI(@ptrCast(*const ISchemaItem, self), namespaceURI);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_namespaceURI(@as(*const ISchemaItem, @ptrCast(self)), namespaceURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_schema(self: *const T, schema: ?*?*ISchema) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_schema(@ptrCast(*const ISchemaItem, self), schema);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_schema(@as(*const ISchemaItem, @ptrCast(self)), schema);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_id(self: *const T, id: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_id(@ptrCast(*const ISchemaItem, self), id);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_id(@as(*const ISchemaItem, @ptrCast(self)), id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_itemType(self: *const T, itemType: ?*SOMITEMTYPE) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_itemType(@ptrCast(*const ISchemaItem, self), itemType);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_itemType(@as(*const ISchemaItem, @ptrCast(self)), itemType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_get_unhandledAttributes(self: *const T, attributes: ?*?*IVBSAXAttributes) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).get_unhandledAttributes(@ptrCast(*const ISchemaItem, self), attributes);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).get_unhandledAttributes(@as(*const ISchemaItem, @ptrCast(self)), attributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaItem_writeAnnotation(self: *const T, annotationSink: ?*IUnknown, isWritten: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaItem.VTable, self.vtable).writeAnnotation(@ptrCast(*const ISchemaItem, self), annotationSink, isWritten);
+                return @as(*const ISchemaItem.VTable, @ptrCast(self.vtable)).writeAnnotation(@as(*const ISchemaItem, @ptrCast(self)), annotationSink, isWritten);
             }
         };
     }
@@ -10418,39 +10418,39 @@ pub const ISchema = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_targetNamespace(self: *const T, targetNamespace: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_targetNamespace(@ptrCast(*const ISchema, self), targetNamespace);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_targetNamespace(@as(*const ISchema, @ptrCast(self)), targetNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_version(self: *const T, version: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_version(@ptrCast(*const ISchema, self), version);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_version(@as(*const ISchema, @ptrCast(self)), version);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_types(self: *const T, types: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_types(@ptrCast(*const ISchema, self), types);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_types(@as(*const ISchema, @ptrCast(self)), types);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_elements(self: *const T, elements: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_elements(@ptrCast(*const ISchema, self), elements);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_elements(@as(*const ISchema, @ptrCast(self)), elements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_attributes(self: *const T, attributes: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_attributes(@ptrCast(*const ISchema, self), attributes);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchema, @ptrCast(self)), attributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_attributeGroups(self: *const T, attributeGroups: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_attributeGroups(@ptrCast(*const ISchema, self), attributeGroups);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_attributeGroups(@as(*const ISchema, @ptrCast(self)), attributeGroups);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_modelGroups(self: *const T, modelGroups: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_modelGroups(@ptrCast(*const ISchema, self), modelGroups);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_modelGroups(@as(*const ISchema, @ptrCast(self)), modelGroups);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_notations(self: *const T, notations: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_notations(@ptrCast(*const ISchema, self), notations);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_notations(@as(*const ISchema, @ptrCast(self)), notations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchema_get_schemaLocations(self: *const T, schemaLocations: ?*?*ISchemaStringCollection) HRESULT {
-                return @ptrCast(*const ISchema.VTable, self.vtable).get_schemaLocations(@ptrCast(*const ISchema, self), schemaLocations);
+                return @as(*const ISchema.VTable, @ptrCast(self.vtable)).get_schemaLocations(@as(*const ISchema, @ptrCast(self)), schemaLocations);
             }
         };
     }
@@ -10495,11 +10495,11 @@ pub const ISchemaParticle = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaParticle_get_minOccurs(self: *const T, minOccurs: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaParticle.VTable, self.vtable).get_minOccurs(@ptrCast(*const ISchemaParticle, self), minOccurs);
+                return @as(*const ISchemaParticle.VTable, @ptrCast(self.vtable)).get_minOccurs(@as(*const ISchemaParticle, @ptrCast(self)), minOccurs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaParticle_get_maxOccurs(self: *const T, maxOccurs: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaParticle.VTable, self.vtable).get_maxOccurs(@ptrCast(*const ISchemaParticle, self), maxOccurs);
+                return @as(*const ISchemaParticle.VTable, @ptrCast(self.vtable)).get_maxOccurs(@as(*const ISchemaParticle, @ptrCast(self)), maxOccurs);
             }
         };
     }
@@ -10596,27 +10596,27 @@ pub const ISchemaAttribute = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_type(self: *const T, type_: ?*?*ISchemaType) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_type(@ptrCast(*const ISchemaAttribute, self), type_);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaAttribute, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_scope(self: *const T, scope: ?*?*ISchemaComplexType) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_scope(@ptrCast(*const ISchemaAttribute, self), scope);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_scope(@as(*const ISchemaAttribute, @ptrCast(self)), scope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_defaultValue(self: *const T, defaultValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_defaultValue(@ptrCast(*const ISchemaAttribute, self), defaultValue);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_defaultValue(@as(*const ISchemaAttribute, @ptrCast(self)), defaultValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_fixedValue(self: *const T, fixedValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_fixedValue(@ptrCast(*const ISchemaAttribute, self), fixedValue);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_fixedValue(@as(*const ISchemaAttribute, @ptrCast(self)), fixedValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_use(self: *const T, use: ?*SCHEMAUSE) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_use(@ptrCast(*const ISchemaAttribute, self), use);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_use(@as(*const ISchemaAttribute, @ptrCast(self)), use);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttribute_get_isReference(self: *const T, reference: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaAttribute.VTable, self.vtable).get_isReference(@ptrCast(*const ISchemaAttribute, self), reference);
+                return @as(*const ISchemaAttribute.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaAttribute, @ptrCast(self)), reference);
             }
         };
     }
@@ -10778,47 +10778,47 @@ pub const ISchemaElement = extern struct {
             pub usingnamespace ISchemaParticle.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_type(self: *const T, type_: ?*?*ISchemaType) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_type(@ptrCast(*const ISchemaElement, self), type_);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_type(@as(*const ISchemaElement, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_scope(self: *const T, scope: ?*?*ISchemaComplexType) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_scope(@ptrCast(*const ISchemaElement, self), scope);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_scope(@as(*const ISchemaElement, @ptrCast(self)), scope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_defaultValue(self: *const T, defaultValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_defaultValue(@ptrCast(*const ISchemaElement, self), defaultValue);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_defaultValue(@as(*const ISchemaElement, @ptrCast(self)), defaultValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_fixedValue(self: *const T, fixedValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_fixedValue(@ptrCast(*const ISchemaElement, self), fixedValue);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_fixedValue(@as(*const ISchemaElement, @ptrCast(self)), fixedValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_isNillable(self: *const T, nillable: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_isNillable(@ptrCast(*const ISchemaElement, self), nillable);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isNillable(@as(*const ISchemaElement, @ptrCast(self)), nillable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_identityConstraints(self: *const T, constraints: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_identityConstraints(@ptrCast(*const ISchemaElement, self), constraints);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_identityConstraints(@as(*const ISchemaElement, @ptrCast(self)), constraints);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_substitutionGroup(self: *const T, element: ?*?*ISchemaElement) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_substitutionGroup(@ptrCast(*const ISchemaElement, self), element);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_substitutionGroup(@as(*const ISchemaElement, @ptrCast(self)), element);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_substitutionGroupExclusions(self: *const T, exclusions: ?*SCHEMADERIVATIONMETHOD) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_substitutionGroupExclusions(@ptrCast(*const ISchemaElement, self), exclusions);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_substitutionGroupExclusions(@as(*const ISchemaElement, @ptrCast(self)), exclusions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_disallowedSubstitutions(self: *const T, disallowed: ?*SCHEMADERIVATIONMETHOD) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_disallowedSubstitutions(@ptrCast(*const ISchemaElement, self), disallowed);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_disallowedSubstitutions(@as(*const ISchemaElement, @ptrCast(self)), disallowed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_isAbstract(self: *const T, abstract: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_isAbstract(@ptrCast(*const ISchemaElement, self), abstract);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isAbstract(@as(*const ISchemaElement, @ptrCast(self)), abstract);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaElement_get_isReference(self: *const T, reference: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaElement.VTable, self.vtable).get_isReference(@ptrCast(*const ISchemaElement, self), reference);
+                return @as(*const ISchemaElement.VTable, @ptrCast(self.vtable)).get_isReference(@as(*const ISchemaElement, @ptrCast(self)), reference);
             }
         };
     }
@@ -11057,71 +11057,71 @@ pub const ISchemaType = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_baseTypes(self: *const T, baseTypes: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_baseTypes(@ptrCast(*const ISchemaType, self), baseTypes);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_baseTypes(@as(*const ISchemaType, @ptrCast(self)), baseTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_final(self: *const T, final: ?*SCHEMADERIVATIONMETHOD) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_final(@ptrCast(*const ISchemaType, self), final);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_final(@as(*const ISchemaType, @ptrCast(self)), final);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_variety(self: *const T, variety: ?*SCHEMATYPEVARIETY) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_variety(@ptrCast(*const ISchemaType, self), variety);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_variety(@as(*const ISchemaType, @ptrCast(self)), variety);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_derivedBy(self: *const T, derivedBy: ?*SCHEMADERIVATIONMETHOD) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_derivedBy(@ptrCast(*const ISchemaType, self), derivedBy);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_derivedBy(@as(*const ISchemaType, @ptrCast(self)), derivedBy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_isValid(self: *const T, data: ?BSTR, valid: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).isValid(@ptrCast(*const ISchemaType, self), data, valid);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).isValid(@as(*const ISchemaType, @ptrCast(self)), data, valid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_minExclusive(self: *const T, minExclusive: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_minExclusive(@ptrCast(*const ISchemaType, self), minExclusive);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minExclusive(@as(*const ISchemaType, @ptrCast(self)), minExclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_minInclusive(self: *const T, minInclusive: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_minInclusive(@ptrCast(*const ISchemaType, self), minInclusive);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minInclusive(@as(*const ISchemaType, @ptrCast(self)), minInclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_maxExclusive(self: *const T, maxExclusive: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_maxExclusive(@ptrCast(*const ISchemaType, self), maxExclusive);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxExclusive(@as(*const ISchemaType, @ptrCast(self)), maxExclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_maxInclusive(self: *const T, maxInclusive: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_maxInclusive(@ptrCast(*const ISchemaType, self), maxInclusive);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxInclusive(@as(*const ISchemaType, @ptrCast(self)), maxInclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_totalDigits(self: *const T, totalDigits: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_totalDigits(@ptrCast(*const ISchemaType, self), totalDigits);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_totalDigits(@as(*const ISchemaType, @ptrCast(self)), totalDigits);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_fractionDigits(self: *const T, fractionDigits: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_fractionDigits(@ptrCast(*const ISchemaType, self), fractionDigits);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_fractionDigits(@as(*const ISchemaType, @ptrCast(self)), fractionDigits);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_length(self: *const T, length: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_length(@ptrCast(*const ISchemaType, self), length);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_length(@as(*const ISchemaType, @ptrCast(self)), length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_minLength(self: *const T, minLength: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_minLength(@ptrCast(*const ISchemaType, self), minLength);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_minLength(@as(*const ISchemaType, @ptrCast(self)), minLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_maxLength(self: *const T, maxLength: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_maxLength(@ptrCast(*const ISchemaType, self), maxLength);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_maxLength(@as(*const ISchemaType, @ptrCast(self)), maxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_enumeration(self: *const T, enumeration: ?*?*ISchemaStringCollection) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_enumeration(@ptrCast(*const ISchemaType, self), enumeration);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_enumeration(@as(*const ISchemaType, @ptrCast(self)), enumeration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_whitespace(self: *const T, whitespace: ?*SCHEMAWHITESPACE) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_whitespace(@ptrCast(*const ISchemaType, self), whitespace);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_whitespace(@as(*const ISchemaType, @ptrCast(self)), whitespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaType_get_patterns(self: *const T, patterns: ?*?*ISchemaStringCollection) HRESULT {
-                return @ptrCast(*const ISchemaType.VTable, self.vtable).get_patterns(@ptrCast(*const ISchemaType, self), patterns);
+                return @as(*const ISchemaType.VTable, @ptrCast(self.vtable)).get_patterns(@as(*const ISchemaType, @ptrCast(self)), patterns);
             }
         };
     }
@@ -11218,27 +11218,27 @@ pub const ISchemaComplexType = extern struct {
             pub usingnamespace ISchemaType.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_isAbstract(self: *const T, abstract: ?*i16) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_isAbstract(@ptrCast(*const ISchemaComplexType, self), abstract);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_isAbstract(@as(*const ISchemaComplexType, @ptrCast(self)), abstract);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_anyAttribute(self: *const T, anyAttribute: ?*?*ISchemaAny) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_anyAttribute(@ptrCast(*const ISchemaComplexType, self), anyAttribute);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_anyAttribute(@as(*const ISchemaComplexType, @ptrCast(self)), anyAttribute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_attributes(self: *const T, attributes: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_attributes(@ptrCast(*const ISchemaComplexType, self), attributes);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchemaComplexType, @ptrCast(self)), attributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_contentType(self: *const T, contentType: ?*SCHEMACONTENTTYPE) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_contentType(@ptrCast(*const ISchemaComplexType, self), contentType);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_contentType(@as(*const ISchemaComplexType, @ptrCast(self)), contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_contentModel(self: *const T, contentModel: ?*?*ISchemaModelGroup) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_contentModel(@ptrCast(*const ISchemaComplexType, self), contentModel);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_contentModel(@as(*const ISchemaComplexType, @ptrCast(self)), contentModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaComplexType_get_prohibitedSubstitutions(self: *const T, prohibited: ?*SCHEMADERIVATIONMETHOD) HRESULT {
-                return @ptrCast(*const ISchemaComplexType.VTable, self.vtable).get_prohibitedSubstitutions(@ptrCast(*const ISchemaComplexType, self), prohibited);
+                return @as(*const ISchemaComplexType.VTable, @ptrCast(self.vtable)).get_prohibitedSubstitutions(@as(*const ISchemaComplexType, @ptrCast(self)), prohibited);
             }
         };
     }
@@ -11283,11 +11283,11 @@ pub const ISchemaAttributeGroup = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttributeGroup_get_anyAttribute(self: *const T, anyAttribute: ?*?*ISchemaAny) HRESULT {
-                return @ptrCast(*const ISchemaAttributeGroup.VTable, self.vtable).get_anyAttribute(@ptrCast(*const ISchemaAttributeGroup, self), anyAttribute);
+                return @as(*const ISchemaAttributeGroup.VTable, @ptrCast(self.vtable)).get_anyAttribute(@as(*const ISchemaAttributeGroup, @ptrCast(self)), anyAttribute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAttributeGroup_get_attributes(self: *const T, attributes: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchemaAttributeGroup.VTable, self.vtable).get_attributes(@ptrCast(*const ISchemaAttributeGroup, self), attributes);
+                return @as(*const ISchemaAttributeGroup.VTable, @ptrCast(self.vtable)).get_attributes(@as(*const ISchemaAttributeGroup, @ptrCast(self)), attributes);
             }
         };
     }
@@ -11319,7 +11319,7 @@ pub const ISchemaModelGroup = extern struct {
             pub usingnamespace ISchemaParticle.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaModelGroup_get_particles(self: *const T, particles: ?*?*ISchemaItemCollection) HRESULT {
-                return @ptrCast(*const ISchemaModelGroup.VTable, self.vtable).get_particles(@ptrCast(*const ISchemaModelGroup, self), particles);
+                return @as(*const ISchemaModelGroup.VTable, @ptrCast(self.vtable)).get_particles(@as(*const ISchemaModelGroup, @ptrCast(self)), particles);
             }
         };
     }
@@ -11364,11 +11364,11 @@ pub const ISchemaAny = extern struct {
             pub usingnamespace ISchemaParticle.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAny_get_namespaces(self: *const T, namespaces: ?*?*ISchemaStringCollection) HRESULT {
-                return @ptrCast(*const ISchemaAny.VTable, self.vtable).get_namespaces(@ptrCast(*const ISchemaAny, self), namespaces);
+                return @as(*const ISchemaAny.VTable, @ptrCast(self.vtable)).get_namespaces(@as(*const ISchemaAny, @ptrCast(self)), namespaces);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaAny_get_processContents(self: *const T, processContents: ?*SCHEMAPROCESSCONTENTS) HRESULT {
-                return @ptrCast(*const ISchemaAny.VTable, self.vtable).get_processContents(@ptrCast(*const ISchemaAny, self), processContents);
+                return @as(*const ISchemaAny.VTable, @ptrCast(self.vtable)).get_processContents(@as(*const ISchemaAny, @ptrCast(self)), processContents);
             }
         };
     }
@@ -11426,15 +11426,15 @@ pub const ISchemaIdentityConstraint = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaIdentityConstraint_get_selector(self: *const T, selector: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaIdentityConstraint.VTable, self.vtable).get_selector(@ptrCast(*const ISchemaIdentityConstraint, self), selector);
+                return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_selector(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), selector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaIdentityConstraint_get_fields(self: *const T, fields: ?*?*ISchemaStringCollection) HRESULT {
-                return @ptrCast(*const ISchemaIdentityConstraint.VTable, self.vtable).get_fields(@ptrCast(*const ISchemaIdentityConstraint, self), fields);
+                return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_fields(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), fields);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaIdentityConstraint_get_referencedKey(self: *const T, key: ?*?*ISchemaIdentityConstraint) HRESULT {
-                return @ptrCast(*const ISchemaIdentityConstraint.VTable, self.vtable).get_referencedKey(@ptrCast(*const ISchemaIdentityConstraint, self), key);
+                return @as(*const ISchemaIdentityConstraint.VTable, @ptrCast(self.vtable)).get_referencedKey(@as(*const ISchemaIdentityConstraint, @ptrCast(self)), key);
             }
         };
     }
@@ -11479,11 +11479,11 @@ pub const ISchemaNotation = extern struct {
             pub usingnamespace ISchemaItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaNotation_get_systemIdentifier(self: *const T, uri: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaNotation.VTable, self.vtable).get_systemIdentifier(@ptrCast(*const ISchemaNotation, self), uri);
+                return @as(*const ISchemaNotation.VTable, @ptrCast(self.vtable)).get_systemIdentifier(@as(*const ISchemaNotation, @ptrCast(self)), uri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchemaNotation_get_publicIdentifier(self: *const T, uri: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISchemaNotation.VTable, self.vtable).get_publicIdentifier(@ptrCast(*const ISchemaNotation, self), uri);
+                return @as(*const ISchemaNotation.VTable, @ptrCast(self.vtable)).get_publicIdentifier(@as(*const ISchemaNotation, @ptrCast(self)), uri);
             }
         };
     }
@@ -11712,23 +11712,23 @@ pub const IXMLHTTPRequest2Callback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2Callback_OnRedirect(self: *const T, pXHR: ?*IXMLHTTPRequest2, pwszRedirectUrl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2Callback.VTable, self.vtable).OnRedirect(@ptrCast(*const IXMLHTTPRequest2Callback, self), pXHR, pwszRedirectUrl);
+                return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnRedirect(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pwszRedirectUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2Callback_OnHeadersAvailable(self: *const T, pXHR: ?*IXMLHTTPRequest2, dwStatus: u32, pwszStatus: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2Callback.VTable, self.vtable).OnHeadersAvailable(@ptrCast(*const IXMLHTTPRequest2Callback, self), pXHR, dwStatus, pwszStatus);
+                return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnHeadersAvailable(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, dwStatus, pwszStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2Callback_OnDataAvailable(self: *const T, pXHR: ?*IXMLHTTPRequest2, pResponseStream: ?*ISequentialStream) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2Callback.VTable, self.vtable).OnDataAvailable(@ptrCast(*const IXMLHTTPRequest2Callback, self), pXHR, pResponseStream);
+                return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnDataAvailable(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pResponseStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2Callback_OnResponseReceived(self: *const T, pXHR: ?*IXMLHTTPRequest2, pResponseStream: ?*ISequentialStream) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2Callback.VTable, self.vtable).OnResponseReceived(@ptrCast(*const IXMLHTTPRequest2Callback, self), pXHR, pResponseStream);
+                return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnResponseReceived(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, pResponseStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2Callback_OnError(self: *const T, pXHR: ?*IXMLHTTPRequest2, hrError: HRESULT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2Callback.VTable, self.vtable).OnError(@ptrCast(*const IXMLHTTPRequest2Callback, self), pXHR, hrError);
+                return @as(*const IXMLHTTPRequest2Callback.VTable, @ptrCast(self.vtable)).OnError(@as(*const IXMLHTTPRequest2Callback, @ptrCast(self)), pXHR, hrError);
             }
         };
     }
@@ -11876,43 +11876,43 @@ pub const IXMLHTTPRequest2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_Open(self: *const T, pwszMethod: ?[*:0]const u16, pwszUrl: ?[*:0]const u16, pStatusCallback: ?*IXMLHTTPRequest2Callback, pwszUserName: ?[*:0]const u16, pwszPassword: ?[*:0]const u16, pwszProxyUserName: ?[*:0]const u16, pwszProxyPassword: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).Open(@ptrCast(*const IXMLHTTPRequest2, self), pwszMethod, pwszUrl, pStatusCallback, pwszUserName, pwszPassword, pwszProxyUserName, pwszProxyPassword);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Open(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszMethod, pwszUrl, pStatusCallback, pwszUserName, pwszPassword, pwszProxyUserName, pwszProxyPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_Send(self: *const T, pBody: ?*ISequentialStream, cbBody: u64) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).Send(@ptrCast(*const IXMLHTTPRequest2, self), pBody, cbBody);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Send(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pBody, cbBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).Abort(@ptrCast(*const IXMLHTTPRequest2, self));
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).Abort(@as(*const IXMLHTTPRequest2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_SetCookie(self: *const T, pCookie: ?*const XHR_COOKIE, pdwCookieState: ?*u32) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).SetCookie(@ptrCast(*const IXMLHTTPRequest2, self), pCookie, pdwCookieState);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetCookie(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pCookie, pdwCookieState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_SetCustomResponseStream(self: *const T, pSequentialStream: ?*ISequentialStream) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).SetCustomResponseStream(@ptrCast(*const IXMLHTTPRequest2, self), pSequentialStream);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetCustomResponseStream(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pSequentialStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_SetProperty(self: *const T, eProperty: XHR_PROPERTY, ullValue: u64) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).SetProperty(@ptrCast(*const IXMLHTTPRequest2, self), eProperty, ullValue);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXMLHTTPRequest2, @ptrCast(self)), eProperty, ullValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_SetRequestHeader(self: *const T, pwszHeader: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).SetRequestHeader(@ptrCast(*const IXMLHTTPRequest2, self), pwszHeader, pwszValue);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).SetRequestHeader(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszHeader, pwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_GetAllResponseHeaders(self: *const T, ppwszHeaders: ?*?*u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).GetAllResponseHeaders(@ptrCast(*const IXMLHTTPRequest2, self), ppwszHeaders);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetAllResponseHeaders(@as(*const IXMLHTTPRequest2, @ptrCast(self)), ppwszHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_GetCookie(self: *const T, pwszUrl: ?[*:0]const u16, pwszName: ?[*:0]const u16, dwFlags: u32, pcCookies: ?*u32, ppCookies: [*]?*XHR_COOKIE) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).GetCookie(@ptrCast(*const IXMLHTTPRequest2, self), pwszUrl, pwszName, dwFlags, pcCookies, ppCookies);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetCookie(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszUrl, pwszName, dwFlags, pcCookies, ppCookies);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest2_GetResponseHeader(self: *const T, pwszHeader: ?[*:0]const u16, ppwszValue: ?*?*u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest2.VTable, self.vtable).GetResponseHeader(@ptrCast(*const IXMLHTTPRequest2, self), pwszHeader, ppwszValue);
+                return @as(*const IXMLHTTPRequest2.VTable, @ptrCast(self.vtable)).GetResponseHeader(@as(*const IXMLHTTPRequest2, @ptrCast(self)), pwszHeader, ppwszValue);
             }
         };
     }
@@ -11967,11 +11967,11 @@ pub const IXMLHTTPRequest3Callback = extern struct {
             pub usingnamespace IXMLHTTPRequest2Callback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest3Callback_OnServerCertificateReceived(self: *const T, pXHR: ?*IXMLHTTPRequest3, dwCertificateErrors: u32, cServerCertificateChain: u32, rgServerCertificateChain: [*]const XHR_CERT) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest3Callback.VTable, self.vtable).OnServerCertificateReceived(@ptrCast(*const IXMLHTTPRequest3Callback, self), pXHR, dwCertificateErrors, cServerCertificateChain, rgServerCertificateChain);
+                return @as(*const IXMLHTTPRequest3Callback.VTable, @ptrCast(self.vtable)).OnServerCertificateReceived(@as(*const IXMLHTTPRequest3Callback, @ptrCast(self)), pXHR, dwCertificateErrors, cServerCertificateChain, rgServerCertificateChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest3Callback_OnClientCertificateRequested(self: *const T, pXHR: ?*IXMLHTTPRequest3, cIssuerList: u32, rgpwszIssuerList: [*]const ?*const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest3Callback.VTable, self.vtable).OnClientCertificateRequested(@ptrCast(*const IXMLHTTPRequest3Callback, self), pXHR, cIssuerList, rgpwszIssuerList);
+                return @as(*const IXMLHTTPRequest3Callback.VTable, @ptrCast(self.vtable)).OnClientCertificateRequested(@as(*const IXMLHTTPRequest3Callback, @ptrCast(self)), pXHR, cIssuerList, rgpwszIssuerList);
             }
         };
     }
@@ -12005,7 +12005,7 @@ pub const IXMLHTTPRequest3 = extern struct {
             pub usingnamespace IXMLHTTPRequest2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLHTTPRequest3_SetClientCertificate(self: *const T, cbClientCertificateHash: u32, pbClientCertificateHash: [*:0]const u8, pwszPin: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLHTTPRequest3.VTable, self.vtable).SetClientCertificate(@ptrCast(*const IXMLHTTPRequest3, self), cbClientCertificateHash, pbClientCertificateHash, pwszPin);
+                return @as(*const IXMLHTTPRequest3.VTable, @ptrCast(self.vtable)).SetClientCertificate(@as(*const IXMLHTTPRequest3, @ptrCast(self)), cbClientCertificateHash, pbClientCertificateHash, pwszPin);
             }
         };
     }

@@ -118,27 +118,27 @@ pub const IEventSystem = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_Query(self: *const T, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32, ppInterface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).Query(@ptrCast(*const IEventSystem, self), progID, queryCriteria, errorIndex, ppInterface);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Query(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex, ppInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_Store(self: *const T, ProgID: ?BSTR, pInterface: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).Store(@ptrCast(*const IEventSystem, self), ProgID, pInterface);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Store(@as(*const IEventSystem, @ptrCast(self)), ProgID, pInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_Remove(self: *const T, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).Remove(@ptrCast(*const IEventSystem, self), progID, queryCriteria, errorIndex);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_get_EventObjectChangeEventClassID(self: *const T, pbstrEventClassID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).get_EventObjectChangeEventClassID(@ptrCast(*const IEventSystem, self), pbstrEventClassID);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).get_EventObjectChangeEventClassID(@as(*const IEventSystem, @ptrCast(self)), pbstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_QueryS(self: *const T, progID: ?BSTR, queryCriteria: ?BSTR, ppInterface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).QueryS(@ptrCast(*const IEventSystem, self), progID, queryCriteria, ppInterface);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).QueryS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, ppInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSystem_RemoveS(self: *const T, progID: ?BSTR, queryCriteria: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSystem.VTable, self.vtable).RemoveS(@ptrCast(*const IEventSystem, self), progID, queryCriteria);
+                return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).RemoveS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria);
             }
         };
     }
@@ -332,59 +332,59 @@ pub const IEventPublisher = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_get_PublisherID(self: *const T, pbstrPublisherID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherID(@ptrCast(*const IEventPublisher, self), pbstrPublisherID);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_put_PublisherID(self: *const T, bstrPublisherID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherID(@ptrCast(*const IEventPublisher, self), bstrPublisherID);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_get_PublisherName(self: *const T, pbstrPublisherName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherName(@ptrCast(*const IEventPublisher, self), pbstrPublisherName);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_put_PublisherName(self: *const T, bstrPublisherName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherName(@ptrCast(*const IEventPublisher, self), bstrPublisherName);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_get_PublisherType(self: *const T, pbstrPublisherType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_PublisherType(@ptrCast(*const IEventPublisher, self), pbstrPublisherType);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_put_PublisherType(self: *const T, bstrPublisherType: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_PublisherType(@ptrCast(*const IEventPublisher, self), bstrPublisherType);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_get_OwnerSID(self: *const T, pbstrOwnerSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_OwnerSID(@ptrCast(*const IEventPublisher, self), pbstrOwnerSID);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), pbstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_put_OwnerSID(self: *const T, bstrOwnerSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_OwnerSID(@ptrCast(*const IEventPublisher, self), bstrOwnerSID);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), bstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_get_Description(self: *const T, pbstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).get_Description(@ptrCast(*const IEventPublisher, self), pbstrDescription);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventPublisher, @ptrCast(self)), pbstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_put_Description(self: *const T, bstrDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).put_Description(@ptrCast(*const IEventPublisher, self), bstrDescription);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventPublisher, @ptrCast(self)), bstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_GetDefaultProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_PutDefaultProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).PutDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).PutDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_RemoveDefaultProperty(self: *const T, bstrPropertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).RemoveDefaultProperty(@ptrCast(*const IEventPublisher, self), bstrPropertyName);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).RemoveDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventPublisher_GetDefaultPropertyCollection(self: *const T, collection: ?*?*IEventObjectCollection) HRESULT {
-                return @ptrCast(*const IEventPublisher.VTable, self.vtable).GetDefaultPropertyCollection(@ptrCast(*const IEventPublisher, self), collection);
+                return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultPropertyCollection(@as(*const IEventPublisher, @ptrCast(self)), collection);
             }
         };
     }
@@ -586,59 +586,59 @@ pub const IEventClass = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_EventClassID(self: *const T, pbstrEventClassID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_EventClassID(@ptrCast(*const IEventClass, self), pbstrEventClassID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_EventClassID(self: *const T, bstrEventClassID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_EventClassID(@ptrCast(*const IEventClass, self), bstrEventClassID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventClass, @ptrCast(self)), bstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_EventClassName(self: *const T, pbstrEventClassName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_EventClassName(@ptrCast(*const IEventClass, self), pbstrEventClassName);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassName(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_EventClassName(self: *const T, bstrEventClassName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_EventClassName(@ptrCast(*const IEventClass, self), bstrEventClassName);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassName(@as(*const IEventClass, @ptrCast(self)), bstrEventClassName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_OwnerSID(self: *const T, pbstrOwnerSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_OwnerSID(@ptrCast(*const IEventClass, self), pbstrOwnerSID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventClass, @ptrCast(self)), pbstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_OwnerSID(self: *const T, bstrOwnerSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_OwnerSID(@ptrCast(*const IEventClass, self), bstrOwnerSID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventClass, @ptrCast(self)), bstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_FiringInterfaceID(self: *const T, pbstrFiringInterfaceID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_FiringInterfaceID(@ptrCast(*const IEventClass, self), pbstrFiringInterfaceID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), pbstrFiringInterfaceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_FiringInterfaceID(self: *const T, bstrFiringInterfaceID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_FiringInterfaceID(@ptrCast(*const IEventClass, self), bstrFiringInterfaceID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), bstrFiringInterfaceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_Description(self: *const T, pbstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_Description(@ptrCast(*const IEventClass, self), pbstrDescription);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventClass, @ptrCast(self)), pbstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_Description(self: *const T, bstrDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_Description(@ptrCast(*const IEventClass, self), bstrDescription);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventClass, @ptrCast(self)), bstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_CustomConfigCLSID(self: *const T, pbstrCustomConfigCLSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_CustomConfigCLSID(@ptrCast(*const IEventClass, self), pbstrCustomConfigCLSID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), pbstrCustomConfigCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_CustomConfigCLSID(self: *const T, bstrCustomConfigCLSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_CustomConfigCLSID(@ptrCast(*const IEventClass, self), bstrCustomConfigCLSID);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), bstrCustomConfigCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_get_TypeLib(self: *const T, pbstrTypeLib: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).get_TypeLib(@ptrCast(*const IEventClass, self), pbstrTypeLib);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_TypeLib(@as(*const IEventClass, @ptrCast(self)), pbstrTypeLib);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass_put_TypeLib(self: *const T, bstrTypeLib: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass.VTable, self.vtable).put_TypeLib(@ptrCast(*const IEventClass, self), bstrTypeLib);
+                return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_TypeLib(@as(*const IEventClass, @ptrCast(self)), bstrTypeLib);
             }
         };
     }
@@ -762,35 +762,35 @@ pub const IEventClass2 = extern struct {
             pub usingnamespace IEventClass.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_get_PublisherID(self: *const T, pbstrPublisherID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).get_PublisherID(@ptrCast(*const IEventClass2, self), pbstrPublisherID);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventClass2, @ptrCast(self)), pbstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_put_PublisherID(self: *const T, bstrPublisherID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).put_PublisherID(@ptrCast(*const IEventClass2, self), bstrPublisherID);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventClass2, @ptrCast(self)), bstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_get_MultiInterfacePublisherFilterCLSID(self: *const T, pbstrPubFilCLSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).get_MultiInterfacePublisherFilterCLSID(@ptrCast(*const IEventClass2, self), pbstrPubFilCLSID);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), pbstrPubFilCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_put_MultiInterfacePublisherFilterCLSID(self: *const T, bstrPubFilCLSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).put_MultiInterfacePublisherFilterCLSID(@ptrCast(*const IEventClass2, self), bstrPubFilCLSID);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), bstrPubFilCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_get_AllowInprocActivation(self: *const T, pfAllowInprocActivation: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).get_AllowInprocActivation(@ptrCast(*const IEventClass2, self), pfAllowInprocActivation);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), pfAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_put_AllowInprocActivation(self: *const T, fAllowInprocActivation: BOOL) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).put_AllowInprocActivation(@ptrCast(*const IEventClass2, self), fAllowInprocActivation);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), fAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_get_FireInParallel(self: *const T, pfFireInParallel: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).get_FireInParallel(@ptrCast(*const IEventClass2, self), pfFireInParallel);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), pfFireInParallel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventClass2_put_FireInParallel(self: *const T, fFireInParallel: BOOL) HRESULT {
-                return @ptrCast(*const IEventClass2.VTable, self.vtable).put_FireInParallel(@ptrCast(*const IEventClass2, self), fFireInParallel);
+                return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), fFireInParallel);
             }
         };
     }
@@ -1236,139 +1236,139 @@ pub const IEventSubscription = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_SubscriptionID(self: *const T, pbstrSubscriptionID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_SubscriptionID(@ptrCast(*const IEventSubscription, self), pbstrSubscriptionID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_SubscriptionID(self: *const T, bstrSubscriptionID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_SubscriptionID(@ptrCast(*const IEventSubscription, self), bstrSubscriptionID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_SubscriptionName(self: *const T, pbstrSubscriptionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_SubscriptionName(@ptrCast(*const IEventSubscription, self), pbstrSubscriptionName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_SubscriptionName(self: *const T, bstrSubscriptionName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_SubscriptionName(@ptrCast(*const IEventSubscription, self), bstrSubscriptionName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_PublisherID(self: *const T, pbstrPublisherID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_PublisherID(@ptrCast(*const IEventSubscription, self), pbstrPublisherID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), pbstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_PublisherID(self: *const T, bstrPublisherID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_PublisherID(@ptrCast(*const IEventSubscription, self), bstrPublisherID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), bstrPublisherID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_EventClassID(self: *const T, pbstrEventClassID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_EventClassID(@ptrCast(*const IEventSubscription, self), pbstrEventClassID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), pbstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_EventClassID(self: *const T, bstrEventClassID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_EventClassID(@ptrCast(*const IEventSubscription, self), bstrEventClassID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), bstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_MethodName(self: *const T, pbstrMethodName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_MethodName(@ptrCast(*const IEventSubscription, self), pbstrMethodName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MethodName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMethodName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_MethodName(self: *const T, bstrMethodName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_MethodName(@ptrCast(*const IEventSubscription, self), bstrMethodName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MethodName(@as(*const IEventSubscription, @ptrCast(self)), bstrMethodName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_SubscriberCLSID(self: *const T, pbstrSubscriberCLSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_SubscriberCLSID(@ptrCast(*const IEventSubscription, self), pbstrSubscriberCLSID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriberCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_SubscriberCLSID(self: *const T, bstrSubscriberCLSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_SubscriberCLSID(@ptrCast(*const IEventSubscription, self), bstrSubscriberCLSID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriberCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_SubscriberInterface(self: *const T, ppSubscriberInterface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_SubscriberInterface(@ptrCast(*const IEventSubscription, self), ppSubscriberInterface);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), ppSubscriberInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_SubscriberInterface(self: *const T, pSubscriberInterface: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_SubscriberInterface(@ptrCast(*const IEventSubscription, self), pSubscriberInterface);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), pSubscriberInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_PerUser(self: *const T, pfPerUser: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_PerUser(@ptrCast(*const IEventSubscription, self), pfPerUser);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IEventSubscription, @ptrCast(self)), pfPerUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_PerUser(self: *const T, fPerUser: BOOL) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_PerUser(@ptrCast(*const IEventSubscription, self), fPerUser);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PerUser(@as(*const IEventSubscription, @ptrCast(self)), fPerUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_OwnerSID(self: *const T, pbstrOwnerSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_OwnerSID(@ptrCast(*const IEventSubscription, self), pbstrOwnerSID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_OwnerSID(self: *const T, bstrOwnerSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_OwnerSID(@ptrCast(*const IEventSubscription, self), bstrOwnerSID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), bstrOwnerSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_Enabled(self: *const T, pfEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_Enabled(@ptrCast(*const IEventSubscription, self), pfEnabled);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IEventSubscription, @ptrCast(self)), pfEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_Enabled(self: *const T, fEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_Enabled(@ptrCast(*const IEventSubscription, self), fEnabled);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IEventSubscription, @ptrCast(self)), fEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_Description(self: *const T, pbstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_Description(@ptrCast(*const IEventSubscription, self), pbstrDescription);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventSubscription, @ptrCast(self)), pbstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_Description(self: *const T, bstrDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_Description(@ptrCast(*const IEventSubscription, self), bstrDescription);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventSubscription, @ptrCast(self)), bstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_MachineName(self: *const T, pbstrMachineName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_MachineName(@ptrCast(*const IEventSubscription, self), pbstrMachineName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MachineName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMachineName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_MachineName(self: *const T, bstrMachineName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_MachineName(@ptrCast(*const IEventSubscription, self), bstrMachineName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MachineName(@as(*const IEventSubscription, @ptrCast(self)), bstrMachineName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_GetPublisherProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).GetPublisherProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_PutPublisherProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).PutPublisherProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_RemovePublisherProperty(self: *const T, bstrPropertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).RemovePublisherProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemovePublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_GetPublisherPropertyCollection(self: *const T, collection: ?*?*IEventObjectCollection) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).GetPublisherPropertyCollection(@ptrCast(*const IEventSubscription, self), collection);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_GetSubscriberProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).GetSubscriberProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_PutSubscriberProperty(self: *const T, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).PutSubscriberProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName, propertyValue);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_RemoveSubscriberProperty(self: *const T, bstrPropertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).RemoveSubscriberProperty(@ptrCast(*const IEventSubscription, self), bstrPropertyName);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemoveSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_GetSubscriberPropertyCollection(self: *const T, collection: ?*?*IEventObjectCollection) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).GetSubscriberPropertyCollection(@ptrCast(*const IEventSubscription, self), collection);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_get_InterfaceID(self: *const T, pbstrInterfaceID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).get_InterfaceID(@ptrCast(*const IEventSubscription, self), pbstrInterfaceID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), pbstrInterfaceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventSubscription_put_InterfaceID(self: *const T, bstrInterfaceID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventSubscription.VTable, self.vtable).put_InterfaceID(@ptrCast(*const IEventSubscription, self), bstrInterfaceID);
+                return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), bstrInterfaceID);
             }
         };
     }
@@ -1398,7 +1398,7 @@ pub const IFiringControl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFiringControl_FireSubscription(self: *const T, subscription: ?*IEventSubscription) HRESULT {
-                return @ptrCast(*const IFiringControl.VTable, self.vtable).FireSubscription(@ptrCast(*const IFiringControl, self), subscription);
+                return @as(*const IFiringControl.VTable, @ptrCast(self.vtable)).FireSubscription(@as(*const IFiringControl, @ptrCast(self)), subscription);
             }
         };
     }
@@ -1442,11 +1442,11 @@ pub const IPublisherFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPublisherFilter_Initialize(self: *const T, methodName: ?BSTR, dispUserDefined: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IPublisherFilter.VTable, self.vtable).Initialize(@ptrCast(*const IPublisherFilter, self), methodName, dispUserDefined);
+                return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPublisherFilter, @ptrCast(self)), methodName, dispUserDefined);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPublisherFilter_PrepareToFire(self: *const T, methodName: ?BSTR, firingControl: ?*IFiringControl) HRESULT {
-                return @ptrCast(*const IPublisherFilter.VTable, self.vtable).PrepareToFire(@ptrCast(*const IPublisherFilter, self), methodName, firingControl);
+                return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IPublisherFilter, @ptrCast(self)), methodName, firingControl);
             }
         };
     }
@@ -1490,11 +1490,11 @@ pub const IMultiInterfacePublisherFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfacePublisherFilter_Initialize(self: *const T, pEIC: ?*IMultiInterfaceEventControl) HRESULT {
-                return @ptrCast(*const IMultiInterfacePublisherFilter.VTable, self.vtable).Initialize(@ptrCast(*const IMultiInterfacePublisherFilter, self), pEIC);
+                return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), pEIC);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfacePublisherFilter_PrepareToFire(self: *const T, iid: ?*const Guid, methodName: ?BSTR, firingControl: ?*IFiringControl) HRESULT {
-                return @ptrCast(*const IMultiInterfacePublisherFilter.VTable, self.vtable).PrepareToFire(@ptrCast(*const IMultiInterfacePublisherFilter, self), iid, methodName, firingControl);
+                return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), iid, methodName, firingControl);
             }
         };
     }
@@ -1559,15 +1559,15 @@ pub const IEventObjectChange = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectChange_ChangedSubscription(self: *const T, changeType: EOC_ChangeType, bstrSubscriptionID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventObjectChange.VTable, self.vtable).ChangedSubscription(@ptrCast(*const IEventObjectChange, self), changeType, bstrSubscriptionID);
+                return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrSubscriptionID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectChange_ChangedEventClass(self: *const T, changeType: EOC_ChangeType, bstrEventClassID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventObjectChange.VTable, self.vtable).ChangedEventClass(@ptrCast(*const IEventObjectChange, self), changeType, bstrEventClassID);
+                return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrEventClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectChange_ChangedPublisher(self: *const T, changeType: EOC_ChangeType, bstrPublisherID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventObjectChange.VTable, self.vtable).ChangedPublisher(@ptrCast(*const IEventObjectChange, self), changeType, bstrPublisherID);
+                return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedPublisher(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrPublisherID);
             }
         };
     }
@@ -1616,11 +1616,11 @@ pub const IEventObjectChange2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectChange2_ChangedSubscription(self: *const T, pInfo: ?*COMEVENTSYSCHANGEINFO) HRESULT {
-                return @ptrCast(*const IEventObjectChange2.VTable, self.vtable).ChangedSubscription(@ptrCast(*const IEventObjectChange2, self), pInfo);
+                return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectChange2_ChangedEventClass(self: *const T, pInfo: ?*COMEVENTSYSCHANGEINFO) HRESULT {
-                return @ptrCast(*const IEventObjectChange2.VTable, self.vtable).ChangedEventClass(@ptrCast(*const IEventObjectChange2, self), pInfo);
+                return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
             }
         };
     }
@@ -1682,19 +1682,19 @@ pub const IEnumEventObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEventObject_Clone(self: *const T, ppInterface: ?*?*IEnumEventObject) HRESULT {
-                return @ptrCast(*const IEnumEventObject.VTable, self.vtable).Clone(@ptrCast(*const IEnumEventObject, self), ppInterface);
+                return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumEventObject, @ptrCast(self)), ppInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEventObject_Next(self: *const T, cReqElem: u32, ppInterface: [*]?*IUnknown, cRetElem: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumEventObject.VTable, self.vtable).Next(@ptrCast(*const IEnumEventObject, self), cReqElem, ppInterface, cRetElem);
+                return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumEventObject, @ptrCast(self)), cReqElem, ppInterface, cRetElem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEventObject_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumEventObject.VTable, self.vtable).Reset(@ptrCast(*const IEnumEventObject, self));
+                return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumEventObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEventObject_Skip(self: *const T, cSkipElem: u32) HRESULT {
-                return @ptrCast(*const IEnumEventObject.VTable, self.vtable).Skip(@ptrCast(*const IEnumEventObject, self), cSkipElem);
+                return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumEventObject, @ptrCast(self)), cSkipElem);
             }
         };
     }
@@ -1790,27 +1790,27 @@ pub const IEventObjectCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_get__NewEnum(self: *const T, ppUnkEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IEventObjectCollection, self), ppUnkEnum);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppUnkEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_get_Item(self: *const T, objectID: ?BSTR, pItem: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).get_Item(@ptrCast(*const IEventObjectCollection, self), objectID, pItem);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IEventObjectCollection, @ptrCast(self)), objectID, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_get_NewEnum(self: *const T, ppEnum: ?*?*IEnumEventObject) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).get_NewEnum(@ptrCast(*const IEventObjectCollection, self), ppEnum);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).get_Count(@ptrCast(*const IEventObjectCollection, self), pCount);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IEventObjectCollection, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_Add(self: *const T, item: ?*VARIANT, objectID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).Add(@ptrCast(*const IEventObjectCollection, self), item, objectID);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IEventObjectCollection, @ptrCast(self)), item, objectID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventObjectCollection_Remove(self: *const T, objectID: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventObjectCollection.VTable, self.vtable).Remove(@ptrCast(*const IEventObjectCollection, self), objectID);
+                return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventObjectCollection, @ptrCast(self)), objectID);
             }
         };
     }
@@ -1882,19 +1882,19 @@ pub const IEventProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventProperty_get_Name(self: *const T, propertyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Name(@ptrCast(*const IEventProperty, self), propertyName);
+                return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventProperty_put_Name(self: *const T, propertyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Name(@ptrCast(*const IEventProperty, self), propertyName);
+                return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventProperty_get_Value(self: *const T, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventProperty.VTable, self.vtable).get_Value(@ptrCast(*const IEventProperty, self), propertyValue);
+                return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventProperty_put_Value(self: *const T, propertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEventProperty.VTable, self.vtable).put_Value(@ptrCast(*const IEventProperty, self), propertyValue);
+                return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
             }
         };
     }
@@ -1982,23 +1982,23 @@ pub const IEventControl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventControl_SetPublisherFilter(self: *const T, methodName: ?BSTR, pPublisherFilter: ?*IPublisherFilter) HRESULT {
-                return @ptrCast(*const IEventControl.VTable, self.vtable).SetPublisherFilter(@ptrCast(*const IEventControl, self), methodName, pPublisherFilter);
+                return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetPublisherFilter(@as(*const IEventControl, @ptrCast(self)), methodName, pPublisherFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventControl_get_AllowInprocActivation(self: *const T, pfAllowInprocActivation: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEventControl.VTable, self.vtable).get_AllowInprocActivation(@ptrCast(*const IEventControl, self), pfAllowInprocActivation);
+                return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), pfAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventControl_put_AllowInprocActivation(self: *const T, fAllowInprocActivation: BOOL) HRESULT {
-                return @ptrCast(*const IEventControl.VTable, self.vtable).put_AllowInprocActivation(@ptrCast(*const IEventControl, self), fAllowInprocActivation);
+                return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), fAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventControl_GetSubscriptions(self: *const T, methodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) HRESULT {
-                return @ptrCast(*const IEventControl.VTable, self.vtable).GetSubscriptions(@ptrCast(*const IEventControl, self), methodName, optionalCriteria, optionalErrorIndex, ppCollection);
+                return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IEventControl, @ptrCast(self)), methodName, optionalCriteria, optionalErrorIndex, ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEventControl_SetDefaultQuery(self: *const T, methodName: ?BSTR, criteria: ?BSTR, errorIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEventControl.VTable, self.vtable).SetDefaultQuery(@ptrCast(*const IEventControl, self), methodName, criteria, errorIndex);
+                return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IEventControl, @ptrCast(self)), methodName, criteria, errorIndex);
             }
         };
     }
@@ -2114,31 +2114,31 @@ pub const IMultiInterfaceEventControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_SetMultiInterfacePublisherFilter(self: *const T, classFilter: ?*IMultiInterfacePublisherFilter) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).SetMultiInterfacePublisherFilter(@ptrCast(*const IMultiInterfaceEventControl, self), classFilter);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetMultiInterfacePublisherFilter(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), classFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_GetSubscriptions(self: *const T, eventIID: ?*const Guid, bstrMethodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).GetSubscriptions(@ptrCast(*const IMultiInterfaceEventControl, self), eventIID, bstrMethodName, optionalCriteria, optionalErrorIndex, ppCollection);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, optionalCriteria, optionalErrorIndex, ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_SetDefaultQuery(self: *const T, eventIID: ?*const Guid, bstrMethodName: ?BSTR, bstrCriteria: ?BSTR, errorIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).SetDefaultQuery(@ptrCast(*const IMultiInterfaceEventControl, self), eventIID, bstrMethodName, bstrCriteria, errorIndex);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, bstrCriteria, errorIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_get_AllowInprocActivation(self: *const T, pfAllowInprocActivation: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).get_AllowInprocActivation(@ptrCast(*const IMultiInterfaceEventControl, self), pfAllowInprocActivation);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_put_AllowInprocActivation(self: *const T, fAllowInprocActivation: BOOL) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).put_AllowInprocActivation(@ptrCast(*const IMultiInterfaceEventControl, self), fAllowInprocActivation);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fAllowInprocActivation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_get_FireInParallel(self: *const T, pfFireInParallel: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).get_FireInParallel(@ptrCast(*const IMultiInterfaceEventControl, self), pfFireInParallel);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfFireInParallel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMultiInterfaceEventControl_put_FireInParallel(self: *const T, fFireInParallel: BOOL) HRESULT {
-                return @ptrCast(*const IMultiInterfaceEventControl.VTable, self.vtable).put_FireInParallel(@ptrCast(*const IMultiInterfaceEventControl, self), fFireInParallel);
+                return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fFireInParallel);
             }
         };
     }

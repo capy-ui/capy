@@ -13,7 +13,7 @@ pub const CapyWidget = *capy.Widget;
 /// Returns 0 on success, and 1 or above on error
 export fn capy_init_backend() c_int {
     capy.backend.init() catch |err| {
-        return @intCast(c_int, @intFromError(err) + 1);
+        return @as(c_int, @intCast(@intFromError(err) + 1));
     };
     return 0;
 }
@@ -52,7 +52,7 @@ export fn capy_window_set_preferred_size(window: CapyWindow, width: c_uint, heig
 export fn capy_window_set(window: CapyWindow, widget: CapyWidget) c_int {
     // TODO: do something about original widget object
     window.set(widget.*) catch |err| {
-        return @intCast(c_int, @intFromError(err) + 1);
+        return @as(c_int, @intCast(@intFromError(err) + 1));
     };
     return 0;
 }

@@ -2112,71 +2112,71 @@ pub const IFaxJobStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_Status(self: *const T, pStatus: ?*FAX_JOB_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_Status(@ptrCast(*const IFaxJobStatus, self), pStatus);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxJobStatus, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_Pages(self: *const T, plPages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_Pages(@ptrCast(*const IFaxJobStatus, self), plPages);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxJobStatus, @ptrCast(self)), plPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_Size(self: *const T, plSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_Size(@ptrCast(*const IFaxJobStatus, self), plSize);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxJobStatus, @ptrCast(self)), plSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_CurrentPage(self: *const T, plCurrentPage: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_CurrentPage(@ptrCast(*const IFaxJobStatus, self), plCurrentPage);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxJobStatus, @ptrCast(self)), plCurrentPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_DeviceId(self: *const T, plDeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_DeviceId(@ptrCast(*const IFaxJobStatus, self), plDeviceId);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxJobStatus, @ptrCast(self)), plDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxJobStatus, self), pbstrCSID);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxJobStatus, self), pbstrTSID);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_ExtendedStatusCode(self: *const T, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxJobStatus, self), pExtendedStatusCode);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxJobStatus, @ptrCast(self)), pExtendedStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxJobStatus, self), pbstrExtendedStatus);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrExtendedStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_AvailableOperations(self: *const T, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_AvailableOperations(@ptrCast(*const IFaxJobStatus, self), pAvailableOperations);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxJobStatus, @ptrCast(self)), pAvailableOperations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxJobStatus, self), plRetries);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxJobStatus, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_JobType(self: *const T, pJobType: ?*FAX_JOB_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_JobType(@ptrCast(*const IFaxJobStatus, self), pJobType);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_JobType(@as(*const IFaxJobStatus, @ptrCast(self)), pJobType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_ScheduledTime(self: *const T, pdateScheduledTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_ScheduledTime(@ptrCast(*const IFaxJobStatus, self), pdateScheduledTime);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_ScheduledTime(@as(*const IFaxJobStatus, @ptrCast(self)), pdateScheduledTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_TransmissionStart(self: *const T, pdateTransmissionStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_TransmissionStart(@ptrCast(*const IFaxJobStatus, self), pdateTransmissionStart);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxJobStatus, @ptrCast(self)), pdateTransmissionStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_TransmissionEnd(self: *const T, pdateTransmissionEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxJobStatus, self), pdateTransmissionEnd);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxJobStatus, @ptrCast(self)), pdateTransmissionEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_CallerId(self: *const T, pbstrCallerId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxJobStatus, self), pbstrCallerId);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrCallerId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxJobStatus_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxJobStatus.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxJobStatus, self), pbstrRoutingInformation);
+                return @as(*const IFaxJobStatus.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxJobStatus, @ptrCast(self)), pbstrRoutingInformation);
             }
         };
     }
@@ -2553,107 +2553,107 @@ pub const IFaxServer = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_Connect(self: *const T, bstrServerName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).Connect(@ptrCast(*const IFaxServer, self), bstrServerName);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).Connect(@as(*const IFaxServer, @ptrCast(self)), bstrServerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_ServerName(self: *const T, pbstrServerName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_ServerName(@ptrCast(*const IFaxServer, self), pbstrServerName);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_ServerName(@as(*const IFaxServer, @ptrCast(self)), pbstrServerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_GetDeviceProviders(self: *const T, ppFaxDeviceProviders: ?*?*IFaxDeviceProviders) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).GetDeviceProviders(@ptrCast(*const IFaxServer, self), ppFaxDeviceProviders);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetDeviceProviders(@as(*const IFaxServer, @ptrCast(self)), ppFaxDeviceProviders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_GetDevices(self: *const T, ppFaxDevices: ?*?*IFaxDevices) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).GetDevices(@ptrCast(*const IFaxServer, self), ppFaxDevices);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetDevices(@as(*const IFaxServer, @ptrCast(self)), ppFaxDevices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_InboundRouting(self: *const T, ppFaxInboundRouting: ?*?*IFaxInboundRouting) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_InboundRouting(@ptrCast(*const IFaxServer, self), ppFaxInboundRouting);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_InboundRouting(@as(*const IFaxServer, @ptrCast(self)), ppFaxInboundRouting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_Folders(self: *const T, pFaxFolders: ?*?*IFaxFolders) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Folders(@ptrCast(*const IFaxServer, self), pFaxFolders);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Folders(@as(*const IFaxServer, @ptrCast(self)), pFaxFolders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_LoggingOptions(self: *const T, ppFaxLoggingOptions: ?*?*IFaxLoggingOptions) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_LoggingOptions(@ptrCast(*const IFaxServer, self), ppFaxLoggingOptions);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_LoggingOptions(@as(*const IFaxServer, @ptrCast(self)), ppFaxLoggingOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_MajorVersion(self: *const T, plMajorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_MajorVersion(@ptrCast(*const IFaxServer, self), plMajorVersion);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxServer, @ptrCast(self)), plMajorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_MinorVersion(self: *const T, plMinorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_MinorVersion(@ptrCast(*const IFaxServer, self), plMinorVersion);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxServer, @ptrCast(self)), plMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_MajorBuild(self: *const T, plMajorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_MajorBuild(@ptrCast(*const IFaxServer, self), plMajorBuild);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxServer, @ptrCast(self)), plMajorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_MinorBuild(self: *const T, plMinorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_MinorBuild(@ptrCast(*const IFaxServer, self), plMinorBuild);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxServer, @ptrCast(self)), plMinorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_Debug(self: *const T, pbDebug: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Debug(@ptrCast(*const IFaxServer, self), pbDebug);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxServer, @ptrCast(self)), pbDebug);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_Activity(self: *const T, ppFaxActivity: ?*?*IFaxActivity) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Activity(@ptrCast(*const IFaxServer, self), ppFaxActivity);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Activity(@as(*const IFaxServer, @ptrCast(self)), ppFaxActivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_OutboundRouting(self: *const T, ppFaxOutboundRouting: ?*?*IFaxOutboundRouting) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_OutboundRouting(@ptrCast(*const IFaxServer, self), ppFaxOutboundRouting);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_OutboundRouting(@as(*const IFaxServer, @ptrCast(self)), ppFaxOutboundRouting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_ReceiptOptions(self: *const T, ppFaxReceiptOptions: ?*?*IFaxReceiptOptions) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_ReceiptOptions(@ptrCast(*const IFaxServer, self), ppFaxReceiptOptions);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_ReceiptOptions(@as(*const IFaxServer, @ptrCast(self)), ppFaxReceiptOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_Security(self: *const T, ppFaxSecurity: ?*?*IFaxSecurity) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_Security(@ptrCast(*const IFaxServer, self), ppFaxSecurity);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IFaxServer, @ptrCast(self)), ppFaxSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_Disconnect(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).Disconnect(@ptrCast(*const IFaxServer, self));
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IFaxServer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_GetExtensionProperty(self: *const T, bstrGUID: ?BSTR, pvProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).GetExtensionProperty(@ptrCast(*const IFaxServer, self), bstrGUID, pvProperty);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).GetExtensionProperty(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, pvProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_SetExtensionProperty(self: *const T, bstrGUID: ?BSTR, vProperty: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).SetExtensionProperty(@ptrCast(*const IFaxServer, self), bstrGUID, vProperty);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).SetExtensionProperty(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, vProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_ListenToServerEvents(self: *const T, EventTypes: FAX_SERVER_EVENTS_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).ListenToServerEvents(@ptrCast(*const IFaxServer, self), EventTypes);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).ListenToServerEvents(@as(*const IFaxServer, @ptrCast(self)), EventTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_RegisterDeviceProvider(self: *const T, bstrGUID: ?BSTR, bstrFriendlyName: ?BSTR, bstrImageName: ?BSTR, TspName: ?BSTR, lFSPIVersion: i32) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).RegisterDeviceProvider(@ptrCast(*const IFaxServer, self), bstrGUID, bstrFriendlyName, bstrImageName, TspName, lFSPIVersion);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).RegisterDeviceProvider(@as(*const IFaxServer, @ptrCast(self)), bstrGUID, bstrFriendlyName, bstrImageName, TspName, lFSPIVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_UnregisterDeviceProvider(self: *const T, bstrUniqueName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).UnregisterDeviceProvider(@ptrCast(*const IFaxServer, self), bstrUniqueName);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IFaxServer, @ptrCast(self)), bstrUniqueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_RegisterInboundRoutingExtension(self: *const T, bstrExtensionName: ?BSTR, bstrFriendlyName: ?BSTR, bstrImageName: ?BSTR, vMethods: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).RegisterInboundRoutingExtension(@ptrCast(*const IFaxServer, self), bstrExtensionName, bstrFriendlyName, bstrImageName, vMethods);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).RegisterInboundRoutingExtension(@as(*const IFaxServer, @ptrCast(self)), bstrExtensionName, bstrFriendlyName, bstrImageName, vMethods);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_UnregisterInboundRoutingExtension(self: *const T, bstrExtensionUniqueName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).UnregisterInboundRoutingExtension(@ptrCast(*const IFaxServer, self), bstrExtensionUniqueName);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).UnregisterInboundRoutingExtension(@as(*const IFaxServer, @ptrCast(self)), bstrExtensionUniqueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_RegisteredEvents(self: *const T, pEventTypes: ?*FAX_SERVER_EVENTS_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_RegisteredEvents(@ptrCast(*const IFaxServer, self), pEventTypes);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_RegisteredEvents(@as(*const IFaxServer, @ptrCast(self)), pEventTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer_get_APIVersion(self: *const T, pAPIVersion: ?*FAX_SERVER_APIVERSION_ENUM) HRESULT {
-                return @ptrCast(*const IFaxServer.VTable, self.vtable).get_APIVersion(@ptrCast(*const IFaxServer, self), pAPIVersion);
+                return @as(*const IFaxServer.VTable, @ptrCast(self.vtable)).get_APIVersion(@as(*const IFaxServer, @ptrCast(self)), pAPIVersion);
             }
         };
     }
@@ -2714,15 +2714,15 @@ pub const IFaxDeviceProviders = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProviders_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxDeviceProviders.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDeviceProviders, self), ppUnk);
+                return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDeviceProviders, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProviders_get_Item(self: *const T, vIndex: VARIANT, pFaxDeviceProvider: ?*?*IFaxDeviceProvider) HRESULT {
-                return @ptrCast(*const IFaxDeviceProviders.VTable, self.vtable).get_Item(@ptrCast(*const IFaxDeviceProviders, self), vIndex, pFaxDeviceProvider);
+                return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDeviceProviders, @ptrCast(self)), vIndex, pFaxDeviceProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProviders_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProviders.VTable, self.vtable).get_Count(@ptrCast(*const IFaxDeviceProviders, self), plCount);
+                return @as(*const IFaxDeviceProviders.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDeviceProviders, @ptrCast(self)), plCount);
             }
         };
     }
@@ -2798,19 +2798,19 @@ pub const IFaxDevices = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevices_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxDevices.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDevices, self), ppUnk);
+                return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDevices, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevices_get_Item(self: *const T, vIndex: VARIANT, pFaxDevice: ?*?*IFaxDevice) HRESULT {
-                return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_Item(@ptrCast(*const IFaxDevices, self), vIndex, pFaxDevice);
+                return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDevices, @ptrCast(self)), vIndex, pFaxDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevices_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_Count(@ptrCast(*const IFaxDevices, self), plCount);
+                return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDevices, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevices_get_ItemById(self: *const T, lId: i32, ppFaxDevice: ?*?*IFaxDevice) HRESULT {
-                return @ptrCast(*const IFaxDevices.VTable, self.vtable).get_ItemById(@ptrCast(*const IFaxDevices, self), lId, ppFaxDevice);
+                return @as(*const IFaxDevices.VTable, @ptrCast(self.vtable)).get_ItemById(@as(*const IFaxDevices, @ptrCast(self)), lId, ppFaxDevice);
             }
         };
     }
@@ -2850,11 +2850,11 @@ pub const IFaxInboundRouting = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRouting_GetExtensions(self: *const T, pFaxInboundRoutingExtensions: ?*?*IFaxInboundRoutingExtensions) HRESULT {
-                return @ptrCast(*const IFaxInboundRouting.VTable, self.vtable).GetExtensions(@ptrCast(*const IFaxInboundRouting, self), pFaxInboundRoutingExtensions);
+                return @as(*const IFaxInboundRouting.VTable, @ptrCast(self.vtable)).GetExtensions(@as(*const IFaxInboundRouting, @ptrCast(self)), pFaxInboundRoutingExtensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRouting_GetMethods(self: *const T, pFaxInboundRoutingMethods: ?*?*IFaxInboundRoutingMethods) HRESULT {
-                return @ptrCast(*const IFaxInboundRouting.VTable, self.vtable).GetMethods(@ptrCast(*const IFaxInboundRouting, self), pFaxInboundRoutingMethods);
+                return @as(*const IFaxInboundRouting.VTable, @ptrCast(self.vtable)).GetMethods(@as(*const IFaxInboundRouting, @ptrCast(self)), pFaxInboundRoutingMethods);
             }
         };
     }
@@ -2926,19 +2926,19 @@ pub const IFaxFolders = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: ?*?*IFaxOutgoingQueue) HRESULT {
-                return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_OutgoingQueue(@ptrCast(*const IFaxFolders, self), pFaxOutgoingQueue);
+                return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_OutgoingQueue(@as(*const IFaxFolders, @ptrCast(self)), pFaxOutgoingQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: ?*?*IFaxIncomingQueue) HRESULT {
-                return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_IncomingQueue(@ptrCast(*const IFaxFolders, self), pFaxIncomingQueue);
+                return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_IncomingQueue(@as(*const IFaxFolders, @ptrCast(self)), pFaxIncomingQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: ?*?*IFaxIncomingArchive) HRESULT {
-                return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_IncomingArchive(@ptrCast(*const IFaxFolders, self), pFaxIncomingArchive);
+                return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_IncomingArchive(@as(*const IFaxFolders, @ptrCast(self)), pFaxIncomingArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: ?*?*IFaxOutgoingArchive) HRESULT {
-                return @ptrCast(*const IFaxFolders.VTable, self.vtable).get_OutgoingArchive(@ptrCast(*const IFaxFolders, self), pFaxOutgoingArchive);
+                return @as(*const IFaxFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxFolders, @ptrCast(self)), pFaxOutgoingArchive);
             }
         };
     }
@@ -2984,11 +2984,11 @@ pub const IFaxLoggingOptions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxLoggingOptions_get_EventLogging(self: *const T, pFaxEventLogging: ?*?*IFaxEventLogging) HRESULT {
-                return @ptrCast(*const IFaxLoggingOptions.VTable, self.vtable).get_EventLogging(@ptrCast(*const IFaxLoggingOptions, self), pFaxEventLogging);
+                return @as(*const IFaxLoggingOptions.VTable, @ptrCast(self.vtable)).get_EventLogging(@as(*const IFaxLoggingOptions, @ptrCast(self)), pFaxEventLogging);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxLoggingOptions_get_ActivityLogging(self: *const T, pFaxActivityLogging: ?*?*IFaxActivityLogging) HRESULT {
-                return @ptrCast(*const IFaxLoggingOptions.VTable, self.vtable).get_ActivityLogging(@ptrCast(*const IFaxLoggingOptions, self), pFaxActivityLogging);
+                return @as(*const IFaxLoggingOptions.VTable, @ptrCast(self.vtable)).get_ActivityLogging(@as(*const IFaxLoggingOptions, @ptrCast(self)), pFaxActivityLogging);
             }
         };
     }
@@ -3068,23 +3068,23 @@ pub const IFaxActivity = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivity_get_IncomingMessages(self: *const T, plIncomingMessages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxActivity.VTable, self.vtable).get_IncomingMessages(@ptrCast(*const IFaxActivity, self), plIncomingMessages);
+                return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_IncomingMessages(@as(*const IFaxActivity, @ptrCast(self)), plIncomingMessages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivity_get_RoutingMessages(self: *const T, plRoutingMessages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxActivity.VTable, self.vtable).get_RoutingMessages(@ptrCast(*const IFaxActivity, self), plRoutingMessages);
+                return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_RoutingMessages(@as(*const IFaxActivity, @ptrCast(self)), plRoutingMessages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivity_get_OutgoingMessages(self: *const T, plOutgoingMessages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxActivity.VTable, self.vtable).get_OutgoingMessages(@ptrCast(*const IFaxActivity, self), plOutgoingMessages);
+                return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_OutgoingMessages(@as(*const IFaxActivity, @ptrCast(self)), plOutgoingMessages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivity_get_QueuedMessages(self: *const T, plQueuedMessages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxActivity.VTable, self.vtable).get_QueuedMessages(@ptrCast(*const IFaxActivity, self), plQueuedMessages);
+                return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).get_QueuedMessages(@as(*const IFaxActivity, @ptrCast(self)), plQueuedMessages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivity_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxActivity.VTable, self.vtable).Refresh(@ptrCast(*const IFaxActivity, self));
+                return @as(*const IFaxActivity.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxActivity, @ptrCast(self)));
             }
         };
     }
@@ -3124,11 +3124,11 @@ pub const IFaxOutboundRouting = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRouting_GetGroups(self: *const T, pFaxOutboundRoutingGroups: ?*?*IFaxOutboundRoutingGroups) HRESULT {
-                return @ptrCast(*const IFaxOutboundRouting.VTable, self.vtable).GetGroups(@ptrCast(*const IFaxOutboundRouting, self), pFaxOutboundRoutingGroups);
+                return @as(*const IFaxOutboundRouting.VTable, @ptrCast(self.vtable)).GetGroups(@as(*const IFaxOutboundRouting, @ptrCast(self)), pFaxOutboundRoutingGroups);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRouting_GetRules(self: *const T, pFaxOutboundRoutingRules: ?*?*IFaxOutboundRoutingRules) HRESULT {
-                return @ptrCast(*const IFaxOutboundRouting.VTable, self.vtable).GetRules(@ptrCast(*const IFaxOutboundRouting, self), pFaxOutboundRoutingRules);
+                return @as(*const IFaxOutboundRouting.VTable, @ptrCast(self.vtable)).GetRules(@as(*const IFaxOutboundRouting, @ptrCast(self)), pFaxOutboundRoutingRules);
             }
         };
     }
@@ -3390,75 +3390,75 @@ pub const IFaxReceiptOptions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_AuthenticationType(self: *const T, pType: ?*FAX_SMTP_AUTHENTICATION_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_AuthenticationType(@ptrCast(*const IFaxReceiptOptions, self), pType);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_AuthenticationType(@as(*const IFaxReceiptOptions, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_AuthenticationType(self: *const T, Type: FAX_SMTP_AUTHENTICATION_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_AuthenticationType(@ptrCast(*const IFaxReceiptOptions, self), Type);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_AuthenticationType(@as(*const IFaxReceiptOptions, @ptrCast(self)), Type);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_SMTPServer(self: *const T, pbstrSMTPServer: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPServer(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPServer);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPServer(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_SMTPServer(self: *const T, bstrSMTPServer: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPServer(@ptrCast(*const IFaxReceiptOptions, self), bstrSMTPServer);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPServer(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_SMTPPort(self: *const T, plSMTPPort: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPPort(@ptrCast(*const IFaxReceiptOptions, self), plSMTPPort);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPPort(@as(*const IFaxReceiptOptions, @ptrCast(self)), plSMTPPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_SMTPPort(self: *const T, lSMTPPort: i32) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPPort(@ptrCast(*const IFaxReceiptOptions, self), lSMTPPort);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPPort(@as(*const IFaxReceiptOptions, @ptrCast(self)), lSMTPPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_SMTPSender(self: *const T, pbstrSMTPSender: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPSender(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPSender);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPSender(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPSender);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_SMTPSender(self: *const T, bstrSMTPSender: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPSender(@ptrCast(*const IFaxReceiptOptions, self), bstrSMTPSender);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPSender(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPSender);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_SMTPUser(self: *const T, pbstrSMTPUser: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPUser(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPUser);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPUser(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_SMTPUser(self: *const T, bstrSMTPUser: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPUser(@ptrCast(*const IFaxReceiptOptions, self), bstrSMTPUser);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPUser(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_AllowedReceipts(self: *const T, pAllowedReceipts: ?*FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_AllowedReceipts(@ptrCast(*const IFaxReceiptOptions, self), pAllowedReceipts);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_AllowedReceipts(@as(*const IFaxReceiptOptions, @ptrCast(self)), pAllowedReceipts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_AllowedReceipts(self: *const T, AllowedReceipts: FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_AllowedReceipts(@ptrCast(*const IFaxReceiptOptions, self), AllowedReceipts);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_AllowedReceipts(@as(*const IFaxReceiptOptions, @ptrCast(self)), AllowedReceipts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_SMTPPassword(self: *const T, pbstrSMTPPassword: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_SMTPPassword(@ptrCast(*const IFaxReceiptOptions, self), pbstrSMTPPassword);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_SMTPPassword(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbstrSMTPPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_SMTPPassword(self: *const T, bstrSMTPPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_SMTPPassword(@ptrCast(*const IFaxReceiptOptions, self), bstrSMTPPassword);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_SMTPPassword(@as(*const IFaxReceiptOptions, @ptrCast(self)), bstrSMTPPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).Refresh(@ptrCast(*const IFaxReceiptOptions, self));
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxReceiptOptions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).Save(@ptrCast(*const IFaxReceiptOptions, self));
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxReceiptOptions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_get_UseForInboundRouting(self: *const T, pbUseForInboundRouting: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).get_UseForInboundRouting(@ptrCast(*const IFaxReceiptOptions, self), pbUseForInboundRouting);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).get_UseForInboundRouting(@as(*const IFaxReceiptOptions, @ptrCast(self)), pbUseForInboundRouting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxReceiptOptions_put_UseForInboundRouting(self: *const T, bUseForInboundRouting: i16) HRESULT {
-                return @ptrCast(*const IFaxReceiptOptions.VTable, self.vtable).put_UseForInboundRouting(@ptrCast(*const IFaxReceiptOptions, self), bUseForInboundRouting);
+                return @as(*const IFaxReceiptOptions.VTable, @ptrCast(self.vtable)).put_UseForInboundRouting(@as(*const IFaxReceiptOptions, @ptrCast(self)), bUseForInboundRouting);
             }
         };
     }
@@ -3584,31 +3584,31 @@ pub const IFaxSecurity = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_get_Descriptor(self: *const T, pvDescriptor: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).get_Descriptor(@ptrCast(*const IFaxSecurity, self), pvDescriptor);
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_Descriptor(@as(*const IFaxSecurity, @ptrCast(self)), pvDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_put_Descriptor(self: *const T, vDescriptor: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).put_Descriptor(@ptrCast(*const IFaxSecurity, self), vDescriptor);
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).put_Descriptor(@as(*const IFaxSecurity, @ptrCast(self)), vDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_get_GrantedRights(self: *const T, pGrantedRights: ?*FAX_ACCESS_RIGHTS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).get_GrantedRights(@ptrCast(*const IFaxSecurity, self), pGrantedRights);
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_GrantedRights(@as(*const IFaxSecurity, @ptrCast(self)), pGrantedRights);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).Refresh(@ptrCast(*const IFaxSecurity, self));
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxSecurity, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).Save(@ptrCast(*const IFaxSecurity, self));
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxSecurity, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_get_InformationType(self: *const T, plInformationType: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).get_InformationType(@ptrCast(*const IFaxSecurity, self), plInformationType);
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).get_InformationType(@as(*const IFaxSecurity, @ptrCast(self)), plInformationType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity_put_InformationType(self: *const T, lInformationType: i32) HRESULT {
-                return @ptrCast(*const IFaxSecurity.VTable, self.vtable).put_InformationType(@ptrCast(*const IFaxSecurity, self), lInformationType);
+                return @as(*const IFaxSecurity.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity, @ptrCast(self)), lInformationType);
             }
         };
     }
@@ -4092,139 +4092,139 @@ pub const IFaxDocument = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Body(self: *const T, pbstrBody: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Body(@ptrCast(*const IFaxDocument, self), pbstrBody);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IFaxDocument, @ptrCast(self)), pbstrBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_Body(self: *const T, bstrBody: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Body(@ptrCast(*const IFaxDocument, self), bstrBody);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IFaxDocument, @ptrCast(self)), bstrBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxDocument, self), ppFaxSender);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxDocument, @ptrCast(self)), ppFaxSender);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Recipients(self: *const T, ppFaxRecipients: ?*?*IFaxRecipients) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Recipients(@ptrCast(*const IFaxDocument, self), ppFaxRecipients);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Recipients(@as(*const IFaxDocument, @ptrCast(self)), ppFaxRecipients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_CoverPage(self: *const T, pbstrCoverPage: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_CoverPage(@ptrCast(*const IFaxDocument, self), pbstrCoverPage);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CoverPage(@as(*const IFaxDocument, @ptrCast(self)), pbstrCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_CoverPage(self: *const T, bstrCoverPage: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_CoverPage(@ptrCast(*const IFaxDocument, self), bstrCoverPage);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CoverPage(@as(*const IFaxDocument, @ptrCast(self)), bstrCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Subject(self: *const T, pbstrSubject: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxDocument, self), pbstrSubject);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxDocument, @ptrCast(self)), pbstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_Subject(self: *const T, bstrSubject: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Subject(@ptrCast(*const IFaxDocument, self), bstrSubject);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IFaxDocument, @ptrCast(self)), bstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Note(self: *const T, pbstrNote: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Note(@ptrCast(*const IFaxDocument, self), pbstrNote);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Note(@as(*const IFaxDocument, @ptrCast(self)), pbstrNote);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_Note(self: *const T, bstrNote: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Note(@ptrCast(*const IFaxDocument, self), bstrNote);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Note(@as(*const IFaxDocument, @ptrCast(self)), bstrNote);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_ScheduleTime(self: *const T, pdateScheduleTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_ScheduleTime(@ptrCast(*const IFaxDocument, self), pdateScheduleTime);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ScheduleTime(@as(*const IFaxDocument, @ptrCast(self)), pdateScheduleTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_ScheduleTime(self: *const T, dateScheduleTime: f64) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ScheduleTime(@ptrCast(*const IFaxDocument, self), dateScheduleTime);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ScheduleTime(@as(*const IFaxDocument, @ptrCast(self)), dateScheduleTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxDocument, self), pbstrReceiptAddress);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxDocument, @ptrCast(self)), pbstrReceiptAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_ReceiptAddress(self: *const T, bstrReceiptAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ReceiptAddress(@ptrCast(*const IFaxDocument, self), bstrReceiptAddress);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ReceiptAddress(@as(*const IFaxDocument, @ptrCast(self)), bstrReceiptAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_DocumentName(self: *const T, pbstrDocumentName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxDocument, self), pbstrDocumentName);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxDocument, @ptrCast(self)), pbstrDocumentName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_DocumentName(self: *const T, bstrDocumentName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_DocumentName(@ptrCast(*const IFaxDocument, self), bstrDocumentName);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_DocumentName(@as(*const IFaxDocument, @ptrCast(self)), bstrDocumentName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_CallHandle(self: *const T, plCallHandle: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_CallHandle(@ptrCast(*const IFaxDocument, self), plCallHandle);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CallHandle(@as(*const IFaxDocument, @ptrCast(self)), plCallHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_CallHandle(self: *const T, lCallHandle: i32) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_CallHandle(@ptrCast(*const IFaxDocument, self), lCallHandle);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CallHandle(@as(*const IFaxDocument, @ptrCast(self)), lCallHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_CoverPageType(self: *const T, pCoverPageType: ?*FAX_COVERPAGE_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_CoverPageType(@ptrCast(*const IFaxDocument, self), pCoverPageType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_CoverPageType(@as(*const IFaxDocument, @ptrCast(self)), pCoverPageType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_CoverPageType(self: *const T, CoverPageType: FAX_COVERPAGE_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_CoverPageType(@ptrCast(*const IFaxDocument, self), CoverPageType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_CoverPageType(@as(*const IFaxDocument, @ptrCast(self)), CoverPageType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_ScheduleType(self: *const T, pScheduleType: ?*FAX_SCHEDULE_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_ScheduleType(@ptrCast(*const IFaxDocument, self), pScheduleType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ScheduleType(@as(*const IFaxDocument, @ptrCast(self)), pScheduleType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_ScheduleType(self: *const T, ScheduleType: FAX_SCHEDULE_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ScheduleType(@ptrCast(*const IFaxDocument, self), ScheduleType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ScheduleType(@as(*const IFaxDocument, @ptrCast(self)), ScheduleType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_ReceiptType(self: *const T, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_ReceiptType(@ptrCast(*const IFaxDocument, self), pReceiptType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxDocument, @ptrCast(self)), pReceiptType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_ReceiptType(self: *const T, ReceiptType: FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_ReceiptType(@ptrCast(*const IFaxDocument, self), ReceiptType);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_ReceiptType(@as(*const IFaxDocument, @ptrCast(self)), ReceiptType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_GroupBroadcastReceipts(self: *const T, pbUseGrouping: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_GroupBroadcastReceipts(@ptrCast(*const IFaxDocument, self), pbUseGrouping);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_GroupBroadcastReceipts(@as(*const IFaxDocument, @ptrCast(self)), pbUseGrouping);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_GroupBroadcastReceipts(self: *const T, bUseGrouping: i16) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_GroupBroadcastReceipts(@ptrCast(*const IFaxDocument, self), bUseGrouping);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_GroupBroadcastReceipts(@as(*const IFaxDocument, @ptrCast(self)), bUseGrouping);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_Priority(self: *const T, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxDocument, self), pPriority);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxDocument, @ptrCast(self)), pPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_Priority(self: *const T, Priority: FAX_PRIORITY_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_Priority(@ptrCast(*const IFaxDocument, self), Priority);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IFaxDocument, @ptrCast(self)), Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_TapiConnection(self: *const T, ppTapiConnection: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_TapiConnection(@ptrCast(*const IFaxDocument, self), ppTapiConnection);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_TapiConnection(@as(*const IFaxDocument, @ptrCast(self)), ppTapiConnection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_putref_TapiConnection(self: *const T, pTapiConnection: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).putref_TapiConnection(@ptrCast(*const IFaxDocument, self), pTapiConnection);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).putref_TapiConnection(@as(*const IFaxDocument, @ptrCast(self)), pTapiConnection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_Submit(self: *const T, bstrFaxServerName: ?BSTR, pvFaxOutgoingJobIDs: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).Submit(@ptrCast(*const IFaxDocument, self), bstrFaxServerName, pvFaxOutgoingJobIDs);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).Submit(@as(*const IFaxDocument, @ptrCast(self)), bstrFaxServerName, pvFaxOutgoingJobIDs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_ConnectedSubmit(self: *const T, pFaxServer: ?*IFaxServer, pvFaxOutgoingJobIDs: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).ConnectedSubmit(@ptrCast(*const IFaxDocument, self), pFaxServer, pvFaxOutgoingJobIDs);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).ConnectedSubmit(@as(*const IFaxDocument, @ptrCast(self)), pFaxServer, pvFaxOutgoingJobIDs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_get_AttachFaxToReceipt(self: *const T, pbAttachFax: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).get_AttachFaxToReceipt(@ptrCast(*const IFaxDocument, self), pbAttachFax);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).get_AttachFaxToReceipt(@as(*const IFaxDocument, @ptrCast(self)), pbAttachFax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument_put_AttachFaxToReceipt(self: *const T, bAttachFax: i16) HRESULT {
-                return @ptrCast(*const IFaxDocument.VTable, self.vtable).put_AttachFaxToReceipt(@ptrCast(*const IFaxDocument, self), bAttachFax);
+                return @as(*const IFaxDocument.VTable, @ptrCast(self.vtable)).put_AttachFaxToReceipt(@as(*const IFaxDocument, @ptrCast(self)), bAttachFax);
             }
         };
     }
@@ -4676,139 +4676,139 @@ pub const IFaxSender = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_BillingCode(self: *const T, pbstrBillingCode: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_BillingCode(@ptrCast(*const IFaxSender, self), pbstrBillingCode);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_BillingCode(@as(*const IFaxSender, @ptrCast(self)), pbstrBillingCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_BillingCode(self: *const T, bstrBillingCode: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_BillingCode(@ptrCast(*const IFaxSender, self), bstrBillingCode);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_BillingCode(@as(*const IFaxSender, @ptrCast(self)), bstrBillingCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_City(self: *const T, pbstrCity: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_City(@ptrCast(*const IFaxSender, self), pbstrCity);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_City(@as(*const IFaxSender, @ptrCast(self)), pbstrCity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_City(self: *const T, bstrCity: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_City(@ptrCast(*const IFaxSender, self), bstrCity);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_City(@as(*const IFaxSender, @ptrCast(self)), bstrCity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Company(self: *const T, pbstrCompany: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Company(@ptrCast(*const IFaxSender, self), pbstrCompany);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Company(@as(*const IFaxSender, @ptrCast(self)), pbstrCompany);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Company(self: *const T, bstrCompany: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Company(@ptrCast(*const IFaxSender, self), bstrCompany);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Company(@as(*const IFaxSender, @ptrCast(self)), bstrCompany);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Country(self: *const T, pbstrCountry: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Country(@ptrCast(*const IFaxSender, self), pbstrCountry);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Country(@as(*const IFaxSender, @ptrCast(self)), pbstrCountry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Country(self: *const T, bstrCountry: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Country(@ptrCast(*const IFaxSender, self), bstrCountry);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Country(@as(*const IFaxSender, @ptrCast(self)), bstrCountry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Department(self: *const T, pbstrDepartment: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Department(@ptrCast(*const IFaxSender, self), pbstrDepartment);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Department(@as(*const IFaxSender, @ptrCast(self)), pbstrDepartment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Department(self: *const T, bstrDepartment: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Department(@ptrCast(*const IFaxSender, self), bstrDepartment);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Department(@as(*const IFaxSender, @ptrCast(self)), bstrDepartment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Email(self: *const T, pbstrEmail: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Email(@ptrCast(*const IFaxSender, self), pbstrEmail);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Email(@as(*const IFaxSender, @ptrCast(self)), pbstrEmail);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Email(self: *const T, bstrEmail: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Email(@ptrCast(*const IFaxSender, self), bstrEmail);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Email(@as(*const IFaxSender, @ptrCast(self)), bstrEmail);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_FaxNumber(self: *const T, pbstrFaxNumber: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IFaxSender, self), pbstrFaxNumber);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IFaxSender, @ptrCast(self)), pbstrFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_FaxNumber(self: *const T, bstrFaxNumber: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_FaxNumber(@ptrCast(*const IFaxSender, self), bstrFaxNumber);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IFaxSender, @ptrCast(self)), bstrFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_HomePhone(self: *const T, pbstrHomePhone: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_HomePhone(@ptrCast(*const IFaxSender, self), pbstrHomePhone);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_HomePhone(@as(*const IFaxSender, @ptrCast(self)), pbstrHomePhone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_HomePhone(self: *const T, bstrHomePhone: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_HomePhone(@ptrCast(*const IFaxSender, self), bstrHomePhone);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_HomePhone(@as(*const IFaxSender, @ptrCast(self)), bstrHomePhone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Name(@ptrCast(*const IFaxSender, self), pbstrName);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxSender, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Name(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Name(@ptrCast(*const IFaxSender, self), bstrName);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFaxSender, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxSender, self), pbstrTSID);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxSender, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_TSID(self: *const T, bstrTSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_TSID(@ptrCast(*const IFaxSender, self), bstrTSID);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_TSID(@as(*const IFaxSender, @ptrCast(self)), bstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_OfficePhone(self: *const T, pbstrOfficePhone: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_OfficePhone(@ptrCast(*const IFaxSender, self), pbstrOfficePhone);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_OfficePhone(@as(*const IFaxSender, @ptrCast(self)), pbstrOfficePhone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_OfficePhone(self: *const T, bstrOfficePhone: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_OfficePhone(@ptrCast(*const IFaxSender, self), bstrOfficePhone);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_OfficePhone(@as(*const IFaxSender, @ptrCast(self)), bstrOfficePhone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_OfficeLocation(self: *const T, pbstrOfficeLocation: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_OfficeLocation(@ptrCast(*const IFaxSender, self), pbstrOfficeLocation);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_OfficeLocation(@as(*const IFaxSender, @ptrCast(self)), pbstrOfficeLocation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_OfficeLocation(self: *const T, bstrOfficeLocation: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_OfficeLocation(@ptrCast(*const IFaxSender, self), bstrOfficeLocation);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_OfficeLocation(@as(*const IFaxSender, @ptrCast(self)), bstrOfficeLocation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_State(self: *const T, pbstrState: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_State(@ptrCast(*const IFaxSender, self), pbstrState);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_State(@as(*const IFaxSender, @ptrCast(self)), pbstrState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_State(self: *const T, bstrState: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_State(@ptrCast(*const IFaxSender, self), bstrState);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_State(@as(*const IFaxSender, @ptrCast(self)), bstrState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_StreetAddress(self: *const T, pbstrStreetAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_StreetAddress(@ptrCast(*const IFaxSender, self), pbstrStreetAddress);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_StreetAddress(@as(*const IFaxSender, @ptrCast(self)), pbstrStreetAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_StreetAddress(self: *const T, bstrStreetAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_StreetAddress(@ptrCast(*const IFaxSender, self), bstrStreetAddress);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_StreetAddress(@as(*const IFaxSender, @ptrCast(self)), bstrStreetAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_Title(self: *const T, pbstrTitle: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_Title(@ptrCast(*const IFaxSender, self), pbstrTitle);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IFaxSender, @ptrCast(self)), pbstrTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_Title(self: *const T, bstrTitle: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_Title(@ptrCast(*const IFaxSender, self), bstrTitle);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_Title(@as(*const IFaxSender, @ptrCast(self)), bstrTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_get_ZipCode(self: *const T, pbstrZipCode: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).get_ZipCode(@ptrCast(*const IFaxSender, self), pbstrZipCode);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).get_ZipCode(@as(*const IFaxSender, @ptrCast(self)), pbstrZipCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_put_ZipCode(self: *const T, bstrZipCode: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).put_ZipCode(@ptrCast(*const IFaxSender, self), bstrZipCode);
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).put_ZipCode(@as(*const IFaxSender, @ptrCast(self)), bstrZipCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_LoadDefaultSender(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).LoadDefaultSender(@ptrCast(*const IFaxSender, self));
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).LoadDefaultSender(@as(*const IFaxSender, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSender_SaveDefaultSender(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSender.VTable, self.vtable).SaveDefaultSender(@ptrCast(*const IFaxSender, self));
+                return @as(*const IFaxSender.VTable, @ptrCast(self.vtable)).SaveDefaultSender(@as(*const IFaxSender, @ptrCast(self)));
             }
         };
     }
@@ -4880,19 +4880,19 @@ pub const IFaxRecipient = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipient_get_FaxNumber(self: *const T, pbstrFaxNumber: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxRecipient.VTable, self.vtable).get_FaxNumber(@ptrCast(*const IFaxRecipient, self), pbstrFaxNumber);
+                return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).get_FaxNumber(@as(*const IFaxRecipient, @ptrCast(self)), pbstrFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipient_put_FaxNumber(self: *const T, bstrFaxNumber: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxRecipient.VTable, self.vtable).put_FaxNumber(@ptrCast(*const IFaxRecipient, self), bstrFaxNumber);
+                return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).put_FaxNumber(@as(*const IFaxRecipient, @ptrCast(self)), bstrFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipient_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxRecipient.VTable, self.vtable).get_Name(@ptrCast(*const IFaxRecipient, self), pbstrName);
+                return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxRecipient, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipient_put_Name(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxRecipient.VTable, self.vtable).put_Name(@ptrCast(*const IFaxRecipient, self), bstrName);
+                return @as(*const IFaxRecipient.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFaxRecipient, @ptrCast(self)), bstrName);
             }
         };
     }
@@ -4977,23 +4977,23 @@ pub const IFaxRecipients = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipients_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxRecipients, self), ppUnk);
+                return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxRecipients, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipients_get_Item(self: *const T, lIndex: i32, ppFaxRecipient: ?*?*IFaxRecipient) HRESULT {
-                return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get_Item(@ptrCast(*const IFaxRecipients, self), lIndex, ppFaxRecipient);
+                return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxRecipients, @ptrCast(self)), lIndex, ppFaxRecipient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipients_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxRecipients.VTable, self.vtable).get_Count(@ptrCast(*const IFaxRecipients, self), plCount);
+                return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxRecipients, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipients_Add(self: *const T, bstrFaxNumber: ?BSTR, bstrRecipientName: ?BSTR, ppFaxRecipient: ?*?*IFaxRecipient) HRESULT {
-                return @ptrCast(*const IFaxRecipients.VTable, self.vtable).Add(@ptrCast(*const IFaxRecipients, self), bstrFaxNumber, bstrRecipientName, ppFaxRecipient);
+                return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxRecipients, @ptrCast(self)), bstrFaxNumber, bstrRecipientName, ppFaxRecipient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxRecipients_Remove(self: *const T, lIndex: i32) HRESULT {
-                return @ptrCast(*const IFaxRecipients.VTable, self.vtable).Remove(@ptrCast(*const IFaxRecipients, self), lIndex);
+                return @as(*const IFaxRecipients.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxRecipients, @ptrCast(self)), lIndex);
             }
         };
     }
@@ -5235,75 +5235,75 @@ pub const IFaxIncomingArchive = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_UseArchive(self: *const T, pbUseArchive: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_UseArchive(@ptrCast(*const IFaxIncomingArchive, self), pbUseArchive);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_UseArchive(self: *const T, bUseArchive: i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxIncomingArchive, self), bUseArchive);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxIncomingArchive, @ptrCast(self)), bUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_ArchiveFolder(@ptrCast(*const IFaxIncomingArchive, self), pbstrArchiveFolder);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_ArchiveFolder(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbstrArchiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_ArchiveFolder(self: *const T, bstrArchiveFolder: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_ArchiveFolder(@ptrCast(*const IFaxIncomingArchive, self), bstrArchiveFolder);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_ArchiveFolder(@as(*const IFaxIncomingArchive, @ptrCast(self)), bstrArchiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_SizeQuotaWarning(self: *const T, pbSizeQuotaWarning: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_SizeQuotaWarning(@ptrCast(*const IFaxIncomingArchive, self), pbSizeQuotaWarning);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxIncomingArchive, @ptrCast(self)), pbSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_SizeQuotaWarning(self: *const T, bSizeQuotaWarning: i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_SizeQuotaWarning(@ptrCast(*const IFaxIncomingArchive, self), bSizeQuotaWarning);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxIncomingArchive, @ptrCast(self)), bSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_HighQuotaWaterMark(self: *const T, plHighQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_HighQuotaWaterMark(@ptrCast(*const IFaxIncomingArchive, self), plHighQuotaWaterMark);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), plHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_HighQuotaWaterMark(self: *const T, lHighQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_HighQuotaWaterMark(@ptrCast(*const IFaxIncomingArchive, self), lHighQuotaWaterMark);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), lHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_LowQuotaWaterMark(self: *const T, plLowQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_LowQuotaWaterMark(@ptrCast(*const IFaxIncomingArchive, self), plLowQuotaWaterMark);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), plLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_LowQuotaWaterMark(self: *const T, lLowQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_LowQuotaWaterMark(@ptrCast(*const IFaxIncomingArchive, self), lLowQuotaWaterMark);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxIncomingArchive, @ptrCast(self)), lLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_AgeLimit(self: *const T, plAgeLimit: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_AgeLimit(@ptrCast(*const IFaxIncomingArchive, self), plAgeLimit);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxIncomingArchive, @ptrCast(self)), plAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_put_AgeLimit(self: *const T, lAgeLimit: i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).put_AgeLimit(@ptrCast(*const IFaxIncomingArchive, self), lAgeLimit);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxIncomingArchive, @ptrCast(self)), lAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_SizeLow(self: *const T, plSizeLow: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_SizeLow(@ptrCast(*const IFaxIncomingArchive, self), plSizeLow);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxIncomingArchive, @ptrCast(self)), plSizeLow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_get_SizeHigh(self: *const T, plSizeHigh: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).get_SizeHigh(@ptrCast(*const IFaxIncomingArchive, self), plSizeHigh);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxIncomingArchive, @ptrCast(self)), plSizeHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxIncomingArchive, self));
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).Save(@ptrCast(*const IFaxIncomingArchive, self));
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxIncomingArchive, @ptrCast(self)), lPrefetchSize, pFaxIncomingMessageIterator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingArchive_GetMessage(self: *const T, bstrMessageId: ?BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) HRESULT {
-                return @ptrCast(*const IFaxIncomingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
+                return @as(*const IFaxIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
             }
         };
     }
@@ -5387,27 +5387,27 @@ pub const IFaxIncomingQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_get_Blocked(self: *const T, pbBlocked: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).get_Blocked(@ptrCast(*const IFaxIncomingQueue, self), pbBlocked);
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).get_Blocked(@as(*const IFaxIncomingQueue, @ptrCast(self)), pbBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_put_Blocked(self: *const T, bBlocked: i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).put_Blocked(@ptrCast(*const IFaxIncomingQueue, self), bBlocked);
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).put_Blocked(@as(*const IFaxIncomingQueue, @ptrCast(self)), bBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).Refresh(@ptrCast(*const IFaxIncomingQueue, self));
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).Save(@ptrCast(*const IFaxIncomingQueue, self));
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxIncomingQueue, self), pFaxIncomingJobs);
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxIncomingQueue, @ptrCast(self)), pFaxIncomingJobs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingQueue_GetJob(self: *const T, bstrJobId: ?BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) HRESULT {
-                return @ptrCast(*const IFaxIncomingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxIncomingQueue, self), bstrJobId, pFaxIncomingJob);
+                return @as(*const IFaxIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
             }
         };
     }
@@ -5649,75 +5649,75 @@ pub const IFaxOutgoingArchive = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_UseArchive(self: *const T, pbUseArchive: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_UseArchive(@ptrCast(*const IFaxOutgoingArchive, self), pbUseArchive);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_UseArchive(self: *const T, bUseArchive: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxOutgoingArchive, self), bUseArchive);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_ArchiveFolder(self: *const T, pbstrArchiveFolder: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_ArchiveFolder(@ptrCast(*const IFaxOutgoingArchive, self), pbstrArchiveFolder);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_ArchiveFolder(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbstrArchiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_ArchiveFolder(self: *const T, bstrArchiveFolder: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_ArchiveFolder(@ptrCast(*const IFaxOutgoingArchive, self), bstrArchiveFolder);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_ArchiveFolder(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bstrArchiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_SizeQuotaWarning(self: *const T, pbSizeQuotaWarning: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_SizeQuotaWarning(@ptrCast(*const IFaxOutgoingArchive, self), pbSizeQuotaWarning);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxOutgoingArchive, @ptrCast(self)), pbSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_SizeQuotaWarning(self: *const T, bSizeQuotaWarning: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_SizeQuotaWarning(@ptrCast(*const IFaxOutgoingArchive, self), bSizeQuotaWarning);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_HighQuotaWaterMark(self: *const T, plHighQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_HighQuotaWaterMark(@ptrCast(*const IFaxOutgoingArchive, self), plHighQuotaWaterMark);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_HighQuotaWaterMark(self: *const T, lHighQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_HighQuotaWaterMark(@ptrCast(*const IFaxOutgoingArchive, self), lHighQuotaWaterMark);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_LowQuotaWaterMark(self: *const T, plLowQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_LowQuotaWaterMark(@ptrCast(*const IFaxOutgoingArchive, self), plLowQuotaWaterMark);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_LowQuotaWaterMark(self: *const T, lLowQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_LowQuotaWaterMark(@ptrCast(*const IFaxOutgoingArchive, self), lLowQuotaWaterMark);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_AgeLimit(self: *const T, plAgeLimit: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_AgeLimit(@ptrCast(*const IFaxOutgoingArchive, self), plAgeLimit);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_put_AgeLimit(self: *const T, lAgeLimit: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).put_AgeLimit(@ptrCast(*const IFaxOutgoingArchive, self), lAgeLimit);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_SizeLow(self: *const T, plSizeLow: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_SizeLow(@ptrCast(*const IFaxOutgoingArchive, self), plSizeLow);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plSizeLow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_get_SizeHigh(self: *const T, plSizeHigh: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).get_SizeHigh(@ptrCast(*const IFaxOutgoingArchive, self), plSizeHigh);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxOutgoingArchive, @ptrCast(self)), plSizeHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxOutgoingArchive, self));
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).Save(@ptrCast(*const IFaxOutgoingArchive, self));
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxOutgoingArchive, @ptrCast(self)), lPrefetchSize, pFaxOutgoingMessageIterator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingArchive_GetMessage(self: *const T, bstrMessageId: ?BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) HRESULT {
-                return @ptrCast(*const IFaxOutgoingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
+                return @as(*const IFaxOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
             }
         };
     }
@@ -6035,99 +6035,99 @@ pub const IFaxOutgoingQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_Blocked(self: *const T, pbBlocked: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_Blocked(@ptrCast(*const IFaxOutgoingQueue, self), pbBlocked);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Blocked(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_Blocked(self: *const T, bBlocked: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_Blocked(@ptrCast(*const IFaxOutgoingQueue, self), bBlocked);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Blocked(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_Paused(self: *const T, pbPaused: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_Paused(@ptrCast(*const IFaxOutgoingQueue, self), pbPaused);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Paused(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_Paused(self: *const T, bPaused: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_Paused(@ptrCast(*const IFaxOutgoingQueue, self), bPaused);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Paused(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_AllowPersonalCoverPages(self: *const T, pbAllowPersonalCoverPages: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_AllowPersonalCoverPages(@ptrCast(*const IFaxOutgoingQueue, self), pbAllowPersonalCoverPages);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_AllowPersonalCoverPages(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbAllowPersonalCoverPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_AllowPersonalCoverPages(self: *const T, bAllowPersonalCoverPages: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_AllowPersonalCoverPages(@ptrCast(*const IFaxOutgoingQueue, self), bAllowPersonalCoverPages);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_AllowPersonalCoverPages(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bAllowPersonalCoverPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_UseDeviceTSID(self: *const T, pbUseDeviceTSID: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_UseDeviceTSID(@ptrCast(*const IFaxOutgoingQueue, self), pbUseDeviceTSID);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_UseDeviceTSID(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbUseDeviceTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_UseDeviceTSID(self: *const T, bUseDeviceTSID: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_UseDeviceTSID(@ptrCast(*const IFaxOutgoingQueue, self), bUseDeviceTSID);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_UseDeviceTSID(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bUseDeviceTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxOutgoingQueue, self), plRetries);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_Retries(self: *const T, lRetries: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_Retries(@ptrCast(*const IFaxOutgoingQueue, self), lRetries);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Retries(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_RetryDelay(self: *const T, plRetryDelay: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_RetryDelay(@ptrCast(*const IFaxOutgoingQueue, self), plRetryDelay);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_RetryDelay(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plRetryDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_RetryDelay(self: *const T, lRetryDelay: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_RetryDelay(@ptrCast(*const IFaxOutgoingQueue, self), lRetryDelay);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_RetryDelay(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lRetryDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_DiscountRateStart(self: *const T, pdateDiscountRateStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_DiscountRateStart(@ptrCast(*const IFaxOutgoingQueue, self), pdateDiscountRateStart);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_DiscountRateStart(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pdateDiscountRateStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_DiscountRateStart(self: *const T, dateDiscountRateStart: f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_DiscountRateStart(@ptrCast(*const IFaxOutgoingQueue, self), dateDiscountRateStart);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_DiscountRateStart(@as(*const IFaxOutgoingQueue, @ptrCast(self)), dateDiscountRateStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_DiscountRateEnd(self: *const T, pdateDiscountRateEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_DiscountRateEnd(@ptrCast(*const IFaxOutgoingQueue, self), pdateDiscountRateEnd);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_DiscountRateEnd(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pdateDiscountRateEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_DiscountRateEnd(self: *const T, dateDiscountRateEnd: f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_DiscountRateEnd(@ptrCast(*const IFaxOutgoingQueue, self), dateDiscountRateEnd);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_DiscountRateEnd(@as(*const IFaxOutgoingQueue, @ptrCast(self)), dateDiscountRateEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_AgeLimit(self: *const T, plAgeLimit: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_AgeLimit(@ptrCast(*const IFaxOutgoingQueue, self), plAgeLimit);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_AgeLimit(@as(*const IFaxOutgoingQueue, @ptrCast(self)), plAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_AgeLimit(self: *const T, lAgeLimit: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_AgeLimit(@ptrCast(*const IFaxOutgoingQueue, self), lAgeLimit);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_AgeLimit(@as(*const IFaxOutgoingQueue, @ptrCast(self)), lAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_get_Branding(self: *const T, pbBranding: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).get_Branding(@ptrCast(*const IFaxOutgoingQueue, self), pbBranding);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).get_Branding(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pbBranding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_put_Branding(self: *const T, bBranding: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).put_Branding(@ptrCast(*const IFaxOutgoingQueue, self), bBranding);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).put_Branding(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bBranding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).Refresh(@ptrCast(*const IFaxOutgoingQueue, self));
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).Save(@ptrCast(*const IFaxOutgoingQueue, self));
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxOutgoingQueue, self), pFaxOutgoingJobs);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxOutgoingQueue, @ptrCast(self)), pFaxOutgoingJobs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingQueue_GetJob(self: *const T, bstrJobId: ?BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) HRESULT {
-                return @ptrCast(*const IFaxOutgoingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
+                return @as(*const IFaxOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
             }
         };
     }
@@ -6215,27 +6215,27 @@ pub const IFaxIncomingMessageIterator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_get_Message(self: *const T, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).get_Message(@ptrCast(*const IFaxIncomingMessageIterator, self), pFaxIncomingMessage);
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), pFaxIncomingMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_get_PrefetchSize(self: *const T, plPrefetchSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).get_PrefetchSize(@ptrCast(*const IFaxIncomingMessageIterator, self), plPrefetchSize);
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_PrefetchSize(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), plPrefetchSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_put_PrefetchSize(self: *const T, lPrefetchSize: i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).put_PrefetchSize(@ptrCast(*const IFaxIncomingMessageIterator, self), lPrefetchSize);
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).put_PrefetchSize(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), lPrefetchSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_get_AtEOF(self: *const T, pbEOF: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).get_AtEOF(@ptrCast(*const IFaxIncomingMessageIterator, self), pbEOF);
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).get_AtEOF(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)), pbEOF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_MoveFirst(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).MoveFirst(@ptrCast(*const IFaxIncomingMessageIterator, self));
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).MoveFirst(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessageIterator_MoveNext(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessageIterator.VTable, self.vtable).MoveNext(@ptrCast(*const IFaxIncomingMessageIterator, self));
+                return @as(*const IFaxIncomingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxIncomingMessageIterator, @ptrCast(self)));
             }
         };
     }
@@ -6416,55 +6416,55 @@ pub const IFaxIncomingMessage = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Id(@ptrCast(*const IFaxIncomingMessage, self), pbstrId);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_Pages(self: *const T, plPages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Pages(@ptrCast(*const IFaxIncomingMessage, self), plPages);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxIncomingMessage, @ptrCast(self)), plPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_Size(self: *const T, plSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Size(@ptrCast(*const IFaxIncomingMessage, self), plSize);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxIncomingMessage, @ptrCast(self)), plSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxIncomingMessage, self), pbstrDeviceName);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxIncomingMessage, self), plRetries);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxIncomingMessage, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_TransmissionStart(self: *const T, pdateTransmissionStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_TransmissionStart(@ptrCast(*const IFaxIncomingMessage, self), pdateTransmissionStart);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxIncomingMessage, @ptrCast(self)), pdateTransmissionStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_TransmissionEnd(self: *const T, pdateTransmissionEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxIncomingMessage, self), pdateTransmissionEnd);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxIncomingMessage, @ptrCast(self)), pdateTransmissionEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxIncomingMessage, self), pbstrCSID);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxIncomingMessage, self), pbstrTSID);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_CallerId(self: *const T, pbstrCallerId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxIncomingMessage, self), pbstrCallerId);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrCallerId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxIncomingMessage, self), pbstrRoutingInformation);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxIncomingMessage, @ptrCast(self)), pbstrRoutingInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_CopyTiff(self: *const T, bstrTiffPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).CopyTiff(@ptrCast(*const IFaxIncomingMessage, self), bstrTiffPath);
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxIncomingMessage, @ptrCast(self)), bstrTiffPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage.VTable, self.vtable).Delete(@ptrCast(*const IFaxIncomingMessage, self));
+                return @as(*const IFaxIncomingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxIncomingMessage, @ptrCast(self)));
             }
         };
     }
@@ -6525,15 +6525,15 @@ pub const IFaxOutgoingJobs = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJobs_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJobs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutgoingJobs, self), ppUnk);
+                return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutgoingJobs, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJobs.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutgoingJobs, self), vIndex, pFaxOutgoingJob);
+                return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutgoingJobs, @ptrCast(self)), vIndex, pFaxOutgoingJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJobs_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJobs.VTable, self.vtable).get_Count(@ptrCast(*const IFaxOutgoingJobs, self), plCount);
+                return @as(*const IFaxOutgoingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutgoingJobs, @ptrCast(self)), plCount);
             }
         };
     }
@@ -6928,127 +6928,127 @@ pub const IFaxOutgoingJob = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Subject(self: *const T, pbstrSubject: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxOutgoingJob, self), pbstrSubject);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_DocumentName(self: *const T, pbstrDocumentName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxOutgoingJob, self), pbstrDocumentName);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrDocumentName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Pages(self: *const T, plPages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Pages(@ptrCast(*const IFaxOutgoingJob, self), plPages);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxOutgoingJob, @ptrCast(self)), plPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Size(self: *const T, plSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Size(@ptrCast(*const IFaxOutgoingJob, self), plSize);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxOutgoingJob, @ptrCast(self)), plSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxOutgoingJob, self), pbstrSubmissionId);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrSubmissionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Id(@ptrCast(*const IFaxOutgoingJob, self), pbstrId);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_OriginalScheduledTime(self: *const T, pdateOriginalScheduledTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_OriginalScheduledTime(@ptrCast(*const IFaxOutgoingJob, self), pdateOriginalScheduledTime);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_OriginalScheduledTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateOriginalScheduledTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_SubmissionTime(self: *const T, pdateSubmissionTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_SubmissionTime(@ptrCast(*const IFaxOutgoingJob, self), pdateSubmissionTime);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateSubmissionTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_ReceiptType(self: *const T, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ReceiptType(@ptrCast(*const IFaxOutgoingJob, self), pReceiptType);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxOutgoingJob, @ptrCast(self)), pReceiptType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Priority(self: *const T, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxOutgoingJob, self), pPriority);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxOutgoingJob, @ptrCast(self)), pPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxOutgoingJob, self), ppFaxSender);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxOutgoingJob, @ptrCast(self)), ppFaxSender);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Recipient(self: *const T, ppFaxRecipient: ?*?*IFaxRecipient) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Recipient(@ptrCast(*const IFaxOutgoingJob, self), ppFaxRecipient);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Recipient(@as(*const IFaxOutgoingJob, @ptrCast(self)), ppFaxRecipient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_CurrentPage(self: *const T, plCurrentPage: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_CurrentPage(@ptrCast(*const IFaxOutgoingJob, self), plCurrentPage);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxOutgoingJob, @ptrCast(self)), plCurrentPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_DeviceId(self: *const T, plDeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_DeviceId(@ptrCast(*const IFaxOutgoingJob, self), plDeviceId);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxOutgoingJob, @ptrCast(self)), plDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Status(self: *const T, pStatus: ?*FAX_JOB_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Status(@ptrCast(*const IFaxOutgoingJob, self), pStatus);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutgoingJob, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_ExtendedStatusCode(self: *const T, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxOutgoingJob, self), pExtendedStatusCode);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxOutgoingJob, @ptrCast(self)), pExtendedStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxOutgoingJob, self), pbstrExtendedStatus);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrExtendedStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_AvailableOperations(self: *const T, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_AvailableOperations(@ptrCast(*const IFaxOutgoingJob, self), pAvailableOperations);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxOutgoingJob, @ptrCast(self)), pAvailableOperations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxOutgoingJob, self), plRetries);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingJob, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_ScheduledTime(self: *const T, pdateScheduledTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_ScheduledTime(@ptrCast(*const IFaxOutgoingJob, self), pdateScheduledTime);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_ScheduledTime(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateScheduledTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_TransmissionStart(self: *const T, pdateTransmissionStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_TransmissionStart(@ptrCast(*const IFaxOutgoingJob, self), pdateTransmissionStart);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateTransmissionStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_TransmissionEnd(self: *const T, pdateTransmissionEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxOutgoingJob, self), pdateTransmissionEnd);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxOutgoingJob, @ptrCast(self)), pdateTransmissionEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxOutgoingJob, self), pbstrCSID);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxOutgoingJob, self), pbstrTSID);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_get_GroupBroadcastReceipts(self: *const T, pbGroupBroadcastReceipts: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).get_GroupBroadcastReceipts(@ptrCast(*const IFaxOutgoingJob, self), pbGroupBroadcastReceipts);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).get_GroupBroadcastReceipts(@as(*const IFaxOutgoingJob, @ptrCast(self)), pbGroupBroadcastReceipts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).Pause(@ptrCast(*const IFaxOutgoingJob, self));
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Pause(@as(*const IFaxOutgoingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).Resume(@ptrCast(*const IFaxOutgoingJob, self));
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Resume(@as(*const IFaxOutgoingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_Restart(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).Restart(@ptrCast(*const IFaxOutgoingJob, self));
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Restart(@as(*const IFaxOutgoingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_CopyTiff(self: *const T, bstrTiffPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).CopyTiff(@ptrCast(*const IFaxOutgoingJob, self), bstrTiffPath);
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxOutgoingJob, @ptrCast(self)), bstrTiffPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).Refresh(@ptrCast(*const IFaxOutgoingJob, self));
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob.VTable, self.vtable).Cancel(@ptrCast(*const IFaxOutgoingJob, self));
+                return @as(*const IFaxOutgoingJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFaxOutgoingJob, @ptrCast(self)));
             }
         };
     }
@@ -7136,27 +7136,27 @@ pub const IFaxOutgoingMessageIterator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_get_Message(self: *const T, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).get_Message(@ptrCast(*const IFaxOutgoingMessageIterator, self), pFaxOutgoingMessage);
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), pFaxOutgoingMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_get_AtEOF(self: *const T, pbEOF: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).get_AtEOF(@ptrCast(*const IFaxOutgoingMessageIterator, self), pbEOF);
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_AtEOF(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), pbEOF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_get_PrefetchSize(self: *const T, plPrefetchSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).get_PrefetchSize(@ptrCast(*const IFaxOutgoingMessageIterator, self), plPrefetchSize);
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).get_PrefetchSize(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), plPrefetchSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_put_PrefetchSize(self: *const T, lPrefetchSize: i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).put_PrefetchSize(@ptrCast(*const IFaxOutgoingMessageIterator, self), lPrefetchSize);
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).put_PrefetchSize(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)), lPrefetchSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_MoveFirst(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).MoveFirst(@ptrCast(*const IFaxOutgoingMessageIterator, self));
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).MoveFirst(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessageIterator_MoveNext(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessageIterator.VTable, self.vtable).MoveNext(@ptrCast(*const IFaxOutgoingMessageIterator, self));
+                return @as(*const IFaxOutgoingMessageIterator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IFaxOutgoingMessageIterator, @ptrCast(self)));
             }
         };
     }
@@ -7415,79 +7415,79 @@ pub const IFaxOutgoingMessage = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxOutgoingMessage, self), pbstrSubmissionId);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrSubmissionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Id(@ptrCast(*const IFaxOutgoingMessage, self), pbstrId);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Subject(self: *const T, pbstrSubject: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxOutgoingMessage, self), pbstrSubject);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_DocumentName(self: *const T, pbstrDocumentName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_DocumentName(@ptrCast(*const IFaxOutgoingMessage, self), pbstrDocumentName);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_DocumentName(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrDocumentName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxOutgoingMessage, self), plRetries);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Pages(self: *const T, plPages: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Pages(@ptrCast(*const IFaxOutgoingMessage, self), plPages);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Pages(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Size(self: *const T, plSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Size(@ptrCast(*const IFaxOutgoingMessage, self), plSize);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxOutgoingMessage, @ptrCast(self)), plSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_OriginalScheduledTime(self: *const T, pdateOriginalScheduledTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_OriginalScheduledTime(@ptrCast(*const IFaxOutgoingMessage, self), pdateOriginalScheduledTime);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_OriginalScheduledTime(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateOriginalScheduledTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_SubmissionTime(self: *const T, pdateSubmissionTime: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_SubmissionTime(@ptrCast(*const IFaxOutgoingMessage, self), pdateSubmissionTime);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateSubmissionTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Priority(self: *const T, pPriority: ?*FAX_PRIORITY_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxOutgoingMessage, self), pPriority);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Sender(self: *const T, ppFaxSender: ?*?*IFaxSender) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Sender(@ptrCast(*const IFaxOutgoingMessage, self), ppFaxSender);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Sender(@as(*const IFaxOutgoingMessage, @ptrCast(self)), ppFaxSender);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_Recipient(self: *const T, ppFaxRecipient: ?*?*IFaxRecipient) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_Recipient(@ptrCast(*const IFaxOutgoingMessage, self), ppFaxRecipient);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_Recipient(@as(*const IFaxOutgoingMessage, @ptrCast(self)), ppFaxRecipient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxOutgoingMessage, self), pbstrDeviceName);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_TransmissionStart(self: *const T, pdateTransmissionStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_TransmissionStart(@ptrCast(*const IFaxOutgoingMessage, self), pdateTransmissionStart);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateTransmissionStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_TransmissionEnd(self: *const T, pdateTransmissionEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxOutgoingMessage, self), pdateTransmissionEnd);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pdateTransmissionEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxOutgoingMessage, self), pbstrCSID);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxOutgoingMessage, self), pbstrTSID);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxOutgoingMessage, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_CopyTiff(self: *const T, bstrTiffPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).CopyTiff(@ptrCast(*const IFaxOutgoingMessage, self), bstrTiffPath);
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxOutgoingMessage, @ptrCast(self)), bstrTiffPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage.VTable, self.vtable).Delete(@ptrCast(*const IFaxOutgoingMessage, self));
+                return @as(*const IFaxOutgoingMessage.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFaxOutgoingMessage, @ptrCast(self)));
             }
         };
     }
@@ -7548,15 +7548,15 @@ pub const IFaxIncomingJobs = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJobs_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxIncomingJobs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxIncomingJobs, self), ppUnk);
+                return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxIncomingJobs, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJobs_get_Item(self: *const T, vIndex: VARIANT, pFaxIncomingJob: ?*?*IFaxIncomingJob) HRESULT {
-                return @ptrCast(*const IFaxIncomingJobs.VTable, self.vtable).get_Item(@ptrCast(*const IFaxIncomingJobs, self), vIndex, pFaxIncomingJob);
+                return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxIncomingJobs, @ptrCast(self)), vIndex, pFaxIncomingJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJobs_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingJobs.VTable, self.vtable).get_Count(@ptrCast(*const IFaxIncomingJobs, self), plCount);
+                return @as(*const IFaxIncomingJobs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxIncomingJobs, @ptrCast(self)), plCount);
             }
         };
     }
@@ -7810,79 +7810,79 @@ pub const IFaxIncomingJob = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_Size(self: *const T, plSize: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Size(@ptrCast(*const IFaxIncomingJob, self), plSize);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFaxIncomingJob, @ptrCast(self)), plSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Id(@ptrCast(*const IFaxIncomingJob, self), pbstrId);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_CurrentPage(self: *const T, plCurrentPage: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_CurrentPage(@ptrCast(*const IFaxIncomingJob, self), plCurrentPage);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CurrentPage(@as(*const IFaxIncomingJob, @ptrCast(self)), plCurrentPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_DeviceId(self: *const T, plDeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_DeviceId(@ptrCast(*const IFaxIncomingJob, self), plDeviceId);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxIncomingJob, @ptrCast(self)), plDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_Status(self: *const T, pStatus: ?*FAX_JOB_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Status(@ptrCast(*const IFaxIncomingJob, self), pStatus);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxIncomingJob, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_ExtendedStatusCode(self: *const T, pExtendedStatusCode: ?*FAX_JOB_EXTENDED_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_ExtendedStatusCode(@ptrCast(*const IFaxIncomingJob, self), pExtendedStatusCode);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatusCode(@as(*const IFaxIncomingJob, @ptrCast(self)), pExtendedStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_ExtendedStatus(self: *const T, pbstrExtendedStatus: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_ExtendedStatus(@ptrCast(*const IFaxIncomingJob, self), pbstrExtendedStatus);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_ExtendedStatus(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrExtendedStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_AvailableOperations(self: *const T, pAvailableOperations: ?*FAX_JOB_OPERATIONS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_AvailableOperations(@ptrCast(*const IFaxIncomingJob, self), pAvailableOperations);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_AvailableOperations(@as(*const IFaxIncomingJob, @ptrCast(self)), pAvailableOperations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxIncomingJob, self), plRetries);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxIncomingJob, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_TransmissionStart(self: *const T, pdateTransmissionStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_TransmissionStart(@ptrCast(*const IFaxIncomingJob, self), pdateTransmissionStart);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TransmissionStart(@as(*const IFaxIncomingJob, @ptrCast(self)), pdateTransmissionStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_TransmissionEnd(self: *const T, pdateTransmissionEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_TransmissionEnd(@ptrCast(*const IFaxIncomingJob, self), pdateTransmissionEnd);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TransmissionEnd(@as(*const IFaxIncomingJob, @ptrCast(self)), pdateTransmissionEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxIncomingJob, self), pbstrCSID);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxIncomingJob, self), pbstrTSID);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_CallerId(self: *const T, pbstrCallerId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_CallerId(@ptrCast(*const IFaxIncomingJob, self), pbstrCallerId);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_CallerId(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrCallerId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_RoutingInformation(self: *const T, pbstrRoutingInformation: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_RoutingInformation(@ptrCast(*const IFaxIncomingJob, self), pbstrRoutingInformation);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_RoutingInformation(@as(*const IFaxIncomingJob, @ptrCast(self)), pbstrRoutingInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_get_JobType(self: *const T, pJobType: ?*FAX_JOB_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).get_JobType(@ptrCast(*const IFaxIncomingJob, self), pJobType);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).get_JobType(@as(*const IFaxIncomingJob, @ptrCast(self)), pJobType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).Cancel(@ptrCast(*const IFaxIncomingJob, self));
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFaxIncomingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).Refresh(@ptrCast(*const IFaxIncomingJob, self));
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingJob_CopyTiff(self: *const T, bstrTiffPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingJob.VTable, self.vtable).CopyTiff(@ptrCast(*const IFaxIncomingJob, self), bstrTiffPath);
+                return @as(*const IFaxIncomingJob.VTable, @ptrCast(self.vtable)).CopyTiff(@as(*const IFaxIncomingJob, @ptrCast(self)), bstrTiffPath);
             }
         };
     }
@@ -8075,51 +8075,51 @@ pub const IFaxDeviceProvider = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_FriendlyName(self: *const T, pbstrFriendlyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IFaxDeviceProvider, self), pbstrFriendlyName);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_ImageName(self: *const T, pbstrImageName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_ImageName(@ptrCast(*const IFaxDeviceProvider, self), pbstrImageName);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_ImageName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrImageName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_UniqueName(self: *const T, pbstrUniqueName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_UniqueName(@ptrCast(*const IFaxDeviceProvider, self), pbstrUniqueName);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_UniqueName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrUniqueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_TapiProviderName(self: *const T, pbstrTapiProviderName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_TapiProviderName(@ptrCast(*const IFaxDeviceProvider, self), pbstrTapiProviderName);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_TapiProviderName(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbstrTapiProviderName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_MajorVersion(self: *const T, plMajorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_MajorVersion(@ptrCast(*const IFaxDeviceProvider, self), plMajorVersion);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMajorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_MinorVersion(self: *const T, plMinorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_MinorVersion(@ptrCast(*const IFaxDeviceProvider, self), plMinorVersion);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_MajorBuild(self: *const T, plMajorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_MajorBuild(@ptrCast(*const IFaxDeviceProvider, self), plMajorBuild);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMajorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_MinorBuild(self: *const T, plMinorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_MinorBuild(@ptrCast(*const IFaxDeviceProvider, self), plMinorBuild);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxDeviceProvider, @ptrCast(self)), plMinorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_Debug(self: *const T, pbDebug: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_Debug(@ptrCast(*const IFaxDeviceProvider, self), pbDebug);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxDeviceProvider, @ptrCast(self)), pbDebug);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_Status(self: *const T, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_Status(@ptrCast(*const IFaxDeviceProvider, self), pStatus);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxDeviceProvider, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_InitErrorCode(self: *const T, plInitErrorCode: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_InitErrorCode(@ptrCast(*const IFaxDeviceProvider, self), plInitErrorCode);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_InitErrorCode(@as(*const IFaxDeviceProvider, @ptrCast(self)), plInitErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceProvider_get_DeviceIds(self: *const T, pvDeviceIds: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDeviceProvider.VTable, self.vtable).get_DeviceIds(@ptrCast(*const IFaxDeviceProvider, self), pvDeviceIds);
+                return @as(*const IFaxDeviceProvider.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxDeviceProvider, @ptrCast(self)), pvDeviceIds);
             }
         };
     }
@@ -8468,107 +8468,107 @@ pub const IFaxDevice = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_Id(self: *const T, plId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_Id(@ptrCast(*const IFaxDevice, self), plId);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFaxDevice, @ptrCast(self)), plId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_DeviceName(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_DeviceName(@ptrCast(*const IFaxDevice, self), pbstrDeviceName);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const IFaxDevice, @ptrCast(self)), pbstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_ProviderUniqueName(self: *const T, pbstrProviderUniqueName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_ProviderUniqueName(@ptrCast(*const IFaxDevice, self), pbstrProviderUniqueName);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ProviderUniqueName(@as(*const IFaxDevice, @ptrCast(self)), pbstrProviderUniqueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_PoweredOff(self: *const T, pbPoweredOff: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_PoweredOff(@ptrCast(*const IFaxDevice, self), pbPoweredOff);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_PoweredOff(@as(*const IFaxDevice, @ptrCast(self)), pbPoweredOff);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_ReceivingNow(self: *const T, pbReceivingNow: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_ReceivingNow(@ptrCast(*const IFaxDevice, self), pbReceivingNow);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ReceivingNow(@as(*const IFaxDevice, @ptrCast(self)), pbReceivingNow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_SendingNow(self: *const T, pbSendingNow: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_SendingNow(@ptrCast(*const IFaxDevice, self), pbSendingNow);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_SendingNow(@as(*const IFaxDevice, @ptrCast(self)), pbSendingNow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_UsedRoutingMethods(self: *const T, pvUsedRoutingMethods: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_UsedRoutingMethods(@ptrCast(*const IFaxDevice, self), pvUsedRoutingMethods);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_UsedRoutingMethods(@as(*const IFaxDevice, @ptrCast(self)), pvUsedRoutingMethods);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_Description(self: *const T, pbstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_Description(@ptrCast(*const IFaxDevice, self), pbstrDescription);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IFaxDevice, @ptrCast(self)), pbstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_Description(self: *const T, bstrDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_Description(@ptrCast(*const IFaxDevice, self), bstrDescription);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IFaxDevice, @ptrCast(self)), bstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_SendEnabled(self: *const T, pbSendEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_SendEnabled(@ptrCast(*const IFaxDevice, self), pbSendEnabled);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_SendEnabled(@as(*const IFaxDevice, @ptrCast(self)), pbSendEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_SendEnabled(self: *const T, bSendEnabled: i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_SendEnabled(@ptrCast(*const IFaxDevice, self), bSendEnabled);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_SendEnabled(@as(*const IFaxDevice, @ptrCast(self)), bSendEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_ReceiveMode(self: *const T, pReceiveMode: ?*FAX_DEVICE_RECEIVE_MODE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_ReceiveMode(@ptrCast(*const IFaxDevice, self), pReceiveMode);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_ReceiveMode(@as(*const IFaxDevice, @ptrCast(self)), pReceiveMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_ReceiveMode(self: *const T, ReceiveMode: FAX_DEVICE_RECEIVE_MODE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_ReceiveMode(@ptrCast(*const IFaxDevice, self), ReceiveMode);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_ReceiveMode(@as(*const IFaxDevice, @ptrCast(self)), ReceiveMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_RingsBeforeAnswer(self: *const T, plRingsBeforeAnswer: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_RingsBeforeAnswer(@ptrCast(*const IFaxDevice, self), plRingsBeforeAnswer);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_RingsBeforeAnswer(@as(*const IFaxDevice, @ptrCast(self)), plRingsBeforeAnswer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_RingsBeforeAnswer(self: *const T, lRingsBeforeAnswer: i32) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_RingsBeforeAnswer(@ptrCast(*const IFaxDevice, self), lRingsBeforeAnswer);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_RingsBeforeAnswer(@as(*const IFaxDevice, @ptrCast(self)), lRingsBeforeAnswer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_CSID(self: *const T, pbstrCSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_CSID(@ptrCast(*const IFaxDevice, self), pbstrCSID);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_CSID(@as(*const IFaxDevice, @ptrCast(self)), pbstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_CSID(self: *const T, bstrCSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_CSID(@ptrCast(*const IFaxDevice, self), bstrCSID);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_CSID(@as(*const IFaxDevice, @ptrCast(self)), bstrCSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_TSID(self: *const T, pbstrTSID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_TSID(@ptrCast(*const IFaxDevice, self), pbstrTSID);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_TSID(@as(*const IFaxDevice, @ptrCast(self)), pbstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_put_TSID(self: *const T, bstrTSID: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).put_TSID(@ptrCast(*const IFaxDevice, self), bstrTSID);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).put_TSID(@as(*const IFaxDevice, @ptrCast(self)), bstrTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).Refresh(@ptrCast(*const IFaxDevice, self));
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).Save(@ptrCast(*const IFaxDevice, self));
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_GetExtensionProperty(self: *const T, bstrGUID: ?BSTR, pvProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).GetExtensionProperty(@ptrCast(*const IFaxDevice, self), bstrGUID, pvProperty);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).GetExtensionProperty(@as(*const IFaxDevice, @ptrCast(self)), bstrGUID, pvProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_SetExtensionProperty(self: *const T, bstrGUID: ?BSTR, vProperty: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).SetExtensionProperty(@ptrCast(*const IFaxDevice, self), bstrGUID, vProperty);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).SetExtensionProperty(@as(*const IFaxDevice, @ptrCast(self)), bstrGUID, vProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_UseRoutingMethod(self: *const T, bstrMethodGUID: ?BSTR, bUse: i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).UseRoutingMethod(@ptrCast(*const IFaxDevice, self), bstrMethodGUID, bUse);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).UseRoutingMethod(@as(*const IFaxDevice, @ptrCast(self)), bstrMethodGUID, bUse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_get_RingingNow(self: *const T, pbRingingNow: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).get_RingingNow(@ptrCast(*const IFaxDevice, self), pbRingingNow);
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).get_RingingNow(@as(*const IFaxDevice, @ptrCast(self)), pbRingingNow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDevice_AnswerCall(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxDevice.VTable, self.vtable).AnswerCall(@ptrCast(*const IFaxDevice, self));
+                return @as(*const IFaxDevice.VTable, @ptrCast(self.vtable)).AnswerCall(@as(*const IFaxDevice, @ptrCast(self)));
             }
         };
     }
@@ -8682,35 +8682,35 @@ pub const IFaxActivityLogging = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_get_LogIncoming(self: *const T, pbLogIncoming: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).get_LogIncoming(@ptrCast(*const IFaxActivityLogging, self), pbLogIncoming);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_LogIncoming(@as(*const IFaxActivityLogging, @ptrCast(self)), pbLogIncoming);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_put_LogIncoming(self: *const T, bLogIncoming: i16) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).put_LogIncoming(@ptrCast(*const IFaxActivityLogging, self), bLogIncoming);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_LogIncoming(@as(*const IFaxActivityLogging, @ptrCast(self)), bLogIncoming);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_get_LogOutgoing(self: *const T, pbLogOutgoing: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).get_LogOutgoing(@ptrCast(*const IFaxActivityLogging, self), pbLogOutgoing);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_LogOutgoing(@as(*const IFaxActivityLogging, @ptrCast(self)), pbLogOutgoing);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_put_LogOutgoing(self: *const T, bLogOutgoing: i16) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).put_LogOutgoing(@ptrCast(*const IFaxActivityLogging, self), bLogOutgoing);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_LogOutgoing(@as(*const IFaxActivityLogging, @ptrCast(self)), bLogOutgoing);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_get_DatabasePath(self: *const T, pbstrDatabasePath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).get_DatabasePath(@ptrCast(*const IFaxActivityLogging, self), pbstrDatabasePath);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).get_DatabasePath(@as(*const IFaxActivityLogging, @ptrCast(self)), pbstrDatabasePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_put_DatabasePath(self: *const T, bstrDatabasePath: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).put_DatabasePath(@ptrCast(*const IFaxActivityLogging, self), bstrDatabasePath);
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).put_DatabasePath(@as(*const IFaxActivityLogging, @ptrCast(self)), bstrDatabasePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).Refresh(@ptrCast(*const IFaxActivityLogging, self));
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxActivityLogging, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxActivityLogging_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxActivityLogging.VTable, self.vtable).Save(@ptrCast(*const IFaxActivityLogging, self));
+                return @as(*const IFaxActivityLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxActivityLogging, @ptrCast(self)));
             }
         };
     }
@@ -8861,43 +8861,43 @@ pub const IFaxEventLogging = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_get_InitEventsLevel(self: *const T, pInitEventLevel: ?*FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).get_InitEventsLevel(@ptrCast(*const IFaxEventLogging, self), pInitEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_InitEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pInitEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_put_InitEventsLevel(self: *const T, InitEventLevel: FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).put_InitEventsLevel(@ptrCast(*const IFaxEventLogging, self), InitEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_InitEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), InitEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_get_InboundEventsLevel(self: *const T, pInboundEventLevel: ?*FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).get_InboundEventsLevel(@ptrCast(*const IFaxEventLogging, self), pInboundEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_InboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pInboundEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_put_InboundEventsLevel(self: *const T, InboundEventLevel: FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).put_InboundEventsLevel(@ptrCast(*const IFaxEventLogging, self), InboundEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_InboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), InboundEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_get_OutboundEventsLevel(self: *const T, pOutboundEventLevel: ?*FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).get_OutboundEventsLevel(@ptrCast(*const IFaxEventLogging, self), pOutboundEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_OutboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pOutboundEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_put_OutboundEventsLevel(self: *const T, OutboundEventLevel: FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).put_OutboundEventsLevel(@ptrCast(*const IFaxEventLogging, self), OutboundEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_OutboundEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), OutboundEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_get_GeneralEventsLevel(self: *const T, pGeneralEventLevel: ?*FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).get_GeneralEventsLevel(@ptrCast(*const IFaxEventLogging, self), pGeneralEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).get_GeneralEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), pGeneralEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_put_GeneralEventsLevel(self: *const T, GeneralEventLevel: FAX_LOG_LEVEL_ENUM) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).put_GeneralEventsLevel(@ptrCast(*const IFaxEventLogging, self), GeneralEventLevel);
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).put_GeneralEventsLevel(@as(*const IFaxEventLogging, @ptrCast(self)), GeneralEventLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).Refresh(@ptrCast(*const IFaxEventLogging, self));
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxEventLogging, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxEventLogging_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxEventLogging.VTable, self.vtable).Save(@ptrCast(*const IFaxEventLogging, self));
+                return @as(*const IFaxEventLogging.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxEventLogging, @ptrCast(self)));
             }
         };
     }
@@ -8980,23 +8980,23 @@ pub const IFaxOutboundRoutingGroups = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroups_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutboundRoutingGroups, self), ppUnk);
+                return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroups_get_Item(self: *const T, vIndex: VARIANT, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutboundRoutingGroups, self), vIndex, pFaxOutboundRoutingGroup);
+                return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), vIndex, pFaxOutboundRoutingGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroups_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).get_Count(@ptrCast(*const IFaxOutboundRoutingGroups, self), plCount);
+                return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroups_Add(self: *const T, bstrName: ?BSTR, pFaxOutboundRoutingGroup: ?*?*IFaxOutboundRoutingGroup) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).Add(@ptrCast(*const IFaxOutboundRoutingGroups, self), bstrName, pFaxOutboundRoutingGroup);
+                return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), bstrName, pFaxOutboundRoutingGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroups_Remove(self: *const T, vIndex: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroups.VTable, self.vtable).Remove(@ptrCast(*const IFaxOutboundRoutingGroups, self), vIndex);
+                return @as(*const IFaxOutboundRoutingGroups.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxOutboundRoutingGroups, @ptrCast(self)), vIndex);
             }
         };
     }
@@ -9066,15 +9066,15 @@ pub const IFaxOutboundRoutingGroup = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroup_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_Name(@ptrCast(*const IFaxOutboundRoutingGroup, self), pbstrName);
+                return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroup_get_Status(self: *const T, pStatus: ?*FAX_GROUP_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_Status(@ptrCast(*const IFaxOutboundRoutingGroup, self), pStatus);
+                return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingGroup_get_DeviceIds(self: *const T, pFaxDeviceIds: ?*?*IFaxDeviceIds) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingGroup.VTable, self.vtable).get_DeviceIds(@ptrCast(*const IFaxOutboundRoutingGroup, self), pFaxDeviceIds);
+                return @as(*const IFaxOutboundRoutingGroup.VTable, @ptrCast(self.vtable)).get_DeviceIds(@as(*const IFaxOutboundRoutingGroup, @ptrCast(self)), pFaxDeviceIds);
             }
         };
     }
@@ -9167,27 +9167,27 @@ pub const IFaxDeviceIds = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxDeviceIds, self), ppUnk);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxDeviceIds, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_get_Item(self: *const T, lIndex: i32, plDeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).get_Item(@ptrCast(*const IFaxDeviceIds, self), lIndex, plDeviceId);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxDeviceIds, @ptrCast(self)), lIndex, plDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).get_Count(@ptrCast(*const IFaxDeviceIds, self), plCount);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxDeviceIds, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_Add(self: *const T, lDeviceId: i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).Add(@ptrCast(*const IFaxDeviceIds, self), lDeviceId);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxDeviceIds, @ptrCast(self)), lDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_Remove(self: *const T, lIndex: i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).Remove(@ptrCast(*const IFaxDeviceIds, self), lIndex);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxDeviceIds, @ptrCast(self)), lIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDeviceIds_SetOrder(self: *const T, lDeviceId: i32, lNewOrder: i32) HRESULT {
-                return @ptrCast(*const IFaxDeviceIds.VTable, self.vtable).SetOrder(@ptrCast(*const IFaxDeviceIds, self), lDeviceId, lNewOrder);
+                return @as(*const IFaxDeviceIds.VTable, @ptrCast(self.vtable)).SetOrder(@as(*const IFaxDeviceIds, @ptrCast(self)), lDeviceId, lNewOrder);
             }
         };
     }
@@ -9304,31 +9304,31 @@ pub const IFaxOutboundRoutingRules = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxOutboundRoutingRules, self), ppUnk);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_get_Item(self: *const T, lIndex: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get_Item(@ptrCast(*const IFaxOutboundRoutingRules, self), lIndex, pFaxOutboundRoutingRule);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lIndex, pFaxOutboundRoutingRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).get_Count(@ptrCast(*const IFaxOutboundRoutingRules, self), plCount);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_ItemByCountryAndArea(self: *const T, lCountryCode: i32, lAreaCode: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).ItemByCountryAndArea(@ptrCast(*const IFaxOutboundRoutingRules, self), lCountryCode, lAreaCode, pFaxOutboundRoutingRule);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).ItemByCountryAndArea(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode, pFaxOutboundRoutingRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_RemoveByCountryAndArea(self: *const T, lCountryCode: i32, lAreaCode: i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).RemoveByCountryAndArea(@ptrCast(*const IFaxOutboundRoutingRules, self), lCountryCode, lAreaCode);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).RemoveByCountryAndArea(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_Remove(self: *const T, lIndex: i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).Remove(@ptrCast(*const IFaxOutboundRoutingRules, self), lIndex);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRules_Add(self: *const T, lCountryCode: i32, lAreaCode: i32, bUseDevice: i16, bstrGroupName: ?BSTR, lDeviceId: i32, pFaxOutboundRoutingRule: ?*?*IFaxOutboundRoutingRule) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRules.VTable, self.vtable).Add(@ptrCast(*const IFaxOutboundRoutingRules, self), lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
+                return @as(*const IFaxOutboundRoutingRules.VTable, @ptrCast(self.vtable)).Add(@as(*const IFaxOutboundRoutingRules, @ptrCast(self)), lCountryCode, lAreaCode, bUseDevice, bstrGroupName, lDeviceId, pFaxOutboundRoutingRule);
             }
         };
     }
@@ -9494,47 +9494,47 @@ pub const IFaxOutboundRoutingRule = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_CountryCode(self: *const T, plCountryCode: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_CountryCode(@ptrCast(*const IFaxOutboundRoutingRule, self), plCountryCode);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_CountryCode(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plCountryCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_AreaCode(self: *const T, plAreaCode: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_AreaCode(@ptrCast(*const IFaxOutboundRoutingRule, self), plAreaCode);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_AreaCode(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plAreaCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_Status(self: *const T, pStatus: ?*FAX_RULE_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_Status(@ptrCast(*const IFaxOutboundRoutingRule, self), pStatus);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_UseDevice(self: *const T, pbUseDevice: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_UseDevice(@ptrCast(*const IFaxOutboundRoutingRule, self), pbUseDevice);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_UseDevice(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pbUseDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_put_UseDevice(self: *const T, bUseDevice: i16) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).put_UseDevice(@ptrCast(*const IFaxOutboundRoutingRule, self), bUseDevice);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_UseDevice(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), bUseDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_DeviceId(self: *const T, plDeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_DeviceId(@ptrCast(*const IFaxOutboundRoutingRule, self), plDeviceId);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), plDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_put_DeviceId(self: *const T, DeviceId: i32) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).put_DeviceId(@ptrCast(*const IFaxOutboundRoutingRule, self), DeviceId);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_DeviceId(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), DeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_get_GroupName(self: *const T, pbstrGroupName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).get_GroupName(@ptrCast(*const IFaxOutboundRoutingRule, self), pbstrGroupName);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).get_GroupName(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), pbstrGroupName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_put_GroupName(self: *const T, bstrGroupName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).put_GroupName(@ptrCast(*const IFaxOutboundRoutingRule, self), bstrGroupName);
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).put_GroupName(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)), bstrGroupName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).Refresh(@ptrCast(*const IFaxOutboundRoutingRule, self));
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutboundRoutingRule_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutboundRoutingRule.VTable, self.vtable).Save(@ptrCast(*const IFaxOutboundRoutingRule, self));
+                return @as(*const IFaxOutboundRoutingRule.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutboundRoutingRule, @ptrCast(self)));
             }
         };
     }
@@ -9595,15 +9595,15 @@ pub const IFaxInboundRoutingExtensions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtensions_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtensions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxInboundRoutingExtensions, self), ppUnk);
+                return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtensions_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingExtension: ?*?*IFaxInboundRoutingExtension) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtensions.VTable, self.vtable).get_Item(@ptrCast(*const IFaxInboundRoutingExtensions, self), vIndex, pFaxInboundRoutingExtension);
+                return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), vIndex, pFaxInboundRoutingExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtensions_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtensions.VTable, self.vtable).get_Count(@ptrCast(*const IFaxInboundRoutingExtensions, self), plCount);
+                return @as(*const IFaxInboundRoutingExtensions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingExtensions, @ptrCast(self)), plCount);
             }
         };
     }
@@ -9766,47 +9766,47 @@ pub const IFaxInboundRoutingExtension = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_FriendlyName(self: *const T, pbstrFriendlyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrFriendlyName);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_ImageName(self: *const T, pbstrImageName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_ImageName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrImageName);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_ImageName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrImageName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_UniqueName(self: *const T, pbstrUniqueName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_UniqueName(@ptrCast(*const IFaxInboundRoutingExtension, self), pbstrUniqueName);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_UniqueName(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbstrUniqueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_MajorVersion(self: *const T, plMajorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_MajorVersion(@ptrCast(*const IFaxInboundRoutingExtension, self), plMajorVersion);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMajorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_MinorVersion(self: *const T, plMinorVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_MinorVersion(@ptrCast(*const IFaxInboundRoutingExtension, self), plMinorVersion);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_MajorBuild(self: *const T, plMajorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_MajorBuild(@ptrCast(*const IFaxInboundRoutingExtension, self), plMajorBuild);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MajorBuild(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMajorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_MinorBuild(self: *const T, plMinorBuild: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_MinorBuild(@ptrCast(*const IFaxInboundRoutingExtension, self), plMinorBuild);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_MinorBuild(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plMinorBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_Debug(self: *const T, pbDebug: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_Debug(@ptrCast(*const IFaxInboundRoutingExtension, self), pbDebug);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Debug(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pbDebug);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_Status(self: *const T, pStatus: ?*FAX_PROVIDER_STATUS_ENUM) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_Status(@ptrCast(*const IFaxInboundRoutingExtension, self), pStatus);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_InitErrorCode(self: *const T, plInitErrorCode: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_InitErrorCode(@ptrCast(*const IFaxInboundRoutingExtension, self), plInitErrorCode);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_InitErrorCode(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), plInitErrorCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingExtension_get_Methods(self: *const T, pvMethods: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingExtension.VTable, self.vtable).get_Methods(@ptrCast(*const IFaxInboundRoutingExtension, self), pvMethods);
+                return @as(*const IFaxInboundRoutingExtension.VTable, @ptrCast(self.vtable)).get_Methods(@as(*const IFaxInboundRoutingExtension, @ptrCast(self)), pvMethods);
             }
         };
     }
@@ -9867,15 +9867,15 @@ pub const IFaxInboundRoutingMethods = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethods_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethods.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxInboundRoutingMethods, self), ppUnk);
+                return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethods_get_Item(self: *const T, vIndex: VARIANT, pFaxInboundRoutingMethod: ?*?*IFaxInboundRoutingMethod) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethods.VTable, self.vtable).get_Item(@ptrCast(*const IFaxInboundRoutingMethods, self), vIndex, pFaxInboundRoutingMethod);
+                return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), vIndex, pFaxInboundRoutingMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethods_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethods.VTable, self.vtable).get_Count(@ptrCast(*const IFaxInboundRoutingMethods, self), plCount);
+                return @as(*const IFaxInboundRoutingMethods.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxInboundRoutingMethods, @ptrCast(self)), plCount);
             }
         };
     }
@@ -10002,39 +10002,39 @@ pub const IFaxInboundRoutingMethod = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_Name(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrName);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_GUID(self: *const T, pbstrGUID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_GUID(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrGUID);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_GUID(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrGUID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_FunctionName(self: *const T, pbstrFunctionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_FunctionName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrFunctionName);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_FunctionName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrFunctionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_ExtensionFriendlyName(self: *const T, pbstrExtensionFriendlyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_ExtensionFriendlyName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrExtensionFriendlyName);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_ExtensionFriendlyName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrExtensionFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_ExtensionImageName(self: *const T, pbstrExtensionImageName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_ExtensionImageName(@ptrCast(*const IFaxInboundRoutingMethod, self), pbstrExtensionImageName);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_ExtensionImageName(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), pbstrExtensionImageName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).get_Priority(@ptrCast(*const IFaxInboundRoutingMethod, self), plPriority);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_put_Priority(self: *const T, lPriority: i32) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).put_Priority(@ptrCast(*const IFaxInboundRoutingMethod, self), lPriority);
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)), lPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).Refresh(@ptrCast(*const IFaxInboundRoutingMethod, self));
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxInboundRoutingMethod_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxInboundRoutingMethod.VTable, self.vtable).Save(@ptrCast(*const IFaxInboundRoutingMethod, self));
+                return @as(*const IFaxInboundRoutingMethod.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxInboundRoutingMethod, @ptrCast(self)));
             }
         };
     }
@@ -10121,23 +10121,23 @@ pub const IFaxDocument2 = extern struct {
             pub usingnamespace IFaxDocument.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument2_get_SubmissionId(self: *const T, pbstrSubmissionId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxDocument2.VTable, self.vtable).get_SubmissionId(@ptrCast(*const IFaxDocument2, self), pbstrSubmissionId);
+                return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).get_SubmissionId(@as(*const IFaxDocument2, @ptrCast(self)), pbstrSubmissionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument2_get_Bodies(self: *const T, pvBodies: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDocument2.VTable, self.vtable).get_Bodies(@ptrCast(*const IFaxDocument2, self), pvBodies);
+                return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).get_Bodies(@as(*const IFaxDocument2, @ptrCast(self)), pvBodies);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument2_put_Bodies(self: *const T, vBodies: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxDocument2.VTable, self.vtable).put_Bodies(@ptrCast(*const IFaxDocument2, self), vBodies);
+                return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).put_Bodies(@as(*const IFaxDocument2, @ptrCast(self)), vBodies);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument2_Submit2(self: *const T, bstrFaxServerName: ?BSTR, pvFaxOutgoingJobIDs: ?*VARIANT, plErrorBodyFile: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDocument2.VTable, self.vtable).Submit2(@ptrCast(*const IFaxDocument2, self), bstrFaxServerName, pvFaxOutgoingJobIDs, plErrorBodyFile);
+                return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).Submit2(@as(*const IFaxDocument2, @ptrCast(self)), bstrFaxServerName, pvFaxOutgoingJobIDs, plErrorBodyFile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxDocument2_ConnectedSubmit2(self: *const T, pFaxServer: ?*IFaxServer, pvFaxOutgoingJobIDs: ?*VARIANT, plErrorBodyFile: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxDocument2.VTable, self.vtable).ConnectedSubmit2(@ptrCast(*const IFaxDocument2, self), pFaxServer, pvFaxOutgoingJobIDs, plErrorBodyFile);
+                return @as(*const IFaxDocument2.VTable, @ptrCast(self.vtable)).ConnectedSubmit2(@as(*const IFaxDocument2, @ptrCast(self)), pFaxServer, pvFaxOutgoingJobIDs, plErrorBodyFile);
             }
         };
     }
@@ -10693,171 +10693,171 @@ pub const IFaxConfiguration = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_UseArchive(self: *const T, pbUseArchive: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_UseArchive(@ptrCast(*const IFaxConfiguration, self), pbUseArchive);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_UseArchive(@as(*const IFaxConfiguration, @ptrCast(self)), pbUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_UseArchive(self: *const T, bUseArchive: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_UseArchive(@ptrCast(*const IFaxConfiguration, self), bUseArchive);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_UseArchive(@as(*const IFaxConfiguration, @ptrCast(self)), bUseArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_ArchiveLocation(self: *const T, pbstrArchiveLocation: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_ArchiveLocation(@ptrCast(*const IFaxConfiguration, self), pbstrArchiveLocation);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveLocation(@as(*const IFaxConfiguration, @ptrCast(self)), pbstrArchiveLocation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_ArchiveLocation(self: *const T, bstrArchiveLocation: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_ArchiveLocation(@ptrCast(*const IFaxConfiguration, self), bstrArchiveLocation);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_ArchiveLocation(@as(*const IFaxConfiguration, @ptrCast(self)), bstrArchiveLocation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_SizeQuotaWarning(self: *const T, pbSizeQuotaWarning: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_SizeQuotaWarning(@ptrCast(*const IFaxConfiguration, self), pbSizeQuotaWarning);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_SizeQuotaWarning(@as(*const IFaxConfiguration, @ptrCast(self)), pbSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_SizeQuotaWarning(self: *const T, bSizeQuotaWarning: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_SizeQuotaWarning(@ptrCast(*const IFaxConfiguration, self), bSizeQuotaWarning);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_SizeQuotaWarning(@as(*const IFaxConfiguration, @ptrCast(self)), bSizeQuotaWarning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_HighQuotaWaterMark(self: *const T, plHighQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_HighQuotaWaterMark(@ptrCast(*const IFaxConfiguration, self), plHighQuotaWaterMark);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_HighQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), plHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_HighQuotaWaterMark(self: *const T, lHighQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_HighQuotaWaterMark(@ptrCast(*const IFaxConfiguration, self), lHighQuotaWaterMark);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_HighQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), lHighQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_LowQuotaWaterMark(self: *const T, plLowQuotaWaterMark: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_LowQuotaWaterMark(@ptrCast(*const IFaxConfiguration, self), plLowQuotaWaterMark);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_LowQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), plLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_LowQuotaWaterMark(self: *const T, lLowQuotaWaterMark: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_LowQuotaWaterMark(@ptrCast(*const IFaxConfiguration, self), lLowQuotaWaterMark);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_LowQuotaWaterMark(@as(*const IFaxConfiguration, @ptrCast(self)), lLowQuotaWaterMark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_ArchiveAgeLimit(self: *const T, plArchiveAgeLimit: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_ArchiveAgeLimit(@ptrCast(*const IFaxConfiguration, self), plArchiveAgeLimit);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), plArchiveAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_ArchiveAgeLimit(self: *const T, lArchiveAgeLimit: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_ArchiveAgeLimit(@ptrCast(*const IFaxConfiguration, self), lArchiveAgeLimit);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_ArchiveAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), lArchiveAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_ArchiveSizeLow(self: *const T, plSizeLow: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_ArchiveSizeLow(@ptrCast(*const IFaxConfiguration, self), plSizeLow);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveSizeLow(@as(*const IFaxConfiguration, @ptrCast(self)), plSizeLow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_ArchiveSizeHigh(self: *const T, plSizeHigh: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_ArchiveSizeHigh(@ptrCast(*const IFaxConfiguration, self), plSizeHigh);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_ArchiveSizeHigh(@as(*const IFaxConfiguration, @ptrCast(self)), plSizeHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_OutgoingQueueBlocked(self: *const T, pbOutgoingBlocked: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_OutgoingQueueBlocked(@ptrCast(*const IFaxConfiguration, self), pbOutgoingBlocked);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), pbOutgoingBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_OutgoingQueueBlocked(self: *const T, bOutgoingBlocked: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_OutgoingQueueBlocked(@ptrCast(*const IFaxConfiguration, self), bOutgoingBlocked);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), bOutgoingBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_OutgoingQueuePaused(self: *const T, pbOutgoingPaused: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_OutgoingQueuePaused(@ptrCast(*const IFaxConfiguration, self), pbOutgoingPaused);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueuePaused(@as(*const IFaxConfiguration, @ptrCast(self)), pbOutgoingPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_OutgoingQueuePaused(self: *const T, bOutgoingPaused: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_OutgoingQueuePaused(@ptrCast(*const IFaxConfiguration, self), bOutgoingPaused);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueuePaused(@as(*const IFaxConfiguration, @ptrCast(self)), bOutgoingPaused);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_AllowPersonalCoverPages(self: *const T, pbAllowPersonalCoverPages: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_AllowPersonalCoverPages(@ptrCast(*const IFaxConfiguration, self), pbAllowPersonalCoverPages);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_AllowPersonalCoverPages(@as(*const IFaxConfiguration, @ptrCast(self)), pbAllowPersonalCoverPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_AllowPersonalCoverPages(self: *const T, bAllowPersonalCoverPages: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_AllowPersonalCoverPages(@ptrCast(*const IFaxConfiguration, self), bAllowPersonalCoverPages);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_AllowPersonalCoverPages(@as(*const IFaxConfiguration, @ptrCast(self)), bAllowPersonalCoverPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_UseDeviceTSID(self: *const T, pbUseDeviceTSID: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_UseDeviceTSID(@ptrCast(*const IFaxConfiguration, self), pbUseDeviceTSID);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_UseDeviceTSID(@as(*const IFaxConfiguration, @ptrCast(self)), pbUseDeviceTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_UseDeviceTSID(self: *const T, bUseDeviceTSID: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_UseDeviceTSID(@ptrCast(*const IFaxConfiguration, self), bUseDeviceTSID);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_UseDeviceTSID(@as(*const IFaxConfiguration, @ptrCast(self)), bUseDeviceTSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_Retries(self: *const T, plRetries: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_Retries(@ptrCast(*const IFaxConfiguration, self), plRetries);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_Retries(@as(*const IFaxConfiguration, @ptrCast(self)), plRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_Retries(self: *const T, lRetries: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_Retries(@ptrCast(*const IFaxConfiguration, self), lRetries);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_Retries(@as(*const IFaxConfiguration, @ptrCast(self)), lRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_RetryDelay(self: *const T, plRetryDelay: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_RetryDelay(@ptrCast(*const IFaxConfiguration, self), plRetryDelay);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_RetryDelay(@as(*const IFaxConfiguration, @ptrCast(self)), plRetryDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_RetryDelay(self: *const T, lRetryDelay: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_RetryDelay(@ptrCast(*const IFaxConfiguration, self), lRetryDelay);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_RetryDelay(@as(*const IFaxConfiguration, @ptrCast(self)), lRetryDelay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_DiscountRateStart(self: *const T, pdateDiscountRateStart: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_DiscountRateStart(@ptrCast(*const IFaxConfiguration, self), pdateDiscountRateStart);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_DiscountRateStart(@as(*const IFaxConfiguration, @ptrCast(self)), pdateDiscountRateStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_DiscountRateStart(self: *const T, dateDiscountRateStart: f64) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_DiscountRateStart(@ptrCast(*const IFaxConfiguration, self), dateDiscountRateStart);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_DiscountRateStart(@as(*const IFaxConfiguration, @ptrCast(self)), dateDiscountRateStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_DiscountRateEnd(self: *const T, pdateDiscountRateEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_DiscountRateEnd(@ptrCast(*const IFaxConfiguration, self), pdateDiscountRateEnd);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_DiscountRateEnd(@as(*const IFaxConfiguration, @ptrCast(self)), pdateDiscountRateEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_DiscountRateEnd(self: *const T, dateDiscountRateEnd: f64) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_DiscountRateEnd(@ptrCast(*const IFaxConfiguration, self), dateDiscountRateEnd);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_DiscountRateEnd(@as(*const IFaxConfiguration, @ptrCast(self)), dateDiscountRateEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_OutgoingQueueAgeLimit(self: *const T, plOutgoingQueueAgeLimit: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_OutgoingQueueAgeLimit(@ptrCast(*const IFaxConfiguration, self), plOutgoingQueueAgeLimit);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_OutgoingQueueAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), plOutgoingQueueAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_OutgoingQueueAgeLimit(self: *const T, lOutgoingQueueAgeLimit: i32) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_OutgoingQueueAgeLimit(@ptrCast(*const IFaxConfiguration, self), lOutgoingQueueAgeLimit);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_OutgoingQueueAgeLimit(@as(*const IFaxConfiguration, @ptrCast(self)), lOutgoingQueueAgeLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_Branding(self: *const T, pbBranding: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_Branding(@ptrCast(*const IFaxConfiguration, self), pbBranding);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_Branding(@as(*const IFaxConfiguration, @ptrCast(self)), pbBranding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_Branding(self: *const T, bBranding: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_Branding(@ptrCast(*const IFaxConfiguration, self), bBranding);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_Branding(@as(*const IFaxConfiguration, @ptrCast(self)), bBranding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_IncomingQueueBlocked(self: *const T, pbIncomingBlocked: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_IncomingQueueBlocked(@ptrCast(*const IFaxConfiguration, self), pbIncomingBlocked);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_IncomingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), pbIncomingBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_IncomingQueueBlocked(self: *const T, bIncomingBlocked: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_IncomingQueueBlocked(@ptrCast(*const IFaxConfiguration, self), bIncomingBlocked);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_IncomingQueueBlocked(@as(*const IFaxConfiguration, @ptrCast(self)), bIncomingBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_AutoCreateAccountOnConnect(self: *const T, pbAutoCreateAccountOnConnect: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_AutoCreateAccountOnConnect(@ptrCast(*const IFaxConfiguration, self), pbAutoCreateAccountOnConnect);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_AutoCreateAccountOnConnect(@as(*const IFaxConfiguration, @ptrCast(self)), pbAutoCreateAccountOnConnect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_AutoCreateAccountOnConnect(self: *const T, bAutoCreateAccountOnConnect: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_AutoCreateAccountOnConnect(@ptrCast(*const IFaxConfiguration, self), bAutoCreateAccountOnConnect);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_AutoCreateAccountOnConnect(@as(*const IFaxConfiguration, @ptrCast(self)), bAutoCreateAccountOnConnect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_get_IncomingFaxesArePublic(self: *const T, pbIncomingFaxesArePublic: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).get_IncomingFaxesArePublic(@ptrCast(*const IFaxConfiguration, self), pbIncomingFaxesArePublic);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).get_IncomingFaxesArePublic(@as(*const IFaxConfiguration, @ptrCast(self)), pbIncomingFaxesArePublic);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_put_IncomingFaxesArePublic(self: *const T, bIncomingFaxesArePublic: i16) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).put_IncomingFaxesArePublic(@ptrCast(*const IFaxConfiguration, self), bIncomingFaxesArePublic);
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).put_IncomingFaxesArePublic(@as(*const IFaxConfiguration, @ptrCast(self)), bIncomingFaxesArePublic);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).Refresh(@ptrCast(*const IFaxConfiguration, self));
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxConfiguration, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxConfiguration_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxConfiguration.VTable, self.vtable).Save(@ptrCast(*const IFaxConfiguration, self));
+                return @as(*const IFaxConfiguration.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxConfiguration, @ptrCast(self)));
             }
         };
     }
@@ -10929,19 +10929,19 @@ pub const IFaxServer2 = extern struct {
             pub usingnamespace IFaxServer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer2_get_Configuration(self: *const T, ppFaxConfiguration: ?*?*IFaxConfiguration) HRESULT {
-                return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_Configuration(@ptrCast(*const IFaxServer2, self), ppFaxConfiguration);
+                return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_Configuration(@as(*const IFaxServer2, @ptrCast(self)), ppFaxConfiguration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer2_get_CurrentAccount(self: *const T, ppCurrentAccount: ?*?*IFaxAccount) HRESULT {
-                return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_CurrentAccount(@ptrCast(*const IFaxServer2, self), ppCurrentAccount);
+                return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_CurrentAccount(@as(*const IFaxServer2, @ptrCast(self)), ppCurrentAccount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer2_get_FaxAccountSet(self: *const T, ppFaxAccountSet: ?*?*IFaxAccountSet) HRESULT {
-                return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_FaxAccountSet(@ptrCast(*const IFaxServer2, self), ppFaxAccountSet);
+                return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_FaxAccountSet(@as(*const IFaxServer2, @ptrCast(self)), ppFaxAccountSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxServer2_get_Security2(self: *const T, ppFaxSecurity2: ?*?*IFaxSecurity2) HRESULT {
-                return @ptrCast(*const IFaxServer2.VTable, self.vtable).get_Security2(@ptrCast(*const IFaxServer2, self), ppFaxSecurity2);
+                return @as(*const IFaxServer2.VTable, @ptrCast(self.vtable)).get_Security2(@as(*const IFaxServer2, @ptrCast(self)), ppFaxSecurity2);
             }
         };
     }
@@ -11005,19 +11005,19 @@ pub const IFaxAccountSet = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountSet_GetAccounts(self: *const T, ppFaxAccounts: ?*?*IFaxAccounts) HRESULT {
-                return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).GetAccounts(@ptrCast(*const IFaxAccountSet, self), ppFaxAccounts);
+                return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).GetAccounts(@as(*const IFaxAccountSet, @ptrCast(self)), ppFaxAccounts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountSet_GetAccount(self: *const T, bstrAccountName: ?BSTR, pFaxAccount: ?*?*IFaxAccount) HRESULT {
-                return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).GetAccount(@ptrCast(*const IFaxAccountSet, self), bstrAccountName, pFaxAccount);
+                return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).GetAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName, pFaxAccount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountSet_AddAccount(self: *const T, bstrAccountName: ?BSTR, pFaxAccount: ?*?*IFaxAccount) HRESULT {
-                return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).AddAccount(@ptrCast(*const IFaxAccountSet, self), bstrAccountName, pFaxAccount);
+                return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).AddAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName, pFaxAccount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountSet_RemoveAccount(self: *const T, bstrAccountName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxAccountSet.VTable, self.vtable).RemoveAccount(@ptrCast(*const IFaxAccountSet, self), bstrAccountName);
+                return @as(*const IFaxAccountSet.VTable, @ptrCast(self.vtable)).RemoveAccount(@as(*const IFaxAccountSet, @ptrCast(self)), bstrAccountName);
             }
         };
     }
@@ -11078,15 +11078,15 @@ pub const IFaxAccounts = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccounts_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFaxAccounts.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFaxAccounts, self), ppUnk);
+                return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFaxAccounts, @ptrCast(self)), ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccounts_get_Item(self: *const T, vIndex: VARIANT, pFaxAccount: ?*?*IFaxAccount) HRESULT {
-                return @ptrCast(*const IFaxAccounts.VTable, self.vtable).get_Item(@ptrCast(*const IFaxAccounts, self), vIndex, pFaxAccount);
+                return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFaxAccounts, @ptrCast(self)), vIndex, pFaxAccount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccounts_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxAccounts.VTable, self.vtable).get_Count(@ptrCast(*const IFaxAccounts, self), plCount);
+                return @as(*const IFaxAccounts.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFaxAccounts, @ptrCast(self)), plCount);
             }
         };
     }
@@ -11170,19 +11170,19 @@ pub const IFaxAccount = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccount_get_AccountName(self: *const T, pbstrAccountName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxAccount.VTable, self.vtable).get_AccountName(@ptrCast(*const IFaxAccount, self), pbstrAccountName);
+                return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_AccountName(@as(*const IFaxAccount, @ptrCast(self)), pbstrAccountName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccount_get_Folders(self: *const T, ppFolders: ?*?*IFaxAccountFolders) HRESULT {
-                return @ptrCast(*const IFaxAccount.VTable, self.vtable).get_Folders(@ptrCast(*const IFaxAccount, self), ppFolders);
+                return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_Folders(@as(*const IFaxAccount, @ptrCast(self)), ppFolders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccount_ListenToAccountEvents(self: *const T, EventTypes: FAX_ACCOUNT_EVENTS_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxAccount.VTable, self.vtable).ListenToAccountEvents(@ptrCast(*const IFaxAccount, self), EventTypes);
+                return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).ListenToAccountEvents(@as(*const IFaxAccount, @ptrCast(self)), EventTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccount_get_RegisteredEvents(self: *const T, pRegisteredEvents: ?*FAX_ACCOUNT_EVENTS_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxAccount.VTable, self.vtable).get_RegisteredEvents(@ptrCast(*const IFaxAccount, self), pRegisteredEvents);
+                return @as(*const IFaxAccount.VTable, @ptrCast(self.vtable)).get_RegisteredEvents(@as(*const IFaxAccount, @ptrCast(self)), pRegisteredEvents);
             }
         };
     }
@@ -11241,15 +11241,15 @@ pub const IFaxOutgoingJob2 = extern struct {
             pub usingnamespace IFaxOutgoingJob.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob2_get_HasCoverPage(self: *const T, pbHasCoverPage: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob2.VTable, self.vtable).get_HasCoverPage(@ptrCast(*const IFaxOutgoingJob2, self), pbHasCoverPage);
+                return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pbHasCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob2.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxOutgoingJob2, self), pbstrReceiptAddress);
+                return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pbstrReceiptAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingJob2_get_ScheduleType(self: *const T, pScheduleType: ?*FAX_SCHEDULE_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingJob2.VTable, self.vtable).get_ScheduleType(@ptrCast(*const IFaxOutgoingJob2, self), pScheduleType);
+                return @as(*const IFaxOutgoingJob2.VTable, @ptrCast(self.vtable)).get_ScheduleType(@as(*const IFaxOutgoingJob2, @ptrCast(self)), pScheduleType);
             }
         };
     }
@@ -11321,19 +11321,19 @@ pub const IFaxAccountFolders = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountFolders_get_OutgoingQueue(self: *const T, pFaxOutgoingQueue: ?*?*IFaxAccountOutgoingQueue) HRESULT {
-                return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_OutgoingQueue(@ptrCast(*const IFaxAccountFolders, self), pFaxOutgoingQueue);
+                return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_OutgoingQueue(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxOutgoingQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountFolders_get_IncomingQueue(self: *const T, pFaxIncomingQueue: ?*?*IFaxAccountIncomingQueue) HRESULT {
-                return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_IncomingQueue(@ptrCast(*const IFaxAccountFolders, self), pFaxIncomingQueue);
+                return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_IncomingQueue(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxIncomingQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountFolders_get_IncomingArchive(self: *const T, pFaxIncomingArchive: ?*?*IFaxAccountIncomingArchive) HRESULT {
-                return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_IncomingArchive(@ptrCast(*const IFaxAccountFolders, self), pFaxIncomingArchive);
+                return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_IncomingArchive(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxIncomingArchive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountFolders_get_OutgoingArchive(self: *const T, pFaxOutgoingArchive: ?*?*IFaxAccountOutgoingArchive) HRESULT {
-                return @ptrCast(*const IFaxAccountFolders.VTable, self.vtable).get_OutgoingArchive(@ptrCast(*const IFaxAccountFolders, self), pFaxOutgoingArchive);
+                return @as(*const IFaxAccountFolders.VTable, @ptrCast(self.vtable)).get_OutgoingArchive(@as(*const IFaxAccountFolders, @ptrCast(self)), pFaxOutgoingArchive);
             }
         };
     }
@@ -11375,11 +11375,11 @@ pub const IFaxAccountIncomingQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingQueue_GetJobs(self: *const T, pFaxIncomingJobs: ?*?*IFaxIncomingJobs) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountIncomingQueue, self), pFaxIncomingJobs);
+                return @as(*const IFaxAccountIncomingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxAccountIncomingQueue, @ptrCast(self)), pFaxIncomingJobs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingQueue_GetJob(self: *const T, bstrJobId: ?BSTR, pFaxIncomingJob: ?*?*IFaxIncomingJob) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxAccountIncomingQueue, self), bstrJobId, pFaxIncomingJob);
+                return @as(*const IFaxAccountIncomingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountIncomingQueue, @ptrCast(self)), bstrJobId, pFaxIncomingJob);
             }
         };
     }
@@ -11421,11 +11421,11 @@ pub const IFaxAccountOutgoingQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingQueue_GetJobs(self: *const T, pFaxOutgoingJobs: ?*?*IFaxOutgoingJobs) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJobs(@ptrCast(*const IFaxAccountOutgoingQueue, self), pFaxOutgoingJobs);
+                return @as(*const IFaxAccountOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJobs(@as(*const IFaxAccountOutgoingQueue, @ptrCast(self)), pFaxOutgoingJobs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingQueue_GetJob(self: *const T, bstrJobId: ?BSTR, pFaxOutgoingJob: ?*?*IFaxOutgoingJob) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingQueue.VTable, self.vtable).GetJob(@ptrCast(*const IFaxAccountOutgoingQueue, self), bstrJobId, pFaxOutgoingJob);
+                return @as(*const IFaxAccountOutgoingQueue.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IFaxAccountOutgoingQueue, @ptrCast(self)), bstrJobId, pFaxOutgoingJob);
             }
         };
     }
@@ -11526,31 +11526,31 @@ pub const IFaxOutgoingMessage2 = extern struct {
             pub usingnamespace IFaxOutgoingMessage.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_get_HasCoverPage(self: *const T, pbHasCoverPage: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_HasCoverPage(@ptrCast(*const IFaxOutgoingMessage2, self), pbHasCoverPage);
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbHasCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_get_ReceiptType(self: *const T, pReceiptType: ?*FAX_RECEIPT_TYPE_ENUM) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_ReceiptType(@ptrCast(*const IFaxOutgoingMessage2, self), pReceiptType);
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_ReceiptType(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pReceiptType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_get_ReceiptAddress(self: *const T, pbstrReceiptAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_ReceiptAddress(@ptrCast(*const IFaxOutgoingMessage2, self), pbstrReceiptAddress);
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_ReceiptAddress(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbstrReceiptAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_get_Read(self: *const T, pbRead: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).get_Read(@ptrCast(*const IFaxOutgoingMessage2, self), pbRead);
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).get_Read(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), pbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_put_Read(self: *const T, bRead: i16) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).put_Read(@ptrCast(*const IFaxOutgoingMessage2, self), bRead);
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).put_Read(@as(*const IFaxOutgoingMessage2, @ptrCast(self)), bRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).Save(@ptrCast(*const IFaxOutgoingMessage2, self));
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxOutgoingMessage2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxOutgoingMessage2_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxOutgoingMessage2.VTable, self.vtable).Refresh(@ptrCast(*const IFaxOutgoingMessage2, self));
+                return @as(*const IFaxOutgoingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxOutgoingMessage2, @ptrCast(self)));
             }
         };
     }
@@ -11628,23 +11628,23 @@ pub const IFaxAccountIncomingArchive = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingArchive_get_SizeLow(self: *const T, plSizeLow: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).get_SizeLow(@ptrCast(*const IFaxAccountIncomingArchive, self), plSizeLow);
+                return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), plSizeLow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingArchive_get_SizeHigh(self: *const T, plSizeHigh: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).get_SizeHigh(@ptrCast(*const IFaxAccountIncomingArchive, self), plSizeHigh);
+                return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), plSizeHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingArchive_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxAccountIncomingArchive, self));
+                return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxIncomingMessageIterator: ?*?*IFaxIncomingMessageIterator) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountIncomingArchive, self), lPrefetchSize, pFaxIncomingMessageIterator);
+                return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), lPrefetchSize, pFaxIncomingMessageIterator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountIncomingArchive_GetMessage(self: *const T, bstrMessageId: ?BSTR, pFaxIncomingMessage: ?*?*IFaxIncomingMessage) HRESULT {
-                return @ptrCast(*const IFaxAccountIncomingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxAccountIncomingArchive, self), bstrMessageId, pFaxIncomingMessage);
+                return @as(*const IFaxAccountIncomingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountIncomingArchive, @ptrCast(self)), bstrMessageId, pFaxIncomingMessage);
             }
         };
     }
@@ -11722,23 +11722,23 @@ pub const IFaxAccountOutgoingArchive = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingArchive_get_SizeLow(self: *const T, plSizeLow: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).get_SizeLow(@ptrCast(*const IFaxAccountOutgoingArchive, self), plSizeLow);
+                return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeLow(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), plSizeLow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingArchive_get_SizeHigh(self: *const T, plSizeHigh: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).get_SizeHigh(@ptrCast(*const IFaxAccountOutgoingArchive, self), plSizeHigh);
+                return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).get_SizeHigh(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), plSizeHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingArchive_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).Refresh(@ptrCast(*const IFaxAccountOutgoingArchive, self));
+                return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingArchive_GetMessages(self: *const T, lPrefetchSize: i32, pFaxOutgoingMessageIterator: ?*?*IFaxOutgoingMessageIterator) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessages(@ptrCast(*const IFaxAccountOutgoingArchive, self), lPrefetchSize, pFaxOutgoingMessageIterator);
+                return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessages(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), lPrefetchSize, pFaxOutgoingMessageIterator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxAccountOutgoingArchive_GetMessage(self: *const T, bstrMessageId: ?BSTR, pFaxOutgoingMessage: ?*?*IFaxOutgoingMessage) HRESULT {
-                return @ptrCast(*const IFaxAccountOutgoingArchive.VTable, self.vtable).GetMessage(@ptrCast(*const IFaxAccountOutgoingArchive, self), bstrMessageId, pFaxOutgoingMessage);
+                return @as(*const IFaxAccountOutgoingArchive.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IFaxAccountOutgoingArchive, @ptrCast(self)), bstrMessageId, pFaxOutgoingMessage);
             }
         };
     }
@@ -11862,31 +11862,31 @@ pub const IFaxSecurity2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_get_Descriptor(self: *const T, pvDescriptor: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).get_Descriptor(@ptrCast(*const IFaxSecurity2, self), pvDescriptor);
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_Descriptor(@as(*const IFaxSecurity2, @ptrCast(self)), pvDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_put_Descriptor(self: *const T, vDescriptor: VARIANT) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).put_Descriptor(@ptrCast(*const IFaxSecurity2, self), vDescriptor);
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).put_Descriptor(@as(*const IFaxSecurity2, @ptrCast(self)), vDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_get_GrantedRights(self: *const T, pGrantedRights: ?*FAX_ACCESS_RIGHTS_ENUM_2) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).get_GrantedRights(@ptrCast(*const IFaxSecurity2, self), pGrantedRights);
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_GrantedRights(@as(*const IFaxSecurity2, @ptrCast(self)), pGrantedRights);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).Refresh(@ptrCast(*const IFaxSecurity2, self));
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxSecurity2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).Save(@ptrCast(*const IFaxSecurity2, self));
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxSecurity2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_get_InformationType(self: *const T, plInformationType: ?*i32) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).get_InformationType(@ptrCast(*const IFaxSecurity2, self), plInformationType);
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).get_InformationType(@as(*const IFaxSecurity2, @ptrCast(self)), plInformationType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxSecurity2_put_InformationType(self: *const T, lInformationType: i32) HRESULT {
-                return @ptrCast(*const IFaxSecurity2.VTable, self.vtable).put_InformationType(@ptrCast(*const IFaxSecurity2, self), lInformationType);
+                return @as(*const IFaxSecurity2.VTable, @ptrCast(self.vtable)).put_InformationType(@as(*const IFaxSecurity2, @ptrCast(self)), lInformationType);
             }
         };
     }
@@ -12099,67 +12099,67 @@ pub const IFaxIncomingMessage2 = extern struct {
             pub usingnamespace IFaxIncomingMessage.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_Subject(self: *const T, pbstrSubject: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_Subject(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSubject);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_Subject(self: *const T, bstrSubject: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_Subject(@ptrCast(*const IFaxIncomingMessage2, self), bstrSubject);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSubject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_SenderName(self: *const T, pbstrSenderName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_SenderName(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSenderName);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_SenderName(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSenderName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_SenderName(self: *const T, bstrSenderName: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_SenderName(@ptrCast(*const IFaxIncomingMessage2, self), bstrSenderName);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_SenderName(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSenderName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_SenderFaxNumber(self: *const T, pbstrSenderFaxNumber: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_SenderFaxNumber(@ptrCast(*const IFaxIncomingMessage2, self), pbstrSenderFaxNumber);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_SenderFaxNumber(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrSenderFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_SenderFaxNumber(self: *const T, bstrSenderFaxNumber: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_SenderFaxNumber(@ptrCast(*const IFaxIncomingMessage2, self), bstrSenderFaxNumber);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_SenderFaxNumber(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrSenderFaxNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_HasCoverPage(self: *const T, pbHasCoverPage: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_HasCoverPage(@ptrCast(*const IFaxIncomingMessage2, self), pbHasCoverPage);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_HasCoverPage(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbHasCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_HasCoverPage(self: *const T, bHasCoverPage: i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_HasCoverPage(@ptrCast(*const IFaxIncomingMessage2, self), bHasCoverPage);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_HasCoverPage(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bHasCoverPage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_Recipients(self: *const T, pbstrRecipients: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_Recipients(@ptrCast(*const IFaxIncomingMessage2, self), pbstrRecipients);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Recipients(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbstrRecipients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_Recipients(self: *const T, bstrRecipients: ?BSTR) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_Recipients(@ptrCast(*const IFaxIncomingMessage2, self), bstrRecipients);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Recipients(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bstrRecipients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_WasReAssigned(self: *const T, pbWasReAssigned: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_WasReAssigned(@ptrCast(*const IFaxIncomingMessage2, self), pbWasReAssigned);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_WasReAssigned(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbWasReAssigned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_get_Read(self: *const T, pbRead: ?*i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).get_Read(@ptrCast(*const IFaxIncomingMessage2, self), pbRead);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).get_Read(@as(*const IFaxIncomingMessage2, @ptrCast(self)), pbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_put_Read(self: *const T, bRead: i16) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).put_Read(@ptrCast(*const IFaxIncomingMessage2, self), bRead);
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).put_Read(@as(*const IFaxIncomingMessage2, @ptrCast(self)), bRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_ReAssign(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).ReAssign(@ptrCast(*const IFaxIncomingMessage2, self));
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).ReAssign(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_Save(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).Save(@ptrCast(*const IFaxIncomingMessage2, self));
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).Save(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFaxIncomingMessage2_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IFaxIncomingMessage2.VTable, self.vtable).Refresh(@ptrCast(*const IFaxIncomingMessage2, self));
+                return @as(*const IFaxIncomingMessage2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IFaxIncomingMessage2, @ptrCast(self)));
             }
         };
     }
@@ -12513,107 +12513,107 @@ pub const _IFaxServerNotify2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingJobAdded(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingJobAdded(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingJobRemoved(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingJobRemoved(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingJobChanged(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingJobChanged(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId, pJobStatus);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingJobChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId, pJobStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingJobAdded(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingJobAdded(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingJobRemoved(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingJobRemoved(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingJobChanged(self: *const T, pFaxServer: ?*IFaxServer2, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingJobChanged(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrJobId, pJobStatus);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingJobChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrJobId, pJobStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingMessageAdded(self: *const T, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingMessageAdded(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrMessageId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingMessageAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingMessageRemoved(self: *const T, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingMessageRemoved(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrMessageId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingMessageRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingMessageAdded(self: *const T, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingMessageAdded(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrMessageId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingMessageAdded(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingMessageRemoved(self: *const T, pFaxServer: ?*IFaxServer2, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingMessageRemoved(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bstrMessageId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingMessageRemoved(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnReceiptOptionsChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnReceiptOptionsChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnReceiptOptionsChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnActivityLoggingConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnActivityLoggingConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnActivityLoggingConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnSecurityConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnSecurityConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnSecurityConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnEventLoggingConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnEventLoggingConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnEventLoggingConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingQueueConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingQueueConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingQueueConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutgoingArchiveConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutgoingArchiveConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutgoingArchiveConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnIncomingArchiveConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnIncomingArchiveConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnIncomingArchiveConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnDevicesConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnDevicesConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnDevicesConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutboundRoutingGroupsConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutboundRoutingGroupsConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutboundRoutingGroupsConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnOutboundRoutingRulesConfigChange(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnOutboundRoutingRulesConfigChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnOutboundRoutingRulesConfigChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnServerActivityChange(self: *const T, pFaxServer: ?*IFaxServer2, lIncomingMessages: i32, lRoutingMessages: i32, lOutgoingMessages: i32, lQueuedMessages: i32) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnServerActivityChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, lIncomingMessages, lRoutingMessages, lOutgoingMessages, lQueuedMessages);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnServerActivityChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lIncomingMessages, lRoutingMessages, lOutgoingMessages, lQueuedMessages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnQueuesStatusChange(self: *const T, pFaxServer: ?*IFaxServer2, bOutgoingQueueBlocked: i16, bOutgoingQueuePaused: i16, bIncomingQueueBlocked: i16) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnQueuesStatusChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, bOutgoingQueueBlocked, bOutgoingQueuePaused, bIncomingQueueBlocked);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnQueuesStatusChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, bOutgoingQueueBlocked, bOutgoingQueuePaused, bIncomingQueueBlocked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnNewCall(self: *const T, pFaxServer: ?*IFaxServer2, lCallId: i32, lDeviceId: i32, bstrCallerId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnNewCall(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, lCallId, lDeviceId, bstrCallerId);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnNewCall(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lCallId, lDeviceId, bstrCallerId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnServerShutDown(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnServerShutDown(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnServerShutDown(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnDeviceStatusChange(self: *const T, pFaxServer: ?*IFaxServer2, lDeviceId: i32, bPoweredOff: i16, bSending: i16, bReceiving: i16, bRinging: i16) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnDeviceStatusChange(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer, lDeviceId, bPoweredOff, bSending, bReceiving, bRinging);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnDeviceStatusChange(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer, lDeviceId, bPoweredOff, bSending, bReceiving, bRinging);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxServerNotify2_OnGeneralServerConfigChanged(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxServerNotify2.VTable, self.vtable).OnGeneralServerConfigChanged(@ptrCast(*const _IFaxServerNotify2, self), pFaxServer);
+                return @as(*const _IFaxServerNotify2.VTable, @ptrCast(self.vtable)).OnGeneralServerConfigChanged(@as(*const _IFaxServerNotify2, @ptrCast(self)), pFaxServer);
             }
         };
     }
@@ -12787,47 +12787,47 @@ pub const _IFaxAccountNotify = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnIncomingJobAdded(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnIncomingJobAdded(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnIncomingJobRemoved(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnIncomingJobRemoved(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnIncomingJobChanged(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnIncomingJobChanged(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId, pJobStatus);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingJobChanged(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId, pJobStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnOutgoingJobAdded(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnOutgoingJobAdded(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnOutgoingJobRemoved(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnOutgoingJobRemoved(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnOutgoingJobChanged(self: *const T, pFaxAccount: ?*IFaxAccount, bstrJobId: ?BSTR, pJobStatus: ?*IFaxJobStatus) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnOutgoingJobChanged(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrJobId, pJobStatus);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingJobChanged(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrJobId, pJobStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnIncomingMessageAdded(self: *const T, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fAddedToReceiveFolder: i16) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnIncomingMessageAdded(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrMessageId, fAddedToReceiveFolder);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingMessageAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId, fAddedToReceiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnIncomingMessageRemoved(self: *const T, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR, fRemovedFromReceiveFolder: i16) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnIncomingMessageRemoved(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrMessageId, fRemovedFromReceiveFolder);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnIncomingMessageRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId, fRemovedFromReceiveFolder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnOutgoingMessageAdded(self: *const T, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnOutgoingMessageAdded(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrMessageId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingMessageAdded(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnOutgoingMessageRemoved(self: *const T, pFaxAccount: ?*IFaxAccount, bstrMessageId: ?BSTR) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnOutgoingMessageRemoved(@ptrCast(*const _IFaxAccountNotify, self), pFaxAccount, bstrMessageId);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnOutgoingMessageRemoved(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxAccount, bstrMessageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IFaxAccountNotify_OnServerShutDown(self: *const T, pFaxServer: ?*IFaxServer2) HRESULT {
-                return @ptrCast(*const _IFaxAccountNotify.VTable, self.vtable).OnServerShutDown(@ptrCast(*const _IFaxAccountNotify, self), pFaxServer);
+                return @as(*const _IFaxAccountNotify.VTable, @ptrCast(self.vtable)).OnServerShutDown(@as(*const _IFaxAccountNotify, @ptrCast(self)), pFaxServer);
             }
         };
     }
@@ -13467,63 +13467,63 @@ pub const IStillImageW = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_Initialize(self: *const T, hinst: ?HINSTANCE, dwVersion: u32) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).Initialize(@ptrCast(*const IStillImageW, self), hinst, dwVersion);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStillImageW, @ptrCast(self)), hinst, dwVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_GetDeviceList(self: *const T, dwType: u32, dwFlags: u32, pdwItemsReturned: ?*u32, ppBuffer: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).GetDeviceList(@ptrCast(*const IStillImageW, self), dwType, dwFlags, pdwItemsReturned, ppBuffer);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceList(@as(*const IStillImageW, @ptrCast(self)), dwType, dwFlags, pdwItemsReturned, ppBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_GetDeviceInfo(self: *const T, pwszDeviceName: ?PWSTR, ppBuffer: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).GetDeviceInfo(@ptrCast(*const IStillImageW, self), pwszDeviceName, ppBuffer);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceInfo(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, ppBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_CreateDevice(self: *const T, pwszDeviceName: ?PWSTR, dwMode: u32, pDevice: ?*?*IStiDevice, punkOuter: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).CreateDevice(@ptrCast(*const IStillImageW, self), pwszDeviceName, dwMode, pDevice, punkOuter);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, dwMode, pDevice, punkOuter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_GetDeviceValue(self: *const T, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, pType: ?*u32, pData: ?*u8, cbData: ?*u32) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).GetDeviceValue(@ptrCast(*const IStillImageW, self), pwszDeviceName, pValueName, pType, pData, cbData);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetDeviceValue(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pValueName, pType, pData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_SetDeviceValue(self: *const T, pwszDeviceName: ?PWSTR, pValueName: ?PWSTR, Type: u32, pData: ?*u8, cbData: u32) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).SetDeviceValue(@ptrCast(*const IStillImageW, self), pwszDeviceName, pValueName, Type, pData, cbData);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).SetDeviceValue(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pValueName, Type, pData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_GetSTILaunchInformation(self: *const T, pwszDeviceName: *[128]u16, pdwEventCode: ?*u32, pwszEventName: *[128]u16) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).GetSTILaunchInformation(@ptrCast(*const IStillImageW, self), pwszDeviceName, pdwEventCode, pwszEventName);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetSTILaunchInformation(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pdwEventCode, pwszEventName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_RegisterLaunchApplication(self: *const T, pwszAppName: ?PWSTR, pwszCommandLine: ?PWSTR) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).RegisterLaunchApplication(@ptrCast(*const IStillImageW, self), pwszAppName, pwszCommandLine);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).RegisterLaunchApplication(@as(*const IStillImageW, @ptrCast(self)), pwszAppName, pwszCommandLine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_UnregisterLaunchApplication(self: *const T, pwszAppName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).UnregisterLaunchApplication(@ptrCast(*const IStillImageW, self), pwszAppName);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).UnregisterLaunchApplication(@as(*const IStillImageW, @ptrCast(self)), pwszAppName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_EnableHwNotifications(self: *const T, pwszDeviceName: ?[*:0]const u16, bNewState: BOOL) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).EnableHwNotifications(@ptrCast(*const IStillImageW, self), pwszDeviceName, bNewState);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).EnableHwNotifications(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, bNewState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_GetHwNotificationState(self: *const T, pwszDeviceName: ?[*:0]const u16, pbCurrentState: ?*BOOL) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).GetHwNotificationState(@ptrCast(*const IStillImageW, self), pwszDeviceName, pbCurrentState);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).GetHwNotificationState(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pbCurrentState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_RefreshDeviceBus(self: *const T, pwszDeviceName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).RefreshDeviceBus(@ptrCast(*const IStillImageW, self), pwszDeviceName);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).RefreshDeviceBus(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_LaunchApplicationForDevice(self: *const T, pwszDeviceName: ?PWSTR, pwszAppName: ?PWSTR, pStiNotify: ?*STINOTIFY) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).LaunchApplicationForDevice(@ptrCast(*const IStillImageW, self), pwszDeviceName, pwszAppName, pStiNotify);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).LaunchApplicationForDevice(@as(*const IStillImageW, @ptrCast(self)), pwszDeviceName, pwszAppName, pStiNotify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_SetupDeviceParameters(self: *const T, param0: ?*STI_DEVICE_INFORMATIONW) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).SetupDeviceParameters(@ptrCast(*const IStillImageW, self), param0);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).SetupDeviceParameters(@as(*const IStillImageW, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStillImageW_WriteToErrorLog(self: *const T, dwMessageType: u32, pszMessage: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IStillImageW.VTable, self.vtable).WriteToErrorLog(@ptrCast(*const IStillImageW, self), dwMessageType, pszMessage);
+                return @as(*const IStillImageW.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStillImageW, @ptrCast(self)), dwMessageType, pszMessage);
             }
         };
     }
@@ -13750,71 +13750,71 @@ pub const IStiDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_Initialize(self: *const T, hinst: ?HINSTANCE, pwszDeviceName: ?[*:0]const u16, dwVersion: u32, dwMode: u32) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).Initialize(@ptrCast(*const IStiDevice, self), hinst, pwszDeviceName, dwVersion, dwMode);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiDevice, @ptrCast(self)), hinst, pwszDeviceName, dwVersion, dwMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_GetCapabilities(self: *const T, pDevCaps: ?*STI_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).GetCapabilities(@ptrCast(*const IStiDevice, self), pDevCaps);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IStiDevice, @ptrCast(self)), pDevCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_GetStatus(self: *const T, pDevStatus: ?*STI_DEVICE_STATUS) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).GetStatus(@ptrCast(*const IStiDevice, self), pDevStatus);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IStiDevice, @ptrCast(self)), pDevStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_DeviceReset(self: *const T) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).DeviceReset(@ptrCast(*const IStiDevice, self));
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).DeviceReset(@as(*const IStiDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_Diagnostic(self: *const T, pBuffer: ?*STI_DIAG) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).Diagnostic(@ptrCast(*const IStiDevice, self), pBuffer);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IStiDevice, @ptrCast(self)), pBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).Escape(@ptrCast(*const IStiDevice, self), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Escape(@as(*const IStiDevice, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_GetLastError(self: *const T, pdwLastDeviceError: ?*u32) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).GetLastError(@ptrCast(*const IStiDevice, self), pdwLastDeviceError);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiDevice, @ptrCast(self)), pdwLastDeviceError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_LockDevice(self: *const T, dwTimeOut: u32) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).LockDevice(@ptrCast(*const IStiDevice, self), dwTimeOut);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IStiDevice, @ptrCast(self)), dwTimeOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_UnLockDevice(self: *const T) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).UnLockDevice(@ptrCast(*const IStiDevice, self));
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).UnLockDevice(@as(*const IStiDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).RawReadData(@ptrCast(*const IStiDevice, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiDevice, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiDevice, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiDevice, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiDevice, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_Subscribe(self: *const T, lpSubsribe: ?*STISUBSCRIBE) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).Subscribe(@ptrCast(*const IStiDevice, self), lpSubsribe);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).Subscribe(@as(*const IStiDevice, @ptrCast(self)), lpSubsribe);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_GetLastNotificationData(self: *const T, lpNotify: ?*STINOTIFY) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).GetLastNotificationData(@ptrCast(*const IStiDevice, self), lpNotify);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastNotificationData(@as(*const IStiDevice, @ptrCast(self)), lpNotify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_UnSubscribe(self: *const T) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).UnSubscribe(@ptrCast(*const IStiDevice, self));
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).UnSubscribe(@as(*const IStiDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDevice_GetLastErrorInfo(self: *const T, pLastErrorInfo: ?*_ERROR_INFOW) HRESULT {
-                return @ptrCast(*const IStiDevice.VTable, self.vtable).GetLastErrorInfo(@ptrCast(*const IStiDevice, self), pLastErrorInfo);
+                return @as(*const IStiDevice.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiDevice, @ptrCast(self)), pLastErrorInfo);
             }
         };
     }
@@ -13986,47 +13986,47 @@ pub const IStiDeviceControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_Initialize(self: *const T, dwDeviceType: u32, dwMode: u32, pwszPortName: ?[*:0]const u16, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).Initialize(@ptrCast(*const IStiDeviceControl, self), dwDeviceType, dwMode, pwszPortName, dwFlags);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiDeviceControl, @ptrCast(self)), dwDeviceType, dwMode, pwszPortName, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawReadData(@ptrCast(*const IStiDeviceControl, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiDeviceControl, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiDeviceControl, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiDeviceControl, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiDeviceControl, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_RawDeviceControl(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, dwOutDataSize: u32, pdwActualData: ?*u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).RawDeviceControl(@ptrCast(*const IStiDeviceControl, self), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).RawDeviceControl(@as(*const IStiDeviceControl, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_GetLastError(self: *const T, lpdwLastError: ?*u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).GetLastError(@ptrCast(*const IStiDeviceControl, self), lpdwLastError);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiDeviceControl, @ptrCast(self)), lpdwLastError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_GetMyDevicePortName(self: *const T, lpszDevicePath: [*:0]u16, cwDevicePathSize: u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).GetMyDevicePortName(@ptrCast(*const IStiDeviceControl, self), lpszDevicePath, cwDevicePathSize);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDevicePortName(@as(*const IStiDeviceControl, @ptrCast(self)), lpszDevicePath, cwDevicePathSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_GetMyDeviceHandle(self: *const T, lph: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).GetMyDeviceHandle(@ptrCast(*const IStiDeviceControl, self), lph);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDeviceHandle(@as(*const IStiDeviceControl, @ptrCast(self)), lph);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_GetMyDeviceOpenMode(self: *const T, pdwOpenMode: ?*u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).GetMyDeviceOpenMode(@ptrCast(*const IStiDeviceControl, self), pdwOpenMode);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).GetMyDeviceOpenMode(@as(*const IStiDeviceControl, @ptrCast(self)), pdwOpenMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiDeviceControl_WriteToErrorLog(self: *const T, dwMessageType: u32, pszMessage: ?[*:0]const u16, dwErrorCode: u32) HRESULT {
-                return @ptrCast(*const IStiDeviceControl.VTable, self.vtable).WriteToErrorLog(@ptrCast(*const IStiDeviceControl, self), dwMessageType, pszMessage, dwErrorCode);
+                return @as(*const IStiDeviceControl.VTable, @ptrCast(self.vtable)).WriteToErrorLog(@as(*const IStiDeviceControl, @ptrCast(self)), dwMessageType, pszMessage, dwErrorCode);
             }
         };
     }
@@ -14241,67 +14241,67 @@ pub const IStiUSD = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_Initialize(self: *const T, pHelDcb: ?*IStiDeviceControl, dwStiVersion: u32, hParametersKey: ?HKEY) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).Initialize(@ptrCast(*const IStiUSD, self), pHelDcb, dwStiVersion, hParametersKey);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStiUSD, @ptrCast(self)), pHelDcb, dwStiVersion, hParametersKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_GetCapabilities(self: *const T, pDevCaps: ?*STI_USD_CAPS) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).GetCapabilities(@ptrCast(*const IStiUSD, self), pDevCaps);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IStiUSD, @ptrCast(self)), pDevCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_GetStatus(self: *const T, pDevStatus: ?*STI_DEVICE_STATUS) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).GetStatus(@ptrCast(*const IStiUSD, self), pDevStatus);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IStiUSD, @ptrCast(self)), pDevStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_DeviceReset(self: *const T) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).DeviceReset(@ptrCast(*const IStiUSD, self));
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).DeviceReset(@as(*const IStiUSD, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_Diagnostic(self: *const T, pBuffer: ?*STI_DIAG) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).Diagnostic(@ptrCast(*const IStiUSD, self), pBuffer);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IStiUSD, @ptrCast(self)), pBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_Escape(self: *const T, EscapeFunction: u32, lpInData: ?*anyopaque, cbInDataSize: u32, pOutData: ?*anyopaque, cbOutDataSize: u32, pdwActualData: ?*u32) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).Escape(@ptrCast(*const IStiUSD, self), EscapeFunction, lpInData, cbInDataSize, pOutData, cbOutDataSize, pdwActualData);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).Escape(@as(*const IStiUSD, @ptrCast(self)), EscapeFunction, lpInData, cbInDataSize, pOutData, cbOutDataSize, pdwActualData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_GetLastError(self: *const T, pdwLastDeviceError: ?*u32) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).GetLastError(@ptrCast(*const IStiUSD, self), pdwLastDeviceError);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetLastError(@as(*const IStiUSD, @ptrCast(self)), pdwLastDeviceError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_LockDevice(self: *const T) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).LockDevice(@ptrCast(*const IStiUSD, self));
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IStiUSD, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_UnLockDevice(self: *const T) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).UnLockDevice(@ptrCast(*const IStiUSD, self));
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).UnLockDevice(@as(*const IStiUSD, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_RawReadData(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).RawReadData(@ptrCast(*const IStiUSD, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawReadData(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_RawWriteData(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).RawWriteData(@ptrCast(*const IStiUSD, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawWriteData(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_RawReadCommand(self: *const T, lpBuffer: ?*anyopaque, lpdwNumberOfBytes: ?*u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).RawReadCommand(@ptrCast(*const IStiUSD, self), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawReadCommand(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, lpdwNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_RawWriteCommand(self: *const T, lpBuffer: ?*anyopaque, nNumberOfBytes: u32, lpOverlapped: ?*OVERLAPPED) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).RawWriteCommand(@ptrCast(*const IStiUSD, self), lpBuffer, nNumberOfBytes, lpOverlapped);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).RawWriteCommand(@as(*const IStiUSD, @ptrCast(self)), lpBuffer, nNumberOfBytes, lpOverlapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_SetNotificationHandle(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).SetNotificationHandle(@ptrCast(*const IStiUSD, self), hEvent);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).SetNotificationHandle(@as(*const IStiUSD, @ptrCast(self)), hEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_GetNotificationData(self: *const T, lpNotify: ?*STINOTIFY) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).GetNotificationData(@ptrCast(*const IStiUSD, self), lpNotify);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetNotificationData(@as(*const IStiUSD, @ptrCast(self)), lpNotify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStiUSD_GetLastErrorInfo(self: *const T, pLastErrorInfo: ?*_ERROR_INFOW) HRESULT {
-                return @ptrCast(*const IStiUSD.VTable, self.vtable).GetLastErrorInfo(@ptrCast(*const IStiUSD, self), pLastErrorInfo);
+                return @as(*const IStiUSD.VTable, @ptrCast(self.vtable)).GetLastErrorInfo(@as(*const IStiUSD, @ptrCast(self)), pLastErrorInfo);
             }
         };
     }

@@ -82,11 +82,11 @@ pub const ISideShowSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowSession_RegisterContent(self: *const T, in_applicationId: ?*Guid, in_endpointId: ?*Guid, out_ppIContent: ?*?*ISideShowContentManager) HRESULT {
-                return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterContent(@ptrCast(*const ISideShowSession, self), in_applicationId, in_endpointId, out_ppIContent);
+                return @as(*const ISideShowSession.VTable, @ptrCast(self.vtable)).RegisterContent(@as(*const ISideShowSession, @ptrCast(self)), in_applicationId, in_endpointId, out_ppIContent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowSession_RegisterNotifications(self: *const T, in_applicationId: ?*Guid, out_ppINotification: ?*?*ISideShowNotificationManager) HRESULT {
-                return @ptrCast(*const ISideShowSession.VTable, self.vtable).RegisterNotifications(@ptrCast(*const ISideShowSession, self), in_applicationId, out_ppINotification);
+                return @as(*const ISideShowSession.VTable, @ptrCast(self.vtable)).RegisterNotifications(@as(*const ISideShowSession, @ptrCast(self)), in_applicationId, out_ppINotification);
             }
         };
     }
@@ -133,15 +133,15 @@ pub const ISideShowNotificationManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotificationManager_Show(self: *const T, in_pINotification: ?*ISideShowNotification) HRESULT {
-                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Show(@ptrCast(*const ISideShowNotificationManager, self), in_pINotification);
+                return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).Show(@as(*const ISideShowNotificationManager, @ptrCast(self)), in_pINotification);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotificationManager_Revoke(self: *const T, in_notificationId: u32) HRESULT {
-                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).Revoke(@ptrCast(*const ISideShowNotificationManager, self), in_notificationId);
+                return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).Revoke(@as(*const ISideShowNotificationManager, @ptrCast(self)), in_notificationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotificationManager_RevokeAll(self: *const T) HRESULT {
-                return @ptrCast(*const ISideShowNotificationManager.VTable, self.vtable).RevokeAll(@ptrCast(*const ISideShowNotificationManager, self));
+                return @as(*const ISideShowNotificationManager.VTable, @ptrCast(self.vtable)).RevokeAll(@as(*const ISideShowNotificationManager, @ptrCast(self)));
             }
         };
     }
@@ -290,43 +290,43 @@ pub const ISideShowNotification = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_get_NotificationId(self: *const T, out_pNotificationId: ?*u32) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_NotificationId(@ptrCast(*const ISideShowNotification, self), out_pNotificationId);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_NotificationId(@as(*const ISideShowNotification, @ptrCast(self)), out_pNotificationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_put_NotificationId(self: *const T, in_notificationId: u32) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_NotificationId(@ptrCast(*const ISideShowNotification, self), in_notificationId);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_NotificationId(@as(*const ISideShowNotification, @ptrCast(self)), in_notificationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_get_Title(self: *const T, out_ppwszTitle: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Title(@ptrCast(*const ISideShowNotification, self), out_ppwszTitle);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Title(@as(*const ISideShowNotification, @ptrCast(self)), out_ppwszTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_put_Title(self: *const T, in_pwszTitle: ?PWSTR) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Title(@ptrCast(*const ISideShowNotification, self), in_pwszTitle);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Title(@as(*const ISideShowNotification, @ptrCast(self)), in_pwszTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_get_Message(self: *const T, out_ppwszMessage: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Message(@ptrCast(*const ISideShowNotification, self), out_ppwszMessage);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Message(@as(*const ISideShowNotification, @ptrCast(self)), out_ppwszMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_put_Message(self: *const T, in_pwszMessage: ?PWSTR) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Message(@ptrCast(*const ISideShowNotification, self), in_pwszMessage);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Message(@as(*const ISideShowNotification, @ptrCast(self)), in_pwszMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_get_Image(self: *const T, out_phIcon: ?*?HICON) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_Image(@ptrCast(*const ISideShowNotification, self), out_phIcon);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_Image(@as(*const ISideShowNotification, @ptrCast(self)), out_phIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_put_Image(self: *const T, in_hIcon: ?HICON) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_Image(@ptrCast(*const ISideShowNotification, self), in_hIcon);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_Image(@as(*const ISideShowNotification, @ptrCast(self)), in_hIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_get_ExpirationTime(self: *const T, out_pTime: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).get_ExpirationTime(@ptrCast(*const ISideShowNotification, self), out_pTime);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).get_ExpirationTime(@as(*const ISideShowNotification, @ptrCast(self)), out_pTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowNotification_put_ExpirationTime(self: *const T, in_pTime: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const ISideShowNotification.VTable, self.vtable).put_ExpirationTime(@ptrCast(*const ISideShowNotification, self), in_pTime);
+                return @as(*const ISideShowNotification.VTable, @ptrCast(self.vtable)).put_ExpirationTime(@as(*const ISideShowNotification, @ptrCast(self)), in_pTime);
             }
         };
     }
@@ -393,23 +393,23 @@ pub const ISideShowContentManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContentManager_Add(self: *const T, in_pIContent: ?*ISideShowContent) HRESULT {
-                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Add(@ptrCast(*const ISideShowContentManager, self), in_pIContent);
+                return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowContentManager, @ptrCast(self)), in_pIContent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContentManager_Remove(self: *const T, in_contentId: u32) HRESULT {
-                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).Remove(@ptrCast(*const ISideShowContentManager, self), in_contentId);
+                return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISideShowContentManager, @ptrCast(self)), in_contentId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContentManager_RemoveAll(self: *const T) HRESULT {
-                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).RemoveAll(@ptrCast(*const ISideShowContentManager, self));
+                return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const ISideShowContentManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContentManager_SetEventSink(self: *const T, in_pIEvents: ?*ISideShowEvents) HRESULT {
-                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISideShowContentManager, self), in_pIEvents);
+                return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISideShowContentManager, @ptrCast(self)), in_pIEvents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContentManager_GetDeviceCapabilities(self: *const T, out_ppCollection: ?*?*ISideShowCapabilitiesCollection) HRESULT {
-                return @ptrCast(*const ISideShowContentManager.VTable, self.vtable).GetDeviceCapabilities(@ptrCast(*const ISideShowContentManager, self), out_ppCollection);
+                return @as(*const ISideShowContentManager.VTable, @ptrCast(self.vtable)).GetDeviceCapabilities(@as(*const ISideShowContentManager, @ptrCast(self)), out_ppCollection);
             }
         };
     }
@@ -468,15 +468,15 @@ pub const ISideShowContent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContent_GetContent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: ?[*]?*u8) HRESULT {
-                return @ptrCast(*const ISideShowContent.VTable, self.vtable).GetContent(@ptrCast(*const ISideShowContent, self), in_pICapabilities, out_pdwSize, out_ppbData);
+                return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).GetContent(@as(*const ISideShowContent, @ptrCast(self)), in_pICapabilities, out_pdwSize, out_ppbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContent_get_ContentId(self: *const T, out_pcontentId: ?*u32) HRESULT {
-                return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_ContentId(@ptrCast(*const ISideShowContent, self), out_pcontentId);
+                return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).get_ContentId(@as(*const ISideShowContent, @ptrCast(self)), out_pcontentId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowContent_get_DifferentiateContent(self: *const T, out_pfDifferentiateContent: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISideShowContent.VTable, self.vtable).get_DifferentiateContent(@ptrCast(*const ISideShowContent, self), out_pfDifferentiateContent);
+                return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).get_DifferentiateContent(@as(*const ISideShowContent, @ptrCast(self)), out_pfDifferentiateContent);
             }
         };
     }
@@ -543,19 +543,19 @@ pub const ISideShowEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowEvents_ContentMissing(self: *const T, in_contentId: u32, out_ppIContent: ?*?*ISideShowContent) HRESULT {
-                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ContentMissing(@ptrCast(*const ISideShowEvents, self), in_contentId, out_ppIContent);
+                return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).ContentMissing(@as(*const ISideShowEvents, @ptrCast(self)), in_contentId, out_ppIContent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowEvents_ApplicationEvent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, in_dwEventId: u32, in_dwEventSize: u32, in_pbEventData: ?[*:0]const u8) HRESULT {
-                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).ApplicationEvent(@ptrCast(*const ISideShowEvents, self), in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
+                return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).ApplicationEvent(@as(*const ISideShowEvents, @ptrCast(self)), in_pICapabilities, in_dwEventId, in_dwEventSize, in_pbEventData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowEvents_DeviceAdded(self: *const T, in_pIDevice: ?*ISideShowCapabilities) HRESULT {
-                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceAdded(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
+                return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).DeviceAdded(@as(*const ISideShowEvents, @ptrCast(self)), in_pIDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowEvents_DeviceRemoved(self: *const T, in_pIDevice: ?*ISideShowCapabilities) HRESULT {
-                return @ptrCast(*const ISideShowEvents.VTable, self.vtable).DeviceRemoved(@ptrCast(*const ISideShowEvents, self), in_pIDevice);
+                return @as(*const ISideShowEvents.VTable, @ptrCast(self.vtable)).DeviceRemoved(@as(*const ISideShowEvents, @ptrCast(self)), in_pIDevice);
             }
         };
     }
@@ -586,7 +586,7 @@ pub const ISideShowCapabilities = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowCapabilities_GetCapability(self: *const T, in_keyCapability: ?*const PROPERTYKEY, inout_pValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const ISideShowCapabilities.VTable, self.vtable).GetCapability(@ptrCast(*const ISideShowCapabilities, self), in_keyCapability, inout_pValue);
+                return @as(*const ISideShowCapabilities.VTable, @ptrCast(self.vtable)).GetCapability(@as(*const ISideShowCapabilities, @ptrCast(self)), in_keyCapability, inout_pValue);
             }
         };
     }
@@ -627,11 +627,11 @@ pub const ISideShowCapabilitiesCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowCapabilitiesCollection_GetCount(self: *const T, out_pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowCapabilitiesCollection, self), out_pdwCount);
+                return @as(*const ISideShowCapabilitiesCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowCapabilitiesCollection, @ptrCast(self)), out_pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowCapabilitiesCollection_GetAt(self: *const T, in_dwIndex: u32, out_ppCapabilities: ?*?*ISideShowCapabilities) HRESULT {
-                return @ptrCast(*const ISideShowCapabilitiesCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowCapabilitiesCollection, self), in_dwIndex, out_ppCapabilities);
+                return @as(*const ISideShowCapabilitiesCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowCapabilitiesCollection, @ptrCast(self)), in_dwIndex, out_ppCapabilities);
             }
         };
     }
@@ -662,7 +662,7 @@ pub const ISideShowBulkCapabilities = extern struct {
             pub usingnamespace ISideShowCapabilities.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowBulkCapabilities_GetCapabilities(self: *const T, in_keyCollection: ?*ISideShowKeyCollection, inout_pValues: ?*?*ISideShowPropVariantCollection) HRESULT {
-                return @ptrCast(*const ISideShowBulkCapabilities.VTable, self.vtable).GetCapabilities(@ptrCast(*const ISideShowBulkCapabilities, self), in_keyCollection, inout_pValues);
+                return @as(*const ISideShowBulkCapabilities.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const ISideShowBulkCapabilities, @ptrCast(self)), in_keyCollection, inout_pValues);
             }
         };
     }
@@ -731,23 +731,23 @@ pub const ISideShowKeyCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowKeyCollection_Add(self: *const T, Key: ?*const PROPERTYKEY) HRESULT {
-                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowKeyCollection, self), Key);
+                return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowKeyCollection, @ptrCast(self)), Key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowKeyCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowKeyCollection, self));
+                return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISideShowKeyCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowKeyCollection_GetAt(self: *const T, dwIndex: u32, pKey: ?*PROPERTYKEY) HRESULT {
-                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex, pKey);
+                return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowKeyCollection, @ptrCast(self)), dwIndex, pKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowKeyCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
-                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowKeyCollection, self), pcElems);
+                return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowKeyCollection, @ptrCast(self)), pcElems);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowKeyCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
-                return @ptrCast(*const ISideShowKeyCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowKeyCollection, self), dwIndex);
+                return @as(*const ISideShowKeyCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const ISideShowKeyCollection, @ptrCast(self)), dwIndex);
             }
         };
     }
@@ -816,23 +816,23 @@ pub const ISideShowPropVariantCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowPropVariantCollection_Add(self: *const T, pValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Add(@ptrCast(*const ISideShowPropVariantCollection, self), pValue);
+                return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowPropVariantCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).Clear(@ptrCast(*const ISideShowPropVariantCollection, self));
+                return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISideShowPropVariantCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowPropVariantCollection_GetAt(self: *const T, dwIndex: u32, pValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex, pValue);
+                return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), dwIndex, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowPropVariantCollection_GetCount(self: *const T, pcElems: ?*u32) HRESULT {
-                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISideShowPropVariantCollection, self), pcElems);
+                return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), pcElems);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISideShowPropVariantCollection_RemoveAt(self: *const T, dwIndex: u32) HRESULT {
-                return @ptrCast(*const ISideShowPropVariantCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const ISideShowPropVariantCollection, self), dwIndex);
+                return @as(*const ISideShowPropVariantCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const ISideShowPropVariantCollection, @ptrCast(self)), dwIndex);
             }
         };
     }

@@ -1281,243 +1281,243 @@ pub const IDataCollectorSet = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_DataCollectors(self: *const T, collectors: ?*?*IDataCollectorCollection) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DataCollectors(@ptrCast(*const IDataCollectorSet, self), collectors);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DataCollectors(@as(*const IDataCollectorSet, @ptrCast(self)), collectors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Duration(self: *const T, seconds: ?*u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Duration(@ptrCast(*const IDataCollectorSet, self), seconds);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Duration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Duration(self: *const T, seconds: u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Duration(@ptrCast(*const IDataCollectorSet, self), seconds);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Duration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Description(@ptrCast(*const IDataCollectorSet, self), description);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IDataCollectorSet, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Description(self: *const T, description: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Description(@ptrCast(*const IDataCollectorSet, self), description);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IDataCollectorSet, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_DescriptionUnresolved(self: *const T, Descr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DescriptionUnresolved(@ptrCast(*const IDataCollectorSet, self), Descr);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DescriptionUnresolved(@as(*const IDataCollectorSet, @ptrCast(self)), Descr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_DisplayName(self: *const T, DisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DisplayName(@ptrCast(*const IDataCollectorSet, self), DisplayName);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IDataCollectorSet, @ptrCast(self)), DisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_DisplayName(self: *const T, DisplayName: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_DisplayName(@ptrCast(*const IDataCollectorSet, self), DisplayName);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IDataCollectorSet, @ptrCast(self)), DisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_DisplayNameUnresolved(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DisplayNameUnresolved(@ptrCast(*const IDataCollectorSet, self), name);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DisplayNameUnresolved(@as(*const IDataCollectorSet, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Keywords(self: *const T, keywords: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Keywords(@ptrCast(*const IDataCollectorSet, self), keywords);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Keywords(@as(*const IDataCollectorSet, @ptrCast(self)), keywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Keywords(self: *const T, keywords: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Keywords(@ptrCast(*const IDataCollectorSet, self), keywords);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Keywords(@as(*const IDataCollectorSet, @ptrCast(self)), keywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_LatestOutputLocation(self: *const T, path: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_LatestOutputLocation(@ptrCast(*const IDataCollectorSet, self), path);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_LatestOutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_LatestOutputLocation(self: *const T, path: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_LatestOutputLocation(@ptrCast(*const IDataCollectorSet, self), path);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_LatestOutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Name(@ptrCast(*const IDataCollectorSet, self), name);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IDataCollectorSet, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_OutputLocation(self: *const T, path: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_OutputLocation(@ptrCast(*const IDataCollectorSet, self), path);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_OutputLocation(@as(*const IDataCollectorSet, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_RootPath(self: *const T, folder: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_RootPath(@ptrCast(*const IDataCollectorSet, self), folder);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_RootPath(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_RootPath(self: *const T, folder: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_RootPath(@ptrCast(*const IDataCollectorSet, self), folder);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_RootPath(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Segment(self: *const T, segment: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Segment(@ptrCast(*const IDataCollectorSet, self), segment);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Segment(@as(*const IDataCollectorSet, @ptrCast(self)), segment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Segment(self: *const T, segment: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Segment(@ptrCast(*const IDataCollectorSet, self), segment);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Segment(@as(*const IDataCollectorSet, @ptrCast(self)), segment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SegmentMaxDuration(self: *const T, seconds: ?*u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SegmentMaxDuration(@ptrCast(*const IDataCollectorSet, self), seconds);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SegmentMaxDuration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SegmentMaxDuration(self: *const T, seconds: u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SegmentMaxDuration(@ptrCast(*const IDataCollectorSet, self), seconds);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SegmentMaxDuration(@as(*const IDataCollectorSet, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SegmentMaxSize(self: *const T, size: ?*u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SegmentMaxSize(@ptrCast(*const IDataCollectorSet, self), size);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SegmentMaxSize(@as(*const IDataCollectorSet, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SegmentMaxSize(self: *const T, size: u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SegmentMaxSize(@ptrCast(*const IDataCollectorSet, self), size);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SegmentMaxSize(@as(*const IDataCollectorSet, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SerialNumber(self: *const T, index: ?*u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IDataCollectorSet, self), index);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IDataCollectorSet, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SerialNumber(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SerialNumber(@ptrCast(*const IDataCollectorSet, self), index);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SerialNumber(@as(*const IDataCollectorSet, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Server(self: *const T, server: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Server(@ptrCast(*const IDataCollectorSet, self), server);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Server(@as(*const IDataCollectorSet, @ptrCast(self)), server);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Status(self: *const T, status: ?*DataCollectorSetStatus) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Status(@ptrCast(*const IDataCollectorSet, self), status);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IDataCollectorSet, @ptrCast(self)), status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Subdirectory(self: *const T, folder: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Subdirectory(@ptrCast(*const IDataCollectorSet, self), folder);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Subdirectory(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Subdirectory(self: *const T, folder: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Subdirectory(@ptrCast(*const IDataCollectorSet, self), folder);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Subdirectory(@as(*const IDataCollectorSet, @ptrCast(self)), folder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SubdirectoryFormat(self: *const T, format: ?*AutoPathFormat) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SubdirectoryFormat(@ptrCast(*const IDataCollectorSet, self), format);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SubdirectoryFormat(@as(*const IDataCollectorSet, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SubdirectoryFormat(self: *const T, format: AutoPathFormat) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SubdirectoryFormat(@ptrCast(*const IDataCollectorSet, self), format);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SubdirectoryFormat(@as(*const IDataCollectorSet, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SubdirectoryFormatPattern(self: *const T, pattern: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SubdirectoryFormatPattern(@ptrCast(*const IDataCollectorSet, self), pattern);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SubdirectoryFormatPattern(@as(*const IDataCollectorSet, @ptrCast(self)), pattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SubdirectoryFormatPattern(self: *const T, pattern: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SubdirectoryFormatPattern(@ptrCast(*const IDataCollectorSet, self), pattern);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SubdirectoryFormatPattern(@as(*const IDataCollectorSet, @ptrCast(self)), pattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Task(self: *const T, task: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Task(@ptrCast(*const IDataCollectorSet, self), task);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IDataCollectorSet, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Task(self: *const T, task: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Task(@ptrCast(*const IDataCollectorSet, self), task);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IDataCollectorSet, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_TaskRunAsSelf(self: *const T, RunAsSelf: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_TaskRunAsSelf(@ptrCast(*const IDataCollectorSet, self), RunAsSelf);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskRunAsSelf(@as(*const IDataCollectorSet, @ptrCast(self)), RunAsSelf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_TaskRunAsSelf(self: *const T, RunAsSelf: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_TaskRunAsSelf(@ptrCast(*const IDataCollectorSet, self), RunAsSelf);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskRunAsSelf(@as(*const IDataCollectorSet, @ptrCast(self)), RunAsSelf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_TaskArguments(self: *const T, task: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_TaskArguments(@ptrCast(*const IDataCollectorSet, self), task);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskArguments(@as(*const IDataCollectorSet, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_TaskArguments(self: *const T, task: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_TaskArguments(@ptrCast(*const IDataCollectorSet, self), task);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskArguments(@as(*const IDataCollectorSet, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_TaskUserTextArguments(self: *const T, UserText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_TaskUserTextArguments(@ptrCast(*const IDataCollectorSet, self), UserText);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_TaskUserTextArguments(@as(*const IDataCollectorSet, @ptrCast(self)), UserText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_TaskUserTextArguments(self: *const T, UserText: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_TaskUserTextArguments(@ptrCast(*const IDataCollectorSet, self), UserText);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_TaskUserTextArguments(@as(*const IDataCollectorSet, @ptrCast(self)), UserText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Schedules(self: *const T, ppSchedules: ?*?*IScheduleCollection) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Schedules(@ptrCast(*const IDataCollectorSet, self), ppSchedules);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Schedules(@as(*const IDataCollectorSet, @ptrCast(self)), ppSchedules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_SchedulesEnabled(self: *const T, enabled: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_SchedulesEnabled(@ptrCast(*const IDataCollectorSet, self), enabled);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_SchedulesEnabled(@as(*const IDataCollectorSet, @ptrCast(self)), enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_SchedulesEnabled(self: *const T, enabled: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_SchedulesEnabled(@ptrCast(*const IDataCollectorSet, self), enabled);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_SchedulesEnabled(@as(*const IDataCollectorSet, @ptrCast(self)), enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_UserAccount(self: *const T, user: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_UserAccount(@ptrCast(*const IDataCollectorSet, self), user);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IDataCollectorSet, @ptrCast(self)), user);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Xml(self: *const T, xml: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Xml(@ptrCast(*const IDataCollectorSet, self), xml);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Xml(@as(*const IDataCollectorSet, @ptrCast(self)), xml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_Security(self: *const T, pbstrSecurity: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_Security(@ptrCast(*const IDataCollectorSet, self), pbstrSecurity);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IDataCollectorSet, @ptrCast(self)), pbstrSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_Security(self: *const T, bstrSecurity: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_Security(@ptrCast(*const IDataCollectorSet, self), bstrSecurity);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IDataCollectorSet, @ptrCast(self)), bstrSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_StopOnCompletion(self: *const T, Stop: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_StopOnCompletion(@ptrCast(*const IDataCollectorSet, self), Stop);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_StopOnCompletion(@as(*const IDataCollectorSet, @ptrCast(self)), Stop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_put_StopOnCompletion(self: *const T, Stop: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).put_StopOnCompletion(@ptrCast(*const IDataCollectorSet, self), Stop);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).put_StopOnCompletion(@as(*const IDataCollectorSet, @ptrCast(self)), Stop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_get_DataManager(self: *const T, DataManager: ?*?*IDataManager) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).get_DataManager(@ptrCast(*const IDataCollectorSet, self), DataManager);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).get_DataManager(@as(*const IDataCollectorSet, @ptrCast(self)), DataManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_SetCredentials(self: *const T, user: ?BSTR, password: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).SetCredentials(@ptrCast(*const IDataCollectorSet, self), user, password);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IDataCollectorSet, @ptrCast(self)), user, password);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_Query(self: *const T, name: ?BSTR, server: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Query(@ptrCast(*const IDataCollectorSet, self), name, server);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Query(@as(*const IDataCollectorSet, @ptrCast(self)), name, server);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_Commit(self: *const T, name: ?BSTR, server: ?BSTR, mode: CommitMode, validation: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Commit(@ptrCast(*const IDataCollectorSet, self), name, server, mode, validation);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDataCollectorSet, @ptrCast(self)), name, server, mode, validation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Delete(@ptrCast(*const IDataCollectorSet, self));
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IDataCollectorSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_Start(self: *const T, Synchronous: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Start(@ptrCast(*const IDataCollectorSet, self), Synchronous);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Start(@as(*const IDataCollectorSet, @ptrCast(self)), Synchronous);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_Stop(self: *const T, Synchronous: i16) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).Stop(@ptrCast(*const IDataCollectorSet, self), Synchronous);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDataCollectorSet, @ptrCast(self)), Synchronous);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_SetXml(self: *const T, xml: ?BSTR, validation: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).SetXml(@ptrCast(*const IDataCollectorSet, self), xml, validation);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetXml(@as(*const IDataCollectorSet, @ptrCast(self)), xml, validation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_SetValue(self: *const T, key: ?BSTR, value: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).SetValue(@ptrCast(*const IDataCollectorSet, self), key, value);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).SetValue(@as(*const IDataCollectorSet, @ptrCast(self)), key, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSet_GetValue(self: *const T, key: ?BSTR, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSet.VTable, self.vtable).GetValue(@ptrCast(*const IDataCollectorSet, self), key, value);
+                return @as(*const IDataCollectorSet.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IDataCollectorSet, @ptrCast(self)), key, value);
             }
         };
     }
@@ -1862,103 +1862,103 @@ pub const IDataManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_Enabled(self: *const T, pfEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_Enabled(@ptrCast(*const IDataManager, self), pfEnabled);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IDataManager, @ptrCast(self)), pfEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_Enabled(self: *const T, fEnabled: i16) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_Enabled(@ptrCast(*const IDataManager, self), fEnabled);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IDataManager, @ptrCast(self)), fEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_CheckBeforeRunning(self: *const T, pfCheck: ?*i16) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_CheckBeforeRunning(@ptrCast(*const IDataManager, self), pfCheck);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_CheckBeforeRunning(@as(*const IDataManager, @ptrCast(self)), pfCheck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_CheckBeforeRunning(self: *const T, fCheck: i16) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_CheckBeforeRunning(@ptrCast(*const IDataManager, self), fCheck);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_CheckBeforeRunning(@as(*const IDataManager, @ptrCast(self)), fCheck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_MinFreeDisk(self: *const T, MinFreeDisk: ?*u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_MinFreeDisk(@ptrCast(*const IDataManager, self), MinFreeDisk);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MinFreeDisk(@as(*const IDataManager, @ptrCast(self)), MinFreeDisk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_MinFreeDisk(self: *const T, MinFreeDisk: u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_MinFreeDisk(@ptrCast(*const IDataManager, self), MinFreeDisk);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MinFreeDisk(@as(*const IDataManager, @ptrCast(self)), MinFreeDisk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_MaxSize(self: *const T, pulMaxSize: ?*u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_MaxSize(@ptrCast(*const IDataManager, self), pulMaxSize);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MaxSize(@as(*const IDataManager, @ptrCast(self)), pulMaxSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_MaxSize(self: *const T, ulMaxSize: u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_MaxSize(@ptrCast(*const IDataManager, self), ulMaxSize);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MaxSize(@as(*const IDataManager, @ptrCast(self)), ulMaxSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_MaxFolderCount(self: *const T, pulMaxFolderCount: ?*u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_MaxFolderCount(@ptrCast(*const IDataManager, self), pulMaxFolderCount);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_MaxFolderCount(@as(*const IDataManager, @ptrCast(self)), pulMaxFolderCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_MaxFolderCount(self: *const T, ulMaxFolderCount: u32) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_MaxFolderCount(@ptrCast(*const IDataManager, self), ulMaxFolderCount);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_MaxFolderCount(@as(*const IDataManager, @ptrCast(self)), ulMaxFolderCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_ResourcePolicy(self: *const T, pPolicy: ?*ResourcePolicy) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_ResourcePolicy(@ptrCast(*const IDataManager, self), pPolicy);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ResourcePolicy(@as(*const IDataManager, @ptrCast(self)), pPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_ResourcePolicy(self: *const T, Policy: ResourcePolicy) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_ResourcePolicy(@ptrCast(*const IDataManager, self), Policy);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ResourcePolicy(@as(*const IDataManager, @ptrCast(self)), Policy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_FolderActions(self: *const T, Actions: ?*?*IFolderActionCollection) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_FolderActions(@ptrCast(*const IDataManager, self), Actions);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_FolderActions(@as(*const IDataManager, @ptrCast(self)), Actions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_ReportSchema(self: *const T, ReportSchema: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_ReportSchema(@ptrCast(*const IDataManager, self), ReportSchema);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ReportSchema(@as(*const IDataManager, @ptrCast(self)), ReportSchema);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_ReportSchema(self: *const T, ReportSchema: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_ReportSchema(@ptrCast(*const IDataManager, self), ReportSchema);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ReportSchema(@as(*const IDataManager, @ptrCast(self)), ReportSchema);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_ReportFileName(self: *const T, pbstrFilename: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_ReportFileName(@ptrCast(*const IDataManager, self), pbstrFilename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_ReportFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_ReportFileName(self: *const T, pbstrFilename: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_ReportFileName(@ptrCast(*const IDataManager, self), pbstrFilename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_ReportFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_RuleTargetFileName(self: *const T, Filename: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_RuleTargetFileName(@ptrCast(*const IDataManager, self), Filename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_RuleTargetFileName(@as(*const IDataManager, @ptrCast(self)), Filename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_RuleTargetFileName(self: *const T, Filename: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_RuleTargetFileName(@ptrCast(*const IDataManager, self), Filename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_RuleTargetFileName(@as(*const IDataManager, @ptrCast(self)), Filename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_EventsFileName(self: *const T, pbstrFilename: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_EventsFileName(@ptrCast(*const IDataManager, self), pbstrFilename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_EventsFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_EventsFileName(self: *const T, pbstrFilename: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_EventsFileName(@ptrCast(*const IDataManager, self), pbstrFilename);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_EventsFileName(@as(*const IDataManager, @ptrCast(self)), pbstrFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_get_Rules(self: *const T, pbstrXml: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).get_Rules(@ptrCast(*const IDataManager, self), pbstrXml);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const IDataManager, @ptrCast(self)), pbstrXml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_put_Rules(self: *const T, bstrXml: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).put_Rules(@ptrCast(*const IDataManager, self), bstrXml);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).put_Rules(@as(*const IDataManager, @ptrCast(self)), bstrXml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_Run(self: *const T, Steps: DataManagerSteps, bstrFolder: ?BSTR, Errors: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).Run(@ptrCast(*const IDataManager, self), Steps, bstrFolder, Errors);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).Run(@as(*const IDataManager, @ptrCast(self)), Steps, bstrFolder, Errors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataManager_Extract(self: *const T, CabFilename: ?BSTR, DestinationPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataManager.VTable, self.vtable).Extract(@ptrCast(*const IDataManager, self), CabFilename, DestinationPath);
+                return @as(*const IDataManager.VTable, @ptrCast(self.vtable)).Extract(@as(*const IDataManager, @ptrCast(self)), CabFilename, DestinationPath);
             }
         };
     }
@@ -2082,35 +2082,35 @@ pub const IFolderAction = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_get_Age(self: *const T, pulAge: ?*u32) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).get_Age(@ptrCast(*const IFolderAction, self), pulAge);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Age(@as(*const IFolderAction, @ptrCast(self)), pulAge);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_put_Age(self: *const T, ulAge: u32) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).put_Age(@ptrCast(*const IFolderAction, self), ulAge);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Age(@as(*const IFolderAction, @ptrCast(self)), ulAge);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_get_Size(self: *const T, pulAge: ?*u32) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).get_Size(@ptrCast(*const IFolderAction, self), pulAge);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFolderAction, @ptrCast(self)), pulAge);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_put_Size(self: *const T, ulAge: u32) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).put_Size(@ptrCast(*const IFolderAction, self), ulAge);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Size(@as(*const IFolderAction, @ptrCast(self)), ulAge);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_get_Actions(self: *const T, Steps: ?*FolderActionSteps) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).get_Actions(@ptrCast(*const IFolderAction, self), Steps);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_Actions(@as(*const IFolderAction, @ptrCast(self)), Steps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_put_Actions(self: *const T, Steps: FolderActionSteps) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).put_Actions(@ptrCast(*const IFolderAction, self), Steps);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_Actions(@as(*const IFolderAction, @ptrCast(self)), Steps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_get_SendCabTo(self: *const T, pbstrDestination: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).get_SendCabTo(@ptrCast(*const IFolderAction, self), pbstrDestination);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).get_SendCabTo(@as(*const IFolderAction, @ptrCast(self)), pbstrDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderAction_put_SendCabTo(self: *const T, bstrDestination: ?BSTR) HRESULT {
-                return @ptrCast(*const IFolderAction.VTable, self.vtable).put_SendCabTo(@ptrCast(*const IFolderAction, self), bstrDestination);
+                return @as(*const IFolderAction.VTable, @ptrCast(self.vtable)).put_SendCabTo(@as(*const IFolderAction, @ptrCast(self)), bstrDestination);
             }
         };
     }
@@ -2219,35 +2219,35 @@ pub const IFolderActionCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_get_Count(self: *const T, Count: ?*u32) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get_Count(@ptrCast(*const IFolderActionCollection, self), Count);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFolderActionCollection, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_get_Item(self: *const T, Index: VARIANT, Action: ?*?*IFolderAction) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get_Item(@ptrCast(*const IFolderActionCollection, self), Index, Action);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFolderActionCollection, @ptrCast(self)), Index, Action);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_get__NewEnum(self: *const T, Enum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFolderActionCollection, self), Enum);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFolderActionCollection, @ptrCast(self)), Enum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_Add(self: *const T, Action: ?*IFolderAction) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).Add(@ptrCast(*const IFolderActionCollection, self), Action);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IFolderActionCollection, @ptrCast(self)), Action);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_Remove(self: *const T, Index: VARIANT) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).Remove(@ptrCast(*const IFolderActionCollection, self), Index);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFolderActionCollection, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).Clear(@ptrCast(*const IFolderActionCollection, self));
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IFolderActionCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_AddRange(self: *const T, Actions: ?*IFolderActionCollection) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).AddRange(@ptrCast(*const IFolderActionCollection, self), Actions);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IFolderActionCollection, @ptrCast(self)), Actions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFolderActionCollection_CreateFolderAction(self: *const T, FolderAction: ?*?*IFolderAction) HRESULT {
-                return @ptrCast(*const IFolderActionCollection.VTable, self.vtable).CreateFolderAction(@ptrCast(*const IFolderActionCollection, self), FolderAction);
+                return @as(*const IFolderActionCollection.VTable, @ptrCast(self.vtable)).CreateFolderAction(@as(*const IFolderActionCollection, @ptrCast(self)), FolderAction);
             }
         };
     }
@@ -2590,103 +2590,103 @@ pub const IDataCollector = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_DataCollectorSet(self: *const T, group: ?*?*IDataCollectorSet) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_DataCollectorSet(@ptrCast(*const IDataCollector, self), group);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorSet(@as(*const IDataCollector, @ptrCast(self)), group);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_DataCollectorSet(self: *const T, group: ?*IDataCollectorSet) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_DataCollectorSet(@ptrCast(*const IDataCollector, self), group);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_DataCollectorSet(@as(*const IDataCollector, @ptrCast(self)), group);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_DataCollectorType(self: *const T, type_: ?*DataCollectorType) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_DataCollectorType(@ptrCast(*const IDataCollector, self), type_);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_DataCollectorType(@as(*const IDataCollector, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_FileName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_FileName(@ptrCast(*const IDataCollector, self), name);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileName(@as(*const IDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_FileName(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_FileName(@ptrCast(*const IDataCollector, self), name);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileName(@as(*const IDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_FileNameFormat(self: *const T, format: ?*AutoPathFormat) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_FileNameFormat(@ptrCast(*const IDataCollector, self), format);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileNameFormat(@as(*const IDataCollector, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_FileNameFormat(self: *const T, format: AutoPathFormat) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_FileNameFormat(@ptrCast(*const IDataCollector, self), format);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileNameFormat(@as(*const IDataCollector, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_FileNameFormatPattern(self: *const T, pattern: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_FileNameFormatPattern(@ptrCast(*const IDataCollector, self), pattern);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_FileNameFormatPattern(@as(*const IDataCollector, @ptrCast(self)), pattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_FileNameFormatPattern(self: *const T, pattern: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_FileNameFormatPattern(@ptrCast(*const IDataCollector, self), pattern);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_FileNameFormatPattern(@as(*const IDataCollector, @ptrCast(self)), pattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_LatestOutputLocation(self: *const T, path: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_LatestOutputLocation(@ptrCast(*const IDataCollector, self), path);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LatestOutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_LatestOutputLocation(self: *const T, path: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_LatestOutputLocation(@ptrCast(*const IDataCollector, self), path);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LatestOutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_LogAppend(self: *const T, append: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_LogAppend(@ptrCast(*const IDataCollector, self), append);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogAppend(@as(*const IDataCollector, @ptrCast(self)), append);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_LogAppend(self: *const T, append: i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_LogAppend(@ptrCast(*const IDataCollector, self), append);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogAppend(@as(*const IDataCollector, @ptrCast(self)), append);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_LogCircular(self: *const T, circular: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_LogCircular(@ptrCast(*const IDataCollector, self), circular);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogCircular(@as(*const IDataCollector, @ptrCast(self)), circular);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_LogCircular(self: *const T, circular: i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_LogCircular(@ptrCast(*const IDataCollector, self), circular);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogCircular(@as(*const IDataCollector, @ptrCast(self)), circular);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_LogOverwrite(self: *const T, overwrite: ?*i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_LogOverwrite(@ptrCast(*const IDataCollector, self), overwrite);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_LogOverwrite(@as(*const IDataCollector, @ptrCast(self)), overwrite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_LogOverwrite(self: *const T, overwrite: i16) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_LogOverwrite(@ptrCast(*const IDataCollector, self), overwrite);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_LogOverwrite(@as(*const IDataCollector, @ptrCast(self)), overwrite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_Name(@ptrCast(*const IDataCollector, self), name);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_Name(@ptrCast(*const IDataCollector, self), name);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_OutputLocation(self: *const T, path: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_OutputLocation(@ptrCast(*const IDataCollector, self), path);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_OutputLocation(@as(*const IDataCollector, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_Index(self: *const T, index: ?*i32) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_Index(@ptrCast(*const IDataCollector, self), index);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Index(@as(*const IDataCollector, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_put_Index(self: *const T, index: i32) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).put_Index(@ptrCast(*const IDataCollector, self), index);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).put_Index(@as(*const IDataCollector, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_get_Xml(self: *const T, Xml: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).get_Xml(@ptrCast(*const IDataCollector, self), Xml);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).get_Xml(@as(*const IDataCollector, @ptrCast(self)), Xml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_SetXml(self: *const T, Xml: ?BSTR, Validation: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).SetXml(@ptrCast(*const IDataCollector, self), Xml, Validation);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).SetXml(@as(*const IDataCollector, @ptrCast(self)), Xml, Validation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollector_CreateOutputLocation(self: *const T, Latest: i16, Location: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollector.VTable, self.vtable).CreateOutputLocation(@ptrCast(*const IDataCollector, self), Latest, Location);
+                return @as(*const IDataCollector.VTable, @ptrCast(self.vtable)).CreateOutputLocation(@as(*const IDataCollector, @ptrCast(self)), Latest, Location);
             }
         };
     }
@@ -2836,43 +2836,43 @@ pub const IPerformanceCounterDataCollector = extern struct {
             pub usingnamespace IDataCollector.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_get_DataSourceName(self: *const T, dsn: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_DataSourceName(@ptrCast(*const IPerformanceCounterDataCollector, self), dsn);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_DataSourceName(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), dsn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_put_DataSourceName(self: *const T, dsn: ?BSTR) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_DataSourceName(@ptrCast(*const IPerformanceCounterDataCollector, self), dsn);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_DataSourceName(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), dsn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_get_PerformanceCounters(self: *const T, counters: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_PerformanceCounters(@ptrCast(*const IPerformanceCounterDataCollector, self), counters);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_PerformanceCounters(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), counters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_put_PerformanceCounters(self: *const T, counters: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_PerformanceCounters(@ptrCast(*const IPerformanceCounterDataCollector, self), counters);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_PerformanceCounters(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), counters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_get_LogFileFormat(self: *const T, format: ?*FileFormat) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_LogFileFormat(@ptrCast(*const IPerformanceCounterDataCollector, self), format);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_LogFileFormat(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_put_LogFileFormat(self: *const T, format: FileFormat) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_LogFileFormat(@ptrCast(*const IPerformanceCounterDataCollector, self), format);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_LogFileFormat(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_get_SampleInterval(self: *const T, interval: ?*u32) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_SampleInterval(@ptrCast(*const IPerformanceCounterDataCollector, self), interval);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_SampleInterval(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), interval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_put_SampleInterval(self: *const T, interval: u32) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_SampleInterval(@ptrCast(*const IPerformanceCounterDataCollector, self), interval);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_SampleInterval(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), interval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_get_SegmentMaxRecords(self: *const T, records: ?*u32) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).get_SegmentMaxRecords(@ptrCast(*const IPerformanceCounterDataCollector, self), records);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).get_SegmentMaxRecords(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), records);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPerformanceCounterDataCollector_put_SegmentMaxRecords(self: *const T, records: u32) HRESULT {
-                return @ptrCast(*const IPerformanceCounterDataCollector.VTable, self.vtable).put_SegmentMaxRecords(@ptrCast(*const IPerformanceCounterDataCollector, self), records);
+                return @as(*const IPerformanceCounterDataCollector.VTable, @ptrCast(self.vtable)).put_SegmentMaxRecords(@as(*const IPerformanceCounterDataCollector, @ptrCast(self)), records);
             }
         };
     }
@@ -3412,163 +3412,163 @@ pub const ITraceDataCollector = extern struct {
             pub usingnamespace IDataCollector.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_BufferSize(self: *const T, size: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_BufferSize(@ptrCast(*const ITraceDataCollector, self), size);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BufferSize(@as(*const ITraceDataCollector, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_BufferSize(self: *const T, size: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_BufferSize(@ptrCast(*const ITraceDataCollector, self), size);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BufferSize(@as(*const ITraceDataCollector, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_BuffersLost(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_BuffersLost(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_BuffersLost(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_BuffersLost(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_BuffersWritten(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_BuffersWritten(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_BuffersWritten(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_BuffersWritten(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_BuffersWritten(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_BuffersWritten(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_ClockType(self: *const T, clock: ?*ClockType) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_ClockType(@ptrCast(*const ITraceDataCollector, self), clock);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ClockType(@as(*const ITraceDataCollector, @ptrCast(self)), clock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_ClockType(self: *const T, clock: ClockType) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_ClockType(@ptrCast(*const ITraceDataCollector, self), clock);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ClockType(@as(*const ITraceDataCollector, @ptrCast(self)), clock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_EventsLost(self: *const T, events: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_EventsLost(@ptrCast(*const ITraceDataCollector, self), events);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_EventsLost(@as(*const ITraceDataCollector, @ptrCast(self)), events);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_EventsLost(self: *const T, events: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_EventsLost(@ptrCast(*const ITraceDataCollector, self), events);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_EventsLost(@as(*const ITraceDataCollector, @ptrCast(self)), events);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_ExtendedModes(self: *const T, mode: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_ExtendedModes(@ptrCast(*const ITraceDataCollector, self), mode);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ExtendedModes(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_ExtendedModes(self: *const T, mode: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_ExtendedModes(@ptrCast(*const ITraceDataCollector, self), mode);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ExtendedModes(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_FlushTimer(self: *const T, seconds: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_FlushTimer(@ptrCast(*const ITraceDataCollector, self), seconds);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_FlushTimer(@as(*const ITraceDataCollector, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_FlushTimer(self: *const T, seconds: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_FlushTimer(@ptrCast(*const ITraceDataCollector, self), seconds);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_FlushTimer(@as(*const ITraceDataCollector, @ptrCast(self)), seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_FreeBuffers(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_FreeBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_FreeBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_FreeBuffers(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_FreeBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_FreeBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_Guid(self: *const T, guid: ?*Guid) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_Guid(@ptrCast(*const ITraceDataCollector, self), guid);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ITraceDataCollector, @ptrCast(self)), guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_Guid(self: *const T, guid: Guid) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_Guid(@ptrCast(*const ITraceDataCollector, self), guid);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ITraceDataCollector, @ptrCast(self)), guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_IsKernelTrace(self: *const T, kernel: ?*i16) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_IsKernelTrace(@ptrCast(*const ITraceDataCollector, self), kernel);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_IsKernelTrace(@as(*const ITraceDataCollector, @ptrCast(self)), kernel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_MaximumBuffers(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_MaximumBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_MaximumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_MaximumBuffers(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_MaximumBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_MaximumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_MinimumBuffers(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_MinimumBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_MinimumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_MinimumBuffers(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_MinimumBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_MinimumBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_NumberOfBuffers(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_NumberOfBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_NumberOfBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_NumberOfBuffers(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_NumberOfBuffers(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_NumberOfBuffers(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_PreallocateFile(self: *const T, allocate: ?*i16) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_PreallocateFile(@ptrCast(*const ITraceDataCollector, self), allocate);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_PreallocateFile(@as(*const ITraceDataCollector, @ptrCast(self)), allocate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_PreallocateFile(self: *const T, allocate: i16) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_PreallocateFile(@ptrCast(*const ITraceDataCollector, self), allocate);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_PreallocateFile(@as(*const ITraceDataCollector, @ptrCast(self)), allocate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_ProcessMode(self: *const T, process: ?*i16) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_ProcessMode(@ptrCast(*const ITraceDataCollector, self), process);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_ProcessMode(@as(*const ITraceDataCollector, @ptrCast(self)), process);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_ProcessMode(self: *const T, process: i16) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_ProcessMode(@ptrCast(*const ITraceDataCollector, self), process);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_ProcessMode(@as(*const ITraceDataCollector, @ptrCast(self)), process);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_RealTimeBuffersLost(self: *const T, buffers: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_RealTimeBuffersLost(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_RealTimeBuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_RealTimeBuffersLost(self: *const T, buffers: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_RealTimeBuffersLost(@ptrCast(*const ITraceDataCollector, self), buffers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_RealTimeBuffersLost(@as(*const ITraceDataCollector, @ptrCast(self)), buffers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_SessionId(self: *const T, id: ?*u64) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_SessionId(@ptrCast(*const ITraceDataCollector, self), id);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionId(@as(*const ITraceDataCollector, @ptrCast(self)), id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_SessionId(self: *const T, id: u64) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_SessionId(@ptrCast(*const ITraceDataCollector, self), id);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionId(@as(*const ITraceDataCollector, @ptrCast(self)), id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_SessionName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_SessionName(@ptrCast(*const ITraceDataCollector, self), name);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionName(@as(*const ITraceDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_SessionName(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_SessionName(@ptrCast(*const ITraceDataCollector, self), name);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionName(@as(*const ITraceDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_SessionThreadId(self: *const T, tid: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_SessionThreadId(@ptrCast(*const ITraceDataCollector, self), tid);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_SessionThreadId(@as(*const ITraceDataCollector, @ptrCast(self)), tid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_SessionThreadId(self: *const T, tid: u32) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_SessionThreadId(@ptrCast(*const ITraceDataCollector, self), tid);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_SessionThreadId(@as(*const ITraceDataCollector, @ptrCast(self)), tid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_StreamMode(self: *const T, mode: ?*StreamMode) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_StreamMode(@ptrCast(*const ITraceDataCollector, self), mode);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_StreamMode(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_put_StreamMode(self: *const T, mode: StreamMode) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).put_StreamMode(@ptrCast(*const ITraceDataCollector, self), mode);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).put_StreamMode(@as(*const ITraceDataCollector, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataCollector_get_TraceDataProviders(self: *const T, providers: ?*?*ITraceDataProviderCollection) HRESULT {
-                return @ptrCast(*const ITraceDataCollector.VTable, self.vtable).get_TraceDataProviders(@ptrCast(*const ITraceDataCollector, self), providers);
+                return @as(*const ITraceDataCollector.VTable, @ptrCast(self.vtable)).get_TraceDataProviders(@as(*const ITraceDataCollector, @ptrCast(self)), providers);
             }
         };
     }
@@ -3822,75 +3822,75 @@ pub const IConfigurationDataCollector = extern struct {
             pub usingnamespace IDataCollector.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_FileMaxCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_FileMaxCount(@ptrCast(*const IConfigurationDataCollector, self), count);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxCount(@as(*const IConfigurationDataCollector, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_FileMaxCount(self: *const T, count: u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_FileMaxCount(@ptrCast(*const IConfigurationDataCollector, self), count);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxCount(@as(*const IConfigurationDataCollector, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_FileMaxRecursiveDepth(self: *const T, depth: ?*u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_FileMaxRecursiveDepth(@ptrCast(*const IConfigurationDataCollector, self), depth);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_FileMaxRecursiveDepth(self: *const T, depth: u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_FileMaxRecursiveDepth(@ptrCast(*const IConfigurationDataCollector, self), depth);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_FileMaxTotalSize(self: *const T, size: ?*u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_FileMaxTotalSize(@ptrCast(*const IConfigurationDataCollector, self), size);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_FileMaxTotalSize(@as(*const IConfigurationDataCollector, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_FileMaxTotalSize(self: *const T, size: u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_FileMaxTotalSize(@ptrCast(*const IConfigurationDataCollector, self), size);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_FileMaxTotalSize(@as(*const IConfigurationDataCollector, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_Files(self: *const T, Files: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_Files(@ptrCast(*const IConfigurationDataCollector, self), Files);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_Files(@as(*const IConfigurationDataCollector, @ptrCast(self)), Files);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_Files(self: *const T, Files: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_Files(@ptrCast(*const IConfigurationDataCollector, self), Files);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_Files(@as(*const IConfigurationDataCollector, @ptrCast(self)), Files);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_ManagementQueries(self: *const T, Queries: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_ManagementQueries(@ptrCast(*const IConfigurationDataCollector, self), Queries);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_ManagementQueries(@as(*const IConfigurationDataCollector, @ptrCast(self)), Queries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_ManagementQueries(self: *const T, Queries: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_ManagementQueries(@ptrCast(*const IConfigurationDataCollector, self), Queries);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_ManagementQueries(@as(*const IConfigurationDataCollector, @ptrCast(self)), Queries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_QueryNetworkAdapters(self: *const T, network: ?*i16) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_QueryNetworkAdapters(@ptrCast(*const IConfigurationDataCollector, self), network);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_QueryNetworkAdapters(@as(*const IConfigurationDataCollector, @ptrCast(self)), network);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_QueryNetworkAdapters(self: *const T, network: i16) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_QueryNetworkAdapters(@ptrCast(*const IConfigurationDataCollector, self), network);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_QueryNetworkAdapters(@as(*const IConfigurationDataCollector, @ptrCast(self)), network);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_RegistryKeys(self: *const T, query: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_RegistryKeys(@ptrCast(*const IConfigurationDataCollector, self), query);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_RegistryKeys(@as(*const IConfigurationDataCollector, @ptrCast(self)), query);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_RegistryKeys(self: *const T, query: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_RegistryKeys(@ptrCast(*const IConfigurationDataCollector, self), query);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_RegistryKeys(@as(*const IConfigurationDataCollector, @ptrCast(self)), query);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_RegistryMaxRecursiveDepth(self: *const T, depth: ?*u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_RegistryMaxRecursiveDepth(@ptrCast(*const IConfigurationDataCollector, self), depth);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_RegistryMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_RegistryMaxRecursiveDepth(self: *const T, depth: u32) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_RegistryMaxRecursiveDepth(@ptrCast(*const IConfigurationDataCollector, self), depth);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_RegistryMaxRecursiveDepth(@as(*const IConfigurationDataCollector, @ptrCast(self)), depth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_get_SystemStateFile(self: *const T, FileName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).get_SystemStateFile(@ptrCast(*const IConfigurationDataCollector, self), FileName);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).get_SystemStateFile(@as(*const IConfigurationDataCollector, @ptrCast(self)), FileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IConfigurationDataCollector_put_SystemStateFile(self: *const T, FileName: ?BSTR) HRESULT {
-                return @ptrCast(*const IConfigurationDataCollector.VTable, self.vtable).put_SystemStateFile(@ptrCast(*const IConfigurationDataCollector, self), FileName);
+                return @as(*const IConfigurationDataCollector.VTable, @ptrCast(self.vtable)).put_SystemStateFile(@as(*const IConfigurationDataCollector, @ptrCast(self)), FileName);
             }
         };
     }
@@ -4118,67 +4118,67 @@ pub const IAlertDataCollector = extern struct {
             pub usingnamespace IDataCollector.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_AlertThresholds(self: *const T, alerts: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_AlertThresholds(@ptrCast(*const IAlertDataCollector, self), alerts);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_AlertThresholds(@as(*const IAlertDataCollector, @ptrCast(self)), alerts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_AlertThresholds(self: *const T, alerts: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_AlertThresholds(@ptrCast(*const IAlertDataCollector, self), alerts);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_AlertThresholds(@as(*const IAlertDataCollector, @ptrCast(self)), alerts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_EventLog(self: *const T, log: ?*i16) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_EventLog(@ptrCast(*const IAlertDataCollector, self), log);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_EventLog(@as(*const IAlertDataCollector, @ptrCast(self)), log);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_EventLog(self: *const T, log: i16) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_EventLog(@ptrCast(*const IAlertDataCollector, self), log);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_EventLog(@as(*const IAlertDataCollector, @ptrCast(self)), log);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_SampleInterval(self: *const T, interval: ?*u32) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_SampleInterval(@ptrCast(*const IAlertDataCollector, self), interval);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_SampleInterval(@as(*const IAlertDataCollector, @ptrCast(self)), interval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_SampleInterval(self: *const T, interval: u32) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_SampleInterval(@ptrCast(*const IAlertDataCollector, self), interval);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_SampleInterval(@as(*const IAlertDataCollector, @ptrCast(self)), interval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_Task(self: *const T, task: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_Task(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_Task(self: *const T, task: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_Task(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_TaskRunAsSelf(self: *const T, RunAsSelf: ?*i16) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_TaskRunAsSelf(@ptrCast(*const IAlertDataCollector, self), RunAsSelf);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskRunAsSelf(@as(*const IAlertDataCollector, @ptrCast(self)), RunAsSelf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_TaskRunAsSelf(self: *const T, RunAsSelf: i16) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_TaskRunAsSelf(@ptrCast(*const IAlertDataCollector, self), RunAsSelf);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskRunAsSelf(@as(*const IAlertDataCollector, @ptrCast(self)), RunAsSelf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_TaskArguments(self: *const T, task: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_TaskArguments(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_TaskArguments(self: *const T, task: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_TaskArguments(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_TaskUserTextArguments(self: *const T, task: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_TaskUserTextArguments(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TaskUserTextArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_TaskUserTextArguments(self: *const T, task: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_TaskUserTextArguments(@ptrCast(*const IAlertDataCollector, self), task);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TaskUserTextArguments(@as(*const IAlertDataCollector, @ptrCast(self)), task);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_get_TriggerDataCollectorSet(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).get_TriggerDataCollectorSet(@ptrCast(*const IAlertDataCollector, self), name);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).get_TriggerDataCollectorSet(@as(*const IAlertDataCollector, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlertDataCollector_put_TriggerDataCollectorSet(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlertDataCollector.VTable, self.vtable).put_TriggerDataCollectorSet(@ptrCast(*const IAlertDataCollector, self), name);
+                return @as(*const IAlertDataCollector.VTable, @ptrCast(self.vtable)).put_TriggerDataCollectorSet(@as(*const IAlertDataCollector, @ptrCast(self)), name);
             }
         };
     }
@@ -4380,59 +4380,59 @@ pub const IApiTracingDataCollector = extern struct {
             pub usingnamespace IDataCollector.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_LogApiNamesOnly(self: *const T, logapinames: ?*i16) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_LogApiNamesOnly(@ptrCast(*const IApiTracingDataCollector, self), logapinames);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogApiNamesOnly(@as(*const IApiTracingDataCollector, @ptrCast(self)), logapinames);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_LogApiNamesOnly(self: *const T, logapinames: i16) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_LogApiNamesOnly(@ptrCast(*const IApiTracingDataCollector, self), logapinames);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogApiNamesOnly(@as(*const IApiTracingDataCollector, @ptrCast(self)), logapinames);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_LogApisRecursively(self: *const T, logrecursively: ?*i16) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_LogApisRecursively(@ptrCast(*const IApiTracingDataCollector, self), logrecursively);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogApisRecursively(@as(*const IApiTracingDataCollector, @ptrCast(self)), logrecursively);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_LogApisRecursively(self: *const T, logrecursively: i16) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_LogApisRecursively(@ptrCast(*const IApiTracingDataCollector, self), logrecursively);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogApisRecursively(@as(*const IApiTracingDataCollector, @ptrCast(self)), logrecursively);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_ExePath(self: *const T, exepath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_ExePath(@ptrCast(*const IApiTracingDataCollector, self), exepath);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_ExePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), exepath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_ExePath(self: *const T, exepath: ?BSTR) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_ExePath(@ptrCast(*const IApiTracingDataCollector, self), exepath);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_ExePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), exepath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_LogFilePath(self: *const T, logfilepath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_LogFilePath(@ptrCast(*const IApiTracingDataCollector, self), logfilepath);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_LogFilePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), logfilepath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_LogFilePath(self: *const T, logfilepath: ?BSTR) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_LogFilePath(@ptrCast(*const IApiTracingDataCollector, self), logfilepath);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_LogFilePath(@as(*const IApiTracingDataCollector, @ptrCast(self)), logfilepath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_IncludeModules(self: *const T, includemodules: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_IncludeModules(@ptrCast(*const IApiTracingDataCollector, self), includemodules);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_IncludeModules(@as(*const IApiTracingDataCollector, @ptrCast(self)), includemodules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_IncludeModules(self: *const T, includemodules: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_IncludeModules(@ptrCast(*const IApiTracingDataCollector, self), includemodules);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_IncludeModules(@as(*const IApiTracingDataCollector, @ptrCast(self)), includemodules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_IncludeApis(self: *const T, includeapis: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_IncludeApis(@ptrCast(*const IApiTracingDataCollector, self), includeapis);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_IncludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), includeapis);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_IncludeApis(self: *const T, includeapis: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_IncludeApis(@ptrCast(*const IApiTracingDataCollector, self), includeapis);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_IncludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), includeapis);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_get_ExcludeApis(self: *const T, excludeapis: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).get_ExcludeApis(@ptrCast(*const IApiTracingDataCollector, self), excludeapis);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).get_ExcludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), excludeapis);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IApiTracingDataCollector_put_ExcludeApis(self: *const T, excludeapis: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IApiTracingDataCollector.VTable, self.vtable).put_ExcludeApis(@ptrCast(*const IApiTracingDataCollector, self), excludeapis);
+                return @as(*const IApiTracingDataCollector.VTable, @ptrCast(self.vtable)).put_ExcludeApis(@as(*const IApiTracingDataCollector, @ptrCast(self)), excludeapis);
             }
         };
     }
@@ -4557,39 +4557,39 @@ pub const IDataCollectorCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_get_Count(self: *const T, retVal: ?*i32) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDataCollectorCollection, self), retVal);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDataCollectorCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_get_Item(self: *const T, index: VARIANT, collector: ?*?*IDataCollector) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDataCollectorCollection, self), index, collector);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDataCollectorCollection, @ptrCast(self)), index, collector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDataCollectorCollection, self), retVal);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDataCollectorCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_Add(self: *const T, collector: ?*IDataCollector) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).Add(@ptrCast(*const IDataCollectorCollection, self), collector);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDataCollectorCollection, @ptrCast(self)), collector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_Remove(self: *const T, collector: VARIANT) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).Remove(@ptrCast(*const IDataCollectorCollection, self), collector);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDataCollectorCollection, @ptrCast(self)), collector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).Clear(@ptrCast(*const IDataCollectorCollection, self));
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDataCollectorCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_AddRange(self: *const T, collectors: ?*IDataCollectorCollection) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).AddRange(@ptrCast(*const IDataCollectorCollection, self), collectors);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IDataCollectorCollection, @ptrCast(self)), collectors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_CreateDataCollectorFromXml(self: *const T, bstrXml: ?BSTR, pValidation: ?*?*IValueMap, pCollector: ?*?*IDataCollector) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).CreateDataCollectorFromXml(@ptrCast(*const IDataCollectorCollection, self), bstrXml, pValidation, pCollector);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).CreateDataCollectorFromXml(@as(*const IDataCollectorCollection, @ptrCast(self)), bstrXml, pValidation, pCollector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorCollection_CreateDataCollector(self: *const T, Type: DataCollectorType, Collector: ?*?*IDataCollector) HRESULT {
-                return @ptrCast(*const IDataCollectorCollection.VTable, self.vtable).CreateDataCollector(@ptrCast(*const IDataCollectorCollection, self), Type, Collector);
+                return @as(*const IDataCollectorCollection.VTable, @ptrCast(self.vtable)).CreateDataCollector(@as(*const IDataCollectorCollection, @ptrCast(self)), Type, Collector);
             }
         };
     }
@@ -4700,35 +4700,35 @@ pub const IDataCollectorSetCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_get_Count(self: *const T, retVal: ?*i32) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get_Count(@ptrCast(*const IDataCollectorSetCollection, self), retVal);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDataCollectorSetCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_get_Item(self: *const T, index: VARIANT, set: ?*?*IDataCollectorSet) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get_Item(@ptrCast(*const IDataCollectorSetCollection, self), index, set);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDataCollectorSetCollection, @ptrCast(self)), index, set);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDataCollectorSetCollection, self), retVal);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDataCollectorSetCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_Add(self: *const T, set: ?*IDataCollectorSet) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).Add(@ptrCast(*const IDataCollectorSetCollection, self), set);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IDataCollectorSetCollection, @ptrCast(self)), set);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_Remove(self: *const T, set: VARIANT) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).Remove(@ptrCast(*const IDataCollectorSetCollection, self), set);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDataCollectorSetCollection, @ptrCast(self)), set);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).Clear(@ptrCast(*const IDataCollectorSetCollection, self));
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDataCollectorSetCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_AddRange(self: *const T, sets: ?*IDataCollectorSetCollection) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).AddRange(@ptrCast(*const IDataCollectorSetCollection, self), sets);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IDataCollectorSetCollection, @ptrCast(self)), sets);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataCollectorSetCollection_GetDataCollectorSets(self: *const T, server: ?BSTR, filter: ?BSTR) HRESULT {
-                return @ptrCast(*const IDataCollectorSetCollection.VTable, self.vtable).GetDataCollectorSets(@ptrCast(*const IDataCollectorSetCollection, self), server, filter);
+                return @as(*const IDataCollectorSetCollection.VTable, @ptrCast(self.vtable)).GetDataCollectorSets(@as(*const IDataCollectorSetCollection, @ptrCast(self)), server, filter);
             }
         };
     }
@@ -4984,79 +4984,79 @@ pub const ITraceDataProvider = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_DisplayName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_DisplayName(@ptrCast(*const ITraceDataProvider, self), name);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ITraceDataProvider, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_put_DisplayName(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_DisplayName(@ptrCast(*const ITraceDataProvider, self), name);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const ITraceDataProvider, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_Guid(self: *const T, guid: ?*Guid) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_Guid(@ptrCast(*const ITraceDataProvider, self), guid);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ITraceDataProvider, @ptrCast(self)), guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_put_Guid(self: *const T, guid: Guid) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_Guid(@ptrCast(*const ITraceDataProvider, self), guid);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ITraceDataProvider, @ptrCast(self)), guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_Level(self: *const T, ppLevel: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_Level(@ptrCast(*const ITraceDataProvider, self), ppLevel);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Level(@as(*const ITraceDataProvider, @ptrCast(self)), ppLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_KeywordsAny(self: *const T, ppKeywords: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_KeywordsAny(@ptrCast(*const ITraceDataProvider, self), ppKeywords);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_KeywordsAny(@as(*const ITraceDataProvider, @ptrCast(self)), ppKeywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_KeywordsAll(self: *const T, ppKeywords: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_KeywordsAll(@ptrCast(*const ITraceDataProvider, self), ppKeywords);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_KeywordsAll(@as(*const ITraceDataProvider, @ptrCast(self)), ppKeywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_Properties(self: *const T, ppProperties: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_Properties(@ptrCast(*const ITraceDataProvider, self), ppProperties);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const ITraceDataProvider, @ptrCast(self)), ppProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_FilterEnabled(self: *const T, FilterEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_FilterEnabled(@ptrCast(*const ITraceDataProvider, self), FilterEnabled);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterEnabled(@as(*const ITraceDataProvider, @ptrCast(self)), FilterEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_put_FilterEnabled(self: *const T, FilterEnabled: i16) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_FilterEnabled(@ptrCast(*const ITraceDataProvider, self), FilterEnabled);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterEnabled(@as(*const ITraceDataProvider, @ptrCast(self)), FilterEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_FilterType(self: *const T, pulType: ?*u32) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_FilterType(@ptrCast(*const ITraceDataProvider, self), pulType);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterType(@as(*const ITraceDataProvider, @ptrCast(self)), pulType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_put_FilterType(self: *const T, ulType: u32) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_FilterType(@ptrCast(*const ITraceDataProvider, self), ulType);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterType(@as(*const ITraceDataProvider, @ptrCast(self)), ulType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_get_FilterData(self: *const T, ppData: ?*?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).get_FilterData(@ptrCast(*const ITraceDataProvider, self), ppData);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).get_FilterData(@as(*const ITraceDataProvider, @ptrCast(self)), ppData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_put_FilterData(self: *const T, pData: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).put_FilterData(@ptrCast(*const ITraceDataProvider, self), pData);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).put_FilterData(@as(*const ITraceDataProvider, @ptrCast(self)), pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_Query(self: *const T, bstrName: ?BSTR, bstrServer: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).Query(@ptrCast(*const ITraceDataProvider, self), bstrName, bstrServer);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const ITraceDataProvider, @ptrCast(self)), bstrName, bstrServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_Resolve(self: *const T, pFrom: ?*IDispatch) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).Resolve(@ptrCast(*const ITraceDataProvider, self), pFrom);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).Resolve(@as(*const ITraceDataProvider, @ptrCast(self)), pFrom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_SetSecurity(self: *const T, Sddl: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).SetSecurity(@ptrCast(*const ITraceDataProvider, self), Sddl);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const ITraceDataProvider, @ptrCast(self)), Sddl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_GetSecurity(self: *const T, SecurityInfo: u32, Sddl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).GetSecurity(@ptrCast(*const ITraceDataProvider, self), SecurityInfo, Sddl);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const ITraceDataProvider, @ptrCast(self)), SecurityInfo, Sddl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProvider_GetRegisteredProcesses(self: *const T, Processes: ?*?*IValueMap) HRESULT {
-                return @ptrCast(*const ITraceDataProvider.VTable, self.vtable).GetRegisteredProcesses(@ptrCast(*const ITraceDataProvider, self), Processes);
+                return @as(*const ITraceDataProvider.VTable, @ptrCast(self.vtable)).GetRegisteredProcesses(@as(*const ITraceDataProvider, @ptrCast(self)), Processes);
             }
         };
     }
@@ -5187,43 +5187,43 @@ pub const ITraceDataProviderCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_get_Count(self: *const T, retVal: ?*i32) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get_Count(@ptrCast(*const ITraceDataProviderCollection, self), retVal);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ITraceDataProviderCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_get_Item(self: *const T, index: VARIANT, ppProvider: ?*?*ITraceDataProvider) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get_Item(@ptrCast(*const ITraceDataProviderCollection, self), index, ppProvider);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ITraceDataProviderCollection, @ptrCast(self)), index, ppProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ITraceDataProviderCollection, self), retVal);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ITraceDataProviderCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_Add(self: *const T, pProvider: ?*ITraceDataProvider) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).Add(@ptrCast(*const ITraceDataProviderCollection, self), pProvider);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ITraceDataProviderCollection, @ptrCast(self)), pProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_Remove(self: *const T, vProvider: VARIANT) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).Remove(@ptrCast(*const ITraceDataProviderCollection, self), vProvider);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ITraceDataProviderCollection, @ptrCast(self)), vProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).Clear(@ptrCast(*const ITraceDataProviderCollection, self));
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ITraceDataProviderCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_AddRange(self: *const T, providers: ?*ITraceDataProviderCollection) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).AddRange(@ptrCast(*const ITraceDataProviderCollection, self), providers);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const ITraceDataProviderCollection, @ptrCast(self)), providers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_CreateTraceDataProvider(self: *const T, Provider: ?*?*ITraceDataProvider) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).CreateTraceDataProvider(@ptrCast(*const ITraceDataProviderCollection, self), Provider);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).CreateTraceDataProvider(@as(*const ITraceDataProviderCollection, @ptrCast(self)), Provider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_GetTraceDataProviders(self: *const T, server: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).GetTraceDataProviders(@ptrCast(*const ITraceDataProviderCollection, self), server);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).GetTraceDataProviders(@as(*const ITraceDataProviderCollection, @ptrCast(self)), server);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceDataProviderCollection_GetTraceDataProvidersByProcess(self: *const T, Server: ?BSTR, Pid: u32) HRESULT {
-                return @ptrCast(*const ITraceDataProviderCollection.VTable, self.vtable).GetTraceDataProvidersByProcess(@ptrCast(*const ITraceDataProviderCollection, self), Server, Pid);
+                return @as(*const ITraceDataProviderCollection.VTable, @ptrCast(self.vtable)).GetTraceDataProvidersByProcess(@as(*const ITraceDataProviderCollection, @ptrCast(self)), Server, Pid);
             }
         };
     }
@@ -5347,35 +5347,35 @@ pub const ISchedule = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_get_StartDate(self: *const T, start: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).get_StartDate(@ptrCast(*const ISchedule, self), start);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_StartDate(@as(*const ISchedule, @ptrCast(self)), start);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_put_StartDate(self: *const T, start: VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).put_StartDate(@ptrCast(*const ISchedule, self), start);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_StartDate(@as(*const ISchedule, @ptrCast(self)), start);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_get_EndDate(self: *const T, end: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).get_EndDate(@ptrCast(*const ISchedule, self), end);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_EndDate(@as(*const ISchedule, @ptrCast(self)), end);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_put_EndDate(self: *const T, end: VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).put_EndDate(@ptrCast(*const ISchedule, self), end);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_EndDate(@as(*const ISchedule, @ptrCast(self)), end);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_get_StartTime(self: *const T, start: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).get_StartTime(@ptrCast(*const ISchedule, self), start);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ISchedule, @ptrCast(self)), start);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_put_StartTime(self: *const T, start: VARIANT) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).put_StartTime(@ptrCast(*const ISchedule, self), start);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const ISchedule, @ptrCast(self)), start);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_get_Days(self: *const T, days: ?*WeekDays) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).get_Days(@ptrCast(*const ISchedule, self), days);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).get_Days(@as(*const ISchedule, @ptrCast(self)), days);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISchedule_put_Days(self: *const T, days: WeekDays) HRESULT {
-                return @ptrCast(*const ISchedule.VTable, self.vtable).put_Days(@ptrCast(*const ISchedule, self), days);
+                return @as(*const ISchedule.VTable, @ptrCast(self.vtable)).put_Days(@as(*const ISchedule, @ptrCast(self)), days);
             }
         };
     }
@@ -5484,35 +5484,35 @@ pub const IScheduleCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_get_Count(self: *const T, retVal: ?*i32) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get_Count(@ptrCast(*const IScheduleCollection, self), retVal);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IScheduleCollection, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_get_Item(self: *const T, index: VARIANT, ppSchedule: ?*?*ISchedule) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get_Item(@ptrCast(*const IScheduleCollection, self), index, ppSchedule);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IScheduleCollection, @ptrCast(self)), index, ppSchedule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_get__NewEnum(self: *const T, ienum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IScheduleCollection, self), ienum);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IScheduleCollection, @ptrCast(self)), ienum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_Add(self: *const T, pSchedule: ?*ISchedule) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).Add(@ptrCast(*const IScheduleCollection, self), pSchedule);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IScheduleCollection, @ptrCast(self)), pSchedule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_Remove(self: *const T, vSchedule: VARIANT) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).Remove(@ptrCast(*const IScheduleCollection, self), vSchedule);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IScheduleCollection, @ptrCast(self)), vSchedule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).Clear(@ptrCast(*const IScheduleCollection, self));
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IScheduleCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_AddRange(self: *const T, pSchedules: ?*IScheduleCollection) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).AddRange(@ptrCast(*const IScheduleCollection, self), pSchedules);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IScheduleCollection, @ptrCast(self)), pSchedules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IScheduleCollection_CreateSchedule(self: *const T, Schedule: ?*?*ISchedule) HRESULT {
-                return @ptrCast(*const IScheduleCollection.VTable, self.vtable).CreateSchedule(@ptrCast(*const IScheduleCollection, self), Schedule);
+                return @as(*const IScheduleCollection.VTable, @ptrCast(self.vtable)).CreateSchedule(@as(*const IScheduleCollection, @ptrCast(self)), Schedule);
             }
         };
     }
@@ -5662,43 +5662,43 @@ pub const IValueMapItem = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_Description(@ptrCast(*const IValueMapItem, self), description);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IValueMapItem, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_put_Description(self: *const T, description: ?BSTR) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_Description(@ptrCast(*const IValueMapItem, self), description);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IValueMapItem, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_Enabled(@ptrCast(*const IValueMapItem, self), enabled);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IValueMapItem, @ptrCast(self)), enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_put_Enabled(self: *const T, enabled: i16) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_Enabled(@ptrCast(*const IValueMapItem, self), enabled);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IValueMapItem, @ptrCast(self)), enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_get_Key(self: *const T, key: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_Key(@ptrCast(*const IValueMapItem, self), key);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Key(@as(*const IValueMapItem, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_put_Key(self: *const T, key: ?BSTR) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_Key(@ptrCast(*const IValueMapItem, self), key);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Key(@as(*const IValueMapItem, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_get_Value(self: *const T, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_Value(@ptrCast(*const IValueMapItem, self), Value);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IValueMapItem, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_put_Value(self: *const T, Value: VARIANT) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_Value(@ptrCast(*const IValueMapItem, self), Value);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMapItem, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_get_ValueMapType(self: *const T, type_: ?*ValueMapType) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMapItem, self), type_);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMapItem_put_ValueMapType(self: *const T, type_: ValueMapType) HRESULT {
-                return @ptrCast(*const IValueMapItem.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMapItem, self), type_);
+                return @as(*const IValueMapItem.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMapItem, @ptrCast(self)), type_);
             }
         };
     }
@@ -5885,59 +5885,59 @@ pub const IValueMap = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get_Count(self: *const T, retVal: ?*i32) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get_Count(@ptrCast(*const IValueMap, self), retVal);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IValueMap, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get_Item(self: *const T, index: VARIANT, value: ?*?*IValueMapItem) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get_Item(@ptrCast(*const IValueMap, self), index, value);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IValueMap, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get__NewEnum(self: *const T, retVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get__NewEnum(@ptrCast(*const IValueMap, self), retVal);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IValueMap, @ptrCast(self)), retVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get_Description(@ptrCast(*const IValueMap, self), description);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IValueMap, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_put_Description(self: *const T, description: ?BSTR) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).put_Description(@ptrCast(*const IValueMap, self), description);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IValueMap, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get_Value(self: *const T, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get_Value(@ptrCast(*const IValueMap, self), Value);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IValueMap, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_put_Value(self: *const T, Value: VARIANT) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).put_Value(@ptrCast(*const IValueMap, self), Value);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IValueMap, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_get_ValueMapType(self: *const T, type_: ?*ValueMapType) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).get_ValueMapType(@ptrCast(*const IValueMap, self), type_);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).get_ValueMapType(@as(*const IValueMap, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_put_ValueMapType(self: *const T, type_: ValueMapType) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).put_ValueMapType(@ptrCast(*const IValueMap, self), type_);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).put_ValueMapType(@as(*const IValueMap, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_Add(self: *const T, value: VARIANT) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).Add(@ptrCast(*const IValueMap, self), value);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Add(@as(*const IValueMap, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_Remove(self: *const T, value: VARIANT) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).Remove(@ptrCast(*const IValueMap, self), value);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Remove(@as(*const IValueMap, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).Clear(@ptrCast(*const IValueMap, self));
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).Clear(@as(*const IValueMap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_AddRange(self: *const T, map: ?*IValueMap) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).AddRange(@ptrCast(*const IValueMap, self), map);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IValueMap, @ptrCast(self)), map);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValueMap_CreateValueMapItem(self: *const T, Item: ?*?*IValueMapItem) HRESULT {
-                return @ptrCast(*const IValueMap.VTable, self.vtable).CreateValueMapItem(@ptrCast(*const IValueMap, self), Item);
+                return @as(*const IValueMap.VTable, @ptrCast(self.vtable)).CreateValueMapItem(@as(*const IValueMap, @ptrCast(self)), Item);
             }
         };
     }
@@ -6755,51 +6755,51 @@ pub const ICounterItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_Value(self: *const T, pdblValue: ?*f64) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_Value(@ptrCast(*const ICounterItem, self), pdblValue);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ICounterItem, @ptrCast(self)), pdblValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_put_Color(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).put_Color(@ptrCast(*const ICounterItem, self), Color);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_Color(@as(*const ICounterItem, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_Color(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_Color(@ptrCast(*const ICounterItem, self), pColor);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Color(@as(*const ICounterItem, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_put_Width(self: *const T, iWidth: i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).put_Width(@ptrCast(*const ICounterItem, self), iWidth);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_Width(@as(*const ICounterItem, @ptrCast(self)), iWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_Width(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_Width(@ptrCast(*const ICounterItem, self), piValue);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Width(@as(*const ICounterItem, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_put_LineStyle(self: *const T, iLineStyle: i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).put_LineStyle(@ptrCast(*const ICounterItem, self), iLineStyle);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_LineStyle(@as(*const ICounterItem, @ptrCast(self)), iLineStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_LineStyle(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_LineStyle(@ptrCast(*const ICounterItem, self), piValue);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_LineStyle(@as(*const ICounterItem, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_put_ScaleFactor(self: *const T, iScale: i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).put_ScaleFactor(@ptrCast(*const ICounterItem, self), iScale);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).put_ScaleFactor(@as(*const ICounterItem, @ptrCast(self)), iScale);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_ScaleFactor(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_ScaleFactor(@ptrCast(*const ICounterItem, self), piValue);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_ScaleFactor(@as(*const ICounterItem, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_get_Path(self: *const T, pstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).get_Path(@ptrCast(*const ICounterItem, self), pstrValue);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ICounterItem, @ptrCast(self)), pstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_GetValue(self: *const T, Value: ?*f64, Status: ?*i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).GetValue(@ptrCast(*const ICounterItem, self), Value, Status);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICounterItem, @ptrCast(self)), Value, Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem_GetStatistics(self: *const T, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) HRESULT {
-                return @ptrCast(*const ICounterItem.VTable, self.vtable).GetStatistics(@ptrCast(*const ICounterItem, self), Max, Min, Avg, Status);
+                return @as(*const ICounterItem.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const ICounterItem, @ptrCast(self)), Max, Min, Avg, Status);
             }
         };
     }
@@ -6884,23 +6884,23 @@ pub const ICounterItem2 = extern struct {
             pub usingnamespace ICounterItem.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem2_put_Selected(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ICounterItem2.VTable, self.vtable).put_Selected(@ptrCast(*const ICounterItem2, self), bState);
+                return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const ICounterItem2, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem2_get_Selected(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ICounterItem2.VTable, self.vtable).get_Selected(@ptrCast(*const ICounterItem2, self), pbState);
+                return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const ICounterItem2, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem2_put_Visible(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ICounterItem2.VTable, self.vtable).put_Visible(@ptrCast(*const ICounterItem2, self), bState);
+                return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const ICounterItem2, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem2_get_Visible(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ICounterItem2.VTable, self.vtable).get_Visible(@ptrCast(*const ICounterItem2, self), pbState);
+                return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const ICounterItem2, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounterItem2_GetDataAt(self: *const T, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICounterItem2.VTable, self.vtable).GetDataAt(@ptrCast(*const ICounterItem2, self), iIndex, iWhich, pVariant);
+                return @as(*const ICounterItem2.VTable, @ptrCast(self.vtable)).GetDataAt(@as(*const ICounterItem2, @ptrCast(self)), iIndex, iWhich, pVariant);
             }
         };
     }
@@ -7143,71 +7143,71 @@ pub const _ICounterItemUnion = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Value(self: *const T, pdblValue: ?*f64) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Value(@ptrCast(*const _ICounterItemUnion, self), pdblValue);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Value(@as(*const _ICounterItemUnion, @ptrCast(self)), pdblValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_Color(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_Color(@ptrCast(*const _ICounterItemUnion, self), Color);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Color(@as(*const _ICounterItemUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Color(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Color(@ptrCast(*const _ICounterItemUnion, self), pColor);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Color(@as(*const _ICounterItemUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_Width(self: *const T, iWidth: i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_Width(@ptrCast(*const _ICounterItemUnion, self), iWidth);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Width(@as(*const _ICounterItemUnion, @ptrCast(self)), iWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Width(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Width(@ptrCast(*const _ICounterItemUnion, self), piValue);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Width(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_LineStyle(self: *const T, iLineStyle: i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_LineStyle(@ptrCast(*const _ICounterItemUnion, self), iLineStyle);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_LineStyle(@as(*const _ICounterItemUnion, @ptrCast(self)), iLineStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_LineStyle(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_LineStyle(@ptrCast(*const _ICounterItemUnion, self), piValue);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_LineStyle(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_ScaleFactor(self: *const T, iScale: i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_ScaleFactor(@ptrCast(*const _ICounterItemUnion, self), iScale);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_ScaleFactor(@as(*const _ICounterItemUnion, @ptrCast(self)), iScale);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_ScaleFactor(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_ScaleFactor(@ptrCast(*const _ICounterItemUnion, self), piValue);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_ScaleFactor(@as(*const _ICounterItemUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Path(self: *const T, pstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Path(@ptrCast(*const _ICounterItemUnion, self), pstrValue);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Path(@as(*const _ICounterItemUnion, @ptrCast(self)), pstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_GetValue(self: *const T, Value: ?*f64, Status: ?*i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).GetValue(@ptrCast(*const _ICounterItemUnion, self), Value, Status);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetValue(@as(*const _ICounterItemUnion, @ptrCast(self)), Value, Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_GetStatistics(self: *const T, Max: ?*f64, Min: ?*f64, Avg: ?*f64, Status: ?*i32) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).GetStatistics(@ptrCast(*const _ICounterItemUnion, self), Max, Min, Avg, Status);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const _ICounterItemUnion, @ptrCast(self)), Max, Min, Avg, Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_Selected(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_Selected(@ptrCast(*const _ICounterItemUnion, self), bState);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const _ICounterItemUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Selected(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Selected(@ptrCast(*const _ICounterItemUnion, self), pbState);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const _ICounterItemUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_put_Visible(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).put_Visible(@ptrCast(*const _ICounterItemUnion, self), bState);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).put_Visible(@as(*const _ICounterItemUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_get_Visible(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).get_Visible(@ptrCast(*const _ICounterItemUnion, self), pbState);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).get_Visible(@as(*const _ICounterItemUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ICounterItemUnion_GetDataAt(self: *const T, iIndex: i32, iWhich: SysmonDataType, pVariant: ?*VARIANT) HRESULT {
-                return @ptrCast(*const _ICounterItemUnion.VTable, self.vtable).GetDataAt(@ptrCast(*const _ICounterItemUnion, self), iIndex, iWhich, pVariant);
+                return @as(*const _ICounterItemUnion.VTable, @ptrCast(self.vtable)).GetDataAt(@as(*const _ICounterItemUnion, @ptrCast(self)), iIndex, iWhich, pVariant);
             }
         };
     }
@@ -7304,23 +7304,23 @@ pub const ICounters = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounters_get_Count(self: *const T, pLong: ?*i32) HRESULT {
-                return @ptrCast(*const ICounters.VTable, self.vtable).get_Count(@ptrCast(*const ICounters, self), pLong);
+                return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICounters, @ptrCast(self)), pLong);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounters_get__NewEnum(self: *const T, ppIunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICounters.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICounters, self), ppIunk);
+                return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICounters, @ptrCast(self)), ppIunk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounters_get_Item(self: *const T, index: VARIANT, ppI: ?*?*DICounterItem) HRESULT {
-                return @ptrCast(*const ICounters.VTable, self.vtable).get_Item(@ptrCast(*const ICounters, self), index, ppI);
+                return @as(*const ICounters.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ICounters, @ptrCast(self)), index, ppI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounters_Add(self: *const T, pathname: ?BSTR, ppI: ?*?*DICounterItem) HRESULT {
-                return @ptrCast(*const ICounters.VTable, self.vtable).Add(@ptrCast(*const ICounters, self), pathname, ppI);
+                return @as(*const ICounters.VTable, @ptrCast(self.vtable)).Add(@as(*const ICounters, @ptrCast(self)), pathname, ppI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICounters_Remove(self: *const T, index: VARIANT) HRESULT {
-                return @ptrCast(*const ICounters.VTable, self.vtable).Remove(@ptrCast(*const ICounters, self), index);
+                return @as(*const ICounters.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICounters, @ptrCast(self)), index);
             }
         };
     }
@@ -7352,7 +7352,7 @@ pub const ILogFileItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFileItem_get_Path(self: *const T, pstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ILogFileItem.VTable, self.vtable).get_Path(@ptrCast(*const ILogFileItem, self), pstrValue);
+                return @as(*const ILogFileItem.VTable, @ptrCast(self.vtable)).get_Path(@as(*const ILogFileItem, @ptrCast(self)), pstrValue);
             }
         };
     }
@@ -7449,23 +7449,23 @@ pub const ILogFiles = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFiles_get_Count(self: *const T, pLong: ?*i32) HRESULT {
-                return @ptrCast(*const ILogFiles.VTable, self.vtable).get_Count(@ptrCast(*const ILogFiles, self), pLong);
+                return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ILogFiles, @ptrCast(self)), pLong);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFiles_get__NewEnum(self: *const T, ppIunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ILogFiles.VTable, self.vtable).get__NewEnum(@ptrCast(*const ILogFiles, self), ppIunk);
+                return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ILogFiles, @ptrCast(self)), ppIunk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFiles_get_Item(self: *const T, index: VARIANT, ppI: ?*?*DILogFileItem) HRESULT {
-                return @ptrCast(*const ILogFiles.VTable, self.vtable).get_Item(@ptrCast(*const ILogFiles, self), index, ppI);
+                return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ILogFiles, @ptrCast(self)), index, ppI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFiles_Add(self: *const T, pathname: ?BSTR, ppI: ?*?*DILogFileItem) HRESULT {
-                return @ptrCast(*const ILogFiles.VTable, self.vtable).Add(@ptrCast(*const ILogFiles, self), pathname, ppI);
+                return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).Add(@as(*const ILogFiles, @ptrCast(self)), pathname, ppI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILogFiles_Remove(self: *const T, index: VARIANT) HRESULT {
-                return @ptrCast(*const ILogFiles.VTable, self.vtable).Remove(@ptrCast(*const ILogFiles, self), index);
+                return @as(*const ILogFiles.VTable, @ptrCast(self.vtable)).Remove(@as(*const ILogFiles, @ptrCast(self)), index);
             }
         };
     }
@@ -8429,307 +8429,307 @@ pub const ISystemMonitor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_Appearance(self: *const T, iAppearance: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_Appearance(@ptrCast(*const ISystemMonitor, self), iAppearance);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Appearance(@as(*const ISystemMonitor, @ptrCast(self)), iAppearance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_Appearance(self: *const T, iAppearance: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_Appearance(@ptrCast(*const ISystemMonitor, self), iAppearance);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_Appearance(@as(*const ISystemMonitor, @ptrCast(self)), iAppearance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_BackColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_BackColor(@ptrCast(*const ISystemMonitor, self), pColor);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_BackColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_BackColor(@ptrCast(*const ISystemMonitor, self), Color);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_BorderStyle(self: *const T, iBorderStyle: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_BorderStyle(@ptrCast(*const ISystemMonitor, self), iBorderStyle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BorderStyle(@as(*const ISystemMonitor, @ptrCast(self)), iBorderStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_BorderStyle(self: *const T, iBorderStyle: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_BorderStyle(@ptrCast(*const ISystemMonitor, self), iBorderStyle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BorderStyle(@as(*const ISystemMonitor, @ptrCast(self)), iBorderStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ForeColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ForeColor(@ptrCast(*const ISystemMonitor, self), pColor);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ForeColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ForeColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ForeColor(@ptrCast(*const ISystemMonitor, self), Color);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ForeColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_Font(self: *const T, ppFont: ?*?*IFontDisp) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_Font(@ptrCast(*const ISystemMonitor, self), ppFont);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Font(@as(*const ISystemMonitor, @ptrCast(self)), ppFont);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_putref_Font(self: *const T, pFont: ?*IFontDisp) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).putref_Font(@ptrCast(*const ISystemMonitor, self), pFont);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).putref_Font(@as(*const ISystemMonitor, @ptrCast(self)), pFont);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_Counters(self: *const T, ppICounters: ?*?*ICounters) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_Counters(@ptrCast(*const ISystemMonitor, self), ppICounters);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Counters(@as(*const ISystemMonitor, @ptrCast(self)), ppICounters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowVerticalGrid(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowVerticalGrid(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowVerticalGrid(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowVerticalGrid(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowVerticalGrid(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowVerticalGrid(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowHorizontalGrid(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowHorizontalGrid(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowHorizontalGrid(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowHorizontalGrid(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowHorizontalGrid(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowHorizontalGrid(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowLegend(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowLegend(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowLegend(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowLegend(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowLegend(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowLegend(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowScaleLabels(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowScaleLabels(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowScaleLabels(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowScaleLabels(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowScaleLabels(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowScaleLabels(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowValueBar(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowValueBar(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowValueBar(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowValueBar(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowValueBar(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowValueBar(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_MaximumScale(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_MaximumScale(@ptrCast(*const ISystemMonitor, self), iValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MaximumScale(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_MaximumScale(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_MaximumScale(@ptrCast(*const ISystemMonitor, self), piValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MaximumScale(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_MinimumScale(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_MinimumScale(@ptrCast(*const ISystemMonitor, self), iValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MinimumScale(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_MinimumScale(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_MinimumScale(@ptrCast(*const ISystemMonitor, self), piValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MinimumScale(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_UpdateInterval(self: *const T, fValue: f32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_UpdateInterval(@ptrCast(*const ISystemMonitor, self), fValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_UpdateInterval(@as(*const ISystemMonitor, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_UpdateInterval(self: *const T, pfValue: ?*f32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_UpdateInterval(@ptrCast(*const ISystemMonitor, self), pfValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_UpdateInterval(@as(*const ISystemMonitor, @ptrCast(self)), pfValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_DisplayType(self: *const T, eDisplayType: DisplayTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_DisplayType(@ptrCast(*const ISystemMonitor, self), eDisplayType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DisplayType(@as(*const ISystemMonitor, @ptrCast(self)), eDisplayType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_DisplayType(self: *const T, peDisplayType: ?*DisplayTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_DisplayType(@ptrCast(*const ISystemMonitor, self), peDisplayType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DisplayType(@as(*const ISystemMonitor, @ptrCast(self)), peDisplayType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ManualUpdate(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ManualUpdate(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ManualUpdate(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ManualUpdate(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ManualUpdate(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ManualUpdate(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_GraphTitle(self: *const T, bsTitle: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_GraphTitle(@ptrCast(*const ISystemMonitor, self), bsTitle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_GraphTitle(@as(*const ISystemMonitor, @ptrCast(self)), bsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_GraphTitle(self: *const T, pbsTitle: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_GraphTitle(@ptrCast(*const ISystemMonitor, self), pbsTitle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_GraphTitle(@as(*const ISystemMonitor, @ptrCast(self)), pbsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_YAxisLabel(self: *const T, bsTitle: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_YAxisLabel(@ptrCast(*const ISystemMonitor, self), bsTitle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_YAxisLabel(@as(*const ISystemMonitor, @ptrCast(self)), bsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_YAxisLabel(self: *const T, pbsTitle: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_YAxisLabel(@ptrCast(*const ISystemMonitor, self), pbsTitle);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_YAxisLabel(@as(*const ISystemMonitor, @ptrCast(self)), pbsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_CollectSample(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).CollectSample(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).CollectSample(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_UpdateGraph(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).UpdateGraph(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).UpdateGraph(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_BrowseCounters(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).BrowseCounters(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).BrowseCounters(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_DisplayProperties(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).DisplayProperties(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).DisplayProperties(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_Counter(self: *const T, iIndex: i32, ppICounter: ?*?*ICounterItem) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).Counter(@ptrCast(*const ISystemMonitor, self), iIndex, ppICounter);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Counter(@as(*const ISystemMonitor, @ptrCast(self)), iIndex, ppICounter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_AddCounter(self: *const T, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).AddCounter(@ptrCast(*const ISystemMonitor, self), bsPath, ppICounter);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).AddCounter(@as(*const ISystemMonitor, @ptrCast(self)), bsPath, ppICounter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_DeleteCounter(self: *const T, pCtr: ?*ICounterItem) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).DeleteCounter(@ptrCast(*const ISystemMonitor, self), pCtr);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).DeleteCounter(@as(*const ISystemMonitor, @ptrCast(self)), pCtr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_BackColorCtl(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_BackColorCtl(@ptrCast(*const ISystemMonitor, self), pColor);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_BackColorCtl(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_BackColorCtl(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_BackColorCtl(@ptrCast(*const ISystemMonitor, self), Color);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_BackColorCtl(@as(*const ISystemMonitor, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_LogFileName(self: *const T, bsFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_LogFileName(@ptrCast(*const ISystemMonitor, self), bsFileName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogFileName(@as(*const ISystemMonitor, @ptrCast(self)), bsFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_LogFileName(self: *const T, bsFileName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_LogFileName(@ptrCast(*const ISystemMonitor, self), bsFileName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogFileName(@as(*const ISystemMonitor, @ptrCast(self)), bsFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_LogViewStart(self: *const T, StartTime: f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_LogViewStart(@ptrCast(*const ISystemMonitor, self), StartTime);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogViewStart(@as(*const ISystemMonitor, @ptrCast(self)), StartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_LogViewStart(self: *const T, StartTime: ?*f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_LogViewStart(@ptrCast(*const ISystemMonitor, self), StartTime);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogViewStart(@as(*const ISystemMonitor, @ptrCast(self)), StartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_LogViewStop(self: *const T, StopTime: f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_LogViewStop(@ptrCast(*const ISystemMonitor, self), StopTime);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_LogViewStop(@as(*const ISystemMonitor, @ptrCast(self)), StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_LogViewStop(self: *const T, StopTime: ?*f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_LogViewStop(@ptrCast(*const ISystemMonitor, self), StopTime);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogViewStop(@as(*const ISystemMonitor, @ptrCast(self)), StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_GridColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_GridColor(@ptrCast(*const ISystemMonitor, self), pColor);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_GridColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_GridColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_GridColor(@ptrCast(*const ISystemMonitor, self), Color);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_GridColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_TimeBarColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_TimeBarColor(@ptrCast(*const ISystemMonitor, self), pColor);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_TimeBarColor(@as(*const ISystemMonitor, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_TimeBarColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_TimeBarColor(@ptrCast(*const ISystemMonitor, self), Color);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_TimeBarColor(@as(*const ISystemMonitor, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_Highlight(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_Highlight(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_Highlight(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_Highlight(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_Highlight(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_Highlight(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ShowToolbar(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ShowToolbar(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ShowToolbar(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ShowToolbar(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ShowToolbar(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ShowToolbar(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_Paste(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).Paste(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Paste(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_Copy(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).Copy(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Copy(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).Reset(@ptrCast(*const ISystemMonitor, self));
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISystemMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ReadOnly(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ReadOnly(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ReadOnly(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ReadOnly(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ReadOnly(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_ReportValueType(self: *const T, eReportValueType: ReportValueTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_ReportValueType(@ptrCast(*const ISystemMonitor, self), eReportValueType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_ReportValueType(@as(*const ISystemMonitor, @ptrCast(self)), eReportValueType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_ReportValueType(self: *const T, peReportValueType: ?*ReportValueTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_ReportValueType(@ptrCast(*const ISystemMonitor, self), peReportValueType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_ReportValueType(@as(*const ISystemMonitor, @ptrCast(self)), peReportValueType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_MonitorDuplicateInstances(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_MonitorDuplicateInstances(@ptrCast(*const ISystemMonitor, self), bState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_MonitorDuplicateInstances(@as(*const ISystemMonitor, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_MonitorDuplicateInstances(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_MonitorDuplicateInstances(@ptrCast(*const ISystemMonitor, self), pbState);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_MonitorDuplicateInstances(@as(*const ISystemMonitor, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_DisplayFilter(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_DisplayFilter(@ptrCast(*const ISystemMonitor, self), iValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DisplayFilter(@as(*const ISystemMonitor, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_DisplayFilter(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_DisplayFilter(@ptrCast(*const ISystemMonitor, self), piValue);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DisplayFilter(@as(*const ISystemMonitor, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_LogFiles(self: *const T, ppILogFiles: ?*?*ILogFiles) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_LogFiles(@ptrCast(*const ISystemMonitor, self), ppILogFiles);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_LogFiles(@as(*const ISystemMonitor, @ptrCast(self)), ppILogFiles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_DataSourceType(self: *const T, eDataSourceType: DataSourceTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_DataSourceType(@ptrCast(*const ISystemMonitor, self), eDataSourceType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_DataSourceType(@as(*const ISystemMonitor, @ptrCast(self)), eDataSourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_DataSourceType(self: *const T, peDataSourceType: ?*DataSourceTypeConstants) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_DataSourceType(@ptrCast(*const ISystemMonitor, self), peDataSourceType);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_DataSourceType(@as(*const ISystemMonitor, @ptrCast(self)), peDataSourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_SqlDsnName(self: *const T, bsSqlDsnName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_SqlDsnName(@ptrCast(*const ISystemMonitor, self), bsSqlDsnName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_SqlDsnName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlDsnName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_SqlDsnName(self: *const T, bsSqlDsnName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_SqlDsnName(@ptrCast(*const ISystemMonitor, self), bsSqlDsnName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_SqlDsnName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlDsnName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_put_SqlLogSetName(self: *const T, bsSqlLogSetName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).put_SqlLogSetName(@ptrCast(*const ISystemMonitor, self), bsSqlLogSetName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).put_SqlLogSetName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlLogSetName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor_get_SqlLogSetName(self: *const T, bsSqlLogSetName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor.VTable, self.vtable).get_SqlLogSetName(@ptrCast(*const ISystemMonitor, self), bsSqlLogSetName);
+                return @as(*const ISystemMonitor.VTable, @ptrCast(self.vtable)).get_SqlLogSetName(@as(*const ISystemMonitor, @ptrCast(self)), bsSqlLogSetName);
             }
         };
     }
@@ -8994,83 +8994,83 @@ pub const ISystemMonitor2 = extern struct {
             pub usingnamespace ISystemMonitor.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_put_EnableDigitGrouping(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).put_EnableDigitGrouping(@ptrCast(*const ISystemMonitor2, self), bState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_EnableDigitGrouping(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_EnableDigitGrouping(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_EnableDigitGrouping(@ptrCast(*const ISystemMonitor2, self), pbState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_EnableDigitGrouping(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_put_EnableToolTips(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).put_EnableToolTips(@ptrCast(*const ISystemMonitor2, self), bState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_EnableToolTips(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_EnableToolTips(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_EnableToolTips(@ptrCast(*const ISystemMonitor2, self), pbState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_EnableToolTips(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_put_ShowTimeAxisLabels(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).put_ShowTimeAxisLabels(@ptrCast(*const ISystemMonitor2, self), bState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_ShowTimeAxisLabels(@as(*const ISystemMonitor2, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_ShowTimeAxisLabels(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_ShowTimeAxisLabels(@ptrCast(*const ISystemMonitor2, self), pbState);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_ShowTimeAxisLabels(@as(*const ISystemMonitor2, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_put_ChartScroll(self: *const T, bScroll: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).put_ChartScroll(@ptrCast(*const ISystemMonitor2, self), bScroll);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_ChartScroll(@as(*const ISystemMonitor2, @ptrCast(self)), bScroll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_ChartScroll(self: *const T, pbScroll: ?*i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_ChartScroll(@ptrCast(*const ISystemMonitor2, self), pbScroll);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_ChartScroll(@as(*const ISystemMonitor2, @ptrCast(self)), pbScroll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_put_DataPointCount(self: *const T, iNewCount: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).put_DataPointCount(@ptrCast(*const ISystemMonitor2, self), iNewCount);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).put_DataPointCount(@as(*const ISystemMonitor2, @ptrCast(self)), iNewCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_DataPointCount(self: *const T, piDataPointCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_DataPointCount(@ptrCast(*const ISystemMonitor2, self), piDataPointCount);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_DataPointCount(@as(*const ISystemMonitor2, @ptrCast(self)), piDataPointCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_ScaleToFit(self: *const T, bSelectedCountersOnly: i16) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).ScaleToFit(@ptrCast(*const ISystemMonitor2, self), bSelectedCountersOnly);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).ScaleToFit(@as(*const ISystemMonitor2, @ptrCast(self)), bSelectedCountersOnly);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_SaveAs(self: *const T, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).SaveAs(@ptrCast(*const ISystemMonitor2, self), bstrFileName, eSysmonFileType);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).SaveAs(@as(*const ISystemMonitor2, @ptrCast(self)), bstrFileName, eSysmonFileType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_Relog(self: *const T, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).Relog(@ptrCast(*const ISystemMonitor2, self), bstrFileName, eSysmonFileType, iFilter);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).Relog(@as(*const ISystemMonitor2, @ptrCast(self)), bstrFileName, eSysmonFileType, iFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_ClearData(self: *const T) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).ClearData(@ptrCast(*const ISystemMonitor2, self));
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).ClearData(@as(*const ISystemMonitor2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_LogSourceStartTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_LogSourceStartTime(@ptrCast(*const ISystemMonitor2, self), pDate);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_LogSourceStartTime(@as(*const ISystemMonitor2, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_get_LogSourceStopTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).get_LogSourceStopTime(@ptrCast(*const ISystemMonitor2, self), pDate);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).get_LogSourceStopTime(@as(*const ISystemMonitor2, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_SetLogViewRange(self: *const T, StartTime: f64, StopTime: f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).SetLogViewRange(@ptrCast(*const ISystemMonitor2, self), StartTime, StopTime);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).SetLogViewRange(@as(*const ISystemMonitor2, @ptrCast(self)), StartTime, StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_GetLogViewRange(self: *const T, StartTime: ?*f64, StopTime: ?*f64) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).GetLogViewRange(@ptrCast(*const ISystemMonitor2, self), StartTime, StopTime);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).GetLogViewRange(@as(*const ISystemMonitor2, @ptrCast(self)), StartTime, StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_BatchingLock(self: *const T, fLock: i16, eBatchReason: SysmonBatchReason) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).BatchingLock(@ptrCast(*const ISystemMonitor2, self), fLock, eBatchReason);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).BatchingLock(@as(*const ISystemMonitor2, @ptrCast(self)), fLock, eBatchReason);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitor2_LoadSettings(self: *const T, bstrSettingFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISystemMonitor2.VTable, self.vtable).LoadSettings(@ptrCast(*const ISystemMonitor2, self), bstrSettingFileName);
+                return @as(*const ISystemMonitor2.VTable, @ptrCast(self.vtable)).LoadSettings(@as(*const ISystemMonitor2, @ptrCast(self)), bstrSettingFileName);
             }
         };
     }
@@ -10280,387 +10280,387 @@ pub const _ISystemMonitorUnion = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_Appearance(self: *const T, iAppearance: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_Appearance(@ptrCast(*const _ISystemMonitorUnion, self), iAppearance);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Appearance(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iAppearance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_Appearance(self: *const T, iAppearance: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_Appearance(@ptrCast(*const _ISystemMonitorUnion, self), iAppearance);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_Appearance(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iAppearance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_BackColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_BackColor(@ptrCast(*const _ISystemMonitorUnion, self), pColor);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BackColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_BackColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_BackColor(@ptrCast(*const _ISystemMonitorUnion, self), Color);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BackColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_BorderStyle(self: *const T, iBorderStyle: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_BorderStyle(@ptrCast(*const _ISystemMonitorUnion, self), iBorderStyle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BorderStyle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iBorderStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_BorderStyle(self: *const T, iBorderStyle: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_BorderStyle(@ptrCast(*const _ISystemMonitorUnion, self), iBorderStyle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BorderStyle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iBorderStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ForeColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ForeColor(@ptrCast(*const _ISystemMonitorUnion, self), pColor);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ForeColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ForeColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ForeColor(@ptrCast(*const _ISystemMonitorUnion, self), Color);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ForeColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_Font(self: *const T, ppFont: ?*?*IFontDisp) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_Font(@ptrCast(*const _ISystemMonitorUnion, self), ppFont);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Font(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppFont);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_putref_Font(self: *const T, pFont: ?*IFontDisp) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).putref_Font(@ptrCast(*const _ISystemMonitorUnion, self), pFont);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).putref_Font(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pFont);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_Counters(self: *const T, ppICounters: ?*?*ICounters) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_Counters(@ptrCast(*const _ISystemMonitorUnion, self), ppICounters);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Counters(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppICounters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowVerticalGrid(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowVerticalGrid(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowVerticalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowVerticalGrid(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowVerticalGrid(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowVerticalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowHorizontalGrid(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowHorizontalGrid(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowHorizontalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowHorizontalGrid(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowHorizontalGrid(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowHorizontalGrid(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowLegend(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowLegend(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowLegend(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowLegend(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowLegend(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowLegend(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowScaleLabels(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowScaleLabels(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowScaleLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowScaleLabels(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowScaleLabels(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowScaleLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowValueBar(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowValueBar(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowValueBar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowValueBar(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowValueBar(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowValueBar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_MaximumScale(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_MaximumScale(@ptrCast(*const _ISystemMonitorUnion, self), iValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MaximumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_MaximumScale(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_MaximumScale(@ptrCast(*const _ISystemMonitorUnion, self), piValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MaximumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_MinimumScale(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_MinimumScale(@ptrCast(*const _ISystemMonitorUnion, self), iValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MinimumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_MinimumScale(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_MinimumScale(@ptrCast(*const _ISystemMonitorUnion, self), piValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MinimumScale(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_UpdateInterval(self: *const T, fValue: f32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_UpdateInterval(@ptrCast(*const _ISystemMonitorUnion, self), fValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_UpdateInterval(@as(*const _ISystemMonitorUnion, @ptrCast(self)), fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_UpdateInterval(self: *const T, pfValue: ?*f32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_UpdateInterval(@ptrCast(*const _ISystemMonitorUnion, self), pfValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_UpdateInterval(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pfValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_DisplayType(self: *const T, eDisplayType: DisplayTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_DisplayType(@ptrCast(*const _ISystemMonitorUnion, self), eDisplayType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DisplayType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eDisplayType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_DisplayType(self: *const T, peDisplayType: ?*DisplayTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_DisplayType(@ptrCast(*const _ISystemMonitorUnion, self), peDisplayType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DisplayType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peDisplayType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ManualUpdate(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ManualUpdate(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ManualUpdate(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ManualUpdate(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ManualUpdate(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ManualUpdate(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_GraphTitle(self: *const T, bsTitle: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_GraphTitle(@ptrCast(*const _ISystemMonitorUnion, self), bsTitle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_GraphTitle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_GraphTitle(self: *const T, pbsTitle: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_GraphTitle(@ptrCast(*const _ISystemMonitorUnion, self), pbsTitle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_GraphTitle(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_YAxisLabel(self: *const T, bsTitle: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_YAxisLabel(@ptrCast(*const _ISystemMonitorUnion, self), bsTitle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_YAxisLabel(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_YAxisLabel(self: *const T, pbsTitle: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_YAxisLabel(@ptrCast(*const _ISystemMonitorUnion, self), pbsTitle);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_YAxisLabel(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbsTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_CollectSample(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).CollectSample(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).CollectSample(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_UpdateGraph(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).UpdateGraph(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).UpdateGraph(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_BrowseCounters(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).BrowseCounters(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).BrowseCounters(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_DisplayProperties(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).DisplayProperties(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).DisplayProperties(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_Counter(self: *const T, iIndex: i32, ppICounter: ?*?*ICounterItem) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).Counter(@ptrCast(*const _ISystemMonitorUnion, self), iIndex, ppICounter);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Counter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iIndex, ppICounter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_AddCounter(self: *const T, bsPath: ?BSTR, ppICounter: ?*?*ICounterItem) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).AddCounter(@ptrCast(*const _ISystemMonitorUnion, self), bsPath, ppICounter);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).AddCounter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsPath, ppICounter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_DeleteCounter(self: *const T, pCtr: ?*ICounterItem) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).DeleteCounter(@ptrCast(*const _ISystemMonitorUnion, self), pCtr);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).DeleteCounter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pCtr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_BackColorCtl(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_BackColorCtl(@ptrCast(*const _ISystemMonitorUnion, self), pColor);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_BackColorCtl(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_BackColorCtl(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_BackColorCtl(@ptrCast(*const _ISystemMonitorUnion, self), Color);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_BackColorCtl(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_LogFileName(self: *const T, bsFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_LogFileName(@ptrCast(*const _ISystemMonitorUnion, self), bsFileName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogFileName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogFileName(self: *const T, bsFileName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogFileName(@ptrCast(*const _ISystemMonitorUnion, self), bsFileName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogFileName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_LogViewStart(self: *const T, StartTime: f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_LogViewStart(@ptrCast(*const _ISystemMonitorUnion, self), StartTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogViewStart(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogViewStart(self: *const T, StartTime: ?*f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogViewStart(@ptrCast(*const _ISystemMonitorUnion, self), StartTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogViewStart(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_LogViewStop(self: *const T, StopTime: f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_LogViewStop(@ptrCast(*const _ISystemMonitorUnion, self), StopTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_LogViewStop(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogViewStop(self: *const T, StopTime: ?*f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogViewStop(@ptrCast(*const _ISystemMonitorUnion, self), StopTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogViewStop(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_GridColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_GridColor(@ptrCast(*const _ISystemMonitorUnion, self), pColor);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_GridColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_GridColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_GridColor(@ptrCast(*const _ISystemMonitorUnion, self), Color);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_GridColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_TimeBarColor(self: *const T, pColor: ?*u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_TimeBarColor(@ptrCast(*const _ISystemMonitorUnion, self), pColor);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_TimeBarColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_TimeBarColor(self: *const T, Color: u32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_TimeBarColor(@ptrCast(*const _ISystemMonitorUnion, self), Color);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_TimeBarColor(@as(*const _ISystemMonitorUnion, @ptrCast(self)), Color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_Highlight(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_Highlight(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_Highlight(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_Highlight(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_Highlight(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_Highlight(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowToolbar(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowToolbar(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowToolbar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowToolbar(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowToolbar(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowToolbar(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_Paste(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).Paste(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Paste(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_Copy(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).Copy(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Copy(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).Reset(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Reset(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ReadOnly(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ReadOnly(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ReadOnly(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ReadOnly(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ReadOnly(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ReportValueType(self: *const T, eReportValueType: ReportValueTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ReportValueType(@ptrCast(*const _ISystemMonitorUnion, self), eReportValueType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ReportValueType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eReportValueType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ReportValueType(self: *const T, peReportValueType: ?*ReportValueTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ReportValueType(@ptrCast(*const _ISystemMonitorUnion, self), peReportValueType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ReportValueType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peReportValueType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_MonitorDuplicateInstances(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_MonitorDuplicateInstances(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_MonitorDuplicateInstances(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_MonitorDuplicateInstances(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_MonitorDuplicateInstances(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_MonitorDuplicateInstances(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_DisplayFilter(self: *const T, iValue: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_DisplayFilter(@ptrCast(*const _ISystemMonitorUnion, self), iValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DisplayFilter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_DisplayFilter(self: *const T, piValue: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_DisplayFilter(@ptrCast(*const _ISystemMonitorUnion, self), piValue);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DisplayFilter(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogFiles(self: *const T, ppILogFiles: ?*?*ILogFiles) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogFiles(@ptrCast(*const _ISystemMonitorUnion, self), ppILogFiles);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogFiles(@as(*const _ISystemMonitorUnion, @ptrCast(self)), ppILogFiles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_DataSourceType(self: *const T, eDataSourceType: DataSourceTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_DataSourceType(@ptrCast(*const _ISystemMonitorUnion, self), eDataSourceType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DataSourceType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), eDataSourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_DataSourceType(self: *const T, peDataSourceType: ?*DataSourceTypeConstants) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_DataSourceType(@ptrCast(*const _ISystemMonitorUnion, self), peDataSourceType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DataSourceType(@as(*const _ISystemMonitorUnion, @ptrCast(self)), peDataSourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_SqlDsnName(self: *const T, bsSqlDsnName: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_SqlDsnName(@ptrCast(*const _ISystemMonitorUnion, self), bsSqlDsnName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_SqlDsnName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlDsnName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_SqlDsnName(self: *const T, bsSqlDsnName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_SqlDsnName(@ptrCast(*const _ISystemMonitorUnion, self), bsSqlDsnName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_SqlDsnName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlDsnName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_SqlLogSetName(self: *const T, bsSqlLogSetName: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_SqlLogSetName(@ptrCast(*const _ISystemMonitorUnion, self), bsSqlLogSetName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_SqlLogSetName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlLogSetName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_SqlLogSetName(self: *const T, bsSqlLogSetName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_SqlLogSetName(@ptrCast(*const _ISystemMonitorUnion, self), bsSqlLogSetName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_SqlLogSetName(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bsSqlLogSetName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_EnableDigitGrouping(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_EnableDigitGrouping(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_EnableDigitGrouping(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_EnableDigitGrouping(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_EnableDigitGrouping(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_EnableDigitGrouping(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_EnableToolTips(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_EnableToolTips(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_EnableToolTips(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_EnableToolTips(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_EnableToolTips(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_EnableToolTips(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ShowTimeAxisLabels(self: *const T, bState: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ShowTimeAxisLabels(@ptrCast(*const _ISystemMonitorUnion, self), bState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ShowTimeAxisLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ShowTimeAxisLabels(self: *const T, pbState: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ShowTimeAxisLabels(@ptrCast(*const _ISystemMonitorUnion, self), pbState);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ShowTimeAxisLabels(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_ChartScroll(self: *const T, bScroll: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_ChartScroll(@ptrCast(*const _ISystemMonitorUnion, self), bScroll);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_ChartScroll(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bScroll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_ChartScroll(self: *const T, pbScroll: ?*i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_ChartScroll(@ptrCast(*const _ISystemMonitorUnion, self), pbScroll);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_ChartScroll(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pbScroll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_put_DataPointCount(self: *const T, iNewCount: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).put_DataPointCount(@ptrCast(*const _ISystemMonitorUnion, self), iNewCount);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).put_DataPointCount(@as(*const _ISystemMonitorUnion, @ptrCast(self)), iNewCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_DataPointCount(self: *const T, piDataPointCount: ?*i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_DataPointCount(@ptrCast(*const _ISystemMonitorUnion, self), piDataPointCount);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_DataPointCount(@as(*const _ISystemMonitorUnion, @ptrCast(self)), piDataPointCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_ScaleToFit(self: *const T, bSelectedCountersOnly: i16) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).ScaleToFit(@ptrCast(*const _ISystemMonitorUnion, self), bSelectedCountersOnly);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).ScaleToFit(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bSelectedCountersOnly);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_SaveAs(self: *const T, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).SaveAs(@ptrCast(*const _ISystemMonitorUnion, self), bstrFileName, eSysmonFileType);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).SaveAs(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrFileName, eSysmonFileType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_Relog(self: *const T, bstrFileName: ?BSTR, eSysmonFileType: SysmonFileType, iFilter: i32) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).Relog(@ptrCast(*const _ISystemMonitorUnion, self), bstrFileName, eSysmonFileType, iFilter);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).Relog(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrFileName, eSysmonFileType, iFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_ClearData(self: *const T) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).ClearData(@ptrCast(*const _ISystemMonitorUnion, self));
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).ClearData(@as(*const _ISystemMonitorUnion, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogSourceStartTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogSourceStartTime(@ptrCast(*const _ISystemMonitorUnion, self), pDate);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogSourceStartTime(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_get_LogSourceStopTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).get_LogSourceStopTime(@ptrCast(*const _ISystemMonitorUnion, self), pDate);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).get_LogSourceStopTime(@as(*const _ISystemMonitorUnion, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_SetLogViewRange(self: *const T, StartTime: f64, StopTime: f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).SetLogViewRange(@ptrCast(*const _ISystemMonitorUnion, self), StartTime, StopTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).SetLogViewRange(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime, StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_GetLogViewRange(self: *const T, StartTime: ?*f64, StopTime: ?*f64) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).GetLogViewRange(@ptrCast(*const _ISystemMonitorUnion, self), StartTime, StopTime);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).GetLogViewRange(@as(*const _ISystemMonitorUnion, @ptrCast(self)), StartTime, StopTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_BatchingLock(self: *const T, fLock: i16, eBatchReason: SysmonBatchReason) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).BatchingLock(@ptrCast(*const _ISystemMonitorUnion, self), fLock, eBatchReason);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).BatchingLock(@as(*const _ISystemMonitorUnion, @ptrCast(self)), fLock, eBatchReason);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _ISystemMonitorUnion_LoadSettings(self: *const T, bstrSettingFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const _ISystemMonitorUnion.VTable, self.vtable).LoadSettings(@ptrCast(*const _ISystemMonitorUnion, self), bstrSettingFileName);
+                return @as(*const _ISystemMonitorUnion.VTable, @ptrCast(self.vtable)).LoadSettings(@as(*const _ISystemMonitorUnion, @ptrCast(self)), bstrSettingFileName);
             }
         };
     }
@@ -10757,23 +10757,23 @@ pub const ISystemMonitorEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitorEvents_OnCounterSelected(self: *const T, Index: i32) void {
-                return @ptrCast(*const ISystemMonitorEvents.VTable, self.vtable).OnCounterSelected(@ptrCast(*const ISystemMonitorEvents, self), Index);
+                return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterSelected(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitorEvents_OnCounterAdded(self: *const T, Index: i32) void {
-                return @ptrCast(*const ISystemMonitorEvents.VTable, self.vtable).OnCounterAdded(@ptrCast(*const ISystemMonitorEvents, self), Index);
+                return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterAdded(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitorEvents_OnCounterDeleted(self: *const T, Index: i32) void {
-                return @ptrCast(*const ISystemMonitorEvents.VTable, self.vtable).OnCounterDeleted(@ptrCast(*const ISystemMonitorEvents, self), Index);
+                return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnCounterDeleted(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitorEvents_OnSampleCollected(self: *const T) void {
-                return @ptrCast(*const ISystemMonitorEvents.VTable, self.vtable).OnSampleCollected(@ptrCast(*const ISystemMonitorEvents, self));
+                return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnSampleCollected(@as(*const ISystemMonitorEvents, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISystemMonitorEvents_OnDblClick(self: *const T, Index: i32) void {
-                return @ptrCast(*const ISystemMonitorEvents.VTable, self.vtable).OnDblClick(@ptrCast(*const ISystemMonitorEvents, self), Index);
+                return @as(*const ISystemMonitorEvents.VTable, @ptrCast(self.vtable)).OnDblClick(@as(*const ISystemMonitorEvents, @ptrCast(self)), Index);
             }
         };
     }

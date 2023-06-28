@@ -11,7 +11,7 @@ const OpenSL = if (build_options.enable_opensl) @import("opensl.zig").OpenSL els
 const AAudio = if (build_options.enable_aaudio) @import("aaudio.zig").AAudio else Dummy;
 
 pub fn midiToFreq(note: usize) f64 {
-    return std.math.pow(f64, 2, (@floatFromInt(f64, note) - 49) / 12) * 440;
+    return std.math.pow(f64, 2, (@as(f64, @floatFromInt(note)) - 49) / 12) * 440;
 }
 
 pub fn amplitudeTodB(amplitude: f64) f64 {

@@ -99,15 +99,15 @@ pub const IDirect3DDevice9On12 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9On12_GetD3D12Device(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9On12.VTable, self.vtable).GetD3D12Device(@ptrCast(*const IDirect3DDevice9On12, self), riid, ppvDevice);
+                return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).GetD3D12Device(@as(*const IDirect3DDevice9On12, @ptrCast(self)), riid, ppvDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9On12_UnwrapUnderlyingResource(self: *const T, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9On12.VTable, self.vtable).UnwrapUnderlyingResource(@ptrCast(*const IDirect3DDevice9On12, self), pResource, pCommandQueue, riid, ppvResource12);
+                return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).UnwrapUnderlyingResource(@as(*const IDirect3DDevice9On12, @ptrCast(self)), pResource, pCommandQueue, riid, ppvResource12);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9On12_ReturnUnderlyingResource(self: *const T, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9On12.VTable, self.vtable).ReturnUnderlyingResource(@ptrCast(*const IDirect3DDevice9On12, self), pResource, NumSync, pSignalValues, ppFences);
+                return @as(*const IDirect3DDevice9On12.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const IDirect3DDevice9On12, @ptrCast(self)), pResource, NumSync, pSignalValues, ppFences);
             }
         };
     }

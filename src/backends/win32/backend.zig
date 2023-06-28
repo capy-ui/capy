@@ -64,13 +64,13 @@ var d2dFactory: *win32.ID2D1Factory = undefined;
 var hasInit: bool = false;
 
 fn transWinError(win32_error: win32.WIN32_ERROR) std.os.windows.Win32Error {
-    return @enumFromInt(std.os.windows.Win32Error, @intFromEnum(win32_error));
+    return @as(std.os.windows.Win32Error, @enumFromInt(@intFromEnum(win32_error)));
 }
 
 pub fn init() !void {
     if (!hasInit) {
         hasInit = true;
-        const hInstance = @ptrCast(win32.HINSTANCE, @alignCast(@alignOf(win32.HINSTANCE), win32.GetModuleHandleW(null).?));
+        const hInstance = @as(win32.HINSTANCE, @ptrCast(@alignCast(win32.GetModuleHandleW(null).?)));
         hInst = hInstance;
 
         if (os.isAtLeast(.windows, .win10_rs2) orelse false) {
@@ -110,7 +110,7 @@ pub fn init() !void {
             win32.D2D1_FACTORY_TYPE_SINGLE_THREADED,
             zigwin32.graphics.direct2d.IID_ID2D1Factory,
             null,
-            @ptrCast(**anyopaque, &d2dFactory),
+            @as(**anyopaque, @ptrCast(&d2dFactory)),
         ) == 0);
     }
 }
@@ -149,7 +149,7 @@ pub const Window = struct {
     pub usingnamespace Events(Window);
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
-        const parent = @ptrFromInt(HWND, @bitCast(usize, lp));
+        const parent = @as(HWND, @ptrFromInt(@as(usize, @bitCast(lp))));
         if (win32.GetParent(hwnd) != parent) {
             return 1; // ignore recursive childrens
         }
@@ -163,7 +163,7 @@ pub const Window = struct {
     fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
         switch (wm) {
             win32.WM_SIZE => {
-                _ = win32.EnumChildWindows(hwnd, relayoutChild, @bitCast(isize, @intFromPtr(hwnd)));
+                _ = win32.EnumChildWindows(hwnd, relayoutChild, @as(isize, @bitCast(@intFromPtr(hwnd))));
             },
             win32.WM_DPICHANGED => {
                 // TODO: update scale factor
@@ -228,7 +228,7 @@ pub const Window = struct {
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(self.hwnd, &rect);
-        _ = win32.MoveWindow(self.hwnd, rect.left, rect.top, @intCast(c_int, width), @intCast(c_int, height), 1);
+        _ = win32.MoveWindow(self.hwnd, rect.left, rect.top, @as(c_int, @intCast(width)), @as(c_int, @intCast(height)), 1);
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -264,7 +264,7 @@ const EventUserData = struct {
 };
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
-    return @ptrFromInt(*EventUserData, @bitCast(usize, win32Backend.getWindowLongPtr(peer, win32.GWL_USERDATA)));
+    return @as(*EventUserData, @ptrFromInt(@as(usize, @bitCast(win32Backend.getWindowLongPtr(peer, win32.GWL_USERDATA)))));
 }
 
 pub fn Events(comptime T: type) type {
@@ -274,7 +274,7 @@ pub fn Events(comptime T: type) type {
         pub fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
             switch (wm) {
                 win32.WM_NOTIFY => {
-                    const nmhdr = @ptrFromInt(*const win32.NMHDR, @bitCast(usize, lp));
+                    const nmhdr = @as(*const win32.NMHDR, @ptrFromInt(@as(usize, @bitCast(lp))));
                     //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
                         TCN_SELCHANGING => {
@@ -288,8 +288,8 @@ pub fn Events(comptime T: type) type {
             if (win32Backend.getWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcW(hwnd, wm, wp, lp);
             switch (wm) {
                 win32.WM_COMMAND => {
-                    const code = @intCast(u16, wp >> 16);
-                    const data = getEventUserData(@ptrFromInt(HWND, @bitCast(usize, lp)));
+                    const code = @as(u16, @intCast(wp >> 16));
+                    const data = getEventUserData(@as(HWND, @ptrFromInt(@as(usize, @bitCast(lp)))));
                     switch (code) {
                         win32.BN_CLICKED => {
                             if (data.user.clickHandler) |handler|
@@ -304,8 +304,8 @@ pub fn Events(comptime T: type) type {
                     }
                 },
                 win32.WM_CTLCOLOREDIT => {
-                    const data = getEventUserData(@ptrFromInt(HWND, @bitCast(usize, lp)));
-                    const len = win32.GetWindowTextLengthW(@ptrFromInt(HWND, @bitCast(usize, lp)));
+                    const data = getEventUserData(@as(HWND, @ptrFromInt(@as(usize, @bitCast(lp)))));
+                    const len = win32.GetWindowTextLengthW(@as(HWND, @ptrFromInt(@as(usize, @bitCast(lp)))));
                     // The text box may have changed
                     // TODO: send the event only when the text truly changed
                     if (data.last_text_len != len) {
@@ -315,7 +315,7 @@ pub fn Events(comptime T: type) type {
                     }
                 },
                 win32.WM_NOTIFY => {
-                    const nmhdr = @ptrFromInt(*const win32.NMHDR, @bitCast(usize, lp));
+                    const nmhdr = @as(*const win32.NMHDR, @ptrFromInt(@as(usize, @bitCast(lp))));
                     //std.log.info("code = {d} vs {d}", .{ nmhdr.code, win32.TCN_SELCHANGING });
                     switch (nmhdr.code) {
                         TCN_SELCHANGING => {
@@ -333,9 +333,9 @@ pub fn Events(comptime T: type) type {
                     _ = win32.GetWindowRect(hwnd, &rect);
 
                     if (data.class.resizeHandler) |handler|
-                        handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
+                        handler(@as(u32, @intCast(rect.right - rect.left)), @as(u32, @intCast(rect.bottom - rect.top)), data.userdata);
                     if (data.user.resizeHandler) |handler|
-                        handler(@intCast(u32, rect.right - rect.left), @intCast(u32, rect.bottom - rect.top), data.userdata);
+                        handler(@as(u32, @intCast(rect.right - rect.left)), @as(u32, @intCast(rect.bottom - rect.top)), data.userdata);
                 },
                 win32.WM_HSCROLL => {
                     const data = getEventUserData(hwnd);
@@ -345,8 +345,8 @@ pub fn Events(comptime T: type) type {
                     });
                     _ = win32.GetScrollInfo(hwnd, win32.SB_HORZ, &scrollInfo);
 
-                    const currentScroll = @intCast(u32, scrollInfo.nPos);
-                    const newPos = switch (@truncate(u16, wp)) {
+                    const currentScroll = @as(u32, @intCast(scrollInfo.nPos));
+                    const newPos = switch (@as(u16, @truncate(wp))) {
                         win32.SB_PAGEUP => currentScroll -| 50,
                         win32.SB_PAGEDOWN => currentScroll + 50,
                         win32.SB_LINEUP => currentScroll -| 5,
@@ -359,7 +359,7 @@ pub fn Events(comptime T: type) type {
                         var horizontalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
                             .cbSize = @sizeOf(win32.SCROLLINFO),
                             .fMask = win32.SIF_POS,
-                            .nPos = @intCast(c_int, newPos),
+                            .nPos = @as(c_int, @intCast(newPos)),
                         });
                         _ = win32.SetScrollInfo(hwnd, win32.SB_HORZ, &horizontalScrollInfo, 1);
                         if (@hasDecl(T, "onHScroll")) {
@@ -372,8 +372,8 @@ pub fn Events(comptime T: type) type {
                     var scrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{ .fMask = win32.SIF_POS });
                     _ = win32.GetScrollInfo(hwnd, win32.SB_VERT, &scrollInfo);
 
-                    const currentScroll = @intCast(u32, scrollInfo.nPos);
-                    const newPos = switch (@truncate(u16, wp)) {
+                    const currentScroll = @as(u32, @intCast(scrollInfo.nPos));
+                    const newPos = switch (@as(u16, @truncate(wp))) {
                         win32.SB_PAGEUP => currentScroll -| 50,
                         win32.SB_PAGEDOWN => currentScroll + 50,
                         win32.SB_LINEUP => currentScroll -| 5,
@@ -385,7 +385,7 @@ pub fn Events(comptime T: type) type {
                     if (newPos != currentScroll) {
                         var verticalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
                             .fMask = win32.SIF_POS,
-                            .nPos = @intCast(c_int, newPos),
+                            .nPos = @as(c_int, @intCast(newPos)),
                         });
                         _ = win32.SetScrollInfo(hwnd, win32.SB_VERT, &verticalScrollInfo, 1);
                         if (@hasDecl(T, "onVScroll")) {
@@ -414,8 +414,8 @@ pub fn Events(comptime T: type) type {
                         &win32.D2D1_HWND_RENDER_TARGET_PROPERTIES{
                             .hwnd = hwnd,
                             .pixelSize = .{
-                                .width = @intCast(u32, rc.right - rc.left),
-                                .height = @intCast(u32, rc.bottom - rc.top),
+                                .width = @as(u32, @intCast(rc.right - rc.left)),
+                                .height = @as(u32, @intCast(rc.bottom - rc.top)),
                             },
                             .presentOptions = win32.D2D1_PRESENT_OPTIONS_NONE,
                         },
@@ -574,8 +574,8 @@ pub const Canvas = struct {
                 // creates an HDC for the current screen, whatever it means given we can have windows on different screens
                 const hdc = win32.CreateCompatibleDC(null);
 
-                const defaultFont = @ptrCast(win32.HFONT, win32.GetStockObject(win32.DEFAULT_GUI_FONT));
-                _ = win32.SelectObject(hdc, @ptrCast(win32.HGDIOBJ, defaultFont));
+                const defaultFont = @as(win32.HFONT, @ptrCast(win32.GetStockObject(win32.DEFAULT_GUI_FONT)));
+                _ = win32.SelectObject(hdc, @as(win32.HGDIOBJ, @ptrCast(defaultFont)));
                 return TextLayout{ .font = defaultFont, .hdc = hdc };
             }
 
@@ -599,10 +599,10 @@ pub const Canvas = struct {
                     win32.FONT_PITCH_AND_FAMILY.DONTCARE, // iPitchAndFamily
                     wideFace // pszFaceName
                 )) |winFont| {
-                    _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font));
+                    _ = win32.DeleteObject(@as(win32.HGDIOBJ, @ptrCast(self.font)));
                     self.font = winFont;
                 }
-                _ = win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, self.font));
+                _ = win32.SelectObject(self.hdc, @as(win32.HGDIOBJ, @ptrCast(self.font)));
             }
 
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
@@ -610,14 +610,14 @@ pub const Canvas = struct {
                 const allocator = lib.internal.scratch_allocator;
                 const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, str) catch return; // invalid utf8 or not enough memory
                 defer allocator.free(wide);
-                _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @intCast(c_int, str.len), &size);
+                _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @as(c_int, @intCast(str.len)), &size);
 
-                return TextSize{ .width = @intCast(u32, size.cx), .height = @intCast(u32, size.cy) };
+                return TextSize{ .width = @as(u32, @intCast(size.cx)), .height = @as(u32, @intCast(size.cy)) };
             }
 
             pub fn deinit(self: *TextLayout) void {
-                _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.hdc));
-                _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font));
+                _ = win32.DeleteObject(@as(win32.HGDIOBJ, @ptrCast(self.hdc)));
+                _ = win32.DeleteObject(@as(win32.HGDIOBJ, @ptrCast(self.font)));
             }
         };
 
@@ -637,10 +637,10 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @intFromFloat(u8, std.math.clamp(r, 0, 1) * 255),
-                .green = @intFromFloat(u8, std.math.clamp(g, 0, 1) * 255),
-                .blue = @intFromFloat(u8, std.math.clamp(b, 0, 1) * 255),
-                .alpha = @intFromFloat(u8, std.math.clamp(a, 0, 1) * 255),
+                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
+                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
+                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
+                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
             };
             self.setColorByte(color);
         }
@@ -658,9 +658,9 @@ pub const Canvas = struct {
             _ = y;
             _ = x;
             _ = self;
-            const cw = @intCast(c_int, w);
+            const cw = @as(c_int, @intCast(w));
             _ = cw;
-            const ch = @intCast(c_int, h);
+            const ch = @as(c_int, @intCast(h));
             _ = ch;
 
             // _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
@@ -757,7 +757,7 @@ pub const TextField = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("EDIT"), // lpClassName
             _T(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_BORDER)), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_BORDER))), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -788,9 +788,9 @@ pub const TextField = struct {
     pub fn getText(self: *TextField) [:0]const u8 {
         const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
+        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);
-        const realLen = @intCast(usize, win32.GetWindowTextW(self.peer, buf.ptr, len + 1));
+        const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
         const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
@@ -811,7 +811,7 @@ pub const Button = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("BUTTON"), // lpClassName
             _T(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_PUSHBUTTON | win32.BS_FLAT), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_PUSHBUTTON | win32.BS_FLAT)), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -839,9 +839,9 @@ pub const Button = struct {
     pub fn getLabel(self: *Button) [:0]const u8 {
         const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @intCast(usize, len), 0) catch unreachable; // TODO return error
+        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
         defer allocator.free(buf);
-        const realLen = @intCast(usize, win32.GetWindowTextW(self.peer, buf.ptr, len + 1));
+        const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
         const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
@@ -934,12 +934,12 @@ pub const Slider = struct {
 
     pub fn getValue(self: *const Slider) f32 {
         const valueInt = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 0, 0);
-        const value = @floatFromInt(f32, valueInt) * self.stepSize;
+        const value = @as(f32, @floatFromInt(valueInt)) * self.stepSize;
         return value;
     }
 
     pub fn setValue(self: *Slider, value: f32) void {
-        const valueInt = @intFromFloat(i32, value / self.stepSize);
+        const valueInt = @as(i32, @intFromFloat(value / self.stepSize));
         _ = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 1, valueInt);
     }
 
@@ -961,8 +961,8 @@ pub const Slider = struct {
     }
 
     fn updateMinMax(self: *const Slider) void {
-        const maxInt = @intFromFloat(i16, self.max / self.stepSize);
-        const minInt = @intFromFloat(i16, self.min / self.stepSize);
+        const maxInt = @as(i16, @intFromFloat(self.max / self.stepSize));
+        const minInt = @as(i16, @intFromFloat(self.min / self.stepSize));
         _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMIN, 1, minInt);
         _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMAX, 1, maxInt);
     }
@@ -982,7 +982,7 @@ pub const Label = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             L("STATIC"), // lpClassName
             L(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 })) | win32.SS_CENTERIMAGE), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 })) | win32.SS_CENTERIMAGE)), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1057,7 +1057,7 @@ pub const TabContainer = struct {
         const wrapperHwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("capyTabClass"), // lpClassName
             _T(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN)), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN))), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1071,7 +1071,7 @@ pub const TabContainer = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("SysTabControl32"), // lpClassName
             _T(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPSIBLINGS)), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPSIBLINGS))), // dwStyle
             0, // X
             0, // Y
             1000, // nWidth
@@ -1097,7 +1097,7 @@ pub const TabContainer = struct {
 
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
-        const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @intCast(c_int, position), &item);
+        const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
         self.peerList.append(peer) catch unreachable;
 
         if (self.shownPeer) |previousPeer| {
@@ -1108,7 +1108,7 @@ pub const TabContainer = struct {
         _ = win32.UpdateWindow(peer);
         self.shownPeer = peer;
 
-        return @intCast(usize, newIndex);
+        return @as(usize, @intCast(newIndex));
     }
 
     pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
@@ -1117,11 +1117,11 @@ pub const TabContainer = struct {
             .pszText = text,
             // cchTextMax doesn't need to be set when using SetItem
         };
-        win32Backend.TabCtrl_SetItemW(self.tabControl, @intCast(c_int, position), &item);
+        win32Backend.TabCtrl_SetItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
     }
 
     pub fn getTabsNumber(self: *const TabContainer) usize {
-        return @bitCast(usize, win32Backend.TabCtrl_GetItemCountW(self.tabControl));
+        return @as(usize, @bitCast(win32Backend.TabCtrl_GetItemCountW(self.tabControl)));
     }
 
     fn onResize(_: *EventUserData, hwnd: HWND) void {
@@ -1169,7 +1169,7 @@ pub const ScrollView = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("capyScrollViewClass"), // lpClassName
             _T(""), // lpWindowName
-            @enumFromInt(win32.WINDOW_STYLE, @intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN) | @intFromEnum(win32.WS_HSCROLL) | @intFromEnum(win32.WS_VSCROLL)), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN) | @intFromEnum(win32.WS_HSCROLL) | @intFromEnum(win32.WS_VSCROLL))), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1203,7 +1203,7 @@ pub const ScrollView = struct {
 
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(child, &rect);
-        _ = win32.MoveWindow(child, -@intCast(c_int, newPos), rect.top - parent.top, rect.right - rect.left, rect.bottom - rect.top, 1);
+        _ = win32.MoveWindow(child, -@as(c_int, @intCast(newPos)), rect.top - parent.top, rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 
     pub fn onVScroll(_: *EventUserData, hwnd: HWND, newPos: usize) void {
@@ -1214,11 +1214,11 @@ pub const ScrollView = struct {
 
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(child, &rect);
-        _ = win32.MoveWindow(child, rect.left - parent.left, -@intCast(c_int, newPos), rect.right - rect.left, rect.bottom - rect.top, 1);
+        _ = win32.MoveWindow(child, rect.left - parent.left, -@as(c_int, @intCast(newPos)), rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 
     pub fn onResize(data: *EventUserData, hwnd: HWND) void {
-        const self = @ptrCast(*const ScrollView, @alignCast(@alignOf(ScrollView), data.peerPtr));
+        const self = @as(*const ScrollView, @ptrCast(@alignCast(data.peerPtr)));
 
         // Get the child component's bounding box
         var rect: RECT = undefined;
@@ -1237,20 +1237,20 @@ pub const ScrollView = struct {
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
         _ = win32.MoveWindow(
             child,
-            std.math.max(rect.left - parent.left, std.math.min(0, -(@intCast(c_int, preferred.width) - width))),
-            std.math.max(rect.top - parent.top, std.math.min(0, -(@intCast(c_int, preferred.height) - height))),
-            @intCast(c_int, preferred.width),
-            @intCast(c_int, preferred.height),
+            @max(rect.left - parent.left, @min(0, -(@as(c_int, @intCast(preferred.width)) - width))),
+            @max(rect.top - parent.top, @min(0, -(@as(c_int, @intCast(preferred.height)) - height))),
+            @as(c_int, @intCast(preferred.width)),
+            @as(c_int, @intCast(preferred.height)),
             1,
         );
 
         // Finally, update the scroll bars
         var horizontalScrollInfo = win32.SCROLLINFO{
             .cbSize = @sizeOf(win32.SCROLLINFO),
-            .fMask = @enumFromInt(win32.SCROLLINFO_MASK, @intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE)),
+            .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
             .nMin = 0,
-            .nMax = @intCast(c_int, preferred.width),
-            .nPage = @intCast(c_uint, width),
+            .nMax = @as(c_int, @intCast(preferred.width)),
+            .nPage = @as(c_uint, @intCast(width)),
             .nPos = 0,
             .nTrackPos = 0,
         };
@@ -1258,10 +1258,10 @@ pub const ScrollView = struct {
 
         var verticalScrollInfo = win32.SCROLLINFO{
             .cbSize = @sizeOf(win32.SCROLLINFO),
-            .fMask = @enumFromInt(win32.SCROLLINFO_MASK, @intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE)),
+            .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
             .nMin = 0,
-            .nMax = @intCast(c_int, preferred.height),
-            .nPage = @intCast(c_uint, height),
+            .nMax = @as(c_int, @intCast(preferred.height)),
+            .nPage = @as(c_uint, @intCast(height)),
             .nPos = 0,
             .nTrackPos = 0,
         };
@@ -1337,7 +1337,7 @@ pub const Container = struct {
         _ = self;
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(peer, &rect);
-        _ = win32.MoveWindow(peer, @intCast(c_int, x), @intCast(c_int, y), rect.right - rect.left, rect.bottom - rect.top, 1);
+        _ = win32.MoveWindow(peer, @as(c_int, @intCast(x)), @as(c_int, @intCast(y)), rect.right - rect.left, rect.bottom - rect.top, 1);
     }
 
     pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
@@ -1349,7 +1349,7 @@ pub const Container = struct {
 
         var parent: RECT = undefined;
         _ = win32.GetWindowRect(self.peer, &parent);
-        _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @intCast(c_int, width), @intCast(c_int, height), 1);
+        _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @as(c_int, @intCast(width)), @as(c_int, @intCast(height)), 1);
     }
 };
 

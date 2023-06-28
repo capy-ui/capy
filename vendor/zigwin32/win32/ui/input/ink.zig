@@ -30,7 +30,7 @@ pub const IInkCommitRequestHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkCommitRequestHandler_OnCommitRequested(self: *const T) HRESULT {
-                return @ptrCast(*const IInkCommitRequestHandler.VTable, self.vtable).OnCommitRequested(@ptrCast(*const IInkCommitRequestHandler, self));
+                return @as(*const IInkCommitRequestHandler.VTable, @ptrCast(self.vtable)).OnCommitRequested(@as(*const IInkCommitRequestHandler, @ptrCast(self)));
             }
         };
     }
@@ -104,23 +104,23 @@ pub const IInkPresenterDesktop = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkPresenterDesktop_SetRootVisual(self: *const T, rootVisual: ?*IUnknown, device: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IInkPresenterDesktop.VTable, self.vtable).SetRootVisual(@ptrCast(*const IInkPresenterDesktop, self), rootVisual, device);
+                return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetRootVisual(@as(*const IInkPresenterDesktop, @ptrCast(self)), rootVisual, device);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkPresenterDesktop_SetCommitRequestHandler(self: *const T, handler: ?*IInkCommitRequestHandler) HRESULT {
-                return @ptrCast(*const IInkPresenterDesktop.VTable, self.vtable).SetCommitRequestHandler(@ptrCast(*const IInkPresenterDesktop, self), handler);
+                return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetCommitRequestHandler(@as(*const IInkPresenterDesktop, @ptrCast(self)), handler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkPresenterDesktop_GetSize(self: *const T, width: ?*f32, height: ?*f32) HRESULT {
-                return @ptrCast(*const IInkPresenterDesktop.VTable, self.vtable).GetSize(@ptrCast(*const IInkPresenterDesktop, self), width, height);
+                return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IInkPresenterDesktop, @ptrCast(self)), width, height);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkPresenterDesktop_SetSize(self: *const T, width: f32, height: f32) HRESULT {
-                return @ptrCast(*const IInkPresenterDesktop.VTable, self.vtable).SetSize(@ptrCast(*const IInkPresenterDesktop, self), width, height);
+                return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IInkPresenterDesktop, @ptrCast(self)), width, height);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkPresenterDesktop_OnHighContrastChanged(self: *const T) HRESULT {
-                return @ptrCast(*const IInkPresenterDesktop.VTable, self.vtable).OnHighContrastChanged(@ptrCast(*const IInkPresenterDesktop, self));
+                return @as(*const IInkPresenterDesktop.VTable, @ptrCast(self.vtable)).OnHighContrastChanged(@as(*const IInkPresenterDesktop, @ptrCast(self)));
             }
         };
     }
@@ -148,7 +148,7 @@ pub const IInkHostWorkItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkHostWorkItem_Invoke(self: *const T) HRESULT {
-                return @ptrCast(*const IInkHostWorkItem.VTable, self.vtable).Invoke(@ptrCast(*const IInkHostWorkItem, self));
+                return @as(*const IInkHostWorkItem.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IInkHostWorkItem, @ptrCast(self)));
             }
         };
     }
@@ -208,15 +208,15 @@ pub const IInkDesktopHost = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkDesktopHost_QueueWorkItem(self: *const T, workItem: ?*IInkHostWorkItem) HRESULT {
-                return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).QueueWorkItem(@ptrCast(*const IInkDesktopHost, self), workItem);
+                return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).QueueWorkItem(@as(*const IInkDesktopHost, @ptrCast(self)), workItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkDesktopHost_CreateInkPresenter(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateInkPresenter(@ptrCast(*const IInkDesktopHost, self), riid, ppv);
+                return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).CreateInkPresenter(@as(*const IInkDesktopHost, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkDesktopHost_CreateAndInitializeInkPresenter(self: *const T, rootVisual: ?*IUnknown, width: f32, height: f32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateAndInitializeInkPresenter(@ptrCast(*const IInkDesktopHost, self), rootVisual, width, height, riid, ppv);
+                return @as(*const IInkDesktopHost.VTable, @ptrCast(self.vtable)).CreateAndInitializeInkPresenter(@as(*const IInkDesktopHost, @ptrCast(self)), rootVisual, width, height, riid, ppv);
             }
         };
     }
@@ -262,7 +262,7 @@ pub const IInkD2DRenderer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkD2DRenderer_Draw(self: *const T, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, fHighContrast: BOOL) HRESULT {
-                return @ptrCast(*const IInkD2DRenderer.VTable, self.vtable).Draw(@ptrCast(*const IInkD2DRenderer, self), pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
+                return @as(*const IInkD2DRenderer.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, fHighContrast);
             }
         };
     }
@@ -295,7 +295,7 @@ pub const IInkD2DRenderer2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInkD2DRenderer2_Draw(self: *const T, pD2D1DeviceContext: ?*IUnknown, pInkStrokeIterable: ?*IUnknown, highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT) HRESULT {
-                return @ptrCast(*const IInkD2DRenderer2.VTable, self.vtable).Draw(@ptrCast(*const IInkD2DRenderer2, self), pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
+                return @as(*const IInkD2DRenderer2.VTable, @ptrCast(self.vtable)).Draw(@as(*const IInkD2DRenderer2, @ptrCast(self)), pD2D1DeviceContext, pInkStrokeIterable, highContrastAdjustment);
             }
         };
     }

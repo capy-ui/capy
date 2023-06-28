@@ -54,7 +54,7 @@ pub const DML_TENSOR_FLAGS = enum(u32) {
         NONE: u1 = 0,
         OWNED_BY_DML: u1 = 0,
     }) DML_TENSOR_FLAGS {
-        return @enumFromInt(DML_TENSOR_FLAGS, (if (o.NONE == 1) @intFromEnum(DML_TENSOR_FLAGS.NONE) else 0) | (if (o.OWNED_BY_DML == 1) @intFromEnum(DML_TENSOR_FLAGS.OWNED_BY_DML) else 0));
+        return @as(DML_TENSOR_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(DML_TENSOR_FLAGS.NONE) else 0) | (if (o.OWNED_BY_DML == 1) @intFromEnum(DML_TENSOR_FLAGS.OWNED_BY_DML) else 0)));
     }
 };
 pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS.NONE;
@@ -1723,7 +1723,7 @@ pub const DML_EXECUTION_FLAGS = enum(u32) {
         DISABLE_META_COMMANDS: u1 = 0,
         DESCRIPTORS_VOLATILE: u1 = 0,
     }) DML_EXECUTION_FLAGS {
-        return @enumFromInt(DML_EXECUTION_FLAGS, (if (o.NONE == 1) @intFromEnum(DML_EXECUTION_FLAGS.NONE) else 0) | (if (o.ALLOW_HALF_PRECISION_COMPUTATION == 1) @intFromEnum(DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION) else 0) | (if (o.DISABLE_META_COMMANDS == 1) @intFromEnum(DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS) else 0) | (if (o.DESCRIPTORS_VOLATILE == 1) @intFromEnum(DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE) else 0));
+        return @as(DML_EXECUTION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(DML_EXECUTION_FLAGS.NONE) else 0) | (if (o.ALLOW_HALF_PRECISION_COMPUTATION == 1) @intFromEnum(DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION) else 0) | (if (o.DISABLE_META_COMMANDS == 1) @intFromEnum(DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS) else 0) | (if (o.DESCRIPTORS_VOLATILE == 1) @intFromEnum(DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE) else 0)));
     }
 };
 pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS.NONE;
@@ -1739,7 +1739,7 @@ pub const DML_CREATE_DEVICE_FLAGS = enum(u32) {
         NONE: u1 = 0,
         DEBUG: u1 = 0,
     }) DML_CREATE_DEVICE_FLAGS {
-        return @enumFromInt(DML_CREATE_DEVICE_FLAGS, (if (o.NONE == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.NONE) else 0) | (if (o.DEBUG == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.DEBUG) else 0));
+        return @as(DML_CREATE_DEVICE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.NONE) else 0) | (if (o.DEBUG == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.DEBUG) else 0)));
     }
 };
 pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS.NONE;
@@ -1811,19 +1811,19 @@ pub const IDMLObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLObject_GetPrivateData(self: *const T, guid: ?*const Guid, dataSize: ?*u32, data: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLObject.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
+                return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDMLObject, @ptrCast(self)), guid, dataSize, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLObject_SetPrivateData(self: *const T, guid: ?*const Guid, dataSize: u32, data: ?*const anyopaque) HRESULT {
-                return @ptrCast(*const IDMLObject.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDMLObject, self), guid, dataSize, data);
+                return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDMLObject, @ptrCast(self)), guid, dataSize, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLObject_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, data: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDMLObject.VTable, self.vtable).SetPrivateDataInterface(@ptrCast(*const IDMLObject, self), guid, data);
+                return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const IDMLObject, @ptrCast(self)), guid, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLObject_SetName(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IDMLObject.VTable, self.vtable).SetName(@ptrCast(*const IDMLObject, self), name);
+                return @as(*const IDMLObject.VTable, @ptrCast(self.vtable)).SetName(@as(*const IDMLObject, @ptrCast(self)), name);
             }
         };
     }
@@ -1980,43 +1980,43 @@ pub const IDMLDevice = extern struct {
             pub usingnamespace IDMLObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CheckFeatureSupport(self: *const T, feature: DML_FEATURE, featureQueryDataSize: u32, featureQueryData: ?*const anyopaque, featureSupportDataSize: u32, featureSupportData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const IDMLDevice, self), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const IDMLDevice, @ptrCast(self)), feature, featureQueryDataSize, featureQueryData, featureSupportDataSize, featureSupportData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CreateOperator(self: *const T, desc: ?*const DML_OPERATOR_DESC, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperator(@ptrCast(*const IDMLDevice, self), desc, riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateOperator(@as(*const IDMLDevice, @ptrCast(self)), desc, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CompileOperator(self: *const T, op: ?*IDMLOperator, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CompileOperator(@ptrCast(*const IDMLDevice, self), op, flags, riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CompileOperator(@as(*const IDMLDevice, @ptrCast(self)), op, flags, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CreateOperatorInitializer(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateOperatorInitializer(@ptrCast(*const IDMLDevice, self), operatorCount, operators, riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateOperatorInitializer(@as(*const IDMLDevice, @ptrCast(self)), operatorCount, operators, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CreateCommandRecorder(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateCommandRecorder(@ptrCast(*const IDMLDevice, self), riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateCommandRecorder(@as(*const IDMLDevice, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_CreateBindingTable(self: *const T, desc: ?*const DML_BINDING_TABLE_DESC, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).CreateBindingTable(@ptrCast(*const IDMLDevice, self), desc, riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).CreateBindingTable(@as(*const IDMLDevice, @ptrCast(self)), desc, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_Evict(self: *const T, count: u32, ppObjects: [*]?*IDMLPageable) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).Evict(@ptrCast(*const IDMLDevice, self), count, ppObjects);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).Evict(@as(*const IDMLDevice, @ptrCast(self)), count, ppObjects);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_MakeResident(self: *const T, count: u32, ppObjects: [*]?*IDMLPageable) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).MakeResident(@ptrCast(*const IDMLDevice, self), count, ppObjects);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).MakeResident(@as(*const IDMLDevice, @ptrCast(self)), count, ppObjects);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_GetDeviceRemovedReason(self: *const T) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).GetDeviceRemovedReason(@ptrCast(*const IDMLDevice, self));
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const IDMLDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice_GetParentDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice.VTable, self.vtable).GetParentDevice(@ptrCast(*const IDMLDevice, self), riid, ppv);
+                return @as(*const IDMLDevice.VTable, @ptrCast(self.vtable)).GetParentDevice(@as(*const IDMLDevice, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -2047,7 +2047,7 @@ pub const IDMLDeviceChild = extern struct {
             pub usingnamespace IDMLObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDeviceChild_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDeviceChild.VTable, self.vtable).GetDevice(@ptrCast(*const IDMLDeviceChild, self), riid, ppv);
+                return @as(*const IDMLDeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDMLDeviceChild, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -2110,7 +2110,7 @@ pub const IDMLDispatchable = extern struct {
             pub usingnamespace IDMLPageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDispatchable_GetBindingProperties(self: *const T) DML_BINDING_PROPERTIES {
-                return @ptrCast(*const IDMLDispatchable.VTable, self.vtable).GetBindingProperties(@ptrCast(*const IDMLDispatchable, self));
+                return @as(*const IDMLDispatchable.VTable, @ptrCast(self.vtable)).GetBindingProperties(@as(*const IDMLDispatchable, @ptrCast(self)));
             }
         };
     }
@@ -2156,7 +2156,7 @@ pub const IDMLOperatorInitializer = extern struct {
             pub usingnamespace IDMLDispatchable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLOperatorInitializer_Reset(self: *const T, operatorCount: u32, operators: ?[*]?*IDMLCompiledOperator) HRESULT {
-                return @ptrCast(*const IDMLOperatorInitializer.VTable, self.vtable).Reset(@ptrCast(*const IDMLOperatorInitializer, self), operatorCount, operators);
+                return @as(*const IDMLOperatorInitializer.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLOperatorInitializer, @ptrCast(self)), operatorCount, operators);
             }
         };
     }
@@ -2254,23 +2254,23 @@ pub const IDMLBindingTable = extern struct {
             pub usingnamespace IDMLDeviceChild.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLBindingTable_BindInputs(self: *const T, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) void {
-                return @ptrCast(*const IDMLBindingTable.VTable, self.vtable).BindInputs(@ptrCast(*const IDMLBindingTable, self), bindingCount, bindings);
+                return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindInputs(@as(*const IDMLBindingTable, @ptrCast(self)), bindingCount, bindings);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLBindingTable_BindOutputs(self: *const T, bindingCount: u32, bindings: ?[*]const DML_BINDING_DESC) void {
-                return @ptrCast(*const IDMLBindingTable.VTable, self.vtable).BindOutputs(@ptrCast(*const IDMLBindingTable, self), bindingCount, bindings);
+                return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindOutputs(@as(*const IDMLBindingTable, @ptrCast(self)), bindingCount, bindings);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLBindingTable_BindTemporaryResource(self: *const T, binding: ?*const DML_BINDING_DESC) void {
-                return @ptrCast(*const IDMLBindingTable.VTable, self.vtable).BindTemporaryResource(@ptrCast(*const IDMLBindingTable, self), binding);
+                return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindTemporaryResource(@as(*const IDMLBindingTable, @ptrCast(self)), binding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLBindingTable_BindPersistentResource(self: *const T, binding: ?*const DML_BINDING_DESC) void {
-                return @ptrCast(*const IDMLBindingTable.VTable, self.vtable).BindPersistentResource(@ptrCast(*const IDMLBindingTable, self), binding);
+                return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).BindPersistentResource(@as(*const IDMLBindingTable, @ptrCast(self)), binding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLBindingTable_Reset(self: *const T, desc: ?*const DML_BINDING_TABLE_DESC) HRESULT {
-                return @ptrCast(*const IDMLBindingTable.VTable, self.vtable).Reset(@ptrCast(*const IDMLBindingTable, self), desc);
+                return @as(*const IDMLBindingTable.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDMLBindingTable, @ptrCast(self)), desc);
             }
         };
     }
@@ -2303,7 +2303,7 @@ pub const IDMLCommandRecorder = extern struct {
             pub usingnamespace IDMLDeviceChild.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLCommandRecorder_RecordDispatch(self: *const T, commandList: ?*ID3D12CommandList, dispatchable: ?*IDMLDispatchable, bindings: ?*IDMLBindingTable) void {
-                return @ptrCast(*const IDMLCommandRecorder.VTable, self.vtable).RecordDispatch(@ptrCast(*const IDMLCommandRecorder, self), commandList, dispatchable, bindings);
+                return @as(*const IDMLCommandRecorder.VTable, @ptrCast(self.vtable)).RecordDispatch(@as(*const IDMLCommandRecorder, @ptrCast(self)), commandList, dispatchable, bindings);
             }
         };
     }
@@ -2332,7 +2332,7 @@ pub const IDMLDebugDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDebugDevice_SetMuteDebugOutput(self: *const T, mute: BOOL) void {
-                return @ptrCast(*const IDMLDebugDevice.VTable, self.vtable).SetMuteDebugOutput(@ptrCast(*const IDMLDebugDevice, self), mute);
+                return @as(*const IDMLDebugDevice.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const IDMLDebugDevice, @ptrCast(self)), mute);
             }
         };
     }
@@ -2435,7 +2435,7 @@ pub const IDMLDevice1 = extern struct {
             pub usingnamespace IDMLDevice.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMLDevice1_CompileGraph(self: *const T, desc: ?*const DML_GRAPH_DESC, flags: DML_EXECUTION_FLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDMLDevice1.VTable, self.vtable).CompileGraph(@ptrCast(*const IDMLDevice1, self), desc, flags, riid, ppv);
+                return @as(*const IDMLDevice1.VTable, @ptrCast(self.vtable)).CompileGraph(@as(*const IDMLDevice1, @ptrCast(self)), desc, flags, riid, ppv);
             }
         };
     }

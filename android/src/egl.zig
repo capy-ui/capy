@@ -87,7 +87,7 @@ pub const EGLContext = struct {
 
         log.info("Context created: {?}\n", .{context});
 
-        var native_window: c.EGLNativeWindowType = @ptrCast(c.EGLNativeWindowType, window); // this is safe, just a C import problem
+        var native_window: c.EGLNativeWindowType = @as(c.EGLNativeWindowType, @ptrCast(window)); // this is safe, just a C import problem
 
         const android_width = android.ANativeWindow_getWidth(window);
         const android_height = android.ANativeWindow_getHeight(window);

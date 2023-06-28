@@ -166,9 +166,9 @@ fn loadAsciiBitmap(header: Header, data: []color.Grayscale1, reader: Image.Strea
 
 fn readLinearizedValue(reader: Image.Stream.Reader, max_value: usize) ImageReadError!u8 {
     return if (max_value > 255)
-        @truncate(u8, 255 * @as(usize, try reader.readIntBig(u16)) / max_value)
+        @as(u8, @truncate(255 * @as(usize, try reader.readIntBig(u16)) / max_value))
     else
-        @truncate(u8, 255 * @as(usize, try reader.readByte()) / max_value);
+        @as(u8, @truncate(255 * @as(usize, try reader.readByte()) / max_value));
 }
 
 fn loadBinaryGraymap(header: Header, pixels: *color.PixelStorage, reader: Image.Stream.Reader) ImageReadError!void {
@@ -193,11 +193,11 @@ fn loadAsciiGraymap(header: Header, pixels: *color.PixelStorage, reader: Image.S
 
     if (header.max_value <= 255) {
         while (data_index < data_end) : (data_index += 1) {
-            pixels.grayscale8[data_index] = color.Grayscale8{ .value = @truncate(u8, try parseNumber(reader, read_buffer[0..])) };
+            pixels.grayscale8[data_index] = color.Grayscale8{ .value = @as(u8, @truncate(try parseNumber(reader, read_buffer[0..]))) };
         }
     } else {
         while (data_index < data_end) : (data_index += 1) {
-            pixels.grayscale16[data_index] = color.Grayscale16{ .value = @truncate(u16, try parseNumber(reader, read_buffer[0..])) };
+            pixels.grayscale16[data_index] = color.Grayscale16{ .value = @as(u16, @truncate(try parseNumber(reader, read_buffer[0..]))) };
         }
     }
 }
@@ -227,9 +227,9 @@ fn loadAsciiRgbmap(header: Header, data: []color.Rgb24, reader: Image.Stream.Rea
         var b = try parseNumber(reader, read_buffer[0..]);
 
         data[data_index] = color.Rgb24{
-            .r = @truncate(u8, 255 * r / header.max_value),
-            .g = @truncate(u8, 255 * g / header.max_value),
-            .b = @truncate(u8, 255 * b / header.max_value),
+            .r = @as(u8, @truncate(255 * r / header.max_value)),
+            .g = @as(u8, @truncate(255 * g / header.max_value)),
+            .b = @as(u8, @truncate(255 * b / header.max_value)),
         };
     }
 }

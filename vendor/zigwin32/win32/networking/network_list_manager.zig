@@ -227,39 +227,39 @@ pub const INetworkListManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_GetNetworks(self: *const T, Flags: NLM_ENUM_NETWORK, ppEnumNetwork: ?*?*IEnumNetworks) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).GetNetworks(@ptrCast(*const INetworkListManager, self), Flags, ppEnumNetwork);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworks(@as(*const INetworkListManager, @ptrCast(self)), Flags, ppEnumNetwork);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_GetNetwork(self: *const T, gdNetworkId: Guid, ppNetwork: ?*?*INetwork) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).GetNetwork(@ptrCast(*const INetworkListManager, self), gdNetworkId, ppNetwork);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const INetworkListManager, @ptrCast(self)), gdNetworkId, ppNetwork);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_GetNetworkConnections(self: *const T, ppEnum: ?*?*IEnumNetworkConnections) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).GetNetworkConnections(@ptrCast(*const INetworkListManager, self), ppEnum);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworkConnections(@as(*const INetworkListManager, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_GetNetworkConnection(self: *const T, gdNetworkConnectionId: Guid, ppNetworkConnection: ?*?*INetworkConnection) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).GetNetworkConnection(@ptrCast(*const INetworkListManager, self), gdNetworkConnectionId, ppNetworkConnection);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworkConnection(@as(*const INetworkListManager, @ptrCast(self)), gdNetworkConnectionId, ppNetworkConnection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_get_IsConnectedToInternet(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).get_IsConnectedToInternet(@ptrCast(*const INetworkListManager, self), pbIsConnected);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetworkListManager, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_get_IsConnected(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).get_IsConnected(@ptrCast(*const INetworkListManager, self), pbIsConnected);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetworkListManager, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_GetConnectivity(self: *const T, pConnectivity: ?*NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).GetConnectivity(@ptrCast(*const INetworkListManager, self), pConnectivity);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetworkListManager, @ptrCast(self)), pConnectivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_SetSimulatedProfileInfo(self: *const T, pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).SetSimulatedProfileInfo(@ptrCast(*const INetworkListManager, self), pSimulatedInfo);
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).SetSimulatedProfileInfo(@as(*const INetworkListManager, @ptrCast(self)), pSimulatedInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManager_ClearSimulatedProfileInfo(self: *const T) HRESULT {
-                return @ptrCast(*const INetworkListManager.VTable, self.vtable).ClearSimulatedProfileInfo(@ptrCast(*const INetworkListManager, self));
+                return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).ClearSimulatedProfileInfo(@as(*const INetworkListManager, @ptrCast(self)));
             }
         };
     }
@@ -289,7 +289,7 @@ pub const INetworkListManagerEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkListManagerEvents_ConnectivityChanged(self: *const T, newConnectivity: NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetworkListManagerEvents.VTable, self.vtable).ConnectivityChanged(@ptrCast(*const INetworkListManagerEvents, self), newConnectivity);
+                return @as(*const INetworkListManagerEvents.VTable, @ptrCast(self.vtable)).ConnectivityChanged(@as(*const INetworkListManagerEvents, @ptrCast(self)), newConnectivity);
             }
         };
     }
@@ -460,55 +460,55 @@ pub const INetwork = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetName(self: *const T, pszNetworkName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetName(@ptrCast(*const INetwork, self), pszNetworkName);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetName(@as(*const INetwork, @ptrCast(self)), pszNetworkName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_SetName(self: *const T, szNetworkNewName: ?BSTR) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).SetName(@ptrCast(*const INetwork, self), szNetworkNewName);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetName(@as(*const INetwork, @ptrCast(self)), szNetworkNewName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetDescription(self: *const T, pszDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetDescription(@ptrCast(*const INetwork, self), pszDescription);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const INetwork, @ptrCast(self)), pszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_SetDescription(self: *const T, szDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).SetDescription(@ptrCast(*const INetwork, self), szDescription);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const INetwork, @ptrCast(self)), szDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetNetworkId(self: *const T, pgdGuidNetworkId: ?*Guid) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetNetworkId(@ptrCast(*const INetwork, self), pgdGuidNetworkId);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetNetworkId(@as(*const INetwork, @ptrCast(self)), pgdGuidNetworkId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetDomainType(self: *const T, pNetworkType: ?*NLM_DOMAIN_TYPE) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetDomainType(@ptrCast(*const INetwork, self), pNetworkType);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const INetwork, @ptrCast(self)), pNetworkType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetNetworkConnections(self: *const T, ppEnumNetworkConnection: ?*?*IEnumNetworkConnections) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetNetworkConnections(@ptrCast(*const INetwork, self), ppEnumNetworkConnection);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetNetworkConnections(@as(*const INetwork, @ptrCast(self)), ppEnumNetworkConnection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetTimeCreatedAndConnected(self: *const T, pdwLowDateTimeCreated: ?*u32, pdwHighDateTimeCreated: ?*u32, pdwLowDateTimeConnected: ?*u32, pdwHighDateTimeConnected: ?*u32) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetTimeCreatedAndConnected(@ptrCast(*const INetwork, self), pdwLowDateTimeCreated, pdwHighDateTimeCreated, pdwLowDateTimeConnected, pdwHighDateTimeConnected);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetTimeCreatedAndConnected(@as(*const INetwork, @ptrCast(self)), pdwLowDateTimeCreated, pdwHighDateTimeCreated, pdwLowDateTimeConnected, pdwHighDateTimeConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_get_IsConnectedToInternet(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).get_IsConnectedToInternet(@ptrCast(*const INetwork, self), pbIsConnected);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetwork, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_get_IsConnected(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).get_IsConnected(@ptrCast(*const INetwork, self), pbIsConnected);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetwork, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetConnectivity(self: *const T, pConnectivity: ?*NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetConnectivity(@ptrCast(*const INetwork, self), pConnectivity);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetwork, @ptrCast(self)), pConnectivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_GetCategory(self: *const T, pCategory: ?*NLM_NETWORK_CATEGORY) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).GetCategory(@ptrCast(*const INetwork, self), pCategory);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const INetwork, @ptrCast(self)), pCategory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetwork_SetCategory(self: *const T, NewCategory: NLM_NETWORK_CATEGORY) HRESULT {
-                return @ptrCast(*const INetwork.VTable, self.vtable).SetCategory(@ptrCast(*const INetwork, self), NewCategory);
+                return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetCategory(@as(*const INetwork, @ptrCast(self)), NewCategory);
             }
         };
     }
@@ -583,23 +583,23 @@ pub const IEnumNetworks = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworks_get__NewEnum(self: *const T, ppEnumVar: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IEnumNetworks.VTable, self.vtable).get__NewEnum(@ptrCast(*const IEnumNetworks, self), ppEnumVar);
+                return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEnumNetworks, @ptrCast(self)), ppEnumVar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworks_Next(self: *const T, celt: u32, rgelt: [*]?*INetwork, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumNetworks.VTable, self.vtable).Next(@ptrCast(*const IEnumNetworks, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetworks, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworks_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumNetworks.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetworks, self), celt);
+                return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetworks, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworks_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumNetworks.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetworks, self));
+                return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetworks, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworks_Clone(self: *const T, ppEnumNetwork: ?*?*IEnumNetworks) HRESULT {
-                return @ptrCast(*const IEnumNetworks.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetworks, self), ppEnumNetwork);
+                return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetworks, @ptrCast(self)), ppEnumNetwork);
             }
         };
     }
@@ -676,19 +676,19 @@ pub const INetworkEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkEvents_NetworkAdded(self: *const T, networkId: Guid) HRESULT {
-                return @ptrCast(*const INetworkEvents.VTable, self.vtable).NetworkAdded(@ptrCast(*const INetworkEvents, self), networkId);
+                return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkAdded(@as(*const INetworkEvents, @ptrCast(self)), networkId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkEvents_NetworkDeleted(self: *const T, networkId: Guid) HRESULT {
-                return @ptrCast(*const INetworkEvents.VTable, self.vtable).NetworkDeleted(@ptrCast(*const INetworkEvents, self), networkId);
+                return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkDeleted(@as(*const INetworkEvents, @ptrCast(self)), networkId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkEvents_NetworkConnectivityChanged(self: *const T, networkId: Guid, newConnectivity: NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetworkEvents.VTable, self.vtable).NetworkConnectivityChanged(@ptrCast(*const INetworkEvents, self), networkId, newConnectivity);
+                return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkConnectivityChanged(@as(*const INetworkEvents, @ptrCast(self)), networkId, newConnectivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkEvents_NetworkPropertyChanged(self: *const T, networkId: Guid, flags: NLM_NETWORK_PROPERTY_CHANGE) HRESULT {
-                return @ptrCast(*const INetworkEvents.VTable, self.vtable).NetworkPropertyChanged(@ptrCast(*const INetworkEvents, self), networkId, flags);
+                return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkPropertyChanged(@as(*const INetworkEvents, @ptrCast(self)), networkId, flags);
             }
         };
     }
@@ -784,31 +784,31 @@ pub const INetworkConnection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_GetNetwork(self: *const T, ppNetwork: ?*?*INetwork) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).GetNetwork(@ptrCast(*const INetworkConnection, self), ppNetwork);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const INetworkConnection, @ptrCast(self)), ppNetwork);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_get_IsConnectedToInternet(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).get_IsConnectedToInternet(@ptrCast(*const INetworkConnection, self), pbIsConnected);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetworkConnection, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_get_IsConnected(self: *const T, pbIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).get_IsConnected(@ptrCast(*const INetworkConnection, self), pbIsConnected);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetworkConnection, @ptrCast(self)), pbIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_GetConnectivity(self: *const T, pConnectivity: ?*NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).GetConnectivity(@ptrCast(*const INetworkConnection, self), pConnectivity);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetworkConnection, @ptrCast(self)), pConnectivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_GetConnectionId(self: *const T, pgdConnectionId: ?*Guid) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).GetConnectionId(@ptrCast(*const INetworkConnection, self), pgdConnectionId);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetConnectionId(@as(*const INetworkConnection, @ptrCast(self)), pgdConnectionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_GetAdapterId(self: *const T, pgdAdapterId: ?*Guid) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).GetAdapterId(@ptrCast(*const INetworkConnection, self), pgdAdapterId);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetAdapterId(@as(*const INetworkConnection, @ptrCast(self)), pgdAdapterId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnection_GetDomainType(self: *const T, pDomainType: ?*NLM_DOMAIN_TYPE) HRESULT {
-                return @ptrCast(*const INetworkConnection.VTable, self.vtable).GetDomainType(@ptrCast(*const INetworkConnection, self), pDomainType);
+                return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const INetworkConnection, @ptrCast(self)), pDomainType);
             }
         };
     }
@@ -883,23 +883,23 @@ pub const IEnumNetworkConnections = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworkConnections_get__NewEnum(self: *const T, ppEnumVar: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IEnumNetworkConnections.VTable, self.vtable).get__NewEnum(@ptrCast(*const IEnumNetworkConnections, self), ppEnumVar);
+                return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEnumNetworkConnections, @ptrCast(self)), ppEnumVar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworkConnections_Next(self: *const T, celt: u32, rgelt: [*]?*INetworkConnection, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumNetworkConnections.VTable, self.vtable).Next(@ptrCast(*const IEnumNetworkConnections, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetworkConnections, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworkConnections_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumNetworkConnections.VTable, self.vtable).Skip(@ptrCast(*const IEnumNetworkConnections, self), celt);
+                return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetworkConnections, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworkConnections_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumNetworkConnections.VTable, self.vtable).Reset(@ptrCast(*const IEnumNetworkConnections, self));
+                return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetworkConnections, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumNetworkConnections_Clone(self: *const T, ppEnumNetwork: ?*?*IEnumNetworkConnections) HRESULT {
-                return @ptrCast(*const IEnumNetworkConnections.VTable, self.vtable).Clone(@ptrCast(*const IEnumNetworkConnections, self), ppEnumNetwork);
+                return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetworkConnections, @ptrCast(self)), ppEnumNetwork);
             }
         };
     }
@@ -948,11 +948,11 @@ pub const INetworkConnectionEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionEvents_NetworkConnectionConnectivityChanged(self: *const T, connectionId: Guid, newConnectivity: NLM_CONNECTIVITY) HRESULT {
-                return @ptrCast(*const INetworkConnectionEvents.VTable, self.vtable).NetworkConnectionConnectivityChanged(@ptrCast(*const INetworkConnectionEvents, self), connectionId, newConnectivity);
+                return @as(*const INetworkConnectionEvents.VTable, @ptrCast(self.vtable)).NetworkConnectionConnectivityChanged(@as(*const INetworkConnectionEvents, @ptrCast(self)), connectionId, newConnectivity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionEvents_NetworkConnectionPropertyChanged(self: *const T, connectionId: Guid, flags: NLM_CONNECTION_PROPERTY_CHANGE) HRESULT {
-                return @ptrCast(*const INetworkConnectionEvents.VTable, self.vtable).NetworkConnectionPropertyChanged(@ptrCast(*const INetworkConnectionEvents, self), connectionId, flags);
+                return @as(*const INetworkConnectionEvents.VTable, @ptrCast(self.vtable)).NetworkConnectionPropertyChanged(@as(*const INetworkConnectionEvents, @ptrCast(self)), connectionId, flags);
             }
         };
     }
@@ -1010,15 +1010,15 @@ pub const INetworkCostManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkCostManager_GetCost(self: *const T, pCost: ?*u32, pDestIPAddr: ?*NLM_SOCKADDR) HRESULT {
-                return @ptrCast(*const INetworkCostManager.VTable, self.vtable).GetCost(@ptrCast(*const INetworkCostManager, self), pCost, pDestIPAddr);
+                return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).GetCost(@as(*const INetworkCostManager, @ptrCast(self)), pCost, pDestIPAddr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkCostManager_GetDataPlanStatus(self: *const T, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS, pDestIPAddr: ?*NLM_SOCKADDR) HRESULT {
-                return @ptrCast(*const INetworkCostManager.VTable, self.vtable).GetDataPlanStatus(@ptrCast(*const INetworkCostManager, self), pDataPlanStatus, pDestIPAddr);
+                return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).GetDataPlanStatus(@as(*const INetworkCostManager, @ptrCast(self)), pDataPlanStatus, pDestIPAddr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkCostManager_SetDestinationAddresses(self: *const T, length: u32, pDestIPAddrList: [*]NLM_SOCKADDR, bAppend: i16) HRESULT {
-                return @ptrCast(*const INetworkCostManager.VTable, self.vtable).SetDestinationAddresses(@ptrCast(*const INetworkCostManager, self), length, pDestIPAddrList, bAppend);
+                return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).SetDestinationAddresses(@as(*const INetworkCostManager, @ptrCast(self)), length, pDestIPAddrList, bAppend);
             }
         };
     }
@@ -1060,11 +1060,11 @@ pub const INetworkCostManagerEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkCostManagerEvents_CostChanged(self: *const T, newCost: u32, pDestAddr: ?*NLM_SOCKADDR) HRESULT {
-                return @ptrCast(*const INetworkCostManagerEvents.VTable, self.vtable).CostChanged(@ptrCast(*const INetworkCostManagerEvents, self), newCost, pDestAddr);
+                return @as(*const INetworkCostManagerEvents.VTable, @ptrCast(self.vtable)).CostChanged(@as(*const INetworkCostManagerEvents, @ptrCast(self)), newCost, pDestAddr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkCostManagerEvents_DataPlanStatusChanged(self: *const T, pDestAddr: ?*NLM_SOCKADDR) HRESULT {
-                return @ptrCast(*const INetworkCostManagerEvents.VTable, self.vtable).DataPlanStatusChanged(@ptrCast(*const INetworkCostManagerEvents, self), pDestAddr);
+                return @as(*const INetworkCostManagerEvents.VTable, @ptrCast(self.vtable)).DataPlanStatusChanged(@as(*const INetworkCostManagerEvents, @ptrCast(self)), pDestAddr);
             }
         };
     }
@@ -1104,11 +1104,11 @@ pub const INetworkConnectionCost = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionCost_GetCost(self: *const T, pCost: ?*u32) HRESULT {
-                return @ptrCast(*const INetworkConnectionCost.VTable, self.vtable).GetCost(@ptrCast(*const INetworkConnectionCost, self), pCost);
+                return @as(*const INetworkConnectionCost.VTable, @ptrCast(self.vtable)).GetCost(@as(*const INetworkConnectionCost, @ptrCast(self)), pCost);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionCost_GetDataPlanStatus(self: *const T, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS) HRESULT {
-                return @ptrCast(*const INetworkConnectionCost.VTable, self.vtable).GetDataPlanStatus(@ptrCast(*const INetworkConnectionCost, self), pDataPlanStatus);
+                return @as(*const INetworkConnectionCost.VTable, @ptrCast(self.vtable)).GetDataPlanStatus(@as(*const INetworkConnectionCost, @ptrCast(self)), pDataPlanStatus);
             }
         };
     }
@@ -1150,11 +1150,11 @@ pub const INetworkConnectionCostEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionCostEvents_ConnectionCostChanged(self: *const T, connectionId: Guid, newCost: u32) HRESULT {
-                return @ptrCast(*const INetworkConnectionCostEvents.VTable, self.vtable).ConnectionCostChanged(@ptrCast(*const INetworkConnectionCostEvents, self), connectionId, newCost);
+                return @as(*const INetworkConnectionCostEvents.VTable, @ptrCast(self.vtable)).ConnectionCostChanged(@as(*const INetworkConnectionCostEvents, @ptrCast(self)), connectionId, newCost);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkConnectionCostEvents_ConnectionDataPlanStatusChanged(self: *const T, connectionId: Guid) HRESULT {
-                return @ptrCast(*const INetworkConnectionCostEvents.VTable, self.vtable).ConnectionDataPlanStatusChanged(@ptrCast(*const INetworkConnectionCostEvents, self), connectionId);
+                return @as(*const INetworkConnectionCostEvents.VTable, @ptrCast(self.vtable)).ConnectionDataPlanStatusChanged(@as(*const INetworkConnectionCostEvents, @ptrCast(self)), connectionId);
             }
         };
     }

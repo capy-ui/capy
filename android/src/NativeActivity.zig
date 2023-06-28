@@ -17,7 +17,7 @@ pub fn init(activity: *android.ANativeActivity) Self {
 /// Get the JNIEnv associated with the current thread.
 pub fn get(activity: *android.ANativeActivity) Self {
     var nullable_env: ?*android.JNIEnv = null;
-    _ = activity.vm.*.GetEnv(activity.vm, @ptrCast(*?*anyopaque, &nullable_env), android.JNI_VERSION_1_6);
+    _ = activity.vm.*.GetEnv(activity.vm, @as(*?*anyopaque, @ptrCast(&nullable_env)), android.JNI_VERSION_1_6);
     if (nullable_env) |env| {
         return fromJniEnv(activity, env);
     } else {
@@ -26,7 +26,7 @@ pub fn get(activity: *android.ANativeActivity) Self {
 }
 
 fn fromJniEnv(activity: *android.ANativeActivity, env: *android.JNIEnv) Self {
-    var jni = @ptrCast(*android.JNI, env);
+    var jni = @as(*android.JNI, @ptrCast(env));
     var activityClass = jni.findClass("android/app/NativeActivity") catch @panic("Could not get NativeActivity class");
 
     return Self{
@@ -50,7 +50,7 @@ pub fn AndroidGetUnicodeChar(self: *Self, keyCode: c_int, metaState: c_int) !u21
     const event_obj = try KeyEvent.newObject("(II)V", .{ eventType, keyCode });
     const unicode_key = try KeyEvent.callIntMethod(event_obj, "getUnicodeChar", "(I)I", .{metaState});
 
-    return @intCast(u21, unicode_key);
+    return @as(u21, @intCast(unicode_key));
 }
 
 pub fn AndroidMakeFullscreen(self: *Self) !void {

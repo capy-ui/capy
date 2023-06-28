@@ -2550,59 +2550,59 @@ pub const IDirect3D9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_RegisterSoftwareDevice(self: *const T, pInitializeFunction: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).RegisterSoftwareDevice(@ptrCast(*const IDirect3D9, self), pInitializeFunction);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).RegisterSoftwareDevice(@as(*const IDirect3D9, @ptrCast(self)), pInitializeFunction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetAdapterCount(self: *const T) u32 {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetAdapterCount(@ptrCast(*const IDirect3D9, self));
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterCount(@as(*const IDirect3D9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetAdapterIdentifier(self: *const T, Adapter: u32, Flags: u32, pIdentifier: ?*D3DADAPTER_IDENTIFIER9) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetAdapterIdentifier(@ptrCast(*const IDirect3D9, self), Adapter, Flags, pIdentifier);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterIdentifier(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Flags, pIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetAdapterModeCount(self: *const T, Adapter: u32, Format: D3DFORMAT) u32 {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetAdapterModeCount(@ptrCast(*const IDirect3D9, self), Adapter, Format);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterModeCount(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_EnumAdapterModes(self: *const T, Adapter: u32, Format: D3DFORMAT, Mode: u32, pMode: ?*D3DDISPLAYMODE) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).EnumAdapterModes(@ptrCast(*const IDirect3D9, self), Adapter, Format, Mode, pMode);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).EnumAdapterModes(@as(*const IDirect3D9, @ptrCast(self)), Adapter, Format, Mode, pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetAdapterDisplayMode(self: *const T, Adapter: u32, pMode: ?*D3DDISPLAYMODE) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetAdapterDisplayMode(@ptrCast(*const IDirect3D9, self), Adapter, pMode);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterDisplayMode(@as(*const IDirect3D9, @ptrCast(self)), Adapter, pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CheckDeviceType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, BackBufferFormat: D3DFORMAT, bWindowed: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CheckDeviceType(@ptrCast(*const IDirect3D9, self), Adapter, DevType, AdapterFormat, BackBufferFormat, bWindowed);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceType(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DevType, AdapterFormat, BackBufferFormat, bWindowed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CheckDeviceFormat(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, Usage: u32, RType: D3DRESOURCETYPE, CheckFormat: D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CheckDeviceFormat(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, AdapterFormat, Usage, RType, CheckFormat);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceFormat(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, AdapterFormat, Usage, RType, CheckFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CheckDeviceMultiSampleType(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, SurfaceFormat: D3DFORMAT, Windowed: BOOL, MultiSampleType: D3DMULTISAMPLE_TYPE, pQualityLevels: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CheckDeviceMultiSampleType(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, SurfaceFormat, Windowed, MultiSampleType, pQualityLevels);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceMultiSampleType(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, SurfaceFormat, Windowed, MultiSampleType, pQualityLevels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CheckDepthStencilMatch(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, AdapterFormat: D3DFORMAT, RenderTargetFormat: D3DFORMAT, DepthStencilFormat: D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CheckDepthStencilMatch(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, AdapterFormat, RenderTargetFormat, DepthStencilFormat);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDepthStencilMatch(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, AdapterFormat, RenderTargetFormat, DepthStencilFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CheckDeviceFormatConversion(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, SourceFormat: D3DFORMAT, TargetFormat: D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CheckDeviceFormatConversion(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, SourceFormat, TargetFormat);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CheckDeviceFormatConversion(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, SourceFormat, TargetFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetDeviceCaps(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, pCaps: ?*D3DCAPS9) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetDeviceCaps(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, pCaps);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetDeviceCaps(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_GetAdapterMonitor(self: *const T, Adapter: u32) ?HMONITOR {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).GetAdapterMonitor(@ptrCast(*const IDirect3D9, self), Adapter);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).GetAdapterMonitor(@as(*const IDirect3D9, @ptrCast(self)), Adapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9_CreateDevice(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3D9.VTable, self.vtable).CreateDevice(@ptrCast(*const IDirect3D9, self), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+                return @as(*const IDirect3D9.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IDirect3D9, @ptrCast(self)), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
             }
         };
     }
@@ -4107,467 +4107,467 @@ pub const IDirect3DDevice9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_TestCooperativeLevel(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).TestCooperativeLevel(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetAvailableTextureMem(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetAvailableTextureMem(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetAvailableTextureMem(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_EvictManagedResources(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).EvictManagedResources(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EvictManagedResources(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetDirect3D(self: *const T, ppD3D9: ?*?*IDirect3D9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetDirect3D(@ptrCast(*const IDirect3DDevice9, self), ppD3D9);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDirect3D(@as(*const IDirect3DDevice9, @ptrCast(self)), ppD3D9);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetDeviceCaps(self: *const T, pCaps: ?*D3DCAPS9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetDeviceCaps(@ptrCast(*const IDirect3DDevice9, self), pCaps);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDeviceCaps(@as(*const IDirect3DDevice9, @ptrCast(self)), pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetDisplayMode(self: *const T, iSwapChain: u32, pMode: ?*D3DDISPLAYMODE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, pMode);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetCreationParameters(self: *const T, pParameters: ?*D3DDEVICE_CREATION_PARAMETERS) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetCreationParameters(@ptrCast(*const IDirect3DDevice9, self), pParameters);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirect3DDevice9, @ptrCast(self)), pParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetCursorProperties(self: *const T, XHotSpot: u32, YHotSpot: u32, pCursorBitmap: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetCursorProperties(@ptrCast(*const IDirect3DDevice9, self), XHotSpot, YHotSpot, pCursorBitmap);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCursorProperties(@as(*const IDirect3DDevice9, @ptrCast(self)), XHotSpot, YHotSpot, pCursorBitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetCursorPosition(self: *const T, X: i32, Y: i32, Flags: u32) void {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetCursorPosition(@ptrCast(*const IDirect3DDevice9, self), X, Y, Flags);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCursorPosition(@as(*const IDirect3DDevice9, @ptrCast(self)), X, Y, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_ShowCursor(self: *const T, bShow: BOOL) BOOL {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).ShowCursor(@ptrCast(*const IDirect3DDevice9, self), bShow);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ShowCursor(@as(*const IDirect3DDevice9, @ptrCast(self)), bShow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateAdditionalSwapChain(self: *const T, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pSwapChain: ?*?*IDirect3DSwapChain9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateAdditionalSwapChain(@ptrCast(*const IDirect3DDevice9, self), pPresentationParameters, pSwapChain);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateAdditionalSwapChain(@as(*const IDirect3DDevice9, @ptrCast(self)), pPresentationParameters, pSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetSwapChain(self: *const T, iSwapChain: u32, pSwapChain: ?*?*IDirect3DSwapChain9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetSwapChain(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, pSwapChain);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSwapChain(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetNumberOfSwapChains(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetNumberOfSwapChains(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetNumberOfSwapChains(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_Reset(self: *const T, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).Reset(@ptrCast(*const IDirect3DDevice9, self), pPresentationParameters);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirect3DDevice9, @ptrCast(self)), pPresentationParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_Present(self: *const T, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).Present(@ptrCast(*const IDirect3DDevice9, self), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Present(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetBackBuffer(self: *const T, iSwapChain: u32, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetBackBuffer(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, iBackBuffer, Type, ppBackBuffer);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetBackBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, iBackBuffer, Type, ppBackBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetRasterStatus(self: *const T, iSwapChain: u32, pRasterStatus: ?*D3DRASTER_STATUS) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetRasterStatus(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, pRasterStatus);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRasterStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pRasterStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetDialogBoxMode(self: *const T, bEnableDialogs: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetDialogBoxMode(@ptrCast(*const IDirect3DDevice9, self), bEnableDialogs);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetDialogBoxMode(@as(*const IDirect3DDevice9, @ptrCast(self)), bEnableDialogs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetGammaRamp(self: *const T, iSwapChain: u32, Flags: u32, pRamp: ?*const D3DGAMMARAMP) void {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetGammaRamp(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, Flags, pRamp);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetGammaRamp(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, Flags, pRamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetGammaRamp(self: *const T, iSwapChain: u32, pRamp: ?*D3DGAMMARAMP) void {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetGammaRamp(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, pRamp);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetGammaRamp(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pRamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateTexture(self: *const T, Width: u32, Height: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppTexture: ?*?*IDirect3DTexture9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateTexture(@ptrCast(*const IDirect3DDevice9, self), Width, Height, Levels, Usage, Format, Pool, ppTexture, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Levels, Usage, Format, Pool, ppTexture, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateVolumeTexture(self: *const T, Width: u32, Height: u32, Depth: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppVolumeTexture: ?*?*IDirect3DVolumeTexture9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateVolumeTexture(@ptrCast(*const IDirect3DDevice9, self), Width, Height, Depth, Levels, Usage, Format, Pool, ppVolumeTexture, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVolumeTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Depth, Levels, Usage, Format, Pool, ppVolumeTexture, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateCubeTexture(self: *const T, EdgeLength: u32, Levels: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppCubeTexture: ?*?*IDirect3DCubeTexture9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateCubeTexture(@ptrCast(*const IDirect3DDevice9, self), EdgeLength, Levels, Usage, Format, Pool, ppCubeTexture, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateCubeTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), EdgeLength, Levels, Usage, Format, Pool, ppCubeTexture, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateVertexBuffer(self: *const T, Length: u32, Usage: u32, FVF: u32, Pool: D3DPOOL, ppVertexBuffer: ?*?*IDirect3DVertexBuffer9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateVertexBuffer(@ptrCast(*const IDirect3DDevice9, self), Length, Usage, FVF, Pool, ppVertexBuffer, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), Length, Usage, FVF, Pool, ppVertexBuffer, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateIndexBuffer(self: *const T, Length: u32, Usage: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppIndexBuffer: ?*?*IDirect3DIndexBuffer9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateIndexBuffer(@ptrCast(*const IDirect3DDevice9, self), Length, Usage, Format, Pool, ppIndexBuffer, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateIndexBuffer(@as(*const IDirect3DDevice9, @ptrCast(self)), Length, Usage, Format, Pool, ppIndexBuffer, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateRenderTarget(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateRenderTarget(@ptrCast(*const IDirect3DDevice9, self), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateDepthStencilSurface(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateDepthStencilSurface(@ptrCast(*const IDirect3DDevice9, self), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_UpdateSurface(self: *const T, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestinationSurface: ?*IDirect3DSurface9, pDestPoint: ?*const POINT) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).UpdateSurface(@ptrCast(*const IDirect3DDevice9, self), pSourceSurface, pSourceRect, pDestinationSurface, pDestPoint);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).UpdateSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceSurface, pSourceRect, pDestinationSurface, pDestPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_UpdateTexture(self: *const T, pSourceTexture: ?*IDirect3DBaseTexture9, pDestinationTexture: ?*IDirect3DBaseTexture9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).UpdateTexture(@ptrCast(*const IDirect3DDevice9, self), pSourceTexture, pDestinationTexture);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).UpdateTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceTexture, pDestinationTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetRenderTargetData(self: *const T, pRenderTarget: ?*IDirect3DSurface9, pDestSurface: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetRenderTargetData(@ptrCast(*const IDirect3DDevice9, self), pRenderTarget, pDestSurface);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderTargetData(@as(*const IDirect3DDevice9, @ptrCast(self)), pRenderTarget, pDestSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetFrontBufferData(self: *const T, iSwapChain: u32, pDestSurface: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetFrontBufferData(@ptrCast(*const IDirect3DDevice9, self), iSwapChain, pDestSurface);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetFrontBufferData(@as(*const IDirect3DDevice9, @ptrCast(self)), iSwapChain, pDestSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_StretchRect(self: *const T, pSourceSurface: ?*IDirect3DSurface9, pSourceRect: ?*const RECT, pDestSurface: ?*IDirect3DSurface9, pDestRect: ?*const RECT, Filter: D3DTEXTUREFILTERTYPE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).StretchRect(@ptrCast(*const IDirect3DDevice9, self), pSourceSurface, pSourceRect, pDestSurface, pDestRect, Filter);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).StretchRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pSourceSurface, pSourceRect, pDestSurface, pDestRect, Filter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_ColorFill(self: *const T, pSurface: ?*IDirect3DSurface9, pRect: ?*const RECT, color: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).ColorFill(@ptrCast(*const IDirect3DDevice9, self), pSurface, pRect, color);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ColorFill(@as(*const IDirect3DDevice9, @ptrCast(self)), pSurface, pRect, color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateOffscreenPlainSurface(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateOffscreenPlainSurface(@ptrCast(*const IDirect3DDevice9, self), Width, Height, Format, Pool, ppSurface, pSharedHandle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateOffscreenPlainSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), Width, Height, Format, Pool, ppSurface, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetRenderTarget(self: *const T, RenderTargetIndex: u32, pRenderTarget: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetRenderTarget(@ptrCast(*const IDirect3DDevice9, self), RenderTargetIndex, pRenderTarget);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), RenderTargetIndex, pRenderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetRenderTarget(self: *const T, RenderTargetIndex: u32, ppRenderTarget: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetRenderTarget(@ptrCast(*const IDirect3DDevice9, self), RenderTargetIndex, ppRenderTarget);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderTarget(@as(*const IDirect3DDevice9, @ptrCast(self)), RenderTargetIndex, ppRenderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetDepthStencilSurface(self: *const T, pNewZStencil: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetDepthStencilSurface(@ptrCast(*const IDirect3DDevice9, self), pNewZStencil);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), pNewZStencil);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetDepthStencilSurface(self: *const T, ppZStencilSurface: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetDepthStencilSurface(@ptrCast(*const IDirect3DDevice9, self), ppZStencilSurface);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetDepthStencilSurface(@as(*const IDirect3DDevice9, @ptrCast(self)), ppZStencilSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_BeginScene(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).BeginScene(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).BeginScene(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_EndScene(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).EndScene(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EndScene(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_Clear(self: *const T, Count: u32, pRects: ?*const D3DRECT, Flags: u32, Color: u32, Z: f32, Stencil: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).Clear(@ptrCast(*const IDirect3DDevice9, self), Count, pRects, Flags, Color, Z, Stencil);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).Clear(@as(*const IDirect3DDevice9, @ptrCast(self)), Count, pRects, Flags, Color, Z, Stencil);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetTransform(self: *const T, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*const D3DMATRIX) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetTransform(@ptrCast(*const IDirect3DDevice9, self), State, pMatrix);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pMatrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetTransform(self: *const T, State: D3DTRANSFORMSTATETYPE, pMatrix: ?*D3DMATRIX) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetTransform(@ptrCast(*const IDirect3DDevice9, self), State, pMatrix);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pMatrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_MultiplyTransform(self: *const T, param0: D3DTRANSFORMSTATETYPE, param1: ?*const D3DMATRIX) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).MultiplyTransform(@ptrCast(*const IDirect3DDevice9, self), param0, param1);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).MultiplyTransform(@as(*const IDirect3DDevice9, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetViewport(self: *const T, pViewport: ?*const D3DVIEWPORT9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetViewport(@ptrCast(*const IDirect3DDevice9, self), pViewport);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetViewport(@as(*const IDirect3DDevice9, @ptrCast(self)), pViewport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetViewport(self: *const T, pViewport: ?*D3DVIEWPORT9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetViewport(@ptrCast(*const IDirect3DDevice9, self), pViewport);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IDirect3DDevice9, @ptrCast(self)), pViewport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetMaterial(self: *const T, pMaterial: ?*const D3DMATERIAL9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetMaterial(@ptrCast(*const IDirect3DDevice9, self), pMaterial);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetMaterial(@as(*const IDirect3DDevice9, @ptrCast(self)), pMaterial);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetMaterial(self: *const T, pMaterial: ?*D3DMATERIAL9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetMaterial(@ptrCast(*const IDirect3DDevice9, self), pMaterial);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetMaterial(@as(*const IDirect3DDevice9, @ptrCast(self)), pMaterial);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetLight(self: *const T, Index: u32, param1: ?*const D3DLIGHT9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetLight(@ptrCast(*const IDirect3DDevice9, self), Index, param1);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetLight(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetLight(self: *const T, Index: u32, param1: ?*D3DLIGHT9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetLight(@ptrCast(*const IDirect3DDevice9, self), Index, param1);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetLight(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_LightEnable(self: *const T, Index: u32, Enable: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).LightEnable(@ptrCast(*const IDirect3DDevice9, self), Index, Enable);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).LightEnable(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, Enable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetLightEnable(self: *const T, Index: u32, pEnable: ?*BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetLightEnable(@ptrCast(*const IDirect3DDevice9, self), Index, pEnable);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetLightEnable(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetClipPlane(self: *const T, Index: u32, pPlane: ?*const f32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetClipPlane(@ptrCast(*const IDirect3DDevice9, self), Index, pPlane);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetClipPlane(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pPlane);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetClipPlane(self: *const T, Index: u32, pPlane: ?*f32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetClipPlane(@ptrCast(*const IDirect3DDevice9, self), Index, pPlane);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetClipPlane(@as(*const IDirect3DDevice9, @ptrCast(self)), Index, pPlane);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetRenderState(self: *const T, State: D3DRENDERSTATETYPE, Value: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetRenderState(@ptrCast(*const IDirect3DDevice9, self), State, Value);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetRenderState(@as(*const IDirect3DDevice9, @ptrCast(self)), State, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetRenderState(self: *const T, State: D3DRENDERSTATETYPE, pValue: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetRenderState(@ptrCast(*const IDirect3DDevice9, self), State, pValue);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetRenderState(@as(*const IDirect3DDevice9, @ptrCast(self)), State, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateStateBlock(self: *const T, Type: D3DSTATEBLOCKTYPE, ppSB: ?*?*IDirect3DStateBlock9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateStateBlock(@ptrCast(*const IDirect3DDevice9, self), Type, ppSB);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)), Type, ppSB);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_BeginStateBlock(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).BeginStateBlock(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).BeginStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_EndStateBlock(self: *const T, ppSB: ?*?*IDirect3DStateBlock9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).EndStateBlock(@ptrCast(*const IDirect3DDevice9, self), ppSB);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).EndStateBlock(@as(*const IDirect3DDevice9, @ptrCast(self)), ppSB);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetClipStatus(self: *const T, pClipStatus: ?*const D3DCLIPSTATUS9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetClipStatus(@ptrCast(*const IDirect3DDevice9, self), pClipStatus);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetClipStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), pClipStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetClipStatus(self: *const T, pClipStatus: ?*D3DCLIPSTATUS9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetClipStatus(@ptrCast(*const IDirect3DDevice9, self), pClipStatus);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetClipStatus(@as(*const IDirect3DDevice9, @ptrCast(self)), pClipStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetTexture(self: *const T, Stage: u32, ppTexture: ?*?*IDirect3DBaseTexture9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetTexture(@ptrCast(*const IDirect3DDevice9, self), Stage, ppTexture);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, ppTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetTexture(self: *const T, Stage: u32, pTexture: ?*IDirect3DBaseTexture9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetTexture(@ptrCast(*const IDirect3DDevice9, self), Stage, pTexture);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTexture(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, pTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetTextureStageState(self: *const T, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, pValue: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetTextureStageState(@ptrCast(*const IDirect3DDevice9, self), Stage, Type, pValue);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetTextureStageState(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, Type, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetTextureStageState(self: *const T, Stage: u32, Type: D3DTEXTURESTAGESTATETYPE, Value: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetTextureStageState(@ptrCast(*const IDirect3DDevice9, self), Stage, Type, Value);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetTextureStageState(@as(*const IDirect3DDevice9, @ptrCast(self)), Stage, Type, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetSamplerState(self: *const T, Sampler: u32, Type: D3DSAMPLERSTATETYPE, pValue: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetSamplerState(@ptrCast(*const IDirect3DDevice9, self), Sampler, Type, pValue);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSamplerState(@as(*const IDirect3DDevice9, @ptrCast(self)), Sampler, Type, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetSamplerState(self: *const T, Sampler: u32, Type: D3DSAMPLERSTATETYPE, Value: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetSamplerState(@ptrCast(*const IDirect3DDevice9, self), Sampler, Type, Value);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetSamplerState(@as(*const IDirect3DDevice9, @ptrCast(self)), Sampler, Type, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_ValidateDevice(self: *const T, pNumPasses: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).ValidateDevice(@ptrCast(*const IDirect3DDevice9, self), pNumPasses);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ValidateDevice(@as(*const IDirect3DDevice9, @ptrCast(self)), pNumPasses);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetPaletteEntries(self: *const T, PaletteNumber: u32, pEntries: ?*const PALETTEENTRY) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetPaletteEntries(@ptrCast(*const IDirect3DDevice9, self), PaletteNumber, pEntries);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPaletteEntries(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber, pEntries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetPaletteEntries(self: *const T, PaletteNumber: u32, pEntries: ?*PALETTEENTRY) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetPaletteEntries(@ptrCast(*const IDirect3DDevice9, self), PaletteNumber, pEntries);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPaletteEntries(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber, pEntries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetCurrentTexturePalette(self: *const T, PaletteNumber: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetCurrentTexturePalette(@ptrCast(*const IDirect3DDevice9, self), PaletteNumber);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetCurrentTexturePalette(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetCurrentTexturePalette(self: *const T, PaletteNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetCurrentTexturePalette(@ptrCast(*const IDirect3DDevice9, self), PaletteNumber);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetCurrentTexturePalette(@as(*const IDirect3DDevice9, @ptrCast(self)), PaletteNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetScissorRect(self: *const T, pRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetScissorRect(@ptrCast(*const IDirect3DDevice9, self), pRect);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetScissorRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetScissorRect(self: *const T, pRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetScissorRect(@ptrCast(*const IDirect3DDevice9, self), pRect);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetScissorRect(@as(*const IDirect3DDevice9, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetSoftwareVertexProcessing(self: *const T, bSoftware: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetSoftwareVertexProcessing(@ptrCast(*const IDirect3DDevice9, self), bSoftware);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetSoftwareVertexProcessing(@as(*const IDirect3DDevice9, @ptrCast(self)), bSoftware);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetSoftwareVertexProcessing(self: *const T) BOOL {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetSoftwareVertexProcessing(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetSoftwareVertexProcessing(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetNPatchMode(self: *const T, nSegments: f32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetNPatchMode(@ptrCast(*const IDirect3DDevice9, self), nSegments);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetNPatchMode(@as(*const IDirect3DDevice9, @ptrCast(self)), nSegments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetNPatchMode(self: *const T) f32 {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetNPatchMode(@ptrCast(*const IDirect3DDevice9, self));
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetNPatchMode(@as(*const IDirect3DDevice9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawPrimitive(self: *const T, PrimitiveType: D3DPRIMITIVETYPE, StartVertex: u32, PrimitiveCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawPrimitive(@ptrCast(*const IDirect3DDevice9, self), PrimitiveType, StartVertex, PrimitiveCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawPrimitive(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, StartVertex, PrimitiveCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawIndexedPrimitive(self: *const T, param0: D3DPRIMITIVETYPE, BaseVertexIndex: i32, MinVertexIndex: u32, NumVertices: u32, startIndex: u32, primCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawIndexedPrimitive(@ptrCast(*const IDirect3DDevice9, self), param0, BaseVertexIndex, MinVertexIndex, NumVertices, startIndex, primCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawIndexedPrimitive(@as(*const IDirect3DDevice9, @ptrCast(self)), param0, BaseVertexIndex, MinVertexIndex, NumVertices, startIndex, primCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawPrimitiveUP(self: *const T, PrimitiveType: D3DPRIMITIVETYPE, PrimitiveCount: u32, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawPrimitiveUP(@ptrCast(*const IDirect3DDevice9, self), PrimitiveType, PrimitiveCount, pVertexStreamZeroData, VertexStreamZeroStride);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawPrimitiveUP(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, PrimitiveCount, pVertexStreamZeroData, VertexStreamZeroStride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawIndexedPrimitiveUP(self: *const T, PrimitiveType: D3DPRIMITIVETYPE, MinVertexIndex: u32, NumVertices: u32, PrimitiveCount: u32, pIndexData: ?*const anyopaque, IndexDataFormat: D3DFORMAT, pVertexStreamZeroData: ?*const anyopaque, VertexStreamZeroStride: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawIndexedPrimitiveUP(@ptrCast(*const IDirect3DDevice9, self), PrimitiveType, MinVertexIndex, NumVertices, PrimitiveCount, pIndexData, IndexDataFormat, pVertexStreamZeroData, VertexStreamZeroStride);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawIndexedPrimitiveUP(@as(*const IDirect3DDevice9, @ptrCast(self)), PrimitiveType, MinVertexIndex, NumVertices, PrimitiveCount, pIndexData, IndexDataFormat, pVertexStreamZeroData, VertexStreamZeroStride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_ProcessVertices(self: *const T, SrcStartIndex: u32, DestIndex: u32, VertexCount: u32, pDestBuffer: ?*IDirect3DVertexBuffer9, pVertexDecl: ?*IDirect3DVertexDeclaration9, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).ProcessVertices(@ptrCast(*const IDirect3DDevice9, self), SrcStartIndex, DestIndex, VertexCount, pDestBuffer, pVertexDecl, Flags);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).ProcessVertices(@as(*const IDirect3DDevice9, @ptrCast(self)), SrcStartIndex, DestIndex, VertexCount, pDestBuffer, pVertexDecl, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateVertexDeclaration(self: *const T, pVertexElements: ?*const D3DVERTEXELEMENT9, ppDecl: ?*?*IDirect3DVertexDeclaration9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateVertexDeclaration(@ptrCast(*const IDirect3DDevice9, self), pVertexElements, ppDecl);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), pVertexElements, ppDecl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetVertexDeclaration(self: *const T, pDecl: ?*IDirect3DVertexDeclaration9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetVertexDeclaration(@ptrCast(*const IDirect3DDevice9, self), pDecl);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), pDecl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetVertexDeclaration(self: *const T, ppDecl: ?*?*IDirect3DVertexDeclaration9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetVertexDeclaration(@ptrCast(*const IDirect3DDevice9, self), ppDecl);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexDeclaration(@as(*const IDirect3DDevice9, @ptrCast(self)), ppDecl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetFVF(self: *const T, FVF: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetFVF(@ptrCast(*const IDirect3DDevice9, self), FVF);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetFVF(@as(*const IDirect3DDevice9, @ptrCast(self)), FVF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetFVF(self: *const T, pFVF: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetFVF(@ptrCast(*const IDirect3DDevice9, self), pFVF);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetFVF(@as(*const IDirect3DDevice9, @ptrCast(self)), pFVF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateVertexShader(self: *const T, pFunction: ?*const u32, ppShader: ?*?*IDirect3DVertexShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateVertexShader(@ptrCast(*const IDirect3DDevice9, self), pFunction, ppShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pFunction, ppShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetVertexShader(self: *const T, pShader: ?*IDirect3DVertexShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetVertexShader(@ptrCast(*const IDirect3DDevice9, self), pShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetVertexShader(self: *const T, ppShader: ?*?*IDirect3DVertexShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetVertexShader(@ptrCast(*const IDirect3DDevice9, self), ppShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShader(@as(*const IDirect3DDevice9, @ptrCast(self)), ppShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetVertexShaderConstantF(self: *const T, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetVertexShaderConstantF(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4fCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetVertexShaderConstantF(self: *const T, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetVertexShaderConstantF(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4fCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetVertexShaderConstantI(self: *const T, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetVertexShaderConstantI(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4iCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetVertexShaderConstantI(self: *const T, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetVertexShaderConstantI(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4iCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetVertexShaderConstantB(self: *const T, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetVertexShaderConstantB(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, BoolCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetVertexShaderConstantB(self: *const T, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetVertexShaderConstantB(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, BoolCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetVertexShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetStreamSource(self: *const T, StreamNumber: u32, pStreamData: ?*IDirect3DVertexBuffer9, OffsetInBytes: u32, Stride: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetStreamSource(@ptrCast(*const IDirect3DDevice9, self), StreamNumber, pStreamData, OffsetInBytes, Stride);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetStreamSource(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, pStreamData, OffsetInBytes, Stride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetStreamSource(self: *const T, StreamNumber: u32, ppStreamData: ?*?*IDirect3DVertexBuffer9, pOffsetInBytes: ?*u32, pStride: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetStreamSource(@ptrCast(*const IDirect3DDevice9, self), StreamNumber, ppStreamData, pOffsetInBytes, pStride);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetStreamSource(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, ppStreamData, pOffsetInBytes, pStride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetStreamSourceFreq(self: *const T, StreamNumber: u32, Setting: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetStreamSourceFreq(@ptrCast(*const IDirect3DDevice9, self), StreamNumber, Setting);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetStreamSourceFreq(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, Setting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetStreamSourceFreq(self: *const T, StreamNumber: u32, pSetting: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetStreamSourceFreq(@ptrCast(*const IDirect3DDevice9, self), StreamNumber, pSetting);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetStreamSourceFreq(@as(*const IDirect3DDevice9, @ptrCast(self)), StreamNumber, pSetting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetIndices(self: *const T, pIndexData: ?*IDirect3DIndexBuffer9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetIndices(@ptrCast(*const IDirect3DDevice9, self), pIndexData);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetIndices(@as(*const IDirect3DDevice9, @ptrCast(self)), pIndexData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetIndices(self: *const T, ppIndexData: ?*?*IDirect3DIndexBuffer9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetIndices(@ptrCast(*const IDirect3DDevice9, self), ppIndexData);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetIndices(@as(*const IDirect3DDevice9, @ptrCast(self)), ppIndexData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreatePixelShader(self: *const T, pFunction: ?*const u32, ppShader: ?*?*IDirect3DPixelShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreatePixelShader(@ptrCast(*const IDirect3DDevice9, self), pFunction, ppShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreatePixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pFunction, ppShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetPixelShader(self: *const T, pShader: ?*IDirect3DPixelShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetPixelShader(@ptrCast(*const IDirect3DDevice9, self), pShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), pShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetPixelShader(self: *const T, ppShader: ?*?*IDirect3DPixelShader9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetPixelShader(@ptrCast(*const IDirect3DDevice9, self), ppShader);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShader(@as(*const IDirect3DDevice9, @ptrCast(self)), ppShader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetPixelShaderConstantF(self: *const T, StartRegister: u32, pConstantData: ?*const f32, Vector4fCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetPixelShaderConstantF(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4fCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetPixelShaderConstantF(self: *const T, StartRegister: u32, pConstantData: ?*f32, Vector4fCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetPixelShaderConstantF(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4fCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantF(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4fCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetPixelShaderConstantI(self: *const T, StartRegister: u32, pConstantData: ?*const i32, Vector4iCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetPixelShaderConstantI(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4iCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetPixelShaderConstantI(self: *const T, StartRegister: u32, pConstantData: ?*i32, Vector4iCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetPixelShaderConstantI(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, Vector4iCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantI(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, Vector4iCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_SetPixelShaderConstantB(self: *const T, StartRegister: u32, pConstantData: ?*const BOOL, BoolCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).SetPixelShaderConstantB(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, BoolCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_GetPixelShaderConstantB(self: *const T, StartRegister: u32, pConstantData: ?*BOOL, BoolCount: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).GetPixelShaderConstantB(@ptrCast(*const IDirect3DDevice9, self), StartRegister, pConstantData, BoolCount);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).GetPixelShaderConstantB(@as(*const IDirect3DDevice9, @ptrCast(self)), StartRegister, pConstantData, BoolCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawRectPatch(self: *const T, Handle: u32, pNumSegs: ?*const f32, pRectPatchInfo: ?*const D3DRECTPATCH_INFO) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawRectPatch(@ptrCast(*const IDirect3DDevice9, self), Handle, pNumSegs, pRectPatchInfo);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawRectPatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle, pNumSegs, pRectPatchInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DrawTriPatch(self: *const T, Handle: u32, pNumSegs: ?*const f32, pTriPatchInfo: ?*const D3DTRIPATCH_INFO) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DrawTriPatch(@ptrCast(*const IDirect3DDevice9, self), Handle, pNumSegs, pTriPatchInfo);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DrawTriPatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle, pNumSegs, pTriPatchInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_DeletePatch(self: *const T, Handle: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).DeletePatch(@ptrCast(*const IDirect3DDevice9, self), Handle);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).DeletePatch(@as(*const IDirect3DDevice9, @ptrCast(self)), Handle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9_CreateQuery(self: *const T, Type: D3DQUERYTYPE, ppQuery: ?*?*IDirect3DQuery9) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9.VTable, self.vtable).CreateQuery(@ptrCast(*const IDirect3DDevice9, self), Type, ppQuery);
+                return @as(*const IDirect3DDevice9.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const IDirect3DDevice9, @ptrCast(self)), Type, ppQuery);
             }
         };
     }
@@ -4612,15 +4612,15 @@ pub const IDirect3DStateBlock9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DStateBlock9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DStateBlock9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DStateBlock9, self), ppDevice);
+                return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DStateBlock9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DStateBlock9_Capture(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DStateBlock9.VTable, self.vtable).Capture(@ptrCast(*const IDirect3DStateBlock9, self));
+                return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).Capture(@as(*const IDirect3DStateBlock9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DStateBlock9_Apply(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DStateBlock9.VTable, self.vtable).Apply(@ptrCast(*const IDirect3DStateBlock9, self));
+                return @as(*const IDirect3DStateBlock9.VTable, @ptrCast(self.vtable)).Apply(@as(*const IDirect3DStateBlock9, @ptrCast(self)));
             }
         };
     }
@@ -4721,31 +4721,31 @@ pub const IDirect3DSwapChain9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_Present(self: *const T, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).Present(@ptrCast(*const IDirect3DSwapChain9, self), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).Present(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetFrontBufferData(self: *const T, pDestSurface: ?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetFrontBufferData(@ptrCast(*const IDirect3DSwapChain9, self), pDestSurface);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetFrontBufferData(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pDestSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetBackBuffer(self: *const T, iBackBuffer: u32, Type: D3DBACKBUFFER_TYPE, ppBackBuffer: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetBackBuffer(@ptrCast(*const IDirect3DSwapChain9, self), iBackBuffer, Type, ppBackBuffer);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetBackBuffer(@as(*const IDirect3DSwapChain9, @ptrCast(self)), iBackBuffer, Type, ppBackBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetRasterStatus(self: *const T, pRasterStatus: ?*D3DRASTER_STATUS) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetRasterStatus(@ptrCast(*const IDirect3DSwapChain9, self), pRasterStatus);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetRasterStatus(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pRasterStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetDisplayMode(self: *const T, pMode: ?*D3DDISPLAYMODE) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirect3DSwapChain9, self), pMode);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DSwapChain9, self), ppDevice);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DSwapChain9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9_GetPresentParameters(self: *const T, pPresentationParameters: ?*D3DPRESENT_PARAMETERS) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9.VTable, self.vtable).GetPresentParameters(@ptrCast(*const IDirect3DSwapChain9, self), pPresentationParameters);
+                return @as(*const IDirect3DSwapChain9.VTable, @ptrCast(self.vtable)).GetPresentParameters(@as(*const IDirect3DSwapChain9, @ptrCast(self)), pPresentationParameters);
             }
         };
     }
@@ -4848,35 +4848,35 @@ pub const IDirect3DResource9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DResource9, self), ppDevice);
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DResource9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_SetPrivateData(self: *const T, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirect3DResource9, self), refguid, pData, SizeOfData, Flags);
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid, pData, SizeOfData, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_GetPrivateData(self: *const T, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirect3DResource9, self), refguid, pData, pSizeOfData);
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid, pData, pSizeOfData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_FreePrivateData(self: *const T, refguid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).FreePrivateData(@ptrCast(*const IDirect3DResource9, self), refguid);
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirect3DResource9, @ptrCast(self)), refguid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_SetPriority(self: *const T, PriorityNew: u32) u32 {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).SetPriority(@ptrCast(*const IDirect3DResource9, self), PriorityNew);
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IDirect3DResource9, @ptrCast(self)), PriorityNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_GetPriority(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).GetPriority(@ptrCast(*const IDirect3DResource9, self));
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IDirect3DResource9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_PreLoad(self: *const T) void {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).PreLoad(@ptrCast(*const IDirect3DResource9, self));
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).PreLoad(@as(*const IDirect3DResource9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DResource9_GetType(self: *const T) D3DRESOURCETYPE {
-                return @ptrCast(*const IDirect3DResource9.VTable, self.vtable).GetType(@ptrCast(*const IDirect3DResource9, self));
+                return @as(*const IDirect3DResource9.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDirect3DResource9, @ptrCast(self)));
             }
         };
     }
@@ -4917,11 +4917,11 @@ pub const IDirect3DVertexDeclaration9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexDeclaration9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DVertexDeclaration9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DVertexDeclaration9, self), ppDevice);
+                return @as(*const IDirect3DVertexDeclaration9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVertexDeclaration9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexDeclaration9_GetDeclaration(self: *const T, pElement: ?*D3DVERTEXELEMENT9, pNumElements: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DVertexDeclaration9.VTable, self.vtable).GetDeclaration(@ptrCast(*const IDirect3DVertexDeclaration9, self), pElement, pNumElements);
+                return @as(*const IDirect3DVertexDeclaration9.VTable, @ptrCast(self.vtable)).GetDeclaration(@as(*const IDirect3DVertexDeclaration9, @ptrCast(self)), pElement, pNumElements);
             }
         };
     }
@@ -4962,11 +4962,11 @@ pub const IDirect3DVertexShader9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexShader9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DVertexShader9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DVertexShader9, self), ppDevice);
+                return @as(*const IDirect3DVertexShader9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVertexShader9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexShader9_GetFunction(self: *const T, param0: ?*anyopaque, pSizeOfData: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DVertexShader9.VTable, self.vtable).GetFunction(@ptrCast(*const IDirect3DVertexShader9, self), param0, pSizeOfData);
+                return @as(*const IDirect3DVertexShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DVertexShader9, @ptrCast(self)), param0, pSizeOfData);
             }
         };
     }
@@ -5007,11 +5007,11 @@ pub const IDirect3DPixelShader9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DPixelShader9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DPixelShader9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DPixelShader9, self), ppDevice);
+                return @as(*const IDirect3DPixelShader9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DPixelShader9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DPixelShader9_GetFunction(self: *const T, param0: ?*anyopaque, pSizeOfData: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DPixelShader9.VTable, self.vtable).GetFunction(@ptrCast(*const IDirect3DPixelShader9, self), param0, pSizeOfData);
+                return @as(*const IDirect3DPixelShader9.VTable, @ptrCast(self.vtable)).GetFunction(@as(*const IDirect3DPixelShader9, @ptrCast(self)), param0, pSizeOfData);
             }
         };
     }
@@ -5082,27 +5082,27 @@ pub const IDirect3DBaseTexture9 = extern struct {
             pub usingnamespace IDirect3DResource9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_SetLOD(self: *const T, LODNew: u32) u32 {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).SetLOD(@ptrCast(*const IDirect3DBaseTexture9, self), LODNew);
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).SetLOD(@as(*const IDirect3DBaseTexture9, @ptrCast(self)), LODNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_GetLOD(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).GetLOD(@ptrCast(*const IDirect3DBaseTexture9, self));
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetLOD(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_GetLevelCount(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).GetLevelCount(@ptrCast(*const IDirect3DBaseTexture9, self));
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetLevelCount(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_SetAutoGenFilterType(self: *const T, FilterType: D3DTEXTUREFILTERTYPE) HRESULT {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).SetAutoGenFilterType(@ptrCast(*const IDirect3DBaseTexture9, self), FilterType);
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).SetAutoGenFilterType(@as(*const IDirect3DBaseTexture9, @ptrCast(self)), FilterType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_GetAutoGenFilterType(self: *const T) D3DTEXTUREFILTERTYPE {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).GetAutoGenFilterType(@ptrCast(*const IDirect3DBaseTexture9, self));
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GetAutoGenFilterType(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DBaseTexture9_GenerateMipSubLevels(self: *const T) void {
-                return @ptrCast(*const IDirect3DBaseTexture9.VTable, self.vtable).GenerateMipSubLevels(@ptrCast(*const IDirect3DBaseTexture9, self));
+                return @as(*const IDirect3DBaseTexture9.VTable, @ptrCast(self.vtable)).GenerateMipSubLevels(@as(*const IDirect3DBaseTexture9, @ptrCast(self)));
             }
         };
     }
@@ -5181,23 +5181,23 @@ pub const IDirect3DTexture9 = extern struct {
             pub usingnamespace IDirect3DBaseTexture9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DTexture9_GetLevelDesc(self: *const T, Level: u32, pDesc: ?*D3DSURFACE_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DTexture9.VTable, self.vtable).GetLevelDesc(@ptrCast(*const IDirect3DTexture9, self), Level, pDesc);
+                return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DTexture9_GetSurfaceLevel(self: *const T, Level: u32, ppSurfaceLevel: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DTexture9.VTable, self.vtable).GetSurfaceLevel(@ptrCast(*const IDirect3DTexture9, self), Level, ppSurfaceLevel);
+                return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).GetSurfaceLevel(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, ppSurfaceLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DTexture9_LockRect(self: *const T, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DTexture9.VTable, self.vtable).LockRect(@ptrCast(*const IDirect3DTexture9, self), Level, pLockedRect, pRect, Flags);
+                return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DTexture9, @ptrCast(self)), Level, pLockedRect, pRect, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DTexture9_UnlockRect(self: *const T, Level: u32) HRESULT {
-                return @ptrCast(*const IDirect3DTexture9.VTable, self.vtable).UnlockRect(@ptrCast(*const IDirect3DTexture9, self), Level);
+                return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DTexture9, @ptrCast(self)), Level);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DTexture9_AddDirtyRect(self: *const T, pDirtyRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IDirect3DTexture9.VTable, self.vtable).AddDirtyRect(@ptrCast(*const IDirect3DTexture9, self), pDirtyRect);
+                return @as(*const IDirect3DTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DTexture9, @ptrCast(self)), pDirtyRect);
             }
         };
     }
@@ -5276,23 +5276,23 @@ pub const IDirect3DVolumeTexture9 = extern struct {
             pub usingnamespace IDirect3DBaseTexture9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolumeTexture9_GetLevelDesc(self: *const T, Level: u32, pDesc: ?*D3DVOLUME_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DVolumeTexture9.VTable, self.vtable).GetLevelDesc(@ptrCast(*const IDirect3DVolumeTexture9, self), Level, pDesc);
+                return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolumeTexture9_GetVolumeLevel(self: *const T, Level: u32, ppVolumeLevel: ?*?*IDirect3DVolume9) HRESULT {
-                return @ptrCast(*const IDirect3DVolumeTexture9.VTable, self.vtable).GetVolumeLevel(@ptrCast(*const IDirect3DVolumeTexture9, self), Level, ppVolumeLevel);
+                return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).GetVolumeLevel(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, ppVolumeLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolumeTexture9_LockBox(self: *const T, Level: u32, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DVolumeTexture9.VTable, self.vtable).LockBox(@ptrCast(*const IDirect3DVolumeTexture9, self), Level, pLockedVolume, pBox, Flags);
+                return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).LockBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level, pLockedVolume, pBox, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolumeTexture9_UnlockBox(self: *const T, Level: u32) HRESULT {
-                return @ptrCast(*const IDirect3DVolumeTexture9.VTable, self.vtable).UnlockBox(@ptrCast(*const IDirect3DVolumeTexture9, self), Level);
+                return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).UnlockBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), Level);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolumeTexture9_AddDirtyBox(self: *const T, pDirtyBox: ?*const D3DBOX) HRESULT {
-                return @ptrCast(*const IDirect3DVolumeTexture9.VTable, self.vtable).AddDirtyBox(@ptrCast(*const IDirect3DVolumeTexture9, self), pDirtyBox);
+                return @as(*const IDirect3DVolumeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyBox(@as(*const IDirect3DVolumeTexture9, @ptrCast(self)), pDirtyBox);
             }
         };
     }
@@ -5379,23 +5379,23 @@ pub const IDirect3DCubeTexture9 = extern struct {
             pub usingnamespace IDirect3DBaseTexture9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCubeTexture9_GetLevelDesc(self: *const T, Level: u32, pDesc: ?*D3DSURFACE_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DCubeTexture9.VTable, self.vtable).GetLevelDesc(@ptrCast(*const IDirect3DCubeTexture9, self), Level, pDesc);
+                return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).GetLevelDesc(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), Level, pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCubeTexture9_GetCubeMapSurface(self: *const T, FaceType: D3DCUBEMAP_FACES, Level: u32, ppCubeMapSurface: ?*?*IDirect3DSurface9) HRESULT {
-                return @ptrCast(*const IDirect3DCubeTexture9.VTable, self.vtable).GetCubeMapSurface(@ptrCast(*const IDirect3DCubeTexture9, self), FaceType, Level, ppCubeMapSurface);
+                return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).GetCubeMapSurface(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level, ppCubeMapSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCubeTexture9_LockRect(self: *const T, FaceType: D3DCUBEMAP_FACES, Level: u32, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DCubeTexture9.VTable, self.vtable).LockRect(@ptrCast(*const IDirect3DCubeTexture9, self), FaceType, Level, pLockedRect, pRect, Flags);
+                return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level, pLockedRect, pRect, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCubeTexture9_UnlockRect(self: *const T, FaceType: D3DCUBEMAP_FACES, Level: u32) HRESULT {
-                return @ptrCast(*const IDirect3DCubeTexture9.VTable, self.vtable).UnlockRect(@ptrCast(*const IDirect3DCubeTexture9, self), FaceType, Level);
+                return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, Level);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCubeTexture9_AddDirtyRect(self: *const T, FaceType: D3DCUBEMAP_FACES, pDirtyRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IDirect3DCubeTexture9.VTable, self.vtable).AddDirtyRect(@ptrCast(*const IDirect3DCubeTexture9, self), FaceType, pDirtyRect);
+                return @as(*const IDirect3DCubeTexture9.VTable, @ptrCast(self.vtable)).AddDirtyRect(@as(*const IDirect3DCubeTexture9, @ptrCast(self)), FaceType, pDirtyRect);
             }
         };
     }
@@ -5448,15 +5448,15 @@ pub const IDirect3DVertexBuffer9 = extern struct {
             pub usingnamespace IDirect3DResource9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexBuffer9_Lock(self: *const T, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DVertexBuffer9.VTable, self.vtable).Lock(@ptrCast(*const IDirect3DVertexBuffer9, self), OffsetToLock, SizeToLock, ppbData, Flags);
+                return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)), OffsetToLock, SizeToLock, ppbData, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexBuffer9_Unlock(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DVertexBuffer9.VTable, self.vtable).Unlock(@ptrCast(*const IDirect3DVertexBuffer9, self));
+                return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVertexBuffer9_GetDesc(self: *const T, pDesc: ?*D3DVERTEXBUFFER_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DVertexBuffer9.VTable, self.vtable).GetDesc(@ptrCast(*const IDirect3DVertexBuffer9, self), pDesc);
+                return @as(*const IDirect3DVertexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DVertexBuffer9, @ptrCast(self)), pDesc);
             }
         };
     }
@@ -5509,15 +5509,15 @@ pub const IDirect3DIndexBuffer9 = extern struct {
             pub usingnamespace IDirect3DResource9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DIndexBuffer9_Lock(self: *const T, OffsetToLock: u32, SizeToLock: u32, ppbData: ?*?*anyopaque, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DIndexBuffer9.VTable, self.vtable).Lock(@ptrCast(*const IDirect3DIndexBuffer9, self), OffsetToLock, SizeToLock, ppbData, Flags);
+                return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)), OffsetToLock, SizeToLock, ppbData, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DIndexBuffer9_Unlock(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DIndexBuffer9.VTable, self.vtable).Unlock(@ptrCast(*const IDirect3DIndexBuffer9, self));
+                return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DIndexBuffer9_GetDesc(self: *const T, pDesc: ?*D3DINDEXBUFFER_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DIndexBuffer9.VTable, self.vtable).GetDesc(@ptrCast(*const IDirect3DIndexBuffer9, self), pDesc);
+                return @as(*const IDirect3DIndexBuffer9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DIndexBuffer9, @ptrCast(self)), pDesc);
             }
         };
     }
@@ -5600,27 +5600,27 @@ pub const IDirect3DSurface9 = extern struct {
             pub usingnamespace IDirect3DResource9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_GetContainer(self: *const T, riid: ?*const Guid, ppContainer: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).GetContainer(@ptrCast(*const IDirect3DSurface9, self), riid, ppContainer);
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IDirect3DSurface9, @ptrCast(self)), riid, ppContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_GetDesc(self: *const T, pDesc: ?*D3DSURFACE_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).GetDesc(@ptrCast(*const IDirect3DSurface9, self), pDesc);
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DSurface9, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_LockRect(self: *const T, pLockedRect: ?*D3DLOCKED_RECT, pRect: ?*const RECT, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).LockRect(@ptrCast(*const IDirect3DSurface9, self), pLockedRect, pRect, Flags);
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).LockRect(@as(*const IDirect3DSurface9, @ptrCast(self)), pLockedRect, pRect, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_UnlockRect(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).UnlockRect(@ptrCast(*const IDirect3DSurface9, self));
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).UnlockRect(@as(*const IDirect3DSurface9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_GetDC(self: *const T, phdc: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).GetDC(@ptrCast(*const IDirect3DSurface9, self), phdc);
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirect3DSurface9, @ptrCast(self)), phdc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSurface9_ReleaseDC(self: *const T, hdc: ?HDC) HRESULT {
-                return @ptrCast(*const IDirect3DSurface9.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirect3DSurface9, self), hdc);
+                return @as(*const IDirect3DSurface9.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirect3DSurface9, @ptrCast(self)), hdc);
             }
         };
     }
@@ -5733,35 +5733,35 @@ pub const IDirect3DVolume9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DVolume9, self), ppDevice);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DVolume9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_SetPrivateData(self: *const T, refguid: ?*const Guid, pData: ?*const anyopaque, SizeOfData: u32, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirect3DVolume9, self), refguid, pData, SizeOfData, Flags);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid, pData, SizeOfData, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_GetPrivateData(self: *const T, refguid: ?*const Guid, pData: ?*anyopaque, pSizeOfData: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirect3DVolume9, self), refguid, pData, pSizeOfData);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid, pData, pSizeOfData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_FreePrivateData(self: *const T, refguid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).FreePrivateData(@ptrCast(*const IDirect3DVolume9, self), refguid);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirect3DVolume9, @ptrCast(self)), refguid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_GetContainer(self: *const T, riid: ?*const Guid, ppContainer: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).GetContainer(@ptrCast(*const IDirect3DVolume9, self), riid, ppContainer);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetContainer(@as(*const IDirect3DVolume9, @ptrCast(self)), riid, ppContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_GetDesc(self: *const T, pDesc: ?*D3DVOLUME_DESC) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).GetDesc(@ptrCast(*const IDirect3DVolume9, self), pDesc);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDirect3DVolume9, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_LockBox(self: *const T, pLockedVolume: ?*D3DLOCKED_BOX, pBox: ?*const D3DBOX, Flags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).LockBox(@ptrCast(*const IDirect3DVolume9, self), pLockedVolume, pBox, Flags);
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).LockBox(@as(*const IDirect3DVolume9, @ptrCast(self)), pLockedVolume, pBox, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DVolume9_UnlockBox(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DVolume9.VTable, self.vtable).UnlockBox(@ptrCast(*const IDirect3DVolume9, self));
+                return @as(*const IDirect3DVolume9.VTable, @ptrCast(self.vtable)).UnlockBox(@as(*const IDirect3DVolume9, @ptrCast(self)));
             }
         };
     }
@@ -5830,23 +5830,23 @@ pub const IDirect3DQuery9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DQuery9_GetDevice(self: *const T, ppDevice: ?*?*IDirect3DDevice9) HRESULT {
-                return @ptrCast(*const IDirect3DQuery9.VTable, self.vtable).GetDevice(@ptrCast(*const IDirect3DQuery9, self), ppDevice);
+                return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDirect3DQuery9, @ptrCast(self)), ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DQuery9_GetType(self: *const T) D3DQUERYTYPE {
-                return @ptrCast(*const IDirect3DQuery9.VTable, self.vtable).GetType(@ptrCast(*const IDirect3DQuery9, self));
+                return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetType(@as(*const IDirect3DQuery9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DQuery9_GetDataSize(self: *const T) u32 {
-                return @ptrCast(*const IDirect3DQuery9.VTable, self.vtable).GetDataSize(@ptrCast(*const IDirect3DQuery9, self));
+                return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const IDirect3DQuery9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DQuery9_Issue(self: *const T, dwIssueFlags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DQuery9.VTable, self.vtable).Issue(@ptrCast(*const IDirect3DQuery9, self), dwIssueFlags);
+                return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).Issue(@as(*const IDirect3DQuery9, @ptrCast(self)), dwIssueFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DQuery9_GetData(self: *const T, pData: ?*anyopaque, dwSize: u32, dwGetDataFlags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DQuery9.VTable, self.vtable).GetData(@ptrCast(*const IDirect3DQuery9, self), pData, dwSize, dwGetDataFlags);
+                return @as(*const IDirect3DQuery9.VTable, @ptrCast(self.vtable)).GetData(@as(*const IDirect3DQuery9, @ptrCast(self)), pData, dwSize, dwGetDataFlags);
             }
         };
     }
@@ -5941,23 +5941,23 @@ pub const IDirect3D9Ex = extern struct {
             pub usingnamespace IDirect3D9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9Ex_GetAdapterModeCountEx(self: *const T, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER) u32 {
-                return @ptrCast(*const IDirect3D9Ex.VTable, self.vtable).GetAdapterModeCountEx(@ptrCast(*const IDirect3D9Ex, self), Adapter, pFilter);
+                return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterModeCountEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9Ex_EnumAdapterModesEx(self: *const T, Adapter: u32, pFilter: ?*const D3DDISPLAYMODEFILTER, Mode: u32, pMode: ?*D3DDISPLAYMODEEX) HRESULT {
-                return @ptrCast(*const IDirect3D9Ex.VTable, self.vtable).EnumAdapterModesEx(@ptrCast(*const IDirect3D9Ex, self), Adapter, pFilter, Mode, pMode);
+                return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).EnumAdapterModesEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pFilter, Mode, pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9Ex_GetAdapterDisplayModeEx(self: *const T, Adapter: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) HRESULT {
-                return @ptrCast(*const IDirect3D9Ex.VTable, self.vtable).GetAdapterDisplayModeEx(@ptrCast(*const IDirect3D9Ex, self), Adapter, pMode, pRotation);
+                return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterDisplayModeEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pMode, pRotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9Ex_CreateDeviceEx(self: *const T, Adapter: u32, DeviceType: D3DDEVTYPE, hFocusWindow: ?HWND, BehaviorFlags: u32, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX, ppReturnedDeviceInterface: ?*?*IDirect3DDevice9Ex) HRESULT {
-                return @ptrCast(*const IDirect3D9Ex.VTable, self.vtable).CreateDeviceEx(@ptrCast(*const IDirect3D9Ex, self), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
+                return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).CreateDeviceEx(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, pFullscreenDisplayMode, ppReturnedDeviceInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9Ex_GetAdapterLUID(self: *const T, Adapter: u32, pLUID: ?*LUID) HRESULT {
-                return @ptrCast(*const IDirect3D9Ex.VTable, self.vtable).GetAdapterLUID(@ptrCast(*const IDirect3D9Ex, self), Adapter, pLUID);
+                return @as(*const IDirect3D9Ex.VTable, @ptrCast(self.vtable)).GetAdapterLUID(@as(*const IDirect3D9Ex, @ptrCast(self)), Adapter, pLUID);
             }
         };
     }
@@ -6206,63 +6206,63 @@ pub const IDirect3DDevice9Ex = extern struct {
             pub usingnamespace IDirect3DDevice9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_SetConvolutionMonoKernel(self: *const T, width: u32, height: u32, rows: ?*f32, columns: ?*f32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).SetConvolutionMonoKernel(@ptrCast(*const IDirect3DDevice9Ex, self), width, height, rows, columns);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetConvolutionMonoKernel(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), width, height, rows, columns);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_ComposeRects(self: *const T, pSrc: ?*IDirect3DSurface9, pDst: ?*IDirect3DSurface9, pSrcRectDescs: ?*IDirect3DVertexBuffer9, NumRects: u32, pDstRectDescs: ?*IDirect3DVertexBuffer9, Operation: D3DCOMPOSERECTSOP, Xoffset: i32, Yoffset: i32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).ComposeRects(@ptrCast(*const IDirect3DDevice9Ex, self), pSrc, pDst, pSrcRectDescs, NumRects, pDstRectDescs, Operation, Xoffset, Yoffset);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).ComposeRects(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pSrc, pDst, pSrcRectDescs, NumRects, pDstRectDescs, Operation, Xoffset, Yoffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_PresentEx(self: *const T, pSourceRect: ?*const RECT, pDestRect: ?*const RECT, hDestWindowOverride: ?HWND, pDirtyRegion: ?*const RGNDATA, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).PresentEx(@ptrCast(*const IDirect3DDevice9Ex, self), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).PresentEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_GetGPUThreadPriority(self: *const T, pPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).GetGPUThreadPriority(@ptrCast(*const IDirect3DDevice9Ex, self), pPriority);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetGPUThreadPriority(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_SetGPUThreadPriority(self: *const T, Priority: i32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).SetGPUThreadPriority(@ptrCast(*const IDirect3DDevice9Ex, self), Priority);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetGPUThreadPriority(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_WaitForVBlank(self: *const T, iSwapChain: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).WaitForVBlank(@ptrCast(*const IDirect3DDevice9Ex, self), iSwapChain);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).WaitForVBlank(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), iSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_CheckResourceResidency(self: *const T, pResourceArray: ?*?*IDirect3DResource9, NumResources: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).CheckResourceResidency(@ptrCast(*const IDirect3DDevice9Ex, self), pResourceArray, NumResources);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CheckResourceResidency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pResourceArray, NumResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_SetMaximumFrameLatency(self: *const T, MaxLatency: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).SetMaximumFrameLatency(@ptrCast(*const IDirect3DDevice9Ex, self), MaxLatency);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), MaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_GetMaximumFrameLatency(self: *const T, pMaxLatency: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).GetMaximumFrameLatency(@ptrCast(*const IDirect3DDevice9Ex, self), pMaxLatency);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pMaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_CheckDeviceState(self: *const T, hDestinationWindow: ?HWND) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).CheckDeviceState(@ptrCast(*const IDirect3DDevice9Ex, self), hDestinationWindow);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CheckDeviceState(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), hDestinationWindow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_CreateRenderTargetEx(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Lockable: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).CreateRenderTargetEx(@ptrCast(*const IDirect3DDevice9Ex, self), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle, Usage);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateRenderTargetEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Lockable, ppSurface, pSharedHandle, Usage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_CreateOffscreenPlainSurfaceEx(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).CreateOffscreenPlainSurfaceEx(@ptrCast(*const IDirect3DDevice9Ex, self), Width, Height, Format, Pool, ppSurface, pSharedHandle, Usage);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateOffscreenPlainSurfaceEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, Pool, ppSurface, pSharedHandle, Usage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_CreateDepthStencilSurfaceEx(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, MultiSample: D3DMULTISAMPLE_TYPE, MultisampleQuality: u32, Discard: BOOL, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE, Usage: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).CreateDepthStencilSurfaceEx(@ptrCast(*const IDirect3DDevice9Ex, self), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle, Usage);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).CreateDepthStencilSurfaceEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), Width, Height, Format, MultiSample, MultisampleQuality, Discard, ppSurface, pSharedHandle, Usage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_ResetEx(self: *const T, pPresentationParameters: ?*D3DPRESENT_PARAMETERS, pFullscreenDisplayMode: ?*D3DDISPLAYMODEEX) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).ResetEx(@ptrCast(*const IDirect3DDevice9Ex, self), pPresentationParameters, pFullscreenDisplayMode);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).ResetEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), pPresentationParameters, pFullscreenDisplayMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Ex_GetDisplayModeEx(self: *const T, iSwapChain: u32, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Ex.VTable, self.vtable).GetDisplayModeEx(@ptrCast(*const IDirect3DDevice9Ex, self), iSwapChain, pMode, pRotation);
+                return @as(*const IDirect3DDevice9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DDevice9Ex, @ptrCast(self)), iSwapChain, pMode, pRotation);
             }
         };
     }
@@ -6313,15 +6313,15 @@ pub const IDirect3DSwapChain9Ex = extern struct {
             pub usingnamespace IDirect3DSwapChain9.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9Ex_GetLastPresentCount(self: *const T, pLastPresentCount: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9Ex.VTable, self.vtable).GetLastPresentCount(@ptrCast(*const IDirect3DSwapChain9Ex, self), pLastPresentCount);
+                return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetLastPresentCount(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pLastPresentCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9Ex_GetPresentStats(self: *const T, pPresentationStatistics: ?*D3DPRESENTSTATS) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9Ex.VTable, self.vtable).GetPresentStats(@ptrCast(*const IDirect3DSwapChain9Ex, self), pPresentationStatistics);
+                return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetPresentStats(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pPresentationStatistics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DSwapChain9Ex_GetDisplayModeEx(self: *const T, pMode: ?*D3DDISPLAYMODEEX, pRotation: ?*D3DDISPLAYROTATION) HRESULT {
-                return @ptrCast(*const IDirect3DSwapChain9Ex.VTable, self.vtable).GetDisplayModeEx(@ptrCast(*const IDirect3DSwapChain9Ex, self), pMode, pRotation);
+                return @as(*const IDirect3DSwapChain9Ex.VTable, @ptrCast(self.vtable)).GetDisplayModeEx(@as(*const IDirect3DSwapChain9Ex, @ptrCast(self)), pMode, pRotation);
             }
         };
     }

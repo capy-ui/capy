@@ -261,43 +261,43 @@ pub const IDXCoreAdapter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_IsValid(self: *const T) bool {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsValid(@ptrCast(*const IDXCoreAdapter, self));
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsValid(@as(*const IDXCoreAdapter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_IsAttributeSupported(self: *const T, attributeGUID: ?*const Guid) bool {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsAttributeSupported(@ptrCast(*const IDXCoreAdapter, self), attributeGUID);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsAttributeSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), attributeGUID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_IsPropertySupported(self: *const T, property: DXCoreAdapterProperty) bool {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsPropertySupported(@ptrCast(*const IDXCoreAdapter, self), property);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsPropertySupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_GetProperty(self: *const T, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetProperty(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize, propertyData);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDXCoreAdapter, @ptrCast(self)), property, bufferSize, propertyData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_GetPropertySize(self: *const T, property: DXCoreAdapterProperty, bufferSize: ?*usize) HRESULT {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetPropertySize(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetPropertySize(@as(*const IDXCoreAdapter, @ptrCast(self)), property, bufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_IsQueryStateSupported(self: *const T, property: DXCoreAdapterState) bool {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsQueryStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsQueryStateSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_QueryState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).QueryState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).QueryState(@as(*const IDXCoreAdapter, @ptrCast(self)), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_IsSetStateSupported(self: *const T, property: DXCoreAdapterState) bool {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsSetStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).IsSetStateSupported(@as(*const IDXCoreAdapter, @ptrCast(self)), property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_SetState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).SetState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).SetState(@as(*const IDXCoreAdapter, @ptrCast(self)), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapter_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapter, self), riid, ppvFactory);
+                return @as(*const IDXCoreAdapter.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const IDXCoreAdapter, @ptrCast(self)), riid, ppvFactory);
             }
         };
     }
@@ -380,27 +380,27 @@ pub const IDXCoreAdapterList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_GetAdapter(self: *const T, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapter(@ptrCast(*const IDXCoreAdapterList, self), index, riid, ppvAdapter);
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetAdapter(@as(*const IDXCoreAdapterList, @ptrCast(self)), index, riid, ppvAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_GetAdapterCount(self: *const T) u32 {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapterCount(@ptrCast(*const IDXCoreAdapterList, self));
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetAdapterCount(@as(*const IDXCoreAdapterList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_IsStale(self: *const T) bool {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsStale(@ptrCast(*const IDXCoreAdapterList, self));
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).IsStale(@as(*const IDXCoreAdapterList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapterList, self), riid, ppvFactory);
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const IDXCoreAdapterList, @ptrCast(self)), riid, ppvFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_Sort(self: *const T, numPreferences: u32, preferences: [*]const DXCoreAdapterPreference) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).Sort(@ptrCast(*const IDXCoreAdapterList, self), numPreferences, preferences);
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).Sort(@as(*const IDXCoreAdapterList, @ptrCast(self)), numPreferences, preferences);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterList_IsAdapterPreferenceSupported(self: *const T, preference: DXCoreAdapterPreference) bool {
-                return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsAdapterPreferenceSupported(@ptrCast(*const IDXCoreAdapterList, self), preference);
+                return @as(*const IDXCoreAdapterList.VTable, @ptrCast(self.vtable)).IsAdapterPreferenceSupported(@as(*const IDXCoreAdapterList, @ptrCast(self)), preference);
             }
         };
     }
@@ -487,23 +487,23 @@ pub const IDXCoreAdapterFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterFactory_CreateAdapterList(self: *const T, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).CreateAdapterList(@ptrCast(*const IDXCoreAdapterFactory, self), numAttributes, filterAttributes, riid, ppvAdapterList);
+                return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).CreateAdapterList(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), numAttributes, filterAttributes, riid, ppvAdapterList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterFactory_GetAdapterByLuid(self: *const T, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).GetAdapterByLuid(@ptrCast(*const IDXCoreAdapterFactory, self), adapterLUID, riid, ppvAdapter);
+                return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).GetAdapterByLuid(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), adapterLUID, riid, ppvAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterFactory_IsNotificationTypeSupported(self: *const T, notificationType: DXCoreNotificationType) bool {
-                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).IsNotificationTypeSupported(@ptrCast(*const IDXCoreAdapterFactory, self), notificationType);
+                return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).IsNotificationTypeSupported(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), notificationType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterFactory_RegisterEventNotification(self: *const T, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).RegisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
+                return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).RegisterEventNotification(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXCoreAdapterFactory_UnregisterEventNotification(self: *const T, eventCookie: u32) HRESULT {
-                return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).UnregisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), eventCookie);
+                return @as(*const IDXCoreAdapterFactory.VTable, @ptrCast(self.vtable)).UnregisterEventNotification(@as(*const IDXCoreAdapterFactory, @ptrCast(self)), eventCookie);
             }
         };
     }

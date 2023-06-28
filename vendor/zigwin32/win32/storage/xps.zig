@@ -225,7 +225,7 @@ pub const PSINJECT_POINT = enum(u16) {
         VMSAVE: u1 = 0,
         VMRESTORE: u1 = 0,
     }) PSINJECT_POINT {
-        return @enumFromInt(PSINJECT_POINT, (if (o.BEGINSTREAM == 1) @intFromEnum(PSINJECT_POINT.BEGINSTREAM) else 0) | (if (o.PSADOBE == 1) @intFromEnum(PSINJECT_POINT.PSADOBE) else 0) | (if (o.PAGESATEND == 1) @intFromEnum(PSINJECT_POINT.PAGESATEND) else 0) | (if (o.PAGES == 1) @intFromEnum(PSINJECT_POINT.PAGES) else 0) | (if (o.DOCNEEDEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCNEEDEDRES) else 0) | (if (o.DOCSUPPLIEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCSUPPLIEDRES) else 0) | (if (o.PAGEORDER == 1) @intFromEnum(PSINJECT_POINT.PAGEORDER) else 0) | (if (o.ORIENTATION == 1) @intFromEnum(PSINJECT_POINT.ORIENTATION) else 0) | (if (o.BOUNDINGBOX == 1) @intFromEnum(PSINJECT_POINT.BOUNDINGBOX) else 0) | (if (o.DOCUMENTPROCESSCOLORS == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORS) else 0) | (if (o.COMMENTS == 1) @intFromEnum(PSINJECT_POINT.COMMENTS) else 0) | (if (o.BEGINDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.BEGINDEFAULTS) else 0) | (if (o.ENDDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.ENDDEFAULTS) else 0) | (if (o.BEGINPROLOG == 1) @intFromEnum(PSINJECT_POINT.BEGINPROLOG) else 0) | (if (o.ENDPROLOG == 1) @intFromEnum(PSINJECT_POINT.ENDPROLOG) else 0) | (if (o.BEGINSETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINSETUP) else 0) | (if (o.ENDSETUP == 1) @intFromEnum(PSINJECT_POINT.ENDSETUP) else 0) | (if (o.TRAILER == 1) @intFromEnum(PSINJECT_POINT.TRAILER) else 0) | (if (o.EOF == 1) @intFromEnum(PSINJECT_POINT.EOF) else 0) | (if (o.ENDSTREAM == 1) @intFromEnum(PSINJECT_POINT.ENDSTREAM) else 0) | (if (o.DOCUMENTPROCESSCOLORSATEND == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND) else 0) | (if (o.PAGENUMBER == 1) @intFromEnum(PSINJECT_POINT.PAGENUMBER) else 0) | (if (o.BEGINPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINPAGESETUP) else 0) | (if (o.ENDPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.ENDPAGESETUP) else 0) | (if (o.PAGETRAILER == 1) @intFromEnum(PSINJECT_POINT.PAGETRAILER) else 0) | (if (o.PLATECOLOR == 1) @intFromEnum(PSINJECT_POINT.PLATECOLOR) else 0) | (if (o.SHOWPAGE == 1) @intFromEnum(PSINJECT_POINT.SHOWPAGE) else 0) | (if (o.PAGEBBOX == 1) @intFromEnum(PSINJECT_POINT.PAGEBBOX) else 0) | (if (o.ENDPAGECOMMENTS == 1) @intFromEnum(PSINJECT_POINT.ENDPAGECOMMENTS) else 0) | (if (o.VMSAVE == 1) @intFromEnum(PSINJECT_POINT.VMSAVE) else 0) | (if (o.VMRESTORE == 1) @intFromEnum(PSINJECT_POINT.VMRESTORE) else 0));
+        return @as(PSINJECT_POINT, @enumFromInt((if (o.BEGINSTREAM == 1) @intFromEnum(PSINJECT_POINT.BEGINSTREAM) else 0) | (if (o.PSADOBE == 1) @intFromEnum(PSINJECT_POINT.PSADOBE) else 0) | (if (o.PAGESATEND == 1) @intFromEnum(PSINJECT_POINT.PAGESATEND) else 0) | (if (o.PAGES == 1) @intFromEnum(PSINJECT_POINT.PAGES) else 0) | (if (o.DOCNEEDEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCNEEDEDRES) else 0) | (if (o.DOCSUPPLIEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCSUPPLIEDRES) else 0) | (if (o.PAGEORDER == 1) @intFromEnum(PSINJECT_POINT.PAGEORDER) else 0) | (if (o.ORIENTATION == 1) @intFromEnum(PSINJECT_POINT.ORIENTATION) else 0) | (if (o.BOUNDINGBOX == 1) @intFromEnum(PSINJECT_POINT.BOUNDINGBOX) else 0) | (if (o.DOCUMENTPROCESSCOLORS == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORS) else 0) | (if (o.COMMENTS == 1) @intFromEnum(PSINJECT_POINT.COMMENTS) else 0) | (if (o.BEGINDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.BEGINDEFAULTS) else 0) | (if (o.ENDDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.ENDDEFAULTS) else 0) | (if (o.BEGINPROLOG == 1) @intFromEnum(PSINJECT_POINT.BEGINPROLOG) else 0) | (if (o.ENDPROLOG == 1) @intFromEnum(PSINJECT_POINT.ENDPROLOG) else 0) | (if (o.BEGINSETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINSETUP) else 0) | (if (o.ENDSETUP == 1) @intFromEnum(PSINJECT_POINT.ENDSETUP) else 0) | (if (o.TRAILER == 1) @intFromEnum(PSINJECT_POINT.TRAILER) else 0) | (if (o.EOF == 1) @intFromEnum(PSINJECT_POINT.EOF) else 0) | (if (o.ENDSTREAM == 1) @intFromEnum(PSINJECT_POINT.ENDSTREAM) else 0) | (if (o.DOCUMENTPROCESSCOLORSATEND == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND) else 0) | (if (o.PAGENUMBER == 1) @intFromEnum(PSINJECT_POINT.PAGENUMBER) else 0) | (if (o.BEGINPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINPAGESETUP) else 0) | (if (o.ENDPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.ENDPAGESETUP) else 0) | (if (o.PAGETRAILER == 1) @intFromEnum(PSINJECT_POINT.PAGETRAILER) else 0) | (if (o.PLATECOLOR == 1) @intFromEnum(PSINJECT_POINT.PLATECOLOR) else 0) | (if (o.SHOWPAGE == 1) @intFromEnum(PSINJECT_POINT.SHOWPAGE) else 0) | (if (o.PAGEBBOX == 1) @intFromEnum(PSINJECT_POINT.PAGEBBOX) else 0) | (if (o.ENDPAGECOMMENTS == 1) @intFromEnum(PSINJECT_POINT.ENDPAGECOMMENTS) else 0) | (if (o.VMSAVE == 1) @intFromEnum(PSINJECT_POINT.VMSAVE) else 0) | (if (o.VMRESTORE == 1) @intFromEnum(PSINJECT_POINT.VMRESTORE) else 0)));
     }
 };
 pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT.BEGINSTREAM;
@@ -600,11 +600,11 @@ pub const IXpsOMShareable = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMShareable_GetOwner(self: *const T, owner: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXpsOMShareable.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMShareable, self), owner);
+                return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMShareable, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMShareable_GetType(self: *const T, type_: ?*XPS_OBJECT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMShareable.VTable, self.vtable).GetType(@ptrCast(*const IXpsOMShareable, self), type_);
+                return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetType(@as(*const IXpsOMShareable, @ptrCast(self)), type_);
             }
         };
     }
@@ -874,103 +874,103 @@ pub const IXpsOMVisual = extern struct {
             pub usingnamespace IXpsOMShareable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetTransform(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetTransform(@ptrCast(*const IXpsOMVisual, self), matrixTransform);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetTransformLocal(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetTransformLocal(@ptrCast(*const IXpsOMVisual, self), matrixTransform);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetTransformLocal(self: *const T, matrixTransform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetTransformLocal(@ptrCast(*const IXpsOMVisual, self), matrixTransform);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetTransformLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetTransformLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetClipGeometry(self: *const T, clipGeometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetClipGeometry(@ptrCast(*const IXpsOMVisual, self), clipGeometry);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometry(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetClipGeometryLocal(self: *const T, clipGeometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetClipGeometryLocal(@ptrCast(*const IXpsOMVisual, self), clipGeometry);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetClipGeometryLocal(self: *const T, clipGeometry: ?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetClipGeometryLocal(@ptrCast(*const IXpsOMVisual, self), clipGeometry);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetClipGeometryLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetClipGeometryLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetClipGeometryLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetClipGeometryLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetOpacity(self: *const T, opacity: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetOpacity(@ptrCast(*const IXpsOMVisual, self), opacity);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetOpacity(self: *const T, opacity: f32) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetOpacity(@ptrCast(*const IXpsOMVisual, self), opacity);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetOpacityMaskBrush(self: *const T, opacityMaskBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetOpacityMaskBrush(@ptrCast(*const IXpsOMVisual, self), opacityMaskBrush);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrush(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetOpacityMaskBrushLocal(self: *const T, opacityMaskBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetOpacityMaskBrushLocal(@ptrCast(*const IXpsOMVisual, self), opacityMaskBrush);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetOpacityMaskBrushLocal(self: *const T, opacityMaskBrush: ?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetOpacityMaskBrushLocal(@ptrCast(*const IXpsOMVisual, self), opacityMaskBrush);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetOpacityMaskBrushLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetOpacityMaskBrushLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetOpacityMaskBrushLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetOpacityMaskBrushLookup(@ptrCast(*const IXpsOMVisual, self), key);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetName(@ptrCast(*const IXpsOMVisual, self), name);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetName(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetName(@ptrCast(*const IXpsOMVisual, self), name);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetIsHyperlinkTarget(self: *const T, isHyperlink: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetIsHyperlinkTarget(@ptrCast(*const IXpsOMVisual, self), isHyperlink);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetIsHyperlinkTarget(self: *const T, isHyperlink: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetIsHyperlinkTarget(@ptrCast(*const IXpsOMVisual, self), isHyperlink);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetHyperlinkNavigateUri(self: *const T, hyperlinkUri: ?*?*IUri) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetHyperlinkNavigateUri(@ptrCast(*const IXpsOMVisual, self), hyperlinkUri);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetHyperlinkNavigateUri(self: *const T, hyperlinkUri: ?*IUri) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetHyperlinkNavigateUri(@ptrCast(*const IXpsOMVisual, self), hyperlinkUri);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).GetLanguage(@ptrCast(*const IXpsOMVisual, self), language);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisual_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisual.VTable, self.vtable).SetLanguage(@ptrCast(*const IXpsOMVisual, self), language);
+                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
             }
         };
     }
@@ -1010,11 +1010,11 @@ pub const IXpsOMPart = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPart_GetPartName(self: *const T, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPart.VTable, self.vtable).GetPartName(@ptrCast(*const IXpsOMPart, self), partUri);
+                return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPart_SetPartName(self: *const T, partUri: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPart.VTable, self.vtable).SetPartName(@ptrCast(*const IXpsOMPart, self), partUri);
+                return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).SetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
             }
         };
     }
@@ -1224,75 +1224,75 @@ pub const IXpsOMGlyphsEditor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_ApplyEdits(self: *const T) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).ApplyEdits(@ptrCast(*const IXpsOMGlyphsEditor, self));
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).ApplyEdits(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetUnicodeString(self: *const T, unicodeString: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetUnicodeString(@ptrCast(*const IXpsOMGlyphsEditor, self), unicodeString);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetUnicodeString(self: *const T, unicodeString: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetUnicodeString(@ptrCast(*const IXpsOMGlyphsEditor, self), unicodeString);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetGlyphIndexCount(self: *const T, indexCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphIndexCount(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetGlyphIndices(self: *const T, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphIndices(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount, glyphIndices);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetGlyphIndices(self: *const T, indexCount: u32, glyphIndices: ?*const XPS_GLYPH_INDEX) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetGlyphIndices(@ptrCast(*const IXpsOMGlyphsEditor, self), indexCount, glyphIndices);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetGlyphMappingCount(self: *const T, glyphMappingCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphMappingCount(@ptrCast(*const IXpsOMGlyphsEditor, self), glyphMappingCount);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetGlyphMappings(self: *const T, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetGlyphMappings(@ptrCast(*const IXpsOMGlyphsEditor, self), glyphMappingCount, glyphMappings);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetGlyphMappings(self: *const T, glyphMappingCount: u32, glyphMappings: ?*const XPS_GLYPH_MAPPING) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetGlyphMappings(@ptrCast(*const IXpsOMGlyphsEditor, self), glyphMappingCount, glyphMappings);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetProhibitedCaretStopCount(self: *const T, prohibitedCaretStopCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetProhibitedCaretStopCount(@ptrCast(*const IXpsOMGlyphsEditor, self), prohibitedCaretStopCount);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), prohibitedCaretStopCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetProhibitedCaretStops(self: *const T, count: ?*u32, prohibitedCaretStops: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetProhibitedCaretStops(@ptrCast(*const IXpsOMGlyphsEditor, self), count, prohibitedCaretStops);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetProhibitedCaretStops(self: *const T, count: u32, prohibitedCaretStops: ?*const u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetProhibitedCaretStops(@ptrCast(*const IXpsOMGlyphsEditor, self), count, prohibitedCaretStops);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetBidiLevel(self: *const T, bidiLevel: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetBidiLevel(@ptrCast(*const IXpsOMGlyphsEditor, self), bidiLevel);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetBidiLevel(self: *const T, bidiLevel: u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetBidiLevel(@ptrCast(*const IXpsOMGlyphsEditor, self), bidiLevel);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetIsSideways(self: *const T, isSideways: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetIsSideways(@ptrCast(*const IXpsOMGlyphsEditor, self), isSideways);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetIsSideways(self: *const T, isSideways: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetIsSideways(@ptrCast(*const IXpsOMGlyphsEditor, self), isSideways);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_GetDeviceFontName(self: *const T, deviceFontName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).GetDeviceFontName(@ptrCast(*const IXpsOMGlyphsEditor, self), deviceFontName);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphsEditor_SetDeviceFontName(self: *const T, deviceFontName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphsEditor.VTable, self.vtable).SetDeviceFontName(@ptrCast(*const IXpsOMGlyphsEditor, self), deviceFontName);
+                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
             }
         };
     }
@@ -1588,111 +1588,111 @@ pub const IXpsOMGlyphs = extern struct {
             pub usingnamespace IXpsOMVisual.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetUnicodeString(self: *const T, unicodeString: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetUnicodeString(@ptrCast(*const IXpsOMGlyphs, self), unicodeString);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphs, @ptrCast(self)), unicodeString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetGlyphIndexCount(self: *const T, indexCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphIndexCount(@ptrCast(*const IXpsOMGlyphs, self), indexCount);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetGlyphIndices(self: *const T, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphIndices(@ptrCast(*const IXpsOMGlyphs, self), indexCount, glyphIndices);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount, glyphIndices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetGlyphMappingCount(self: *const T, glyphMappingCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphMappingCount(@ptrCast(*const IXpsOMGlyphs, self), glyphMappingCount);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetGlyphMappings(self: *const T, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphMappings(@ptrCast(*const IXpsOMGlyphs, self), glyphMappingCount, glyphMappings);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount, glyphMappings);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetProhibitedCaretStopCount(self: *const T, prohibitedCaretStopCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetProhibitedCaretStopCount(@ptrCast(*const IXpsOMGlyphs, self), prohibitedCaretStopCount);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetProhibitedCaretStops(self: *const T, prohibitedCaretStopCount: ?*u32, prohibitedCaretStops: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetProhibitedCaretStops(@ptrCast(*const IXpsOMGlyphs, self), prohibitedCaretStopCount, prohibitedCaretStops);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount, prohibitedCaretStops);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetBidiLevel(self: *const T, bidiLevel: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetBidiLevel(@ptrCast(*const IXpsOMGlyphs, self), bidiLevel);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphs, @ptrCast(self)), bidiLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetIsSideways(self: *const T, isSideways: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetIsSideways(@ptrCast(*const IXpsOMGlyphs, self), isSideways);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphs, @ptrCast(self)), isSideways);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetDeviceFontName(self: *const T, deviceFontName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetDeviceFontName(@ptrCast(*const IXpsOMGlyphs, self), deviceFontName);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphs, @ptrCast(self)), deviceFontName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetStyleSimulations(self: *const T, styleSimulations: ?*XPS_STYLE_SIMULATION) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetStyleSimulations(@ptrCast(*const IXpsOMGlyphs, self), styleSimulations);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetStyleSimulations(self: *const T, styleSimulations: XPS_STYLE_SIMULATION) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetStyleSimulations(@ptrCast(*const IXpsOMGlyphs, self), styleSimulations);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetOrigin(self: *const T, origin: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetOrigin(@ptrCast(*const IXpsOMGlyphs, self), origin);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetOrigin(self: *const T, origin: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetOrigin(@ptrCast(*const IXpsOMGlyphs, self), origin);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFontRenderingEmSize(self: *const T, fontRenderingEmSize: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFontRenderingEmSize(@ptrCast(*const IXpsOMGlyphs, self), fontRenderingEmSize);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetFontRenderingEmSize(self: *const T, fontRenderingEmSize: f32) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetFontRenderingEmSize(@ptrCast(*const IXpsOMGlyphs, self), fontRenderingEmSize);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFontResource(self: *const T, fontResource: ?*?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFontResource(@ptrCast(*const IXpsOMGlyphs, self), fontResource);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetFontResource(self: *const T, fontResource: ?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetFontResource(@ptrCast(*const IXpsOMGlyphs, self), fontResource);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFontFaceIndex(self: *const T, fontFaceIndex: ?*i16) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFontFaceIndex(@ptrCast(*const IXpsOMGlyphs, self), fontFaceIndex);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetFontFaceIndex(self: *const T, fontFaceIndex: i16) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetFontFaceIndex(@ptrCast(*const IXpsOMGlyphs, self), fontFaceIndex);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFillBrush(self: *const T, fillBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFillBrush(@ptrCast(*const IXpsOMGlyphs, self), fillBrush);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFillBrushLocal(self: *const T, fillBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFillBrushLocal(@ptrCast(*const IXpsOMGlyphs, self), fillBrush);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetFillBrushLocal(self: *const T, fillBrush: ?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetFillBrushLocal(@ptrCast(*const IXpsOMGlyphs, self), fillBrush);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetFillBrushLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetFillBrushLookup(@ptrCast(*const IXpsOMGlyphs, self), key);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_SetFillBrushLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).SetFillBrushLookup(@ptrCast(*const IXpsOMGlyphs, self), key);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_GetGlyphsEditor(self: *const T, editor: ?*?*IXpsOMGlyphsEditor) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).GetGlyphsEditor(@ptrCast(*const IXpsOMGlyphs, self), editor);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphsEditor(@as(*const IXpsOMGlyphs, @ptrCast(self)), editor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGlyphs_Clone(self: *const T, glyphs: ?*?*IXpsOMGlyphs) HRESULT {
-                return @ptrCast(*const IXpsOMGlyphs.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMGlyphs, self), glyphs);
+                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphs);
             }
         };
     }
@@ -1778,27 +1778,27 @@ pub const IXpsOMDashCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMDashCollection, self), count);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDashCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_GetAt(self: *const T, index: u32, dash: ?*XPS_DASH) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMDashCollection, self), index, dash);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_InsertAt(self: *const T, index: u32, dash: ?*const XPS_DASH) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMDashCollection, self), index, dash);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMDashCollection, self), index);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_SetAt(self: *const T, index: u32, dash: ?*const XPS_DASH) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMDashCollection, self), index, dash);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDashCollection_Append(self: *const T, dash: ?*const XPS_DASH) HRESULT {
-                return @ptrCast(*const IXpsOMDashCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMDashCollection, self), dash);
+                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDashCollection, @ptrCast(self)), dash);
             }
         };
     }
@@ -1848,15 +1848,15 @@ pub const IXpsOMMatrixTransform = extern struct {
             pub usingnamespace IXpsOMShareable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMMatrixTransform_GetMatrix(self: *const T, matrix: ?*XPS_MATRIX) HRESULT {
-                return @ptrCast(*const IXpsOMMatrixTransform.VTable, self.vtable).GetMatrix(@ptrCast(*const IXpsOMMatrixTransform, self), matrix);
+                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).GetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMMatrixTransform_SetMatrix(self: *const T, matrix: ?*const XPS_MATRIX) HRESULT {
-                return @ptrCast(*const IXpsOMMatrixTransform.VTable, self.vtable).SetMatrix(@ptrCast(*const IXpsOMMatrixTransform, self), matrix);
+                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMMatrixTransform_Clone(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMMatrixTransform.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMMatrixTransform, self), matrixTransform);
+                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrixTransform);
             }
         };
     }
@@ -1966,39 +1966,39 @@ pub const IXpsOMGeometry = extern struct {
             pub usingnamespace IXpsOMShareable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_GetFigures(self: *const T, figures: ?*?*IXpsOMGeometryFigureCollection) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).GetFigures(@ptrCast(*const IXpsOMGeometry, self), figures);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFigures(@as(*const IXpsOMGeometry, @ptrCast(self)), figures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_GetFillRule(self: *const T, fillRule: ?*XPS_FILL_RULE) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).GetFillRule(@ptrCast(*const IXpsOMGeometry, self), fillRule);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_SetFillRule(self: *const T, fillRule: XPS_FILL_RULE) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).SetFillRule(@ptrCast(*const IXpsOMGeometry, self), fillRule);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).GetTransform(@ptrCast(*const IXpsOMGeometry, self), transform);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).GetTransformLocal(@ptrCast(*const IXpsOMGeometry, self), transform);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).SetTransformLocal(@ptrCast(*const IXpsOMGeometry, self), transform);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_GetTransformLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).GetTransformLookup(@ptrCast(*const IXpsOMGeometry, self), lookup);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_SetTransformLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).SetTransformLookup(@ptrCast(*const IXpsOMGeometry, self), lookup);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometry_Clone(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMGeometry.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMGeometry, self), geometry);
+                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometry, @ptrCast(self)), geometry);
             }
         };
     }
@@ -2182,63 +2182,63 @@ pub const IXpsOMGeometryFigure = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetOwner(self: *const T, owner: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMGeometryFigure, self), owner);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentData(self: *const T, dataCount: ?*u32, segmentData: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentData(@ptrCast(*const IXpsOMGeometryFigure, self), dataCount, segmentData);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentData(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), dataCount, segmentData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentTypes(self: *const T, segmentCount: ?*u32, segmentTypes: ?*XPS_SEGMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentTypes(@ptrCast(*const IXpsOMGeometryFigure, self), segmentCount, segmentTypes);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentTypes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentStrokes(self: *const T, segmentCount: ?*u32, segmentStrokes: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentStrokes(@ptrCast(*const IXpsOMGeometryFigure, self), segmentCount, segmentStrokes);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentStrokes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_SetSegments(self: *const T, segmentCount: u32, segmentDataCount: u32, segmentTypes: ?*const XPS_SEGMENT_TYPE, segmentData: ?*const f32, segmentStrokes: ?*const BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).SetSegments(@ptrCast(*const IXpsOMGeometryFigure, self), segmentCount, segmentDataCount, segmentTypes, segmentData, segmentStrokes);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetSegments(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentDataCount, segmentTypes, segmentData, segmentStrokes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetStartPoint(self: *const T, startPoint: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetStartPoint(@ptrCast(*const IXpsOMGeometryFigure, self), startPoint);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_SetStartPoint(self: *const T, startPoint: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).SetStartPoint(@ptrCast(*const IXpsOMGeometryFigure, self), startPoint);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetIsClosed(self: *const T, isClosed: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetIsClosed(@ptrCast(*const IXpsOMGeometryFigure, self), isClosed);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_SetIsClosed(self: *const T, isClosed: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).SetIsClosed(@ptrCast(*const IXpsOMGeometryFigure, self), isClosed);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetIsFilled(self: *const T, isFilled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetIsFilled(@ptrCast(*const IXpsOMGeometryFigure, self), isFilled);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_SetIsFilled(self: *const T, isFilled: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).SetIsFilled(@ptrCast(*const IXpsOMGeometryFigure, self), isFilled);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentCount(self: *const T, segmentCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentCount(@ptrCast(*const IXpsOMGeometryFigure, self), segmentCount);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentDataCount(self: *const T, segmentDataCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentDataCount(@ptrCast(*const IXpsOMGeometryFigure, self), segmentDataCount);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentDataCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentDataCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_GetSegmentStrokePattern(self: *const T, segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).GetSegmentStrokePattern(@ptrCast(*const IXpsOMGeometryFigure, self), segmentStrokePattern);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokePattern(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentStrokePattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigure_Clone(self: *const T, geometryFigure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigure.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMGeometryFigure, self), geometryFigure);
+                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), geometryFigure);
             }
         };
     }
@@ -2324,27 +2324,27 @@ pub const IXpsOMGeometryFigureCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMGeometryFigureCollection, self), count);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_GetAt(self: *const T, index: u32, geometryFigure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMGeometryFigureCollection, self), index, geometryFigure);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_InsertAt(self: *const T, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMGeometryFigureCollection, self), index, geometryFigure);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMGeometryFigureCollection, self), index);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_SetAt(self: *const T, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMGeometryFigureCollection, self), index, geometryFigure);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGeometryFigureCollection_Append(self: *const T, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMGeometryFigureCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMGeometryFigureCollection, self), geometryFigure);
+                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), geometryFigure);
             }
         };
     }
@@ -2734,151 +2734,151 @@ pub const IXpsOMPath = extern struct {
             pub usingnamespace IXpsOMVisual.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetGeometry(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetGeometry(@ptrCast(*const IXpsOMPath, self), geometry);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometry(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetGeometryLocal(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetGeometryLocal(@ptrCast(*const IXpsOMPath, self), geometry);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetGeometryLocal(self: *const T, geometry: ?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetGeometryLocal(@ptrCast(*const IXpsOMPath, self), geometry);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetGeometryLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetGeometryLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetGeometryLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetGeometryLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetAccessibilityShortDescription(self: *const T, shortDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetAccessibilityShortDescription(@ptrCast(*const IXpsOMPath, self), shortDescription);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetAccessibilityShortDescription(self: *const T, shortDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetAccessibilityShortDescription(@ptrCast(*const IXpsOMPath, self), shortDescription);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetAccessibilityLongDescription(self: *const T, longDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetAccessibilityLongDescription(@ptrCast(*const IXpsOMPath, self), longDescription);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetAccessibilityLongDescription(self: *const T, longDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetAccessibilityLongDescription(@ptrCast(*const IXpsOMPath, self), longDescription);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetSnapsToPixels(self: *const T, snapsToPixels: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetSnapsToPixels(@ptrCast(*const IXpsOMPath, self), snapsToPixels);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetSnapsToPixels(self: *const T, snapsToPixels: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetSnapsToPixels(@ptrCast(*const IXpsOMPath, self), snapsToPixels);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeBrush(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeBrush(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeBrushLocal(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeBrushLocal(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeBrushLocal(self: *const T, brush: ?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeBrushLocal(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeBrushLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeBrushLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeBrushLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeBrushLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeDashes(self: *const T, strokeDashes: ?*?*IXpsOMDashCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeDashes(@ptrCast(*const IXpsOMPath, self), strokeDashes);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashes(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeDashCap(self: *const T, strokeDashCap: ?*XPS_DASH_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeDashCap(@ptrCast(*const IXpsOMPath, self), strokeDashCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeDashCap(self: *const T, strokeDashCap: XPS_DASH_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeDashCap(@ptrCast(*const IXpsOMPath, self), strokeDashCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeDashOffset(self: *const T, strokeDashOffset: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeDashOffset(@ptrCast(*const IXpsOMPath, self), strokeDashOffset);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeDashOffset(self: *const T, strokeDashOffset: f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeDashOffset(@ptrCast(*const IXpsOMPath, self), strokeDashOffset);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeStartLineCap(self: *const T, strokeStartLineCap: ?*XPS_LINE_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeStartLineCap(@ptrCast(*const IXpsOMPath, self), strokeStartLineCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeStartLineCap(self: *const T, strokeStartLineCap: XPS_LINE_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeStartLineCap(@ptrCast(*const IXpsOMPath, self), strokeStartLineCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeEndLineCap(self: *const T, strokeEndLineCap: ?*XPS_LINE_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeEndLineCap(@ptrCast(*const IXpsOMPath, self), strokeEndLineCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeEndLineCap(self: *const T, strokeEndLineCap: XPS_LINE_CAP) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeEndLineCap(@ptrCast(*const IXpsOMPath, self), strokeEndLineCap);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeLineJoin(self: *const T, strokeLineJoin: ?*XPS_LINE_JOIN) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeLineJoin(@ptrCast(*const IXpsOMPath, self), strokeLineJoin);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeLineJoin(self: *const T, strokeLineJoin: XPS_LINE_JOIN) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeLineJoin(@ptrCast(*const IXpsOMPath, self), strokeLineJoin);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeMiterLimit(self: *const T, strokeMiterLimit: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeMiterLimit(@ptrCast(*const IXpsOMPath, self), strokeMiterLimit);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeMiterLimit(self: *const T, strokeMiterLimit: f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeMiterLimit(@ptrCast(*const IXpsOMPath, self), strokeMiterLimit);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetStrokeThickness(self: *const T, strokeThickness: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetStrokeThickness(@ptrCast(*const IXpsOMPath, self), strokeThickness);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetStrokeThickness(self: *const T, strokeThickness: f32) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetStrokeThickness(@ptrCast(*const IXpsOMPath, self), strokeThickness);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetFillBrush(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetFillBrush(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetFillBrushLocal(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetFillBrushLocal(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetFillBrushLocal(self: *const T, brush: ?*IXpsOMBrush) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetFillBrushLocal(@ptrCast(*const IXpsOMPath, self), brush);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_GetFillBrushLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).GetFillBrushLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_SetFillBrushLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).SetFillBrushLookup(@ptrCast(*const IXpsOMPath, self), lookup);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPath_Clone(self: *const T, path: ?*?*IXpsOMPath) HRESULT {
-                return @ptrCast(*const IXpsOMPath.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMPath, self), path);
+                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPath, @ptrCast(self)), path);
             }
         };
     }
@@ -2918,11 +2918,11 @@ pub const IXpsOMBrush = extern struct {
             pub usingnamespace IXpsOMShareable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMBrush_GetOpacity(self: *const T, opacity: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMBrush.VTable, self.vtable).GetOpacity(@ptrCast(*const IXpsOMBrush, self), opacity);
+                return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMBrush_SetOpacity(self: *const T, opacity: f32) HRESULT {
-                return @ptrCast(*const IXpsOMBrush.VTable, self.vtable).SetOpacity(@ptrCast(*const IXpsOMBrush, self), opacity);
+                return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
             }
         };
     }
@@ -3008,27 +3008,27 @@ pub const IXpsOMGradientStopCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMGradientStopCollection, self), count);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_GetAt(self: *const T, index: u32, stop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMGradientStopCollection, self), index, stop);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_InsertAt(self: *const T, index: u32, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMGradientStopCollection, self), index, stop);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMGradientStopCollection, self), index);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_SetAt(self: *const T, index: u32, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMGradientStopCollection, self), index, stop);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStopCollection_Append(self: *const T, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStopCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMGradientStopCollection, self), stop);
+                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), stop);
             }
         };
     }
@@ -3082,15 +3082,15 @@ pub const IXpsOMSolidColorBrush = extern struct {
             pub usingnamespace IXpsOMBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSolidColorBrush_GetColor(self: *const T, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMSolidColorBrush.VTable, self.vtable).GetColor(@ptrCast(*const IXpsOMSolidColorBrush, self), color, colorProfile);
+                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSolidColorBrush_SetColor(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMSolidColorBrush.VTable, self.vtable).SetColor(@ptrCast(*const IXpsOMSolidColorBrush, self), color, colorProfile);
+                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSolidColorBrush_Clone(self: *const T, solidColorBrush: ?*?*IXpsOMSolidColorBrush) HRESULT {
-                return @ptrCast(*const IXpsOMSolidColorBrush.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMSolidColorBrush, self), solidColorBrush);
+                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), solidColorBrush);
             }
         };
     }
@@ -3220,47 +3220,47 @@ pub const IXpsOMTileBrush = extern struct {
             pub usingnamespace IXpsOMBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetTransform(@ptrCast(*const IXpsOMTileBrush, self), transform);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetTransformLocal(@ptrCast(*const IXpsOMTileBrush, self), transform);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).SetTransformLocal(@ptrCast(*const IXpsOMTileBrush, self), transform);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetTransformLookup(@ptrCast(*const IXpsOMTileBrush, self), key);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).SetTransformLookup(@ptrCast(*const IXpsOMTileBrush, self), key);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetViewbox(self: *const T, viewbox: ?*XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetViewbox(@ptrCast(*const IXpsOMTileBrush, self), viewbox);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_SetViewbox(self: *const T, viewbox: ?*const XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).SetViewbox(@ptrCast(*const IXpsOMTileBrush, self), viewbox);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetViewport(self: *const T, viewport: ?*XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetViewport(@ptrCast(*const IXpsOMTileBrush, self), viewport);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_SetViewport(self: *const T, viewport: ?*const XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).SetViewport(@ptrCast(*const IXpsOMTileBrush, self), viewport);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_GetTileMode(self: *const T, tileMode: ?*XPS_TILE_MODE) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).GetTileMode(@ptrCast(*const IXpsOMTileBrush, self), tileMode);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMTileBrush_SetTileMode(self: *const T, tileMode: XPS_TILE_MODE) HRESULT {
-                return @ptrCast(*const IXpsOMTileBrush.VTable, self.vtable).SetTileMode(@ptrCast(*const IXpsOMTileBrush, self), tileMode);
+                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
             }
         };
     }
@@ -3340,27 +3340,27 @@ pub const IXpsOMVisualBrush = extern struct {
             pub usingnamespace IXpsOMTileBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_GetVisual(self: *const T, visual: ?*?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).GetVisual(@ptrCast(*const IXpsOMVisualBrush, self), visual);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisual(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_GetVisualLocal(self: *const T, visual: ?*?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).GetVisualLocal(@ptrCast(*const IXpsOMVisualBrush, self), visual);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_SetVisualLocal(self: *const T, visual: ?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).SetVisualLocal(@ptrCast(*const IXpsOMVisualBrush, self), visual);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_GetVisualLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).GetVisualLookup(@ptrCast(*const IXpsOMVisualBrush, self), lookup);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_SetVisualLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).SetVisualLookup(@ptrCast(*const IXpsOMVisualBrush, self), lookup);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualBrush_Clone(self: *const T, visualBrush: ?*?*IXpsOMVisualBrush) HRESULT {
-                return @ptrCast(*const IXpsOMVisualBrush.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMVisualBrush, self), visualBrush);
+                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visualBrush);
             }
         };
     }
@@ -3430,23 +3430,23 @@ pub const IXpsOMImageBrush = extern struct {
             pub usingnamespace IXpsOMTileBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageBrush_GetImageResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageBrush.VTable, self.vtable).GetImageResource(@ptrCast(*const IXpsOMImageBrush, self), imageResource);
+                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageBrush_SetImageResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageBrush.VTable, self.vtable).SetImageResource(@ptrCast(*const IXpsOMImageBrush, self), imageResource);
+                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageBrush_GetColorProfileResource(self: *const T, colorProfileResource: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageBrush.VTable, self.vtable).GetColorProfileResource(@ptrCast(*const IXpsOMImageBrush, self), colorProfileResource);
+                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageBrush_SetColorProfileResource(self: *const T, colorProfileResource: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageBrush.VTable, self.vtable).SetColorProfileResource(@ptrCast(*const IXpsOMImageBrush, self), colorProfileResource);
+                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageBrush_Clone(self: *const T, imageBrush: ?*?*IXpsOMImageBrush) HRESULT {
-                return @ptrCast(*const IXpsOMImageBrush.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMImageBrush, self), imageBrush);
+                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageBrush);
             }
         };
     }
@@ -3530,27 +3530,27 @@ pub const IXpsOMGradientStop = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_GetOwner(self: *const T, owner: ?*?*IXpsOMGradientBrush) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMGradientStop, self), owner);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGradientStop, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_GetOffset(self: *const T, offset: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).GetOffset(@ptrCast(*const IXpsOMGradientStop, self), offset);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_SetOffset(self: *const T, offset: f32) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).SetOffset(@ptrCast(*const IXpsOMGradientStop, self), offset);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_GetColor(self: *const T, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).GetColor(@ptrCast(*const IXpsOMGradientStop, self), color, colorProfile);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_SetColor(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).SetColor(@ptrCast(*const IXpsOMGradientStop, self), color, colorProfile);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientStop_Clone(self: *const T, gradientStop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMGradientStop.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMGradientStop, self), gradientStop);
+                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGradientStop, @ptrCast(self)), gradientStop);
             }
         };
     }
@@ -3670,43 +3670,43 @@ pub const IXpsOMGradientBrush = extern struct {
             pub usingnamespace IXpsOMBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetGradientStops(self: *const T, gradientStops: ?*?*IXpsOMGradientStopCollection) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetGradientStops(@ptrCast(*const IXpsOMGradientBrush, self), gradientStops);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStops(@as(*const IXpsOMGradientBrush, @ptrCast(self)), gradientStops);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetTransform(@ptrCast(*const IXpsOMGradientBrush, self), transform);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetTransformLocal(@ptrCast(*const IXpsOMGradientBrush, self), transform);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).SetTransformLocal(@ptrCast(*const IXpsOMGradientBrush, self), transform);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetTransformLookup(@ptrCast(*const IXpsOMGradientBrush, self), key);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).SetTransformLookup(@ptrCast(*const IXpsOMGradientBrush, self), key);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetSpreadMethod(self: *const T, spreadMethod: ?*XPS_SPREAD_METHOD) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetSpreadMethod(@ptrCast(*const IXpsOMGradientBrush, self), spreadMethod);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_SetSpreadMethod(self: *const T, spreadMethod: XPS_SPREAD_METHOD) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).SetSpreadMethod(@ptrCast(*const IXpsOMGradientBrush, self), spreadMethod);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_GetColorInterpolationMode(self: *const T, colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).GetColorInterpolationMode(@ptrCast(*const IXpsOMGradientBrush, self), colorInterpolationMode);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMGradientBrush_SetColorInterpolationMode(self: *const T, colorInterpolationMode: XPS_COLOR_INTERPOLATION) HRESULT {
-                return @ptrCast(*const IXpsOMGradientBrush.VTable, self.vtable).SetColorInterpolationMode(@ptrCast(*const IXpsOMGradientBrush, self), colorInterpolationMode);
+                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
             }
         };
     }
@@ -3776,23 +3776,23 @@ pub const IXpsOMLinearGradientBrush = extern struct {
             pub usingnamespace IXpsOMGradientBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMLinearGradientBrush_GetStartPoint(self: *const T, startPoint: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMLinearGradientBrush.VTable, self.vtable).GetStartPoint(@ptrCast(*const IXpsOMLinearGradientBrush, self), startPoint);
+                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMLinearGradientBrush_SetStartPoint(self: *const T, startPoint: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMLinearGradientBrush.VTable, self.vtable).SetStartPoint(@ptrCast(*const IXpsOMLinearGradientBrush, self), startPoint);
+                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMLinearGradientBrush_GetEndPoint(self: *const T, endPoint: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMLinearGradientBrush.VTable, self.vtable).GetEndPoint(@ptrCast(*const IXpsOMLinearGradientBrush, self), endPoint);
+                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMLinearGradientBrush_SetEndPoint(self: *const T, endPoint: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMLinearGradientBrush.VTable, self.vtable).SetEndPoint(@ptrCast(*const IXpsOMLinearGradientBrush, self), endPoint);
+                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMLinearGradientBrush_Clone(self: *const T, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) HRESULT {
-                return @ptrCast(*const IXpsOMLinearGradientBrush.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMLinearGradientBrush, self), linearGradientBrush);
+                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), linearGradientBrush);
             }
         };
     }
@@ -3882,31 +3882,31 @@ pub const IXpsOMRadialGradientBrush = extern struct {
             pub usingnamespace IXpsOMGradientBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_GetCenter(self: *const T, center: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).GetCenter(@ptrCast(*const IXpsOMRadialGradientBrush, self), center);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_SetCenter(self: *const T, center: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).SetCenter(@ptrCast(*const IXpsOMRadialGradientBrush, self), center);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_GetRadiiSizes(self: *const T, radiiSizes: ?*XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).GetRadiiSizes(@ptrCast(*const IXpsOMRadialGradientBrush, self), radiiSizes);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_SetRadiiSizes(self: *const T, radiiSizes: ?*const XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).SetRadiiSizes(@ptrCast(*const IXpsOMRadialGradientBrush, self), radiiSizes);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_GetGradientOrigin(self: *const T, origin: ?*XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).GetGradientOrigin(@ptrCast(*const IXpsOMRadialGradientBrush, self), origin);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_SetGradientOrigin(self: *const T, origin: ?*const XPS_POINT) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).SetGradientOrigin(@ptrCast(*const IXpsOMRadialGradientBrush, self), origin);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRadialGradientBrush_Clone(self: *const T, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) HRESULT {
-                return @ptrCast(*const IXpsOMRadialGradientBrush.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMRadialGradientBrush, self), radialGradientBrush);
+                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radialGradientBrush);
             }
         };
     }
@@ -3982,19 +3982,19 @@ pub const IXpsOMPartResources = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartResources_GetFontResources(self: *const T, fontResources: ?*?*IXpsOMFontResourceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPartResources.VTable, self.vtable).GetFontResources(@ptrCast(*const IXpsOMPartResources, self), fontResources);
+                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetFontResources(@as(*const IXpsOMPartResources, @ptrCast(self)), fontResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartResources_GetImageResources(self: *const T, imageResources: ?*?*IXpsOMImageResourceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPartResources.VTable, self.vtable).GetImageResources(@ptrCast(*const IXpsOMPartResources, self), imageResources);
+                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetImageResources(@as(*const IXpsOMPartResources, @ptrCast(self)), imageResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartResources_GetColorProfileResources(self: *const T, colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPartResources.VTable, self.vtable).GetColorProfileResources(@ptrCast(*const IXpsOMPartResources, self), colorProfileResources);
+                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetColorProfileResources(@as(*const IXpsOMPartResources, @ptrCast(self)), colorProfileResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartResources_GetRemoteDictionaryResources(self: *const T, dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPartResources.VTable, self.vtable).GetRemoteDictionaryResources(@ptrCast(*const IXpsOMPartResources, self), dictionaryResources);
+                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetRemoteDictionaryResources(@as(*const IXpsOMPartResources, @ptrCast(self)), dictionaryResources);
             }
         };
     }
@@ -4134,43 +4134,43 @@ pub const IXpsOMDictionary = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_GetOwner(self: *const T, owner: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMDictionary, self), owner);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDictionary, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMDictionary, self), count);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDictionary, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_GetAt(self: *const T, index: u32, key: ?*?PWSTR, entry: ?*?*IXpsOMShareable) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMDictionary, self), index, key, entry);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_GetByKey(self: *const T, key: ?[*:0]const u16, beforeEntry: ?*IXpsOMShareable, entry: ?*?*IXpsOMShareable) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).GetByKey(@ptrCast(*const IXpsOMDictionary, self), key, beforeEntry, entry);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetByKey(@as(*const IXpsOMDictionary, @ptrCast(self)), key, beforeEntry, entry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_GetIndex(self: *const T, entry: ?*IXpsOMShareable, index: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).GetIndex(@ptrCast(*const IXpsOMDictionary, self), entry, index);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IXpsOMDictionary, @ptrCast(self)), entry, index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_Append(self: *const T, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).Append(@ptrCast(*const IXpsOMDictionary, self), key, entry);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDictionary, @ptrCast(self)), key, entry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_InsertAt(self: *const T, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMDictionary, self), index, key, entry);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMDictionary, self), index);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_SetAt(self: *const T, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMDictionary, self), index, key, entry);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDictionary_Clone(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMDictionary.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMDictionary, self), dictionary);
+                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDictionary, @ptrCast(self)), dictionary);
             }
         };
     }
@@ -4224,15 +4224,15 @@ pub const IXpsOMFontResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResource_GetStream(self: *const T, readerStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMFontResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMFontResource, self), readerStream);
+                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMFontResource, @ptrCast(self)), readerStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResource_SetContent(self: *const T, sourceStream: ?*IStream, embeddingOption: XPS_FONT_EMBEDDING, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMFontResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMFontResource, self), sourceStream, embeddingOption, partName);
+                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMFontResource, @ptrCast(self)), sourceStream, embeddingOption, partName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResource_GetEmbeddingOption(self: *const T, embeddingOption: ?*XPS_FONT_EMBEDDING) HRESULT {
-                return @ptrCast(*const IXpsOMFontResource.VTable, self.vtable).GetEmbeddingOption(@ptrCast(*const IXpsOMFontResource, self), embeddingOption);
+                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetEmbeddingOption(@as(*const IXpsOMFontResource, @ptrCast(self)), embeddingOption);
             }
         };
     }
@@ -4330,31 +4330,31 @@ pub const IXpsOMFontResourceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMFontResourceCollection, self), count);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_GetAt(self: *const T, index: u32, value: ?*?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMFontResourceCollection, self), index, value);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_SetAt(self: *const T, index: u32, value: ?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMFontResourceCollection, self), index, value);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_InsertAt(self: *const T, index: u32, value: ?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMFontResourceCollection, self), index, value);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_Append(self: *const T, value: ?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMFontResourceCollection, self), value);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMFontResourceCollection, self), index);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMFontResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMFontResourceCollection.VTable, self.vtable).GetByPartName(@ptrCast(*const IXpsOMFontResourceCollection, self), partName, part);
+                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), partName, part);
             }
         };
     }
@@ -4408,15 +4408,15 @@ pub const IXpsOMImageResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResource_GetStream(self: *const T, readerStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMImageResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMImageResource, self), readerStream);
+                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMImageResource, @ptrCast(self)), readerStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResource_SetContent(self: *const T, sourceStream: ?*IStream, imageType: XPS_IMAGE_TYPE, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMImageResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMImageResource, self), sourceStream, imageType, partName);
+                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMImageResource, @ptrCast(self)), sourceStream, imageType, partName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResource_GetImageType(self: *const T, imageType: ?*XPS_IMAGE_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMImageResource.VTable, self.vtable).GetImageType(@ptrCast(*const IXpsOMImageResource, self), imageType);
+                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetImageType(@as(*const IXpsOMImageResource, @ptrCast(self)), imageType);
             }
         };
     }
@@ -4514,31 +4514,31 @@ pub const IXpsOMImageResourceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMImageResourceCollection, self), count);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMImageResourceCollection, self), index, object);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMImageResourceCollection, self), index, object);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMImageResourceCollection, self), index);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMImageResourceCollection, self), index, object);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_Append(self: *const T, object: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMImageResourceCollection, self), object);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMImageResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMImageResourceCollection.VTable, self.vtable).GetByPartName(@ptrCast(*const IXpsOMImageResourceCollection, self), partName, part);
+                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), partName, part);
             }
         };
     }
@@ -4580,11 +4580,11 @@ pub const IXpsOMColorProfileResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMColorProfileResource, self), stream);
+                return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMColorProfileResource, self), sourceStream, partName);
+                return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), sourceStream, partName);
             }
         };
     }
@@ -4682,31 +4682,31 @@ pub const IXpsOMColorProfileResourceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), count);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), index, object);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), index, object);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), index);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), index, object);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_Append(self: *const T, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), object);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMColorProfileResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMColorProfileResourceCollection.VTable, self.vtable).GetByPartName(@ptrCast(*const IXpsOMColorProfileResourceCollection, self), partName, part);
+                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), partName, part);
             }
         };
     }
@@ -4748,11 +4748,11 @@ pub const IXpsOMPrintTicketResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPrintTicketResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMPrintTicketResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMPrintTicketResource, self), stream);
+                return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPrintTicketResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPrintTicketResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMPrintTicketResource, self), sourceStream, partName);
+                return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), sourceStream, partName);
             }
         };
     }
@@ -4792,11 +4792,11 @@ pub const IXpsOMRemoteDictionaryResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResource_GetDictionary(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResource.VTable, self.vtable).GetDictionary(@ptrCast(*const IXpsOMRemoteDictionaryResource, self), dictionary);
+                return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResource_SetDictionary(self: *const T, dictionary: ?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResource.VTable, self.vtable).SetDictionary(@ptrCast(*const IXpsOMRemoteDictionaryResource, self), dictionary);
+                return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).SetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
             }
         };
     }
@@ -4894,31 +4894,31 @@ pub const IXpsOMRemoteDictionaryResourceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), count);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), index, object);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), index, object);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), index);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), index, object);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_Append(self: *const T, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), object);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResourceCollection.VTable, self.vtable).GetByPartName(@ptrCast(*const IXpsOMRemoteDictionaryResourceCollection, self), partName, remoteDictionaryResource);
+                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), partName, remoteDictionaryResource);
             }
         };
     }
@@ -5016,31 +5016,31 @@ pub const IXpsOMSignatureBlockResourceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), count);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_GetAt(self: *const T, index: u32, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), index, signatureBlockResource);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_InsertAt(self: *const T, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), index, signatureBlockResource);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), index);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_SetAt(self: *const T, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), index, signatureBlockResource);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_Append(self: *const T, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), signatureBlockResource);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), signatureBlockResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResourceCollection.VTable, self.vtable).GetByPartName(@ptrCast(*const IXpsOMSignatureBlockResourceCollection, self), partName, signatureBlockResource);
+                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), partName, signatureBlockResource);
             }
         };
     }
@@ -5092,15 +5092,15 @@ pub const IXpsOMDocumentStructureResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentStructureResource_GetOwner(self: *const T, owner: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentStructureResource.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMDocumentStructureResource, self), owner);
+                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentStructureResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentStructureResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMDocumentStructureResource, self), stream);
+                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentStructureResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentStructureResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMDocumentStructureResource, self), sourceStream, partName);
+                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), sourceStream, partName);
             }
         };
     }
@@ -5152,15 +5152,15 @@ pub const IXpsOMStoryFragmentsResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMStoryFragmentsResource_GetOwner(self: *const T, owner: ?*?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMStoryFragmentsResource.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMStoryFragmentsResource, self), owner);
+                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMStoryFragmentsResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMStoryFragmentsResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMStoryFragmentsResource, self), stream);
+                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMStoryFragmentsResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMStoryFragmentsResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMStoryFragmentsResource, self), sourceStream, partName);
+                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), sourceStream, partName);
             }
         };
     }
@@ -5212,15 +5212,15 @@ pub const IXpsOMSignatureBlockResource = extern struct {
             pub usingnamespace IXpsOMResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResource_GetOwner(self: *const T, owner: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResource.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMSignatureBlockResource, self), owner);
+                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), owner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResource.VTable, self.vtable).GetStream(@ptrCast(*const IXpsOMSignatureBlockResource, self), stream);
+                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMSignatureBlockResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMSignatureBlockResource.VTable, self.vtable).SetContent(@ptrCast(*const IXpsOMSignatureBlockResource, self), sourceStream, partName);
+                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), sourceStream, partName);
             }
         };
     }
@@ -5306,27 +5306,27 @@ pub const IXpsOMVisualCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMVisualCollection, self), count);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMVisualCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMVisualCollection, self), index, object);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMVisualCollection, self), index, object);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMVisualCollection, self), index);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMVisualCollection, self), index, object);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMVisualCollection_Append(self: *const T, object: ?*IXpsOMVisual) HRESULT {
-                return @ptrCast(*const IXpsOMVisualCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMVisualCollection, self), object);
+                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMVisualCollection, @ptrCast(self)), object);
             }
         };
     }
@@ -5476,55 +5476,55 @@ pub const IXpsOMCanvas = extern struct {
             pub usingnamespace IXpsOMVisual.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetVisuals(self: *const T, visuals: ?*?*IXpsOMVisualCollection) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetVisuals(@ptrCast(*const IXpsOMCanvas, self), visuals);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMCanvas, @ptrCast(self)), visuals);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetUseAliasedEdgeMode(self: *const T, useAliasedEdgeMode: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetUseAliasedEdgeMode(@ptrCast(*const IXpsOMCanvas, self), useAliasedEdgeMode);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_SetUseAliasedEdgeMode(self: *const T, useAliasedEdgeMode: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).SetUseAliasedEdgeMode(@ptrCast(*const IXpsOMCanvas, self), useAliasedEdgeMode);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetAccessibilityShortDescription(self: *const T, shortDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetAccessibilityShortDescription(@ptrCast(*const IXpsOMCanvas, self), shortDescription);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_SetAccessibilityShortDescription(self: *const T, shortDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).SetAccessibilityShortDescription(@ptrCast(*const IXpsOMCanvas, self), shortDescription);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetAccessibilityLongDescription(self: *const T, longDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetAccessibilityLongDescription(@ptrCast(*const IXpsOMCanvas, self), longDescription);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_SetAccessibilityLongDescription(self: *const T, longDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).SetAccessibilityLongDescription(@ptrCast(*const IXpsOMCanvas, self), longDescription);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetDictionary(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetDictionary(@ptrCast(*const IXpsOMCanvas, self), resourceDictionary);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetDictionaryLocal(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetDictionaryLocal(@ptrCast(*const IXpsOMCanvas, self), resourceDictionary);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_SetDictionaryLocal(self: *const T, resourceDictionary: ?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).SetDictionaryLocal(@ptrCast(*const IXpsOMCanvas, self), resourceDictionary);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_GetDictionaryResource(self: *const T, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).GetDictionaryResource(@ptrCast(*const IXpsOMCanvas, self), remoteDictionaryResource);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_SetDictionaryResource(self: *const T, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).SetDictionaryResource(@ptrCast(*const IXpsOMCanvas, self), remoteDictionaryResource);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCanvas_Clone(self: *const T, canvas: ?*?*IXpsOMCanvas) HRESULT {
-                return @ptrCast(*const IXpsOMCanvas.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMCanvas, self), canvas);
+                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCanvas, @ptrCast(self)), canvas);
             }
         };
     }
@@ -5768,91 +5768,91 @@ pub const IXpsOMPage = extern struct {
             pub usingnamespace IXpsOMPart.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetOwner(self: *const T, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMPage, self), pageReference);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPage, @ptrCast(self)), pageReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetVisuals(self: *const T, visuals: ?*?*IXpsOMVisualCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetVisuals(@ptrCast(*const IXpsOMPage, self), visuals);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMPage, @ptrCast(self)), visuals);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetPageDimensions(self: *const T, pageDimensions: ?*XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetPageDimensions(@ptrCast(*const IXpsOMPage, self), pageDimensions);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetPageDimensions(self: *const T, pageDimensions: ?*const XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetPageDimensions(@ptrCast(*const IXpsOMPage, self), pageDimensions);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetContentBox(self: *const T, contentBox: ?*XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetContentBox(@ptrCast(*const IXpsOMPage, self), contentBox);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetContentBox(self: *const T, contentBox: ?*const XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetContentBox(@ptrCast(*const IXpsOMPage, self), contentBox);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetBleedBox(self: *const T, bleedBox: ?*XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetBleedBox(@ptrCast(*const IXpsOMPage, self), bleedBox);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetBleedBox(self: *const T, bleedBox: ?*const XPS_RECT) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetBleedBox(@ptrCast(*const IXpsOMPage, self), bleedBox);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetLanguage(@ptrCast(*const IXpsOMPage, self), language);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetLanguage(@ptrCast(*const IXpsOMPage, self), language);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetName(@ptrCast(*const IXpsOMPage, self), name);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetName(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetName(@ptrCast(*const IXpsOMPage, self), name);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetIsHyperlinkTarget(self: *const T, isHyperlinkTarget: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetIsHyperlinkTarget(@ptrCast(*const IXpsOMPage, self), isHyperlinkTarget);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetIsHyperlinkTarget(self: *const T, isHyperlinkTarget: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetIsHyperlinkTarget(@ptrCast(*const IXpsOMPage, self), isHyperlinkTarget);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetDictionary(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetDictionary(@ptrCast(*const IXpsOMPage, self), resourceDictionary);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetDictionaryLocal(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetDictionaryLocal(@ptrCast(*const IXpsOMPage, self), resourceDictionary);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetDictionaryLocal(self: *const T, resourceDictionary: ?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetDictionaryLocal(@ptrCast(*const IXpsOMPage, self), resourceDictionary);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GetDictionaryResource(self: *const T, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GetDictionaryResource(@ptrCast(*const IXpsOMPage, self), remoteDictionaryResource);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_SetDictionaryResource(self: *const T, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).SetDictionaryResource(@ptrCast(*const IXpsOMPage, self), remoteDictionaryResource);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_Write(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).Write(@ptrCast(*const IXpsOMPage, self), stream, optimizeMarkupSize);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Write(@as(*const IXpsOMPage, @ptrCast(self)), stream, optimizeMarkupSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_GenerateUnusedLookupKey(self: *const T, type_: XPS_OBJECT_TYPE, key: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).GenerateUnusedLookupKey(@ptrCast(*const IXpsOMPage, self), type_, key);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GenerateUnusedLookupKey(@as(*const IXpsOMPage, @ptrCast(self)), type_, key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage_Clone(self: *const T, page: ?*?*IXpsOMPage) HRESULT {
-                return @ptrCast(*const IXpsOMPage.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMPage, self), page);
+                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPage, @ptrCast(self)), page);
             }
         };
     }
@@ -6040,71 +6040,71 @@ pub const IXpsOMPageReference = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetOwner(self: *const T, document: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMPageReference, self), document);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPageReference, @ptrCast(self)), document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetPage(self: *const T, page: ?*?*IXpsOMPage) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetPage(@ptrCast(*const IXpsOMPageReference, self), page);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_SetPage(self: *const T, page: ?*IXpsOMPage) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).SetPage(@ptrCast(*const IXpsOMPageReference, self), page);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_DiscardPage(self: *const T) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).DiscardPage(@ptrCast(*const IXpsOMPageReference, self));
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).DiscardPage(@as(*const IXpsOMPageReference, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_IsPageLoaded(self: *const T, isPageLoaded: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).IsPageLoaded(@ptrCast(*const IXpsOMPageReference, self), isPageLoaded);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).IsPageLoaded(@as(*const IXpsOMPageReference, @ptrCast(self)), isPageLoaded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetAdvisoryPageDimensions(self: *const T, pageDimensions: ?*XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetAdvisoryPageDimensions(@ptrCast(*const IXpsOMPageReference, self), pageDimensions);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_SetAdvisoryPageDimensions(self: *const T, pageDimensions: ?*const XPS_SIZE) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).SetAdvisoryPageDimensions(@ptrCast(*const IXpsOMPageReference, self), pageDimensions);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetStoryFragmentsResource(self: *const T, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetStoryFragmentsResource(@ptrCast(*const IXpsOMPageReference, self), storyFragmentsResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_SetStoryFragmentsResource(self: *const T, storyFragmentsResource: ?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).SetStoryFragmentsResource(@ptrCast(*const IXpsOMPageReference, self), storyFragmentsResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetPrintTicketResource(@ptrCast(*const IXpsOMPageReference, self), printTicketResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).SetPrintTicketResource(@ptrCast(*const IXpsOMPageReference, self), printTicketResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_GetThumbnailResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).GetThumbnailResource(@ptrCast(*const IXpsOMPageReference, self), imageResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_SetThumbnailResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).SetThumbnailResource(@ptrCast(*const IXpsOMPageReference, self), imageResource);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_CollectLinkTargets(self: *const T, linkTargets: ?*?*IXpsOMNameCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).CollectLinkTargets(@ptrCast(*const IXpsOMPageReference, self), linkTargets);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectLinkTargets(@as(*const IXpsOMPageReference, @ptrCast(self)), linkTargets);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_CollectPartResources(self: *const T, partResources: ?*?*IXpsOMPartResources) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).CollectPartResources(@ptrCast(*const IXpsOMPageReference, self), partResources);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectPartResources(@as(*const IXpsOMPageReference, @ptrCast(self)), partResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_HasRestrictedFonts(self: *const T, restrictedFonts: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).HasRestrictedFonts(@ptrCast(*const IXpsOMPageReference, self), restrictedFonts);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).HasRestrictedFonts(@as(*const IXpsOMPageReference, @ptrCast(self)), restrictedFonts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReference_Clone(self: *const T, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPageReference.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMPageReference, self), pageReference);
+                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPageReference, @ptrCast(self)), pageReference);
             }
         };
     }
@@ -6190,27 +6190,27 @@ pub const IXpsOMPageReferenceCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMPageReferenceCollection, self), count);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_GetAt(self: *const T, index: u32, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMPageReferenceCollection, self), index, pageReference);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_InsertAt(self: *const T, index: u32, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMPageReferenceCollection, self), index, pageReference);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMPageReferenceCollection, self), index);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_SetAt(self: *const T, index: u32, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMPageReferenceCollection, self), index, pageReference);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPageReferenceCollection_Append(self: *const T, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMPageReferenceCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMPageReferenceCollection, self), pageReference);
+                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), pageReference);
             }
         };
     }
@@ -6310,35 +6310,35 @@ pub const IXpsOMDocument = extern struct {
             pub usingnamespace IXpsOMPart.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_GetOwner(self: *const T, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMDocument, self), documentSequence);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocument, @ptrCast(self)), documentSequence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_GetPageReferences(self: *const T, pageReferences: ?*?*IXpsOMPageReferenceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).GetPageReferences(@ptrCast(*const IXpsOMDocument, self), pageReferences);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPageReferences(@as(*const IXpsOMDocument, @ptrCast(self)), pageReferences);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).GetPrintTicketResource(@ptrCast(*const IXpsOMDocument, self), printTicketResource);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).SetPrintTicketResource(@ptrCast(*const IXpsOMDocument, self), printTicketResource);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_GetDocumentStructureResource(self: *const T, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).GetDocumentStructureResource(@ptrCast(*const IXpsOMDocument, self), documentStructureResource);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_SetDocumentStructureResource(self: *const T, documentStructureResource: ?*IXpsOMDocumentStructureResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).SetDocumentStructureResource(@ptrCast(*const IXpsOMDocument, self), documentStructureResource);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_GetSignatureBlockResources(self: *const T, signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).GetSignatureBlockResources(@ptrCast(*const IXpsOMDocument, self), signatureBlockResources);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetSignatureBlockResources(@as(*const IXpsOMDocument, @ptrCast(self)), signatureBlockResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocument_Clone(self: *const T, document: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocument.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMDocument, self), document);
+                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDocument, @ptrCast(self)), document);
             }
         };
     }
@@ -6424,27 +6424,27 @@ pub const IXpsOMDocumentCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMDocumentCollection, self), count);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_GetAt(self: *const T, index: u32, document: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMDocumentCollection, self), index, document);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_InsertAt(self: *const T, index: u32, document: ?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMDocumentCollection, self), index, document);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMDocumentCollection, self), index);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_SetAt(self: *const T, index: u32, document: ?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMDocumentCollection, self), index, document);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentCollection_Append(self: *const T, document: ?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMDocumentCollection, self), document);
+                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), document);
             }
         };
     }
@@ -6504,19 +6504,19 @@ pub const IXpsOMDocumentSequence = extern struct {
             pub usingnamespace IXpsOMPart.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentSequence_GetOwner(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentSequence.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMDocumentSequence, self), package);
+                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentSequence_GetDocuments(self: *const T, documents: ?*?*IXpsOMDocumentCollection) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentSequence.VTable, self.vtable).GetDocuments(@ptrCast(*const IXpsOMDocumentSequence, self), documents);
+                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetDocuments(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), documents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentSequence_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentSequence.VTable, self.vtable).GetPrintTicketResource(@ptrCast(*const IXpsOMDocumentSequence, self), printTicketResource);
+                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMDocumentSequence_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMDocumentSequence.VTable, self.vtable).SetPrintTicketResource(@ptrCast(*const IXpsOMDocumentSequence, self), printTicketResource);
+                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
             }
         };
     }
@@ -6876,139 +6876,139 @@ pub const IXpsOMCoreProperties = extern struct {
             pub usingnamespace IXpsOMPart.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetOwner(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetOwner(@ptrCast(*const IXpsOMCoreProperties, self), package);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMCoreProperties, @ptrCast(self)), package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetCategory(self: *const T, category: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetCategory(@ptrCast(*const IXpsOMCoreProperties, self), category);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetCategory(self: *const T, category: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetCategory(@ptrCast(*const IXpsOMCoreProperties, self), category);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetContentStatus(self: *const T, contentStatus: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetContentStatus(@ptrCast(*const IXpsOMCoreProperties, self), contentStatus);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetContentStatus(self: *const T, contentStatus: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetContentStatus(@ptrCast(*const IXpsOMCoreProperties, self), contentStatus);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetContentType(self: *const T, contentType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetContentType(@ptrCast(*const IXpsOMCoreProperties, self), contentType);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetContentType(self: *const T, contentType: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetContentType(@ptrCast(*const IXpsOMCoreProperties, self), contentType);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetCreated(self: *const T, created: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetCreated(@ptrCast(*const IXpsOMCoreProperties, self), created);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetCreated(self: *const T, created: ?*const SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetCreated(@ptrCast(*const IXpsOMCoreProperties, self), created);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetCreator(self: *const T, creator: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetCreator(@ptrCast(*const IXpsOMCoreProperties, self), creator);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetCreator(self: *const T, creator: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetCreator(@ptrCast(*const IXpsOMCoreProperties, self), creator);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetDescription(self: *const T, description: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetDescription(@ptrCast(*const IXpsOMCoreProperties, self), description);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetDescription(self: *const T, description: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetDescription(@ptrCast(*const IXpsOMCoreProperties, self), description);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetIdentifier(self: *const T, identifier: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetIdentifier(@ptrCast(*const IXpsOMCoreProperties, self), identifier);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetIdentifier(self: *const T, identifier: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetIdentifier(@ptrCast(*const IXpsOMCoreProperties, self), identifier);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetKeywords(self: *const T, keywords: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetKeywords(@ptrCast(*const IXpsOMCoreProperties, self), keywords);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetKeywords(self: *const T, keywords: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetKeywords(@ptrCast(*const IXpsOMCoreProperties, self), keywords);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetLanguage(@ptrCast(*const IXpsOMCoreProperties, self), language);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetLanguage(@ptrCast(*const IXpsOMCoreProperties, self), language);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetLastModifiedBy(self: *const T, lastModifiedBy: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetLastModifiedBy(@ptrCast(*const IXpsOMCoreProperties, self), lastModifiedBy);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetLastModifiedBy(self: *const T, lastModifiedBy: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetLastModifiedBy(@ptrCast(*const IXpsOMCoreProperties, self), lastModifiedBy);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetLastPrinted(self: *const T, lastPrinted: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetLastPrinted(@ptrCast(*const IXpsOMCoreProperties, self), lastPrinted);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetLastPrinted(self: *const T, lastPrinted: ?*const SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetLastPrinted(@ptrCast(*const IXpsOMCoreProperties, self), lastPrinted);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetModified(self: *const T, modified: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetModified(@ptrCast(*const IXpsOMCoreProperties, self), modified);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetModified(self: *const T, modified: ?*const SYSTEMTIME) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetModified(@ptrCast(*const IXpsOMCoreProperties, self), modified);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetRevision(self: *const T, revision: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetRevision(@ptrCast(*const IXpsOMCoreProperties, self), revision);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetRevision(self: *const T, revision: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetRevision(@ptrCast(*const IXpsOMCoreProperties, self), revision);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetSubject(self: *const T, subject: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetSubject(@ptrCast(*const IXpsOMCoreProperties, self), subject);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetSubject(self: *const T, subject: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetSubject(@ptrCast(*const IXpsOMCoreProperties, self), subject);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetTitle(self: *const T, title: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetTitle(@ptrCast(*const IXpsOMCoreProperties, self), title);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetTitle(self: *const T, title: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetTitle(@ptrCast(*const IXpsOMCoreProperties, self), title);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_GetVersion(self: *const T, version: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).GetVersion(@ptrCast(*const IXpsOMCoreProperties, self), version);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_SetVersion(self: *const T, version: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).SetVersion(@ptrCast(*const IXpsOMCoreProperties, self), version);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMCoreProperties_Clone(self: *const T, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @ptrCast(*const IXpsOMCoreProperties.VTable, self.vtable).Clone(@ptrCast(*const IXpsOMCoreProperties, self), coreProperties);
+                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCoreProperties, @ptrCast(self)), coreProperties);
             }
         };
     }
@@ -7136,43 +7136,43 @@ pub const IXpsOMPackage = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_GetDocumentSequence(self: *const T, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).GetDocumentSequence(@ptrCast(*const IXpsOMPackage, self), documentSequence);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_SetDocumentSequence(self: *const T, documentSequence: ?*IXpsOMDocumentSequence) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).SetDocumentSequence(@ptrCast(*const IXpsOMPackage, self), documentSequence);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_GetCoreProperties(self: *const T, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).GetCoreProperties(@ptrCast(*const IXpsOMPackage, self), coreProperties);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_SetCoreProperties(self: *const T, coreProperties: ?*IXpsOMCoreProperties) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).SetCoreProperties(@ptrCast(*const IXpsOMPackage, self), coreProperties);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_GetDiscardControlPartName(self: *const T, discardControlPartUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).GetDiscardControlPartName(@ptrCast(*const IXpsOMPackage, self), discardControlPartUri);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_SetDiscardControlPartName(self: *const T, discardControlPartUri: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).SetDiscardControlPartName(@ptrCast(*const IXpsOMPackage, self), discardControlPartUri);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_GetThumbnailResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).GetThumbnailResource(@ptrCast(*const IXpsOMPackage, self), imageResource);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_SetThumbnailResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).SetThumbnailResource(@ptrCast(*const IXpsOMPackage, self), imageResource);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_WriteToFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).WriteToFile(@ptrCast(*const IXpsOMPackage, self), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToFile(@as(*const IXpsOMPackage, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage_WriteToStream(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPackage.VTable, self.vtable).WriteToStream(@ptrCast(*const IXpsOMPackage, self), stream, optimizeMarkupSize);
+                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToStream(@as(*const IXpsOMPackage, @ptrCast(self)), stream, optimizeMarkupSize);
             }
         };
     }
@@ -7720,151 +7720,151 @@ pub const IXpsOMObjectFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePackage(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePackage(@ptrCast(*const IXpsOMObjectFactory, self), package);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePackageFromFile(self: *const T, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePackageFromFile(@ptrCast(*const IXpsOMObjectFactory, self), filename, reuseObjects, package);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, reuseObjects, package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePackageFromStream(self: *const T, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePackageFromStream(@ptrCast(*const IXpsOMObjectFactory, self), stream, reuseObjects, package);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), stream, reuseObjects, package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateStoryFragmentsResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateStoryFragmentsResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, partUri, storyFragmentsResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateStoryFragmentsResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, storyFragmentsResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateDocumentStructureResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateDocumentStructureResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, partUri, documentStructureResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentStructureResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, documentStructureResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateSignatureBlockResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateSignatureBlockResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, partUri, signatureBlockResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSignatureBlockResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, signatureBlockResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateRemoteDictionaryResource(self: *const T, dictionary: ?*IXpsOMDictionary, partUri: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateRemoteDictionaryResource(@ptrCast(*const IXpsOMObjectFactory, self), dictionary, partUri, remoteDictionaryResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary, partUri, remoteDictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateRemoteDictionaryResourceFromStream(self: *const T, dictionaryMarkupStream: ?*IStream, dictionaryPartUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateRemoteDictionaryResourceFromStream(@ptrCast(*const IXpsOMObjectFactory, self), dictionaryMarkupStream, dictionaryPartUri, resources, dictionaryResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionaryMarkupStream, dictionaryPartUri, resources, dictionaryResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePartResources(self: *const T, partResources: ?*?*IXpsOMPartResources) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePartResources(@ptrCast(*const IXpsOMObjectFactory, self), partResources);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartResources(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateDocumentSequence(self: *const T, partUri: ?*IOpcPartUri, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateDocumentSequence(@ptrCast(*const IXpsOMObjectFactory, self), partUri, documentSequence);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentSequence(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, documentSequence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateDocument(self: *const T, partUri: ?*IOpcPartUri, document: ?*?*IXpsOMDocument) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateDocument(@ptrCast(*const IXpsOMObjectFactory, self), partUri, document);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocument(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePageReference(self: *const T, advisoryPageDimensions: ?*const XPS_SIZE, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePageReference(@ptrCast(*const IXpsOMObjectFactory, self), advisoryPageDimensions, pageReference);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageReference(@as(*const IXpsOMObjectFactory, @ptrCast(self)), advisoryPageDimensions, pageReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePage(self: *const T, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePage(@ptrCast(*const IXpsOMObjectFactory, self), pageDimensions, language, partUri, page);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageDimensions, language, partUri, page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePageFromStream(self: *const T, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePageFromStream(@ptrCast(*const IXpsOMObjectFactory, self), pageMarkupStream, partUri, resources, reuseObjects, page);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateCanvas(self: *const T, canvas: ?*?*IXpsOMCanvas) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateCanvas(@ptrCast(*const IXpsOMObjectFactory, self), canvas);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCanvas(@as(*const IXpsOMObjectFactory, @ptrCast(self)), canvas);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateGlyphs(self: *const T, fontResource: ?*IXpsOMFontResource, glyphs: ?*?*IXpsOMGlyphs) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateGlyphs(@ptrCast(*const IXpsOMObjectFactory, self), fontResource, glyphs);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGlyphs(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fontResource, glyphs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePath(self: *const T, path: ?*?*IXpsOMPath) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePath(@ptrCast(*const IXpsOMObjectFactory, self), path);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePath(@as(*const IXpsOMObjectFactory, @ptrCast(self)), path);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateGeometry(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateGeometry(@ptrCast(*const IXpsOMObjectFactory, self), geometry);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometry(@as(*const IXpsOMObjectFactory, @ptrCast(self)), geometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateGeometryFigure(self: *const T, startPoint: ?*const XPS_POINT, figure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateGeometryFigure(@ptrCast(*const IXpsOMObjectFactory, self), startPoint, figure);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometryFigure(@as(*const IXpsOMObjectFactory, @ptrCast(self)), startPoint, figure);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateMatrixTransform(self: *const T, matrix: ?*const XPS_MATRIX, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateMatrixTransform(@ptrCast(*const IXpsOMObjectFactory, self), matrix, transform);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IXpsOMObjectFactory, @ptrCast(self)), matrix, transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateSolidColorBrush(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, solidColorBrush: ?*?*IXpsOMSolidColorBrush) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateSolidColorBrush(@ptrCast(*const IXpsOMObjectFactory, self), color, colorProfile, solidColorBrush);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSolidColorBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, solidColorBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateColorProfileResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, colorProfileResource: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateColorProfileResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, partUri, colorProfileResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateColorProfileResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, colorProfileResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateImageBrush(self: *const T, image: ?*IXpsOMImageResource, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, imageBrush: ?*?*IXpsOMImageBrush) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateImageBrush(@ptrCast(*const IXpsOMObjectFactory, self), image, viewBox, viewPort, imageBrush);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), image, viewBox, viewPort, imageBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateVisualBrush(self: *const T, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, visualBrush: ?*?*IXpsOMVisualBrush) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateVisualBrush(@ptrCast(*const IXpsOMObjectFactory, self), viewBox, viewPort, visualBrush);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateVisualBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), viewBox, viewPort, visualBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateImageResource(self: *const T, acquiredStream: ?*IStream, contentType: XPS_IMAGE_TYPE, partUri: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateImageResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, contentType, partUri, imageResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, contentType, partUri, imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePrintTicketResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePrintTicketResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, partUri, printTicketResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePrintTicketResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, printTicketResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateFontResource(self: *const T, acquiredStream: ?*IStream, fontEmbedding: XPS_FONT_EMBEDDING, partUri: ?*IOpcPartUri, isObfSourceStream: BOOL, fontResource: ?*?*IXpsOMFontResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateFontResource(@ptrCast(*const IXpsOMObjectFactory, self), acquiredStream, fontEmbedding, partUri, isObfSourceStream, fontResource);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, fontEmbedding, partUri, isObfSourceStream, fontResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateGradientStop(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, offset: f32, gradientStop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateGradientStop(@ptrCast(*const IXpsOMObjectFactory, self), color, colorProfile, offset, gradientStop);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGradientStop(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, offset, gradientStop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateLinearGradientBrush(self: *const T, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, startPoint: ?*const XPS_POINT, endPoint: ?*const XPS_POINT, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateLinearGradientBrush(@ptrCast(*const IXpsOMObjectFactory, self), gradStop1, gradStop2, startPoint, endPoint, linearGradientBrush);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateLinearGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, startPoint, endPoint, linearGradientBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateRadialGradientBrush(self: *const T, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, centerPoint: ?*const XPS_POINT, gradientOrigin: ?*const XPS_POINT, radiiSizes: ?*const XPS_SIZE, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateRadialGradientBrush(@ptrCast(*const IXpsOMObjectFactory, self), gradStop1, gradStop2, centerPoint, gradientOrigin, radiiSizes, radialGradientBrush);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRadialGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, centerPoint, gradientOrigin, radiiSizes, radialGradientBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateCoreProperties(self: *const T, partUri: ?*IOpcPartUri, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateCoreProperties(@ptrCast(*const IXpsOMObjectFactory, self), partUri, coreProperties);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCoreProperties(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, coreProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateDictionary(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateDictionary(@ptrCast(*const IXpsOMObjectFactory, self), dictionary);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDictionary(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePartUriCollection(self: *const T, partUriCollection: ?*?*IXpsOMPartUriCollection) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePartUriCollection(@ptrCast(*const IXpsOMObjectFactory, self), partUriCollection);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUriCollection(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUriCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePackageWriterOnFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePackageWriterOnFile(@ptrCast(*const IXpsOMObjectFactory, self), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePackageWriterOnStream(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePackageWriterOnStream(@ptrCast(*const IXpsOMObjectFactory, self), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreatePartUri(self: *const T, uri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreatePartUri(@ptrCast(*const IXpsOMObjectFactory, self), uri, partUri);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUri(@as(*const IXpsOMObjectFactory, @ptrCast(self)), uri, partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory_CreateReadOnlyStreamOnFile(self: *const T, filename: ?[*:0]const u16, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory.VTable, self.vtable).CreateReadOnlyStreamOnFile(@ptrCast(*const IXpsOMObjectFactory, self), filename, stream);
+                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateReadOnlyStreamOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, stream);
             }
         };
     }
@@ -7906,11 +7906,11 @@ pub const IXpsOMNameCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMNameCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMNameCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMNameCollection, self), count);
+                return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMNameCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMNameCollection_GetAt(self: *const T, index: u32, name: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsOMNameCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMNameCollection, self), index, name);
+                return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMNameCollection, @ptrCast(self)), index, name);
             }
         };
     }
@@ -7996,27 +7996,27 @@ pub const IXpsOMPartUriCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsOMPartUriCollection, self), count);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_GetAt(self: *const T, index: u32, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsOMPartUriCollection, self), index, partUri);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_InsertAt(self: *const T, index: u32, partUri: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).InsertAt(@ptrCast(*const IXpsOMPartUriCollection, self), index, partUri);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsOMPartUriCollection, self), index);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_SetAt(self: *const T, index: u32, partUri: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).SetAt(@ptrCast(*const IXpsOMPartUriCollection, self), index, partUri);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPartUriCollection_Append(self: *const T, partUri: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsOMPartUriCollection.VTable, self.vtable).Append(@ptrCast(*const IXpsOMPartUriCollection, self), partUri);
+                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), partUri);
             }
         };
     }
@@ -8102,23 +8102,23 @@ pub const IXpsOMPackageWriter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter_StartNewDocument(self: *const T, documentPartName: ?*IOpcPartUri, documentPrintTicket: ?*IXpsOMPrintTicketResource, documentStructure: ?*IXpsOMDocumentStructureResource, signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection, restrictedFonts: ?*IXpsOMPartUriCollection) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter.VTable, self.vtable).StartNewDocument(@ptrCast(*const IXpsOMPackageWriter, self), documentPartName, documentPrintTicket, documentStructure, signatureBlockResources, restrictedFonts);
+                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).StartNewDocument(@as(*const IXpsOMPackageWriter, @ptrCast(self)), documentPartName, documentPrintTicket, documentStructure, signatureBlockResources, restrictedFonts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter_AddPage(self: *const T, page: ?*IXpsOMPage, advisoryPageDimensions: ?*const XPS_SIZE, discardableResourceParts: ?*IXpsOMPartUriCollection, storyFragments: ?*IXpsOMStoryFragmentsResource, pagePrintTicket: ?*IXpsOMPrintTicketResource, pageThumbnail: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter.VTable, self.vtable).AddPage(@ptrCast(*const IXpsOMPackageWriter, self), page, advisoryPageDimensions, discardableResourceParts, storyFragments, pagePrintTicket, pageThumbnail);
+                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddPage(@as(*const IXpsOMPackageWriter, @ptrCast(self)), page, advisoryPageDimensions, discardableResourceParts, storyFragments, pagePrintTicket, pageThumbnail);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter_AddResource(self: *const T, resource: ?*IXpsOMResource) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter.VTable, self.vtable).AddResource(@ptrCast(*const IXpsOMPackageWriter, self), resource);
+                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddResource(@as(*const IXpsOMPackageWriter, @ptrCast(self)), resource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter.VTable, self.vtable).Close(@ptrCast(*const IXpsOMPackageWriter, self));
+                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsOMPackageWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter_IsClosed(self: *const T, isClosed: ?*BOOL) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter.VTable, self.vtable).IsClosed(@ptrCast(*const IXpsOMPackageWriter, self), isClosed);
+                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).IsClosed(@as(*const IXpsOMPackageWriter, @ptrCast(self)), isClosed);
             }
         };
     }
@@ -8154,7 +8154,7 @@ pub const IXpsOMPackageTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageTarget_CreateXpsOMPackageWriter(self: *const T, documentSequencePartName: ?*IOpcPartUri, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsOMPackageTarget.VTable, self.vtable).CreateXpsOMPackageWriter(@ptrCast(*const IXpsOMPackageTarget, self), documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
+                return @as(*const IXpsOMPackageTarget.VTable, @ptrCast(self.vtable)).CreateXpsOMPackageWriter(@as(*const IXpsOMPackageTarget, @ptrCast(self)), documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
             }
         };
     }
@@ -8192,7 +8192,7 @@ pub const IXpsOMThumbnailGenerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMThumbnailGenerator_GenerateThumbnail(self: *const T, page: ?*IXpsOMPage, thumbnailType: XPS_IMAGE_TYPE, thumbnailSize: XPS_THUMBNAIL_SIZE, imageResourcePartName: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMThumbnailGenerator.VTable, self.vtable).GenerateThumbnail(@ptrCast(*const IXpsOMThumbnailGenerator, self), page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
+                return @as(*const IXpsOMThumbnailGenerator.VTable, @ptrCast(self.vtable)).GenerateThumbnail(@as(*const IXpsOMThumbnailGenerator, @ptrCast(self)), page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
             }
         };
     }
@@ -8413,51 +8413,51 @@ pub const IXpsOMObjectFactory1 = extern struct {
             pub usingnamespace IXpsOMObjectFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_GetDocumentTypeFromFile(self: *const T, filename: ?[*:0]const u16, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).GetDocumentTypeFromFile(@ptrCast(*const IXpsOMObjectFactory1, self), filename, documentType);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromFile(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_GetDocumentTypeFromStream(self: *const T, xpsDocumentStream: ?*IStream, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).GetDocumentTypeFromStream(@ptrCast(*const IXpsOMObjectFactory1, self), xpsDocumentStream, documentType);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromStream(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), xpsDocumentStream, documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_ConvertHDPhotoToJpegXR(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).ConvertHDPhotoToJpegXR(@ptrCast(*const IXpsOMObjectFactory1, self), imageResource);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertHDPhotoToJpegXR(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_ConvertJpegXRToHDPhoto(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).ConvertJpegXRToHDPhoto(@ptrCast(*const IXpsOMObjectFactory1, self), imageResource);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertJpegXRToHDPhoto(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePackageWriterOnFile1(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePackageWriterOnFile1(@ptrCast(*const IXpsOMObjectFactory1, self), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePackageWriterOnStream1(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePackageWriterOnStream1(@ptrCast(*const IXpsOMObjectFactory1, self), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePackage1(self: *const T, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePackage1(@ptrCast(*const IXpsOMObjectFactory1, self), package);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePackageFromStream1(self: *const T, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePackageFromStream1(@ptrCast(*const IXpsOMObjectFactory1, self), stream, reuseObjects, package);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), stream, reuseObjects, package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePackageFromFile1(self: *const T, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePackageFromFile1(@ptrCast(*const IXpsOMObjectFactory1, self), filename, reuseObjects, package);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, reuseObjects, package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePage1(self: *const T, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage1) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePage1(@ptrCast(*const IXpsOMObjectFactory1, self), pageDimensions, language, partUri, page);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageDimensions, language, partUri, page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreatePageFromStream1(self: *const T, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage1) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreatePageFromStream1(@ptrCast(*const IXpsOMObjectFactory1, self), pageMarkupStream, partUri, resources, reuseObjects, page);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMObjectFactory1_CreateRemoteDictionaryResourceFromStream1(self: *const T, dictionaryMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @ptrCast(*const IXpsOMObjectFactory1.VTable, self.vtable).CreateRemoteDictionaryResourceFromStream1(@ptrCast(*const IXpsOMObjectFactory1, self), dictionaryMarkupStream, partUri, resources, dictionaryResource);
+                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), dictionaryMarkupStream, partUri, resources, dictionaryResource);
             }
         };
     }
@@ -8519,15 +8519,15 @@ pub const IXpsOMPackage1 = extern struct {
             pub usingnamespace IXpsOMPackage.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMPackage1.VTable, self.vtable).GetDocumentType(@ptrCast(*const IXpsOMPackage1, self), documentType);
+                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPackage1, @ptrCast(self)), documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage1_WriteToFile1(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMPackage1.VTable, self.vtable).WriteToFile1(@ptrCast(*const IXpsOMPackage1, self), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, documentType);
+                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToFile1(@as(*const IXpsOMPackage1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackage1_WriteToStream1(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMPackage1.VTable, self.vtable).WriteToStream1(@ptrCast(*const IXpsOMPackage1, self), outputStream, optimizeMarkupSize, documentType);
+                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToStream1(@as(*const IXpsOMPackage1, @ptrCast(self)), outputStream, optimizeMarkupSize, documentType);
             }
         };
     }
@@ -8571,11 +8571,11 @@ pub const IXpsOMPage1 = extern struct {
             pub usingnamespace IXpsOMPage.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMPage1.VTable, self.vtable).GetDocumentType(@ptrCast(*const IXpsOMPage1, self), documentType);
+                return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPage1, @ptrCast(self)), documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPage1_Write1(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMPage1.VTable, self.vtable).Write1(@ptrCast(*const IXpsOMPage1, self), stream, optimizeMarkupSize, documentType);
+                return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMPage1, @ptrCast(self)), stream, optimizeMarkupSize, documentType);
             }
         };
     }
@@ -8629,15 +8629,15 @@ pub const IXpsDocumentPackageTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsDocumentPackageTarget_GetXpsOMPackageWriter(self: *const T, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @ptrCast(*const IXpsDocumentPackageTarget.VTable, self.vtable).GetXpsOMPackageWriter(@ptrCast(*const IXpsDocumentPackageTarget, self), documentSequencePartName, discardControlPartName, packageWriter);
+                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentSequencePartName, discardControlPartName, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsDocumentPackageTarget_GetXpsOMFactory(self: *const T, xpsFactory: ?*?*IXpsOMObjectFactory) HRESULT {
-                return @ptrCast(*const IXpsDocumentPackageTarget.VTable, self.vtable).GetXpsOMFactory(@ptrCast(*const IXpsDocumentPackageTarget, self), xpsFactory);
+                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), xpsFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsDocumentPackageTarget_GetXpsType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsDocumentPackageTarget.VTable, self.vtable).GetXpsType(@ptrCast(*const IXpsDocumentPackageTarget, self), documentType);
+                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsType(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentType);
             }
         };
     }
@@ -8679,11 +8679,11 @@ pub const IXpsOMRemoteDictionaryResource1 = extern struct {
             pub usingnamespace IXpsOMRemoteDictionaryResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResource1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResource1.VTable, self.vtable).GetDocumentType(@ptrCast(*const IXpsOMRemoteDictionaryResource1, self), documentType);
+                return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), documentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMRemoteDictionaryResource1_Write1(self: *const T, stream: ?*ISequentialStream, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @ptrCast(*const IXpsOMRemoteDictionaryResource1.VTable, self.vtable).Write1(@ptrCast(*const IXpsOMRemoteDictionaryResource1, self), stream, documentType);
+                return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), stream, documentType);
             }
         };
     }
@@ -8727,11 +8727,11 @@ pub const IXpsOMPackageWriter3D = extern struct {
             pub usingnamespace IXpsOMPackageWriter.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter3D_AddModelTexture(self: *const T, texturePartName: ?*IOpcPartUri, textureData: ?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter3D.VTable, self.vtable).AddModelTexture(@ptrCast(*const IXpsOMPackageWriter3D, self), texturePartName, textureData);
+                return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).AddModelTexture(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), texturePartName, textureData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsOMPackageWriter3D_SetModelPrintTicket(self: *const T, printTicketPartName: ?*IOpcPartUri, printTicketData: ?*IStream) HRESULT {
-                return @ptrCast(*const IXpsOMPackageWriter3D.VTable, self.vtable).SetModelPrintTicket(@ptrCast(*const IXpsOMPackageWriter3D, self), printTicketPartName, printTicketData);
+                return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).SetModelPrintTicket(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), printTicketPartName, printTicketData);
             }
         };
     }
@@ -8779,11 +8779,11 @@ pub const IXpsDocumentPackageTarget3D = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsDocumentPackageTarget3D_GetXpsOMPackageWriter3D(self: *const T, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, modelPartName: ?*IOpcPartUri, modelData: ?*IStream, packageWriter: ?*?*IXpsOMPackageWriter3D) HRESULT {
-                return @ptrCast(*const IXpsDocumentPackageTarget3D.VTable, self.vtable).GetXpsOMPackageWriter3D(@ptrCast(*const IXpsDocumentPackageTarget3D, self), documentSequencePartName, discardControlPartName, modelPartName, modelData, packageWriter);
+                return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter3D(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), documentSequencePartName, discardControlPartName, modelPartName, modelData, packageWriter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsDocumentPackageTarget3D_GetXpsOMFactory(self: *const T, xpsFactory: ?*?*IXpsOMObjectFactory) HRESULT {
-                return @ptrCast(*const IXpsDocumentPackageTarget3D.VTable, self.vtable).GetXpsOMFactory(@ptrCast(*const IXpsDocumentPackageTarget3D, self), xpsFactory);
+                return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), xpsFactory);
             }
         };
     }
@@ -9011,71 +9011,71 @@ pub const IXpsSigningOptions = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetSignatureId(self: *const T, signatureId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetSignatureId(@ptrCast(*const IXpsSigningOptions, self), signatureId);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetSignatureId(self: *const T, signatureId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetSignatureId(@ptrCast(*const IXpsSigningOptions, self), signatureId);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetSignatureMethod(self: *const T, signatureMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetSignatureMethod(@ptrCast(*const IXpsSigningOptions, self), signatureMethod);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetSignatureMethod(self: *const T, signatureMethod: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetSignatureMethod(@ptrCast(*const IXpsSigningOptions, self), signatureMethod);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetDigestMethod(@ptrCast(*const IXpsSigningOptions, self), digestMethod);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetDigestMethod(self: *const T, digestMethod: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetDigestMethod(@ptrCast(*const IXpsSigningOptions, self), digestMethod);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetSignaturePartName(@ptrCast(*const IXpsSigningOptions, self), signaturePartName);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetSignaturePartName(self: *const T, signaturePartName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetSignaturePartName(@ptrCast(*const IXpsSigningOptions, self), signaturePartName);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetPolicy(self: *const T, policy: ?*XPS_SIGN_POLICY) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetPolicy(@ptrCast(*const IXpsSigningOptions, self), policy);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetPolicy(self: *const T, policy: XPS_SIGN_POLICY) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetPolicy(@ptrCast(*const IXpsSigningOptions, self), policy);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetSigningTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetSigningTimeFormat(@ptrCast(*const IXpsSigningOptions, self), timeFormat);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetSigningTimeFormat(self: *const T, timeFormat: OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetSigningTimeFormat(@ptrCast(*const IXpsSigningOptions, self), timeFormat);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetCustomObjects(self: *const T, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetCustomObjects(@ptrCast(*const IXpsSigningOptions, self), customObjectSet);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomObjects(@as(*const IXpsSigningOptions, @ptrCast(self)), customObjectSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetCustomReferences(self: *const T, customReferenceSet: ?*?*IOpcSignatureReferenceSet) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetCustomReferences(@ptrCast(*const IXpsSigningOptions, self), customReferenceSet);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomReferences(@as(*const IXpsSigningOptions, @ptrCast(self)), customReferenceSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetCertificateSet(self: *const T, certificateSet: ?*?*IOpcCertificateSet) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetCertificateSet(@ptrCast(*const IXpsSigningOptions, self), certificateSet);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateSet(@as(*const IXpsSigningOptions, @ptrCast(self)), certificateSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_GetFlags(self: *const T, flags: ?*XPS_SIGN_FLAGS) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).GetFlags(@ptrCast(*const IXpsSigningOptions, self), flags);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSigningOptions_SetFlags(self: *const T, flags: XPS_SIGN_FLAGS) HRESULT {
-                return @ptrCast(*const IXpsSigningOptions.VTable, self.vtable).SetFlags(@ptrCast(*const IXpsSigningOptions, self), flags);
+                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
             }
         };
     }
@@ -9127,15 +9127,15 @@ pub const IXpsSignatureCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsSignatureCollection, self), count);
+                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureCollection_GetAt(self: *const T, index: u32, signature: ?*?*IXpsSignature) HRESULT {
-                return @ptrCast(*const IXpsSignatureCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsSignatureCollection, self), index, signature);
+                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index, signature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsSignatureCollection, self), index);
+                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index);
             }
         };
     }
@@ -9283,51 +9283,51 @@ pub const IXpsSignature = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSignatureId(self: *const T, sigId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSignatureId(@ptrCast(*const IXpsSignature, self), sigId);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSignature, @ptrCast(self)), sigId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSignatureValue(self: *const T, signatureHashValue: [*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSignatureValue(@ptrCast(*const IXpsSignature, self), signatureHashValue, count);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IXpsSignature, @ptrCast(self)), signatureHashValue, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetCertificateEnumerator(self: *const T, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetCertificateEnumerator(@ptrCast(*const IXpsSignature, self), certificateEnumerator);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCertificateEnumerator(@as(*const IXpsSignature, @ptrCast(self)), certificateEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSigningTime(self: *const T, sigDateTimeString: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSigningTime(@ptrCast(*const IXpsSignature, self), sigDateTimeString);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTime(@as(*const IXpsSignature, @ptrCast(self)), sigDateTimeString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSigningTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSigningTimeFormat(@ptrCast(*const IXpsSignature, self), timeFormat);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSignature, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSignaturePartName(@ptrCast(*const IXpsSignature, self), signaturePartName);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSignature, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_Verify(self: *const T, x509Certificate: ?*const CERT_CONTEXT, sigStatus: ?*XPS_SIGNATURE_STATUS) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).Verify(@ptrCast(*const IXpsSignature, self), x509Certificate, sigStatus);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).Verify(@as(*const IXpsSignature, @ptrCast(self)), x509Certificate, sigStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetPolicy(self: *const T, policy: ?*XPS_SIGN_POLICY) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetPolicy(@ptrCast(*const IXpsSignature, self), policy);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSignature, @ptrCast(self)), policy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetCustomObjectEnumerator(self: *const T, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetCustomObjectEnumerator(@ptrCast(*const IXpsSignature, self), customObjectEnumerator);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomObjectEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customObjectEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetCustomReferenceEnumerator(self: *const T, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetCustomReferenceEnumerator(@ptrCast(*const IXpsSignature, self), customReferenceEnumerator);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomReferenceEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customReferenceEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_GetSignatureXml(self: *const T, signatureXml: [*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).GetSignatureXml(@ptrCast(*const IXpsSignature, self), signatureXml, count);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignature_SetSignatureXml(self: *const T, signatureXml: [*:0]const u8, count: u32) HRESULT {
-                return @ptrCast(*const IXpsSignature.VTable, self.vtable).SetSignatureXml(@ptrCast(*const IXpsSignature, self), signatureXml, count);
+                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).SetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
             }
         };
     }
@@ -9379,15 +9379,15 @@ pub const IXpsSignatureBlockCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlockCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlockCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsSignatureBlockCollection, self), count);
+                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlockCollection_GetAt(self: *const T, index: u32, signatureBlock: ?*?*IXpsSignatureBlock) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlockCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsSignatureBlockCollection, self), index, signatureBlock);
+                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index, signatureBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlockCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlockCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsSignatureBlockCollection, self), index);
+                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index);
             }
         };
     }
@@ -9459,23 +9459,23 @@ pub const IXpsSignatureBlock = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlock_GetRequests(self: *const T, requests: ?*?*IXpsSignatureRequestCollection) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlock.VTable, self.vtable).GetRequests(@ptrCast(*const IXpsSignatureBlock, self), requests);
+                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetRequests(@as(*const IXpsSignatureBlock, @ptrCast(self)), requests);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlock_GetPartName(self: *const T, partName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlock.VTable, self.vtable).GetPartName(@ptrCast(*const IXpsSignatureBlock, self), partName);
+                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsSignatureBlock, @ptrCast(self)), partName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlock_GetDocumentIndex(self: *const T, fixedDocumentIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlock.VTable, self.vtable).GetDocumentIndex(@ptrCast(*const IXpsSignatureBlock, self), fixedDocumentIndex);
+                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentIndex(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlock_GetDocumentName(self: *const T, fixedDocumentName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlock.VTable, self.vtable).GetDocumentName(@ptrCast(*const IXpsSignatureBlock, self), fixedDocumentName);
+                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentName(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureBlock_CreateRequest(self: *const T, requestId: ?[*:0]const u16, signatureRequest: ?*?*IXpsSignatureRequest) HRESULT {
-                return @ptrCast(*const IXpsSignatureBlock.VTable, self.vtable).CreateRequest(@ptrCast(*const IXpsSignatureBlock, self), requestId, signatureRequest);
+                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IXpsSignatureBlock, @ptrCast(self)), requestId, signatureRequest);
             }
         };
     }
@@ -9527,15 +9527,15 @@ pub const IXpsSignatureRequestCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequestCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequestCollection.VTable, self.vtable).GetCount(@ptrCast(*const IXpsSignatureRequestCollection, self), count);
+                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequestCollection_GetAt(self: *const T, index: u32, signatureRequest: ?*?*IXpsSignatureRequest) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequestCollection.VTable, self.vtable).GetAt(@ptrCast(*const IXpsSignatureRequestCollection, self), index, signatureRequest);
+                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index, signatureRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequestCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequestCollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IXpsSignatureRequestCollection, self), index);
+                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index);
             }
         };
     }
@@ -9685,51 +9685,51 @@ pub const IXpsSignatureRequest = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetIntent(self: *const T, intent: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetIntent(@ptrCast(*const IXpsSignatureRequest, self), intent);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_SetIntent(self: *const T, intent: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).SetIntent(@ptrCast(*const IXpsSignatureRequest, self), intent);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetRequestedSigner(self: *const T, signerName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetRequestedSigner(@ptrCast(*const IXpsSignatureRequest, self), signerName);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_SetRequestedSigner(self: *const T, signerName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).SetRequestedSigner(@ptrCast(*const IXpsSignatureRequest, self), signerName);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetRequestSignByDate(self: *const T, dateString: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetRequestSignByDate(@ptrCast(*const IXpsSignatureRequest, self), dateString);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_SetRequestSignByDate(self: *const T, dateString: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).SetRequestSignByDate(@ptrCast(*const IXpsSignatureRequest, self), dateString);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetSigningLocale(self: *const T, place: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetSigningLocale(@ptrCast(*const IXpsSignatureRequest, self), place);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_SetSigningLocale(self: *const T, place: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).SetSigningLocale(@ptrCast(*const IXpsSignatureRequest, self), place);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetSpotLocation(self: *const T, pageIndex: ?*i32, pagePartName: ?*?*IOpcPartUri, x: ?*f32, y: ?*f32) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetSpotLocation(@ptrCast(*const IXpsSignatureRequest, self), pageIndex, pagePartName, x, y);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, pagePartName, x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_SetSpotLocation(self: *const T, pageIndex: i32, x: f32, y: f32) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).SetSpotLocation(@ptrCast(*const IXpsSignatureRequest, self), pageIndex, x, y);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetRequestId(self: *const T, requestId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetRequestId(@ptrCast(*const IXpsSignatureRequest, self), requestId);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestId(@as(*const IXpsSignatureRequest, @ptrCast(self)), requestId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureRequest_GetSignature(self: *const T, signature: ?*?*IXpsSignature) HRESULT {
-                return @ptrCast(*const IXpsSignatureRequest.VTable, self.vtable).GetSignature(@ptrCast(*const IXpsSignatureRequest, self), signature);
+                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXpsSignatureRequest, @ptrCast(self)), signature);
             }
         };
     }
@@ -9871,47 +9871,47 @@ pub const IXpsSignatureManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_LoadPackageFile(self: *const T, fileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).LoadPackageFile(@ptrCast(*const IXpsSignatureManager, self), fileName);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_LoadPackageStream(self: *const T, stream: ?*IStream) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).LoadPackageStream(@ptrCast(*const IXpsSignatureManager, self), stream);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_Sign(self: *const T, signOptions: ?*IXpsSigningOptions, x509Certificate: ?*const CERT_CONTEXT, signature: ?*?*IXpsSignature) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).Sign(@ptrCast(*const IXpsSignatureManager, self), signOptions, x509Certificate, signature);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).Sign(@as(*const IXpsSignatureManager, @ptrCast(self)), signOptions, x509Certificate, signature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_GetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).GetSignatureOriginPartName(@ptrCast(*const IXpsSignatureManager, self), signatureOriginPartName);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_SetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).SetSignatureOriginPartName(@ptrCast(*const IXpsSignatureManager, self), signatureOriginPartName);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_GetSignatures(self: *const T, signatures: ?*?*IXpsSignatureCollection) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).GetSignatures(@ptrCast(*const IXpsSignatureManager, self), signatures);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatures(@as(*const IXpsSignatureManager, @ptrCast(self)), signatures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_AddSignatureBlock(self: *const T, partName: ?*IOpcPartUri, fixedDocumentIndex: u32, signatureBlock: ?*?*IXpsSignatureBlock) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).AddSignatureBlock(@ptrCast(*const IXpsSignatureManager, self), partName, fixedDocumentIndex, signatureBlock);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).AddSignatureBlock(@as(*const IXpsSignatureManager, @ptrCast(self)), partName, fixedDocumentIndex, signatureBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_GetSignatureBlocks(self: *const T, signatureBlocks: ?*?*IXpsSignatureBlockCollection) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).GetSignatureBlocks(@ptrCast(*const IXpsSignatureManager, self), signatureBlocks);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureBlocks(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureBlocks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_CreateSigningOptions(self: *const T, signingOptions: ?*?*IXpsSigningOptions) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).CreateSigningOptions(@ptrCast(*const IXpsSignatureManager, self), signingOptions);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).CreateSigningOptions(@as(*const IXpsSignatureManager, @ptrCast(self)), signingOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_SavePackageToFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).SavePackageToFile(@ptrCast(*const IXpsSignatureManager, self), fileName, securityAttributes, flagsAndAttributes);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsSignatureManager_SavePackageToStream(self: *const T, stream: ?*IStream) HRESULT {
-                return @ptrCast(*const IXpsSignatureManager.VTable, self.vtable).SavePackageToStream(@ptrCast(*const IXpsSignatureManager, self), stream);
+                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
             }
         };
     }

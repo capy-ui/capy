@@ -40,7 +40,7 @@ pub const INotificationActivationCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INotificationActivationCallback_Activate(self: *const T, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) HRESULT {
-                return @ptrCast(*const INotificationActivationCallback.VTable, self.vtable).Activate(@ptrCast(*const INotificationActivationCallback, self), appUserModelId, invokedArgs, data, count);
+                return @as(*const INotificationActivationCallback.VTable, @ptrCast(self.vtable)).Activate(@as(*const INotificationActivationCallback, @ptrCast(self)), appUserModelId, invokedArgs, data, count);
             }
         };
     }

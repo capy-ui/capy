@@ -283,7 +283,7 @@ pub const ISpNotifyCallback = extern struct {
         return struct {
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyCallback_NotifyCallback(self: *const T, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifyCallback.VTable, self.vtable).NotifyCallback(@ptrCast(*const ISpNotifyCallback, self), wParam, lParam);
+                return @as(*const ISpNotifyCallback.VTable, @ptrCast(self.vtable)).NotifyCallback(@as(*const ISpNotifyCallback, @ptrCast(self)), wParam, lParam);
             }
         };
     }
@@ -393,31 +393,31 @@ pub const ISpNotifySource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_SetNotifySink(self: *const T, pNotifySink: ?*ISpNotifySink) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).SetNotifySink(@ptrCast(*const ISpNotifySource, self), pNotifySink);
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifySink(@as(*const ISpNotifySource, @ptrCast(self)), pNotifySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_SetNotifyWindowMessage(self: *const T, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).SetNotifyWindowMessage(@ptrCast(*const ISpNotifySource, self), hWnd, Msg, wParam, lParam);
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyWindowMessage(@as(*const ISpNotifySource, @ptrCast(self)), hWnd, Msg, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_SetNotifyCallbackFunction(self: *const T, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).SetNotifyCallbackFunction(@ptrCast(*const ISpNotifySource, self), pfnCallback, wParam, lParam);
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyCallbackFunction(@as(*const ISpNotifySource, @ptrCast(self)), pfnCallback, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_SetNotifyCallbackInterface(self: *const T, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).SetNotifyCallbackInterface(@ptrCast(*const ISpNotifySource, self), pSpCallback, wParam, lParam);
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyCallbackInterface(@as(*const ISpNotifySource, @ptrCast(self)), pSpCallback, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_SetNotifyWin32Event(self: *const T) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).SetNotifyWin32Event(@ptrCast(*const ISpNotifySource, self));
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyWin32Event(@as(*const ISpNotifySource, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_WaitForNotifyEvent(self: *const T, dwMilliseconds: u32) HRESULT {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).WaitForNotifyEvent(@ptrCast(*const ISpNotifySource, self), dwMilliseconds);
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).WaitForNotifyEvent(@as(*const ISpNotifySource, @ptrCast(self)), dwMilliseconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySource_GetNotifyEventHandle(self: *const T) ?HANDLE {
-                return @ptrCast(*const ISpNotifySource.VTable, self.vtable).GetNotifyEventHandle(@ptrCast(*const ISpNotifySource, self));
+                return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).GetNotifyEventHandle(@as(*const ISpNotifySource, @ptrCast(self)));
             }
         };
     }
@@ -444,7 +444,7 @@ pub const ISpNotifySink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifySink_Notify(self: *const T) HRESULT {
-                return @ptrCast(*const ISpNotifySink.VTable, self.vtable).Notify(@ptrCast(*const ISpNotifySink, self));
+                return @as(*const ISpNotifySink.VTable, @ptrCast(self.vtable)).Notify(@as(*const ISpNotifySink, @ptrCast(self)));
             }
         };
     }
@@ -537,27 +537,27 @@ pub const ISpNotifyTranslator = extern struct {
             pub usingnamespace ISpNotifySink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_InitWindowMessage(self: *const T, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).InitWindowMessage(@ptrCast(*const ISpNotifyTranslator, self), hWnd, Msg, wParam, lParam);
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitWindowMessage(@as(*const ISpNotifyTranslator, @ptrCast(self)), hWnd, Msg, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_InitCallback(self: *const T, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).InitCallback(@ptrCast(*const ISpNotifyTranslator, self), pfnCallback, wParam, lParam);
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitCallback(@as(*const ISpNotifyTranslator, @ptrCast(self)), pfnCallback, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_InitSpNotifyCallback(self: *const T, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).InitSpNotifyCallback(@ptrCast(*const ISpNotifyTranslator, self), pSpCallback, wParam, lParam);
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitSpNotifyCallback(@as(*const ISpNotifyTranslator, @ptrCast(self)), pSpCallback, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_InitWin32Event(self: *const T, hEvent: ?HANDLE, fCloseHandleOnRelease: BOOL) HRESULT {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).InitWin32Event(@ptrCast(*const ISpNotifyTranslator, self), hEvent, fCloseHandleOnRelease);
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitWin32Event(@as(*const ISpNotifyTranslator, @ptrCast(self)), hEvent, fCloseHandleOnRelease);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_Wait(self: *const T, dwMilliseconds: u32) HRESULT {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).Wait(@ptrCast(*const ISpNotifyTranslator, self), dwMilliseconds);
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).Wait(@as(*const ISpNotifyTranslator, @ptrCast(self)), dwMilliseconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpNotifyTranslator_GetEventHandle(self: *const T) ?HANDLE {
-                return @ptrCast(*const ISpNotifyTranslator.VTable, self.vtable).GetEventHandle(@ptrCast(*const ISpNotifyTranslator, self));
+                return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).GetEventHandle(@as(*const ISpNotifyTranslator, @ptrCast(self)));
             }
         };
     }
@@ -720,51 +720,51 @@ pub const ISpDataKey = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_SetData(self: *const T, pszValueName: ?[*:0]const u16, cbData: u32, pData: ?*const u8) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).SetData(@ptrCast(*const ISpDataKey, self), pszValueName, cbData, pData);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetData(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, cbData, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_GetData(self: *const T, pszValueName: ?[*:0]const u16, pcbData: ?*u32, pData: ?*u8) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).GetData(@ptrCast(*const ISpDataKey, self), pszValueName, pcbData, pData);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pcbData, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_SetStringValue(self: *const T, pszValueName: ?[*:0]const u16, pszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).SetStringValue(@ptrCast(*const ISpDataKey, self), pszValueName, pszValue);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_GetStringValue(self: *const T, pszValueName: ?[*:0]const u16, ppszValue: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).GetStringValue(@ptrCast(*const ISpDataKey, self), pszValueName, ppszValue);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, ppszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_SetDWORD(self: *const T, pszValueName: ?[*:0]const u16, dwValue: u32) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).SetDWORD(@ptrCast(*const ISpDataKey, self), pszValueName, dwValue);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetDWORD(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, dwValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_GetDWORD(self: *const T, pszValueName: ?[*:0]const u16, pdwValue: ?*u32) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).GetDWORD(@ptrCast(*const ISpDataKey, self), pszValueName, pdwValue);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetDWORD(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pdwValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_OpenKey(self: *const T, pszSubKeyName: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).OpenKey(@ptrCast(*const ISpDataKey, self), pszSubKeyName, ppSubKey);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKeyName, ppSubKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_CreateKey(self: *const T, pszSubKey: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).CreateKey(@ptrCast(*const ISpDataKey, self), pszSubKey, ppSubKey);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).CreateKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKey, ppSubKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_DeleteKey(self: *const T, pszSubKey: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).DeleteKey(@ptrCast(*const ISpDataKey, self), pszSubKey);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_DeleteValue(self: *const T, pszValueName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).DeleteValue(@ptrCast(*const ISpDataKey, self), pszValueName);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_EnumKeys(self: *const T, Index: u32, ppszSubKeyName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).EnumKeys(@ptrCast(*const ISpDataKey, self), Index, ppszSubKeyName);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const ISpDataKey, @ptrCast(self)), Index, ppszSubKeyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDataKey_EnumValues(self: *const T, Index: u32, ppszValueName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpDataKey.VTable, self.vtable).EnumValues(@ptrCast(*const ISpDataKey, self), Index, ppszValueName);
+                return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).EnumValues(@as(*const ISpDataKey, @ptrCast(self)), Index, ppszValueName);
             }
         };
     }
@@ -795,7 +795,7 @@ pub const ISpRegDataKey = extern struct {
             pub usingnamespace ISpDataKey.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRegDataKey_SetKey(self: *const T, hkey: ?HKEY, fReadOnly: BOOL) HRESULT {
-                return @ptrCast(*const ISpRegDataKey.VTable, self.vtable).SetKey(@ptrCast(*const ISpRegDataKey, self), hkey, fReadOnly);
+                return @as(*const ISpRegDataKey.VTable, @ptrCast(self.vtable)).SetKey(@as(*const ISpRegDataKey, @ptrCast(self)), hkey, fReadOnly);
             }
         };
     }
@@ -882,27 +882,27 @@ pub const ISpObjectTokenCategory = extern struct {
             pub usingnamespace ISpDataKey.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_SetId(self: *const T, pszCategoryId: ?[*:0]const u16, fCreateIfNotExist: BOOL) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).SetId(@ptrCast(*const ISpObjectTokenCategory, self), pszCategoryId, fCreateIfNotExist);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pszCategoryId, fCreateIfNotExist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_GetId(self: *const T, ppszCoMemCategoryId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).GetId(@ptrCast(*const ISpObjectTokenCategory, self), ppszCoMemCategoryId);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), ppszCoMemCategoryId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_GetDataKey(self: *const T, spdkl: SPDATAKEYLOCATION, ppDataKey: ?*?*ISpDataKey) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).GetDataKey(@ptrCast(*const ISpObjectTokenCategory, self), spdkl, ppDataKey);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDataKey(@as(*const ISpObjectTokenCategory, @ptrCast(self)), spdkl, ppDataKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_EnumTokens(self: *const T, pzsReqAttribs: ?[*:0]const u16, pszOptAttribs: ?[*:0]const u16, ppEnum: ?*?*IEnumSpObjectTokens) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).EnumTokens(@ptrCast(*const ISpObjectTokenCategory, self), pzsReqAttribs, pszOptAttribs, ppEnum);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).EnumTokens(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pzsReqAttribs, pszOptAttribs, ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_SetDefaultTokenId(self: *const T, pszTokenId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).SetDefaultTokenId(@ptrCast(*const ISpObjectTokenCategory, self), pszTokenId);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetDefaultTokenId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pszTokenId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenCategory_GetDefaultTokenId(self: *const T, ppszCoMemTokenId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpObjectTokenCategory.VTable, self.vtable).GetDefaultTokenId(@ptrCast(*const ISpObjectTokenCategory, self), ppszCoMemTokenId);
+                return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDefaultTokenId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), ppszCoMemTokenId);
             }
         };
     }
@@ -1063,43 +1063,43 @@ pub const ISpObjectToken = extern struct {
             pub usingnamespace ISpDataKey.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_SetId(self: *const T, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, fCreateIfNotExist: BOOL) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).SetId(@ptrCast(*const ISpObjectToken, self), pszCategoryId, pszTokenId, fCreateIfNotExist);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpObjectToken, @ptrCast(self)), pszCategoryId, pszTokenId, fCreateIfNotExist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_GetId(self: *const T, ppszCoMemTokenId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).GetId(@ptrCast(*const ISpObjectToken, self), ppszCoMemTokenId);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetId(@as(*const ISpObjectToken, @ptrCast(self)), ppszCoMemTokenId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_GetCategory(self: *const T, ppTokenCategory: ?*?*ISpObjectTokenCategory) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).GetCategory(@ptrCast(*const ISpObjectToken, self), ppTokenCategory);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const ISpObjectToken, @ptrCast(self)), ppTokenCategory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).CreateInstance(@ptrCast(*const ISpObjectToken, self), pUnkOuter, dwClsContext, riid, ppvObject);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ISpObjectToken, @ptrCast(self)), pUnkOuter, dwClsContext, riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_GetStorageFileName(self: *const T, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).GetStorageFileName(@ptrCast(*const ISpObjectToken, self), clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetStorageFileName(@as(*const ISpObjectToken, @ptrCast(self)), clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_RemoveStorageFileName(self: *const T, clsidCaller: ?*const Guid, pszKeyName: ?[*:0]const u16, fDeleteFile: BOOL) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).RemoveStorageFileName(@ptrCast(*const ISpObjectToken, self), clsidCaller, pszKeyName, fDeleteFile);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).RemoveStorageFileName(@as(*const ISpObjectToken, @ptrCast(self)), clsidCaller, pszKeyName, fDeleteFile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_Remove(self: *const T, pclsidCaller: ?*const Guid) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).Remove(@ptrCast(*const ISpObjectToken, self), pclsidCaller);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpObjectToken, @ptrCast(self)), pclsidCaller);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpObjectToken, self), pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpObjectToken, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpObjectToken, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpObjectToken, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectToken_MatchesAttributes(self: *const T, pszAttributes: ?[*:0]const u16, pfMatches: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISpObjectToken.VTable, self.vtable).MatchesAttributes(@ptrCast(*const ISpObjectToken, self), pszAttributes, pfMatches);
+                return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).MatchesAttributes(@as(*const ISpObjectToken, @ptrCast(self)), pszAttributes, pfMatches);
             }
         };
     }
@@ -1132,7 +1132,7 @@ pub const ISpObjectTokenInit = extern struct {
             pub usingnamespace ISpObjectToken.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectTokenInit_InitFromDataKey(self: *const T, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, pDataKey: ?*ISpDataKey) HRESULT {
-                return @ptrCast(*const ISpObjectTokenInit.VTable, self.vtable).InitFromDataKey(@ptrCast(*const ISpObjectTokenInit, self), pszCategoryId, pszTokenId, pDataKey);
+                return @as(*const ISpObjectTokenInit.VTable, @ptrCast(self.vtable)).InitFromDataKey(@as(*const ISpObjectTokenInit, @ptrCast(self)), pszCategoryId, pszTokenId, pDataKey);
             }
         };
     }
@@ -1215,27 +1215,27 @@ pub const IEnumSpObjectTokens = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_Next(self: *const T, celt: u32, pelt: ?*?*ISpObjectToken, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).Next(@ptrCast(*const IEnumSpObjectTokens, self), celt, pelt, pceltFetched);
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSpObjectTokens, @ptrCast(self)), celt, pelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).Skip(@ptrCast(*const IEnumSpObjectTokens, self), celt);
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSpObjectTokens, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).Reset(@ptrCast(*const IEnumSpObjectTokens, self));
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSpObjectTokens, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_Clone(self: *const T, ppEnum: ?*?*IEnumSpObjectTokens) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).Clone(@ptrCast(*const IEnumSpObjectTokens, self), ppEnum);
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSpObjectTokens, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_Item(self: *const T, Index: u32, ppToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).Item(@ptrCast(*const IEnumSpObjectTokens, self), Index, ppToken);
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Item(@as(*const IEnumSpObjectTokens, @ptrCast(self)), Index, ppToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumSpObjectTokens_GetCount(self: *const T, pCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumSpObjectTokens.VTable, self.vtable).GetCount(@ptrCast(*const IEnumSpObjectTokens, self), pCount);
+                return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumSpObjectTokens, @ptrCast(self)), pCount);
             }
         };
     }
@@ -1274,11 +1274,11 @@ pub const ISpObjectWithToken = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectWithToken_SetObjectToken(self: *const T, pToken: ?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpObjectWithToken.VTable, self.vtable).SetObjectToken(@ptrCast(*const ISpObjectWithToken, self), pToken);
+                return @as(*const ISpObjectWithToken.VTable, @ptrCast(self.vtable)).SetObjectToken(@as(*const ISpObjectWithToken, @ptrCast(self)), pToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpObjectWithToken_GetObjectToken(self: *const T, ppToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpObjectWithToken.VTable, self.vtable).GetObjectToken(@ptrCast(*const ISpObjectWithToken, self), ppToken);
+                return @as(*const ISpObjectWithToken.VTable, @ptrCast(self.vtable)).GetObjectToken(@as(*const ISpObjectWithToken, @ptrCast(self)), ppToken);
             }
         };
     }
@@ -1327,11 +1327,11 @@ pub const ISpResourceManager = extern struct {
             pub usingnamespace IServiceProvider.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpResourceManager_SetObject(self: *const T, guidServiceId: ?*const Guid, pUnkObject: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpResourceManager.VTable, self.vtable).SetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, pUnkObject);
+                return @as(*const ISpResourceManager.VTable, @ptrCast(self.vtable)).SetObject(@as(*const ISpResourceManager, @ptrCast(self)), guidServiceId, pUnkObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpResourceManager_GetObject(self: *const T, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISpResourceManager.VTable, self.vtable).GetObject(@ptrCast(*const ISpResourceManager, self), guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
+                return @as(*const ISpResourceManager.VTable, @ptrCast(self.vtable)).GetObject(@as(*const ISpResourceManager, @ptrCast(self)), guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
             }
         };
     }
@@ -1607,15 +1607,15 @@ pub const ISpEventSource = extern struct {
             pub usingnamespace ISpNotifySource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSource_SetInterest(self: *const T, ullEventInterest: u64, ullQueuedInterest: u64) HRESULT {
-                return @ptrCast(*const ISpEventSource.VTable, self.vtable).SetInterest(@ptrCast(*const ISpEventSource, self), ullEventInterest, ullQueuedInterest);
+                return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).SetInterest(@as(*const ISpEventSource, @ptrCast(self)), ullEventInterest, ullQueuedInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSource_GetEvents(self: *const T, ulCount: u32, pEventArray: ?*SPEVENT, pulFetched: ?*u32) HRESULT {
-                return @ptrCast(*const ISpEventSource.VTable, self.vtable).GetEvents(@ptrCast(*const ISpEventSource, self), ulCount, pEventArray, pulFetched);
+                return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).GetEvents(@as(*const ISpEventSource, @ptrCast(self)), ulCount, pEventArray, pulFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSource_GetInfo(self: *const T, pInfo: ?*SPEVENTSOURCEINFO) HRESULT {
-                return @ptrCast(*const ISpEventSource.VTable, self.vtable).GetInfo(@ptrCast(*const ISpEventSource, self), pInfo);
+                return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ISpEventSource, @ptrCast(self)), pInfo);
             }
         };
     }
@@ -1648,7 +1648,7 @@ pub const ISpEventSource2 = extern struct {
             pub usingnamespace ISpEventSource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSource2_GetEventsEx(self: *const T, ulCount: u32, pEventArray: ?*SPEVENTEX, pulFetched: ?*u32) HRESULT {
-                return @ptrCast(*const ISpEventSource2.VTable, self.vtable).GetEventsEx(@ptrCast(*const ISpEventSource2, self), ulCount, pEventArray, pulFetched);
+                return @as(*const ISpEventSource2.VTable, @ptrCast(self.vtable)).GetEventsEx(@as(*const ISpEventSource2, @ptrCast(self)), ulCount, pEventArray, pulFetched);
             }
         };
     }
@@ -1689,11 +1689,11 @@ pub const ISpEventSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSink_AddEvents(self: *const T, pEventArray: ?*const SPEVENT, ulCount: u32) HRESULT {
-                return @ptrCast(*const ISpEventSink.VTable, self.vtable).AddEvents(@ptrCast(*const ISpEventSink, self), pEventArray, ulCount);
+                return @as(*const ISpEventSink.VTable, @ptrCast(self.vtable)).AddEvents(@as(*const ISpEventSink, @ptrCast(self)), pEventArray, ulCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEventSink_GetEventInterest(self: *const T, pullEventInterest: ?*u64) HRESULT {
-                return @ptrCast(*const ISpEventSink.VTable, self.vtable).GetEventInterest(@ptrCast(*const ISpEventSink, self), pullEventInterest);
+                return @as(*const ISpEventSink.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const ISpEventSink, @ptrCast(self)), pullEventInterest);
             }
         };
     }
@@ -1724,7 +1724,7 @@ pub const ISpStreamFormat = extern struct {
             pub usingnamespace IStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormat_GetFormat(self: *const T, pguidFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpStreamFormat.VTable, self.vtable).GetFormat(@ptrCast(*const ISpStreamFormat, self), pguidFormatId, ppCoMemWaveFormatEx);
+                return @as(*const ISpStreamFormat.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpStreamFormat, @ptrCast(self)), pguidFormatId, ppCoMemWaveFormatEx);
             }
         };
     }
@@ -1806,19 +1806,19 @@ pub const ISpStream = extern struct {
             pub usingnamespace ISpStreamFormat.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStream_SetBaseStream(self: *const T, pStream: ?*IStream, rguidFormat: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpStream.VTable, self.vtable).SetBaseStream(@ptrCast(*const ISpStream, self), pStream, rguidFormat, pWaveFormatEx);
+                return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).SetBaseStream(@as(*const ISpStream, @ptrCast(self)), pStream, rguidFormat, pWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStream_GetBaseStream(self: *const T, ppStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const ISpStream.VTable, self.vtable).GetBaseStream(@ptrCast(*const ISpStream, self), ppStream);
+                return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).GetBaseStream(@as(*const ISpStream, @ptrCast(self)), ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStream_BindToFile(self: *const T, pszFileName: ?[*:0]const u16, eMode: SPFILEMODE, pFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX, ullEventInterest: u64) HRESULT {
-                return @ptrCast(*const ISpStream.VTable, self.vtable).BindToFile(@ptrCast(*const ISpStream, self), pszFileName, eMode, pFormatId, pWaveFormatEx, ullEventInterest);
+                return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).BindToFile(@as(*const ISpStream, @ptrCast(self)), pszFileName, eMode, pFormatId, pWaveFormatEx, ullEventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStream_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ISpStream.VTable, self.vtable).Close(@ptrCast(*const ISpStream, self));
+                return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpStream, @ptrCast(self)));
             }
         };
     }
@@ -1905,27 +1905,27 @@ pub const ISpStreamFormatConverter = extern struct {
             pub usingnamespace ISpStreamFormat.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_SetBaseStream(self: *const T, pStream: ?*ISpStreamFormat, fSetFormatToBaseStreamFormat: BOOL, fWriteToBaseStream: BOOL) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).SetBaseStream(@ptrCast(*const ISpStreamFormatConverter, self), pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).SetBaseStream(@as(*const ISpStreamFormatConverter, @ptrCast(self)), pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_GetBaseStream(self: *const T, ppStream: ?*?*ISpStreamFormat) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).GetBaseStream(@ptrCast(*const ISpStreamFormatConverter, self), ppStream);
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).GetBaseStream(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_SetFormat(self: *const T, rguidFormatIdOfConvertedStream: ?*const Guid, pWaveFormatExOfConvertedStream: ?*const WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).SetFormat(@ptrCast(*const ISpStreamFormatConverter, self), rguidFormatIdOfConvertedStream, pWaveFormatExOfConvertedStream);
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const ISpStreamFormatConverter, @ptrCast(self)), rguidFormatIdOfConvertedStream, pWaveFormatExOfConvertedStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_ResetSeekPosition(self: *const T) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).ResetSeekPosition(@ptrCast(*const ISpStreamFormatConverter, self));
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ResetSeekPosition(@as(*const ISpStreamFormatConverter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_ScaleConvertedToBaseOffset(self: *const T, ullOffsetConvertedStream: u64, pullOffsetBaseStream: ?*u64) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).ScaleConvertedToBaseOffset(@ptrCast(*const ISpStreamFormatConverter, self), ullOffsetConvertedStream, pullOffsetBaseStream);
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ScaleConvertedToBaseOffset(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ullOffsetConvertedStream, pullOffsetBaseStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpStreamFormatConverter_ScaleBaseToConvertedOffset(self: *const T, ullOffsetBaseStream: u64, pullOffsetConvertedStream: ?*u64) HRESULT {
-                return @ptrCast(*const ISpStreamFormatConverter.VTable, self.vtable).ScaleBaseToConvertedOffset(@ptrCast(*const ISpStreamFormatConverter, self), ullOffsetBaseStream, pullOffsetConvertedStream);
+                return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ScaleBaseToConvertedOffset(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ullOffsetBaseStream, pullOffsetConvertedStream);
             }
         };
     }
@@ -2085,47 +2085,47 @@ pub const ISpAudio = extern struct {
             pub usingnamespace ISpStreamFormat.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_SetState(self: *const T, NewState: SPAUDIOSTATE, ullReserved: u64) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).SetState(@ptrCast(*const ISpAudio, self), NewState, ullReserved);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetState(@as(*const ISpAudio, @ptrCast(self)), NewState, ullReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_SetFormat(self: *const T, rguidFmtId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).SetFormat(@ptrCast(*const ISpAudio, self), rguidFmtId, pWaveFormatEx);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const ISpAudio, @ptrCast(self)), rguidFmtId, pWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_GetStatus(self: *const T, pStatus: ?*SPAUDIOSTATUS) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).GetStatus(@ptrCast(*const ISpAudio, self), pStatus);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpAudio, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_SetBufferInfo(self: *const T, pBuffInfo: ?*const SPAUDIOBUFFERINFO) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).SetBufferInfo(@ptrCast(*const ISpAudio, self), pBuffInfo);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetBufferInfo(@as(*const ISpAudio, @ptrCast(self)), pBuffInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_GetBufferInfo(self: *const T, pBuffInfo: ?*SPAUDIOBUFFERINFO) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).GetBufferInfo(@ptrCast(*const ISpAudio, self), pBuffInfo);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetBufferInfo(@as(*const ISpAudio, @ptrCast(self)), pBuffInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_GetDefaultFormat(self: *const T, pFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).GetDefaultFormat(@ptrCast(*const ISpAudio, self), pFormatId, ppCoMemWaveFormatEx);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetDefaultFormat(@as(*const ISpAudio, @ptrCast(self)), pFormatId, ppCoMemWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_EventHandle(self: *const T) ?HANDLE {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).EventHandle(@ptrCast(*const ISpAudio, self));
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).EventHandle(@as(*const ISpAudio, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_GetVolumeLevel(self: *const T, pLevel: ?*u32) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).GetVolumeLevel(@ptrCast(*const ISpAudio, self), pLevel);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetVolumeLevel(@as(*const ISpAudio, @ptrCast(self)), pLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_SetVolumeLevel(self: *const T, Level: u32) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).SetVolumeLevel(@ptrCast(*const ISpAudio, self), Level);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetVolumeLevel(@as(*const ISpAudio, @ptrCast(self)), Level);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_GetBufferNotifySize(self: *const T, pcbSize: ?*u32) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).GetBufferNotifySize(@ptrCast(*const ISpAudio, self), pcbSize);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetBufferNotifySize(@as(*const ISpAudio, @ptrCast(self)), pcbSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpAudio_SetBufferNotifySize(self: *const T, cbSize: u32) HRESULT {
-                return @ptrCast(*const ISpAudio.VTable, self.vtable).SetBufferNotifySize(@ptrCast(*const ISpAudio, self), cbSize);
+                return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetBufferNotifySize(@as(*const ISpAudio, @ptrCast(self)), cbSize);
             }
         };
     }
@@ -2194,23 +2194,23 @@ pub const ISpMMSysAudio = extern struct {
             pub usingnamespace ISpAudio.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpMMSysAudio_GetDeviceId(self: *const T, puDeviceId: ?*u32) HRESULT {
-                return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).GetDeviceId(@ptrCast(*const ISpMMSysAudio, self), puDeviceId);
+                return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const ISpMMSysAudio, @ptrCast(self)), puDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpMMSysAudio_SetDeviceId(self: *const T, uDeviceId: u32) HRESULT {
-                return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).SetDeviceId(@ptrCast(*const ISpMMSysAudio, self), uDeviceId);
+                return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).SetDeviceId(@as(*const ISpMMSysAudio, @ptrCast(self)), uDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpMMSysAudio_GetMMHandle(self: *const T, pHandle: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).GetMMHandle(@ptrCast(*const ISpMMSysAudio, self), pHandle);
+                return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetMMHandle(@as(*const ISpMMSysAudio, @ptrCast(self)), pHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpMMSysAudio_GetLineId(self: *const T, puLineId: ?*u32) HRESULT {
-                return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).GetLineId(@ptrCast(*const ISpMMSysAudio, self), puLineId);
+                return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetLineId(@as(*const ISpMMSysAudio, @ptrCast(self)), puLineId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpMMSysAudio_SetLineId(self: *const T, uLineId: u32) HRESULT {
-                return @ptrCast(*const ISpMMSysAudio.VTable, self.vtable).SetLineId(@ptrCast(*const ISpMMSysAudio, self), uLineId);
+                return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).SetLineId(@as(*const ISpMMSysAudio, @ptrCast(self)), uLineId);
             }
         };
     }
@@ -2249,11 +2249,11 @@ pub const ISpTranscript = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpTranscript_GetTranscript(self: *const T, ppszTranscript: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpTranscript.VTable, self.vtable).GetTranscript(@ptrCast(*const ISpTranscript, self), ppszTranscript);
+                return @as(*const ISpTranscript.VTable, @ptrCast(self.vtable)).GetTranscript(@as(*const ISpTranscript, @ptrCast(self)), ppszTranscript);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpTranscript_AppendTranscript(self: *const T, pszTranscript: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpTranscript.VTable, self.vtable).AppendTranscript(@ptrCast(*const ISpTranscript, self), pszTranscript);
+                return @as(*const ISpTranscript.VTable, @ptrCast(self.vtable)).AppendTranscript(@as(*const ISpTranscript, @ptrCast(self)), pszTranscript);
             }
         };
     }
@@ -2677,27 +2677,27 @@ pub const ISpLexicon = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_GetPronunciations(self: *const T, pszWord: ?[*:0]const u16, LangID: u16, dwFlags: u32, pWordPronunciationList: ?*SPWORDPRONUNCIATIONLIST) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).GetPronunciations(@ptrCast(*const ISpLexicon, self), pszWord, LangID, dwFlags, pWordPronunciationList);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, dwFlags, pWordPronunciationList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_AddPronunciation(self: *const T, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).AddPronunciation(@ptrCast(*const ISpLexicon, self), pszWord, LangID, ePartOfSpeech, pszPronunciation);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).AddPronunciation(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, ePartOfSpeech, pszPronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_RemovePronunciation(self: *const T, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).RemovePronunciation(@ptrCast(*const ISpLexicon, self), pszWord, LangID, ePartOfSpeech, pszPronunciation);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciation(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, ePartOfSpeech, pszPronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_GetGeneration(self: *const T, pdwGeneration: ?*u32) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).GetGeneration(@ptrCast(*const ISpLexicon, self), pdwGeneration);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetGeneration(@as(*const ISpLexicon, @ptrCast(self)), pdwGeneration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_GetGenerationChange(self: *const T, dwFlags: u32, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).GetGenerationChange(@ptrCast(*const ISpLexicon, self), dwFlags, pdwGeneration, pWordList);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpLexicon, @ptrCast(self)), dwFlags, pdwGeneration, pWordList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpLexicon_GetWords(self: *const T, dwFlags: u32, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
-                return @ptrCast(*const ISpLexicon.VTable, self.vtable).GetWords(@ptrCast(*const ISpLexicon, self), dwFlags, pdwGeneration, pdwCookie, pWordList);
+                return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpLexicon, @ptrCast(self)), dwFlags, pdwGeneration, pdwCookie, pWordList);
             }
         };
     }
@@ -2728,7 +2728,7 @@ pub const ISpContainerLexicon = extern struct {
             pub usingnamespace ISpLexicon.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpContainerLexicon_AddLexicon(self: *const T, pAddLexicon: ?*ISpLexicon, dwFlags: u32) HRESULT {
-                return @ptrCast(*const ISpContainerLexicon.VTable, self.vtable).AddLexicon(@ptrCast(*const ISpContainerLexicon, self), pAddLexicon, dwFlags);
+                return @as(*const ISpContainerLexicon.VTable, @ptrCast(self.vtable)).AddLexicon(@as(*const ISpContainerLexicon, @ptrCast(self)), pAddLexicon, dwFlags);
             }
         };
     }
@@ -2886,35 +2886,35 @@ pub const ISpShortcut = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_AddShortcut(self: *const T, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).AddShortcut(@ptrCast(*const ISpShortcut, self), pszDisplay, LangID, pszSpoken, shType);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).AddShortcut(@as(*const ISpShortcut, @ptrCast(self)), pszDisplay, LangID, pszSpoken, shType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_RemoveShortcut(self: *const T, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).RemoveShortcut(@ptrCast(*const ISpShortcut, self), pszDisplay, LangID, pszSpoken, shType);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).RemoveShortcut(@as(*const ISpShortcut, @ptrCast(self)), pszDisplay, LangID, pszSpoken, shType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetShortcuts(self: *const T, LangID: u16, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetShortcuts(@ptrCast(*const ISpShortcut, self), LangID, pShortcutpairList);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetShortcuts(@as(*const ISpShortcut, @ptrCast(self)), LangID, pShortcutpairList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetGeneration(self: *const T, pdwGeneration: ?*u32) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetGeneration(@ptrCast(*const ISpShortcut, self), pdwGeneration);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetGeneration(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetWordsFromGenerationChange(self: *const T, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetWordsFromGenerationChange(@ptrCast(*const ISpShortcut, self), pdwGeneration, pWordList);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetWordsFromGenerationChange(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pWordList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetWords(self: *const T, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetWords(@ptrCast(*const ISpShortcut, self), pdwGeneration, pdwCookie, pWordList);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pdwCookie, pWordList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetShortcutsForGeneration(self: *const T, pdwGeneration: ?*u32, pdwCookie: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetShortcutsForGeneration(@ptrCast(*const ISpShortcut, self), pdwGeneration, pdwCookie, pShortcutpairList);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetShortcutsForGeneration(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pdwCookie, pShortcutpairList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpShortcut_GetGenerationChange(self: *const T, pdwGeneration: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
-                return @ptrCast(*const ISpShortcut.VTable, self.vtable).GetGenerationChange(@ptrCast(*const ISpShortcut, self), pdwGeneration, pShortcutpairList);
+                return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pShortcutpairList);
             }
         };
     }
@@ -2957,11 +2957,11 @@ pub const ISpPhoneConverter = extern struct {
             pub usingnamespace ISpObjectWithToken.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneConverter_PhoneToId(self: *const T, pszPhone: ?[*:0]const u16, pId: ?*u16) HRESULT {
-                return @ptrCast(*const ISpPhoneConverter.VTable, self.vtable).PhoneToId(@ptrCast(*const ISpPhoneConverter, self), pszPhone, pId);
+                return @as(*const ISpPhoneConverter.VTable, @ptrCast(self.vtable)).PhoneToId(@as(*const ISpPhoneConverter, @ptrCast(self)), pszPhone, pId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneConverter_IdToPhone(self: *const T, pId: ?*u16, pszPhone: ?PWSTR) HRESULT {
-                return @ptrCast(*const ISpPhoneConverter.VTable, self.vtable).IdToPhone(@ptrCast(*const ISpPhoneConverter, self), pId, pszPhone);
+                return @as(*const ISpPhoneConverter.VTable, @ptrCast(self.vtable)).IdToPhone(@as(*const ISpPhoneConverter, @ptrCast(self)), pId, pszPhone);
             }
         };
     }
@@ -3042,23 +3042,23 @@ pub const ISpPhoneticAlphabetConverter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetConverter_GetLangId(self: *const T, pLangID: ?*u16) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetConverter.VTable, self.vtable).GetLangId(@ptrCast(*const ISpPhoneticAlphabetConverter, self), pLangID);
+                return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).GetLangId(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pLangID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetConverter_SetLangId(self: *const T, LangID: u16) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetConverter.VTable, self.vtable).SetLangId(@ptrCast(*const ISpPhoneticAlphabetConverter, self), LangID);
+                return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).SetLangId(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), LangID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetConverter_SAPI2UPS(self: *const T, pszSAPIId: ?*const u16, pszUPSId: [*:0]u16, cMaxLength: u32) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetConverter.VTable, self.vtable).SAPI2UPS(@ptrCast(*const ISpPhoneticAlphabetConverter, self), pszSAPIId, pszUPSId, cMaxLength);
+                return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).SAPI2UPS(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pszSAPIId, pszUPSId, cMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetConverter_UPS2SAPI(self: *const T, pszUPSId: ?*const u16, pszSAPIId: [*:0]u16, cMaxLength: u32) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetConverter.VTable, self.vtable).UPS2SAPI(@ptrCast(*const ISpPhoneticAlphabetConverter, self), pszUPSId, pszSAPIId, cMaxLength);
+                return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).UPS2SAPI(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pszUPSId, pszSAPIId, cMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetConverter_GetMaxConvertLength(self: *const T, cSrcLength: u32, bSAPI2UPS: BOOL, pcMaxDestLength: ?*u32) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetConverter.VTable, self.vtable).GetMaxConvertLength(@ptrCast(*const ISpPhoneticAlphabetConverter, self), cSrcLength, bSAPI2UPS, pcMaxDestLength);
+                return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).GetMaxConvertLength(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), cSrcLength, bSAPI2UPS, pcMaxDestLength);
             }
         };
     }
@@ -3097,11 +3097,11 @@ pub const ISpPhoneticAlphabetSelection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetSelection_IsAlphabetUPS(self: *const T, pfIsUPS: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetSelection.VTable, self.vtable).IsAlphabetUPS(@ptrCast(*const ISpPhoneticAlphabetSelection, self), pfIsUPS);
+                return @as(*const ISpPhoneticAlphabetSelection.VTable, @ptrCast(self.vtable)).IsAlphabetUPS(@as(*const ISpPhoneticAlphabetSelection, @ptrCast(self)), pfIsUPS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhoneticAlphabetSelection_SetAlphabetToUPS(self: *const T, fForceUPS: BOOL) HRESULT {
-                return @ptrCast(*const ISpPhoneticAlphabetSelection.VTable, self.vtable).SetAlphabetToUPS(@ptrCast(*const ISpPhoneticAlphabetSelection, self), fForceUPS);
+                return @as(*const ISpPhoneticAlphabetSelection.VTable, @ptrCast(self.vtable)).SetAlphabetToUPS(@as(*const ISpPhoneticAlphabetSelection, @ptrCast(self)), fForceUPS);
             }
         };
     }
@@ -3512,103 +3512,103 @@ pub const ISpVoice = extern struct {
             pub usingnamespace ISpEventSource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetOutput(self: *const T, pUnkOutput: ?*IUnknown, fAllowFormatChanges: BOOL) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetOutput(@ptrCast(*const ISpVoice, self), pUnkOutput, fAllowFormatChanges);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const ISpVoice, @ptrCast(self)), pUnkOutput, fAllowFormatChanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetOutputObjectToken(self: *const T, ppObjectToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetOutputObjectToken(@ptrCast(*const ISpVoice, self), ppObjectToken);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetOutputObjectToken(@as(*const ISpVoice, @ptrCast(self)), ppObjectToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetOutputStream(self: *const T, ppStream: ?*?*ISpStreamFormat) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetOutputStream(@ptrCast(*const ISpVoice, self), ppStream);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetOutputStream(@as(*const ISpVoice, @ptrCast(self)), ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).Pause(@ptrCast(*const ISpVoice, self));
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpVoice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).Resume(@ptrCast(*const ISpVoice, self));
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpVoice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetVoice(self: *const T, pToken: ?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetVoice(@ptrCast(*const ISpVoice, self), pToken);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetVoice(@as(*const ISpVoice, @ptrCast(self)), pToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetVoice(self: *const T, ppToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetVoice(@ptrCast(*const ISpVoice, self), ppToken);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetVoice(@as(*const ISpVoice, @ptrCast(self)), ppToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_Speak(self: *const T, pwcs: ?[*:0]const u16, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).Speak(@ptrCast(*const ISpVoice, self), pwcs, dwFlags, pulStreamNumber);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Speak(@as(*const ISpVoice, @ptrCast(self)), pwcs, dwFlags, pulStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SpeakStream(self: *const T, pStream: ?*IStream, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SpeakStream(@ptrCast(*const ISpVoice, self), pStream, dwFlags, pulStreamNumber);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SpeakStream(@as(*const ISpVoice, @ptrCast(self)), pStream, dwFlags, pulStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetStatus(self: *const T, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetStatus(@ptrCast(*const ISpVoice, self), pStatus, ppszLastBookmark);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpVoice, @ptrCast(self)), pStatus, ppszLastBookmark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_Skip(self: *const T, pItemType: ?[*:0]const u16, lNumItems: i32, pulNumSkipped: ?*u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).Skip(@ptrCast(*const ISpVoice, self), pItemType, lNumItems, pulNumSkipped);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Skip(@as(*const ISpVoice, @ptrCast(self)), pItemType, lNumItems, pulNumSkipped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetPriority(self: *const T, ePriority: SPVPRIORITY) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetPriority(@ptrCast(*const ISpVoice, self), ePriority);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const ISpVoice, @ptrCast(self)), ePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetPriority(self: *const T, pePriority: ?*SPVPRIORITY) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetPriority(@ptrCast(*const ISpVoice, self), pePriority);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const ISpVoice, @ptrCast(self)), pePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetAlertBoundary(self: *const T, eBoundary: SPEVENTENUM) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetAlertBoundary(@ptrCast(*const ISpVoice, self), eBoundary);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetAlertBoundary(@as(*const ISpVoice, @ptrCast(self)), eBoundary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetAlertBoundary(self: *const T, peBoundary: ?*SPEVENTENUM) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetAlertBoundary(@ptrCast(*const ISpVoice, self), peBoundary);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetAlertBoundary(@as(*const ISpVoice, @ptrCast(self)), peBoundary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetRate(self: *const T, RateAdjust: i32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetRate(@ptrCast(*const ISpVoice, self), RateAdjust);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetRate(@as(*const ISpVoice, @ptrCast(self)), RateAdjust);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetRate(self: *const T, pRateAdjust: ?*i32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetRate(@ptrCast(*const ISpVoice, self), pRateAdjust);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetRate(@as(*const ISpVoice, @ptrCast(self)), pRateAdjust);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetVolume(self: *const T, usVolume: u16) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetVolume(@ptrCast(*const ISpVoice, self), usVolume);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const ISpVoice, @ptrCast(self)), usVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetVolume(self: *const T, pusVolume: ?*u16) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetVolume(@ptrCast(*const ISpVoice, self), pusVolume);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const ISpVoice, @ptrCast(self)), pusVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_WaitUntilDone(self: *const T, msTimeout: u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).WaitUntilDone(@ptrCast(*const ISpVoice, self), msTimeout);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).WaitUntilDone(@as(*const ISpVoice, @ptrCast(self)), msTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SetSyncSpeakTimeout(self: *const T, msTimeout: u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SetSyncSpeakTimeout(@ptrCast(*const ISpVoice, self), msTimeout);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetSyncSpeakTimeout(@as(*const ISpVoice, @ptrCast(self)), msTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_GetSyncSpeakTimeout(self: *const T, pmsTimeout: ?*u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).GetSyncSpeakTimeout(@ptrCast(*const ISpVoice, self), pmsTimeout);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetSyncSpeakTimeout(@as(*const ISpVoice, @ptrCast(self)), pmsTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_SpeakCompleteEvent(self: *const T) ?HANDLE {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).SpeakCompleteEvent(@ptrCast(*const ISpVoice, self));
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SpeakCompleteEvent(@as(*const ISpVoice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpVoice, self), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpVoice, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpVoice_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) HRESULT {
-                return @ptrCast(*const ISpVoice.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpVoice, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
+                return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpVoice, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
             }
         };
     }
@@ -3675,19 +3675,19 @@ pub const ISpPhrase = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase_GetPhrase(self: *const T, ppCoMemPhrase: ?*?*SPPHRASE) HRESULT {
-                return @ptrCast(*const ISpPhrase.VTable, self.vtable).GetPhrase(@ptrCast(*const ISpPhrase, self), ppCoMemPhrase);
+                return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetPhrase(@as(*const ISpPhrase, @ptrCast(self)), ppCoMemPhrase);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase_GetSerializedPhrase(self: *const T, ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE) HRESULT {
-                return @ptrCast(*const ISpPhrase.VTable, self.vtable).GetSerializedPhrase(@ptrCast(*const ISpPhrase, self), ppCoMemPhrase);
+                return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetSerializedPhrase(@as(*const ISpPhrase, @ptrCast(self)), ppCoMemPhrase);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase_GetText(self: *const T, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?PWSTR, pbDisplayAttributes: ?*u8) HRESULT {
-                return @ptrCast(*const ISpPhrase.VTable, self.vtable).GetText(@ptrCast(*const ISpPhrase, self), ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
+                return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetText(@as(*const ISpPhrase, @ptrCast(self)), ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase_Discard(self: *const T, dwValueTypes: u32) HRESULT {
-                return @ptrCast(*const ISpPhrase.VTable, self.vtable).Discard(@ptrCast(*const ISpPhrase, self), dwValueTypes);
+                return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).Discard(@as(*const ISpPhrase, @ptrCast(self)), dwValueTypes);
             }
         };
     }
@@ -3730,11 +3730,11 @@ pub const ISpPhraseAlt = extern struct {
             pub usingnamespace ISpPhrase.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhraseAlt_GetAltInfo(self: *const T, ppParent: ?*?*ISpPhrase, pulStartElementInParent: ?*u32, pcElementsInParent: ?*u32, pcElementsInAlt: ?*u32) HRESULT {
-                return @ptrCast(*const ISpPhraseAlt.VTable, self.vtable).GetAltInfo(@ptrCast(*const ISpPhraseAlt, self), ppParent, pulStartElementInParent, pcElementsInParent, pcElementsInAlt);
+                return @as(*const ISpPhraseAlt.VTable, @ptrCast(self.vtable)).GetAltInfo(@as(*const ISpPhraseAlt, @ptrCast(self)), ppParent, pulStartElementInParent, pcElementsInParent, pcElementsInAlt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhraseAlt_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ISpPhraseAlt.VTable, self.vtable).Commit(@ptrCast(*const ISpPhraseAlt, self));
+                return @as(*const ISpPhraseAlt.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpPhraseAlt, @ptrCast(self)));
             }
         };
     }
@@ -3796,15 +3796,15 @@ pub const ISpPhrase2 = extern struct {
             pub usingnamespace ISpPhrase.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase2_GetXMLResult(self: *const T, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) HRESULT {
-                return @ptrCast(*const ISpPhrase2.VTable, self.vtable).GetXMLResult(@ptrCast(*const ISpPhrase2, self), ppszCoMemXMLResult, Options);
+                return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpPhrase2, @ptrCast(self)), ppszCoMemXMLResult, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase2_GetXMLErrorInfo(self: *const T, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) HRESULT {
-                return @ptrCast(*const ISpPhrase2.VTable, self.vtable).GetXMLErrorInfo(@ptrCast(*const ISpPhrase2, self), pSemanticErrorInfo);
+                return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpPhrase2, @ptrCast(self)), pSemanticErrorInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpPhrase2_GetAudio(self: *const T, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) HRESULT {
-                return @ptrCast(*const ISpPhrase2.VTable, self.vtable).GetAudio(@ptrCast(*const ISpPhrase2, self), ulStartElement, cElements, ppStream);
+                return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetAudio(@as(*const ISpPhrase2, @ptrCast(self)), ulStartElement, cElements, ppStream);
             }
         };
     }
@@ -3924,31 +3924,31 @@ pub const ISpRecoResult = extern struct {
             pub usingnamespace ISpPhrase.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_GetResultTimes(self: *const T, pTimes: ?*SPRECORESULTTIMES) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).GetResultTimes(@ptrCast(*const ISpRecoResult, self), pTimes);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetResultTimes(@as(*const ISpRecoResult, @ptrCast(self)), pTimes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_GetAlternates(self: *const T, ulStartElement: u32, cElements: u32, ulRequestCount: u32, ppPhrases: [*]?*ISpPhraseAlt, pcPhrasesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).GetAlternates(@ptrCast(*const ISpRecoResult, self), ulStartElement, cElements, ulRequestCount, ppPhrases, pcPhrasesReturned);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetAlternates(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, ulRequestCount, ppPhrases, pcPhrasesReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_GetAudio(self: *const T, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).GetAudio(@ptrCast(*const ISpRecoResult, self), ulStartElement, cElements, ppStream);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetAudio(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_SpeakAudio(self: *const T, ulStartElement: u32, cElements: u32, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).SpeakAudio(@ptrCast(*const ISpRecoResult, self), ulStartElement, cElements, dwFlags, pulStreamNumber);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, dwFlags, pulStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_Serialize(self: *const T, ppCoMemSerializedResult: ?*?*SPSERIALIZEDRESULT) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).Serialize(@ptrCast(*const ISpRecoResult, self), ppCoMemSerializedResult);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISpRecoResult, @ptrCast(self)), ppCoMemSerializedResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_ScaleAudio(self: *const T, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).ScaleAudio(@ptrCast(*const ISpRecoResult, self), pAudioFormatId, pWaveFormatEx);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).ScaleAudio(@as(*const ISpRecoResult, @ptrCast(self)), pAudioFormatId, pWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult_GetRecoContext(self: *const T, ppRecoContext: ?*?*ISpRecoContext) HRESULT {
-                return @ptrCast(*const ISpRecoResult.VTable, self.vtable).GetRecoContext(@ptrCast(*const ISpRecoResult, self), ppRecoContext);
+                return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetRecoContext(@as(*const ISpRecoResult, @ptrCast(self)), ppRecoContext);
             }
         };
     }
@@ -4016,15 +4016,15 @@ pub const ISpRecoResult2 = extern struct {
             pub usingnamespace ISpRecoResult.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult2_CommitAlternate(self: *const T, pPhraseAlt: ?*ISpPhraseAlt, ppNewResult: ?*?*ISpRecoResult) HRESULT {
-                return @ptrCast(*const ISpRecoResult2.VTable, self.vtable).CommitAlternate(@ptrCast(*const ISpRecoResult2, self), pPhraseAlt, ppNewResult);
+                return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).CommitAlternate(@as(*const ISpRecoResult2, @ptrCast(self)), pPhraseAlt, ppNewResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult2_CommitText(self: *const T, ulStartElement: u32, cElements: u32, pszCorrectedData: ?[*:0]const u16, eCommitFlags: u32) HRESULT {
-                return @ptrCast(*const ISpRecoResult2.VTable, self.vtable).CommitText(@ptrCast(*const ISpRecoResult2, self), ulStartElement, cElements, pszCorrectedData, eCommitFlags);
+                return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).CommitText(@as(*const ISpRecoResult2, @ptrCast(self)), ulStartElement, cElements, pszCorrectedData, eCommitFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoResult2_SetTextFeedback(self: *const T, pszFeedback: ?[*:0]const u16, fSuccessful: BOOL) HRESULT {
-                return @ptrCast(*const ISpRecoResult2.VTable, self.vtable).SetTextFeedback(@ptrCast(*const ISpRecoResult2, self), pszFeedback, fSuccessful);
+                return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpRecoResult2, @ptrCast(self)), pszFeedback, fSuccessful);
             }
         };
     }
@@ -4065,11 +4065,11 @@ pub const ISpXMLRecoResult = extern struct {
             pub usingnamespace ISpRecoResult.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpXMLRecoResult_GetXMLResult(self: *const T, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) HRESULT {
-                return @ptrCast(*const ISpXMLRecoResult.VTable, self.vtable).GetXMLResult(@ptrCast(*const ISpXMLRecoResult, self), ppszCoMemXMLResult, Options);
+                return @as(*const ISpXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpXMLRecoResult, @ptrCast(self)), ppszCoMemXMLResult, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpXMLRecoResult_GetXMLErrorInfo(self: *const T, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) HRESULT {
-                return @ptrCast(*const ISpXMLRecoResult.VTable, self.vtable).GetXMLErrorInfo(@ptrCast(*const ISpXMLRecoResult, self), pSemanticErrorInfo);
+                return @as(*const ISpXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpXMLRecoResult, @ptrCast(self)), pSemanticErrorInfo);
             }
         };
     }
@@ -4284,35 +4284,35 @@ pub const ISpGrammarBuilder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_ResetGrammar(self: *const T, NewLanguage: u16) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).ResetGrammar(@ptrCast(*const ISpGrammarBuilder, self), NewLanguage);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).ResetGrammar(@as(*const ISpGrammarBuilder, @ptrCast(self)), NewLanguage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_GetRule(self: *const T, pszRuleName: ?[*:0]const u16, dwRuleId: u32, dwAttributes: u32, fCreateIfNotExist: BOOL, phInitialState: ?*?*SPSTATEHANDLE__) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).GetRule(@ptrCast(*const ISpGrammarBuilder, self), pszRuleName, dwRuleId, dwAttributes, fCreateIfNotExist, phInitialState);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).GetRule(@as(*const ISpGrammarBuilder, @ptrCast(self)), pszRuleName, dwRuleId, dwAttributes, fCreateIfNotExist, phInitialState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_ClearRule(self: *const T, hState: ?*SPSTATEHANDLE__) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).ClearRule(@ptrCast(*const ISpGrammarBuilder, self), hState);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).ClearRule(@as(*const ISpGrammarBuilder, @ptrCast(self)), hState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_CreateNewState(self: *const T, hState: ?*SPSTATEHANDLE__, phState: ?*?*SPSTATEHANDLE__) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).CreateNewState(@ptrCast(*const ISpGrammarBuilder, self), hState, phState);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).CreateNewState(@as(*const ISpGrammarBuilder, @ptrCast(self)), hState, phState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_AddWordTransition(self: *const T, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, pszSeparators: ?[*:0]const u16, eWordType: SPGRAMMARWORDTYPE, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).AddWordTransition(@ptrCast(*const ISpGrammarBuilder, self), hFromState, hToState, psz, pszSeparators, eWordType, Weight, pPropInfo);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddWordTransition(@as(*const ISpGrammarBuilder, @ptrCast(self)), hFromState, hToState, psz, pszSeparators, eWordType, Weight, pPropInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_AddRuleTransition(self: *const T, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, hRule: ?*SPSTATEHANDLE__, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).AddRuleTransition(@ptrCast(*const ISpGrammarBuilder, self), hFromState, hToState, hRule, Weight, pPropInfo);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddRuleTransition(@as(*const ISpGrammarBuilder, @ptrCast(self)), hFromState, hToState, hRule, Weight, pPropInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_AddResource(self: *const T, hRuleState: ?*SPSTATEHANDLE__, pszResourceName: ?[*:0]const u16, pszResourceValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).AddResource(@ptrCast(*const ISpGrammarBuilder, self), hRuleState, pszResourceName, pszResourceValue);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddResource(@as(*const ISpGrammarBuilder, @ptrCast(self)), hRuleState, pszResourceName, pszResourceValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder_Commit(self: *const T, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder.VTable, self.vtable).Commit(@ptrCast(*const ISpGrammarBuilder, self), dwReserved);
+                return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpGrammarBuilder, @ptrCast(self)), dwReserved);
             }
         };
     }
@@ -4556,75 +4556,75 @@ pub const ISpRecoGrammar = extern struct {
             pub usingnamespace ISpGrammarBuilder.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_GetGrammarId(self: *const T, pullGrammarId: ?*u64) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).GetGrammarId(@ptrCast(*const ISpRecoGrammar, self), pullGrammarId);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetGrammarId(@as(*const ISpRecoGrammar, @ptrCast(self)), pullGrammarId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_GetRecoContext(self: *const T, ppRecoCtxt: ?*?*ISpRecoContext) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).GetRecoContext(@ptrCast(*const ISpRecoGrammar, self), ppRecoCtxt);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetRecoContext(@as(*const ISpRecoGrammar, @ptrCast(self)), ppRecoCtxt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadCmdFromFile(self: *const T, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromFile(@ptrCast(*const ISpRecoGrammar, self), pszFileName, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromFile(@as(*const ISpRecoGrammar, @ptrCast(self)), pszFileName, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadCmdFromObject(self: *const T, rcid: ?*const Guid, pszGrammarName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromObject(@ptrCast(*const ISpRecoGrammar, self), rcid, pszGrammarName, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromObject(@as(*const ISpRecoGrammar, @ptrCast(self)), rcid, pszGrammarName, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadCmdFromResource(self: *const T, hModule: ?HINSTANCE, pszResourceName: ?[*:0]const u16, pszResourceType: ?[*:0]const u16, wLanguage: u16, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromResource(@ptrCast(*const ISpRecoGrammar, self), hModule, pszResourceName, pszResourceType, wLanguage, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromResource(@as(*const ISpRecoGrammar, @ptrCast(self)), hModule, pszResourceName, pszResourceType, wLanguage, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadCmdFromMemory(self: *const T, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromMemory(@ptrCast(*const ISpRecoGrammar, self), pGrammar, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromMemory(@as(*const ISpRecoGrammar, @ptrCast(self)), pGrammar, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadCmdFromProprietaryGrammar(self: *const T, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const anyopaque, cbDataSize: u32, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadCmdFromProprietaryGrammar(@ptrCast(*const ISpRecoGrammar, self), rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromProprietaryGrammar(@as(*const ISpRecoGrammar, @ptrCast(self)), rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetRuleState(self: *const T, pszName: ?[*:0]const u16, pReserved: ?*anyopaque, NewState: SPRULESTATE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetRuleState(@ptrCast(*const ISpRecoGrammar, self), pszName, pReserved, NewState);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetRuleState(@as(*const ISpRecoGrammar, @ptrCast(self)), pszName, pReserved, NewState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetRuleIdState(self: *const T, ulRuleId: u32, NewState: SPRULESTATE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetRuleIdState(@ptrCast(*const ISpRecoGrammar, self), ulRuleId, NewState);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetRuleIdState(@as(*const ISpRecoGrammar, @ptrCast(self)), ulRuleId, NewState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_LoadDictation(self: *const T, pszTopicName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).LoadDictation(@ptrCast(*const ISpRecoGrammar, self), pszTopicName, Options);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadDictation(@as(*const ISpRecoGrammar, @ptrCast(self)), pszTopicName, Options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_UnloadDictation(self: *const T) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).UnloadDictation(@ptrCast(*const ISpRecoGrammar, self));
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).UnloadDictation(@as(*const ISpRecoGrammar, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetDictationState(self: *const T, NewState: SPRULESTATE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetDictationState(@ptrCast(*const ISpRecoGrammar, self), NewState);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetDictationState(@as(*const ISpRecoGrammar, @ptrCast(self)), NewState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetWordSequenceData(self: *const T, pText: ?[*:0]const u16, cchText: u32, pInfo: ?*const SPTEXTSELECTIONINFO) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetWordSequenceData(@ptrCast(*const ISpRecoGrammar, self), pText, cchText, pInfo);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetWordSequenceData(@as(*const ISpRecoGrammar, @ptrCast(self)), pText, cchText, pInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetTextSelection(self: *const T, pInfo: ?*const SPTEXTSELECTIONINFO) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetTextSelection(@ptrCast(*const ISpRecoGrammar, self), pInfo);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetTextSelection(@as(*const ISpRecoGrammar, @ptrCast(self)), pInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_IsPronounceable(self: *const T, pszWord: ?[*:0]const u16, pWordPronounceable: ?*SPWORDPRONOUNCEABLE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).IsPronounceable(@ptrCast(*const ISpRecoGrammar, self), pszWord, pWordPronounceable);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).IsPronounceable(@as(*const ISpRecoGrammar, @ptrCast(self)), pszWord, pWordPronounceable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SetGrammarState(self: *const T, eGrammarState: SPGRAMMARSTATE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SetGrammarState(@ptrCast(*const ISpRecoGrammar, self), eGrammarState);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetGrammarState(@as(*const ISpRecoGrammar, @ptrCast(self)), eGrammarState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_SaveCmd(self: *const T, pStream: ?*IStream, ppszCoMemErrorText: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).SaveCmd(@ptrCast(*const ISpRecoGrammar, self), pStream, ppszCoMemErrorText);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SaveCmd(@as(*const ISpRecoGrammar, @ptrCast(self)), pStream, ppszCoMemErrorText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar_GetGrammarState(self: *const T, peGrammarState: ?*SPGRAMMARSTATE) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar.VTable, self.vtable).GetGrammarState(@ptrCast(*const ISpRecoGrammar, self), peGrammarState);
+                return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetGrammarState(@as(*const ISpRecoGrammar, @ptrCast(self)), peGrammarState);
             }
         };
     }
@@ -4691,11 +4691,11 @@ pub const ISpGrammarBuilder2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder2_AddTextSubset(self: *const T, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, eMatchMode: SPMATCHINGMODE) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder2.VTable, self.vtable).AddTextSubset(@ptrCast(*const ISpGrammarBuilder2, self), hFromState, hToState, psz, eMatchMode);
+                return @as(*const ISpGrammarBuilder2.VTable, @ptrCast(self.vtable)).AddTextSubset(@as(*const ISpGrammarBuilder2, @ptrCast(self)), hFromState, hToState, psz, eMatchMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpGrammarBuilder2_SetPhoneticAlphabet(self: *const T, phoneticALphabet: PHONETICALPHABET) HRESULT {
-                return @ptrCast(*const ISpGrammarBuilder2.VTable, self.vtable).SetPhoneticAlphabet(@ptrCast(*const ISpGrammarBuilder2, self), phoneticALphabet);
+                return @as(*const ISpGrammarBuilder2.VTable, @ptrCast(self.vtable)).SetPhoneticAlphabet(@as(*const ISpGrammarBuilder2, @ptrCast(self)), phoneticALphabet);
             }
         };
     }
@@ -4816,35 +4816,35 @@ pub const ISpRecoGrammar2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_GetRules(self: *const T, ppCoMemRules: ?*?*SPRULE, puNumRules: ?*u32) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).GetRules(@ptrCast(*const ISpRecoGrammar2, self), ppCoMemRules, puNumRules);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).GetRules(@as(*const ISpRecoGrammar2, @ptrCast(self)), ppCoMemRules, puNumRules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_LoadCmdFromFile2(self: *const T, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).LoadCmdFromFile2(@ptrCast(*const ISpRecoGrammar2, self), pszFileName, Options, pszSharingUri, pszBaseUri);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).LoadCmdFromFile2(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszFileName, Options, pszSharingUri, pszBaseUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_LoadCmdFromMemory2(self: *const T, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).LoadCmdFromMemory2(@ptrCast(*const ISpRecoGrammar2, self), pGrammar, Options, pszSharingUri, pszBaseUri);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).LoadCmdFromMemory2(@as(*const ISpRecoGrammar2, @ptrCast(self)), pGrammar, Options, pszSharingUri, pszBaseUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_SetRulePriority(self: *const T, pszRuleName: ?[*:0]const u16, ulRuleId: u32, nRulePriority: i32) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).SetRulePriority(@ptrCast(*const ISpRecoGrammar2, self), pszRuleName, ulRuleId, nRulePriority);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetRulePriority(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszRuleName, ulRuleId, nRulePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_SetRuleWeight(self: *const T, pszRuleName: ?[*:0]const u16, ulRuleId: u32, flWeight: f32) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).SetRuleWeight(@ptrCast(*const ISpRecoGrammar2, self), pszRuleName, ulRuleId, flWeight);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetRuleWeight(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszRuleName, ulRuleId, flWeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_SetDictationWeight(self: *const T, flWeight: f32) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).SetDictationWeight(@ptrCast(*const ISpRecoGrammar2, self), flWeight);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetDictationWeight(@as(*const ISpRecoGrammar2, @ptrCast(self)), flWeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_SetGrammarLoader(self: *const T, pLoader: ?*ISpeechResourceLoader) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).SetGrammarLoader(@ptrCast(*const ISpRecoGrammar2, self), pLoader);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetGrammarLoader(@as(*const ISpRecoGrammar2, @ptrCast(self)), pLoader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoGrammar2_SetSMLSecurityManager(self: *const T, pSMLSecurityManager: ?*IInternetSecurityManager) HRESULT {
-                return @ptrCast(*const ISpRecoGrammar2.VTable, self.vtable).SetSMLSecurityManager(@ptrCast(*const ISpRecoGrammar2, self), pSMLSecurityManager);
+                return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetSMLSecurityManager(@as(*const ISpRecoGrammar2, @ptrCast(self)), pSMLSecurityManager);
             }
         };
     }
@@ -4909,15 +4909,15 @@ pub const ISpeechResourceLoader = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechResourceLoader_LoadResource(self: *const T, bstrResourceUri: ?BSTR, fAlwaysReload: i16, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*i16, pbstrRedirectUrl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechResourceLoader.VTable, self.vtable).LoadResource(@ptrCast(*const ISpeechResourceLoader, self), bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
+                return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).LoadResource(@as(*const ISpeechResourceLoader, @ptrCast(self)), bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechResourceLoader_GetLocalCopy(self: *const T, bstrResourceUri: ?BSTR, pbstrLocalPath: ?*?BSTR, pbstrMIMEType: ?*?BSTR, pbstrRedirectUrl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechResourceLoader.VTable, self.vtable).GetLocalCopy(@ptrCast(*const ISpeechResourceLoader, self), bstrResourceUri, pbstrLocalPath, pbstrMIMEType, pbstrRedirectUrl);
+                return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).GetLocalCopy(@as(*const ISpeechResourceLoader, @ptrCast(self)), bstrResourceUri, pbstrLocalPath, pbstrMIMEType, pbstrRedirectUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechResourceLoader_ReleaseLocalCopy(self: *const T, pbstrLocalPath: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechResourceLoader.VTable, self.vtable).ReleaseLocalCopy(@ptrCast(*const ISpeechResourceLoader, self), pbstrLocalPath);
+                return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).ReleaseLocalCopy(@as(*const ISpeechResourceLoader, @ptrCast(self)), pbstrLocalPath);
             }
         };
     }
@@ -5161,75 +5161,75 @@ pub const ISpRecoContext = extern struct {
             pub usingnamespace ISpEventSource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetRecognizer(self: *const T, ppRecognizer: ?*?*ISpRecognizer) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetRecognizer(@ptrCast(*const ISpRecoContext, self), ppRecognizer);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetRecognizer(@as(*const ISpRecoContext, @ptrCast(self)), ppRecognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_CreateGrammar(self: *const T, ullGrammarId: u64, ppGrammar: ?*?*ISpRecoGrammar) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).CreateGrammar(@ptrCast(*const ISpRecoContext, self), ullGrammarId, ppGrammar);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).CreateGrammar(@as(*const ISpRecoContext, @ptrCast(self)), ullGrammarId, ppGrammar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetStatus(self: *const T, pStatus: ?*SPRECOCONTEXTSTATUS) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetStatus(@ptrCast(*const ISpRecoContext, self), pStatus);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpRecoContext, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetMaxAlternates(self: *const T, pcAlternates: ?*u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetMaxAlternates(@ptrCast(*const ISpRecoContext, self), pcAlternates);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetMaxAlternates(@as(*const ISpRecoContext, @ptrCast(self)), pcAlternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetMaxAlternates(self: *const T, cAlternates: u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetMaxAlternates(@ptrCast(*const ISpRecoContext, self), cAlternates);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetMaxAlternates(@as(*const ISpRecoContext, @ptrCast(self)), cAlternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetAudioOptions(self: *const T, Options: SPAUDIOOPTIONS, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetAudioOptions(@ptrCast(*const ISpRecoContext, self), Options, pAudioFormatId, pWaveFormatEx);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetAudioOptions(@as(*const ISpRecoContext, @ptrCast(self)), Options, pAudioFormatId, pWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetAudioOptions(self: *const T, pOptions: ?*SPAUDIOOPTIONS, pAudioFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetAudioOptions(@ptrCast(*const ISpRecoContext, self), pOptions, pAudioFormatId, ppCoMemWFEX);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetAudioOptions(@as(*const ISpRecoContext, @ptrCast(self)), pOptions, pAudioFormatId, ppCoMemWFEX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_DeserializeResult(self: *const T, pSerializedResult: ?*const SPSERIALIZEDRESULT, ppResult: ?*?*ISpRecoResult) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).DeserializeResult(@ptrCast(*const ISpRecoContext, self), pSerializedResult, ppResult);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).DeserializeResult(@as(*const ISpRecoContext, @ptrCast(self)), pSerializedResult, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_Bookmark(self: *const T, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: LPARAM) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).Bookmark(@ptrCast(*const ISpRecoContext, self), Options, ullStreamPosition, lparamEvent);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Bookmark(@as(*const ISpRecoContext, @ptrCast(self)), Options, ullStreamPosition, lparamEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetAdaptationData(self: *const T, pAdaptationData: ?[*:0]const u16, cch: u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetAdaptationData(@ptrCast(*const ISpRecoContext, self), pAdaptationData, cch);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetAdaptationData(@as(*const ISpRecoContext, @ptrCast(self)), pAdaptationData, cch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_Pause(self: *const T, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).Pause(@ptrCast(*const ISpRecoContext, self), dwReserved);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpRecoContext, @ptrCast(self)), dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_Resume(self: *const T, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).Resume(@ptrCast(*const ISpRecoContext, self), dwReserved);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpRecoContext, @ptrCast(self)), dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetVoice(self: *const T, pVoice: ?*ISpVoice, fAllowFormatChanges: BOOL) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetVoice(@ptrCast(*const ISpRecoContext, self), pVoice, fAllowFormatChanges);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetVoice(@as(*const ISpRecoContext, @ptrCast(self)), pVoice, fAllowFormatChanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetVoice(self: *const T, ppVoice: ?*?*ISpVoice) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetVoice(@ptrCast(*const ISpRecoContext, self), ppVoice);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetVoice(@as(*const ISpRecoContext, @ptrCast(self)), ppVoice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetVoicePurgeEvent(self: *const T, ullEventInterest: u64) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetVoicePurgeEvent(@ptrCast(*const ISpRecoContext, self), ullEventInterest);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetVoicePurgeEvent(@as(*const ISpRecoContext, @ptrCast(self)), ullEventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetVoicePurgeEvent(self: *const T, pullEventInterest: ?*u64) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetVoicePurgeEvent(@ptrCast(*const ISpRecoContext, self), pullEventInterest);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetVoicePurgeEvent(@as(*const ISpRecoContext, @ptrCast(self)), pullEventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_SetContextState(self: *const T, eContextState: SPCONTEXTSTATE) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).SetContextState(@ptrCast(*const ISpRecoContext, self), eContextState);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetContextState(@as(*const ISpRecoContext, @ptrCast(self)), eContextState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext_GetContextState(self: *const T, peContextState: ?*SPCONTEXTSTATE) HRESULT {
-                return @ptrCast(*const ISpRecoContext.VTable, self.vtable).GetContextState(@ptrCast(*const ISpRecoContext, self), peContextState);
+                return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetContextState(@as(*const ISpRecoContext, @ptrCast(self)), peContextState);
             }
         };
     }
@@ -5341,15 +5341,15 @@ pub const ISpRecoContext2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext2_SetGrammarOptions(self: *const T, eGrammarOptions: u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext2.VTable, self.vtable).SetGrammarOptions(@ptrCast(*const ISpRecoContext2, self), eGrammarOptions);
+                return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).SetGrammarOptions(@as(*const ISpRecoContext2, @ptrCast(self)), eGrammarOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext2_GetGrammarOptions(self: *const T, peGrammarOptions: ?*u32) HRESULT {
-                return @ptrCast(*const ISpRecoContext2.VTable, self.vtable).GetGrammarOptions(@ptrCast(*const ISpRecoContext2, self), peGrammarOptions);
+                return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).GetGrammarOptions(@as(*const ISpRecoContext2, @ptrCast(self)), peGrammarOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecoContext2_SetAdaptationData2(self: *const T, pAdaptationData: ?[*:0]const u16, cch: u32, pTopicName: ?[*:0]const u16, eAdaptationSettings: u32, eRelevance: SPADAPTATIONRELEVANCE) HRESULT {
-                return @ptrCast(*const ISpRecoContext2.VTable, self.vtable).SetAdaptationData2(@ptrCast(*const ISpRecoContext2, self), pAdaptationData, cch, pTopicName, eAdaptationSettings, eRelevance);
+                return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).SetAdaptationData2(@as(*const ISpRecoContext2, @ptrCast(self)), pAdaptationData, cch, pTopicName, eAdaptationSettings, eRelevance);
             }
         };
     }
@@ -5416,19 +5416,19 @@ pub const ISpProperties = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpProperties_SetPropertyNum(self: *const T, pName: ?[*:0]const u16, lValue: i32) HRESULT {
-                return @ptrCast(*const ISpProperties.VTable, self.vtable).SetPropertyNum(@ptrCast(*const ISpProperties, self), pName, lValue);
+                return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).SetPropertyNum(@as(*const ISpProperties, @ptrCast(self)), pName, lValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpProperties_GetPropertyNum(self: *const T, pName: ?[*:0]const u16, plValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISpProperties.VTable, self.vtable).GetPropertyNum(@ptrCast(*const ISpProperties, self), pName, plValue);
+                return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).GetPropertyNum(@as(*const ISpProperties, @ptrCast(self)), pName, plValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpProperties_SetPropertyString(self: *const T, pName: ?[*:0]const u16, pValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ISpProperties.VTable, self.vtable).SetPropertyString(@ptrCast(*const ISpProperties, self), pName, pValue);
+                return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).SetPropertyString(@as(*const ISpProperties, @ptrCast(self)), pName, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpProperties_GetPropertyString(self: *const T, pName: ?[*:0]const u16, ppCoMemValue: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISpProperties.VTable, self.vtable).GetPropertyString(@ptrCast(*const ISpProperties, self), pName, ppCoMemValue);
+                return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).GetPropertyString(@as(*const ISpProperties, @ptrCast(self)), pName, ppCoMemValue);
             }
         };
     }
@@ -5656,67 +5656,67 @@ pub const ISpRecognizer = extern struct {
             pub usingnamespace ISpProperties.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_SetRecognizer(self: *const T, pRecognizer: ?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).SetRecognizer(@ptrCast(*const ISpRecognizer, self), pRecognizer);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecognizer(@as(*const ISpRecognizer, @ptrCast(self)), pRecognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetRecognizer(self: *const T, ppRecognizer: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetRecognizer(@ptrCast(*const ISpRecognizer, self), ppRecognizer);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecognizer(@as(*const ISpRecognizer, @ptrCast(self)), ppRecognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_SetInput(self: *const T, pUnkInput: ?*IUnknown, fAllowFormatChanges: BOOL) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).SetInput(@ptrCast(*const ISpRecognizer, self), pUnkInput, fAllowFormatChanges);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetInput(@as(*const ISpRecognizer, @ptrCast(self)), pUnkInput, fAllowFormatChanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetInputObjectToken(self: *const T, ppToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetInputObjectToken(@ptrCast(*const ISpRecognizer, self), ppToken);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetInputObjectToken(@as(*const ISpRecognizer, @ptrCast(self)), ppToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetInputStream(self: *const T, ppStream: ?*?*ISpStreamFormat) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetInputStream(@ptrCast(*const ISpRecognizer, self), ppStream);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetInputStream(@as(*const ISpRecognizer, @ptrCast(self)), ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_CreateRecoContext(self: *const T, ppNewCtxt: ?*?*ISpRecoContext) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).CreateRecoContext(@ptrCast(*const ISpRecognizer, self), ppNewCtxt);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).CreateRecoContext(@as(*const ISpRecognizer, @ptrCast(self)), ppNewCtxt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetRecoProfile(self: *const T, ppToken: ?*?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetRecoProfile(@ptrCast(*const ISpRecognizer, self), ppToken);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecoProfile(@as(*const ISpRecognizer, @ptrCast(self)), ppToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_SetRecoProfile(self: *const T, pToken: ?*ISpObjectToken) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).SetRecoProfile(@ptrCast(*const ISpRecognizer, self), pToken);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecoProfile(@as(*const ISpRecognizer, @ptrCast(self)), pToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_IsSharedInstance(self: *const T) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).IsSharedInstance(@ptrCast(*const ISpRecognizer, self));
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).IsSharedInstance(@as(*const ISpRecognizer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetRecoState(self: *const T, pState: ?*SPRECOSTATE) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetRecoState(@ptrCast(*const ISpRecognizer, self), pState);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecoState(@as(*const ISpRecognizer, @ptrCast(self)), pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_SetRecoState(self: *const T, NewState: SPRECOSTATE) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).SetRecoState(@ptrCast(*const ISpRecognizer, self), NewState);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecoState(@as(*const ISpRecognizer, @ptrCast(self)), NewState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetStatus(self: *const T, pStatus: ?*SPRECOGNIZERSTATUS) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetStatus(@ptrCast(*const ISpRecognizer, self), pStatus);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpRecognizer, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_GetFormat(self: *const T, WaveFormatType: SPWAVEFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).GetFormat(@ptrCast(*const ISpRecognizer, self), WaveFormatType, pFormatId, ppCoMemWFEX);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpRecognizer, @ptrCast(self)), WaveFormatType, pFormatId, ppCoMemWFEX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_IsUISupported(self: *const T, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpRecognizer, self), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpRecognizer, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_DisplayUI(self: *const T, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpRecognizer, self), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpRecognizer, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer_EmulateRecognition(self: *const T, pPhrase: ?*ISpPhrase) HRESULT {
-                return @ptrCast(*const ISpRecognizer.VTable, self.vtable).EmulateRecognition(@ptrCast(*const ISpRecognizer, self), pPhrase);
+                return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).EmulateRecognition(@as(*const ISpRecognizer, @ptrCast(self)), pPhrase);
             }
         };
     }
@@ -5763,11 +5763,11 @@ pub const ISpSerializeState = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpSerializeState_GetSerializedState(self: *const T, ppbData: ?*?*u8, pulSize: ?*u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ISpSerializeState.VTable, self.vtable).GetSerializedState(@ptrCast(*const ISpSerializeState, self), ppbData, pulSize, dwReserved);
+                return @as(*const ISpSerializeState.VTable, @ptrCast(self.vtable)).GetSerializedState(@as(*const ISpSerializeState, @ptrCast(self)), ppbData, pulSize, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpSerializeState_SetSerializedState(self: *const T, pbData: ?*u8, ulSize: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ISpSerializeState.VTable, self.vtable).SetSerializedState(@ptrCast(*const ISpSerializeState, self), pbData, ulSize, dwReserved);
+                return @as(*const ISpSerializeState.VTable, @ptrCast(self.vtable)).SetSerializedState(@as(*const ISpSerializeState, @ptrCast(self)), pbData, ulSize, dwReserved);
             }
         };
     }
@@ -5818,15 +5818,15 @@ pub const ISpRecognizer2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer2_EmulateRecognitionEx(self: *const T, pPhrase: ?*ISpPhrase, dwCompareFlags: u32) HRESULT {
-                return @ptrCast(*const ISpRecognizer2.VTable, self.vtable).EmulateRecognitionEx(@ptrCast(*const ISpRecognizer2, self), pPhrase, dwCompareFlags);
+                return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).EmulateRecognitionEx(@as(*const ISpRecognizer2, @ptrCast(self)), pPhrase, dwCompareFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer2_SetTrainingState(self: *const T, fDoingTraining: BOOL, fAdaptFromTrainingData: BOOL) HRESULT {
-                return @ptrCast(*const ISpRecognizer2.VTable, self.vtable).SetTrainingState(@ptrCast(*const ISpRecognizer2, self), fDoingTraining, fAdaptFromTrainingData);
+                return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).SetTrainingState(@as(*const ISpRecognizer2, @ptrCast(self)), fDoingTraining, fAdaptFromTrainingData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpRecognizer2_ResetAcousticModelAdaptation(self: *const T) HRESULT {
-                return @ptrCast(*const ISpRecognizer2.VTable, self.vtable).ResetAcousticModelAdaptation(@ptrCast(*const ISpRecognizer2, self));
+                return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).ResetAcousticModelAdaptation(@as(*const ISpRecognizer2, @ptrCast(self)));
             }
         };
     }
@@ -5886,11 +5886,11 @@ pub const ISpEnginePronunciation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEnginePronunciation_Normalize(self: *const T, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pNormalizationList: ?*SPNORMALIZATIONLIST) HRESULT {
-                return @ptrCast(*const ISpEnginePronunciation.VTable, self.vtable).Normalize(@ptrCast(*const ISpEnginePronunciation, self), pszWord, pszLeftContext, pszRightContext, LangID, pNormalizationList);
+                return @as(*const ISpEnginePronunciation.VTable, @ptrCast(self.vtable)).Normalize(@as(*const ISpEnginePronunciation, @ptrCast(self)), pszWord, pszLeftContext, pszRightContext, LangID, pNormalizationList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpEnginePronunciation_GetPronunciations(self: *const T, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pEnginePronunciationList: ?*SPWORDPRONUNCIATIONLIST) HRESULT {
-                return @ptrCast(*const ISpEnginePronunciation.VTable, self.vtable).GetPronunciations(@ptrCast(*const ISpEnginePronunciation, self), pszWord, pszLeftContext, pszRightContext, LangID, pEnginePronunciationList);
+                return @as(*const ISpEnginePronunciation.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpEnginePronunciation, @ptrCast(self)), pszWord, pszLeftContext, pszRightContext, LangID, pEnginePronunciationList);
             }
         };
     }
@@ -5946,11 +5946,11 @@ pub const ISpDisplayAlternates = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDisplayAlternates_GetDisplayAlternates(self: *const T, pPhrase: ?*const SPDISPLAYPHRASE, cRequestCount: u32, ppCoMemPhrases: ?*?*SPDISPLAYPHRASE, pcPhrasesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const ISpDisplayAlternates.VTable, self.vtable).GetDisplayAlternates(@ptrCast(*const ISpDisplayAlternates, self), pPhrase, cRequestCount, ppCoMemPhrases, pcPhrasesReturned);
+                return @as(*const ISpDisplayAlternates.VTable, @ptrCast(self.vtable)).GetDisplayAlternates(@as(*const ISpDisplayAlternates, @ptrCast(self)), pPhrase, cRequestCount, ppCoMemPhrases, pcPhrasesReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpDisplayAlternates_SetFullStopTrailSpace(self: *const T, ulTrailSpace: u32) HRESULT {
-                return @ptrCast(*const ISpDisplayAlternates.VTable, self.vtable).SetFullStopTrailSpace(@ptrCast(*const ISpDisplayAlternates, self), ulTrailSpace);
+                return @as(*const ISpDisplayAlternates.VTable, @ptrCast(self.vtable)).SetFullStopTrailSpace(@as(*const ISpDisplayAlternates, @ptrCast(self)), ulTrailSpace);
             }
         };
     }
@@ -7575,51 +7575,51 @@ pub const ISpeechDataKey = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_SetBinaryValue(self: *const T, ValueName: ?BSTR, Value: VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).SetBinaryValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetBinaryValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_GetBinaryValue(self: *const T, ValueName: ?BSTR, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).GetBinaryValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetBinaryValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_SetStringValue(self: *const T, ValueName: ?BSTR, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).SetStringValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_GetStringValue(self: *const T, ValueName: ?BSTR, Value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).GetStringValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_SetLongValue(self: *const T, ValueName: ?BSTR, Value: i32) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).SetLongValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetLongValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_GetLongValue(self: *const T, ValueName: ?BSTR, Value: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).GetLongValue(@ptrCast(*const ISpeechDataKey, self), ValueName, Value);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetLongValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_OpenKey(self: *const T, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).OpenKey(@ptrCast(*const ISpeechDataKey, self), SubKeyName, SubKey);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName, SubKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_CreateKey(self: *const T, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).CreateKey(@ptrCast(*const ISpeechDataKey, self), SubKeyName, SubKey);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).CreateKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName, SubKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_DeleteKey(self: *const T, SubKeyName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).DeleteKey(@ptrCast(*const ISpeechDataKey, self), SubKeyName);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_DeleteValue(self: *const T, ValueName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).DeleteValue(@ptrCast(*const ISpeechDataKey, self), ValueName);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_EnumKeys(self: *const T, Index: i32, SubKeyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).EnumKeys(@ptrCast(*const ISpeechDataKey, self), Index, SubKeyName);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const ISpeechDataKey, @ptrCast(self)), Index, SubKeyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechDataKey_EnumValues(self: *const T, Index: i32, ValueName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechDataKey.VTable, self.vtable).EnumValues(@ptrCast(*const ISpeechDataKey, self), Index, ValueName);
+                return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).EnumValues(@as(*const ISpeechDataKey, @ptrCast(self)), Index, ValueName);
             }
         };
     }
@@ -7817,55 +7817,55 @@ pub const ISpeechObjectToken = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_get_Id(self: *const T, ObjectId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechObjectToken, self), ObjectId);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_get_DataKey(self: *const T, DataKey: ?*?*ISpeechDataKey) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_DataKey(@ptrCast(*const ISpeechObjectToken, self), DataKey);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_DataKey(@as(*const ISpeechObjectToken, @ptrCast(self)), DataKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_get_Category(self: *const T, Category: ?*?*ISpeechObjectTokenCategory) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).get_Category(@ptrCast(*const ISpeechObjectToken, self), Category);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_Category(@as(*const ISpeechObjectToken, @ptrCast(self)), Category);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_GetDescription(self: *const T, Locale: i32, Description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).GetDescription(@ptrCast(*const ISpeechObjectToken, self), Locale, Description);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ISpeechObjectToken, @ptrCast(self)), Locale, Description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_SetId(self: *const T, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: i16) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).SetId(@ptrCast(*const ISpeechObjectToken, self), Id, CategoryID, CreateIfNotExist);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpeechObjectToken, @ptrCast(self)), Id, CategoryID, CreateIfNotExist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_GetAttribute(self: *const T, AttributeName: ?BSTR, AttributeValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).GetAttribute(@ptrCast(*const ISpeechObjectToken, self), AttributeName, AttributeValue);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISpeechObjectToken, @ptrCast(self)), AttributeName, AttributeValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_CreateInstance(self: *const T, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).CreateInstance(@ptrCast(*const ISpeechObjectToken, self), pUnkOuter, ClsContext, Object);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ISpeechObjectToken, @ptrCast(self)), pUnkOuter, ClsContext, Object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_Remove(self: *const T, ObjectStorageCLSID: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).Remove(@ptrCast(*const ISpeechObjectToken, self), ObjectStorageCLSID);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_GetStorageFileName(self: *const T, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, FileName: ?BSTR, Folder: SpeechTokenShellFolder, FilePath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).GetStorageFileName(@ptrCast(*const ISpeechObjectToken, self), ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetStorageFileName(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_RemoveStorageFileName(self: *const T, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFileA: i16) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).RemoveStorageFileName(@ptrCast(*const ISpeechObjectToken, self), ObjectStorageCLSID, KeyName, DeleteFileA);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).RemoveStorageFileName(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID, KeyName, DeleteFileA);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_IsUISupported(self: *const T, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpeechObjectToken, self), TypeOfUI, ExtraData, Object, Supported);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechObjectToken, @ptrCast(self)), TypeOfUI, ExtraData, Object, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_DisplayUI(self: *const T, hWnd: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpeechObjectToken, self), hWnd, Title, TypeOfUI, ExtraData, Object);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechObjectToken, @ptrCast(self)), hWnd, Title, TypeOfUI, ExtraData, Object);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectToken_MatchesAttributes(self: *const T, Attributes: ?BSTR, Matches: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechObjectToken.VTable, self.vtable).MatchesAttributes(@ptrCast(*const ISpeechObjectToken, self), Attributes, Matches);
+                return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).MatchesAttributes(@as(*const ISpeechObjectToken, @ptrCast(self)), Attributes, Matches);
             }
         };
     }
@@ -7922,15 +7922,15 @@ pub const ISpeechObjectTokens = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokens_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechObjectTokens, self), Count);
+                return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechObjectTokens, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokens_Item(self: *const T, Index: i32, Token: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).Item(@ptrCast(*const ISpeechObjectTokens, self), Index, Token);
+                return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechObjectTokens, @ptrCast(self)), Index, Token);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokens_get__NewEnum(self: *const T, ppEnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokens.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechObjectTokens, self), ppEnumVARIANT);
+                return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechObjectTokens, @ptrCast(self)), ppEnumVARIANT);
             }
         };
     }
@@ -8026,27 +8026,27 @@ pub const ISpeechObjectTokenCategory = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_get_Id(self: *const T, Id: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechObjectTokenCategory, self), Id);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_put_Default(self: *const T, TokenId: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).put_Default(@ptrCast(*const ISpeechObjectTokenCategory, self), TokenId);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).put_Default(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), TokenId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_get_Default(self: *const T, TokenId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).get_Default(@ptrCast(*const ISpeechObjectTokenCategory, self), TokenId);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).get_Default(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), TokenId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_SetId(self: *const T, Id: ?BSTR, CreateIfNotExist: i16) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).SetId(@ptrCast(*const ISpeechObjectTokenCategory, self), Id, CreateIfNotExist);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Id, CreateIfNotExist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_GetDataKey(self: *const T, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).GetDataKey(@ptrCast(*const ISpeechObjectTokenCategory, self), Location, DataKey);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDataKey(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Location, DataKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechObjectTokenCategory_EnumerateTokens(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, Tokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechObjectTokenCategory.VTable, self.vtable).EnumerateTokens(@ptrCast(*const ISpeechObjectTokenCategory, self), RequiredAttributes, OptionalAttributes, Tokens);
+                return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).EnumerateTokens(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), RequiredAttributes, OptionalAttributes, Tokens);
             }
         };
     }
@@ -8143,27 +8143,27 @@ pub const ISpeechAudioBufferInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_get_MinNotification(self: *const T, MinNotification: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).get_MinNotification(@ptrCast(*const ISpeechAudioBufferInfo, self), MinNotification);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_MinNotification(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), MinNotification);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_put_MinNotification(self: *const T, MinNotification: i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).put_MinNotification(@ptrCast(*const ISpeechAudioBufferInfo, self), MinNotification);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_MinNotification(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), MinNotification);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_get_BufferSize(self: *const T, BufferSize: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).get_BufferSize(@ptrCast(*const ISpeechAudioBufferInfo, self), BufferSize);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_BufferSize(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), BufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_put_BufferSize(self: *const T, BufferSize: i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).put_BufferSize(@ptrCast(*const ISpeechAudioBufferInfo, self), BufferSize);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_BufferSize(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), BufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_get_EventBias(self: *const T, EventBias: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).get_EventBias(@ptrCast(*const ISpeechAudioBufferInfo, self), EventBias);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_EventBias(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), EventBias);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioBufferInfo_put_EventBias(self: *const T, EventBias: i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioBufferInfo.VTable, self.vtable).put_EventBias(@ptrCast(*const ISpeechAudioBufferInfo, self), EventBias);
+                return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_EventBias(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), EventBias);
             }
         };
     }
@@ -8247,23 +8247,23 @@ pub const ISpeechAudioStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioStatus_get_FreeBufferSpace(self: *const T, FreeBufferSpace: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioStatus.VTable, self.vtable).get_FreeBufferSpace(@ptrCast(*const ISpeechAudioStatus, self), FreeBufferSpace);
+                return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_FreeBufferSpace(@as(*const ISpeechAudioStatus, @ptrCast(self)), FreeBufferSpace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioStatus_get_NonBlockingIO(self: *const T, NonBlockingIO: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudioStatus.VTable, self.vtable).get_NonBlockingIO(@ptrCast(*const ISpeechAudioStatus, self), NonBlockingIO);
+                return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_NonBlockingIO(@as(*const ISpeechAudioStatus, @ptrCast(self)), NonBlockingIO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioStatus_get_State(self: *const T, State: ?*SpeechAudioState) HRESULT {
-                return @ptrCast(*const ISpeechAudioStatus.VTable, self.vtable).get_State(@ptrCast(*const ISpeechAudioStatus, self), State);
+                return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechAudioStatus, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioStatus_get_CurrentSeekPosition(self: *const T, CurrentSeekPosition: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechAudioStatus.VTable, self.vtable).get_CurrentSeekPosition(@ptrCast(*const ISpeechAudioStatus, self), CurrentSeekPosition);
+                return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_CurrentSeekPosition(@as(*const ISpeechAudioStatus, @ptrCast(self)), CurrentSeekPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioStatus_get_CurrentDevicePosition(self: *const T, CurrentDevicePosition: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechAudioStatus.VTable, self.vtable).get_CurrentDevicePosition(@ptrCast(*const ISpeechAudioStatus, self), CurrentDevicePosition);
+                return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_CurrentDevicePosition(@as(*const ISpeechAudioStatus, @ptrCast(self)), CurrentDevicePosition);
             }
         };
     }
@@ -8354,27 +8354,27 @@ pub const ISpeechAudioFormat = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_get_Type(self: *const T, AudioFormat: ?*SpeechAudioFormatType) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).get_Type(@ptrCast(*const ISpeechAudioFormat, self), AudioFormat);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechAudioFormat, @ptrCast(self)), AudioFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_put_Type(self: *const T, AudioFormat: SpeechAudioFormatType) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Type(@ptrCast(*const ISpeechAudioFormat, self), AudioFormat);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).put_Type(@as(*const ISpeechAudioFormat, @ptrCast(self)), AudioFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_get_Guid(self: *const T, _param_Guid: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).get_Guid(@ptrCast(*const ISpeechAudioFormat, self), _param_Guid);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ISpeechAudioFormat, @ptrCast(self)), _param_Guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_put_Guid(self: *const T, _param_Guid: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).put_Guid(@ptrCast(*const ISpeechAudioFormat, self), _param_Guid);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ISpeechAudioFormat, @ptrCast(self)), _param_Guid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_GetWaveFormatEx(self: *const T, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).GetWaveFormatEx(@ptrCast(*const ISpeechAudioFormat, self), SpeechWaveFormatEx);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).GetWaveFormatEx(@as(*const ISpeechAudioFormat, @ptrCast(self)), SpeechWaveFormatEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudioFormat_SetWaveFormatEx(self: *const T, SpeechWaveFormatEx: ?*ISpeechWaveFormatEx) HRESULT {
-                return @ptrCast(*const ISpeechAudioFormat.VTable, self.vtable).SetWaveFormatEx(@ptrCast(*const ISpeechAudioFormat, self), SpeechWaveFormatEx);
+                return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).SetWaveFormatEx(@as(*const ISpeechAudioFormat, @ptrCast(self)), SpeechWaveFormatEx);
             }
         };
     }
@@ -8575,59 +8575,59 @@ pub const ISpeechWaveFormatEx = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_FormatTag(self: *const T, FormatTag: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_FormatTag(@ptrCast(*const ISpeechWaveFormatEx, self), FormatTag);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_FormatTag(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), FormatTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_FormatTag(self: *const T, FormatTag: i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_FormatTag(@ptrCast(*const ISpeechWaveFormatEx, self), FormatTag);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_FormatTag(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), FormatTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_Channels(self: *const T, Channels: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_Channels(@ptrCast(*const ISpeechWaveFormatEx, self), Channels);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_Channels(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), Channels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_Channels(self: *const T, Channels: i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_Channels(@ptrCast(*const ISpeechWaveFormatEx, self), Channels);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_Channels(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), Channels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_SamplesPerSec(self: *const T, SamplesPerSec: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_SamplesPerSec(@ptrCast(*const ISpeechWaveFormatEx, self), SamplesPerSec);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_SamplesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), SamplesPerSec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_SamplesPerSec(self: *const T, SamplesPerSec: i32) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_SamplesPerSec(@ptrCast(*const ISpeechWaveFormatEx, self), SamplesPerSec);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_SamplesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), SamplesPerSec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_AvgBytesPerSec(self: *const T, AvgBytesPerSec: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_AvgBytesPerSec(@ptrCast(*const ISpeechWaveFormatEx, self), AvgBytesPerSec);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_AvgBytesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), AvgBytesPerSec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_AvgBytesPerSec(self: *const T, AvgBytesPerSec: i32) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_AvgBytesPerSec(@ptrCast(*const ISpeechWaveFormatEx, self), AvgBytesPerSec);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_AvgBytesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), AvgBytesPerSec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_BlockAlign(self: *const T, BlockAlign: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_BlockAlign(@ptrCast(*const ISpeechWaveFormatEx, self), BlockAlign);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_BlockAlign(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BlockAlign);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_BlockAlign(self: *const T, BlockAlign: i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_BlockAlign(@ptrCast(*const ISpeechWaveFormatEx, self), BlockAlign);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_BlockAlign(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BlockAlign);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_BitsPerSample(self: *const T, BitsPerSample: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_BitsPerSample(@ptrCast(*const ISpeechWaveFormatEx, self), BitsPerSample);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_BitsPerSample(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BitsPerSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_BitsPerSample(self: *const T, BitsPerSample: i16) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_BitsPerSample(@ptrCast(*const ISpeechWaveFormatEx, self), BitsPerSample);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_BitsPerSample(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BitsPerSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_get_ExtraData(self: *const T, ExtraData: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).get_ExtraData(@ptrCast(*const ISpeechWaveFormatEx, self), ExtraData);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_ExtraData(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), ExtraData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechWaveFormatEx_put_ExtraData(self: *const T, ExtraData: VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechWaveFormatEx.VTable, self.vtable).put_ExtraData(@ptrCast(*const ISpeechWaveFormatEx, self), ExtraData);
+                return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_ExtraData(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), ExtraData);
             }
         };
     }
@@ -8709,23 +8709,23 @@ pub const ISpeechBaseStream = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechBaseStream_get_Format(self: *const T, AudioFormat: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).get_Format(@ptrCast(*const ISpeechBaseStream, self), AudioFormat);
+                return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).get_Format(@as(*const ISpeechBaseStream, @ptrCast(self)), AudioFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechBaseStream_putref_Format(self: *const T, AudioFormat: ?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).putref_Format(@ptrCast(*const ISpeechBaseStream, self), AudioFormat);
+                return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).putref_Format(@as(*const ISpeechBaseStream, @ptrCast(self)), AudioFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechBaseStream_Read(self: *const T, Buffer: ?*VARIANT, NumberOfBytes: i32, BytesRead: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).Read(@ptrCast(*const ISpeechBaseStream, self), Buffer, NumberOfBytes, BytesRead);
+                return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Read(@as(*const ISpeechBaseStream, @ptrCast(self)), Buffer, NumberOfBytes, BytesRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechBaseStream_Write(self: *const T, Buffer: VARIANT, BytesWritten: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).Write(@ptrCast(*const ISpeechBaseStream, self), Buffer, BytesWritten);
+                return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Write(@as(*const ISpeechBaseStream, @ptrCast(self)), Buffer, BytesWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechBaseStream_Seek(self: *const T, Position: VARIANT, Origin: SpeechStreamSeekPositionType, NewPosition: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechBaseStream.VTable, self.vtable).Seek(@ptrCast(*const ISpeechBaseStream, self), Position, Origin, NewPosition);
+                return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const ISpeechBaseStream, @ptrCast(self)), Position, Origin, NewPosition);
             }
         };
     }
@@ -8766,11 +8766,11 @@ pub const ISpeechFileStream = extern struct {
             pub usingnamespace ISpeechBaseStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechFileStream_Open(self: *const T, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: i16) HRESULT {
-                return @ptrCast(*const ISpeechFileStream.VTable, self.vtable).Open(@ptrCast(*const ISpeechFileStream, self), FileName, FileMode, DoEvents);
+                return @as(*const ISpeechFileStream.VTable, @ptrCast(self.vtable)).Open(@as(*const ISpeechFileStream, @ptrCast(self)), FileName, FileMode, DoEvents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechFileStream_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechFileStream.VTable, self.vtable).Close(@ptrCast(*const ISpeechFileStream, self));
+                return @as(*const ISpeechFileStream.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpeechFileStream, @ptrCast(self)));
             }
         };
     }
@@ -8809,11 +8809,11 @@ pub const ISpeechMemoryStream = extern struct {
             pub usingnamespace ISpeechBaseStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMemoryStream_SetData(self: *const T, Data: VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechMemoryStream.VTable, self.vtable).SetData(@ptrCast(*const ISpeechMemoryStream, self), Data);
+                return @as(*const ISpeechMemoryStream.VTable, @ptrCast(self.vtable)).SetData(@as(*const ISpeechMemoryStream, @ptrCast(self)), Data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMemoryStream_GetData(self: *const T, pData: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechMemoryStream.VTable, self.vtable).GetData(@ptrCast(*const ISpeechMemoryStream, self), pData);
+                return @as(*const ISpeechMemoryStream.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISpeechMemoryStream, @ptrCast(self)), pData);
             }
         };
     }
@@ -8855,11 +8855,11 @@ pub const ISpeechCustomStream = extern struct {
             pub usingnamespace ISpeechBaseStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechCustomStream_get_BaseStream(self: *const T, ppUnkStream: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechCustomStream.VTable, self.vtable).get_BaseStream(@ptrCast(*const ISpeechCustomStream, self), ppUnkStream);
+                return @as(*const ISpeechCustomStream.VTable, @ptrCast(self.vtable)).get_BaseStream(@as(*const ISpeechCustomStream, @ptrCast(self)), ppUnkStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechCustomStream_putref_BaseStream(self: *const T, pUnkStream: ?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechCustomStream.VTable, self.vtable).putref_BaseStream(@ptrCast(*const ISpeechCustomStream, self), pUnkStream);
+                return @as(*const ISpeechCustomStream.VTable, @ptrCast(self.vtable)).putref_BaseStream(@as(*const ISpeechCustomStream, @ptrCast(self)), pUnkStream);
             }
         };
     }
@@ -8992,39 +8992,39 @@ pub const ISpeechAudio = extern struct {
             pub usingnamespace ISpeechBaseStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_Status(self: *const T, Status: ?*?*ISpeechAudioStatus) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechAudio, self), Status);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechAudio, @ptrCast(self)), Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_BufferInfo(self: *const T, BufferInfo: ?*?*ISpeechAudioBufferInfo) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_BufferInfo(@ptrCast(*const ISpeechAudio, self), BufferInfo);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_BufferInfo(@as(*const ISpeechAudio, @ptrCast(self)), BufferInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_DefaultFormat(self: *const T, StreamFormat: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_DefaultFormat(@ptrCast(*const ISpeechAudio, self), StreamFormat);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_DefaultFormat(@as(*const ISpeechAudio, @ptrCast(self)), StreamFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_Volume(self: *const T, Volume: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_Volume(@ptrCast(*const ISpeechAudio, self), Volume);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ISpeechAudio, @ptrCast(self)), Volume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_put_Volume(self: *const T, Volume: i32) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).put_Volume(@ptrCast(*const ISpeechAudio, self), Volume);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ISpeechAudio, @ptrCast(self)), Volume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_BufferNotifySize(self: *const T, BufferNotifySize: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_BufferNotifySize(@ptrCast(*const ISpeechAudio, self), BufferNotifySize);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_BufferNotifySize(@as(*const ISpeechAudio, @ptrCast(self)), BufferNotifySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_put_BufferNotifySize(self: *const T, BufferNotifySize: i32) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).put_BufferNotifySize(@ptrCast(*const ISpeechAudio, self), BufferNotifySize);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).put_BufferNotifySize(@as(*const ISpeechAudio, @ptrCast(self)), BufferNotifySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_get_EventHandle(self: *const T, EventHandle: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).get_EventHandle(@ptrCast(*const ISpeechAudio, self), EventHandle);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_EventHandle(@as(*const ISpeechAudio, @ptrCast(self)), EventHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechAudio_SetState(self: *const T, State: SpeechAudioState) HRESULT {
-                return @ptrCast(*const ISpeechAudio.VTable, self.vtable).SetState(@ptrCast(*const ISpeechAudio, self), State);
+                return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).SetState(@as(*const ISpeechAudio, @ptrCast(self)), State);
             }
         };
     }
@@ -9108,23 +9108,23 @@ pub const ISpeechMMSysAudio = extern struct {
             pub usingnamespace ISpeechAudio.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMMSysAudio_get_DeviceId(self: *const T, DeviceId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechMMSysAudio.VTable, self.vtable).get_DeviceId(@ptrCast(*const ISpeechMMSysAudio, self), DeviceId);
+                return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), DeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMMSysAudio_put_DeviceId(self: *const T, DeviceId: i32) HRESULT {
-                return @ptrCast(*const ISpeechMMSysAudio.VTable, self.vtable).put_DeviceId(@ptrCast(*const ISpeechMMSysAudio, self), DeviceId);
+                return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).put_DeviceId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), DeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMMSysAudio_get_LineId(self: *const T, LineId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechMMSysAudio.VTable, self.vtable).get_LineId(@ptrCast(*const ISpeechMMSysAudio, self), LineId);
+                return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_LineId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), LineId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMMSysAudio_put_LineId(self: *const T, LineId: i32) HRESULT {
-                return @ptrCast(*const ISpeechMMSysAudio.VTable, self.vtable).put_LineId(@ptrCast(*const ISpeechMMSysAudio, self), LineId);
+                return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).put_LineId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), LineId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechMMSysAudio_get_MMHandle(self: *const T, Handle: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechMMSysAudio.VTable, self.vtable).get_MMHandle(@ptrCast(*const ISpeechMMSysAudio, self), Handle);
+                return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_MMHandle(@as(*const ISpeechMMSysAudio, @ptrCast(self)), Handle);
             }
         };
     }
@@ -9545,131 +9545,131 @@ pub const ISpeechVoice = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_Status(self: *const T, Status: ?*?*ISpeechVoiceStatus) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechVoice, self), Status);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechVoice, @ptrCast(self)), Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_Voice(self: *const T, Voice: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Voice(@ptrCast(*const ISpeechVoice, self), Voice);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Voice(@as(*const ISpeechVoice, @ptrCast(self)), Voice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_putref_Voice(self: *const T, Voice: ?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).putref_Voice(@ptrCast(*const ISpeechVoice, self), Voice);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_Voice(@as(*const ISpeechVoice, @ptrCast(self)), Voice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_AudioOutput(self: *const T, AudioOutput: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AudioOutput(@ptrCast(*const ISpeechVoice, self), AudioOutput);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AudioOutput(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_putref_AudioOutput(self: *const T, AudioOutput: ?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).putref_AudioOutput(@ptrCast(*const ISpeechVoice, self), AudioOutput);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_AudioOutput(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_AudioOutputStream(self: *const T, AudioOutputStream: ?*?*ISpeechBaseStream) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AudioOutputStream(@ptrCast(*const ISpeechVoice, self), AudioOutputStream);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AudioOutputStream(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutputStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_putref_AudioOutputStream(self: *const T, AudioOutputStream: ?*ISpeechBaseStream) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).putref_AudioOutputStream(@ptrCast(*const ISpeechVoice, self), AudioOutputStream);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_AudioOutputStream(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutputStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_Rate(self: *const T, Rate: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Rate(@ptrCast(*const ISpeechVoice, self), Rate);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Rate(@as(*const ISpeechVoice, @ptrCast(self)), Rate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_Rate(self: *const T, Rate: i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_Rate(@ptrCast(*const ISpeechVoice, self), Rate);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Rate(@as(*const ISpeechVoice, @ptrCast(self)), Rate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_Volume(self: *const T, Volume: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Volume(@ptrCast(*const ISpeechVoice, self), Volume);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ISpeechVoice, @ptrCast(self)), Volume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_Volume(self: *const T, Volume: i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_Volume(@ptrCast(*const ISpeechVoice, self), Volume);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ISpeechVoice, @ptrCast(self)), Volume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_AllowAudioOutputFormatChangesOnNextSet(self: *const T, Allow: i16) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_AllowAudioOutputFormatChangesOnNextSet(@ptrCast(*const ISpeechVoice, self), Allow);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_AllowAudioOutputFormatChangesOnNextSet(@as(*const ISpeechVoice, @ptrCast(self)), Allow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_AllowAudioOutputFormatChangesOnNextSet(self: *const T, Allow: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AllowAudioOutputFormatChangesOnNextSet(@ptrCast(*const ISpeechVoice, self), Allow);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AllowAudioOutputFormatChangesOnNextSet(@as(*const ISpeechVoice, @ptrCast(self)), Allow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_EventInterests(self: *const T, EventInterestFlags: ?*SpeechVoiceEvents) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_EventInterests(@ptrCast(*const ISpeechVoice, self), EventInterestFlags);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_EventInterests(@as(*const ISpeechVoice, @ptrCast(self)), EventInterestFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_EventInterests(self: *const T, EventInterestFlags: SpeechVoiceEvents) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_EventInterests(@ptrCast(*const ISpeechVoice, self), EventInterestFlags);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_EventInterests(@as(*const ISpeechVoice, @ptrCast(self)), EventInterestFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_Priority(self: *const T, Priority: SpeechVoicePriority) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_Priority(@ptrCast(*const ISpeechVoice, self), Priority);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const ISpeechVoice, @ptrCast(self)), Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_Priority(self: *const T, Priority: ?*SpeechVoicePriority) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_Priority(@ptrCast(*const ISpeechVoice, self), Priority);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const ISpeechVoice, @ptrCast(self)), Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_AlertBoundary(self: *const T, Boundary: SpeechVoiceEvents) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_AlertBoundary(@ptrCast(*const ISpeechVoice, self), Boundary);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_AlertBoundary(@as(*const ISpeechVoice, @ptrCast(self)), Boundary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_AlertBoundary(self: *const T, Boundary: ?*SpeechVoiceEvents) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_AlertBoundary(@ptrCast(*const ISpeechVoice, self), Boundary);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AlertBoundary(@as(*const ISpeechVoice, @ptrCast(self)), Boundary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_put_SynchronousSpeakTimeout(self: *const T, msTimeout: i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).put_SynchronousSpeakTimeout(@ptrCast(*const ISpeechVoice, self), msTimeout);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_SynchronousSpeakTimeout(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_get_SynchronousSpeakTimeout(self: *const T, msTimeout: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).get_SynchronousSpeakTimeout(@ptrCast(*const ISpeechVoice, self), msTimeout);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_SynchronousSpeakTimeout(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_Speak(self: *const T, Text: ?BSTR, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).Speak(@ptrCast(*const ISpeechVoice, self), Text, Flags, StreamNumber);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Speak(@as(*const ISpeechVoice, @ptrCast(self)), Text, Flags, StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_SpeakStream(self: *const T, Stream: ?*ISpeechBaseStream, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).SpeakStream(@ptrCast(*const ISpeechVoice, self), Stream, Flags, StreamNumber);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).SpeakStream(@as(*const ISpeechVoice, @ptrCast(self)), Stream, Flags, StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).Pause(@ptrCast(*const ISpeechVoice, self));
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpeechVoice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).Resume(@ptrCast(*const ISpeechVoice, self));
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpeechVoice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_Skip(self: *const T, Type: ?BSTR, NumItems: i32, NumSkipped: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).Skip(@ptrCast(*const ISpeechVoice, self), Type, NumItems, NumSkipped);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Skip(@as(*const ISpeechVoice, @ptrCast(self)), Type, NumItems, NumSkipped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_GetVoices(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).GetVoices(@ptrCast(*const ISpeechVoice, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).GetVoices(@as(*const ISpeechVoice, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_GetAudioOutputs(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).GetAudioOutputs(@ptrCast(*const ISpeechVoice, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).GetAudioOutputs(@as(*const ISpeechVoice, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_WaitUntilDone(self: *const T, msTimeout: i32, Done: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).WaitUntilDone(@ptrCast(*const ISpeechVoice, self), msTimeout, Done);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).WaitUntilDone(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout, Done);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_SpeakCompleteEvent(self: *const T, Handle: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).SpeakCompleteEvent(@ptrCast(*const ISpeechVoice, self), Handle);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).SpeakCompleteEvent(@as(*const ISpeechVoice, @ptrCast(self)), Handle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_IsUISupported(self: *const T, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpeechVoice, self), TypeOfUI, ExtraData, Supported);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechVoice, @ptrCast(self)), TypeOfUI, ExtraData, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoice_DisplayUI(self: *const T, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechVoice.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpeechVoice, self), hWndParent, Title, TypeOfUI, ExtraData);
+                return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechVoice, @ptrCast(self)), hWndParent, Title, TypeOfUI, ExtraData);
             }
         };
     }
@@ -9844,51 +9844,51 @@ pub const ISpeechVoiceStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_CurrentStreamNumber(self: *const T, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_CurrentStreamNumber(@ptrCast(*const ISpeechVoiceStatus, self), StreamNumber);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamNumber(@as(*const ISpeechVoiceStatus, @ptrCast(self)), StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_LastStreamNumberQueued(self: *const T, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_LastStreamNumberQueued(@ptrCast(*const ISpeechVoiceStatus, self), StreamNumber);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastStreamNumberQueued(@as(*const ISpeechVoiceStatus, @ptrCast(self)), StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_LastHResult(self: *const T, HResult: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_LastHResult(@ptrCast(*const ISpeechVoiceStatus, self), HResult);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastHResult(@as(*const ISpeechVoiceStatus, @ptrCast(self)), HResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_RunningState(self: *const T, State: ?*SpeechRunState) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_RunningState(@ptrCast(*const ISpeechVoiceStatus, self), State);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_RunningState(@as(*const ISpeechVoiceStatus, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_InputWordPosition(self: *const T, Position: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_InputWordPosition(@ptrCast(*const ISpeechVoiceStatus, self), Position);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputWordPosition(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Position);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_InputWordLength(self: *const T, Length: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_InputWordLength(@ptrCast(*const ISpeechVoiceStatus, self), Length);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputWordLength(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_InputSentencePosition(self: *const T, Position: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_InputSentencePosition(@ptrCast(*const ISpeechVoiceStatus, self), Position);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputSentencePosition(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Position);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_InputSentenceLength(self: *const T, Length: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_InputSentenceLength(@ptrCast(*const ISpeechVoiceStatus, self), Length);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputSentenceLength(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_LastBookmark(self: *const T, Bookmark: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_LastBookmark(@ptrCast(*const ISpeechVoiceStatus, self), Bookmark);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastBookmark(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Bookmark);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_LastBookmarkId(self: *const T, BookmarkId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_LastBookmarkId(@ptrCast(*const ISpeechVoiceStatus, self), BookmarkId);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastBookmarkId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), BookmarkId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_PhonemeId(self: *const T, PhoneId: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_PhonemeId(@ptrCast(*const ISpeechVoiceStatus, self), PhoneId);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_PhonemeId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), PhoneId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechVoiceStatus_get_VisemeId(self: *const T, VisemeId: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechVoiceStatus.VTable, self.vtable).get_VisemeId(@ptrCast(*const ISpeechVoiceStatus, self), VisemeId);
+                return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_VisemeId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), VisemeId);
             }
         };
     }
@@ -10256,107 +10256,107 @@ pub const ISpeechRecognizer = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_putref_Recognizer(self: *const T, Recognizer: ?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_Recognizer(@ptrCast(*const ISpeechRecognizer, self), Recognizer);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_Recognizer(@as(*const ISpeechRecognizer, @ptrCast(self)), Recognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_Recognizer(self: *const T, Recognizer: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Recognizer(@ptrCast(*const ISpeechRecognizer, self), Recognizer);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const ISpeechRecognizer, @ptrCast(self)), Recognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_put_AllowAudioInputFormatChangesOnNextSet(self: *const T, Allow: i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).put_AllowAudioInputFormatChangesOnNextSet(@ptrCast(*const ISpeechRecognizer, self), Allow);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).put_AllowAudioInputFormatChangesOnNextSet(@as(*const ISpeechRecognizer, @ptrCast(self)), Allow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_AllowAudioInputFormatChangesOnNextSet(self: *const T, Allow: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_AllowAudioInputFormatChangesOnNextSet(@ptrCast(*const ISpeechRecognizer, self), Allow);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AllowAudioInputFormatChangesOnNextSet(@as(*const ISpeechRecognizer, @ptrCast(self)), Allow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_putref_AudioInput(self: *const T, AudioInput: ?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_AudioInput(@ptrCast(*const ISpeechRecognizer, self), AudioInput);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_AudioInput(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_AudioInput(self: *const T, AudioInput: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_AudioInput(@ptrCast(*const ISpeechRecognizer, self), AudioInput);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AudioInput(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_putref_AudioInputStream(self: *const T, AudioInputStream: ?*ISpeechBaseStream) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_AudioInputStream(@ptrCast(*const ISpeechRecognizer, self), AudioInputStream);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_AudioInputStream(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInputStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_AudioInputStream(self: *const T, AudioInputStream: ?*?*ISpeechBaseStream) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_AudioInputStream(@ptrCast(*const ISpeechRecognizer, self), AudioInputStream);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AudioInputStream(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInputStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_IsShared(self: *const T, Shared: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_IsShared(@ptrCast(*const ISpeechRecognizer, self), Shared);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_IsShared(@as(*const ISpeechRecognizer, @ptrCast(self)), Shared);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_put_State(self: *const T, State: SpeechRecognizerState) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).put_State(@ptrCast(*const ISpeechRecognizer, self), State);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecognizer, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_State(self: *const T, State: ?*SpeechRecognizerState) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_State(@ptrCast(*const ISpeechRecognizer, self), State);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecognizer, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_Status(self: *const T, Status: ?*?*ISpeechRecognizerStatus) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Status(@ptrCast(*const ISpeechRecognizer, self), Status);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechRecognizer, @ptrCast(self)), Status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_putref_Profile(self: *const T, Profile: ?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).putref_Profile(@ptrCast(*const ISpeechRecognizer, self), Profile);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_Profile(@as(*const ISpeechRecognizer, @ptrCast(self)), Profile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_get_Profile(self: *const T, Profile: ?*?*ISpeechObjectToken) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).get_Profile(@ptrCast(*const ISpeechRecognizer, self), Profile);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const ISpeechRecognizer, @ptrCast(self)), Profile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_EmulateRecognition(self: *const T, TextElements: VARIANT, ElementDisplayAttributes: ?*VARIANT, LanguageId: i32) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).EmulateRecognition(@ptrCast(*const ISpeechRecognizer, self), TextElements, ElementDisplayAttributes, LanguageId);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).EmulateRecognition(@as(*const ISpeechRecognizer, @ptrCast(self)), TextElements, ElementDisplayAttributes, LanguageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_CreateRecoContext(self: *const T, NewContext: ?*?*ISpeechRecoContext) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).CreateRecoContext(@ptrCast(*const ISpeechRecognizer, self), NewContext);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).CreateRecoContext(@as(*const ISpeechRecognizer, @ptrCast(self)), NewContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetFormat(self: *const T, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetFormat(@ptrCast(*const ISpeechRecognizer, self), Type, Format);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpeechRecognizer, @ptrCast(self)), Type, Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_SetPropertyNumber(self: *const T, Name: ?BSTR, Value: i32, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).SetPropertyNumber(@ptrCast(*const ISpeechRecognizer, self), Name, Value, Supported);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).SetPropertyNumber(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetPropertyNumber(self: *const T, Name: ?BSTR, Value: ?*i32, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetPropertyNumber(@ptrCast(*const ISpeechRecognizer, self), Name, Value, Supported);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetPropertyNumber(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_SetPropertyString(self: *const T, Name: ?BSTR, Value: ?BSTR, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).SetPropertyString(@ptrCast(*const ISpeechRecognizer, self), Name, Value, Supported);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).SetPropertyString(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetPropertyString(self: *const T, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetPropertyString(@ptrCast(*const ISpeechRecognizer, self), Name, Value, Supported);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetPropertyString(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_IsUISupported(self: *const T, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).IsUISupported(@ptrCast(*const ISpeechRecognizer, self), TypeOfUI, ExtraData, Supported);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechRecognizer, @ptrCast(self)), TypeOfUI, ExtraData, Supported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_DisplayUI(self: *const T, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).DisplayUI(@ptrCast(*const ISpeechRecognizer, self), hWndParent, Title, TypeOfUI, ExtraData);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechRecognizer, @ptrCast(self)), hWndParent, Title, TypeOfUI, ExtraData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetRecognizers(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetRecognizers(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetRecognizers(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetAudioInputs(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetAudioInputs(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetAudioInputs(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizer_GetProfiles(self: *const T, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
-                return @ptrCast(*const ISpeechRecognizer.VTable, self.vtable).GetProfiles(@ptrCast(*const ISpeechRecognizer, self), RequiredAttributes, OptionalAttributes, ObjectTokens);
+                return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetProfiles(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
             }
         };
     }
@@ -10453,27 +10453,27 @@ pub const ISpeechRecognizerStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_AudioStatus(self: *const T, AudioStatus: ?*?*ISpeechAudioStatus) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_AudioStatus(@ptrCast(*const ISpeechRecognizerStatus, self), AudioStatus);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_AudioStatus(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), AudioStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_CurrentStreamPosition(self: *const T, pCurrentStreamPos: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_CurrentStreamPosition(@ptrCast(*const ISpeechRecognizerStatus, self), pCurrentStreamPos);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamPosition(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), pCurrentStreamPos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_CurrentStreamNumber(self: *const T, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_CurrentStreamNumber(@ptrCast(*const ISpeechRecognizerStatus, self), StreamNumber);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamNumber(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_NumberOfActiveRules(self: *const T, NumberOfActiveRules: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_NumberOfActiveRules(@ptrCast(*const ISpeechRecognizerStatus, self), NumberOfActiveRules);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_NumberOfActiveRules(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), NumberOfActiveRules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_ClsidEngine(self: *const T, ClsidEngine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_ClsidEngine(@ptrCast(*const ISpeechRecognizerStatus, self), ClsidEngine);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_ClsidEngine(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), ClsidEngine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecognizerStatus_get_SupportedLanguages(self: *const T, SupportedLanguages: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecognizerStatus.VTable, self.vtable).get_SupportedLanguages(@ptrCast(*const ISpeechRecognizerStatus, self), SupportedLanguages);
+                return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), SupportedLanguages);
             }
         };
     }
@@ -10797,103 +10797,103 @@ pub const ISpeechRecoContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_Recognizer(self: *const T, Recognizer: ?*?*ISpeechRecognizer) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_Recognizer(@ptrCast(*const ISpeechRecoContext, self), Recognizer);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const ISpeechRecoContext, @ptrCast(self)), Recognizer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_AudioInputInterferenceStatus(self: *const T, Interference: ?*SpeechInterference) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_AudioInputInterferenceStatus(@ptrCast(*const ISpeechRecoContext, self), Interference);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_AudioInputInterferenceStatus(@as(*const ISpeechRecoContext, @ptrCast(self)), Interference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_RequestedUIType(self: *const T, UIType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_RequestedUIType(@ptrCast(*const ISpeechRecoContext, self), UIType);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RequestedUIType(@as(*const ISpeechRecoContext, @ptrCast(self)), UIType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_putref_Voice(self: *const T, Voice: ?*ISpeechVoice) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).putref_Voice(@ptrCast(*const ISpeechRecoContext, self), Voice);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).putref_Voice(@as(*const ISpeechRecoContext, @ptrCast(self)), Voice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_Voice(self: *const T, Voice: ?*?*ISpeechVoice) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_Voice(@ptrCast(*const ISpeechRecoContext, self), Voice);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_Voice(@as(*const ISpeechRecoContext, @ptrCast(self)), Voice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_AllowVoiceFormatMatchingOnNextSet(self: *const T, Allow: i16) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_AllowVoiceFormatMatchingOnNextSet(@ptrCast(*const ISpeechRecoContext, self), Allow);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_AllowVoiceFormatMatchingOnNextSet(@as(*const ISpeechRecoContext, @ptrCast(self)), Allow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_AllowVoiceFormatMatchingOnNextSet(self: *const T, pAllow: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_AllowVoiceFormatMatchingOnNextSet(@ptrCast(*const ISpeechRecoContext, self), pAllow);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_AllowVoiceFormatMatchingOnNextSet(@as(*const ISpeechRecoContext, @ptrCast(self)), pAllow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_VoicePurgeEvent(self: *const T, EventInterest: SpeechRecoEvents) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_VoicePurgeEvent(@ptrCast(*const ISpeechRecoContext, self), EventInterest);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_VoicePurgeEvent(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_VoicePurgeEvent(self: *const T, EventInterest: ?*SpeechRecoEvents) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_VoicePurgeEvent(@ptrCast(*const ISpeechRecoContext, self), EventInterest);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_VoicePurgeEvent(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_EventInterests(self: *const T, EventInterest: SpeechRecoEvents) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_EventInterests(@ptrCast(*const ISpeechRecoContext, self), EventInterest);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_EventInterests(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_EventInterests(self: *const T, EventInterest: ?*SpeechRecoEvents) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_EventInterests(@ptrCast(*const ISpeechRecoContext, self), EventInterest);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_EventInterests(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_CmdMaxAlternates(self: *const T, MaxAlternates: i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_CmdMaxAlternates(@ptrCast(*const ISpeechRecoContext, self), MaxAlternates);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_CmdMaxAlternates(@as(*const ISpeechRecoContext, @ptrCast(self)), MaxAlternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_CmdMaxAlternates(self: *const T, MaxAlternates: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_CmdMaxAlternates(@ptrCast(*const ISpeechRecoContext, self), MaxAlternates);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_CmdMaxAlternates(@as(*const ISpeechRecoContext, @ptrCast(self)), MaxAlternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_State(self: *const T, State: SpeechRecoContextState) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_State(@ptrCast(*const ISpeechRecoContext, self), State);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecoContext, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_State(self: *const T, State: ?*SpeechRecoContextState) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_State(@ptrCast(*const ISpeechRecoContext, self), State);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecoContext, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_put_RetainedAudio(self: *const T, Option: SpeechRetainedAudioOptions) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).put_RetainedAudio(@ptrCast(*const ISpeechRecoContext, self), Option);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_RetainedAudio(@as(*const ISpeechRecoContext, @ptrCast(self)), Option);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_RetainedAudio(self: *const T, Option: ?*SpeechRetainedAudioOptions) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_RetainedAudio(@ptrCast(*const ISpeechRecoContext, self), Option);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RetainedAudio(@as(*const ISpeechRecoContext, @ptrCast(self)), Option);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_putref_RetainedAudioFormat(self: *const T, Format: ?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).putref_RetainedAudioFormat(@ptrCast(*const ISpeechRecoContext, self), Format);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).putref_RetainedAudioFormat(@as(*const ISpeechRecoContext, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_get_RetainedAudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).get_RetainedAudioFormat(@ptrCast(*const ISpeechRecoContext, self), Format);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RetainedAudioFormat(@as(*const ISpeechRecoContext, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).Pause(@ptrCast(*const ISpeechRecoContext, self));
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpeechRecoContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).Resume(@ptrCast(*const ISpeechRecoContext, self));
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpeechRecoContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_CreateGrammar(self: *const T, GrammarId: VARIANT, Grammar: ?*?*ISpeechRecoGrammar) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).CreateGrammar(@ptrCast(*const ISpeechRecoContext, self), GrammarId, Grammar);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).CreateGrammar(@as(*const ISpeechRecoContext, @ptrCast(self)), GrammarId, Grammar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_CreateResultFromMemory(self: *const T, ResultBlock: ?*VARIANT, Result: ?*?*ISpeechRecoResult) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).CreateResultFromMemory(@ptrCast(*const ISpeechRecoContext, self), ResultBlock, Result);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).CreateResultFromMemory(@as(*const ISpeechRecoContext, @ptrCast(self)), ResultBlock, Result);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_Bookmark(self: *const T, Options: SpeechBookmarkOptions, StreamPos: VARIANT, BookmarkId: VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).Bookmark(@ptrCast(*const ISpeechRecoContext, self), Options, StreamPos, BookmarkId);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Bookmark(@as(*const ISpeechRecoContext, @ptrCast(self)), Options, StreamPos, BookmarkId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoContext_SetAdaptationData(self: *const T, AdaptationString: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechRecoContext.VTable, self.vtable).SetAdaptationData(@ptrCast(*const ISpeechRecoContext, self), AdaptationString);
+                return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).SetAdaptationData(@as(*const ISpeechRecoContext, @ptrCast(self)), AdaptationString);
             }
         };
     }
@@ -11149,79 +11149,79 @@ pub const ISpeechRecoGrammar = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_get_Id(self: *const T, Id: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechRecoGrammar, self), Id);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoGrammar, self), RecoContext);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoGrammar, @ptrCast(self)), RecoContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_put_State(self: *const T, State: SpeechGrammarState) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).put_State(@ptrCast(*const ISpeechRecoGrammar, self), State);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_get_State(self: *const T, State: ?*SpeechGrammarState) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_State(@ptrCast(*const ISpeechRecoGrammar, self), State);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_get_Rules(self: *const T, Rules: ?*?*ISpeechGrammarRules) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).get_Rules(@ptrCast(*const ISpeechRecoGrammar, self), Rules);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Rules);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_Reset(self: *const T, NewLanguage: i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).Reset(@ptrCast(*const ISpeechRecoGrammar, self), NewLanguage);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISpeechRecoGrammar, @ptrCast(self)), NewLanguage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdLoadFromFile(self: *const T, FileName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdLoadFromFile(@ptrCast(*const ISpeechRecoGrammar, self), FileName, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromFile(@as(*const ISpeechRecoGrammar, @ptrCast(self)), FileName, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdLoadFromObject(self: *const T, ClassId: ?BSTR, GrammarName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdLoadFromObject(@ptrCast(*const ISpeechRecoGrammar, self), ClassId, GrammarName, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromObject(@as(*const ISpeechRecoGrammar, @ptrCast(self)), ClassId, GrammarName, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdLoadFromResource(self: *const T, hModule: i32, ResourceName: VARIANT, ResourceType: VARIANT, LanguageId: i32, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdLoadFromResource(@ptrCast(*const ISpeechRecoGrammar, self), hModule, ResourceName, ResourceType, LanguageId, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromResource(@as(*const ISpeechRecoGrammar, @ptrCast(self)), hModule, ResourceName, ResourceType, LanguageId, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdLoadFromMemory(self: *const T, GrammarData: VARIANT, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdLoadFromMemory(@ptrCast(*const ISpeechRecoGrammar, self), GrammarData, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromMemory(@as(*const ISpeechRecoGrammar, @ptrCast(self)), GrammarData, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdLoadFromProprietaryGrammar(self: *const T, ProprietaryGuid: ?BSTR, ProprietaryString: ?BSTR, ProprietaryData: VARIANT, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdLoadFromProprietaryGrammar(@ptrCast(*const ISpeechRecoGrammar, self), ProprietaryGuid, ProprietaryString, ProprietaryData, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromProprietaryGrammar(@as(*const ISpeechRecoGrammar, @ptrCast(self)), ProprietaryGuid, ProprietaryString, ProprietaryData, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdSetRuleState(self: *const T, Name: ?BSTR, State: SpeechRuleState) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdSetRuleState(@ptrCast(*const ISpeechRecoGrammar, self), Name, State);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdSetRuleState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Name, State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_CmdSetRuleIdState(self: *const T, RuleId: i32, State: SpeechRuleState) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).CmdSetRuleIdState(@ptrCast(*const ISpeechRecoGrammar, self), RuleId, State);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdSetRuleIdState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), RuleId, State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_DictationLoad(self: *const T, TopicName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).DictationLoad(@ptrCast(*const ISpeechRecoGrammar, self), TopicName, LoadOption);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationLoad(@as(*const ISpeechRecoGrammar, @ptrCast(self)), TopicName, LoadOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_DictationUnload(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).DictationUnload(@ptrCast(*const ISpeechRecoGrammar, self));
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationUnload(@as(*const ISpeechRecoGrammar, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_DictationSetState(self: *const T, State: SpeechRuleState) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).DictationSetState(@ptrCast(*const ISpeechRecoGrammar, self), State);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationSetState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_SetWordSequenceData(self: *const T, Text: ?BSTR, TextLength: i32, Info: ?*ISpeechTextSelectionInformation) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).SetWordSequenceData(@ptrCast(*const ISpeechRecoGrammar, self), Text, TextLength, Info);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).SetWordSequenceData(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Text, TextLength, Info);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_SetTextSelection(self: *const T, Info: ?*ISpeechTextSelectionInformation) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).SetTextSelection(@ptrCast(*const ISpeechRecoGrammar, self), Info);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).SetTextSelection(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Info);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoGrammar_IsPronounceable(self: *const T, Word: ?BSTR, WordPronounceable: ?*SpeechWordPronounceable) HRESULT {
-                return @ptrCast(*const ISpeechRecoGrammar.VTable, self.vtable).IsPronounceable(@ptrCast(*const ISpeechRecoGrammar, self), Word, WordPronounceable);
+                return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).IsPronounceable(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Word, WordPronounceable);
             }
         };
     }
@@ -11337,31 +11337,31 @@ pub const ISpeechGrammarRule = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_get_Attributes(self: *const T, Attributes: ?*SpeechRuleAttributes) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_Attributes(@ptrCast(*const ISpeechGrammarRule, self), Attributes);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const ISpeechGrammarRule, @ptrCast(self)), Attributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_get_InitialState(self: *const T, State: ?*?*ISpeechGrammarRuleState) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_InitialState(@ptrCast(*const ISpeechGrammarRule, self), State);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_InitialState(@as(*const ISpeechGrammarRule, @ptrCast(self)), State);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_Name(@ptrCast(*const ISpeechGrammarRule, self), Name);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechGrammarRule, @ptrCast(self)), Name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_get_Id(self: *const T, Id: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechGrammarRule, self), Id);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechGrammarRule, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).Clear(@ptrCast(*const ISpeechGrammarRule, self));
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISpeechGrammarRule, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_AddResource(self: *const T, ResourceName: ?BSTR, ResourceValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).AddResource(@ptrCast(*const ISpeechGrammarRule, self), ResourceName, ResourceValue);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).AddResource(@as(*const ISpeechGrammarRule, @ptrCast(self)), ResourceName, ResourceValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRule_AddState(self: *const T, State: ?*?*ISpeechGrammarRuleState) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRule.VTable, self.vtable).AddState(@ptrCast(*const ISpeechGrammarRule, self), State);
+                return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).AddState(@as(*const ISpeechGrammarRule, @ptrCast(self)), State);
             }
         };
     }
@@ -11479,35 +11479,35 @@ pub const ISpeechGrammarRules = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechGrammarRules, self), Count);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechGrammarRules, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_FindRule(self: *const T, RuleNameOrId: VARIANT, Rule: ?*?*ISpeechGrammarRule) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).FindRule(@ptrCast(*const ISpeechGrammarRules, self), RuleNameOrId, Rule);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).FindRule(@as(*const ISpeechGrammarRules, @ptrCast(self)), RuleNameOrId, Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_Item(self: *const T, Index: i32, Rule: ?*?*ISpeechGrammarRule) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).Item(@ptrCast(*const ISpeechGrammarRules, self), Index, Rule);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechGrammarRules, @ptrCast(self)), Index, Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechGrammarRules, self), EnumVARIANT);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechGrammarRules, @ptrCast(self)), EnumVARIANT);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_get_Dynamic(self: *const T, Dynamic: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).get_Dynamic(@ptrCast(*const ISpeechGrammarRules, self), Dynamic);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get_Dynamic(@as(*const ISpeechGrammarRules, @ptrCast(self)), Dynamic);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_Add(self: *const T, RuleName: ?BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).Add(@ptrCast(*const ISpeechGrammarRules, self), RuleName, Attributes, RuleId, Rule);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Add(@as(*const ISpeechGrammarRules, @ptrCast(self)), RuleName, Attributes, RuleId, Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).Commit(@ptrCast(*const ISpeechGrammarRules, self));
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpeechGrammarRules, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRules_CommitAndSave(self: *const T, ErrorText: ?*?BSTR, SaveStream: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRules.VTable, self.vtable).CommitAndSave(@ptrCast(*const ISpeechGrammarRules, self), ErrorText, SaveStream);
+                return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).CommitAndSave(@as(*const ISpeechGrammarRules, @ptrCast(self)), ErrorText, SaveStream);
             }
         };
     }
@@ -11616,23 +11616,23 @@ pub const ISpeechGrammarRuleState = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleState_get_Rule(self: *const T, Rule: ?*?*ISpeechGrammarRule) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechGrammarRuleState, self), Rule);
+                return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleState_get_Transitions(self: *const T, Transitions: ?*?*ISpeechGrammarRuleStateTransitions) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).get_Transitions(@ptrCast(*const ISpeechGrammarRuleState, self), Transitions);
+                return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).get_Transitions(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), Transitions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleState_AddWordTransition(self: *const T, DestState: ?*ISpeechGrammarRuleState, Words: ?BSTR, Separators: ?BSTR, Type: SpeechGrammarWordType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).AddWordTransition(@ptrCast(*const ISpeechGrammarRuleState, self), DestState, Words, Separators, Type, PropertyName, PropertyId, PropertyValue, Weight);
+                return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddWordTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestState, Words, Separators, Type, PropertyName, PropertyId, PropertyValue, Weight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleState_AddRuleTransition(self: *const T, DestinationState: ?*ISpeechGrammarRuleState, Rule: ?*ISpeechGrammarRule, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).AddRuleTransition(@ptrCast(*const ISpeechGrammarRuleState, self), DestinationState, Rule, PropertyName, PropertyId, PropertyValue, Weight);
+                return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddRuleTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestinationState, Rule, PropertyName, PropertyId, PropertyValue, Weight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleState_AddSpecialTransition(self: *const T, DestinationState: ?*ISpeechGrammarRuleState, Type: SpeechSpecialTransitionType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleState.VTable, self.vtable).AddSpecialTransition(@ptrCast(*const ISpeechGrammarRuleState, self), DestinationState, Type, PropertyName, PropertyId, PropertyValue, Weight);
+                return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddSpecialTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestinationState, Type, PropertyName, PropertyId, PropertyValue, Weight);
             }
         };
     }
@@ -11755,35 +11755,35 @@ pub const ISpeechGrammarRuleStateTransition = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_Type(self: *const T, Type: ?*SpeechGrammarRuleStateTransitionType) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Type(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Type);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Type);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_Text(self: *const T, Text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Text(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Text);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Text(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_Rule(self: *const T, Rule: ?*?*ISpeechGrammarRule) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Rule);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_Weight(self: *const T, Weight: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_Weight(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), Weight);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Weight(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Weight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_PropertyName(self: *const T, PropertyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_PropertyName(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), PropertyName);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyName(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_PropertyId(self: *const T, PropertyId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_PropertyId(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), PropertyId);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_PropertyValue(self: *const T, PropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_PropertyValue(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), PropertyValue);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyValue(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransition_get_NextState(self: *const T, NextState: ?*?*ISpeechGrammarRuleState) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransition.VTable, self.vtable).get_NextState(@ptrCast(*const ISpeechGrammarRuleStateTransition, self), NextState);
+                return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_NextState(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), NextState);
             }
         };
     }
@@ -11840,15 +11840,15 @@ pub const ISpeechGrammarRuleStateTransitions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransitions_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), Count);
+                return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransitions_Item(self: *const T, Index: i32, Transition: ?*?*ISpeechGrammarRuleStateTransition) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).Item(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), Index, Transition);
+                return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), Index, Transition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechGrammarRuleStateTransitions_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechGrammarRuleStateTransitions.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechGrammarRuleStateTransitions, self), EnumVARIANT);
+                return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -11971,35 +11971,35 @@ pub const ISpeechTextSelectionInformation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_put_ActiveOffset(self: *const T, ActiveOffset: i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).put_ActiveOffset(@ptrCast(*const ISpeechTextSelectionInformation, self), ActiveOffset);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_ActiveOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_get_ActiveOffset(self: *const T, ActiveOffset: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).get_ActiveOffset(@ptrCast(*const ISpeechTextSelectionInformation, self), ActiveOffset);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_ActiveOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_put_ActiveLength(self: *const T, ActiveLength: i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).put_ActiveLength(@ptrCast(*const ISpeechTextSelectionInformation, self), ActiveLength);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_ActiveLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_get_ActiveLength(self: *const T, ActiveLength: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).get_ActiveLength(@ptrCast(*const ISpeechTextSelectionInformation, self), ActiveLength);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_ActiveLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_put_SelectionOffset(self: *const T, SelectionOffset: i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).put_SelectionOffset(@ptrCast(*const ISpeechTextSelectionInformation, self), SelectionOffset);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_SelectionOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_get_SelectionOffset(self: *const T, SelectionOffset: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).get_SelectionOffset(@ptrCast(*const ISpeechTextSelectionInformation, self), SelectionOffset);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_SelectionOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_put_SelectionLength(self: *const T, SelectionLength: i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).put_SelectionLength(@ptrCast(*const ISpeechTextSelectionInformation, self), SelectionLength);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_SelectionLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechTextSelectionInformation_get_SelectionLength(self: *const T, SelectionLength: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechTextSelectionInformation.VTable, self.vtable).get_SelectionLength(@ptrCast(*const ISpeechTextSelectionInformation, self), SelectionLength);
+                return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_SelectionLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionLength);
             }
         };
     }
@@ -12146,43 +12146,43 @@ pub const ISpeechRecoResult = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoResult, self), RecoContext);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoResult, @ptrCast(self)), RecoContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_get_Times(self: *const T, Times: ?*?*ISpeechRecoResultTimes) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_Times(@ptrCast(*const ISpeechRecoResult, self), Times);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_Times(@as(*const ISpeechRecoResult, @ptrCast(self)), Times);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_putref_AudioFormat(self: *const T, Format: ?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).putref_AudioFormat(@ptrCast(*const ISpeechRecoResult, self), Format);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).putref_AudioFormat(@as(*const ISpeechRecoResult, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_get_AudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_AudioFormat(@ptrCast(*const ISpeechRecoResult, self), Format);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_AudioFormat(@as(*const ISpeechRecoResult, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechRecoResult, self), PhraseInfo);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechRecoResult, @ptrCast(self)), PhraseInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?*?*ISpeechPhraseAlternates) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).Alternates(@ptrCast(*const ISpeechRecoResult, self), RequestCount, StartElement, Elements, Alternates);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).Alternates(@as(*const ISpeechRecoResult, @ptrCast(self)), RequestCount, StartElement, Elements, Alternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).Audio(@ptrCast(*const ISpeechRecoResult, self), StartElement, Elements, Stream);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).Audio(@as(*const ISpeechRecoResult, @ptrCast(self)), StartElement, Elements, Stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_SpeakAudio(self: *const T, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).SpeakAudio(@ptrCast(*const ISpeechRecoResult, self), StartElement, Elements, Flags, StreamNumber);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpeechRecoResult, @ptrCast(self)), StartElement, Elements, Flags, StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_SaveToMemory(self: *const T, ResultBlock: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).SaveToMemory(@ptrCast(*const ISpeechRecoResult, self), ResultBlock);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechRecoResult, @ptrCast(self)), ResultBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult_DiscardResultInfo(self: *const T, ValueTypes: SpeechDiscardType) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult.VTable, self.vtable).DiscardResultInfo(@ptrCast(*const ISpeechRecoResult, self), ValueTypes);
+                return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).DiscardResultInfo(@as(*const ISpeechRecoResult, @ptrCast(self)), ValueTypes);
             }
         };
     }
@@ -12213,7 +12213,7 @@ pub const ISpeechRecoResult2 = extern struct {
             pub usingnamespace ISpeechRecoResult.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResult2_SetTextFeedback(self: *const T, Feedback: ?BSTR, WasSuccessful: i16) HRESULT {
-                return @ptrCast(*const ISpeechRecoResult2.VTable, self.vtable).SetTextFeedback(@ptrCast(*const ISpeechRecoResult2, self), Feedback, WasSuccessful);
+                return @as(*const ISpeechRecoResult2.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpeechRecoResult2, @ptrCast(self)), Feedback, WasSuccessful);
             }
         };
     }
@@ -12284,19 +12284,19 @@ pub const ISpeechRecoResultTimes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultTimes_get_StreamTime(self: *const T, Time: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultTimes.VTable, self.vtable).get_StreamTime(@ptrCast(*const ISpeechRecoResultTimes, self), Time);
+                return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_StreamTime(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), Time);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultTimes_get_Length(self: *const T, Length: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultTimes.VTable, self.vtable).get_Length(@ptrCast(*const ISpeechRecoResultTimes, self), Length);
+                return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), Length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultTimes_get_TickCount(self: *const T, TickCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultTimes.VTable, self.vtable).get_TickCount(@ptrCast(*const ISpeechRecoResultTimes, self), TickCount);
+                return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), TickCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultTimes_get_OffsetFromStart(self: *const T, OffsetFromStart: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultTimes.VTable, self.vtable).get_OffsetFromStart(@ptrCast(*const ISpeechRecoResultTimes, self), OffsetFromStart);
+                return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_OffsetFromStart(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), OffsetFromStart);
             }
         };
     }
@@ -12375,23 +12375,23 @@ pub const ISpeechPhraseAlternate = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternate_get_RecoResult(self: *const T, RecoResult: ?*?*ISpeechRecoResult) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_RecoResult(@ptrCast(*const ISpeechPhraseAlternate, self), RecoResult);
+                return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_RecoResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), RecoResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternate_get_StartElementInResult(self: *const T, StartElement: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_StartElementInResult(@ptrCast(*const ISpeechPhraseAlternate, self), StartElement);
+                return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_StartElementInResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), StartElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternate_get_NumberOfElementsInResult(self: *const T, NumberOfElements: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_NumberOfElementsInResult(@ptrCast(*const ISpeechPhraseAlternate, self), NumberOfElements);
+                return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_NumberOfElementsInResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), NumberOfElements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternate_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechPhraseAlternate, self), PhraseInfo);
+                return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), PhraseInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternate_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternate.VTable, self.vtable).Commit(@ptrCast(*const ISpeechPhraseAlternate, self));
+                return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpeechPhraseAlternate, @ptrCast(self)));
             }
         };
     }
@@ -12448,15 +12448,15 @@ pub const ISpeechPhraseAlternates = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternates_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseAlternates, self), Count);
+                return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternates_Item(self: *const T, Index: i32, PhraseAlternate: ?*?*ISpeechPhraseAlternate) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseAlternates, self), Index, PhraseAlternate);
+                return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), Index, PhraseAlternate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseAlternates_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechPhraseAlternates.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseAlternates, self), EnumVARIANT);
+                return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -12686,67 +12686,67 @@ pub const ISpeechPhraseInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_LanguageId(self: *const T, LanguageId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_LanguageId(@ptrCast(*const ISpeechPhraseInfo, self), LanguageId);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_LanguageId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), LanguageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_GrammarId(self: *const T, GrammarId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_GrammarId(@ptrCast(*const ISpeechPhraseInfo, self), GrammarId);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_GrammarId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), GrammarId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_StartTime(self: *const T, StartTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_StartTime(@ptrCast(*const ISpeechPhraseInfo, self), StartTime);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_AudioStreamPosition(self: *const T, AudioStreamPosition: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_AudioStreamPosition(@ptrCast(*const ISpeechPhraseInfo, self), AudioStreamPosition);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioStreamPosition(@as(*const ISpeechPhraseInfo, @ptrCast(self)), AudioStreamPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_AudioSizeBytes(self: *const T, pAudioSizeBytes: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_AudioSizeBytes(@ptrCast(*const ISpeechPhraseInfo, self), pAudioSizeBytes);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioSizeBytes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), pAudioSizeBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_RetainedSizeBytes(self: *const T, RetainedSizeBytes: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_RetainedSizeBytes(@ptrCast(*const ISpeechPhraseInfo, self), RetainedSizeBytes);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_RetainedSizeBytes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), RetainedSizeBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_AudioSizeTime(self: *const T, AudioSizeTime: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_AudioSizeTime(@ptrCast(*const ISpeechPhraseInfo, self), AudioSizeTime);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioSizeTime(@as(*const ISpeechPhraseInfo, @ptrCast(self)), AudioSizeTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_Rule(self: *const T, Rule: ?*?*ISpeechPhraseRule) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Rule(@ptrCast(*const ISpeechPhraseInfo, self), Rule);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_Properties(self: *const T, Properties: ?*?*ISpeechPhraseProperties) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Properties(@ptrCast(*const ISpeechPhraseInfo, self), Properties);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Properties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_Elements(self: *const T, Elements: ?*?*ISpeechPhraseElements) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Elements(@ptrCast(*const ISpeechPhraseInfo, self), Elements);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Elements(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Elements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_Replacements(self: *const T, Replacements: ?*?*ISpeechPhraseReplacements) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_Replacements(@ptrCast(*const ISpeechPhraseInfo, self), Replacements);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Replacements(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Replacements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_EngineId(self: *const T, EngineIdGuid: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_EngineId(@ptrCast(*const ISpeechPhraseInfo, self), EngineIdGuid);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_EngineId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), EngineIdGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_get_EnginePrivateData(self: *const T, PrivateData: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).get_EnginePrivateData(@ptrCast(*const ISpeechPhraseInfo, self), PrivateData);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_EnginePrivateData(@as(*const ISpeechPhraseInfo, @ptrCast(self)), PrivateData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_SaveToMemory(self: *const T, PhraseBlock: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).SaveToMemory(@ptrCast(*const ISpeechPhraseInfo, self), PhraseBlock);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechPhraseInfo, @ptrCast(self)), PhraseBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_GetText(self: *const T, StartElement: i32, Elements: i32, UseReplacements: i16, Text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).GetText(@ptrCast(*const ISpeechPhraseInfo, self), StartElement, Elements, UseReplacements, Text);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).GetText(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartElement, Elements, UseReplacements, Text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfo_GetDisplayAttributes(self: *const T, StartElement: i32, Elements: i32, UseReplacements: i16, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfo.VTable, self.vtable).GetDisplayAttributes(@ptrCast(*const ISpeechPhraseInfo, self), StartElement, Elements, UseReplacements, DisplayAttributes);
+                return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).GetDisplayAttributes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartElement, Elements, UseReplacements, DisplayAttributes);
             }
         };
     }
@@ -12934,55 +12934,55 @@ pub const ISpeechPhraseElement = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_AudioTimeOffset(self: *const T, AudioTimeOffset: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_AudioTimeOffset(@ptrCast(*const ISpeechPhraseElement, self), AudioTimeOffset);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioTimeOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioTimeOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_AudioSizeTime(self: *const T, AudioSizeTime: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_AudioSizeTime(@ptrCast(*const ISpeechPhraseElement, self), AudioSizeTime);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioSizeTime(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioSizeTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_AudioStreamOffset(self: *const T, AudioStreamOffset: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_AudioStreamOffset(@ptrCast(*const ISpeechPhraseElement, self), AudioStreamOffset);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioStreamOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioStreamOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_AudioSizeBytes(self: *const T, AudioSizeBytes: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_AudioSizeBytes(@ptrCast(*const ISpeechPhraseElement, self), AudioSizeBytes);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioSizeBytes(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioSizeBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_RetainedStreamOffset(self: *const T, RetainedStreamOffset: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_RetainedStreamOffset(@ptrCast(*const ISpeechPhraseElement, self), RetainedStreamOffset);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RetainedStreamOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), RetainedStreamOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_RetainedSizeBytes(self: *const T, RetainedSizeBytes: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_RetainedSizeBytes(@ptrCast(*const ISpeechPhraseElement, self), RetainedSizeBytes);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RetainedSizeBytes(@as(*const ISpeechPhraseElement, @ptrCast(self)), RetainedSizeBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_DisplayText(self: *const T, DisplayText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_DisplayText(@ptrCast(*const ISpeechPhraseElement, self), DisplayText);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_DisplayText(@as(*const ISpeechPhraseElement, @ptrCast(self)), DisplayText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_LexicalForm(self: *const T, LexicalForm: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_LexicalForm(@ptrCast(*const ISpeechPhraseElement, self), LexicalForm);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_LexicalForm(@as(*const ISpeechPhraseElement, @ptrCast(self)), LexicalForm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_Pronunciation(self: *const T, Pronunciation: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_Pronunciation(@ptrCast(*const ISpeechPhraseElement, self), Pronunciation);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_Pronunciation(@as(*const ISpeechPhraseElement, @ptrCast(self)), Pronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_DisplayAttributes(self: *const T, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_DisplayAttributes(@ptrCast(*const ISpeechPhraseElement, self), DisplayAttributes);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_DisplayAttributes(@as(*const ISpeechPhraseElement, @ptrCast(self)), DisplayAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_RequiredConfidence(self: *const T, RequiredConfidence: ?*SpeechEngineConfidence) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_RequiredConfidence(@ptrCast(*const ISpeechPhraseElement, self), RequiredConfidence);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RequiredConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), RequiredConfidence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_ActualConfidence(self: *const T, ActualConfidence: ?*SpeechEngineConfidence) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_ActualConfidence(@ptrCast(*const ISpeechPhraseElement, self), ActualConfidence);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_ActualConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), ActualConfidence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElement_get_EngineConfidence(self: *const T, EngineConfidence: ?*f32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElement.VTable, self.vtable).get_EngineConfidence(@ptrCast(*const ISpeechPhraseElement, self), EngineConfidence);
+                return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), EngineConfidence);
             }
         };
     }
@@ -13039,15 +13039,15 @@ pub const ISpeechPhraseElements = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElements_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseElements, self), Count);
+                return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseElements, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElements_Item(self: *const T, Index: i32, Element: ?*?*ISpeechPhraseElement) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseElements, self), Index, Element);
+                return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseElements, @ptrCast(self)), Index, Element);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseElements_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechPhraseElements.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseElements, self), EnumVARIANT);
+                return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseElements, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -13118,19 +13118,19 @@ pub const ISpeechPhraseReplacement = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacement_get_DisplayAttributes(self: *const T, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacement.VTable, self.vtable).get_DisplayAttributes(@ptrCast(*const ISpeechPhraseReplacement, self), DisplayAttributes);
+                return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_DisplayAttributes(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), DisplayAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacement_get_Text(self: *const T, Text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacement.VTable, self.vtable).get_Text(@ptrCast(*const ISpeechPhraseReplacement, self), Text);
+                return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_Text(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), Text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacement_get_FirstElement(self: *const T, FirstElement: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacement.VTable, self.vtable).get_FirstElement(@ptrCast(*const ISpeechPhraseReplacement, self), FirstElement);
+                return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), FirstElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacement_get_NumberOfElements(self: *const T, NumberOfElements: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacement.VTable, self.vtable).get_NumberOfElements(@ptrCast(*const ISpeechPhraseReplacement, self), NumberOfElements);
+                return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), NumberOfElements);
             }
         };
     }
@@ -13187,15 +13187,15 @@ pub const ISpeechPhraseReplacements = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacements_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseReplacements, self), Count);
+                return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacements_Item(self: *const T, Index: i32, Reps: ?*?*ISpeechPhraseReplacement) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseReplacements, self), Index, Reps);
+                return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), Index, Reps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseReplacements_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechPhraseReplacements.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseReplacements, self), EnumVARIANT);
+                return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -13331,39 +13331,39 @@ pub const ISpeechPhraseProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Name(@ptrCast(*const ISpeechPhraseProperty, self), Name);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Id(self: *const T, Id: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechPhraseProperty, self), Id);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Value(self: *const T, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Value(@ptrCast(*const ISpeechPhraseProperty, self), Value);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_FirstElement(self: *const T, FirstElement: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_FirstElement(@ptrCast(*const ISpeechPhraseProperty, self), FirstElement);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseProperty, @ptrCast(self)), FirstElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_NumberOfElements(self: *const T, NumberOfElements: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_NumberOfElements(@ptrCast(*const ISpeechPhraseProperty, self), NumberOfElements);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseProperty, @ptrCast(self)), NumberOfElements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_EngineConfidence(self: *const T, Confidence: ?*f32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_EngineConfidence(@ptrCast(*const ISpeechPhraseProperty, self), Confidence);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Confidence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Confidence(self: *const T, Confidence: ?*SpeechEngineConfidence) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Confidence(@ptrCast(*const ISpeechPhraseProperty, self), Confidence);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Confidence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Parent(self: *const T, ParentProperty: ?*?*ISpeechPhraseProperty) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Parent(@ptrCast(*const ISpeechPhraseProperty, self), ParentProperty);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ISpeechPhraseProperty, @ptrCast(self)), ParentProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperty_get_Children(self: *const T, Children: ?*?*ISpeechPhraseProperties) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperty.VTable, self.vtable).get_Children(@ptrCast(*const ISpeechPhraseProperty, self), Children);
+                return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Children);
             }
         };
     }
@@ -13420,15 +13420,15 @@ pub const ISpeechPhraseProperties = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperties_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseProperties, self), Count);
+                return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseProperties, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperties_Item(self: *const T, Index: i32, Property: ?*?*ISpeechPhraseProperty) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseProperties, self), Index, Property);
+                return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseProperties, @ptrCast(self)), Index, Property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseProperties_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechPhraseProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseProperties, self), EnumVARIANT);
+                return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseProperties, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -13551,35 +13551,35 @@ pub const ISpeechPhraseRule = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_Name(self: *const T, Name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Name(@ptrCast(*const ISpeechPhraseRule, self), Name);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechPhraseRule, @ptrCast(self)), Name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_Id(self: *const T, Id: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Id(@ptrCast(*const ISpeechPhraseRule, self), Id);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechPhraseRule, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_FirstElement(self: *const T, FirstElement: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_FirstElement(@ptrCast(*const ISpeechPhraseRule, self), FirstElement);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseRule, @ptrCast(self)), FirstElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_NumberOfElements(self: *const T, NumberOfElements: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_NumberOfElements(@ptrCast(*const ISpeechPhraseRule, self), NumberOfElements);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseRule, @ptrCast(self)), NumberOfElements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_Parent(self: *const T, Parent: ?*?*ISpeechPhraseRule) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Parent(@ptrCast(*const ISpeechPhraseRule, self), Parent);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ISpeechPhraseRule, @ptrCast(self)), Parent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_Children(self: *const T, Children: ?*?*ISpeechPhraseRules) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Children(@ptrCast(*const ISpeechPhraseRule, self), Children);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ISpeechPhraseRule, @ptrCast(self)), Children);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_Confidence(self: *const T, ActualConfidence: ?*SpeechEngineConfidence) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_Confidence(@ptrCast(*const ISpeechPhraseRule, self), ActualConfidence);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const ISpeechPhraseRule, @ptrCast(self)), ActualConfidence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRule_get_EngineConfidence(self: *const T, EngineConfidence: ?*f32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRule.VTable, self.vtable).get_EngineConfidence(@ptrCast(*const ISpeechPhraseRule, self), EngineConfidence);
+                return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseRule, @ptrCast(self)), EngineConfidence);
             }
         };
     }
@@ -13636,15 +13636,15 @@ pub const ISpeechPhraseRules = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRules_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechPhraseRules, self), Count);
+                return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseRules, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRules_Item(self: *const T, Index: i32, Rule: ?*?*ISpeechPhraseRule) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).Item(@ptrCast(*const ISpeechPhraseRules, self), Index, Rule);
+                return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseRules, @ptrCast(self)), Index, Rule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseRules_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechPhraseRules.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechPhraseRules, self), EnumVARIANT);
+                return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseRules, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -13782,35 +13782,35 @@ pub const ISpeechLexicon = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_get_GenerationId(self: *const T, GenerationId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).get_GenerationId(@ptrCast(*const ISpeechLexicon, self), GenerationId);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).get_GenerationId(@as(*const ISpeechLexicon, @ptrCast(self)), GenerationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_GetWords(self: *const T, Flags: SpeechLexiconType, GenerationID: ?*i32, Words: ?*?*ISpeechLexiconWords) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetWords(@ptrCast(*const ISpeechLexicon, self), Flags, GenerationID, Words);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpeechLexicon, @ptrCast(self)), Flags, GenerationID, Words);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_AddPronunciation(self: *const T, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).AddPronunciation(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).AddPronunciation(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_AddPronunciationByPhoneIds(self: *const T, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).AddPronunciationByPhoneIds(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, PartOfSpeech, PhoneIds);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).AddPronunciationByPhoneIds(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, PhoneIds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_RemovePronunciation(self: *const T, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).RemovePronunciation(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciation(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_RemovePronunciationByPhoneIds(self: *const T, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).RemovePronunciationByPhoneIds(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, PartOfSpeech, PhoneIds);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciationByPhoneIds(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, PhoneIds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_GetPronunciations(self: *const T, bstrWord: ?BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?*?*ISpeechLexiconPronunciations) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetPronunciations(@ptrCast(*const ISpeechLexicon, self), bstrWord, LangId, TypeFlags, ppPronunciations);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, TypeFlags, ppPronunciations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexicon_GetGenerationChange(self: *const T, GenerationID: ?*i32, ppWords: ?*?*ISpeechLexiconWords) HRESULT {
-                return @ptrCast(*const ISpeechLexicon.VTable, self.vtable).GetGenerationChange(@ptrCast(*const ISpeechLexicon, self), GenerationID, ppWords);
+                return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpeechLexicon, @ptrCast(self)), GenerationID, ppWords);
             }
         };
     }
@@ -13867,15 +13867,15 @@ pub const ISpeechLexiconWords = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWords_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechLexiconWords, self), Count);
+                return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechLexiconWords, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWords_Item(self: *const T, Index: i32, Word: ?*?*ISpeechLexiconWord) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).Item(@ptrCast(*const ISpeechLexiconWords, self), Index, Word);
+                return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechLexiconWords, @ptrCast(self)), Index, Word);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWords_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWords.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechLexiconWords, self), EnumVARIANT);
+                return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechLexiconWords, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -13946,19 +13946,19 @@ pub const ISpeechLexiconWord = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWord_get_LangId(self: *const T, LangId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_LangId(@ptrCast(*const ISpeechLexiconWord, self), LangId);
+                return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_LangId(@as(*const ISpeechLexiconWord, @ptrCast(self)), LangId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWord_get_Type(self: *const T, WordType: ?*SpeechWordType) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_Type(@ptrCast(*const ISpeechLexiconWord, self), WordType);
+                return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechLexiconWord, @ptrCast(self)), WordType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWord_get_Word(self: *const T, Word: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_Word(@ptrCast(*const ISpeechLexiconWord, self), Word);
+                return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Word(@as(*const ISpeechLexiconWord, @ptrCast(self)), Word);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconWord_get_Pronunciations(self: *const T, Pronunciations: ?*?*ISpeechLexiconPronunciations) HRESULT {
-                return @ptrCast(*const ISpeechLexiconWord.VTable, self.vtable).get_Pronunciations(@ptrCast(*const ISpeechLexiconWord, self), Pronunciations);
+                return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Pronunciations(@as(*const ISpeechLexiconWord, @ptrCast(self)), Pronunciations);
             }
         };
     }
@@ -14015,15 +14015,15 @@ pub const ISpeechLexiconPronunciations = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciations_get_Count(self: *const T, Count: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).get_Count(@ptrCast(*const ISpeechLexiconPronunciations, self), Count);
+                return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciations_Item(self: *const T, Index: i32, Pronunciation: ?*?*ISpeechLexiconPronunciation) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).Item(@ptrCast(*const ISpeechLexiconPronunciations, self), Index, Pronunciation);
+                return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), Index, Pronunciation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciations_get__NewEnum(self: *const T, EnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciations.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISpeechLexiconPronunciations, self), EnumVARIANT);
+                return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), EnumVARIANT);
             }
         };
     }
@@ -14107,23 +14107,23 @@ pub const ISpeechLexiconPronunciation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciation_get_Type(self: *const T, LexiconType: ?*SpeechLexiconType) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciation.VTable, self.vtable).get_Type(@ptrCast(*const ISpeechLexiconPronunciation, self), LexiconType);
+                return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), LexiconType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciation_get_LangId(self: *const T, LangId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciation.VTable, self.vtable).get_LangId(@ptrCast(*const ISpeechLexiconPronunciation, self), LangId);
+                return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_LangId(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), LangId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciation_get_PartOfSpeech(self: *const T, PartOfSpeech: ?*SpeechPartOfSpeech) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciation.VTable, self.vtable).get_PartOfSpeech(@ptrCast(*const ISpeechLexiconPronunciation, self), PartOfSpeech);
+                return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_PartOfSpeech(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), PartOfSpeech);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciation_get_PhoneIds(self: *const T, PhoneIds: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciation.VTable, self.vtable).get_PhoneIds(@ptrCast(*const ISpeechLexiconPronunciation, self), PhoneIds);
+                return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_PhoneIds(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), PhoneIds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechLexiconPronunciation_get_Symbolic(self: *const T, Symbolic: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechLexiconPronunciation.VTable, self.vtable).get_Symbolic(@ptrCast(*const ISpeechLexiconPronunciation, self), Symbolic);
+                return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_Symbolic(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), Symbolic);
             }
         };
     }
@@ -14174,11 +14174,11 @@ pub const ISpeechXMLRecoResult = extern struct {
             pub usingnamespace ISpeechRecoResult.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechXMLRecoResult_GetXMLResult(self: *const T, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechXMLRecoResult.VTable, self.vtable).GetXMLResult(@ptrCast(*const ISpeechXMLRecoResult, self), Options, pResult);
+                return @as(*const ISpeechXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpeechXMLRecoResult, @ptrCast(self)), Options, pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechXMLRecoResult_GetXMLErrorInfo(self: *const T, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechXMLRecoResult.VTable, self.vtable).GetXMLErrorInfo(@ptrCast(*const ISpeechXMLRecoResult, self), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
+                return @as(*const ISpeechXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpeechXMLRecoResult, @ptrCast(self)), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
             }
         };
     }
@@ -14369,55 +14369,55 @@ pub const ISpeechRecoResultDispatch = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_get_RecoContext(self: *const T, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_RecoContext(@ptrCast(*const ISpeechRecoResultDispatch, self), RecoContext);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), RecoContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_get_Times(self: *const T, Times: ?*?*ISpeechRecoResultTimes) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_Times(@ptrCast(*const ISpeechRecoResultDispatch, self), Times);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_Times(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Times);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_putref_AudioFormat(self: *const T, Format: ?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).putref_AudioFormat(@ptrCast(*const ISpeechRecoResultDispatch, self), Format);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).putref_AudioFormat(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_get_AudioFormat(self: *const T, Format: ?*?*ISpeechAudioFormat) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_AudioFormat(@ptrCast(*const ISpeechRecoResultDispatch, self), Format);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_AudioFormat(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_get_PhraseInfo(self: *const T, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).get_PhraseInfo(@ptrCast(*const ISpeechRecoResultDispatch, self), PhraseInfo);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), PhraseInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_Alternates(self: *const T, RequestCount: i32, StartElement: i32, Elements: i32, Alternates: ?*?*ISpeechPhraseAlternates) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).Alternates(@ptrCast(*const ISpeechRecoResultDispatch, self), RequestCount, StartElement, Elements, Alternates);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).Alternates(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), RequestCount, StartElement, Elements, Alternates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_Audio(self: *const T, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).Audio(@ptrCast(*const ISpeechRecoResultDispatch, self), StartElement, Elements, Stream);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).Audio(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), StartElement, Elements, Stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_SpeakAudio(self: *const T, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).SpeakAudio(@ptrCast(*const ISpeechRecoResultDispatch, self), StartElement, Elements, Flags, StreamNumber);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), StartElement, Elements, Flags, StreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_SaveToMemory(self: *const T, ResultBlock: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).SaveToMemory(@ptrCast(*const ISpeechRecoResultDispatch, self), ResultBlock);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), ResultBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_DiscardResultInfo(self: *const T, ValueTypes: SpeechDiscardType) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).DiscardResultInfo(@ptrCast(*const ISpeechRecoResultDispatch, self), ValueTypes);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).DiscardResultInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), ValueTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_GetXMLResult(self: *const T, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).GetXMLResult(@ptrCast(*const ISpeechRecoResultDispatch, self), Options, pResult);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Options, pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_GetXMLErrorInfo(self: *const T, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*i16) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).GetXMLErrorInfo(@ptrCast(*const ISpeechRecoResultDispatch, self), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechRecoResultDispatch_SetTextFeedback(self: *const T, Feedback: ?BSTR, WasSuccessful: i16) HRESULT {
-                return @ptrCast(*const ISpeechRecoResultDispatch.VTable, self.vtable).SetTextFeedback(@ptrCast(*const ISpeechRecoResultDispatch, self), Feedback, WasSuccessful);
+                return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Feedback, WasSuccessful);
             }
         };
     }
@@ -14448,7 +14448,7 @@ pub const ISpeechPhraseInfoBuilder = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhraseInfoBuilder_RestorePhraseFromMemory(self: *const T, PhraseInMemory: ?*VARIANT, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
-                return @ptrCast(*const ISpeechPhraseInfoBuilder.VTable, self.vtable).RestorePhraseFromMemory(@ptrCast(*const ISpeechPhraseInfoBuilder, self), PhraseInMemory, PhraseInfo);
+                return @as(*const ISpeechPhraseInfoBuilder.VTable, @ptrCast(self.vtable)).RestorePhraseFromMemory(@as(*const ISpeechPhraseInfoBuilder, @ptrCast(self)), PhraseInMemory, PhraseInfo);
             }
         };
     }
@@ -14517,19 +14517,19 @@ pub const ISpeechPhoneConverter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhoneConverter_get_LanguageId(self: *const T, LanguageId: ?*i32) HRESULT {
-                return @ptrCast(*const ISpeechPhoneConverter.VTable, self.vtable).get_LanguageId(@ptrCast(*const ISpeechPhoneConverter, self), LanguageId);
+                return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).get_LanguageId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), LanguageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhoneConverter_put_LanguageId(self: *const T, LanguageId: i32) HRESULT {
-                return @ptrCast(*const ISpeechPhoneConverter.VTable, self.vtable).put_LanguageId(@ptrCast(*const ISpeechPhoneConverter, self), LanguageId);
+                return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).put_LanguageId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), LanguageId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhoneConverter_PhoneToId(self: *const T, Phonemes: ?BSTR, IdArray: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISpeechPhoneConverter.VTable, self.vtable).PhoneToId(@ptrCast(*const ISpeechPhoneConverter, self), Phonemes, IdArray);
+                return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).PhoneToId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), Phonemes, IdArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISpeechPhoneConverter_IdToPhone(self: *const T, IdArray: VARIANT, Phonemes: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISpeechPhoneConverter.VTable, self.vtable).IdToPhone(@ptrCast(*const ISpeechPhoneConverter, self), IdArray, Phonemes);
+                return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).IdToPhone(@as(*const ISpeechPhoneConverter, @ptrCast(self)), IdArray, Phonemes);
             }
         };
     }

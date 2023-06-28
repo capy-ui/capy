@@ -61,7 +61,7 @@ pub const EN_CHANGE = 0x0300;
 pub const SPI_GETNONCLIENTMETRICS = 0x0029;
 
 /// Standard arrow cursor.
-pub const IDC_ARROW = @ptrFromInt([*:0]const u8, 32512);
+pub const IDC_ARROW = @as([*:0]const u8, @ptrFromInt(32512));
 
 pub const WNDENUMPROC = *const fn (hwnd: HWND, lParam: LPARAM) callconv(WINAPI) c_int;
 
@@ -224,16 +224,16 @@ pub const NONCLIENTMETRICSA = extern struct {
 
 pub fn getWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX) usize {
     switch (comptime @import("builtin").target.ptrBitWidth()) {
-        64 => return @bitCast(usize, zigwin32.everything.GetWindowLongPtrW(hWnd, nIndex)),
-        32 => return @bitCast(usize, zigwin32.everything.GetWindowLongW(hWnd, nIndex)),
+        64 => return @as(usize, @bitCast(zigwin32.everything.GetWindowLongPtrW(hWnd, nIndex))),
+        32 => return @as(usize, @bitCast(zigwin32.everything.GetWindowLongW(hWnd, nIndex))),
         else => @compileError("Unsupported architecture."),
     }
 }
 
 pub fn setWindowLongPtr(hWnd: HWND, nIndex: zigwin32.everything.WINDOW_LONG_PTR_INDEX, dwNewLong: usize) isize {
     switch (comptime @import("builtin").target.ptrBitWidth()) {
-        64 => return zigwin32.everything.SetWindowLongPtrW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
-        32 => return zigwin32.everything.SetWindowLongW(hWnd, nIndex, @bitCast(isize, dwNewLong)),
+        64 => return zigwin32.everything.SetWindowLongPtrW(hWnd, nIndex, @as(isize, @bitCast(dwNewLong))),
+        32 => return zigwin32.everything.SetWindowLongW(hWnd, nIndex, @as(isize, @bitCast(dwNewLong))),
         else => @compileError("Unsupported architecture."),
     }
 }
@@ -274,7 +274,7 @@ pub const TCITEMA = extern struct {
 };
 
 pub fn TabCtrl_InsertItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LRESULT {
-    const newIndex = SendMessageA(hWnd, TCM_INSERTITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(tabItem)));
+    const newIndex = SendMessageA(hWnd, TCM_INSERTITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(tabItem))));
     if (newIndex == -1) {
         @panic("Failed to insert tab");
     }
@@ -282,13 +282,13 @@ pub fn TabCtrl_InsertItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LR
 }
 
 pub fn TabCtrl_GetItemA(hWnd: HWND, index: c_int, out: *TCITEMA) void {
-    if (SendMessageA(hWnd, TCM_GETITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(out))) == 0) {
+    if (SendMessageA(hWnd, TCM_GETITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(out)))) == 0) {
         @panic("Failed to get tab");
     }
 }
 
 pub fn TabCtrl_SetItemA(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void {
-    if (SendMessageA(hWnd, TCM_SETITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(tabItem))) == 0) {
+    if (SendMessageA(hWnd, TCM_SETITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(tabItem)))) == 0) {
         @panic("Failed to set tab");
     }
 }
@@ -298,7 +298,7 @@ pub fn TabCtrl_GetItemCountA(hWnd: HWND) LRESULT {
 }
 
 pub fn TabCtrl_InsertItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LRESULT {
-    const newIndex = SendMessageW(hWnd, TCM_INSERTITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(tabItem)));
+    const newIndex = SendMessageW(hWnd, TCM_INSERTITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(tabItem))));
     if (newIndex == -1) {
         @panic("Failed to insert tab");
     }
@@ -306,13 +306,13 @@ pub fn TabCtrl_InsertItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LR
 }
 
 pub fn TabCtrl_GetItemW(hWnd: HWND, index: c_int, out: *TCITEMA) void {
-    if (SendMessageW(hWnd, TCM_GETITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(out))) == 0) {
+    if (SendMessageW(hWnd, TCM_GETITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(out)))) == 0) {
         @panic("Failed to get tab");
     }
 }
 
 pub fn TabCtrl_SetItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void {
-    if (SendMessageW(hWnd, TCM_SETITEMA, @intCast(c_uint, index), @bitCast(isize, @intFromPtr(tabItem))) == 0) {
+    if (SendMessageW(hWnd, TCM_SETITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(tabItem)))) == 0) {
         @panic("Failed to set tab");
     }
 }

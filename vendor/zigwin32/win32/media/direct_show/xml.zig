@@ -58,15 +58,15 @@ pub const IXMLGraphBuilder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLGraphBuilder_BuildFromXML(self: *const T, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) HRESULT {
-                return @ptrCast(*const IXMLGraphBuilder.VTable, self.vtable).BuildFromXML(@ptrCast(*const IXMLGraphBuilder, self), pGraph, pxml);
+                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pxml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLGraphBuilder_SaveToXML(self: *const T, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IXMLGraphBuilder.VTable, self.vtable).SaveToXML(@ptrCast(*const IXMLGraphBuilder, self), pGraph, pbstrxml);
+                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).SaveToXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pbstrxml);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXMLGraphBuilder_BuildFromXMLFile(self: *const T, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXMLGraphBuilder.VTable, self.vtable).BuildFromXMLFile(@ptrCast(*const IXMLGraphBuilder, self), pGraph, wszFileName, wszBaseURL);
+                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXMLFile(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, wszFileName, wszBaseURL);
             }
         };
     }

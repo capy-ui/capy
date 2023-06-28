@@ -83,7 +83,7 @@ pub const Window = struct {
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
         // CSS pixels are somewhat undefined given they're based on the confortableness of the reader
-        const resolution = @floatFromInt(f32, dpi);
+        const resolution = @as(f32, @floatFromInt(dpi));
         self.scale = resolution / 96.0;
     }
 };
@@ -135,7 +135,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn processEvent(object: ?*anyopaque, event: js.EventId) void {
-            const self = @ptrCast(*T, @alignCast(@alignOf(T), object.?));
+            const self = @as(*T, @ptrCast(@alignCast(object.?)));
 
             if (js.getEventTarget(event) == self.peer.element) {
                 // handle event
@@ -152,30 +152,30 @@ pub fn Events(comptime T: type) type {
                     },
                     .Resize => {
                         if (self.peer.user.resizeHandler) |handler| {
-                            handler(@intCast(u32, self.getWidth()), @intCast(u32, self.getHeight()), self.peer.userdata);
+                            handler(@as(u32, @intCast(self.getWidth())), @as(u32, @intCast(self.getHeight())), self.peer.userdata);
                         }
                         self.requestDraw() catch unreachable;
                     },
                     .MouseButton => {
                         if (self.peer.user.mouseButtonHandler) |handler| {
-                            const button = @enumFromInt(MouseButton, js.getEventArg(event, 0));
+                            const button = @as(MouseButton, @enumFromInt(js.getEventArg(event, 0)));
                             const pressed = js.getEventArg(event, 1) != 0;
-                            const x = @bitCast(i32, js.getEventArg(event, 2));
-                            const y = @bitCast(i32, js.getEventArg(event, 3));
+                            const x = @as(i32, @bitCast(js.getEventArg(event, 2)));
+                            const y = @as(i32, @bitCast(js.getEventArg(event, 3)));
                             handler(button, pressed, x, y, self.peer.userdata);
                         }
                     },
                     .MouseMotion => {
                         if (self.peer.user.mouseMotionHandler) |handler| {
-                            const x = @bitCast(i32, js.getEventArg(event, 0));
-                            const y = @bitCast(i32, js.getEventArg(event, 1));
+                            const x = @as(i32, @bitCast(js.getEventArg(event, 0)));
+                            const y = @as(i32, @bitCast(js.getEventArg(event, 1)));
                             handler(x, y, self.peer.userdata);
                         }
                     },
                     .MouseScroll => {
                         if (self.peer.user.scrollHandler) |handler| {
-                            const dx = @floatFromInt(f32, @bitCast(i32, js.getEventArg(event, 0)));
-                            const dy = @floatFromInt(f32, @bitCast(i32, js.getEventArg(event, 1)));
+                            const dx = @as(f32, @floatFromInt(@as(i32, @bitCast(js.getEventArg(event, 0)))));
+                            const dy = @as(f32, @floatFromInt(@as(i32, @bitCast(js.getEventArg(event, 1)))));
                             handler(dx, dy, self.peer.userdata);
                         }
                     },
@@ -363,10 +363,10 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @intFromFloat(u8, std.math.clamp(r, 0, 1) * 255),
-                .green = @intFromFloat(u8, std.math.clamp(g, 0, 1) * 255),
-                .blue = @intFromFloat(u8, std.math.clamp(b, 0, 1) * 255),
-                .alpha = @intFromFloat(u8, std.math.clamp(a, 0, 1) * 255),
+                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
+                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
+                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
+                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
             };
             self.setColorByte(color);
         }
@@ -516,7 +516,7 @@ var suspending: bool = false;
 var resumePtr: anyframe = undefined;
 
 fn milliTimestamp() i64 {
-    return @intFromFloat(i64, js.now());
+    return @as(i64, @intFromFloat(js.now()));
 }
 
 pub const backendExport = struct {
@@ -525,13 +525,13 @@ pub const backendExport = struct {
             pub const E = std.os.linux.E;
             fn errno(e: E) usize {
                 const signed_r = @as(isize, 0) - @intFromEnum(e);
-                return @bitCast(usize, signed_r);
+                return @as(usize, @bitCast(signed_r));
             }
 
             pub fn getErrno(r: usize) E {
-                const signed_r = @bitCast(isize, r);
+                const signed_r = @as(isize, @bitCast(r));
                 const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
-                return @enumFromInt(E, int);
+                return @as(E, @enumFromInt(int));
             }
 
             // Time
@@ -543,8 +543,8 @@ pub const backendExport = struct {
 
                 // Time in milliseconds
                 const millis = milliTimestamp();
-                tp.tv_sec = @intCast(isize, @divTrunc(millis, std.time.ms_per_s));
-                tp.tv_nsec = @intCast(isize, @rem(millis, std.time.ms_per_s) * std.time.ns_per_ms);
+                tp.tv_sec = @as(isize, @intCast(@divTrunc(millis, std.time.ms_per_s)));
+                tp.tv_nsec = @as(isize, @intCast(@rem(millis, std.time.ms_per_s) * std.time.ns_per_ms));
                 return 0;
             }
 
@@ -552,10 +552,10 @@ pub const backendExport = struct {
             pub fn nanosleep(req: *const timespec, rem: ?*timespec) usize {
                 _ = rem;
                 // Duration in milliseconds
-                const duration = @intCast(u64, req.tv_sec) * 1000 + @intCast(u64, req.tv_nsec) / 1000;
+                const duration = @as(u64, @intCast(req.tv_sec)) * 1000 + @as(u64, @intCast(req.tv_nsec)) / 1000;
 
                 const start = milliTimestamp();
-                while (milliTimestamp() < start + @intCast(i64, duration)) {
+                while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
                     suspending = true;
                     suspend {
                         resumePtr = @frame();

@@ -61,15 +61,15 @@ pub const IWICImageEncoder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWICImageEncoder_WriteFrame(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
-                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrame(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
+                return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteFrame(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pFrameEncode, pImageParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWICImageEncoder_WriteFrameThumbnail(self: *const T, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
-                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteFrameThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pFrameEncode, pImageParameters);
+                return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteFrameThumbnail(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pFrameEncode, pImageParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWICImageEncoder_WriteThumbnail(self: *const T, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) HRESULT {
-                return @ptrCast(*const IWICImageEncoder.VTable, self.vtable).WriteThumbnail(@ptrCast(*const IWICImageEncoder, self), pImage, pEncoder, pImageParameters);
+                return @as(*const IWICImageEncoder.VTable, @ptrCast(self.vtable)).WriteThumbnail(@as(*const IWICImageEncoder, @ptrCast(self)), pImage, pEncoder, pImageParameters);
             }
         };
     }
@@ -101,7 +101,7 @@ pub const IWICImagingFactory2 = extern struct {
             pub usingnamespace IWICImagingFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWICImagingFactory2_CreateImageEncoder(self: *const T, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) HRESULT {
-                return @ptrCast(*const IWICImagingFactory2.VTable, self.vtable).CreateImageEncoder(@ptrCast(*const IWICImagingFactory2, self), pD2DDevice, ppWICImageEncoder);
+                return @as(*const IWICImagingFactory2.VTable, @ptrCast(self.vtable)).CreateImageEncoder(@as(*const IWICImagingFactory2, @ptrCast(self)), pD2DDevice, ppWICImageEncoder);
             }
         };
     }

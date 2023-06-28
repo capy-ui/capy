@@ -174,8 +174,8 @@ pub const Bitmap = struct {
         var bmp = Self{};
         const pixels = try bmp.read(allocator, stream);
 
-        result.width = @intCast(usize, bmp.width());
-        result.height = @intCast(usize, bmp.height());
+        result.width = @as(usize, @intCast(bmp.width()));
+        result.height = @as(usize, @intCast(bmp.height()));
         result.pixels = pixels;
 
         return result;
@@ -254,7 +254,7 @@ pub const Bitmap = struct {
                 const pixel_height = v4Header.height;
                 const pixel_format = try findPixelFormat(v4Header.bit_count, v4Header.compression_method);
 
-                pixels = try color.PixelStorage.init(allocator, pixel_format, @intCast(usize, pixel_width * pixel_height));
+                pixels = try color.PixelStorage.init(allocator, pixel_format, @as(usize, @intCast(pixel_width * pixel_height)));
                 errdefer pixels.deinit(allocator);
 
                 try readPixels(reader, pixel_width, pixel_height, pixel_format, &pixels);
@@ -264,7 +264,7 @@ pub const Bitmap = struct {
                 const pixel_height = v5Header.height;
                 const pixel_format = try findPixelFormat(v5Header.bit_count, v5Header.compression_method);
 
-                pixels = try color.PixelStorage.init(allocator, pixel_format, @intCast(usize, pixel_width * pixel_height));
+                pixels = try color.PixelStorage.init(allocator, pixel_format, @as(usize, @intCast(pixel_width * pixel_height)));
                 errdefer pixels.deinit(allocator);
 
                 try readPixels(reader, pixel_width, pixel_height, pixel_format, &pixels);
@@ -309,7 +309,7 @@ pub const Bitmap = struct {
 
             x = 0;
             while (x < pixel_width) : (x += 1) {
-                pixels[@intCast(usize, scanline + x)] = try utils.readStructLittle(reader, ColorBufferType);
+                pixels[@as(usize, @intCast(scanline + x))] = try utils.readStructLittle(reader, ColorBufferType);
             }
         }
     }

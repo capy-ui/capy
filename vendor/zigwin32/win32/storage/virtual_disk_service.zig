@@ -1401,19 +1401,19 @@ pub const IEnumVdsObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumVdsObject_Next(self: *const T, celt: u32, ppObjectArray: [*]?*IUnknown, pcFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Next(@ptrCast(*const IEnumVdsObject, self), celt, ppObjectArray, pcFetched);
+                return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumVdsObject, @ptrCast(self)), celt, ppObjectArray, pcFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumVdsObject_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Skip(@ptrCast(*const IEnumVdsObject, self), celt);
+                return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumVdsObject, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumVdsObject_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Reset(@ptrCast(*const IEnumVdsObject, self));
+                return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumVdsObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumVdsObject_Clone(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IEnumVdsObject.VTable, self.vtable).Clone(@ptrCast(*const IEnumVdsObject, self), ppEnum);
+                return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumVdsObject, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -1465,15 +1465,15 @@ pub const IVdsAsync = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAsync_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsAsync.VTable, self.vtable).Cancel(@ptrCast(*const IVdsAsync, self));
+                return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IVdsAsync, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAsync_Wait(self: *const T, pHrResult: ?*HRESULT, pAsyncOut: ?*VDS_ASYNC_OUTPUT) HRESULT {
-                return @ptrCast(*const IVdsAsync.VTable, self.vtable).Wait(@ptrCast(*const IVdsAsync, self), pHrResult, pAsyncOut);
+                return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const IVdsAsync, @ptrCast(self)), pHrResult, pAsyncOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAsync_QueryStatus(self: *const T, pHrResult: ?*HRESULT, pulPercentCompleted: ?*u32) HRESULT {
-                return @ptrCast(*const IVdsAsync.VTable, self.vtable).QueryStatus(@ptrCast(*const IVdsAsync, self), pHrResult, pulPercentCompleted);
+                return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IVdsAsync, @ptrCast(self)), pHrResult, pulPercentCompleted);
             }
         };
     }
@@ -1505,7 +1505,7 @@ pub const IVdsAdviseSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAdviseSink_OnNotify(self: *const T, lNumberOfNotifications: i32, pNotificationArray: [*]VDS_NOTIFICATION) HRESULT {
-                return @ptrCast(*const IVdsAdviseSink.VTable, self.vtable).OnNotify(@ptrCast(*const IVdsAdviseSink, self), lNumberOfNotifications, pNotificationArray);
+                return @as(*const IVdsAdviseSink.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IVdsAdviseSink, @ptrCast(self)), lNumberOfNotifications, pNotificationArray);
             }
         };
     }
@@ -1535,7 +1535,7 @@ pub const IVdsProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsProvider_GetProperties(self: *const T, pProviderProp: ?*VDS_PROVIDER_PROP) HRESULT {
-                return @ptrCast(*const IVdsProvider.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsProvider, self), pProviderProp);
+                return @as(*const IVdsProvider.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsProvider, @ptrCast(self)), pProviderProp);
             }
         };
     }
@@ -1565,7 +1565,7 @@ pub const IVdsProviderSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsProviderSupport_GetVersionSupport(self: *const T, ulVersionSupport: ?*u32) HRESULT {
-                return @ptrCast(*const IVdsProviderSupport.VTable, self.vtable).GetVersionSupport(@ptrCast(*const IVdsProviderSupport, self), ulVersionSupport);
+                return @as(*const IVdsProviderSupport.VTable, @ptrCast(self.vtable)).GetVersionSupport(@as(*const IVdsProviderSupport, @ptrCast(self)), ulVersionSupport);
             }
         };
     }
@@ -1621,15 +1621,15 @@ pub const IVdsProviderPrivate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsProviderPrivate_GetObject(self: *const T, ObjectId: Guid, type_: VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IVdsProviderPrivate.VTable, self.vtable).GetObject(@ptrCast(*const IVdsProviderPrivate, self), ObjectId, type_, ppObjectUnk);
+                return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IVdsProviderPrivate, @ptrCast(self)), ObjectId, type_, ppObjectUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsProviderPrivate_OnLoad(self: *const T, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IVdsProviderPrivate.VTable, self.vtable).OnLoad(@ptrCast(*const IVdsProviderPrivate, self), pwszMachineName, pCallbackObject);
+                return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).OnLoad(@as(*const IVdsProviderPrivate, @ptrCast(self)), pwszMachineName, pCallbackObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsProviderPrivate_OnUnload(self: *const T, bForceUnload: BOOL) HRESULT {
-                return @ptrCast(*const IVdsProviderPrivate.VTable, self.vtable).OnUnload(@ptrCast(*const IVdsProviderPrivate, self), bForceUnload);
+                return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).OnUnload(@as(*const IVdsProviderPrivate, @ptrCast(self)), bForceUnload);
             }
         };
     }
@@ -2319,15 +2319,15 @@ pub const IVdsHwProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProvider_QuerySubSystems(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsHwProvider.VTable, self.vtable).QuerySubSystems(@ptrCast(*const IVdsHwProvider, self), ppEnum);
+                return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).QuerySubSystems(@as(*const IVdsHwProvider, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProvider_Reenumerate(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsHwProvider.VTable, self.vtable).Reenumerate(@ptrCast(*const IVdsHwProvider, self));
+                return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).Reenumerate(@as(*const IVdsHwProvider, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProvider_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsHwProvider.VTable, self.vtable).Refresh(@ptrCast(*const IVdsHwProvider, self));
+                return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IVdsHwProvider, @ptrCast(self)));
             }
         };
     }
@@ -2357,7 +2357,7 @@ pub const IVdsHwProviderType = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderType_GetProviderType(self: *const T, pType: ?*VDS_HWPROVIDER_TYPE) HRESULT {
-                return @ptrCast(*const IVdsHwProviderType.VTable, self.vtable).GetProviderType(@ptrCast(*const IVdsHwProviderType, self), pType);
+                return @as(*const IVdsHwProviderType.VTable, @ptrCast(self.vtable)).GetProviderType(@as(*const IVdsHwProviderType, @ptrCast(self)), pType);
             }
         };
     }
@@ -2387,7 +2387,7 @@ pub const IVdsHwProviderType2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderType2_GetProviderType2(self: *const T, pType: ?*VDS_HWPROVIDER_TYPE) HRESULT {
-                return @ptrCast(*const IVdsHwProviderType2.VTable, self.vtable).GetProviderType2(@ptrCast(*const IVdsHwProviderType2, self), pType);
+                return @as(*const IVdsHwProviderType2.VTable, @ptrCast(self.vtable)).GetProviderType2(@as(*const IVdsHwProviderType2, @ptrCast(self)), pType);
             }
         };
     }
@@ -2459,15 +2459,15 @@ pub const IVdsHwProviderStoragePools = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderStoragePools_QueryStoragePools(self: *const T, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsHwProviderStoragePools.VTable, self.vtable).QueryStoragePools(@ptrCast(*const IVdsHwProviderStoragePools, self), ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
+                return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryStoragePools(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderStoragePools_CreateLunInStoragePool(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsHwProviderStoragePools.VTable, self.vtable).CreateLunInStoragePool(@ptrCast(*const IVdsHwProviderStoragePools, self), type_, ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
+                return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).CreateLunInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), type_, ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderStoragePools_QueryMaxLunCreateSizeInStoragePool(self: *const T, type_: VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) HRESULT {
-                return @ptrCast(*const IVdsHwProviderStoragePools.VTable, self.vtable).QueryMaxLunCreateSizeInStoragePool(@ptrCast(*const IVdsHwProviderStoragePools, self), type_, StoragePoolId, pHints2, pullMaxLunSize);
+                return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSizeInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), type_, StoragePoolId, pHints2, pullMaxLunSize);
             }
         };
     }
@@ -2637,51 +2637,51 @@ pub const IVdsSubSystem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_GetProperties(self: *const T, pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsSubSystem, self), pSubSystemProp);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsSubSystem, @ptrCast(self)), pSubSystemProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_GetProvider(self: *const T, ppProvider: ?*?*IVdsProvider) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetProvider(@ptrCast(*const IVdsSubSystem, self), ppProvider);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IVdsSubSystem, @ptrCast(self)), ppProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_QueryControllers(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryControllers(@ptrCast(*const IVdsSubSystem, self), ppEnum);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryControllers(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_QueryLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryLuns(@ptrCast(*const IVdsSubSystem, self), ppEnum);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryLuns(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_QueryDrives(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryDrives(@ptrCast(*const IVdsSubSystem, self), ppEnum);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryDrives(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_GetDrive(self: *const T, sBusNumber: i16, sSlotNumber: i16, ppDrive: ?*?*IVdsDrive) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).GetDrive(@ptrCast(*const IVdsSubSystem, self), sBusNumber, sSlotNumber, ppDrive);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetDrive(@as(*const IVdsSubSystem, @ptrCast(self)), sBusNumber, sSlotNumber, ppDrive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_Reenumerate(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).Reenumerate(@ptrCast(*const IVdsSubSystem, self));
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).Reenumerate(@as(*const IVdsSubSystem, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_SetControllerStatus(self: *const T, pOnlineControllerIdArray: [*]Guid, lNumberOfOnlineControllers: i32, pOfflineControllerIdArray: [*]Guid, lNumberOfOfflineControllers: i32) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).SetControllerStatus(@ptrCast(*const IVdsSubSystem, self), pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetControllerStatus(@as(*const IVdsSubSystem, @ptrCast(self)), pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_CreateLun(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).CreateLun(@ptrCast(*const IVdsSubSystem, self), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).CreateLun(@as(*const IVdsSubSystem, @ptrCast(self)), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_ReplaceDrive(self: *const T, DriveToBeReplaced: Guid, ReplacementDrive: Guid) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).ReplaceDrive(@ptrCast(*const IVdsSubSystem, self), DriveToBeReplaced, ReplacementDrive);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).ReplaceDrive(@as(*const IVdsSubSystem, @ptrCast(self)), DriveToBeReplaced, ReplacementDrive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_SetStatus(self: *const T, status: VDS_SUB_SYSTEM_STATUS) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsSubSystem, self), status);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsSubSystem, @ptrCast(self)), status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem_QueryMaxLunCreateSize(self: *const T, type_: VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) HRESULT {
-                return @ptrCast(*const IVdsSubSystem.VTable, self.vtable).QueryMaxLunCreateSize(@ptrCast(*const IVdsSubSystem, self), type_, pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
+                return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize(@as(*const IVdsSubSystem, @ptrCast(self)), type_, pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
             }
         };
     }
@@ -2767,19 +2767,19 @@ pub const IVdsSubSystem2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem2_GetProperties2(self: *const T, pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2) HRESULT {
-                return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).GetProperties2(@ptrCast(*const IVdsSubSystem2, self), pSubSystemProp2);
+                return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).GetProperties2(@as(*const IVdsSubSystem2, @ptrCast(self)), pSubSystemProp2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem2_GetDrive2(self: *const T, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) HRESULT {
-                return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).GetDrive2(@ptrCast(*const IVdsSubSystem2, self), sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
+                return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).GetDrive2(@as(*const IVdsSubSystem2, @ptrCast(self)), sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem2_CreateLun2(self: *const T, type_: VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).CreateLun2(@ptrCast(*const IVdsSubSystem2, self), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
+                return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).CreateLun2(@as(*const IVdsSubSystem2, @ptrCast(self)), type_, ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystem2_QueryMaxLunCreateSize2(self: *const T, type_: VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) HRESULT {
-                return @ptrCast(*const IVdsSubSystem2.VTable, self.vtable).QueryMaxLunCreateSize2(@ptrCast(*const IVdsSubSystem2, self), type_, pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
+                return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize2(@as(*const IVdsSubSystem2, @ptrCast(self)), type_, pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
             }
         };
     }
@@ -2809,7 +2809,7 @@ pub const IVdsSubSystemNaming = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemNaming_SetFriendlyName(self: *const T, pwszFriendlyName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IVdsSubSystemNaming.VTable, self.vtable).SetFriendlyName(@ptrCast(*const IVdsSubSystemNaming, self), pwszFriendlyName);
+                return @as(*const IVdsSubSystemNaming.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsSubSystemNaming, @ptrCast(self)), pwszFriendlyName);
             }
         };
     }
@@ -2873,19 +2873,19 @@ pub const IVdsSubSystemIscsi = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemIscsi_QueryTargets(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).QueryTargets(@ptrCast(*const IVdsSubSystemIscsi, self), ppEnum);
+                return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).QueryTargets(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemIscsi_QueryPortals(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).QueryPortals(@ptrCast(*const IVdsSubSystemIscsi, self), ppEnum);
+                return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).QueryPortals(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemIscsi_CreateTarget(self: *const T, pwszIscsiName: ?PWSTR, pwszFriendlyName: ?PWSTR, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).CreateTarget(@ptrCast(*const IVdsSubSystemIscsi, self), pwszIscsiName, pwszFriendlyName, ppAsync);
+                return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).CreateTarget(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), pwszIscsiName, pwszFriendlyName, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemIscsi_SetIpsecGroupPresharedKey(self: *const T, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) HRESULT {
-                return @ptrCast(*const IVdsSubSystemIscsi.VTable, self.vtable).SetIpsecGroupPresharedKey(@ptrCast(*const IVdsSubSystemIscsi, self), pIpsecKey);
+                return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).SetIpsecGroupPresharedKey(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), pIpsecKey);
             }
         };
     }
@@ -2915,7 +2915,7 @@ pub const IVdsSubSystemInterconnect = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsSubSystemInterconnect_GetSupportedInterconnects(self: *const T, pulSupportedInterconnectsFlag: ?*u32) HRESULT {
-                return @ptrCast(*const IVdsSubSystemInterconnect.VTable, self.vtable).GetSupportedInterconnects(@ptrCast(*const IVdsSubSystemInterconnect, self), pulSupportedInterconnectsFlag);
+                return @as(*const IVdsSubSystemInterconnect.VTable, @ptrCast(self.vtable)).GetSupportedInterconnects(@as(*const IVdsSubSystemInterconnect, @ptrCast(self)), pulSupportedInterconnectsFlag);
             }
         };
     }
@@ -2983,23 +2983,23 @@ pub const IVdsControllerPort = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerPort_GetProperties(self: *const T, pPortProp: ?*VDS_PORT_PROP) HRESULT {
-                return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsControllerPort, self), pPortProp);
+                return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsControllerPort, @ptrCast(self)), pPortProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerPort_GetController(self: *const T, ppController: ?*?*IVdsController) HRESULT {
-                return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).GetController(@ptrCast(*const IVdsControllerPort, self), ppController);
+                return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).GetController(@as(*const IVdsControllerPort, @ptrCast(self)), ppController);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerPort_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsControllerPort, self), ppEnum);
+                return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsControllerPort, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerPort_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).Reset(@ptrCast(*const IVdsControllerPort, self));
+                return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVdsControllerPort, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerPort_SetStatus(self: *const T, status: VDS_PORT_STATUS) HRESULT {
-                return @ptrCast(*const IVdsControllerPort.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsControllerPort, self), status);
+                return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsControllerPort, @ptrCast(self)), status);
             }
         };
     }
@@ -3095,35 +3095,35 @@ pub const IVdsController = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_GetProperties(self: *const T, pControllerProp: ?*VDS_CONTROLLER_PROP) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsController, self), pControllerProp);
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsController, @ptrCast(self)), pControllerProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsController, self), ppSubSystem);
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsController, @ptrCast(self)), ppSubSystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_GetPortProperties(self: *const T, sPortNumber: i16, pPortProp: ?*VDS_PORT_PROP) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).GetPortProperties(@ptrCast(*const IVdsController, self), sPortNumber, pPortProp);
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetPortProperties(@as(*const IVdsController, @ptrCast(self)), sPortNumber, pPortProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_FlushCache(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).FlushCache(@ptrCast(*const IVdsController, self));
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).FlushCache(@as(*const IVdsController, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_InvalidateCache(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).InvalidateCache(@ptrCast(*const IVdsController, self));
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).InvalidateCache(@as(*const IVdsController, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).Reset(@ptrCast(*const IVdsController, self));
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVdsController, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsController, self), ppEnum);
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsController, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsController_SetStatus(self: *const T, status: VDS_CONTROLLER_STATUS) HRESULT {
-                return @ptrCast(*const IVdsController.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsController, self), status);
+                return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsController, @ptrCast(self)), status);
             }
         };
     }
@@ -3153,7 +3153,7 @@ pub const IVdsControllerControllerPort = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsControllerControllerPort_QueryControllerPorts(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsControllerControllerPort.VTable, self.vtable).QueryControllerPorts(@ptrCast(*const IVdsControllerControllerPort, self), ppEnum);
+                return @as(*const IVdsControllerControllerPort.VTable, @ptrCast(self.vtable)).QueryControllerPorts(@as(*const IVdsControllerControllerPort, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -3235,27 +3235,27 @@ pub const IVdsDrive = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_GetProperties(self: *const T, pDriveProp: ?*VDS_DRIVE_PROP) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsDrive, self), pDriveProp);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsDrive, @ptrCast(self)), pDriveProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsDrive, self), ppSubSystem);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsDrive, @ptrCast(self)), ppSubSystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_QueryExtents(self: *const T, ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).QueryExtents(@ptrCast(*const IVdsDrive, self), ppExtentArray, plNumberOfExtents);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsDrive, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_SetFlags(self: *const T, ulFlags: u32) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).SetFlags(@ptrCast(*const IVdsDrive, self), ulFlags);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IVdsDrive, @ptrCast(self)), ulFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_ClearFlags(self: *const T, ulFlags: u32) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).ClearFlags(@ptrCast(*const IVdsDrive, self), ulFlags);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).ClearFlags(@as(*const IVdsDrive, @ptrCast(self)), ulFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive_SetStatus(self: *const T, status: VDS_DRIVE_STATUS) HRESULT {
-                return @ptrCast(*const IVdsDrive.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsDrive, self), status);
+                return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsDrive, @ptrCast(self)), status);
             }
         };
     }
@@ -3285,7 +3285,7 @@ pub const IVdsDrive2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsDrive2_GetProperties2(self: *const T, pDriveProp2: ?*VDS_DRIVE_PROP2) HRESULT {
-                return @ptrCast(*const IVdsDrive2.VTable, self.vtable).GetProperties2(@ptrCast(*const IVdsDrive2, self), pDriveProp2);
+                return @as(*const IVdsDrive2.VTable, @ptrCast(self.vtable)).GetProperties2(@as(*const IVdsDrive2, @ptrCast(self)), pDriveProp2);
             }
         };
     }
@@ -3495,71 +3495,71 @@ pub const IVdsLun = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_GetProperties(self: *const T, pLunProp: ?*VDS_LUN_PROP) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsLun, self), pLunProp);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsLun, @ptrCast(self)), pLunProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsLun, self), ppSubSystem);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsLun, @ptrCast(self)), ppSubSystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_GetIdentificationData(self: *const T, pLunInfo: ?*VDS_LUN_INFORMATION) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).GetIdentificationData(@ptrCast(*const IVdsLun, self), pLunInfo);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetIdentificationData(@as(*const IVdsLun, @ptrCast(self)), pLunInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_QueryActiveControllers(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryActiveControllers(@ptrCast(*const IVdsLun, self), ppEnum);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryActiveControllers(@as(*const IVdsLun, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_Extend(self: *const T, ullNumberOfBytesToAdd: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).Extend(@ptrCast(*const IVdsLun, self), ullNumberOfBytesToAdd, pDriveIdArray, lNumberOfDrives, ppAsync);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Extend(@as(*const IVdsLun, @ptrCast(self)), ullNumberOfBytesToAdd, pDriveIdArray, lNumberOfDrives, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_Shrink(self: *const T, ullNumberOfBytesToRemove: u64, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).Shrink(@ptrCast(*const IVdsLun, self), ullNumberOfBytesToRemove, ppAsync);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Shrink(@as(*const IVdsLun, @ptrCast(self)), ullNumberOfBytesToRemove, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_QueryPlexes(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryPlexes(@ptrCast(*const IVdsLun, self), ppEnum);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryPlexes(@as(*const IVdsLun, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_AddPlex(self: *const T, lunId: Guid, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).AddPlex(@ptrCast(*const IVdsLun, self), lunId, ppAsync);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).AddPlex(@as(*const IVdsLun, @ptrCast(self)), lunId, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_RemovePlex(self: *const T, plexId: Guid, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).RemovePlex(@ptrCast(*const IVdsLun, self), plexId, ppAsync);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).RemovePlex(@as(*const IVdsLun, @ptrCast(self)), plexId, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_Recover(self: *const T, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).Recover(@ptrCast(*const IVdsLun, self), ppAsync);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Recover(@as(*const IVdsLun, @ptrCast(self)), ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_SetMask(self: *const T, pwszUnmaskingList: ?PWSTR) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).SetMask(@ptrCast(*const IVdsLun, self), pwszUnmaskingList);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).SetMask(@as(*const IVdsLun, @ptrCast(self)), pwszUnmaskingList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).Delete(@ptrCast(*const IVdsLun, self));
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsLun, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_AssociateControllers(self: *const T, pActiveControllerIdArray: ?[*]Guid, lNumberOfActiveControllers: i32, pInactiveControllerIdArray: ?[*]Guid, lNumberOfInactiveControllers: i32) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).AssociateControllers(@ptrCast(*const IVdsLun, self), pActiveControllerIdArray, lNumberOfActiveControllers, pInactiveControllerIdArray, lNumberOfInactiveControllers);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).AssociateControllers(@as(*const IVdsLun, @ptrCast(self)), pActiveControllerIdArray, lNumberOfActiveControllers, pInactiveControllerIdArray, lNumberOfInactiveControllers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_QueryHints(self: *const T, pHints: ?*VDS_HINTS) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryHints(@ptrCast(*const IVdsLun, self), pHints);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryHints(@as(*const IVdsLun, @ptrCast(self)), pHints);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_ApplyHints(self: *const T, pHints: ?*VDS_HINTS) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).ApplyHints(@ptrCast(*const IVdsLun, self), pHints);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).ApplyHints(@as(*const IVdsLun, @ptrCast(self)), pHints);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_SetStatus(self: *const T, status: VDS_LUN_STATUS) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsLun, self), status);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsLun, @ptrCast(self)), status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun_QueryMaxLunExtendSize(self: *const T, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pullMaxBytesToBeAdded: ?*u64) HRESULT {
-                return @ptrCast(*const IVdsLun.VTable, self.vtable).QueryMaxLunExtendSize(@ptrCast(*const IVdsLun, self), pDriveIdArray, lNumberOfDrives, pullMaxBytesToBeAdded);
+                return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryMaxLunExtendSize(@as(*const IVdsLun, @ptrCast(self)), pDriveIdArray, lNumberOfDrives, pullMaxBytesToBeAdded);
             }
         };
     }
@@ -3599,11 +3599,11 @@ pub const IVdsLun2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun2_QueryHints2(self: *const T, pHints2: ?*VDS_HINTS2) HRESULT {
-                return @ptrCast(*const IVdsLun2.VTable, self.vtable).QueryHints2(@ptrCast(*const IVdsLun2, self), pHints2);
+                return @as(*const IVdsLun2.VTable, @ptrCast(self.vtable)).QueryHints2(@as(*const IVdsLun2, @ptrCast(self)), pHints2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLun2_ApplyHints2(self: *const T, pHints2: ?*VDS_HINTS2) HRESULT {
-                return @ptrCast(*const IVdsLun2.VTable, self.vtable).ApplyHints2(@ptrCast(*const IVdsLun2, self), pHints2);
+                return @as(*const IVdsLun2.VTable, @ptrCast(self.vtable)).ApplyHints2(@as(*const IVdsLun2, @ptrCast(self)), pHints2);
             }
         };
     }
@@ -3633,7 +3633,7 @@ pub const IVdsLunNaming = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunNaming_SetFriendlyName(self: *const T, pwszFriendlyName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IVdsLunNaming.VTable, self.vtable).SetFriendlyName(@ptrCast(*const IVdsLunNaming, self), pwszFriendlyName);
+                return @as(*const IVdsLunNaming.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsLunNaming, @ptrCast(self)), pwszFriendlyName);
             }
         };
     }
@@ -3663,7 +3663,7 @@ pub const IVdsLunNumber = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunNumber_GetLunNumber(self: *const T, pulLunNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IVdsLunNumber.VTable, self.vtable).GetLunNumber(@ptrCast(*const IVdsLunNumber, self), pulLunNumber);
+                return @as(*const IVdsLunNumber.VTable, @ptrCast(self.vtable)).GetLunNumber(@as(*const IVdsLunNumber, @ptrCast(self)), pulLunNumber);
             }
         };
     }
@@ -3709,11 +3709,11 @@ pub const IVdsLunControllerPorts = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunControllerPorts_AssociateControllerPorts(self: *const T, pActiveControllerPortIdArray: ?[*]Guid, lNumberOfActiveControllerPorts: i32, pInactiveControllerPortIdArray: ?[*]Guid, lNumberOfInactiveControllerPorts: i32) HRESULT {
-                return @ptrCast(*const IVdsLunControllerPorts.VTable, self.vtable).AssociateControllerPorts(@ptrCast(*const IVdsLunControllerPorts, self), pActiveControllerPortIdArray, lNumberOfActiveControllerPorts, pInactiveControllerPortIdArray, lNumberOfInactiveControllerPorts);
+                return @as(*const IVdsLunControllerPorts.VTable, @ptrCast(self.vtable)).AssociateControllerPorts(@as(*const IVdsLunControllerPorts, @ptrCast(self)), pActiveControllerPortIdArray, lNumberOfActiveControllerPorts, pInactiveControllerPortIdArray, lNumberOfInactiveControllerPorts);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunControllerPorts_QueryActiveControllerPorts(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsLunControllerPorts.VTable, self.vtable).QueryActiveControllerPorts(@ptrCast(*const IVdsLunControllerPorts, self), ppEnum);
+                return @as(*const IVdsLunControllerPorts.VTable, @ptrCast(self.vtable)).QueryActiveControllerPorts(@as(*const IVdsLunControllerPorts, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -3783,19 +3783,19 @@ pub const IVdsLunMpio = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunMpio_GetPathInfo(self: *const T, ppPaths: ?[*]?*VDS_PATH_INFO, plNumberOfPaths: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsLunMpio.VTable, self.vtable).GetPathInfo(@ptrCast(*const IVdsLunMpio, self), ppPaths, plNumberOfPaths);
+                return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetPathInfo(@as(*const IVdsLunMpio, @ptrCast(self)), ppPaths, plNumberOfPaths);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunMpio_GetLoadBalancePolicy(self: *const T, pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM, ppPaths: ?[*]?*VDS_PATH_POLICY, plNumberOfPaths: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsLunMpio.VTable, self.vtable).GetLoadBalancePolicy(@ptrCast(*const IVdsLunMpio, self), pPolicy, ppPaths, plNumberOfPaths);
+                return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetLoadBalancePolicy(@as(*const IVdsLunMpio, @ptrCast(self)), pPolicy, ppPaths, plNumberOfPaths);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunMpio_SetLoadBalancePolicy(self: *const T, policy: VDS_LOADBALANCE_POLICY_ENUM, pPaths: ?[*]VDS_PATH_POLICY, lNumberOfPaths: i32) HRESULT {
-                return @ptrCast(*const IVdsLunMpio.VTable, self.vtable).SetLoadBalancePolicy(@ptrCast(*const IVdsLunMpio, self), policy, pPaths, lNumberOfPaths);
+                return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).SetLoadBalancePolicy(@as(*const IVdsLunMpio, @ptrCast(self)), policy, pPaths, lNumberOfPaths);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunMpio_GetSupportedLbPolicies(self: *const T, pulLbFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IVdsLunMpio.VTable, self.vtable).GetSupportedLbPolicies(@ptrCast(*const IVdsLunMpio, self), pulLbFlags);
+                return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetSupportedLbPolicies(@as(*const IVdsLunMpio, @ptrCast(self)), pulLbFlags);
             }
         };
     }
@@ -3837,11 +3837,11 @@ pub const IVdsLunIscsi = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunIscsi_AssociateTargets(self: *const T, pTargetIdArray: ?[*]Guid, lNumberOfTargets: i32) HRESULT {
-                return @ptrCast(*const IVdsLunIscsi.VTable, self.vtable).AssociateTargets(@ptrCast(*const IVdsLunIscsi, self), pTargetIdArray, lNumberOfTargets);
+                return @as(*const IVdsLunIscsi.VTable, @ptrCast(self.vtable)).AssociateTargets(@as(*const IVdsLunIscsi, @ptrCast(self)), pTargetIdArray, lNumberOfTargets);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunIscsi_QueryAssociatedTargets(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsLunIscsi.VTable, self.vtable).QueryAssociatedTargets(@ptrCast(*const IVdsLunIscsi, self), ppEnum);
+                return @as(*const IVdsLunIscsi.VTable, @ptrCast(self.vtable)).QueryAssociatedTargets(@as(*const IVdsLunIscsi, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -3913,23 +3913,23 @@ pub const IVdsLunPlex = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunPlex_GetProperties(self: *const T, pPlexProp: ?*VDS_LUN_PLEX_PROP) HRESULT {
-                return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsLunPlex, self), pPlexProp);
+                return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsLunPlex, @ptrCast(self)), pPlexProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunPlex_GetLun(self: *const T, ppLun: ?*?*IVdsLun) HRESULT {
-                return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).GetLun(@ptrCast(*const IVdsLunPlex, self), ppLun);
+                return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).GetLun(@as(*const IVdsLunPlex, @ptrCast(self)), ppLun);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunPlex_QueryExtents(self: *const T, ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).QueryExtents(@ptrCast(*const IVdsLunPlex, self), ppExtentArray, plNumberOfExtents);
+                return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsLunPlex, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunPlex_QueryHints(self: *const T, pHints: ?*VDS_HINTS) HRESULT {
-                return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).QueryHints(@ptrCast(*const IVdsLunPlex, self), pHints);
+                return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).QueryHints(@as(*const IVdsLunPlex, @ptrCast(self)), pHints);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsLunPlex_ApplyHints(self: *const T, pHints: ?*VDS_HINTS) HRESULT {
-                return @ptrCast(*const IVdsLunPlex.VTable, self.vtable).ApplyHints(@ptrCast(*const IVdsLunPlex, self), pHints);
+                return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).ApplyHints(@as(*const IVdsLunPlex, @ptrCast(self)), pHints);
             }
         };
     }
@@ -4027,31 +4027,31 @@ pub const IVdsIscsiPortal = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_GetProperties(self: *const T, pPortalProp: ?*VDS_ISCSI_PORTAL_PROP) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiPortal, self), pPortalProp);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiPortal, @ptrCast(self)), pPortalProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsIscsiPortal, self), ppSubSystem);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsIscsiPortal, @ptrCast(self)), ppSubSystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_QueryAssociatedPortalGroups(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).QueryAssociatedPortalGroups(@ptrCast(*const IVdsIscsiPortal, self), ppEnum);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).QueryAssociatedPortalGroups(@as(*const IVdsIscsiPortal, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_SetStatus(self: *const T, status: VDS_ISCSI_PORTAL_STATUS) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).SetStatus(@ptrCast(*const IVdsIscsiPortal, self), status);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsIscsiPortal, @ptrCast(self)), status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_SetIpsecTunnelAddress(self: *const T, pTunnelAddress: ?*VDS_IPADDRESS, pDestinationAddress: ?*VDS_IPADDRESS) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).SetIpsecTunnelAddress(@ptrCast(*const IVdsIscsiPortal, self), pTunnelAddress, pDestinationAddress);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetIpsecTunnelAddress(@as(*const IVdsIscsiPortal, @ptrCast(self)), pTunnelAddress, pDestinationAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_GetIpsecSecurity(self: *const T, pInitiatorPortalAddress: ?*VDS_IPADDRESS, pullSecurityFlags: ?*u64) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).GetIpsecSecurity(@ptrCast(*const IVdsIscsiPortal, self), pInitiatorPortalAddress, pullSecurityFlags);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetIpsecSecurity(@as(*const IVdsIscsiPortal, @ptrCast(self)), pInitiatorPortalAddress, pullSecurityFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortal_SetIpsecSecurity(self: *const T, pInitiatorPortalAddress: ?*VDS_IPADDRESS, ullSecurityFlags: u64, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortal.VTable, self.vtable).SetIpsecSecurity(@ptrCast(*const IVdsIscsiPortal, self), pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
+                return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetIpsecSecurity(@as(*const IVdsIscsiPortal, @ptrCast(self)), pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
             }
         };
     }
@@ -4177,43 +4177,43 @@ pub const IVdsIscsiTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_GetProperties(self: *const T, pTargetProp: ?*VDS_ISCSI_TARGET_PROP) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiTarget, self), pTargetProp);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiTarget, @ptrCast(self)), pTargetProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_GetSubSystem(self: *const T, ppSubSystem: ?*?*IVdsSubSystem) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).GetSubSystem(@ptrCast(*const IVdsIscsiTarget, self), ppSubSystem);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppSubSystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_QueryPortalGroups(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).QueryPortalGroups(@ptrCast(*const IVdsIscsiTarget, self), ppEnum);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).QueryPortalGroups(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_QueryAssociatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).QueryAssociatedLuns(@ptrCast(*const IVdsIscsiTarget, self), ppEnum);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_CreatePortalGroup(self: *const T, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).CreatePortalGroup(@ptrCast(*const IVdsIscsiTarget, self), ppAsync);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).CreatePortalGroup(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_Delete(self: *const T, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).Delete(@ptrCast(*const IVdsIscsiTarget, self), ppAsync);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_SetFriendlyName(self: *const T, pwszFriendlyName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).SetFriendlyName(@ptrCast(*const IVdsIscsiTarget, self), pwszFriendlyName);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsIscsiTarget, @ptrCast(self)), pwszFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_SetSharedSecret(self: *const T, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).SetSharedSecret(@ptrCast(*const IVdsIscsiTarget, self), pTargetSharedSecret, pwszInitiatorName);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).SetSharedSecret(@as(*const IVdsIscsiTarget, @ptrCast(self)), pTargetSharedSecret, pwszInitiatorName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_RememberInitiatorSharedSecret(self: *const T, pwszInitiatorName: ?PWSTR, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).RememberInitiatorSharedSecret(@ptrCast(*const IVdsIscsiTarget, self), pwszInitiatorName, pInitiatorSharedSecret);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).RememberInitiatorSharedSecret(@as(*const IVdsIscsiTarget, @ptrCast(self)), pwszInitiatorName, pInitiatorSharedSecret);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiTarget_GetConnectedInitiators(self: *const T, pppwszInitiatorList: ?[*]?*?PWSTR, plNumberOfInitiators: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsIscsiTarget.VTable, self.vtable).GetConnectedInitiators(@ptrCast(*const IVdsIscsiTarget, self), pppwszInitiatorList, plNumberOfInitiators);
+                return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetConnectedInitiators(@as(*const IVdsIscsiTarget, @ptrCast(self)), pppwszInitiatorList, plNumberOfInitiators);
             }
         };
     }
@@ -4297,27 +4297,27 @@ pub const IVdsIscsiPortalGroup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_GetProperties(self: *const T, pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsIscsiPortalGroup, self), pPortalGroupProp);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), pPortalGroupProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_GetTarget(self: *const T, ppTarget: ?*?*IVdsIscsiTarget) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).GetTarget(@ptrCast(*const IVdsIscsiPortalGroup, self), ppTarget);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).GetTarget(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_QueryAssociatedPortals(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).QueryAssociatedPortals(@ptrCast(*const IVdsIscsiPortalGroup, self), ppEnum);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).QueryAssociatedPortals(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_AddPortal(self: *const T, portalId: Guid, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).AddPortal(@ptrCast(*const IVdsIscsiPortalGroup, self), portalId, ppAsync);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).AddPortal(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), portalId, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_RemovePortal(self: *const T, portalId: Guid, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).RemovePortal(@ptrCast(*const IVdsIscsiPortalGroup, self), portalId, ppAsync);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).RemovePortal(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), portalId, ppAsync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsIscsiPortalGroup_Delete(self: *const T, ppAsync: ?*?*IVdsAsync) HRESULT {
-                return @ptrCast(*const IVdsIscsiPortalGroup.VTable, self.vtable).Delete(@ptrCast(*const IVdsIscsiPortalGroup, self), ppAsync);
+                return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppAsync);
             }
         };
     }
@@ -4399,27 +4399,27 @@ pub const IVdsStoragePool = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_GetProvider(self: *const T, ppProvider: ?*?*IVdsProvider) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).GetProvider(@ptrCast(*const IVdsStoragePool, self), ppProvider);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IVdsStoragePool, @ptrCast(self)), ppProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_GetProperties(self: *const T, pStoragePoolProp: ?*VDS_STORAGE_POOL_PROP) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).GetProperties(@ptrCast(*const IVdsStoragePool, self), pStoragePoolProp);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsStoragePool, @ptrCast(self)), pStoragePoolProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_GetAttributes(self: *const T, pStoragePoolAttributes: ?*VDS_POOL_ATTRIBUTES) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).GetAttributes(@ptrCast(*const IVdsStoragePool, self), pStoragePoolAttributes);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IVdsStoragePool, @ptrCast(self)), pStoragePoolAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_QueryDriveExtents(self: *const T, ppExtentArray: ?[*]?*VDS_STORAGE_POOL_DRIVE_EXTENT, plNumberOfExtents: ?*i32) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryDriveExtents(@ptrCast(*const IVdsStoragePool, self), ppExtentArray, plNumberOfExtents);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryDriveExtents(@as(*const IVdsStoragePool, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_QueryAllocatedLuns(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryAllocatedLuns(@ptrCast(*const IVdsStoragePool, self), ppEnum);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryAllocatedLuns(@as(*const IVdsStoragePool, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsStoragePool_QueryAllocatedStoragePools(self: *const T, ppEnum: ?*?*IEnumVdsObject) HRESULT {
-                return @ptrCast(*const IVdsStoragePool.VTable, self.vtable).QueryAllocatedStoragePools(@ptrCast(*const IVdsStoragePool, self), ppEnum);
+                return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryAllocatedStoragePools(@as(*const IVdsStoragePool, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -4471,15 +4471,15 @@ pub const IVdsMaintenance = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsMaintenance_StartMaintenance(self: *const T, operation: VDS_MAINTENANCE_OPERATION) HRESULT {
-                return @ptrCast(*const IVdsMaintenance.VTable, self.vtable).StartMaintenance(@ptrCast(*const IVdsMaintenance, self), operation);
+                return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).StartMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsMaintenance_StopMaintenance(self: *const T, operation: VDS_MAINTENANCE_OPERATION) HRESULT {
-                return @ptrCast(*const IVdsMaintenance.VTable, self.vtable).StopMaintenance(@ptrCast(*const IVdsMaintenance, self), operation);
+                return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).StopMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsMaintenance_PulseMaintenance(self: *const T, operation: VDS_MAINTENANCE_OPERATION, ulCount: u32) HRESULT {
-                return @ptrCast(*const IVdsMaintenance.VTable, self.vtable).PulseMaintenance(@ptrCast(*const IVdsMaintenance, self), operation, ulCount);
+                return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).PulseMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation, ulCount);
             }
         };
     }
@@ -4513,7 +4513,7 @@ pub const IVdsHwProviderPrivate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderPrivate_QueryIfCreatedLun(self: *const T, pwszDevicePath: ?PWSTR, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) HRESULT {
-                return @ptrCast(*const IVdsHwProviderPrivate.VTable, self.vtable).QueryIfCreatedLun(@ptrCast(*const IVdsHwProviderPrivate, self), pwszDevicePath, pVdsLunInformation, pLunId);
+                return @as(*const IVdsHwProviderPrivate.VTable, @ptrCast(self.vtable)).QueryIfCreatedLun(@as(*const IVdsHwProviderPrivate, @ptrCast(self)), pwszDevicePath, pVdsLunInformation, pLunId);
             }
         };
     }
@@ -4545,7 +4545,7 @@ pub const IVdsHwProviderPrivateMpio = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsHwProviderPrivateMpio_SetAllPathStatusesFromHbaPort(self: *const T, hbaPortProp: VDS_HBAPORT_PROP, status: VDS_PATH_STATUS) HRESULT {
-                return @ptrCast(*const IVdsHwProviderPrivateMpio.VTable, self.vtable).SetAllPathStatusesFromHbaPort(@ptrCast(*const IVdsHwProviderPrivateMpio, self), hbaPortProp, status);
+                return @as(*const IVdsHwProviderPrivateMpio.VTable, @ptrCast(self.vtable)).SetAllPathStatusesFromHbaPort(@as(*const IVdsHwProviderPrivateMpio, @ptrCast(self)), hbaPortProp, status);
             }
         };
     }
@@ -4597,11 +4597,11 @@ pub const IVdsAdmin = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAdmin_RegisterProvider(self: *const T, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, type_: VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) HRESULT {
-                return @ptrCast(*const IVdsAdmin.VTable, self.vtable).RegisterProvider(@ptrCast(*const IVdsAdmin, self), providerId, providerClsid, pwszName, type_, pwszMachineName, pwszVersion, guidVersionId);
+                return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId, providerClsid, pwszName, type_, pwszMachineName, pwszVersion, guidVersionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVdsAdmin_UnregisterProvider(self: *const T, providerId: Guid) HRESULT {
-                return @ptrCast(*const IVdsAdmin.VTable, self.vtable).UnregisterProvider(@ptrCast(*const IVdsAdmin, self), providerId);
+                return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).UnregisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId);
             }
         };
     }

@@ -26,8 +26,8 @@ pub fn ZlibCompressor(comptime WriterType: type) type {
             const compression_method = 0x78; // 8 = deflate, 7 = log(window size (see std.compress.deflate)) - 8
             const compression_flags = blk: {
                 var ret: u8 = 0b10000000; // 11 = max compression
-                const rem: u8 = @truncate(u8, ((@intCast(usize, compression_method) << 8) + ret) % 31);
-                ret += 31 - @truncate(u8, rem);
+                const rem: u8 = @as(u8, @truncate(((@as(usize, @intCast(compression_method)) << 8) + ret) % 31));
+                ret += 31 - @as(u8, @truncate(rem));
                 break :blk ret;
             };
 

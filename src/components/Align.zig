@@ -45,7 +45,7 @@ pub const Align_Impl = struct {
 
     /// When alignX or alignY is changed, this will trigger a parent relayout
     fn alignChanged(_: f32, userdata: usize) void {
-        const self = @ptrFromInt(*Align_Impl, userdata);
+        const self = @as(*Align_Impl, @ptrFromInt(userdata));
         self.relayout();
     }
 
@@ -76,7 +76,7 @@ pub const Align_Impl = struct {
             self.relayouting.store(true, .SeqCst);
             defer self.relayouting.store(false, .SeqCst);
 
-            const available = Size{ .width = @intCast(u32, peer.getWidth()), .height = @intCast(u32, peer.getHeight()) };
+            const available = Size{ .width = @as(u32, @intCast(peer.getWidth())), .height = @as(u32, @intCast(peer.getHeight())) };
 
             const alignX = self.x.get();
             const alignY = self.y.get();
@@ -85,8 +85,8 @@ pub const Align_Impl = struct {
                 const preferredSize = self.child.getPreferredSize(available);
                 const finalSize = Size.intersect(preferredSize, available);
 
-                const x = @intFromFloat(u32, alignX * @floatFromInt(f32, available.width -| finalSize.width));
-                const y = @intFromFloat(u32, alignY * @floatFromInt(f32, available.height -| finalSize.height));
+                const x = @as(u32, @intFromFloat(alignX * @as(f32, @floatFromInt(available.width -| finalSize.width))));
+                const y = @as(u32, @intFromFloat(alignY * @as(f32, @floatFromInt(available.height -| finalSize.height))));
 
                 peer.move(widgetPeer, x, y);
                 peer.resize(widgetPeer, finalSize.width, finalSize.height);

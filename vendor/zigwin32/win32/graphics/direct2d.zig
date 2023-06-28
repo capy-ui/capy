@@ -172,7 +172,7 @@ pub const D2D1_DRAW_TEXT_OPTIONS = enum(u32) {
         NONE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_DRAW_TEXT_OPTIONS {
-        return @enumFromInt(D2D1_DRAW_TEXT_OPTIONS, (if (o.NO_SNAP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NO_SNAP) else 0) | (if (o.CLIP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.CLIP) else 0) | (if (o.ENABLE_COLOR_FONT == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.ENABLE_COLOR_FONT) else 0) | (if (o.DISABLE_COLOR_BITMAP_SNAPPING == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.DISABLE_COLOR_BITMAP_SNAPPING) else 0) | (if (o.NONE == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NONE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_DRAW_TEXT_OPTIONS, @enumFromInt((if (o.NO_SNAP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NO_SNAP) else 0) | (if (o.CLIP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.CLIP) else 0) | (if (o.ENABLE_COLOR_FONT == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.ENABLE_COLOR_FONT) else 0) | (if (o.DISABLE_COLOR_BITMAP_SNAPPING == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.DISABLE_COLOR_BITMAP_SNAPPING) else 0) | (if (o.NONE == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NONE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_DRAW_TEXT_OPTIONS_NO_SNAP = D2D1_DRAW_TEXT_OPTIONS.NO_SNAP;
@@ -365,7 +365,7 @@ pub const D2D1_LAYER_OPTIONS = enum(u32) {
         INITIALIZE_FOR_CLEARTYPE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_LAYER_OPTIONS {
-        return @enumFromInt(D2D1_LAYER_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.NONE) else 0) | (if (o.INITIALIZE_FOR_CLEARTYPE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_LAYER_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.NONE) else 0) | (if (o.INITIALIZE_FOR_CLEARTYPE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_LAYER_OPTIONS_NONE = D2D1_LAYER_OPTIONS.NONE;
@@ -392,7 +392,7 @@ pub const D2D1_WINDOW_STATE = enum(u32) {
         OCCLUDED: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_WINDOW_STATE {
-        return @enumFromInt(D2D1_WINDOW_STATE, (if (o.NONE == 1) @intFromEnum(D2D1_WINDOW_STATE.NONE) else 0) | (if (o.OCCLUDED == 1) @intFromEnum(D2D1_WINDOW_STATE.OCCLUDED) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_WINDOW_STATE.FORCE_DWORD) else 0));
+        return @as(D2D1_WINDOW_STATE, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_WINDOW_STATE.NONE) else 0) | (if (o.OCCLUDED == 1) @intFromEnum(D2D1_WINDOW_STATE.OCCLUDED) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_WINDOW_STATE.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_WINDOW_STATE_NONE = D2D1_WINDOW_STATE.NONE;
@@ -433,7 +433,7 @@ pub const D2D1_RENDER_TARGET_USAGE = enum(u32) {
         GDI_COMPATIBLE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_RENDER_TARGET_USAGE {
-        return @enumFromInt(D2D1_RENDER_TARGET_USAGE, (if (o.NONE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.NONE) else 0) | (if (o.FORCE_BITMAP_REMOTING == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_DWORD) else 0));
+        return @as(D2D1_RENDER_TARGET_USAGE, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.NONE) else 0) | (if (o.FORCE_BITMAP_REMOTING == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_RENDER_TARGET_USAGE_NONE = D2D1_RENDER_TARGET_USAGE.NONE;
@@ -453,7 +453,7 @@ pub const D2D1_PRESENT_OPTIONS = enum(u32) {
         IMMEDIATELY: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_PRESENT_OPTIONS {
-        return @enumFromInt(D2D1_PRESENT_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.NONE) else 0) | (if (o.RETAIN_CONTENTS == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS) else 0) | (if (o.IMMEDIATELY == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.IMMEDIATELY) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_PRESENT_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.NONE) else 0) | (if (o.RETAIN_CONTENTS == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS) else 0) | (if (o.IMMEDIATELY == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.IMMEDIATELY) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_PRESENT_OPTIONS_NONE = D2D1_PRESENT_OPTIONS.NONE;
@@ -486,7 +486,7 @@ pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS = enum(u32) {
         GDI_COMPATIBLE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS {
-        return @enumFromInt(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE;
@@ -559,7 +559,7 @@ pub const ID2D1Resource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Resource_GetFactory(self: *const T, factory: ?*?*ID2D1Factory) void {
-                return @ptrCast(*const ID2D1Resource.VTable, self.vtable).GetFactory(@ptrCast(*const ID2D1Resource, self), factory);
+                return @as(*const ID2D1Resource.VTable, @ptrCast(self.vtable)).GetFactory(@as(*const ID2D1Resource, @ptrCast(self)), factory);
             }
         };
     }
@@ -673,31 +673,31 @@ pub const ID2D1Bitmap = extern struct {
             pub usingnamespace ID2D1Image.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_GetSize(self: *const T) D2D_SIZE_F {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetSize(@ptrCast(*const ID2D1Bitmap, self));
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1Bitmap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_GetPixelSize(self: *const T) D2D_SIZE_U {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetPixelSize(@ptrCast(*const ID2D1Bitmap, self));
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetPixelSize(@as(*const ID2D1Bitmap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_GetPixelFormat(self: *const T) D2D1_PIXEL_FORMAT {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetPixelFormat(@ptrCast(*const ID2D1Bitmap, self));
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const ID2D1Bitmap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) void {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1Bitmap, self), dpiX, dpiY);
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1Bitmap, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_CopyFromBitmap(self: *const T, destPoint: ?*const D2D_POINT_2U, bitmap: ?*ID2D1Bitmap, srcRect: ?*const D2D_RECT_U) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromBitmap(@ptrCast(*const ID2D1Bitmap, self), destPoint, bitmap, srcRect);
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromBitmap(@as(*const ID2D1Bitmap, @ptrCast(self)), destPoint, bitmap, srcRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_CopyFromRenderTarget(self: *const T, destPoint: ?*const D2D_POINT_2U, renderTarget: ?*ID2D1RenderTarget, srcRect: ?*const D2D_RECT_U) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromRenderTarget(@ptrCast(*const ID2D1Bitmap, self), destPoint, renderTarget, srcRect);
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromRenderTarget(@as(*const ID2D1Bitmap, @ptrCast(self)), destPoint, renderTarget, srcRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap_CopyFromMemory(self: *const T, dstRect: ?*const D2D_RECT_U, srcData: ?*const anyopaque, pitch: u32) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap.VTable, self.vtable).CopyFromMemory(@ptrCast(*const ID2D1Bitmap, self), dstRect, srcData, pitch);
+                return @as(*const ID2D1Bitmap.VTable, @ptrCast(self.vtable)).CopyFromMemory(@as(*const ID2D1Bitmap, @ptrCast(self)), dstRect, srcData, pitch);
             }
         };
     }
@@ -753,19 +753,19 @@ pub const ID2D1GradientStopCollection = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection_GetGradientStopCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1GradientStopCollection.VTable, self.vtable).GetGradientStopCount(@ptrCast(*const ID2D1GradientStopCollection, self));
+                return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetGradientStopCount(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection_GetGradientStops(self: *const T, gradientStops: [*]D2D1_GRADIENT_STOP, gradientStopsCount: u32) void {
-                return @ptrCast(*const ID2D1GradientStopCollection.VTable, self.vtable).GetGradientStops(@ptrCast(*const ID2D1GradientStopCollection, self), gradientStops, gradientStopsCount);
+                return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetGradientStops(@as(*const ID2D1GradientStopCollection, @ptrCast(self)), gradientStops, gradientStopsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection_GetColorInterpolationGamma(self: *const T) D2D1_GAMMA {
-                return @ptrCast(*const ID2D1GradientStopCollection.VTable, self.vtable).GetColorInterpolationGamma(@ptrCast(*const ID2D1GradientStopCollection, self));
+                return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetColorInterpolationGamma(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection_GetExtendMode(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1GradientStopCollection.VTable, self.vtable).GetExtendMode(@ptrCast(*const ID2D1GradientStopCollection, self));
+                return @as(*const ID2D1GradientStopCollection.VTable, @ptrCast(self.vtable)).GetExtendMode(@as(*const ID2D1GradientStopCollection, @ptrCast(self)));
             }
         };
     }
@@ -823,19 +823,19 @@ pub const ID2D1Brush = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Brush_SetOpacity(self: *const T, opacity: f32) void {
-                return @ptrCast(*const ID2D1Brush.VTable, self.vtable).SetOpacity(@ptrCast(*const ID2D1Brush, self), opacity);
+                return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const ID2D1Brush, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Brush_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1Brush.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1Brush, self), transform);
+                return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1Brush, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Brush_GetOpacity(self: *const T) f32 {
-                return @ptrCast(*const ID2D1Brush.VTable, self.vtable).GetOpacity(@ptrCast(*const ID2D1Brush, self));
+                return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const ID2D1Brush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Brush_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1Brush.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1Brush, self), transform);
+                return @as(*const ID2D1Brush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1Brush, @ptrCast(self)), transform);
             }
         };
     }
@@ -929,35 +929,35 @@ pub const ID2D1BitmapBrush = extern struct {
             pub usingnamespace ID2D1Brush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_SetExtendModeX(self: *const T, extendModeX: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).SetExtendModeX(@ptrCast(*const ID2D1BitmapBrush, self), extendModeX);
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1BitmapBrush, @ptrCast(self)), extendModeX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_SetExtendModeY(self: *const T, extendModeY: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).SetExtendModeY(@ptrCast(*const ID2D1BitmapBrush, self), extendModeY);
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1BitmapBrush, @ptrCast(self)), extendModeY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_SetInterpolationMode(self: *const T, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE) void {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).SetInterpolationMode(@ptrCast(*const ID2D1BitmapBrush, self), interpolationMode);
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const ID2D1BitmapBrush, @ptrCast(self)), interpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_SetBitmap(self: *const T, bitmap: ?*ID2D1Bitmap) void {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).SetBitmap(@ptrCast(*const ID2D1BitmapBrush, self), bitmap);
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).SetBitmap(@as(*const ID2D1BitmapBrush, @ptrCast(self)), bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_GetExtendModeX(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetExtendModeX(@ptrCast(*const ID2D1BitmapBrush, self));
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_GetExtendModeY(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetExtendModeY(@ptrCast(*const ID2D1BitmapBrush, self));
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_GetInterpolationMode(self: *const T) D2D1_BITMAP_INTERPOLATION_MODE {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetInterpolationMode(@ptrCast(*const ID2D1BitmapBrush, self));
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetInterpolationMode(@as(*const ID2D1BitmapBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush_GetBitmap(self: *const T, bitmap: ?*?*ID2D1Bitmap) void {
-                return @ptrCast(*const ID2D1BitmapBrush.VTable, self.vtable).GetBitmap(@ptrCast(*const ID2D1BitmapBrush, self), bitmap);
+                return @as(*const ID2D1BitmapBrush.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapBrush, @ptrCast(self)), bitmap);
             }
         };
     }
@@ -995,11 +995,11 @@ pub const ID2D1SolidColorBrush = extern struct {
             pub usingnamespace ID2D1Brush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SolidColorBrush_SetColor(self: *const T, color: ?*const D2D1_COLOR_F) void {
-                return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SolidColorBrush, self), color);
+                return @as(*const ID2D1SolidColorBrush.VTable, @ptrCast(self.vtable)).SetColor(@as(*const ID2D1SolidColorBrush, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SolidColorBrush_GetColor(self: *const T) D2D1_COLOR_F {
-                return @ptrCast(*const ID2D1SolidColorBrush.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SolidColorBrush, self));
+                return @as(*const ID2D1SolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const ID2D1SolidColorBrush, @ptrCast(self)));
             }
         };
     }
@@ -1065,23 +1065,23 @@ pub const ID2D1LinearGradientBrush = extern struct {
             pub usingnamespace ID2D1Brush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1LinearGradientBrush_SetStartPoint(self: *const T, startPoint: D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).SetStartPoint(@ptrCast(*const ID2D1LinearGradientBrush, self), startPoint);
+                return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1LinearGradientBrush_SetEndPoint(self: *const T, endPoint: D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).SetEndPoint(@ptrCast(*const ID2D1LinearGradientBrush, self), endPoint);
+                return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).SetEndPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), endPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1LinearGradientBrush_GetStartPoint(self: *const T) D2D_POINT_2F {
-                return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).GetStartPoint(@ptrCast(*const ID2D1LinearGradientBrush, self));
+                return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1LinearGradientBrush_GetEndPoint(self: *const T) D2D_POINT_2F {
-                return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).GetEndPoint(@ptrCast(*const ID2D1LinearGradientBrush, self));
+                return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetEndPoint(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1LinearGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: ?*?*ID2D1GradientStopCollection) void {
-                return @ptrCast(*const ID2D1LinearGradientBrush.VTable, self.vtable).GetGradientStopCollection(@ptrCast(*const ID2D1LinearGradientBrush, self), gradientStopCollection);
+                return @as(*const ID2D1LinearGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1LinearGradientBrush, @ptrCast(self)), gradientStopCollection);
             }
         };
     }
@@ -1183,39 +1183,39 @@ pub const ID2D1RadialGradientBrush = extern struct {
             pub usingnamespace ID2D1Brush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_SetCenter(self: *const T, center: D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).SetCenter(@ptrCast(*const ID2D1RadialGradientBrush, self), center);
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetCenter(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), center);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_SetGradientOriginOffset(self: *const T, gradientOriginOffset: D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).SetGradientOriginOffset(@ptrCast(*const ID2D1RadialGradientBrush, self), gradientOriginOffset);
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetGradientOriginOffset(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), gradientOriginOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_SetRadiusX(self: *const T, radiusX: f32) void {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).SetRadiusX(@ptrCast(*const ID2D1RadialGradientBrush, self), radiusX);
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiusX(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), radiusX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_SetRadiusY(self: *const T, radiusY: f32) void {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).SetRadiusY(@ptrCast(*const ID2D1RadialGradientBrush, self), radiusY);
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiusY(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), radiusY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_GetCenter(self: *const T) D2D_POINT_2F {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetCenter(@ptrCast(*const ID2D1RadialGradientBrush, self));
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetCenter(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_GetGradientOriginOffset(self: *const T) D2D_POINT_2F {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetGradientOriginOffset(@ptrCast(*const ID2D1RadialGradientBrush, self));
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientOriginOffset(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_GetRadiusX(self: *const T) f32 {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetRadiusX(@ptrCast(*const ID2D1RadialGradientBrush, self));
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiusX(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_GetRadiusY(self: *const T) f32 {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetRadiusY(@ptrCast(*const ID2D1RadialGradientBrush, self));
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiusY(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RadialGradientBrush_GetGradientStopCollection(self: *const T, gradientStopCollection: ?*?*ID2D1GradientStopCollection) void {
-                return @ptrCast(*const ID2D1RadialGradientBrush.VTable, self.vtable).GetGradientStopCollection(@ptrCast(*const ID2D1RadialGradientBrush, self), gradientStopCollection);
+                return @as(*const ID2D1RadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStopCollection(@as(*const ID2D1RadialGradientBrush, @ptrCast(self)), gradientStopCollection);
             }
         };
     }
@@ -1311,39 +1311,39 @@ pub const ID2D1StrokeStyle = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetStartCap(self: *const T) D2D1_CAP_STYLE {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetStartCap(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetStartCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetEndCap(self: *const T) D2D1_CAP_STYLE {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetEndCap(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetEndCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetDashCap(self: *const T) D2D1_CAP_STYLE {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetDashCap(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashCap(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetMiterLimit(self: *const T) f32 {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetMiterLimit(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetMiterLimit(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetLineJoin(self: *const T) D2D1_LINE_JOIN {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetLineJoin(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetLineJoin(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetDashOffset(self: *const T) f32 {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetDashOffset(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashOffset(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetDashStyle(self: *const T) D2D1_DASH_STYLE {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetDashStyle(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashStyle(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetDashesCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetDashesCount(@ptrCast(*const ID2D1StrokeStyle, self));
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashesCount(@as(*const ID2D1StrokeStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle_GetDashes(self: *const T, dashes: [*]f32, dashesCount: u32) void {
-                return @ptrCast(*const ID2D1StrokeStyle.VTable, self.vtable).GetDashes(@ptrCast(*const ID2D1StrokeStyle, self), dashes, dashesCount);
+                return @as(*const ID2D1StrokeStyle.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1StrokeStyle, @ptrCast(self)), dashes, dashesCount);
             }
         };
     }
@@ -1571,55 +1571,55 @@ pub const ID2D1Geometry = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_GetBounds(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1Geometry, self), worldTransform, bounds);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, bounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_GetWidenedBounds(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).GetWidenedBounds(@ptrCast(*const ID2D1Geometry, self), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, bounds);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).GetWidenedBounds(@as(*const ID2D1Geometry, @ptrCast(self)), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, bounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_StrokeContainsPoint(self: *const T, point: D2D_POINT_2F, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).StrokeContainsPoint(@ptrCast(*const ID2D1Geometry, self), point, strokeWidth, strokeStyle, worldTransform, flatteningTolerance, contains);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).StrokeContainsPoint(@as(*const ID2D1Geometry, @ptrCast(self)), point, strokeWidth, strokeStyle, worldTransform, flatteningTolerance, contains);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_FillContainsPoint(self: *const T, point: D2D_POINT_2F, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, contains: ?*BOOL) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).FillContainsPoint(@ptrCast(*const ID2D1Geometry, self), point, worldTransform, flatteningTolerance, contains);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).FillContainsPoint(@as(*const ID2D1Geometry, @ptrCast(self)), point, worldTransform, flatteningTolerance, contains);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_CompareWithGeometry(self: *const T, inputGeometry: ?*ID2D1Geometry, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, relation: ?*D2D1_GEOMETRY_RELATION) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).CompareWithGeometry(@ptrCast(*const ID2D1Geometry, self), inputGeometry, inputGeometryTransform, flatteningTolerance, relation);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).CompareWithGeometry(@as(*const ID2D1Geometry, @ptrCast(self)), inputGeometry, inputGeometryTransform, flatteningTolerance, relation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_Simplify(self: *const T, simplificationOption: D2D1_GEOMETRY_SIMPLIFICATION_OPTION, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Simplify(@ptrCast(*const ID2D1Geometry, self), simplificationOption, worldTransform, flatteningTolerance, geometrySink);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Simplify(@as(*const ID2D1Geometry, @ptrCast(self)), simplificationOption, worldTransform, flatteningTolerance, geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_Tessellate(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, tessellationSink: ?*ID2D1TessellationSink) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Tessellate(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, tessellationSink);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Tessellate(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, tessellationSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_CombineWithGeometry(self: *const T, inputGeometry: ?*ID2D1Geometry, combineMode: D2D1_COMBINE_MODE, inputGeometryTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).CombineWithGeometry(@ptrCast(*const ID2D1Geometry, self), inputGeometry, combineMode, inputGeometryTransform, flatteningTolerance, geometrySink);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).CombineWithGeometry(@as(*const ID2D1Geometry, @ptrCast(self)), inputGeometry, combineMode, inputGeometryTransform, flatteningTolerance, geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_Outline(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Outline(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, geometrySink);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Outline(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_ComputeArea(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, area: ?*f32) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputeArea(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, area);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputeArea(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, area);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_ComputeLength(self: *const T, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, length: ?*f32) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputeLength(@ptrCast(*const ID2D1Geometry, self), worldTransform, flatteningTolerance, length);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputeLength(@as(*const ID2D1Geometry, @ptrCast(self)), worldTransform, flatteningTolerance, length);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_ComputePointAtLength(self: *const T, length: f32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, point: ?*D2D_POINT_2F, unitTangentVector: ?*D2D_POINT_2F) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).ComputePointAtLength(@ptrCast(*const ID2D1Geometry, self), length, worldTransform, flatteningTolerance, point, unitTangentVector);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).ComputePointAtLength(@as(*const ID2D1Geometry, @ptrCast(self)), length, worldTransform, flatteningTolerance, point, unitTangentVector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Geometry_Widen(self: *const T, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1Geometry.VTable, self.vtable).Widen(@ptrCast(*const ID2D1Geometry, self), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, geometrySink);
+                return @as(*const ID2D1Geometry.VTable, @ptrCast(self.vtable)).Widen(@as(*const ID2D1Geometry, @ptrCast(self)), strokeWidth, strokeStyle, worldTransform, flatteningTolerance, geometrySink);
             }
         };
     }
@@ -1649,7 +1649,7 @@ pub const ID2D1RectangleGeometry = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RectangleGeometry_GetRect(self: *const T, rect: ?*D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1RectangleGeometry.VTable, self.vtable).GetRect(@ptrCast(*const ID2D1RectangleGeometry, self), rect);
+                return @as(*const ID2D1RectangleGeometry.VTable, @ptrCast(self.vtable)).GetRect(@as(*const ID2D1RectangleGeometry, @ptrCast(self)), rect);
             }
         };
     }
@@ -1679,7 +1679,7 @@ pub const ID2D1RoundedRectangleGeometry = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RoundedRectangleGeometry_GetRoundedRect(self: *const T, roundedRect: ?*D2D1_ROUNDED_RECT) void {
-                return @ptrCast(*const ID2D1RoundedRectangleGeometry.VTable, self.vtable).GetRoundedRect(@ptrCast(*const ID2D1RoundedRectangleGeometry, self), roundedRect);
+                return @as(*const ID2D1RoundedRectangleGeometry.VTable, @ptrCast(self.vtable)).GetRoundedRect(@as(*const ID2D1RoundedRectangleGeometry, @ptrCast(self)), roundedRect);
             }
         };
     }
@@ -1709,7 +1709,7 @@ pub const ID2D1EllipseGeometry = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EllipseGeometry_GetEllipse(self: *const T, ellipse: ?*D2D1_ELLIPSE) void {
-                return @ptrCast(*const ID2D1EllipseGeometry.VTable, self.vtable).GetEllipse(@ptrCast(*const ID2D1EllipseGeometry, self), ellipse);
+                return @as(*const ID2D1EllipseGeometry.VTable, @ptrCast(self.vtable)).GetEllipse(@as(*const ID2D1EllipseGeometry, @ptrCast(self)), ellipse);
             }
         };
     }
@@ -1757,15 +1757,15 @@ pub const ID2D1GeometryGroup = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometryGroup_GetFillMode(self: *const T) D2D1_FILL_MODE {
-                return @ptrCast(*const ID2D1GeometryGroup.VTable, self.vtable).GetFillMode(@ptrCast(*const ID2D1GeometryGroup, self));
+                return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetFillMode(@as(*const ID2D1GeometryGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometryGroup_GetSourceGeometryCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1GeometryGroup.VTable, self.vtable).GetSourceGeometryCount(@ptrCast(*const ID2D1GeometryGroup, self));
+                return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetSourceGeometryCount(@as(*const ID2D1GeometryGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometryGroup_GetSourceGeometries(self: *const T, geometries: [*]?*ID2D1Geometry, geometriesCount: u32) void {
-                return @ptrCast(*const ID2D1GeometryGroup.VTable, self.vtable).GetSourceGeometries(@ptrCast(*const ID2D1GeometryGroup, self), geometries, geometriesCount);
+                return @as(*const ID2D1GeometryGroup.VTable, @ptrCast(self.vtable)).GetSourceGeometries(@as(*const ID2D1GeometryGroup, @ptrCast(self)), geometries, geometriesCount);
             }
         };
     }
@@ -1805,11 +1805,11 @@ pub const ID2D1TransformedGeometry = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformedGeometry_GetSourceGeometry(self: *const T, sourceGeometry: ?*?*ID2D1Geometry) void {
-                return @ptrCast(*const ID2D1TransformedGeometry.VTable, self.vtable).GetSourceGeometry(@ptrCast(*const ID2D1TransformedGeometry, self), sourceGeometry);
+                return @as(*const ID2D1TransformedGeometry.VTable, @ptrCast(self.vtable)).GetSourceGeometry(@as(*const ID2D1TransformedGeometry, @ptrCast(self)), sourceGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformedGeometry_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1TransformedGeometry.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1TransformedGeometry, self), transform);
+                return @as(*const ID2D1TransformedGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1TransformedGeometry, @ptrCast(self)), transform);
             }
         };
     }
@@ -1881,23 +1881,23 @@ pub const ID2D1GeometrySink = extern struct {
             pub usingnamespace ID2D1SimplifiedGeometrySink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometrySink_AddLine(self: *const T, point: D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddLine(@ptrCast(*const ID2D1GeometrySink, self), point);
+                return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddLine(@as(*const ID2D1GeometrySink, @ptrCast(self)), point);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometrySink_AddBezier(self: *const T, bezier: ?*const D2D1_BEZIER_SEGMENT) void {
-                return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddBezier(@ptrCast(*const ID2D1GeometrySink, self), bezier);
+                return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddBezier(@as(*const ID2D1GeometrySink, @ptrCast(self)), bezier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometrySink_AddQuadraticBezier(self: *const T, bezier: ?*const D2D1_QUADRATIC_BEZIER_SEGMENT) void {
-                return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddQuadraticBezier(@ptrCast(*const ID2D1GeometrySink, self), bezier);
+                return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddQuadraticBezier(@as(*const ID2D1GeometrySink, @ptrCast(self)), bezier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometrySink_AddQuadraticBeziers(self: *const T, beziers: [*]const D2D1_QUADRATIC_BEZIER_SEGMENT, beziersCount: u32) void {
-                return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddQuadraticBeziers(@ptrCast(*const ID2D1GeometrySink, self), beziers, beziersCount);
+                return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddQuadraticBeziers(@as(*const ID2D1GeometrySink, @ptrCast(self)), beziers, beziersCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GeometrySink_AddArc(self: *const T, arc: ?*const D2D1_ARC_SEGMENT) void {
-                return @ptrCast(*const ID2D1GeometrySink.VTable, self.vtable).AddArc(@ptrCast(*const ID2D1GeometrySink, self), arc);
+                return @as(*const ID2D1GeometrySink.VTable, @ptrCast(self.vtable)).AddArc(@as(*const ID2D1GeometrySink, @ptrCast(self)), arc);
             }
         };
     }
@@ -1937,11 +1937,11 @@ pub const ID2D1TessellationSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TessellationSink_AddTriangles(self: *const T, triangles: [*]const D2D1_TRIANGLE, trianglesCount: u32) void {
-                return @ptrCast(*const ID2D1TessellationSink.VTable, self.vtable).AddTriangles(@ptrCast(*const ID2D1TessellationSink, self), triangles, trianglesCount);
+                return @as(*const ID2D1TessellationSink.VTable, @ptrCast(self.vtable)).AddTriangles(@as(*const ID2D1TessellationSink, @ptrCast(self)), triangles, trianglesCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TessellationSink_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1TessellationSink.VTable, self.vtable).Close(@ptrCast(*const ID2D1TessellationSink, self));
+                return @as(*const ID2D1TessellationSink.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1TessellationSink, @ptrCast(self)));
             }
         };
     }
@@ -2001,19 +2001,19 @@ pub const ID2D1PathGeometry = extern struct {
             pub usingnamespace ID2D1Geometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PathGeometry_Open(self: *const T, geometrySink: ?*?*ID2D1GeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).Open(@ptrCast(*const ID2D1PathGeometry, self), geometrySink);
+                return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).Open(@as(*const ID2D1PathGeometry, @ptrCast(self)), geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PathGeometry_Stream(self: *const T, geometrySink: ?*ID2D1GeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).Stream(@ptrCast(*const ID2D1PathGeometry, self), geometrySink);
+                return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1PathGeometry, @ptrCast(self)), geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PathGeometry_GetSegmentCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).GetSegmentCount(@ptrCast(*const ID2D1PathGeometry, self), count);
+                return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const ID2D1PathGeometry, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PathGeometry_GetFigureCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1PathGeometry.VTable, self.vtable).GetFigureCount(@ptrCast(*const ID2D1PathGeometry, self), count);
+                return @as(*const ID2D1PathGeometry.VTable, @ptrCast(self.vtable)).GetFigureCount(@as(*const ID2D1PathGeometry, @ptrCast(self)), count);
             }
         };
     }
@@ -2043,7 +2043,7 @@ pub const ID2D1Mesh = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Mesh_Open(self: *const T, tessellationSink: ?*?*ID2D1TessellationSink) HRESULT {
-                return @ptrCast(*const ID2D1Mesh.VTable, self.vtable).Open(@ptrCast(*const ID2D1Mesh, self), tessellationSink);
+                return @as(*const ID2D1Mesh.VTable, @ptrCast(self.vtable)).Open(@as(*const ID2D1Mesh, @ptrCast(self)), tessellationSink);
             }
         };
     }
@@ -2071,7 +2071,7 @@ pub const ID2D1Layer = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Layer_GetSize(self: *const T) D2D_SIZE_F {
-                return @ptrCast(*const ID2D1Layer.VTable, self.vtable).GetSize(@ptrCast(*const ID2D1Layer, self));
+                return @as(*const ID2D1Layer.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1Layer, @ptrCast(self)));
             }
         };
     }
@@ -2131,19 +2131,19 @@ pub const ID2D1DrawingStateBlock = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock_GetDescription(self: *const T, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1DrawingStateBlock, self), stateDescription);
+                return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), stateDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock_SetDescription(self: *const T, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1DrawingStateBlock, self), stateDescription);
+                return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), stateDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock_SetTextRenderingParams(self: *const T, textRenderingParams: ?*IDWriteRenderingParams) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1DrawingStateBlock, self), textRenderingParams);
+                return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), textRenderingParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock_GetTextRenderingParams(self: *const T, textRenderingParams: ?*?*IDWriteRenderingParams) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock.VTable, self.vtable).GetTextRenderingParams(@ptrCast(*const ID2D1DrawingStateBlock, self), textRenderingParams);
+                return @as(*const ID2D1DrawingStateBlock.VTable, @ptrCast(self.vtable)).GetTextRenderingParams(@as(*const ID2D1DrawingStateBlock, @ptrCast(self)), textRenderingParams);
             }
         };
     }
@@ -2833,215 +2833,215 @@ pub const ID2D1RenderTarget = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateBitmap(self: *const T, size: D2D_SIZE_U, srcData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1RenderTarget, self), size, srcData, pitch, bitmapProperties, bitmap);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), size, srcData, pitch, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapFromWicBitmap(@ptrCast(*const ID2D1RenderTarget, self), wicBitmapSource, bitmapProperties, bitmap);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmapFromWicBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), wicBitmapSource, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateSharedBitmap(self: *const T, riid: ?*const Guid, data: ?*anyopaque, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES, bitmap: ?*?*ID2D1Bitmap) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSharedBitmap(@ptrCast(*const ID2D1RenderTarget, self), riid, data, bitmapProperties, bitmap);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateSharedBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), riid, data, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1RenderTarget, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateBitmapBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateSolidColorBrush(self: *const T, color: ?*const D2D1_COLOR_F, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, solidColorBrush: ?*?*ID2D1SolidColorBrush) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateSolidColorBrush(@ptrCast(*const ID2D1RenderTarget, self), color, brushProperties, solidColorBrush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateSolidColorBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), color, brushProperties, solidColorBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateGradientStopCollection(self: *const T, gradientStops: [*]const D2D1_GRADIENT_STOP, gradientStopsCount: u32, colorInterpolationGamma: D2D1_GAMMA, extendMode: D2D1_EXTEND_MODE, gradientStopCollection: ?*?*ID2D1GradientStopCollection) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateGradientStopCollection(@ptrCast(*const ID2D1RenderTarget, self), gradientStops, gradientStopsCount, colorInterpolationGamma, extendMode, gradientStopCollection);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateGradientStopCollection(@as(*const ID2D1RenderTarget, @ptrCast(self)), gradientStops, gradientStopsCount, colorInterpolationGamma, extendMode, gradientStopCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateLinearGradientBrush(self: *const T, linearGradientBrushProperties: ?*const D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, linearGradientBrush: ?*?*ID2D1LinearGradientBrush) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateLinearGradientBrush(@ptrCast(*const ID2D1RenderTarget, self), linearGradientBrushProperties, brushProperties, gradientStopCollection, linearGradientBrush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateLinearGradientBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), linearGradientBrushProperties, brushProperties, gradientStopCollection, linearGradientBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateRadialGradientBrush(self: *const T, radialGradientBrushProperties: ?*const D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, gradientStopCollection: ?*ID2D1GradientStopCollection, radialGradientBrush: ?*?*ID2D1RadialGradientBrush) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateRadialGradientBrush(@ptrCast(*const ID2D1RenderTarget, self), radialGradientBrushProperties, brushProperties, gradientStopCollection, radialGradientBrush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateRadialGradientBrush(@as(*const ID2D1RenderTarget, @ptrCast(self)), radialGradientBrushProperties, brushProperties, gradientStopCollection, radialGradientBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateCompatibleRenderTarget(self: *const T, desiredSize: ?*const D2D_SIZE_F, desiredPixelSize: ?*const D2D_SIZE_U, desiredFormat: ?*const D2D1_PIXEL_FORMAT, options: D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, bitmapRenderTarget: ?*?*ID2D1BitmapRenderTarget) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateCompatibleRenderTarget(@ptrCast(*const ID2D1RenderTarget, self), desiredSize, desiredPixelSize, desiredFormat, options, bitmapRenderTarget);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateCompatibleRenderTarget(@as(*const ID2D1RenderTarget, @ptrCast(self)), desiredSize, desiredPixelSize, desiredFormat, options, bitmapRenderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateLayer(self: *const T, size: ?*const D2D_SIZE_F, layer: ?*?*ID2D1Layer) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateLayer(@ptrCast(*const ID2D1RenderTarget, self), size, layer);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)), size, layer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_CreateMesh(self: *const T, mesh: ?*?*ID2D1Mesh) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).CreateMesh(@ptrCast(*const ID2D1RenderTarget, self), mesh);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).CreateMesh(@as(*const ID2D1RenderTarget, @ptrCast(self)), mesh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawLine(@ptrCast(*const ID2D1RenderTarget, self), point0, point1, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawLine(@as(*const ID2D1RenderTarget, @ptrCast(self)), point0, point1, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawRectangle(@ptrCast(*const ID2D1RenderTarget, self), rect, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), rect, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillRectangle(@ptrCast(*const ID2D1RenderTarget, self), rect, brush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), rect, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawRoundedRectangle(self: *const T, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawRoundedRectangle(@ptrCast(*const ID2D1RenderTarget, self), roundedRect, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawRoundedRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), roundedRect, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillRoundedRectangle(self: *const T, roundedRect: ?*const D2D1_ROUNDED_RECT, brush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillRoundedRectangle(@ptrCast(*const ID2D1RenderTarget, self), roundedRect, brush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillRoundedRectangle(@as(*const ID2D1RenderTarget, @ptrCast(self)), roundedRect, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawEllipse(self: *const T, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawEllipse(@ptrCast(*const ID2D1RenderTarget, self), ellipse, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawEllipse(@as(*const ID2D1RenderTarget, @ptrCast(self)), ellipse, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillEllipse(self: *const T, ellipse: ?*const D2D1_ELLIPSE, brush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillEllipse(@ptrCast(*const ID2D1RenderTarget, self), ellipse, brush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillEllipse(@as(*const ID2D1RenderTarget, @ptrCast(self)), ellipse, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawGeometry(@ptrCast(*const ID2D1RenderTarget, self), geometry, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawGeometry(@as(*const ID2D1RenderTarget, @ptrCast(self)), geometry, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillGeometry(@ptrCast(*const ID2D1RenderTarget, self), geometry, brush, opacityBrush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillGeometry(@as(*const ID2D1RenderTarget, @ptrCast(self)), geometry, brush, opacityBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillMesh(self: *const T, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillMesh(@ptrCast(*const ID2D1RenderTarget, self), mesh, brush);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillMesh(@as(*const ID2D1RenderTarget, @ptrCast(self)), mesh, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, content: D2D1_OPACITY_MASK_CONTENT, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1RenderTarget, self), opacityMask, brush, content, destinationRectangle, sourceRectangle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1RenderTarget, @ptrCast(self)), opacityMask, brush, content, destinationRectangle, sourceRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1RenderTarget, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1RenderTarget, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1RenderTarget, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawText(@as(*const ID2D1RenderTarget, @ptrCast(self)), string, stringLength, textFormat, layoutRect, defaultFillBrush, options, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, options: D2D1_DRAW_TEXT_OPTIONS) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawTextLayout(@ptrCast(*const ID2D1RenderTarget, self), origin, textLayout, defaultFillBrush, options);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawTextLayout(@as(*const ID2D1RenderTarget, @ptrCast(self)), origin, textLayout, defaultFillBrush, options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1RenderTarget, self), baselineOrigin, glyphRun, foregroundBrush, measuringMode);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1RenderTarget, @ptrCast(self)), baselineOrigin, glyphRun, foregroundBrush, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1RenderTarget, self), transform);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1RenderTarget, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTransform(@ptrCast(*const ID2D1RenderTarget, self), transform);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const ID2D1RenderTarget, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetAntialiasMode(self: *const T, antialiasMode: D2D1_ANTIALIAS_MODE) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetAntialiasMode(@ptrCast(*const ID2D1RenderTarget, self), antialiasMode);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)), antialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetAntialiasMode(self: *const T) D2D1_ANTIALIAS_MODE {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetAntialiasMode(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetTextAntialiasMode(self: *const T, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTextAntialiasMode(@ptrCast(*const ID2D1RenderTarget, self), textAntialiasMode);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)), textAntialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetTextAntialiasMode(self: *const T) D2D1_TEXT_ANTIALIAS_MODE {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTextAntialiasMode(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTextAntialiasMode(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetTextRenderingParams(self: *const T, textRenderingParams: ?*IDWriteRenderingParams) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1RenderTarget, self), textRenderingParams);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1RenderTarget, @ptrCast(self)), textRenderingParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetTextRenderingParams(self: *const T, textRenderingParams: ?*?*IDWriteRenderingParams) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTextRenderingParams(@ptrCast(*const ID2D1RenderTarget, self), textRenderingParams);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTextRenderingParams(@as(*const ID2D1RenderTarget, @ptrCast(self)), textRenderingParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetTags(self: *const T, tag1: u64, tag2: u64) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetTags(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetTags(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetTags(self: *const T, tag1: ?*u64, tag2: ?*u64) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetTags(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetTags(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_PushLayer(self: *const T, layerParameters: ?*const D2D1_LAYER_PARAMETERS, layer: ?*ID2D1Layer) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1RenderTarget, self), layerParameters, layer);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)), layerParameters, layer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_PopLayer(self: *const T) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PopLayer(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PopLayer(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_Flush(self: *const T, tag1: ?*u64, tag2: ?*u64) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).Flush(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).Flush(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SaveDrawingState(self: *const T, drawingStateBlock: ?*ID2D1DrawingStateBlock) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SaveDrawingState(@ptrCast(*const ID2D1RenderTarget, self), drawingStateBlock);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SaveDrawingState(@as(*const ID2D1RenderTarget, @ptrCast(self)), drawingStateBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_RestoreDrawingState(self: *const T, drawingStateBlock: ?*ID2D1DrawingStateBlock) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).RestoreDrawingState(@ptrCast(*const ID2D1RenderTarget, self), drawingStateBlock);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).RestoreDrawingState(@as(*const ID2D1RenderTarget, @ptrCast(self)), drawingStateBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_PushAxisAlignedClip(self: *const T, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PushAxisAlignedClip(@ptrCast(*const ID2D1RenderTarget, self), clipRect, antialiasMode);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PushAxisAlignedClip(@as(*const ID2D1RenderTarget, @ptrCast(self)), clipRect, antialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_PopAxisAlignedClip(self: *const T) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).PopAxisAlignedClip(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).PopAxisAlignedClip(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_Clear(self: *const T, clearColor: ?*const D2D1_COLOR_F) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).Clear(@ptrCast(*const ID2D1RenderTarget, self), clearColor);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1RenderTarget, @ptrCast(self)), clearColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_BeginDraw(self: *const T) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).BeginDraw(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_EndDraw(self: *const T, tag1: ?*u64, tag2: ?*u64) HRESULT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).EndDraw(@ptrCast(*const ID2D1RenderTarget, self), tag1, tag2);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ID2D1RenderTarget, @ptrCast(self)), tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetPixelFormat(self: *const T) D2D1_PIXEL_FORMAT {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetPixelFormat(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_SetDpi(self: *const T, dpiX: f32, dpiY: f32) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).SetDpi(@ptrCast(*const ID2D1RenderTarget, self), dpiX, dpiY);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).SetDpi(@as(*const ID2D1RenderTarget, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) void {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1RenderTarget, self), dpiX, dpiY);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1RenderTarget, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetSize(self: *const T) D2D_SIZE_F {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetSize(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetPixelSize(self: *const T) D2D_SIZE_U {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetPixelSize(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetPixelSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_GetMaximumBitmapSize(self: *const T) u32 {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).GetMaximumBitmapSize(@ptrCast(*const ID2D1RenderTarget, self));
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).GetMaximumBitmapSize(@as(*const ID2D1RenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderTarget_IsSupported(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES) BOOL {
-                return @ptrCast(*const ID2D1RenderTarget.VTable, self.vtable).IsSupported(@ptrCast(*const ID2D1RenderTarget, self), renderTargetProperties);
+                return @as(*const ID2D1RenderTarget.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ID2D1RenderTarget, @ptrCast(self)), renderTargetProperties);
             }
         };
     }
@@ -3071,7 +3071,7 @@ pub const ID2D1BitmapRenderTarget = extern struct {
             pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapRenderTarget_GetBitmap(self: *const T, bitmap: ?*?*ID2D1Bitmap) HRESULT {
-                return @ptrCast(*const ID2D1BitmapRenderTarget.VTable, self.vtable).GetBitmap(@ptrCast(*const ID2D1BitmapRenderTarget, self), bitmap);
+                return @as(*const ID2D1BitmapRenderTarget.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const ID2D1BitmapRenderTarget, @ptrCast(self)), bitmap);
             }
         };
     }
@@ -3117,15 +3117,15 @@ pub const ID2D1HwndRenderTarget = extern struct {
             pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1HwndRenderTarget_CheckWindowState(self: *const T) D2D1_WINDOW_STATE {
-                return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).CheckWindowState(@ptrCast(*const ID2D1HwndRenderTarget, self));
+                return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).CheckWindowState(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1HwndRenderTarget_Resize(self: *const T, pixelSize: ?*const D2D_SIZE_U) HRESULT {
-                return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).Resize(@ptrCast(*const ID2D1HwndRenderTarget, self), pixelSize);
+                return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).Resize(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)), pixelSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1HwndRenderTarget_GetHwnd(self: *const T) ?HWND {
-                return @ptrCast(*const ID2D1HwndRenderTarget.VTable, self.vtable).GetHwnd(@ptrCast(*const ID2D1HwndRenderTarget, self));
+                return @as(*const ID2D1HwndRenderTarget.VTable, @ptrCast(self.vtable)).GetHwnd(@as(*const ID2D1HwndRenderTarget, @ptrCast(self)));
             }
         };
     }
@@ -3167,11 +3167,11 @@ pub const ID2D1GdiInteropRenderTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiInteropRenderTarget_GetDC(self: *const T, mode: D2D1_DC_INITIALIZE_MODE, hdc: ?*?HDC) HRESULT {
-                return @ptrCast(*const ID2D1GdiInteropRenderTarget.VTable, self.vtable).GetDC(@ptrCast(*const ID2D1GdiInteropRenderTarget, self), mode, hdc);
+                return @as(*const ID2D1GdiInteropRenderTarget.VTable, @ptrCast(self.vtable)).GetDC(@as(*const ID2D1GdiInteropRenderTarget, @ptrCast(self)), mode, hdc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiInteropRenderTarget_ReleaseDC(self: *const T, update: ?*const RECT) HRESULT {
-                return @ptrCast(*const ID2D1GdiInteropRenderTarget.VTable, self.vtable).ReleaseDC(@ptrCast(*const ID2D1GdiInteropRenderTarget, self), update);
+                return @as(*const ID2D1GdiInteropRenderTarget.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const ID2D1GdiInteropRenderTarget, @ptrCast(self)), update);
             }
         };
     }
@@ -3203,7 +3203,7 @@ pub const ID2D1DCRenderTarget = extern struct {
             pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DCRenderTarget_BindDC(self: *const T, hDC: ?HDC, pSubRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const ID2D1DCRenderTarget.VTable, self.vtable).BindDC(@ptrCast(*const ID2D1DCRenderTarget, self), hDC, pSubRect);
+                return @as(*const ID2D1DCRenderTarget.VTable, @ptrCast(self.vtable)).BindDC(@as(*const ID2D1DCRenderTarget, @ptrCast(self)), hDC, pSubRect);
             }
         };
     }
@@ -3403,59 +3403,59 @@ pub const ID2D1Factory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_ReloadSystemMetrics(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).ReloadSystemMetrics(@ptrCast(*const ID2D1Factory, self));
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).ReloadSystemMetrics(@as(*const ID2D1Factory, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_GetDesktopDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) void {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).GetDesktopDpi(@ptrCast(*const ID2D1Factory, self), dpiX, dpiY);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).GetDesktopDpi(@as(*const ID2D1Factory, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateRectangleGeometry(self: *const T, rectangle: ?*const D2D_RECT_F, rectangleGeometry: ?*?*ID2D1RectangleGeometry) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateRectangleGeometry(@ptrCast(*const ID2D1Factory, self), rectangle, rectangleGeometry);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateRectangleGeometry(@as(*const ID2D1Factory, @ptrCast(self)), rectangle, rectangleGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateRoundedRectangleGeometry(self: *const T, roundedRectangle: ?*const D2D1_ROUNDED_RECT, roundedRectangleGeometry: ?*?*ID2D1RoundedRectangleGeometry) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateRoundedRectangleGeometry(@ptrCast(*const ID2D1Factory, self), roundedRectangle, roundedRectangleGeometry);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateRoundedRectangleGeometry(@as(*const ID2D1Factory, @ptrCast(self)), roundedRectangle, roundedRectangleGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateEllipseGeometry(self: *const T, ellipse: ?*const D2D1_ELLIPSE, ellipseGeometry: ?*?*ID2D1EllipseGeometry) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateEllipseGeometry(@ptrCast(*const ID2D1Factory, self), ellipse, ellipseGeometry);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateEllipseGeometry(@as(*const ID2D1Factory, @ptrCast(self)), ellipse, ellipseGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateGeometryGroup(self: *const T, fillMode: D2D1_FILL_MODE, geometries: [*]?*ID2D1Geometry, geometriesCount: u32, geometryGroup: ?*?*ID2D1GeometryGroup) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateGeometryGroup(@ptrCast(*const ID2D1Factory, self), fillMode, geometries, geometriesCount, geometryGroup);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateGeometryGroup(@as(*const ID2D1Factory, @ptrCast(self)), fillMode, geometries, geometriesCount, geometryGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateTransformedGeometry(self: *const T, sourceGeometry: ?*ID2D1Geometry, transform: ?*const D2D_MATRIX_3X2_F, transformedGeometry: ?*?*ID2D1TransformedGeometry) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateTransformedGeometry(@ptrCast(*const ID2D1Factory, self), sourceGeometry, transform, transformedGeometry);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateTransformedGeometry(@as(*const ID2D1Factory, @ptrCast(self)), sourceGeometry, transform, transformedGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreatePathGeometry(self: *const T, pathGeometry: ?*?*ID2D1PathGeometry) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1Factory, self), pathGeometry);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1Factory, @ptrCast(self)), pathGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateStrokeStyle(self: *const T, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateStrokeStyle(@ptrCast(*const ID2D1Factory, self), strokeStyleProperties, dashes, dashesCount, strokeStyle);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateStrokeStyle(@as(*const ID2D1Factory, @ptrCast(self)), strokeStyleProperties, dashes, dashesCount, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDrawingStateBlock(@ptrCast(*const ID2D1Factory, self), drawingStateDescription, textRenderingParams, drawingStateBlock);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDrawingStateBlock(@as(*const ID2D1Factory, @ptrCast(self)), drawingStateDescription, textRenderingParams, drawingStateBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateWicBitmapRenderTarget(self: *const T, target: ?*IWICBitmap, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateWicBitmapRenderTarget(@ptrCast(*const ID2D1Factory, self), target, renderTargetProperties, renderTarget);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateWicBitmapRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), target, renderTargetProperties, renderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateHwndRenderTarget(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, hwndRenderTargetProperties: ?*const D2D1_HWND_RENDER_TARGET_PROPERTIES, hwndRenderTarget: ?*?*ID2D1HwndRenderTarget) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateHwndRenderTarget(@ptrCast(*const ID2D1Factory, self), renderTargetProperties, hwndRenderTargetProperties, hwndRenderTarget);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateHwndRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), renderTargetProperties, hwndRenderTargetProperties, hwndRenderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateDxgiSurfaceRenderTarget(self: *const T, dxgiSurface: ?*IDXGISurface, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, renderTarget: ?*?*ID2D1RenderTarget) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDxgiSurfaceRenderTarget(@ptrCast(*const ID2D1Factory, self), dxgiSurface, renderTargetProperties, renderTarget);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDxgiSurfaceRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), dxgiSurface, renderTargetProperties, renderTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory_CreateDCRenderTarget(self: *const T, renderTargetProperties: ?*const D2D1_RENDER_TARGET_PROPERTIES, dcRenderTarget: ?*?*ID2D1DCRenderTarget) HRESULT {
-                return @ptrCast(*const ID2D1Factory.VTable, self.vtable).CreateDCRenderTarget(@ptrCast(*const ID2D1Factory, self), renderTargetProperties, dcRenderTarget);
+                return @as(*const ID2D1Factory.VTable, @ptrCast(self.vtable)).CreateDCRenderTarget(@as(*const ID2D1Factory, @ptrCast(self)), renderTargetProperties, dcRenderTarget);
             }
         };
     }
@@ -4465,7 +4465,7 @@ pub const D2D1_BITMAP_OPTIONS = enum(u32) {
         GDI_COMPATIBLE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_BITMAP_OPTIONS {
-        return @enumFromInt(D2D1_BITMAP_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.NONE) else 0) | (if (o.TARGET == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.TARGET) else 0) | (if (o.CANNOT_DRAW == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CANNOT_DRAW) else 0) | (if (o.CPU_READ == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CPU_READ) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_BITMAP_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.NONE) else 0) | (if (o.TARGET == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.TARGET) else 0) | (if (o.CANNOT_DRAW == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CANNOT_DRAW) else 0) | (if (o.CPU_READ == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CPU_READ) else 0) | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.GDI_COMPATIBLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_BITMAP_OPTIONS_NONE = D2D1_BITMAP_OPTIONS.NONE;
@@ -4506,7 +4506,7 @@ pub const D2D1_MAP_OPTIONS = enum(u32) {
         DISCARD: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_MAP_OPTIONS {
-        return @enumFromInt(D2D1_MAP_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_MAP_OPTIONS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(D2D1_MAP_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(D2D1_MAP_OPTIONS.WRITE) else 0) | (if (o.DISCARD == 1) @intFromEnum(D2D1_MAP_OPTIONS.DISCARD) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_MAP_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_MAP_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_MAP_OPTIONS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(D2D1_MAP_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(D2D1_MAP_OPTIONS.WRITE) else 0) | (if (o.DISCARD == 1) @intFromEnum(D2D1_MAP_OPTIONS.DISCARD) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_MAP_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_MAP_OPTIONS_NONE = D2D1_MAP_OPTIONS.NONE;
@@ -4562,7 +4562,7 @@ pub const D2D1_DEVICE_CONTEXT_OPTIONS = enum(u32) {
         ENABLE_MULTITHREADED_OPTIMIZATIONS: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_DEVICE_CONTEXT_OPTIONS {
-        return @enumFromInt(D2D1_DEVICE_CONTEXT_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.NONE) else 0) | (if (o.ENABLE_MULTITHREADED_OPTIMIZATIONS == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_DEVICE_CONTEXT_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.NONE) else 0) | (if (o.ENABLE_MULTITHREADED_OPTIMIZATIONS == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_DEVICE_CONTEXT_OPTIONS_NONE = D2D1_DEVICE_CONTEXT_OPTIONS.NONE;
@@ -4681,7 +4681,7 @@ pub const D2D1_LAYER_OPTIONS1 = enum(u32) {
         IGNORE_ALPHA: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_LAYER_OPTIONS1 {
-        return @enumFromInt(D2D1_LAYER_OPTIONS1, (if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.NONE) else 0) | (if (o.INITIALIZE_FROM_BACKGROUND == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND) else 0) | (if (o.IGNORE_ALPHA == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.IGNORE_ALPHA) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.FORCE_DWORD) else 0));
+        return @as(D2D1_LAYER_OPTIONS1, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.NONE) else 0) | (if (o.INITIALIZE_FROM_BACKGROUND == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND) else 0) | (if (o.IGNORE_ALPHA == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.IGNORE_ALPHA) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_LAYER_OPTIONS1_NONE = D2D1_LAYER_OPTIONS1.NONE;
@@ -4759,7 +4759,7 @@ pub const ID2D1GdiMetafileSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafileSink_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafileSink.VTable, self.vtable).ProcessRecord(@ptrCast(*const ID2D1GdiMetafileSink, self), recordType, recordData, recordDataSize);
+                return @as(*const ID2D1GdiMetafileSink.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink, @ptrCast(self)), recordType, recordData, recordDataSize);
             }
         };
     }
@@ -4799,11 +4799,11 @@ pub const ID2D1GdiMetafile = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafile_Stream(self: *const T, sink: ?*ID2D1GdiMetafileSink) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafile.VTable, self.vtable).Stream(@ptrCast(*const ID2D1GdiMetafile, self), sink);
+                return @as(*const ID2D1GdiMetafile.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1GdiMetafile, @ptrCast(self)), sink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafile_GetBounds(self: *const T, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafile.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1GdiMetafile, self), bounds);
+                return @as(*const ID2D1GdiMetafile.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1GdiMetafile, @ptrCast(self)), bounds);
             }
         };
     }
@@ -5133,103 +5133,103 @@ pub const ID2D1CommandSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_BeginDraw(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).BeginDraw(@ptrCast(*const ID2D1CommandSink, self));
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ID2D1CommandSink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_EndDraw(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).EndDraw(@ptrCast(*const ID2D1CommandSink, self));
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ID2D1CommandSink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetAntialiasMode(self: *const T, antialiasMode: D2D1_ANTIALIAS_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetAntialiasMode(@ptrCast(*const ID2D1CommandSink, self), antialiasMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetAntialiasMode(@as(*const ID2D1CommandSink, @ptrCast(self)), antialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetTags(self: *const T, tag1: u64, tag2: u64) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTags(@ptrCast(*const ID2D1CommandSink, self), tag1, tag2);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTags(@as(*const ID2D1CommandSink, @ptrCast(self)), tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetTextAntialiasMode(self: *const T, textAntialiasMode: D2D1_TEXT_ANTIALIAS_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTextAntialiasMode(@ptrCast(*const ID2D1CommandSink, self), textAntialiasMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTextAntialiasMode(@as(*const ID2D1CommandSink, @ptrCast(self)), textAntialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetTextRenderingParams(self: *const T, textRenderingParams: ?*IDWriteRenderingParams) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTextRenderingParams(@ptrCast(*const ID2D1CommandSink, self), textRenderingParams);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTextRenderingParams(@as(*const ID2D1CommandSink, @ptrCast(self)), textRenderingParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetTransform(@ptrCast(*const ID2D1CommandSink, self), transform);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const ID2D1CommandSink, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetPrimitiveBlend(self: *const T, primitiveBlend: D2D1_PRIMITIVE_BLEND) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetPrimitiveBlend(@ptrCast(*const ID2D1CommandSink, self), primitiveBlend);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend(@as(*const ID2D1CommandSink, @ptrCast(self)), primitiveBlend);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_SetUnitMode(self: *const T, unitMode: D2D1_UNIT_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).SetUnitMode(@ptrCast(*const ID2D1CommandSink, self), unitMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).SetUnitMode(@as(*const ID2D1CommandSink, @ptrCast(self)), unitMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_Clear(self: *const T, color: ?*const D2D1_COLOR_F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).Clear(@ptrCast(*const ID2D1CommandSink, self), color);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1CommandSink, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1CommandSink, self), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1CommandSink, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawLine(self: *const T, point0: D2D_POINT_2F, point1: D2D_POINT_2F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawLine(@ptrCast(*const ID2D1CommandSink, self), point0, point1, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawLine(@as(*const ID2D1CommandSink, @ptrCast(self)), point0, point1, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGeometry(@ptrCast(*const ID2D1CommandSink, self), geometry, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGeometry(@as(*const ID2D1CommandSink, @ptrCast(self)), geometry, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawRectangle(@ptrCast(*const ID2D1CommandSink, self), rect, brush, strokeWidth, strokeStyle);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawRectangle(@as(*const ID2D1CommandSink, @ptrCast(self)), rect, brush, strokeWidth, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1CommandSink, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1CommandSink, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawImage(self: *const T, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawImage(@ptrCast(*const ID2D1CommandSink, self), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawImage(@as(*const ID2D1CommandSink, @ptrCast(self)), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1CommandSink, self), gdiMetafile, targetOffset);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1CommandSink, @ptrCast(self)), gdiMetafile, targetOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_FillMesh(self: *const T, mesh: ?*ID2D1Mesh, brush: ?*ID2D1Brush) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillMesh(@ptrCast(*const ID2D1CommandSink, self), mesh, brush);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillMesh(@as(*const ID2D1CommandSink, @ptrCast(self)), mesh, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1CommandSink, self), opacityMask, brush, destinationRectangle, sourceRectangle);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1CommandSink, @ptrCast(self)), opacityMask, brush, destinationRectangle, sourceRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_FillGeometry(self: *const T, geometry: ?*ID2D1Geometry, brush: ?*ID2D1Brush, opacityBrush: ?*ID2D1Brush) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillGeometry(@ptrCast(*const ID2D1CommandSink, self), geometry, brush, opacityBrush);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillGeometry(@as(*const ID2D1CommandSink, @ptrCast(self)), geometry, brush, opacityBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_FillRectangle(self: *const T, rect: ?*const D2D_RECT_F, brush: ?*ID2D1Brush) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).FillRectangle(@ptrCast(*const ID2D1CommandSink, self), rect, brush);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).FillRectangle(@as(*const ID2D1CommandSink, @ptrCast(self)), rect, brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_PushAxisAlignedClip(self: *const T, clipRect: ?*const D2D_RECT_F, antialiasMode: D2D1_ANTIALIAS_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PushAxisAlignedClip(@ptrCast(*const ID2D1CommandSink, self), clipRect, antialiasMode);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PushAxisAlignedClip(@as(*const ID2D1CommandSink, @ptrCast(self)), clipRect, antialiasMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_PushLayer(self: *const T, layerParameters1: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1CommandSink, self), layerParameters1, layer);
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1CommandSink, @ptrCast(self)), layerParameters1, layer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_PopAxisAlignedClip(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PopAxisAlignedClip(@ptrCast(*const ID2D1CommandSink, self));
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PopAxisAlignedClip(@as(*const ID2D1CommandSink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink_PopLayer(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink.VTable, self.vtable).PopLayer(@ptrCast(*const ID2D1CommandSink, self));
+                return @as(*const ID2D1CommandSink.VTable, @ptrCast(self.vtable)).PopLayer(@as(*const ID2D1CommandSink, @ptrCast(self)));
             }
         };
     }
@@ -5267,11 +5267,11 @@ pub const ID2D1CommandList = extern struct {
             pub usingnamespace ID2D1Image.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandList_Stream(self: *const T, sink: ?*ID2D1CommandSink) HRESULT {
-                return @ptrCast(*const ID2D1CommandList.VTable, self.vtable).Stream(@ptrCast(*const ID2D1CommandList, self), sink);
+                return @as(*const ID2D1CommandList.VTable, @ptrCast(self.vtable)).Stream(@as(*const ID2D1CommandList, @ptrCast(self)), sink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandList_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1CommandList.VTable, self.vtable).Close(@ptrCast(*const ID2D1CommandList, self));
+                return @as(*const ID2D1CommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1CommandList, @ptrCast(self)));
             }
         };
     }
@@ -5317,11 +5317,11 @@ pub const ID2D1PrintControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PrintControl_AddPage(self: *const T, commandList: ?*ID2D1CommandList, pageSize: D2D_SIZE_F, pagePrintTicketStream: ?*IStream, tag1: ?*u64, tag2: ?*u64) HRESULT {
-                return @ptrCast(*const ID2D1PrintControl.VTable, self.vtable).AddPage(@ptrCast(*const ID2D1PrintControl, self), commandList, pageSize, pagePrintTicketStream, tag1, tag2);
+                return @as(*const ID2D1PrintControl.VTable, @ptrCast(self.vtable)).AddPage(@as(*const ID2D1PrintControl, @ptrCast(self)), commandList, pageSize, pagePrintTicketStream, tag1, tag2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PrintControl_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1PrintControl.VTable, self.vtable).Close(@ptrCast(*const ID2D1PrintControl, self));
+                return @as(*const ID2D1PrintControl.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1PrintControl, @ptrCast(self)));
             }
         };
     }
@@ -5435,43 +5435,43 @@ pub const ID2D1ImageBrush = extern struct {
             pub usingnamespace ID2D1Brush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_SetImage(self: *const T, image: ?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetImage(@ptrCast(*const ID2D1ImageBrush, self), image);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetImage(@as(*const ID2D1ImageBrush, @ptrCast(self)), image);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_SetExtendModeX(self: *const T, extendModeX: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetExtendModeX(@ptrCast(*const ID2D1ImageBrush, self), extendModeX);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1ImageBrush, @ptrCast(self)), extendModeX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_SetExtendModeY(self: *const T, extendModeY: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetExtendModeY(@ptrCast(*const ID2D1ImageBrush, self), extendModeY);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1ImageBrush, @ptrCast(self)), extendModeY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_SetInterpolationMode(self: *const T, interpolationMode: D2D1_INTERPOLATION_MODE) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetInterpolationMode(@ptrCast(*const ID2D1ImageBrush, self), interpolationMode);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const ID2D1ImageBrush, @ptrCast(self)), interpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_SetSourceRectangle(self: *const T, sourceRectangle: ?*const D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).SetSourceRectangle(@ptrCast(*const ID2D1ImageBrush, self), sourceRectangle);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).SetSourceRectangle(@as(*const ID2D1ImageBrush, @ptrCast(self)), sourceRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_GetImage(self: *const T, image: ?*?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetImage(@ptrCast(*const ID2D1ImageBrush, self), image);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetImage(@as(*const ID2D1ImageBrush, @ptrCast(self)), image);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_GetExtendModeX(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetExtendModeX(@ptrCast(*const ID2D1ImageBrush, self));
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1ImageBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_GetExtendModeY(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetExtendModeY(@ptrCast(*const ID2D1ImageBrush, self));
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1ImageBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_GetInterpolationMode(self: *const T) D2D1_INTERPOLATION_MODE {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetInterpolationMode(@ptrCast(*const ID2D1ImageBrush, self));
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetInterpolationMode(@as(*const ID2D1ImageBrush, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageBrush_GetSourceRectangle(self: *const T, sourceRectangle: ?*D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1ImageBrush.VTable, self.vtable).GetSourceRectangle(@ptrCast(*const ID2D1ImageBrush, self), sourceRectangle);
+                return @as(*const ID2D1ImageBrush.VTable, @ptrCast(self.vtable)).GetSourceRectangle(@as(*const ID2D1ImageBrush, @ptrCast(self)), sourceRectangle);
             }
         };
     }
@@ -5509,11 +5509,11 @@ pub const ID2D1BitmapBrush1 = extern struct {
             pub usingnamespace ID2D1BitmapBrush.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush1_SetInterpolationMode1(self: *const T, interpolationMode: D2D1_INTERPOLATION_MODE) void {
-                return @ptrCast(*const ID2D1BitmapBrush1.VTable, self.vtable).SetInterpolationMode1(@ptrCast(*const ID2D1BitmapBrush1, self), interpolationMode);
+                return @as(*const ID2D1BitmapBrush1.VTable, @ptrCast(self.vtable)).SetInterpolationMode1(@as(*const ID2D1BitmapBrush1, @ptrCast(self)), interpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BitmapBrush1_GetInterpolationMode1(self: *const T) D2D1_INTERPOLATION_MODE {
-                return @ptrCast(*const ID2D1BitmapBrush1.VTable, self.vtable).GetInterpolationMode1(@ptrCast(*const ID2D1BitmapBrush1, self));
+                return @as(*const ID2D1BitmapBrush1.VTable, @ptrCast(self.vtable)).GetInterpolationMode1(@as(*const ID2D1BitmapBrush1, @ptrCast(self)));
             }
         };
     }
@@ -5541,7 +5541,7 @@ pub const ID2D1StrokeStyle1 = extern struct {
             pub usingnamespace ID2D1StrokeStyle.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1StrokeStyle1_GetStrokeTransformType(self: *const T) D2D1_STROKE_TRANSFORM_TYPE {
-                return @ptrCast(*const ID2D1StrokeStyle1.VTable, self.vtable).GetStrokeTransformType(@ptrCast(*const ID2D1StrokeStyle1, self));
+                return @as(*const ID2D1StrokeStyle1.VTable, @ptrCast(self.vtable)).GetStrokeTransformType(@as(*const ID2D1StrokeStyle1, @ptrCast(self)));
             }
         };
     }
@@ -5579,7 +5579,7 @@ pub const ID2D1PathGeometry1 = extern struct {
             pub usingnamespace ID2D1PathGeometry.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1PathGeometry1_ComputePointAndSegmentAtLength(self: *const T, length: f32, startSegment: u32, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, pointDescription: ?*D2D1_POINT_DESCRIPTION) HRESULT {
-                return @ptrCast(*const ID2D1PathGeometry1.VTable, self.vtable).ComputePointAndSegmentAtLength(@ptrCast(*const ID2D1PathGeometry1, self), length, startSegment, worldTransform, flatteningTolerance, pointDescription);
+                return @as(*const ID2D1PathGeometry1.VTable, @ptrCast(self.vtable)).ComputePointAndSegmentAtLength(@as(*const ID2D1PathGeometry1, @ptrCast(self)), length, startSegment, worldTransform, flatteningTolerance, pointDescription);
             }
         };
     }
@@ -5737,47 +5737,47 @@ pub const ID2D1Properties = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetPropertyCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyCount(@ptrCast(*const ID2D1Properties, self));
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyCount(@as(*const ID2D1Properties, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetPropertyName(self: *const T, index: u32, name: [*:0]u16, nameCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyName(@ptrCast(*const ID2D1Properties, self), index, name, nameCount);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyName(@as(*const ID2D1Properties, @ptrCast(self)), index, name, nameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetPropertyNameLength(self: *const T, index: u32) u32 {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyNameLength(@ptrCast(*const ID2D1Properties, self), index);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyNameLength(@as(*const ID2D1Properties, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetType(self: *const T, index: u32) D2D1_PROPERTY_TYPE {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetType(@ptrCast(*const ID2D1Properties, self), index);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID2D1Properties, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetPropertyIndex(self: *const T, name: ?[*:0]const u16) u32 {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetPropertyIndex(@ptrCast(*const ID2D1Properties, self), name);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetPropertyIndex(@as(*const ID2D1Properties, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_SetValueByName(self: *const T, name: ?[*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).SetValueByName(@as(*const ID2D1Properties, @ptrCast(self)), name, type_, data, dataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_SetValue(self: *const T, index: u32, type_: D2D1_PROPERTY_TYPE, data: [*:0]const u8, dataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).SetValue(@ptrCast(*const ID2D1Properties, self), index, type_, data, dataSize);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ID2D1Properties, @ptrCast(self)), index, type_, data, dataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetValueByName(self: *const T, name: ?[*:0]const u16, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueByName(@ptrCast(*const ID2D1Properties, self), name, type_, data, dataSize);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValueByName(@as(*const ID2D1Properties, @ptrCast(self)), name, type_, data, dataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetValue(self: *const T, index: u32, type_: D2D1_PROPERTY_TYPE, data: [*:0]u8, dataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValue(@ptrCast(*const ID2D1Properties, self), index, type_, data, dataSize);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ID2D1Properties, @ptrCast(self)), index, type_, data, dataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetValueSize(self: *const T, index: u32) u32 {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetValueSize(@ptrCast(*const ID2D1Properties, self), index);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetValueSize(@as(*const ID2D1Properties, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Properties_GetSubProperties(self: *const T, index: u32, subProperties: ?*?*ID2D1Properties) HRESULT {
-                return @ptrCast(*const ID2D1Properties.VTable, self.vtable).GetSubProperties(@ptrCast(*const ID2D1Properties, self), index, subProperties);
+                return @as(*const ID2D1Properties.VTable, @ptrCast(self.vtable)).GetSubProperties(@as(*const ID2D1Properties, @ptrCast(self)), index, subProperties);
             }
         };
     }
@@ -5851,23 +5851,23 @@ pub const ID2D1Effect = extern struct {
             pub usingnamespace ID2D1Properties.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Effect_SetInput(self: *const T, index: u32, input: ?*ID2D1Image, invalidate: BOOL) void {
-                return @ptrCast(*const ID2D1Effect.VTable, self.vtable).SetInput(@ptrCast(*const ID2D1Effect, self), index, input, invalidate);
+                return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).SetInput(@as(*const ID2D1Effect, @ptrCast(self)), index, input, invalidate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Effect_SetInputCount(self: *const T, inputCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Effect.VTable, self.vtable).SetInputCount(@ptrCast(*const ID2D1Effect, self), inputCount);
+                return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).SetInputCount(@as(*const ID2D1Effect, @ptrCast(self)), inputCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Effect_GetInput(self: *const T, index: u32, input: ?*?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetInput(@ptrCast(*const ID2D1Effect, self), index, input);
+                return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetInput(@as(*const ID2D1Effect, @ptrCast(self)), index, input);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Effect_GetInputCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetInputCount(@ptrCast(*const ID2D1Effect, self));
+                return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1Effect, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Effect_GetOutput(self: *const T, outputImage: ?*?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1Effect.VTable, self.vtable).GetOutput(@ptrCast(*const ID2D1Effect, self), outputImage);
+                return @as(*const ID2D1Effect.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const ID2D1Effect, @ptrCast(self)), outputImage);
             }
         };
     }
@@ -5935,23 +5935,23 @@ pub const ID2D1Bitmap1 = extern struct {
             pub usingnamespace ID2D1Bitmap.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap1_GetColorContext(self: *const T, colorContext: ?*?*ID2D1ColorContext) void {
-                return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetColorContext(@ptrCast(*const ID2D1Bitmap1, self), colorContext);
+                return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetColorContext(@as(*const ID2D1Bitmap1, @ptrCast(self)), colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap1_GetOptions(self: *const T) D2D1_BITMAP_OPTIONS {
-                return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetOptions(@ptrCast(*const ID2D1Bitmap1, self));
+                return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const ID2D1Bitmap1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap1_GetSurface(self: *const T, dxgiSurface: ?*?*IDXGISurface) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).GetSurface(@ptrCast(*const ID2D1Bitmap1, self), dxgiSurface);
+                return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).GetSurface(@as(*const ID2D1Bitmap1, @ptrCast(self)), dxgiSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap1_Map(self: *const T, options: D2D1_MAP_OPTIONS, mappedRect: ?*D2D1_MAPPED_RECT) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).Map(@ptrCast(*const ID2D1Bitmap1, self), options, mappedRect);
+                return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).Map(@as(*const ID2D1Bitmap1, @ptrCast(self)), options, mappedRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Bitmap1_Unmap(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1Bitmap1.VTable, self.vtable).Unmap(@ptrCast(*const ID2D1Bitmap1, self));
+                return @as(*const ID2D1Bitmap1.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1Bitmap1, @ptrCast(self)));
             }
         };
     }
@@ -5999,15 +5999,15 @@ pub const ID2D1ColorContext = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext_GetColorSpace(self: *const T) D2D1_COLOR_SPACE {
-                return @ptrCast(*const ID2D1ColorContext.VTable, self.vtable).GetColorSpace(@ptrCast(*const ID2D1ColorContext, self));
+                return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetColorSpace(@as(*const ID2D1ColorContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext_GetProfileSize(self: *const T) u32 {
-                return @ptrCast(*const ID2D1ColorContext.VTable, self.vtable).GetProfileSize(@ptrCast(*const ID2D1ColorContext, self));
+                return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetProfileSize(@as(*const ID2D1ColorContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext_GetProfile(self: *const T, profile: [*:0]u8, profileSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1ColorContext.VTable, self.vtable).GetProfile(@ptrCast(*const ID2D1ColorContext, self), profile, profileSize);
+                return @as(*const ID2D1ColorContext.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const ID2D1ColorContext, @ptrCast(self)), profile, profileSize);
             }
         };
     }
@@ -6071,23 +6071,23 @@ pub const ID2D1GradientStopCollection1 = extern struct {
             pub usingnamespace ID2D1GradientStopCollection.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection1_GetGradientStops1(self: *const T, gradientStops: [*]D2D1_GRADIENT_STOP, gradientStopsCount: u32) void {
-                return @ptrCast(*const ID2D1GradientStopCollection1.VTable, self.vtable).GetGradientStops1(@ptrCast(*const ID2D1GradientStopCollection1, self), gradientStops, gradientStopsCount);
+                return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetGradientStops1(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)), gradientStops, gradientStopsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection1_GetPreInterpolationSpace(self: *const T) D2D1_COLOR_SPACE {
-                return @ptrCast(*const ID2D1GradientStopCollection1.VTable, self.vtable).GetPreInterpolationSpace(@ptrCast(*const ID2D1GradientStopCollection1, self));
+                return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetPreInterpolationSpace(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection1_GetPostInterpolationSpace(self: *const T) D2D1_COLOR_SPACE {
-                return @ptrCast(*const ID2D1GradientStopCollection1.VTable, self.vtable).GetPostInterpolationSpace(@ptrCast(*const ID2D1GradientStopCollection1, self));
+                return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetPostInterpolationSpace(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection1_GetBufferPrecision(self: *const T) D2D1_BUFFER_PRECISION {
-                return @ptrCast(*const ID2D1GradientStopCollection1.VTable, self.vtable).GetBufferPrecision(@ptrCast(*const ID2D1GradientStopCollection1, self));
+                return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetBufferPrecision(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientStopCollection1_GetColorInterpolationMode(self: *const T) D2D1_COLOR_INTERPOLATION_MODE {
-                return @ptrCast(*const ID2D1GradientStopCollection1.VTable, self.vtable).GetColorInterpolationMode(@ptrCast(*const ID2D1GradientStopCollection1, self));
+                return @as(*const ID2D1GradientStopCollection1.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const ID2D1GradientStopCollection1, @ptrCast(self)));
             }
         };
     }
@@ -6127,11 +6127,11 @@ pub const ID2D1DrawingStateBlock1 = extern struct {
             pub usingnamespace ID2D1DrawingStateBlock.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock1_GetDescription(self: *const T, stateDescription: ?*D2D1_DRAWING_STATE_DESCRIPTION1) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock1.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1DrawingStateBlock1, self), stateDescription);
+                return @as(*const ID2D1DrawingStateBlock1.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1DrawingStateBlock1, @ptrCast(self)), stateDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawingStateBlock1_SetDescription(self: *const T, stateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1) void {
-                return @ptrCast(*const ID2D1DrawingStateBlock1.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1DrawingStateBlock1, self), stateDescription);
+                return @as(*const ID2D1DrawingStateBlock1.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1DrawingStateBlock1, @ptrCast(self)), stateDescription);
             }
         };
     }
@@ -6615,143 +6615,143 @@ pub const ID2D1DeviceContext = extern struct {
             pub usingnamespace ID2D1RenderTarget.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateBitmap(self: *const T, size: D2D_SIZE_U, sourceData: ?*const anyopaque, pitch: u32, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmap(@ptrCast(*const ID2D1DeviceContext, self), size, sourceData, pitch, bitmapProperties, bitmap);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), size, sourceData, pitch, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateBitmapFromWicBitmap(self: *const T, wicBitmapSource: ?*IWICBitmapSource, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapFromWicBitmap(@ptrCast(*const ID2D1DeviceContext, self), wicBitmapSource, bitmapProperties, bitmap);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapFromWicBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), wicBitmapSource, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContext(@ptrCast(*const ID2D1DeviceContext, self), space, profile, profileSize, colorContext);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContext(@as(*const ID2D1DeviceContext, @ptrCast(self)), space, profile, profileSize, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateColorContextFromFilename(self: *const T, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContextFromFilename(@ptrCast(*const ID2D1DeviceContext, self), filename, colorContext);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromFilename(@as(*const ID2D1DeviceContext, @ptrCast(self)), filename, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1DeviceContext, self), wicColorContext, colorContext);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromWicColorContext(@as(*const ID2D1DeviceContext, @ptrCast(self)), wicColorContext, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateBitmapFromDxgiSurface(self: *const T, surface: ?*IDXGISurface, bitmapProperties: ?*const D2D1_BITMAP_PROPERTIES1, bitmap: ?*?*ID2D1Bitmap1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapFromDxgiSurface(@ptrCast(*const ID2D1DeviceContext, self), surface, bitmapProperties, bitmap);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapFromDxgiSurface(@as(*const ID2D1DeviceContext, @ptrCast(self)), surface, bitmapProperties, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateEffect(self: *const T, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateEffect(@ptrCast(*const ID2D1DeviceContext, self), effectId, effect);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const ID2D1DeviceContext, @ptrCast(self)), effectId, effect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateGradientStopCollection(self: *const T, straightAlphaGradientStops: [*]const D2D1_GRADIENT_STOP, straightAlphaGradientStopsCount: u32, preInterpolationSpace: D2D1_COLOR_SPACE, postInterpolationSpace: D2D1_COLOR_SPACE, bufferPrecision: D2D1_BUFFER_PRECISION, extendMode: D2D1_EXTEND_MODE, colorInterpolationMode: D2D1_COLOR_INTERPOLATION_MODE, gradientStopCollection1: ?*?*ID2D1GradientStopCollection1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateGradientStopCollection(@ptrCast(*const ID2D1DeviceContext, self), straightAlphaGradientStops, straightAlphaGradientStopsCount, preInterpolationSpace, postInterpolationSpace, bufferPrecision, extendMode, colorInterpolationMode, gradientStopCollection1);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateGradientStopCollection(@as(*const ID2D1DeviceContext, @ptrCast(self)), straightAlphaGradientStops, straightAlphaGradientStopsCount, preInterpolationSpace, postInterpolationSpace, bufferPrecision, extendMode, colorInterpolationMode, gradientStopCollection1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateImageBrush(self: *const T, image: ?*ID2D1Image, imageBrushProperties: ?*const D2D1_IMAGE_BRUSH_PROPERTIES, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, imageBrush: ?*?*ID2D1ImageBrush) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateImageBrush(@ptrCast(*const ID2D1DeviceContext, self), image, imageBrushProperties, brushProperties, imageBrush);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateImageBrush(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, imageBrushProperties, brushProperties, imageBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateBitmapBrush(self: *const T, bitmap: ?*ID2D1Bitmap, bitmapBrushProperties: ?*const D2D1_BITMAP_BRUSH_PROPERTIES1, brushProperties: ?*const D2D1_BRUSH_PROPERTIES, bitmapBrush: ?*?*ID2D1BitmapBrush1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateBitmapBrush(@ptrCast(*const ID2D1DeviceContext, self), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateBitmapBrush(@as(*const ID2D1DeviceContext, @ptrCast(self)), bitmap, bitmapBrushProperties, brushProperties, bitmapBrush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_CreateCommandList(self: *const T, commandList: ?*?*ID2D1CommandList) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).CreateCommandList(@ptrCast(*const ID2D1DeviceContext, self), commandList);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID2D1DeviceContext, @ptrCast(self)), commandList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_IsDxgiFormatSupported(self: *const T, format: DXGI_FORMAT) BOOL {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).IsDxgiFormatSupported(@ptrCast(*const ID2D1DeviceContext, self), format);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).IsDxgiFormatSupported(@as(*const ID2D1DeviceContext, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_IsBufferPrecisionSupported(self: *const T, bufferPrecision: D2D1_BUFFER_PRECISION) BOOL {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).IsBufferPrecisionSupported(@ptrCast(*const ID2D1DeviceContext, self), bufferPrecision);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).IsBufferPrecisionSupported(@as(*const ID2D1DeviceContext, @ptrCast(self)), bufferPrecision);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetImageLocalBounds(self: *const T, image: ?*ID2D1Image, localBounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetImageLocalBounds(@ptrCast(*const ID2D1DeviceContext, self), image, localBounds);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetImageLocalBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, localBounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetImageWorldBounds(self: *const T, image: ?*ID2D1Image, worldBounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetImageWorldBounds(@ptrCast(*const ID2D1DeviceContext, self), image, worldBounds);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetImageWorldBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, worldBounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetGlyphRunWorldBounds(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetGlyphRunWorldBounds(@ptrCast(*const ID2D1DeviceContext, self), baselineOrigin, glyphRun, measuringMode, bounds);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetGlyphRunWorldBounds(@as(*const ID2D1DeviceContext, @ptrCast(self)), baselineOrigin, glyphRun, measuringMode, bounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetDevice(self: *const T, device: ?*?*ID2D1Device) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetDevice(@ptrCast(*const ID2D1DeviceContext, self), device);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID2D1DeviceContext, @ptrCast(self)), device);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_SetTarget(self: *const T, image: ?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetTarget(@ptrCast(*const ID2D1DeviceContext, self), image);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetTarget(@as(*const ID2D1DeviceContext, @ptrCast(self)), image);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetTarget(self: *const T, image: ?*?*ID2D1Image) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetTarget(@ptrCast(*const ID2D1DeviceContext, self), image);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetTarget(@as(*const ID2D1DeviceContext, @ptrCast(self)), image);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_SetRenderingControls(self: *const T, renderingControls: ?*const D2D1_RENDERING_CONTROLS) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetRenderingControls(@ptrCast(*const ID2D1DeviceContext, self), renderingControls);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetRenderingControls(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderingControls);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetRenderingControls(self: *const T, renderingControls: ?*D2D1_RENDERING_CONTROLS) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetRenderingControls(@ptrCast(*const ID2D1DeviceContext, self), renderingControls);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetRenderingControls(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderingControls);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_SetPrimitiveBlend(self: *const T, primitiveBlend: D2D1_PRIMITIVE_BLEND) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetPrimitiveBlend(@ptrCast(*const ID2D1DeviceContext, self), primitiveBlend);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend(@as(*const ID2D1DeviceContext, @ptrCast(self)), primitiveBlend);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetPrimitiveBlend(self: *const T) D2D1_PRIMITIVE_BLEND {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetPrimitiveBlend(@ptrCast(*const ID2D1DeviceContext, self));
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetPrimitiveBlend(@as(*const ID2D1DeviceContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_SetUnitMode(self: *const T, unitMode: D2D1_UNIT_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).SetUnitMode(@ptrCast(*const ID2D1DeviceContext, self), unitMode);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).SetUnitMode(@as(*const ID2D1DeviceContext, @ptrCast(self)), unitMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetUnitMode(self: *const T) D2D1_UNIT_MODE {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetUnitMode(@ptrCast(*const ID2D1DeviceContext, self));
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetUnitMode(@as(*const ID2D1DeviceContext, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_DrawGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION, foregroundBrush: ?*ID2D1Brush, measuringMode: DWRITE_MEASURING_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawGlyphRun(@ptrCast(*const ID2D1DeviceContext, self), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawGlyphRun(@as(*const ID2D1DeviceContext, @ptrCast(self)), baselineOrigin, glyphRun, glyphRunDescription, foregroundBrush, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_DrawImage(self: *const T, image: ?*ID2D1Image, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE, compositeMode: D2D1_COMPOSITE_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawImage(@ptrCast(*const ID2D1DeviceContext, self), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawImage(@as(*const ID2D1DeviceContext, @ptrCast(self)), image, targetOffset, imageRectangle, interpolationMode, compositeMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, targetOffset: ?*const D2D_POINT_2F) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1DeviceContext, self), gdiMetafile, targetOffset);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1DeviceContext, @ptrCast(self)), gdiMetafile, targetOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_DrawBitmap(self: *const T, bitmap: ?*ID2D1Bitmap, destinationRectangle: ?*const D2D_RECT_F, opacity: f32, interpolationMode: D2D1_INTERPOLATION_MODE, sourceRectangle: ?*const D2D_RECT_F, perspectiveTransform: ?*const D2D_MATRIX_4X4_F) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).DrawBitmap(@ptrCast(*const ID2D1DeviceContext, self), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).DrawBitmap(@as(*const ID2D1DeviceContext, @ptrCast(self)), bitmap, destinationRectangle, opacity, interpolationMode, sourceRectangle, perspectiveTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_PushLayer(self: *const T, layerParameters: ?*const D2D1_LAYER_PARAMETERS1, layer: ?*ID2D1Layer) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).PushLayer(@ptrCast(*const ID2D1DeviceContext, self), layerParameters, layer);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).PushLayer(@as(*const ID2D1DeviceContext, @ptrCast(self)), layerParameters, layer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_InvalidateEffectInputRectangle(self: *const T, effect: ?*ID2D1Effect, input: u32, inputRectangle: ?*const D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).InvalidateEffectInputRectangle(@ptrCast(*const ID2D1DeviceContext, self), effect, input, inputRectangle);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).InvalidateEffectInputRectangle(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, input, inputRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetEffectInvalidRectangleCount(self: *const T, effect: ?*ID2D1Effect, rectangleCount: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectInvalidRectangleCount(@ptrCast(*const ID2D1DeviceContext, self), effect, rectangleCount);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectInvalidRectangleCount(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, rectangleCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetEffectInvalidRectangles(self: *const T, effect: ?*ID2D1Effect, rectangles: [*]D2D_RECT_F, rectanglesCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectInvalidRectangles(@ptrCast(*const ID2D1DeviceContext, self), effect, rectangles, rectanglesCount);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectInvalidRectangles(@as(*const ID2D1DeviceContext, @ptrCast(self)), effect, rectangles, rectanglesCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_GetEffectRequiredInputRectangles(self: *const T, renderEffect: ?*ID2D1Effect, renderImageRectangle: ?*const D2D_RECT_F, inputDescriptions: [*]const D2D1_EFFECT_INPUT_DESCRIPTION, requiredInputRects: [*]D2D_RECT_F, inputCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).GetEffectRequiredInputRectangles(@ptrCast(*const ID2D1DeviceContext, self), renderEffect, renderImageRectangle, inputDescriptions, requiredInputRects, inputCount);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).GetEffectRequiredInputRectangles(@as(*const ID2D1DeviceContext, @ptrCast(self)), renderEffect, renderImageRectangle, inputDescriptions, requiredInputRects, inputCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext_FillOpacityMask(self: *const T, opacityMask: ?*ID2D1Bitmap, brush: ?*ID2D1Brush, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1DeviceContext.VTable, self.vtable).FillOpacityMask(@ptrCast(*const ID2D1DeviceContext, self), opacityMask, brush, destinationRectangle, sourceRectangle);
+                return @as(*const ID2D1DeviceContext.VTable, @ptrCast(self.vtable)).FillOpacityMask(@as(*const ID2D1DeviceContext, @ptrCast(self)), opacityMask, brush, destinationRectangle, sourceRectangle);
             }
         };
     }
@@ -6827,23 +6827,23 @@ pub const ID2D1Device = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext: ?*?*ID2D1DeviceContext) HRESULT {
-                return @ptrCast(*const ID2D1Device.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device, self), options, deviceContext);
+                return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device, @ptrCast(self)), options, deviceContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device_CreatePrintControl(self: *const T, wicFactory: ?*IWICImagingFactory, documentTarget: ?*IPrintDocumentPackageTarget, printControlProperties: ?*const D2D1_PRINT_CONTROL_PROPERTIES, printControl: ?*?*ID2D1PrintControl) HRESULT {
-                return @ptrCast(*const ID2D1Device.VTable, self.vtable).CreatePrintControl(@ptrCast(*const ID2D1Device, self), wicFactory, documentTarget, printControlProperties, printControl);
+                return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).CreatePrintControl(@as(*const ID2D1Device, @ptrCast(self)), wicFactory, documentTarget, printControlProperties, printControl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device_SetMaximumTextureMemory(self: *const T, maximumInBytes: u64) void {
-                return @ptrCast(*const ID2D1Device.VTable, self.vtable).SetMaximumTextureMemory(@ptrCast(*const ID2D1Device, self), maximumInBytes);
+                return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).SetMaximumTextureMemory(@as(*const ID2D1Device, @ptrCast(self)), maximumInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device_GetMaximumTextureMemory(self: *const T) u64 {
-                return @ptrCast(*const ID2D1Device.VTable, self.vtable).GetMaximumTextureMemory(@ptrCast(*const ID2D1Device, self));
+                return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).GetMaximumTextureMemory(@as(*const ID2D1Device, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device_ClearResources(self: *const T, millisecondsSinceUse: u32) void {
-                return @ptrCast(*const ID2D1Device.VTable, self.vtable).ClearResources(@ptrCast(*const ID2D1Device, self), millisecondsSinceUse);
+                return @as(*const ID2D1Device.VTable, @ptrCast(self.vtable)).ClearResources(@as(*const ID2D1Device, @ptrCast(self)), millisecondsSinceUse);
             }
         };
     }
@@ -7001,43 +7001,43 @@ pub const ID2D1Factory1 = extern struct {
             pub usingnamespace ID2D1Factory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice: ?*?*ID2D1Device) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory1, self), dxgiDevice, d2dDevice);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory1, @ptrCast(self)), dxgiDevice, d2dDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_CreateStrokeStyle(self: *const T, strokeStyleProperties: ?*const D2D1_STROKE_STYLE_PROPERTIES1, dashes: ?[*]const f32, dashesCount: u32, strokeStyle: ?*?*ID2D1StrokeStyle1) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateStrokeStyle(@ptrCast(*const ID2D1Factory1, self), strokeStyleProperties, dashes, dashesCount, strokeStyle);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateStrokeStyle(@as(*const ID2D1Factory1, @ptrCast(self)), strokeStyleProperties, dashes, dashesCount, strokeStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_CreatePathGeometry(self: *const T, pathGeometry: ?*?*ID2D1PathGeometry1) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1Factory1, self), pathGeometry);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1Factory1, @ptrCast(self)), pathGeometry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_CreateDrawingStateBlock(self: *const T, drawingStateDescription: ?*const D2D1_DRAWING_STATE_DESCRIPTION1, textRenderingParams: ?*IDWriteRenderingParams, drawingStateBlock: ?*?*ID2D1DrawingStateBlock1) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateDrawingStateBlock(@ptrCast(*const ID2D1Factory1, self), drawingStateDescription, textRenderingParams, drawingStateBlock);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateDrawingStateBlock(@as(*const ID2D1Factory1, @ptrCast(self)), drawingStateDescription, textRenderingParams, drawingStateBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_CreateGdiMetafile(self: *const T, metafileStream: ?*IStream, metafile: ?*?*ID2D1GdiMetafile) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).CreateGdiMetafile(@ptrCast(*const ID2D1Factory1, self), metafileStream, metafile);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).CreateGdiMetafile(@as(*const ID2D1Factory1, @ptrCast(self)), metafileStream, metafile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_RegisterEffectFromStream(self: *const T, classId: ?*const Guid, propertyXml: ?*IStream, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).RegisterEffectFromStream(@ptrCast(*const ID2D1Factory1, self), classId, propertyXml, bindings, bindingsCount, effectFactory);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).RegisterEffectFromStream(@as(*const ID2D1Factory1, @ptrCast(self)), classId, propertyXml, bindings, bindingsCount, effectFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_RegisterEffectFromString(self: *const T, classId: ?*const Guid, propertyXml: ?[*:0]const u16, bindings: ?[*]const D2D1_PROPERTY_BINDING, bindingsCount: u32, effectFactory: ?PD2D1_EFFECT_FACTORY) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).RegisterEffectFromString(@ptrCast(*const ID2D1Factory1, self), classId, propertyXml, bindings, bindingsCount, effectFactory);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).RegisterEffectFromString(@as(*const ID2D1Factory1, @ptrCast(self)), classId, propertyXml, bindings, bindingsCount, effectFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_UnregisterEffect(self: *const T, classId: ?*const Guid) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).UnregisterEffect(@ptrCast(*const ID2D1Factory1, self), classId);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).UnregisterEffect(@as(*const ID2D1Factory1, @ptrCast(self)), classId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_GetRegisteredEffects(self: *const T, effects: ?[*]Guid, effectsCount: u32, effectsReturned: ?*u32, effectsRegistered: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).GetRegisteredEffects(@ptrCast(*const ID2D1Factory1, self), effects, effectsCount, effectsReturned, effectsRegistered);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).GetRegisteredEffects(@as(*const ID2D1Factory1, @ptrCast(self)), effects, effectsCount, effectsReturned, effectsRegistered);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory1_GetEffectProperties(self: *const T, effectId: ?*const Guid, properties: ?*?*ID2D1Properties) HRESULT {
-                return @ptrCast(*const ID2D1Factory1.VTable, self.vtable).GetEffectProperties(@ptrCast(*const ID2D1Factory1, self), effectId, properties);
+                return @as(*const ID2D1Factory1.VTable, @ptrCast(self.vtable)).GetEffectProperties(@as(*const ID2D1Factory1, @ptrCast(self)), effectId, properties);
             }
         };
     }
@@ -7081,15 +7081,15 @@ pub const ID2D1Multithread = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Multithread_GetMultithreadProtected(self: *const T) BOOL {
-                return @ptrCast(*const ID2D1Multithread.VTable, self.vtable).GetMultithreadProtected(@ptrCast(*const ID2D1Multithread, self));
+                return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).GetMultithreadProtected(@as(*const ID2D1Multithread, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Multithread_Enter(self: *const T) void {
-                return @ptrCast(*const ID2D1Multithread.VTable, self.vtable).Enter(@ptrCast(*const ID2D1Multithread, self));
+                return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).Enter(@as(*const ID2D1Multithread, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Multithread_Leave(self: *const T) void {
-                return @ptrCast(*const ID2D1Multithread.VTable, self.vtable).Leave(@ptrCast(*const ID2D1Multithread, self));
+                return @as(*const ID2D1Multithread.VTable, @ptrCast(self.vtable)).Leave(@as(*const ID2D1Multithread, @ptrCast(self)));
             }
         };
     }
@@ -7150,7 +7150,7 @@ pub const D2D1_CHANGE_TYPE = enum(u32) {
         GRAPH: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_CHANGE_TYPE {
-        return @enumFromInt(D2D1_CHANGE_TYPE, (if (o.NONE == 1) @intFromEnum(D2D1_CHANGE_TYPE.NONE) else 0) | (if (o.PROPERTIES == 1) @intFromEnum(D2D1_CHANGE_TYPE.PROPERTIES) else 0) | (if (o.CONTEXT == 1) @intFromEnum(D2D1_CHANGE_TYPE.CONTEXT) else 0) | (if (o.GRAPH == 1) @intFromEnum(D2D1_CHANGE_TYPE.GRAPH) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_CHANGE_TYPE.FORCE_DWORD) else 0));
+        return @as(D2D1_CHANGE_TYPE, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_CHANGE_TYPE.NONE) else 0) | (if (o.PROPERTIES == 1) @intFromEnum(D2D1_CHANGE_TYPE.PROPERTIES) else 0) | (if (o.CONTEXT == 1) @intFromEnum(D2D1_CHANGE_TYPE.CONTEXT) else 0) | (if (o.GRAPH == 1) @intFromEnum(D2D1_CHANGE_TYPE.GRAPH) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_CHANGE_TYPE.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_CHANGE_TYPE_NONE = D2D1_CHANGE_TYPE.NONE;
@@ -7169,7 +7169,7 @@ pub const D2D1_PIXEL_OPTIONS = enum(u32) {
         TRIVIAL_SAMPLING: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_PIXEL_OPTIONS {
-        return @enumFromInt(D2D1_PIXEL_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.NONE) else 0) | (if (o.TRIVIAL_SAMPLING == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_PIXEL_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.NONE) else 0) | (if (o.TRIVIAL_SAMPLING == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_PIXEL_OPTIONS_NONE = D2D1_PIXEL_OPTIONS.NONE;
@@ -7190,7 +7190,7 @@ pub const D2D1_VERTEX_OPTIONS = enum(u32) {
         ASSUME_NO_OVERLAP: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_VERTEX_OPTIONS {
-        return @enumFromInt(D2D1_VERTEX_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.NONE) else 0) | (if (o.DO_NOT_CLEAR == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR) else 0) | (if (o.USE_DEPTH_BUFFER == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.USE_DEPTH_BUFFER) else 0) | (if (o.ASSUME_NO_OVERLAP == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.ASSUME_NO_OVERLAP) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_VERTEX_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.NONE) else 0) | (if (o.DO_NOT_CLEAR == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR) else 0) | (if (o.USE_DEPTH_BUFFER == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.USE_DEPTH_BUFFER) else 0) | (if (o.ASSUME_NO_OVERLAP == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.ASSUME_NO_OVERLAP) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_VERTEX_OPTIONS_NONE = D2D1_VERTEX_OPTIONS.NONE;
@@ -7396,11 +7396,11 @@ pub const ID2D1VertexBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1VertexBuffer_Map(self: *const T, data: ?*?*u8, bufferSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1VertexBuffer.VTable, self.vtable).Map(@ptrCast(*const ID2D1VertexBuffer, self), data, bufferSize);
+                return @as(*const ID2D1VertexBuffer.VTable, @ptrCast(self.vtable)).Map(@as(*const ID2D1VertexBuffer, @ptrCast(self)), data, bufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1VertexBuffer_Unmap(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1VertexBuffer.VTable, self.vtable).Unmap(@ptrCast(*const ID2D1VertexBuffer, self));
+                return @as(*const ID2D1VertexBuffer.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID2D1VertexBuffer, @ptrCast(self)));
             }
         };
     }
@@ -7440,7 +7440,7 @@ pub const ID2D1ResourceTexture = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ResourceTexture_Update(self: *const T, minimumExtents: ?[*]const u32, maximimumExtents: ?[*]const u32, strides: ?*const u32, dimensions: u32, data: [*:0]const u8, dataCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1ResourceTexture.VTable, self.vtable).Update(@ptrCast(*const ID2D1ResourceTexture, self), minimumExtents, maximimumExtents, strides, dimensions, data, dataCount);
+                return @as(*const ID2D1ResourceTexture.VTable, @ptrCast(self.vtable)).Update(@as(*const ID2D1ResourceTexture, @ptrCast(self)), minimumExtents, maximimumExtents, strides, dimensions, data, dataCount);
             }
         };
     }
@@ -7504,19 +7504,19 @@ pub const ID2D1RenderInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderInfo_SetInputDescription(self: *const T, inputIndex: u32, inputDescription: D2D1_INPUT_DESCRIPTION) HRESULT {
-                return @ptrCast(*const ID2D1RenderInfo.VTable, self.vtable).SetInputDescription(@ptrCast(*const ID2D1RenderInfo, self), inputIndex, inputDescription);
+                return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetInputDescription(@as(*const ID2D1RenderInfo, @ptrCast(self)), inputIndex, inputDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderInfo_SetOutputBuffer(self: *const T, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) HRESULT {
-                return @ptrCast(*const ID2D1RenderInfo.VTable, self.vtable).SetOutputBuffer(@ptrCast(*const ID2D1RenderInfo, self), bufferPrecision, channelDepth);
+                return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetOutputBuffer(@as(*const ID2D1RenderInfo, @ptrCast(self)), bufferPrecision, channelDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderInfo_SetCached(self: *const T, isCached: BOOL) void {
-                return @ptrCast(*const ID2D1RenderInfo.VTable, self.vtable).SetCached(@ptrCast(*const ID2D1RenderInfo, self), isCached);
+                return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetCached(@as(*const ID2D1RenderInfo, @ptrCast(self)), isCached);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1RenderInfo_SetInstructionCountHint(self: *const T, instructionCount: u32) void {
-                return @ptrCast(*const ID2D1RenderInfo.VTable, self.vtable).SetInstructionCountHint(@ptrCast(*const ID2D1RenderInfo, self), instructionCount);
+                return @as(*const ID2D1RenderInfo.VTable, @ptrCast(self.vtable)).SetInstructionCountHint(@as(*const ID2D1RenderInfo, @ptrCast(self)), instructionCount);
             }
         };
     }
@@ -7602,23 +7602,23 @@ pub const ID2D1DrawInfo = extern struct {
             pub usingnamespace ID2D1RenderInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawInfo_SetPixelShaderConstantBuffer(self: *const T, buffer: [*:0]const u8, bufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetPixelShaderConstantBuffer(@ptrCast(*const ID2D1DrawInfo, self), buffer, bufferCount);
+                return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetPixelShaderConstantBuffer(@as(*const ID2D1DrawInfo, @ptrCast(self)), buffer, bufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) HRESULT {
-                return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetResourceTexture(@ptrCast(*const ID2D1DrawInfo, self), textureIndex, resourceTexture);
+                return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetResourceTexture(@as(*const ID2D1DrawInfo, @ptrCast(self)), textureIndex, resourceTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawInfo_SetVertexShaderConstantBuffer(self: *const T, buffer: [*:0]const u8, bufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetVertexShaderConstantBuffer(@ptrCast(*const ID2D1DrawInfo, self), buffer, bufferCount);
+                return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetVertexShaderConstantBuffer(@as(*const ID2D1DrawInfo, @ptrCast(self)), buffer, bufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawInfo_SetPixelShader(self: *const T, shaderId: ?*const Guid, pixelOptions: D2D1_PIXEL_OPTIONS) HRESULT {
-                return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetPixelShader(@ptrCast(*const ID2D1DrawInfo, self), shaderId, pixelOptions);
+                return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetPixelShader(@as(*const ID2D1DrawInfo, @ptrCast(self)), shaderId, pixelOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawInfo_SetVertexProcessing(self: *const T, vertexBuffer: ?*ID2D1VertexBuffer, vertexOptions: D2D1_VERTEX_OPTIONS, blendDescription: ?*const D2D1_BLEND_DESCRIPTION, vertexRange: ?*const D2D1_VERTEX_RANGE, vertexShader: ?*const Guid) HRESULT {
-                return @ptrCast(*const ID2D1DrawInfo.VTable, self.vtable).SetVertexProcessing(@ptrCast(*const ID2D1DrawInfo, self), vertexBuffer, vertexOptions, blendDescription, vertexRange, vertexShader);
+                return @as(*const ID2D1DrawInfo.VTable, @ptrCast(self.vtable)).SetVertexProcessing(@as(*const ID2D1DrawInfo, @ptrCast(self)), vertexBuffer, vertexOptions, blendDescription, vertexRange, vertexShader);
             }
         };
     }
@@ -7672,15 +7672,15 @@ pub const ID2D1ComputeInfo = extern struct {
             pub usingnamespace ID2D1RenderInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ComputeInfo_SetComputeShaderConstantBuffer(self: *const T, buffer: [*:0]const u8, bufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetComputeShaderConstantBuffer(@ptrCast(*const ID2D1ComputeInfo, self), buffer, bufferCount);
+                return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetComputeShaderConstantBuffer(@as(*const ID2D1ComputeInfo, @ptrCast(self)), buffer, bufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ComputeInfo_SetComputeShader(self: *const T, shaderId: ?*const Guid) HRESULT {
-                return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetComputeShader(@ptrCast(*const ID2D1ComputeInfo, self), shaderId);
+                return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetComputeShader(@as(*const ID2D1ComputeInfo, @ptrCast(self)), shaderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ComputeInfo_SetResourceTexture(self: *const T, textureIndex: u32, resourceTexture: ?*ID2D1ResourceTexture) HRESULT {
-                return @ptrCast(*const ID2D1ComputeInfo.VTable, self.vtable).SetResourceTexture(@ptrCast(*const ID2D1ComputeInfo, self), textureIndex, resourceTexture);
+                return @as(*const ID2D1ComputeInfo.VTable, @ptrCast(self.vtable)).SetResourceTexture(@as(*const ID2D1ComputeInfo, @ptrCast(self)), textureIndex, resourceTexture);
             }
         };
     }
@@ -7708,7 +7708,7 @@ pub const ID2D1TransformNode = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformNode_GetInputCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1TransformNode.VTable, self.vtable).GetInputCount(@ptrCast(*const ID2D1TransformNode, self));
+                return @as(*const ID2D1TransformNode.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1TransformNode, @ptrCast(self)));
             }
         };
     }
@@ -7822,39 +7822,39 @@ pub const ID2D1TransformGraph = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_GetInputCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).GetInputCount(@ptrCast(*const ID2D1TransformGraph, self));
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const ID2D1TransformGraph, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_SetSingleTransformNode(self: *const T, node: ?*ID2D1TransformNode) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).SetSingleTransformNode(@ptrCast(*const ID2D1TransformGraph, self), node);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetSingleTransformNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_AddNode(self: *const T, node: ?*ID2D1TransformNode) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).AddNode(@ptrCast(*const ID2D1TransformGraph, self), node);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).AddNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_RemoveNode(self: *const T, node: ?*ID2D1TransformNode) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).RemoveNode(@ptrCast(*const ID2D1TransformGraph, self), node);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).RemoveNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_SetOutputNode(self: *const T, node: ?*ID2D1TransformNode) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).SetOutputNode(@ptrCast(*const ID2D1TransformGraph, self), node);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetOutputNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), node);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_ConnectNode(self: *const T, fromNode: ?*ID2D1TransformNode, toNode: ?*ID2D1TransformNode, toNodeInputIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).ConnectNode(@ptrCast(*const ID2D1TransformGraph, self), fromNode, toNode, toNodeInputIndex);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).ConnectNode(@as(*const ID2D1TransformGraph, @ptrCast(self)), fromNode, toNode, toNodeInputIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_ConnectToEffectInput(self: *const T, toEffectInputIndex: u32, node: ?*ID2D1TransformNode, toNodeInputIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).ConnectToEffectInput(@ptrCast(*const ID2D1TransformGraph, self), toEffectInputIndex, node, toNodeInputIndex);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).ConnectToEffectInput(@as(*const ID2D1TransformGraph, @ptrCast(self)), toEffectInputIndex, node, toNodeInputIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_Clear(self: *const T) void {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).Clear(@ptrCast(*const ID2D1TransformGraph, self));
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1TransformGraph, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformGraph_SetPassthroughGraph(self: *const T, effectInputIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1TransformGraph.VTable, self.vtable).SetPassthroughGraph(@ptrCast(*const ID2D1TransformGraph, self), effectInputIndex);
+                return @as(*const ID2D1TransformGraph.VTable, @ptrCast(self.vtable)).SetPassthroughGraph(@as(*const ID2D1TransformGraph, @ptrCast(self)), effectInputIndex);
             }
         };
     }
@@ -7920,15 +7920,15 @@ pub const ID2D1Transform = extern struct {
             pub usingnamespace ID2D1TransformNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Transform_MapOutputRectToInputRects(self: *const T, outputRect: ?*const RECT, inputRects: [*]RECT, inputRectsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapOutputRectToInputRects(@ptrCast(*const ID2D1Transform, self), outputRect, inputRects, inputRectsCount);
+                return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapOutputRectToInputRects(@as(*const ID2D1Transform, @ptrCast(self)), outputRect, inputRects, inputRectsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Transform_MapInputRectsToOutputRect(self: *const T, inputRects: [*]const RECT, inputOpaqueSubRects: [*]const RECT, inputRectCount: u32, outputRect: ?*RECT, outputOpaqueSubRect: ?*RECT) HRESULT {
-                return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapInputRectsToOutputRect(@ptrCast(*const ID2D1Transform, self), inputRects, inputOpaqueSubRects, inputRectCount, outputRect, outputOpaqueSubRect);
+                return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapInputRectsToOutputRect(@as(*const ID2D1Transform, @ptrCast(self)), inputRects, inputOpaqueSubRects, inputRectCount, outputRect, outputOpaqueSubRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Transform_MapInvalidRect(self: *const T, inputIndex: u32, invalidInputRect: RECT, invalidOutputRect: ?*RECT) HRESULT {
-                return @ptrCast(*const ID2D1Transform.VTable, self.vtable).MapInvalidRect(@ptrCast(*const ID2D1Transform, self), inputIndex, invalidInputRect, invalidOutputRect);
+                return @as(*const ID2D1Transform.VTable, @ptrCast(self.vtable)).MapInvalidRect(@as(*const ID2D1Transform, @ptrCast(self)), inputIndex, invalidInputRect, invalidOutputRect);
             }
         };
     }
@@ -7958,7 +7958,7 @@ pub const ID2D1DrawTransform = extern struct {
             pub usingnamespace ID2D1Transform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DrawTransform_SetDrawInfo(self: *const T, drawInfo: ?*ID2D1DrawInfo) HRESULT {
-                return @ptrCast(*const ID2D1DrawTransform.VTable, self.vtable).SetDrawInfo(@ptrCast(*const ID2D1DrawTransform, self), drawInfo);
+                return @as(*const ID2D1DrawTransform.VTable, @ptrCast(self.vtable)).SetDrawInfo(@as(*const ID2D1DrawTransform, @ptrCast(self)), drawInfo);
             }
         };
     }
@@ -8004,11 +8004,11 @@ pub const ID2D1ComputeTransform = extern struct {
             pub usingnamespace ID2D1Transform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ComputeTransform_SetComputeInfo(self: *const T, computeInfo: ?*ID2D1ComputeInfo) HRESULT {
-                return @ptrCast(*const ID2D1ComputeTransform.VTable, self.vtable).SetComputeInfo(@ptrCast(*const ID2D1ComputeTransform, self), computeInfo);
+                return @as(*const ID2D1ComputeTransform.VTable, @ptrCast(self.vtable)).SetComputeInfo(@as(*const ID2D1ComputeTransform, @ptrCast(self)), computeInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ComputeTransform_CalculateThreadgroups(self: *const T, outputRect: ?*const RECT, dimensionX: ?*u32, dimensionY: ?*u32, dimensionZ: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1ComputeTransform.VTable, self.vtable).CalculateThreadgroups(@ptrCast(*const ID2D1ComputeTransform, self), outputRect, dimensionX, dimensionY, dimensionZ);
+                return @as(*const ID2D1ComputeTransform.VTable, @ptrCast(self.vtable)).CalculateThreadgroups(@as(*const ID2D1ComputeTransform, @ptrCast(self)), outputRect, dimensionX, dimensionY, dimensionZ);
             }
         };
     }
@@ -8040,7 +8040,7 @@ pub const ID2D1AnalysisTransform = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1AnalysisTransform_ProcessAnalysisResults(self: *const T, analysisData: [*:0]const u8, analysisDataCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1AnalysisTransform.VTable, self.vtable).ProcessAnalysisResults(@ptrCast(*const ID2D1AnalysisTransform, self), analysisData, analysisDataCount);
+                return @as(*const ID2D1AnalysisTransform.VTable, @ptrCast(self.vtable)).ProcessAnalysisResults(@as(*const ID2D1AnalysisTransform, @ptrCast(self)), analysisData, analysisDataCount);
             }
         };
     }
@@ -8084,11 +8084,11 @@ pub const ID2D1SourceTransform = extern struct {
             pub usingnamespace ID2D1Transform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SourceTransform_SetRenderInfo(self: *const T, renderInfo: ?*ID2D1RenderInfo) HRESULT {
-                return @ptrCast(*const ID2D1SourceTransform.VTable, self.vtable).SetRenderInfo(@ptrCast(*const ID2D1SourceTransform, self), renderInfo);
+                return @as(*const ID2D1SourceTransform.VTable, @ptrCast(self.vtable)).SetRenderInfo(@as(*const ID2D1SourceTransform, @ptrCast(self)), renderInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SourceTransform_Draw(self: *const T, target: ?*ID2D1Bitmap1, drawRect: ?*const RECT, targetOrigin: D2D_POINT_2U) HRESULT {
-                return @ptrCast(*const ID2D1SourceTransform.VTable, self.vtable).Draw(@ptrCast(*const ID2D1SourceTransform, self), target, drawRect, targetOrigin);
+                return @as(*const ID2D1SourceTransform.VTable, @ptrCast(self.vtable)).Draw(@as(*const ID2D1SourceTransform, @ptrCast(self)), target, drawRect, targetOrigin);
             }
         };
     }
@@ -8130,11 +8130,11 @@ pub const ID2D1ConcreteTransform = extern struct {
             pub usingnamespace ID2D1TransformNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ConcreteTransform_SetOutputBuffer(self: *const T, bufferPrecision: D2D1_BUFFER_PRECISION, channelDepth: D2D1_CHANNEL_DEPTH) HRESULT {
-                return @ptrCast(*const ID2D1ConcreteTransform.VTable, self.vtable).SetOutputBuffer(@ptrCast(*const ID2D1ConcreteTransform, self), bufferPrecision, channelDepth);
+                return @as(*const ID2D1ConcreteTransform.VTable, @ptrCast(self.vtable)).SetOutputBuffer(@as(*const ID2D1ConcreteTransform, @ptrCast(self)), bufferPrecision, channelDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ConcreteTransform_SetCached(self: *const T, isCached: BOOL) void {
-                return @ptrCast(*const ID2D1ConcreteTransform.VTable, self.vtable).SetCached(@ptrCast(*const ID2D1ConcreteTransform, self), isCached);
+                return @as(*const ID2D1ConcreteTransform.VTable, @ptrCast(self.vtable)).SetCached(@as(*const ID2D1ConcreteTransform, @ptrCast(self)), isCached);
             }
         };
     }
@@ -8174,11 +8174,11 @@ pub const ID2D1BlendTransform = extern struct {
             pub usingnamespace ID2D1ConcreteTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BlendTransform_SetDescription(self: *const T, description: ?*const D2D1_BLEND_DESCRIPTION) void {
-                return @ptrCast(*const ID2D1BlendTransform.VTable, self.vtable).SetDescription(@ptrCast(*const ID2D1BlendTransform, self), description);
+                return @as(*const ID2D1BlendTransform.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const ID2D1BlendTransform, @ptrCast(self)), description);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BlendTransform_GetDescription(self: *const T, description: ?*D2D1_BLEND_DESCRIPTION) void {
-                return @ptrCast(*const ID2D1BlendTransform.VTable, self.vtable).GetDescription(@ptrCast(*const ID2D1BlendTransform, self), description);
+                return @as(*const ID2D1BlendTransform.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ID2D1BlendTransform, @ptrCast(self)), description);
             }
         };
     }
@@ -8234,19 +8234,19 @@ pub const ID2D1BorderTransform = extern struct {
             pub usingnamespace ID2D1ConcreteTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BorderTransform_SetExtendModeX(self: *const T, extendMode: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1BorderTransform.VTable, self.vtable).SetExtendModeX(@ptrCast(*const ID2D1BorderTransform, self), extendMode);
+                return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).SetExtendModeX(@as(*const ID2D1BorderTransform, @ptrCast(self)), extendMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BorderTransform_SetExtendModeY(self: *const T, extendMode: D2D1_EXTEND_MODE) void {
-                return @ptrCast(*const ID2D1BorderTransform.VTable, self.vtable).SetExtendModeY(@ptrCast(*const ID2D1BorderTransform, self), extendMode);
+                return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).SetExtendModeY(@as(*const ID2D1BorderTransform, @ptrCast(self)), extendMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BorderTransform_GetExtendModeX(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1BorderTransform.VTable, self.vtable).GetExtendModeX(@ptrCast(*const ID2D1BorderTransform, self));
+                return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).GetExtendModeX(@as(*const ID2D1BorderTransform, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BorderTransform_GetExtendModeY(self: *const T) D2D1_EXTEND_MODE {
-                return @ptrCast(*const ID2D1BorderTransform.VTable, self.vtable).GetExtendModeY(@ptrCast(*const ID2D1BorderTransform, self));
+                return @as(*const ID2D1BorderTransform.VTable, @ptrCast(self.vtable)).GetExtendModeY(@as(*const ID2D1BorderTransform, @ptrCast(self)));
             }
         };
     }
@@ -8284,11 +8284,11 @@ pub const ID2D1OffsetTransform = extern struct {
             pub usingnamespace ID2D1TransformNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1OffsetTransform_SetOffset(self: *const T, offset: POINT) void {
-                return @ptrCast(*const ID2D1OffsetTransform.VTable, self.vtable).SetOffset(@ptrCast(*const ID2D1OffsetTransform, self), offset);
+                return @as(*const ID2D1OffsetTransform.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const ID2D1OffsetTransform, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1OffsetTransform_GetOffset(self: *const T) POINT {
-                return @ptrCast(*const ID2D1OffsetTransform.VTable, self.vtable).GetOffset(@ptrCast(*const ID2D1OffsetTransform, self));
+                return @as(*const ID2D1OffsetTransform.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const ID2D1OffsetTransform, @ptrCast(self)));
             }
         };
     }
@@ -8327,11 +8327,11 @@ pub const ID2D1BoundsAdjustmentTransform = extern struct {
             pub usingnamespace ID2D1TransformNode.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BoundsAdjustmentTransform_SetOutputBounds(self: *const T, outputBounds: ?*const RECT) void {
-                return @ptrCast(*const ID2D1BoundsAdjustmentTransform.VTable, self.vtable).SetOutputBounds(@ptrCast(*const ID2D1BoundsAdjustmentTransform, self), outputBounds);
+                return @as(*const ID2D1BoundsAdjustmentTransform.VTable, @ptrCast(self.vtable)).SetOutputBounds(@as(*const ID2D1BoundsAdjustmentTransform, @ptrCast(self)), outputBounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1BoundsAdjustmentTransform_GetOutputBounds(self: *const T, outputBounds: ?*RECT) void {
-                return @ptrCast(*const ID2D1BoundsAdjustmentTransform.VTable, self.vtable).GetOutputBounds(@ptrCast(*const ID2D1BoundsAdjustmentTransform, self), outputBounds);
+                return @as(*const ID2D1BoundsAdjustmentTransform.VTable, @ptrCast(self.vtable)).GetOutputBounds(@as(*const ID2D1BoundsAdjustmentTransform, @ptrCast(self)), outputBounds);
             }
         };
     }
@@ -8383,15 +8383,15 @@ pub const ID2D1EffectImpl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectImpl_Initialize(self: *const T, effectContext: ?*ID2D1EffectContext, transformGraph: ?*ID2D1TransformGraph) HRESULT {
-                return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).Initialize(@ptrCast(*const ID2D1EffectImpl, self), effectContext, transformGraph);
+                return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ID2D1EffectImpl, @ptrCast(self)), effectContext, transformGraph);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectImpl_PrepareForRender(self: *const T, changeType: D2D1_CHANGE_TYPE) HRESULT {
-                return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).PrepareForRender(@ptrCast(*const ID2D1EffectImpl, self), changeType);
+                return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).PrepareForRender(@as(*const ID2D1EffectImpl, @ptrCast(self)), changeType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectImpl_SetGraph(self: *const T, transformGraph: ?*ID2D1TransformGraph) HRESULT {
-                return @ptrCast(*const ID2D1EffectImpl.VTable, self.vtable).SetGraph(@ptrCast(*const ID2D1EffectImpl, self), transformGraph);
+                return @as(*const ID2D1EffectImpl.VTable, @ptrCast(self.vtable)).SetGraph(@as(*const ID2D1EffectImpl, @ptrCast(self)), transformGraph);
             }
         };
     }
@@ -8691,87 +8691,87 @@ pub const ID2D1EffectContext = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) void {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1EffectContext, self), dpiX, dpiY);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1EffectContext, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateEffect(self: *const T, effectId: ?*const Guid, effect: ?*?*ID2D1Effect) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateEffect(@ptrCast(*const ID2D1EffectContext, self), effectId, effect);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const ID2D1EffectContext, @ptrCast(self)), effectId, effect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_GetMaximumSupportedFeatureLevel(self: *const T, featureLevels: [*]const D3D_FEATURE_LEVEL, featureLevelsCount: u32, maximumSupportedFeatureLevel: ?*D3D_FEATURE_LEVEL) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).GetMaximumSupportedFeatureLevel(@ptrCast(*const ID2D1EffectContext, self), featureLevels, featureLevelsCount, maximumSupportedFeatureLevel);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).GetMaximumSupportedFeatureLevel(@as(*const ID2D1EffectContext, @ptrCast(self)), featureLevels, featureLevelsCount, maximumSupportedFeatureLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateTransformNodeFromEffect(self: *const T, effect: ?*ID2D1Effect, transformNode: ?*?*ID2D1TransformNode) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateTransformNodeFromEffect(@ptrCast(*const ID2D1EffectContext, self), effect, transformNode);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateTransformNodeFromEffect(@as(*const ID2D1EffectContext, @ptrCast(self)), effect, transformNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateBlendTransform(self: *const T, numInputs: u32, blendDescription: ?*const D2D1_BLEND_DESCRIPTION, transform: ?*?*ID2D1BlendTransform) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBlendTransform(@ptrCast(*const ID2D1EffectContext, self), numInputs, blendDescription, transform);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBlendTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), numInputs, blendDescription, transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateBorderTransform(self: *const T, extendModeX: D2D1_EXTEND_MODE, extendModeY: D2D1_EXTEND_MODE, transform: ?*?*ID2D1BorderTransform) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBorderTransform(@ptrCast(*const ID2D1EffectContext, self), extendModeX, extendModeY, transform);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBorderTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), extendModeX, extendModeY, transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateOffsetTransform(self: *const T, offset: POINT, transform: ?*?*ID2D1OffsetTransform) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateOffsetTransform(@ptrCast(*const ID2D1EffectContext, self), offset, transform);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateOffsetTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), offset, transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateBoundsAdjustmentTransform(self: *const T, outputRectangle: ?*const RECT, transform: ?*?*ID2D1BoundsAdjustmentTransform) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateBoundsAdjustmentTransform(@ptrCast(*const ID2D1EffectContext, self), outputRectangle, transform);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateBoundsAdjustmentTransform(@as(*const ID2D1EffectContext, @ptrCast(self)), outputRectangle, transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_LoadPixelShader(self: *const T, shaderId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadPixelShader(@ptrCast(*const ID2D1EffectContext, self), shaderId, shaderBuffer, shaderBufferCount);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadPixelShader(@as(*const ID2D1EffectContext, @ptrCast(self)), shaderId, shaderBuffer, shaderBufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_LoadVertexShader(self: *const T, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadVertexShader(@ptrCast(*const ID2D1EffectContext, self), resourceId, shaderBuffer, shaderBufferCount);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadVertexShader(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, shaderBuffer, shaderBufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_LoadComputeShader(self: *const T, resourceId: ?*const Guid, shaderBuffer: [*:0]const u8, shaderBufferCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).LoadComputeShader(@ptrCast(*const ID2D1EffectContext, self), resourceId, shaderBuffer, shaderBufferCount);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).LoadComputeShader(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, shaderBuffer, shaderBufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_IsShaderLoaded(self: *const T, shaderId: ?*const Guid) BOOL {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).IsShaderLoaded(@ptrCast(*const ID2D1EffectContext, self), shaderId);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).IsShaderLoaded(@as(*const ID2D1EffectContext, @ptrCast(self)), shaderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateResourceTexture(self: *const T, resourceId: ?*const Guid, resourceTextureProperties: ?*const D2D1_RESOURCE_TEXTURE_PROPERTIES, data: ?[*:0]const u8, strides: ?*const u32, dataSize: u32, resourceTexture: ?*?*ID2D1ResourceTexture) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateResourceTexture(@ptrCast(*const ID2D1EffectContext, self), resourceId, resourceTextureProperties, data, strides, dataSize, resourceTexture);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateResourceTexture(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, resourceTextureProperties, data, strides, dataSize, resourceTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_FindResourceTexture(self: *const T, resourceId: ?*const Guid, resourceTexture: ?*?*ID2D1ResourceTexture) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).FindResourceTexture(@ptrCast(*const ID2D1EffectContext, self), resourceId, resourceTexture);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).FindResourceTexture(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, resourceTexture);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateVertexBuffer(self: *const T, vertexBufferProperties: ?*const D2D1_VERTEX_BUFFER_PROPERTIES, resourceId: ?*const Guid, customVertexBufferProperties: ?*const D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES, buffer: ?*?*ID2D1VertexBuffer) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateVertexBuffer(@ptrCast(*const ID2D1EffectContext, self), vertexBufferProperties, resourceId, customVertexBufferProperties, buffer);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateVertexBuffer(@as(*const ID2D1EffectContext, @ptrCast(self)), vertexBufferProperties, resourceId, customVertexBufferProperties, buffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_FindVertexBuffer(self: *const T, resourceId: ?*const Guid, buffer: ?*?*ID2D1VertexBuffer) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).FindVertexBuffer(@ptrCast(*const ID2D1EffectContext, self), resourceId, buffer);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).FindVertexBuffer(@as(*const ID2D1EffectContext, @ptrCast(self)), resourceId, buffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateColorContext(self: *const T, space: D2D1_COLOR_SPACE, profile: ?[*:0]const u8, profileSize: u32, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContext(@ptrCast(*const ID2D1EffectContext, self), space, profile, profileSize, colorContext);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContext(@as(*const ID2D1EffectContext, @ptrCast(self)), space, profile, profileSize, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateColorContextFromFilename(self: *const T, filename: ?[*:0]const u16, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromFilename(@ptrCast(*const ID2D1EffectContext, self), filename, colorContext);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromFilename(@as(*const ID2D1EffectContext, @ptrCast(self)), filename, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CreateColorContextFromWicColorContext(self: *const T, wicColorContext: ?*IWICColorContext, colorContext: ?*?*ID2D1ColorContext) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CreateColorContextFromWicColorContext(@ptrCast(*const ID2D1EffectContext, self), wicColorContext, colorContext);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CreateColorContextFromWicColorContext(@as(*const ID2D1EffectContext, @ptrCast(self)), wicColorContext, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_CheckFeatureSupport(self: *const T, feature: D2D1_FEATURE, featureSupportData: ?*anyopaque, featureSupportDataSize: u32) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID2D1EffectContext, self), feature, featureSupportData, featureSupportDataSize);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID2D1EffectContext, @ptrCast(self)), feature, featureSupportData, featureSupportDataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext_IsBufferPrecisionSupported(self: *const T, bufferPrecision: D2D1_BUFFER_PRECISION) BOOL {
-                return @ptrCast(*const ID2D1EffectContext.VTable, self.vtable).IsBufferPrecisionSupported(@ptrCast(*const ID2D1EffectContext, self), bufferPrecision);
+                return @as(*const ID2D1EffectContext.VTable, @ptrCast(self.vtable)).IsBufferPrecisionSupported(@as(*const ID2D1EffectContext, @ptrCast(self)), bufferPrecision);
             }
         };
     }
@@ -9157,15 +9157,15 @@ pub const ID2D1DeviceContext1 = extern struct {
             pub usingnamespace ID2D1DeviceContext.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext1_CreateFilledGeometryRealization(self: *const T, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, geometryRealization: ?*?*ID2D1GeometryRealization) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).CreateFilledGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometry, flatteningTolerance, geometryRealization);
+                return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).CreateFilledGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometry, flatteningTolerance, geometryRealization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext1_CreateStrokedGeometryRealization(self: *const T, geometry: ?*ID2D1Geometry, flatteningTolerance: f32, strokeWidth: f32, strokeStyle: ?*ID2D1StrokeStyle, geometryRealization: ?*?*ID2D1GeometryRealization) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).CreateStrokedGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometry, flatteningTolerance, strokeWidth, strokeStyle, geometryRealization);
+                return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).CreateStrokedGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometry, flatteningTolerance, strokeWidth, strokeStyle, geometryRealization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext1_DrawGeometryRealization(self: *const T, geometryRealization: ?*ID2D1GeometryRealization, brush: ?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1DeviceContext1.VTable, self.vtable).DrawGeometryRealization(@ptrCast(*const ID2D1DeviceContext1, self), geometryRealization, brush);
+                return @as(*const ID2D1DeviceContext1.VTable, @ptrCast(self.vtable)).DrawGeometryRealization(@as(*const ID2D1DeviceContext1, @ptrCast(self)), geometryRealization, brush);
             }
         };
     }
@@ -9215,15 +9215,15 @@ pub const ID2D1Device1 = extern struct {
             pub usingnamespace ID2D1Device.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device1_GetRenderingPriority(self: *const T) D2D1_RENDERING_PRIORITY {
-                return @ptrCast(*const ID2D1Device1.VTable, self.vtable).GetRenderingPriority(@ptrCast(*const ID2D1Device1, self));
+                return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).GetRenderingPriority(@as(*const ID2D1Device1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device1_SetRenderingPriority(self: *const T, renderingPriority: D2D1_RENDERING_PRIORITY) void {
-                return @ptrCast(*const ID2D1Device1.VTable, self.vtable).SetRenderingPriority(@ptrCast(*const ID2D1Device1, self), renderingPriority);
+                return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).SetRenderingPriority(@as(*const ID2D1Device1, @ptrCast(self)), renderingPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device1_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext1: ?*?*ID2D1DeviceContext1) HRESULT {
-                return @ptrCast(*const ID2D1Device1.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device1, self), options, deviceContext1);
+                return @as(*const ID2D1Device1.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device1, @ptrCast(self)), options, deviceContext1);
             }
         };
     }
@@ -9255,7 +9255,7 @@ pub const ID2D1Factory2 = extern struct {
             pub usingnamespace ID2D1Factory1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory2_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice1: ?*?*ID2D1Device1) HRESULT {
-                return @ptrCast(*const ID2D1Factory2.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory2, self), dxgiDevice, d2dDevice1);
+                return @as(*const ID2D1Factory2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory2, @ptrCast(self)), dxgiDevice, d2dDevice1);
             }
         };
     }
@@ -9285,7 +9285,7 @@ pub const ID2D1CommandSink1 = extern struct {
             pub usingnamespace ID2D1CommandSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink1_SetPrimitiveBlend1(self: *const T, primitiveBlend: D2D1_PRIMITIVE_BLEND) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink1.VTable, self.vtable).SetPrimitiveBlend1(@ptrCast(*const ID2D1CommandSink1, self), primitiveBlend);
+                return @as(*const ID2D1CommandSink1.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend1(@as(*const ID2D1CommandSink1, @ptrCast(self)), primitiveBlend);
             }
         };
     }
@@ -9547,11 +9547,11 @@ pub const ID2D1SvgAttribute = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgAttribute_GetElement(self: *const T, element: ?*?*ID2D1SvgElement) void {
-                return @ptrCast(*const ID2D1SvgAttribute.VTable, self.vtable).GetElement(@ptrCast(*const ID2D1SvgAttribute, self), element);
+                return @as(*const ID2D1SvgAttribute.VTable, @ptrCast(self.vtable)).GetElement(@as(*const ID2D1SvgAttribute, @ptrCast(self)), element);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgAttribute_Clone(self: *const T, attribute: ?*?*ID2D1SvgAttribute) HRESULT {
-                return @ptrCast(*const ID2D1SvgAttribute.VTable, self.vtable).Clone(@ptrCast(*const ID2D1SvgAttribute, self), attribute);
+                return @as(*const ID2D1SvgAttribute.VTable, @ptrCast(self.vtable)).Clone(@as(*const ID2D1SvgAttribute, @ptrCast(self)), attribute);
             }
         };
     }
@@ -9638,31 +9638,31 @@ pub const ID2D1SvgPaint = extern struct {
             pub usingnamespace ID2D1SvgAttribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_SetPaintType(self: *const T, paintType: D2D1_SVG_PAINT_TYPE) HRESULT {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetPaintType(@ptrCast(*const ID2D1SvgPaint, self), paintType);
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetPaintType(@as(*const ID2D1SvgPaint, @ptrCast(self)), paintType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_GetPaintType(self: *const T) D2D1_SVG_PAINT_TYPE {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetPaintType(@ptrCast(*const ID2D1SvgPaint, self));
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetPaintType(@as(*const ID2D1SvgPaint, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_SetColor(self: *const T, color: ?*const D2D1_COLOR_F) HRESULT {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetColor(@as(*const ID2D1SvgPaint, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_GetColor(self: *const T, color: ?*D2D1_COLOR_F) void {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetColor(@ptrCast(*const ID2D1SvgPaint, self), color);
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetColor(@as(*const ID2D1SvgPaint, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_SetId(self: *const T, id: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).SetId(@ptrCast(*const ID2D1SvgPaint, self), id);
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).SetId(@as(*const ID2D1SvgPaint, @ptrCast(self)), id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_GetId(self: *const T, id: [*:0]u16, idCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetId(@ptrCast(*const ID2D1SvgPaint, self), id, idCount);
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetId(@as(*const ID2D1SvgPaint, @ptrCast(self)), id, idCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPaint_GetIdLength(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgPaint.VTable, self.vtable).GetIdLength(@ptrCast(*const ID2D1SvgPaint, self));
+                return @as(*const ID2D1SvgPaint.VTable, @ptrCast(self.vtable)).GetIdLength(@as(*const ID2D1SvgPaint, @ptrCast(self)));
             }
         };
     }
@@ -9755,27 +9755,27 @@ pub const ID2D1SvgStrokeDashArray = extern struct {
             pub usingnamespace ID2D1SvgAttribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_RemoveDashesAtEnd(self: *const T, dashesCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).RemoveDashesAtEnd(@ptrCast(*const ID2D1SvgStrokeDashArray, self), dashesCount);
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).RemoveDashesAtEnd(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashesCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_UpdateDashes(self: *const T, dashes: [*]const D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).UpdateDashes(@ptrCast(*const ID2D1SvgStrokeDashArray, self), dashes, dashesCount, startIndex);
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).UpdateDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_UpdateDashes1(self: *const T, dashes: [*]const f32, dashesCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).UpdateDashes(@ptrCast(*const ID2D1SvgStrokeDashArray, self), dashes, dashesCount, startIndex);
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).UpdateDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_GetDashes(self: *const T, dashes: [*]D2D1_SVG_LENGTH, dashesCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).GetDashes(@ptrCast(*const ID2D1SvgStrokeDashArray, self), dashes, dashesCount, startIndex);
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_GetDashes1(self: *const T, dashes: [*]f32, dashesCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).GetDashes(@ptrCast(*const ID2D1SvgStrokeDashArray, self), dashes, dashesCount, startIndex);
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashes(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)), dashes, dashesCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgStrokeDashArray_GetDashesCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgStrokeDashArray.VTable, self.vtable).GetDashesCount(@ptrCast(*const ID2D1SvgStrokeDashArray, self));
+                return @as(*const ID2D1SvgStrokeDashArray.VTable, @ptrCast(self.vtable)).GetDashesCount(@as(*const ID2D1SvgStrokeDashArray, @ptrCast(self)));
             }
         };
     }
@@ -9840,19 +9840,19 @@ pub const ID2D1SvgPointCollection = extern struct {
             pub usingnamespace ID2D1SvgAttribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPointCollection_RemovePointsAtEnd(self: *const T, pointsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPointCollection.VTable, self.vtable).RemovePointsAtEnd(@ptrCast(*const ID2D1SvgPointCollection, self), pointsCount);
+                return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).RemovePointsAtEnd(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), pointsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPointCollection_UpdatePoints(self: *const T, points: [*]const D2D_POINT_2F, pointsCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPointCollection.VTable, self.vtable).UpdatePoints(@ptrCast(*const ID2D1SvgPointCollection, self), points, pointsCount, startIndex);
+                return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).UpdatePoints(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), points, pointsCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPointCollection_GetPoints(self: *const T, points: [*]D2D_POINT_2F, pointsCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPointCollection.VTable, self.vtable).GetPoints(@ptrCast(*const ID2D1SvgPointCollection, self), points, pointsCount, startIndex);
+                return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).GetPoints(@as(*const ID2D1SvgPointCollection, @ptrCast(self)), points, pointsCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPointCollection_GetPointsCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgPointCollection.VTable, self.vtable).GetPointsCount(@ptrCast(*const ID2D1SvgPointCollection, self));
+                return @as(*const ID2D1SvgPointCollection.VTable, @ptrCast(self.vtable)).GetPointsCount(@as(*const ID2D1SvgPointCollection, @ptrCast(self)));
             }
         };
     }
@@ -9975,39 +9975,39 @@ pub const ID2D1SvgPathData = extern struct {
             pub usingnamespace ID2D1SvgAttribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_RemoveSegmentDataAtEnd(self: *const T, dataCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).RemoveSegmentDataAtEnd(@ptrCast(*const ID2D1SvgPathData, self), dataCount);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).RemoveSegmentDataAtEnd(@as(*const ID2D1SvgPathData, @ptrCast(self)), dataCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_UpdateSegmentData(self: *const T, data: [*]const f32, dataCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).UpdateSegmentData(@ptrCast(*const ID2D1SvgPathData, self), data, dataCount, startIndex);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).UpdateSegmentData(@as(*const ID2D1SvgPathData, @ptrCast(self)), data, dataCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_GetSegmentData(self: *const T, data: [*]f32, dataCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).GetSegmentData(@ptrCast(*const ID2D1SvgPathData, self), data, dataCount, startIndex);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetSegmentData(@as(*const ID2D1SvgPathData, @ptrCast(self)), data, dataCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_GetSegmentDataCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).GetSegmentDataCount(@ptrCast(*const ID2D1SvgPathData, self));
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetSegmentDataCount(@as(*const ID2D1SvgPathData, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_RemoveCommandsAtEnd(self: *const T, commandsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).RemoveCommandsAtEnd(@ptrCast(*const ID2D1SvgPathData, self), commandsCount);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).RemoveCommandsAtEnd(@as(*const ID2D1SvgPathData, @ptrCast(self)), commandsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_UpdateCommands(self: *const T, commands: [*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).UpdateCommands(@ptrCast(*const ID2D1SvgPathData, self), commands, commandsCount, startIndex);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).UpdateCommands(@as(*const ID2D1SvgPathData, @ptrCast(self)), commands, commandsCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_GetCommands(self: *const T, commands: [*]D2D1_SVG_PATH_COMMAND, commandsCount: u32, startIndex: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).GetCommands(@ptrCast(*const ID2D1SvgPathData, self), commands, commandsCount, startIndex);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetCommands(@as(*const ID2D1SvgPathData, @ptrCast(self)), commands, commandsCount, startIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_GetCommandsCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).GetCommandsCount(@ptrCast(*const ID2D1SvgPathData, self));
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).GetCommandsCount(@as(*const ID2D1SvgPathData, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgPathData_CreatePathGeometry(self: *const T, fillMode: D2D1_FILL_MODE, pathGeometry: ?*?*ID2D1PathGeometry1) HRESULT {
-                return @ptrCast(*const ID2D1SvgPathData.VTable, self.vtable).CreatePathGeometry(@ptrCast(*const ID2D1SvgPathData, self), fillMode, pathGeometry);
+                return @as(*const ID2D1SvgPathData.VTable, @ptrCast(self.vtable)).CreatePathGeometry(@as(*const ID2D1SvgPathData, @ptrCast(self)), fillMode, pathGeometry);
             }
         };
     }
@@ -10380,123 +10380,123 @@ pub const ID2D1SvgElement = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetDocument(self: *const T, document: ?*?*ID2D1SvgDocument) void {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetDocument(@ptrCast(*const ID2D1SvgElement, self), document);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const ID2D1SvgElement, @ptrCast(self)), document);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetTagName(self: *const T, name: [*:0]u16, nameCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTagName(@ptrCast(*const ID2D1SvgElement, self), name, nameCount);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTagName(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetTagNameLength(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTagNameLength(@ptrCast(*const ID2D1SvgElement, self));
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTagNameLength(@as(*const ID2D1SvgElement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_IsTextContent(self: *const T) BOOL {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).IsTextContent(@ptrCast(*const ID2D1SvgElement, self));
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).IsTextContent(@as(*const ID2D1SvgElement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetParent(self: *const T, parent: ?*?*ID2D1SvgElement) void {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetParent(@ptrCast(*const ID2D1SvgElement, self), parent);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetParent(@as(*const ID2D1SvgElement, @ptrCast(self)), parent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_HasChildren(self: *const T) BOOL {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).HasChildren(@ptrCast(*const ID2D1SvgElement, self));
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).HasChildren(@as(*const ID2D1SvgElement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetFirstChild(self: *const T, child: ?*?*ID2D1SvgElement) void {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetFirstChild(@ptrCast(*const ID2D1SvgElement, self), child);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetFirstChild(@as(*const ID2D1SvgElement, @ptrCast(self)), child);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetLastChild(self: *const T, child: ?*?*ID2D1SvgElement) void {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetLastChild(@ptrCast(*const ID2D1SvgElement, self), child);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetLastChild(@as(*const ID2D1SvgElement, @ptrCast(self)), child);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetPreviousChild(self: *const T, referenceChild: ?*ID2D1SvgElement, previousChild: ?*?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetPreviousChild(@ptrCast(*const ID2D1SvgElement, self), referenceChild, previousChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetPreviousChild(@as(*const ID2D1SvgElement, @ptrCast(self)), referenceChild, previousChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetNextChild(self: *const T, referenceChild: ?*ID2D1SvgElement, nextChild: ?*?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetNextChild(@ptrCast(*const ID2D1SvgElement, self), referenceChild, nextChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetNextChild(@as(*const ID2D1SvgElement, @ptrCast(self)), referenceChild, nextChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_InsertChildBefore(self: *const T, newChild: ?*ID2D1SvgElement, referenceChild: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).InsertChildBefore(@ptrCast(*const ID2D1SvgElement, self), newChild, referenceChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).InsertChildBefore(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild, referenceChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_AppendChild(self: *const T, newChild: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).AppendChild(@ptrCast(*const ID2D1SvgElement, self), newChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).AppendChild(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_ReplaceChild(self: *const T, newChild: ?*ID2D1SvgElement, oldChild: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).ReplaceChild(@ptrCast(*const ID2D1SvgElement, self), newChild, oldChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).ReplaceChild(@as(*const ID2D1SvgElement, @ptrCast(self)), newChild, oldChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_RemoveChild(self: *const T, oldChild: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).RemoveChild(@ptrCast(*const ID2D1SvgElement, self), oldChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).RemoveChild(@as(*const ID2D1SvgElement, @ptrCast(self)), oldChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_CreateChild(self: *const T, tagName: ?[*:0]const u16, newChild: ?*?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).CreateChild(@ptrCast(*const ID2D1SvgElement, self), tagName, newChild);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).CreateChild(@as(*const ID2D1SvgElement, @ptrCast(self)), tagName, newChild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_IsAttributeSpecified(self: *const T, name: ?[*:0]const u16, inherited: ?*BOOL) BOOL {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).IsAttributeSpecified(@ptrCast(*const ID2D1SvgElement, self), name, inherited);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).IsAttributeSpecified(@as(*const ID2D1SvgElement, @ptrCast(self)), name, inherited);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetSpecifiedAttributeCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetSpecifiedAttributeCount(@ptrCast(*const ID2D1SvgElement, self));
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeCount(@as(*const ID2D1SvgElement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetSpecifiedAttributeName(self: *const T, index: u32, name: [*:0]u16, nameCount: u32, inherited: ?*BOOL) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetSpecifiedAttributeName(@ptrCast(*const ID2D1SvgElement, self), index, name, nameCount, inherited);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeName(@as(*const ID2D1SvgElement, @ptrCast(self)), index, name, nameCount, inherited);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetSpecifiedAttributeNameLength(self: *const T, index: u32, nameLength: ?*u32, inherited: ?*BOOL) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetSpecifiedAttributeNameLength(@ptrCast(*const ID2D1SvgElement, self), index, nameLength, inherited);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetSpecifiedAttributeNameLength(@as(*const ID2D1SvgElement, @ptrCast(self)), index, nameLength, inherited);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_RemoveAttribute(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).RemoveAttribute(@ptrCast(*const ID2D1SvgElement, self), name);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).RemoveAttribute(@as(*const ID2D1SvgElement, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_SetTextValue(self: *const T, name: [*:0]const u16, nameCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetTextValue(@ptrCast(*const ID2D1SvgElement, self), name, nameCount);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetTextValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetTextValue(self: *const T, name: [*:0]u16, nameCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTextValue(@ptrCast(*const ID2D1SvgElement, self), name, nameCount);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTextValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, nameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetTextValueLength(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetTextValueLength(@ptrCast(*const ID2D1SvgElement, self));
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetTextValueLength(@as(*const ID2D1SvgElement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_SetAttributeValue(self: *const T, name: ?[*:0]const u16, value: ?*ID2D1SvgAttribute) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, value);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_SetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*const anyopaque, valueSizeInBytes: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, type_, value, valueSizeInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_SetAttributeValue2(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).SetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).SetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, type_, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetAttributeValue(self: *const T, name: ?[*:0]const u16, riid: ?*const Guid, value: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, riid, value);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, riid, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetAttributeValue1(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_POD_TYPE, value: ?*anyopaque, valueSizeInBytes: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueSizeInBytes);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, type_, value, valueSizeInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetAttributeValue2(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, value: [*:0]u16, valueCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValue(@ptrCast(*const ID2D1SvgElement, self), name, type_, value, valueCount);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValue(@as(*const ID2D1SvgElement, @ptrCast(self)), name, type_, value, valueCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgElement_GetAttributeValueLength(self: *const T, name: ?[*:0]const u16, type_: D2D1_SVG_ATTRIBUTE_STRING_TYPE, valueLength: ?*u32) HRESULT {
-                return @ptrCast(*const ID2D1SvgElement.VTable, self.vtable).GetAttributeValueLength(@ptrCast(*const ID2D1SvgElement, self), name, type_, valueLength);
+                return @as(*const ID2D1SvgElement.VTable, @ptrCast(self.vtable)).GetAttributeValueLength(@as(*const ID2D1SvgElement, @ptrCast(self)), name, type_, valueLength);
             }
         };
     }
@@ -10651,47 +10651,47 @@ pub const ID2D1SvgDocument = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_SetViewportSize(self: *const T, viewportSize: D2D_SIZE_F) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).SetViewportSize(@ptrCast(*const ID2D1SvgDocument, self), viewportSize);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).SetViewportSize(@as(*const ID2D1SvgDocument, @ptrCast(self)), viewportSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_GetViewportSize(self: *const T) D2D_SIZE_F {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).GetViewportSize(@ptrCast(*const ID2D1SvgDocument, self));
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).GetViewportSize(@as(*const ID2D1SvgDocument, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_SetRoot(self: *const T, root: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).SetRoot(@ptrCast(*const ID2D1SvgDocument, self), root);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).SetRoot(@as(*const ID2D1SvgDocument, @ptrCast(self)), root);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_GetRoot(self: *const T, root: ?*?*ID2D1SvgElement) void {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).GetRoot(@ptrCast(*const ID2D1SvgDocument, self), root);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).GetRoot(@as(*const ID2D1SvgDocument, @ptrCast(self)), root);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_FindElementById(self: *const T, id: ?[*:0]const u16, svgElement: ?*?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).FindElementById(@ptrCast(*const ID2D1SvgDocument, self), id, svgElement);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).FindElementById(@as(*const ID2D1SvgDocument, @ptrCast(self)), id, svgElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_Serialize(self: *const T, outputXmlStream: ?*IStream, subtree: ?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Serialize(@ptrCast(*const ID2D1SvgDocument, self), outputXmlStream, subtree);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ID2D1SvgDocument, @ptrCast(self)), outputXmlStream, subtree);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_Deserialize(self: *const T, inputXmlStream: ?*IStream, subtree: ?*?*ID2D1SvgElement) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).Deserialize(@ptrCast(*const ID2D1SvgDocument, self), inputXmlStream, subtree);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const ID2D1SvgDocument, @ptrCast(self)), inputXmlStream, subtree);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_CreatePaint(self: *const T, paintType: D2D1_SVG_PAINT_TYPE, color: ?*const D2D1_COLOR_F, id: ?[*:0]const u16, paint: ?*?*ID2D1SvgPaint) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePaint(@ptrCast(*const ID2D1SvgDocument, self), paintType, color, id, paint);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePaint(@as(*const ID2D1SvgDocument, @ptrCast(self)), paintType, color, id, paint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_CreateStrokeDashArray(self: *const T, dashes: ?[*]const D2D1_SVG_LENGTH, dashesCount: u32, strokeDashArray: ?*?*ID2D1SvgStrokeDashArray) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreateStrokeDashArray(@ptrCast(*const ID2D1SvgDocument, self), dashes, dashesCount, strokeDashArray);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreateStrokeDashArray(@as(*const ID2D1SvgDocument, @ptrCast(self)), dashes, dashesCount, strokeDashArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_CreatePointCollection(self: *const T, points: ?[*]const D2D_POINT_2F, pointsCount: u32, pointCollection: ?*?*ID2D1SvgPointCollection) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePointCollection(@ptrCast(*const ID2D1SvgDocument, self), points, pointsCount, pointCollection);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePointCollection(@as(*const ID2D1SvgDocument, @ptrCast(self)), points, pointsCount, pointCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgDocument_CreatePathData(self: *const T, segmentData: ?[*]const f32, segmentDataCount: u32, commands: ?[*]const D2D1_SVG_PATH_COMMAND, commandsCount: u32, pathData: ?*?*ID2D1SvgPathData) HRESULT {
-                return @ptrCast(*const ID2D1SvgDocument.VTable, self.vtable).CreatePathData(@ptrCast(*const ID2D1SvgDocument, self), segmentData, segmentDataCount, commands, commandsCount, pathData);
+                return @as(*const ID2D1SvgDocument.VTable, @ptrCast(self.vtable)).CreatePathData(@as(*const ID2D1SvgDocument, @ptrCast(self)), segmentData, segmentDataCount, commands, commandsCount, pathData);
             }
         };
     }
@@ -10740,7 +10740,7 @@ pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS = enum(u32) {
         CACHE_ON_DEMAND: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_IMAGE_SOURCE_LOADING_OPTIONS {
-        return @enumFromInt(D2D1_IMAGE_SOURCE_LOADING_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE) else 0) | (if (o.RELEASE_SOURCE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE) else 0) | (if (o.CACHE_ON_DEMAND == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_IMAGE_SOURCE_LOADING_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE) else 0) | (if (o.RELEASE_SOURCE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE) else 0) | (if (o.CACHE_ON_DEMAND == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_NONE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE;
@@ -10758,7 +10758,7 @@ pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS = enum(u32) {
         LOW_QUALITY_PRIMARY_CONVERSION: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS {
-        return @enumFromInt(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE) else 0) | (if (o.LOW_QUALITY_PRIMARY_CONVERSION == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE) else 0) | (if (o.LOW_QUALITY_PRIMARY_CONVERSION == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_NONE = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE;
@@ -10775,7 +10775,7 @@ pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS = enum(u32) {
         DISABLE_DPI_SCALE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS {
-        return @enumFromInt(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE) else 0) | (if (o.DISABLE_DPI_SCALE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE) else 0) | (if (o.DISABLE_DPI_SCALE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_NONE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE;
@@ -10855,7 +10855,7 @@ pub const D2D1_SPRITE_OPTIONS = enum(u32) {
         CLAMP_TO_SOURCE_RECTANGLE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) D2D1_SPRITE_OPTIONS {
-        return @enumFromInt(D2D1_SPRITE_OPTIONS, (if (o.NONE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.NONE) else 0) | (if (o.CLAMP_TO_SOURCE_RECTANGLE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.FORCE_DWORD) else 0));
+        return @as(D2D1_SPRITE_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.NONE) else 0) | (if (o.CLAMP_TO_SOURCE_RECTANGLE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.FORCE_DWORD) else 0)));
     }
 };
 pub const D2D1_SPRITE_OPTIONS_NONE = D2D1_SPRITE_OPTIONS.NONE;
@@ -10951,19 +10951,19 @@ pub const ID2D1InkStyle = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1InkStyle_SetNibTransform(self: *const T, transform: ?*const D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).SetNibTransform(@ptrCast(*const ID2D1InkStyle, self), transform);
+                return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).SetNibTransform(@as(*const ID2D1InkStyle, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1InkStyle_GetNibTransform(self: *const T, transform: ?*D2D_MATRIX_3X2_F) void {
-                return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).GetNibTransform(@ptrCast(*const ID2D1InkStyle, self), transform);
+                return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).GetNibTransform(@as(*const ID2D1InkStyle, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1InkStyle_SetNibShape(self: *const T, nibShape: D2D1_INK_NIB_SHAPE) void {
-                return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).SetNibShape(@ptrCast(*const ID2D1InkStyle, self), nibShape);
+                return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).SetNibShape(@as(*const ID2D1InkStyle, @ptrCast(self)), nibShape);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1InkStyle_GetNibShape(self: *const T) D2D1_INK_NIB_SHAPE {
-                return @ptrCast(*const ID2D1InkStyle.VTable, self.vtable).GetNibShape(@ptrCast(*const ID2D1InkStyle, self));
+                return @as(*const ID2D1InkStyle.VTable, @ptrCast(self.vtable)).GetNibShape(@as(*const ID2D1InkStyle, @ptrCast(self)));
             }
         };
     }
@@ -11098,43 +11098,43 @@ pub const ID2D1Ink = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_SetStartPoint(self: *const T, startPoint: ?*const D2D1_INK_POINT) void {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetStartPoint(@ptrCast(*const ID2D1Ink, self), startPoint);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const ID2D1Ink, @ptrCast(self)), startPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_GetStartPoint(self: *const T) D2D1_INK_POINT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetStartPoint(@ptrCast(*const ID2D1Ink, self));
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const ID2D1Ink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_AddSegments(self: *const T, segments: [*]const D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).AddSegments(@ptrCast(*const ID2D1Ink, self), segments, segmentsCount);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).AddSegments(@as(*const ID2D1Ink, @ptrCast(self)), segments, segmentsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_RemoveSegmentsAtEnd(self: *const T, segmentsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).RemoveSegmentsAtEnd(@ptrCast(*const ID2D1Ink, self), segmentsCount);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).RemoveSegmentsAtEnd(@as(*const ID2D1Ink, @ptrCast(self)), segmentsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_SetSegments(self: *const T, startSegment: u32, segments: [*]const D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetSegments(@ptrCast(*const ID2D1Ink, self), startSegment, segments, segmentsCount);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetSegments(@as(*const ID2D1Ink, @ptrCast(self)), startSegment, segments, segmentsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_SetSegmentAtEnd(self: *const T, segment: ?*const D2D1_INK_BEZIER_SEGMENT) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).SetSegmentAtEnd(@ptrCast(*const ID2D1Ink, self), segment);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).SetSegmentAtEnd(@as(*const ID2D1Ink, @ptrCast(self)), segment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_GetSegmentCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetSegmentCount(@ptrCast(*const ID2D1Ink, self));
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const ID2D1Ink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_GetSegments(self: *const T, startSegment: u32, segments: [*]D2D1_INK_BEZIER_SEGMENT, segmentsCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetSegments(@ptrCast(*const ID2D1Ink, self), startSegment, segments, segmentsCount);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetSegments(@as(*const ID2D1Ink, @ptrCast(self)), startSegment, segments, segmentsCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_StreamAsGeometry(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, flatteningTolerance: f32, geometrySink: ?*ID2D1SimplifiedGeometrySink) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).StreamAsGeometry(@ptrCast(*const ID2D1Ink, self), inkStyle, worldTransform, flatteningTolerance, geometrySink);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).StreamAsGeometry(@as(*const ID2D1Ink, @ptrCast(self)), inkStyle, worldTransform, flatteningTolerance, geometrySink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Ink_GetBounds(self: *const T, inkStyle: ?*ID2D1InkStyle, worldTransform: ?*const D2D_MATRIX_3X2_F, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1Ink.VTable, self.vtable).GetBounds(@ptrCast(*const ID2D1Ink, self), inkStyle, worldTransform, bounds);
+                return @as(*const ID2D1Ink.VTable, @ptrCast(self.vtable)).GetBounds(@as(*const ID2D1Ink, @ptrCast(self)), inkStyle, worldTransform, bounds);
             }
         };
     }
@@ -11176,11 +11176,11 @@ pub const ID2D1GradientMesh = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientMesh_GetPatchCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1GradientMesh.VTable, self.vtable).GetPatchCount(@ptrCast(*const ID2D1GradientMesh, self));
+                return @as(*const ID2D1GradientMesh.VTable, @ptrCast(self.vtable)).GetPatchCount(@as(*const ID2D1GradientMesh, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GradientMesh_GetPatches(self: *const T, startIndex: u32, patches: [*]D2D1_GRADIENT_MESH_PATCH, patchesCount: u32) HRESULT {
-                return @ptrCast(*const ID2D1GradientMesh.VTable, self.vtable).GetPatches(@ptrCast(*const ID2D1GradientMesh, self), startIndex, patches, patchesCount);
+                return @as(*const ID2D1GradientMesh.VTable, @ptrCast(self.vtable)).GetPatches(@as(*const ID2D1GradientMesh, @ptrCast(self)), startIndex, patches, patchesCount);
             }
         };
     }
@@ -11218,11 +11218,11 @@ pub const ID2D1ImageSource = extern struct {
             pub usingnamespace ID2D1Image.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageSource_OfferResources(self: *const T) HRESULT {
-                return @ptrCast(*const ID2D1ImageSource.VTable, self.vtable).OfferResources(@ptrCast(*const ID2D1ImageSource, self));
+                return @as(*const ID2D1ImageSource.VTable, @ptrCast(self.vtable)).OfferResources(@as(*const ID2D1ImageSource, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageSource_TryReclaimResources(self: *const T, resourcesDiscarded: ?*BOOL) HRESULT {
-                return @ptrCast(*const ID2D1ImageSource.VTable, self.vtable).TryReclaimResources(@ptrCast(*const ID2D1ImageSource, self), resourcesDiscarded);
+                return @as(*const ID2D1ImageSource.VTable, @ptrCast(self.vtable)).TryReclaimResources(@as(*const ID2D1ImageSource, @ptrCast(self)), resourcesDiscarded);
             }
         };
     }
@@ -11271,15 +11271,15 @@ pub const ID2D1ImageSourceFromWic = extern struct {
             pub usingnamespace ID2D1ImageSource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageSourceFromWic_EnsureCached(self: *const T, rectangleToFill: ?*const D2D_RECT_U) HRESULT {
-                return @ptrCast(*const ID2D1ImageSourceFromWic.VTable, self.vtable).EnsureCached(@ptrCast(*const ID2D1ImageSourceFromWic, self), rectangleToFill);
+                return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).EnsureCached(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), rectangleToFill);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageSourceFromWic_TrimCache(self: *const T, rectangleToPreserve: ?*const D2D_RECT_U) HRESULT {
-                return @ptrCast(*const ID2D1ImageSourceFromWic.VTable, self.vtable).TrimCache(@ptrCast(*const ID2D1ImageSourceFromWic, self), rectangleToPreserve);
+                return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).TrimCache(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), rectangleToPreserve);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ImageSourceFromWic_GetSource(self: *const T, wicBitmapSource: ?*?*IWICBitmapSource) void {
-                return @ptrCast(*const ID2D1ImageSourceFromWic.VTable, self.vtable).GetSource(@ptrCast(*const ID2D1ImageSourceFromWic, self), wicBitmapSource);
+                return @as(*const ID2D1ImageSourceFromWic.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ID2D1ImageSourceFromWic, @ptrCast(self)), wicBitmapSource);
             }
         };
     }
@@ -11318,11 +11318,11 @@ pub const ID2D1TransformedImageSource = extern struct {
             pub usingnamespace ID2D1Image.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformedImageSource_GetSource(self: *const T, imageSource: ?*?*ID2D1ImageSource) void {
-                return @ptrCast(*const ID2D1TransformedImageSource.VTable, self.vtable).GetSource(@ptrCast(*const ID2D1TransformedImageSource, self), imageSource);
+                return @as(*const ID2D1TransformedImageSource.VTable, @ptrCast(self.vtable)).GetSource(@as(*const ID2D1TransformedImageSource, @ptrCast(self)), imageSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1TransformedImageSource_GetProperties(self: *const T, properties: ?*D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES) void {
-                return @ptrCast(*const ID2D1TransformedImageSource.VTable, self.vtable).GetProperties(@ptrCast(*const ID2D1TransformedImageSource, self), properties);
+                return @as(*const ID2D1TransformedImageSource.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ID2D1TransformedImageSource, @ptrCast(self)), properties);
             }
         };
     }
@@ -11513,47 +11513,47 @@ pub const ID2D1DeviceContext2 = extern struct {
             pub usingnamespace ID2D1DeviceContext1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateInk(self: *const T, startPoint: ?*const D2D1_INK_POINT, ink: ?*?*ID2D1Ink) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateInk(@ptrCast(*const ID2D1DeviceContext2, self), startPoint, ink);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateInk(@as(*const ID2D1DeviceContext2, @ptrCast(self)), startPoint, ink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateInkStyle(self: *const T, inkStyleProperties: ?*const D2D1_INK_STYLE_PROPERTIES, inkStyle: ?*?*ID2D1InkStyle) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateInkStyle(@ptrCast(*const ID2D1DeviceContext2, self), inkStyleProperties, inkStyle);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateInkStyle(@as(*const ID2D1DeviceContext2, @ptrCast(self)), inkStyleProperties, inkStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateGradientMesh(self: *const T, patches: [*]const D2D1_GRADIENT_MESH_PATCH, patchesCount: u32, gradientMesh: ?*?*ID2D1GradientMesh) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateGradientMesh(@ptrCast(*const ID2D1DeviceContext2, self), patches, patchesCount, gradientMesh);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateGradientMesh(@as(*const ID2D1DeviceContext2, @ptrCast(self)), patches, patchesCount, gradientMesh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateImageSourceFromWic(self: *const T, wicBitmapSource: ?*IWICBitmapSource, loadingOptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphaMode: D2D1_ALPHA_MODE, imageSource: ?*?*ID2D1ImageSourceFromWic) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateImageSourceFromWic(@ptrCast(*const ID2D1DeviceContext2, self), wicBitmapSource, loadingOptions, alphaMode, imageSource);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateImageSourceFromWic(@as(*const ID2D1DeviceContext2, @ptrCast(self)), wicBitmapSource, loadingOptions, alphaMode, imageSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateLookupTable3D(@ptrCast(*const ID2D1DeviceContext2, self), precision, extents, data, dataCount, strides, lookupTable);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateLookupTable3D(@as(*const ID2D1DeviceContext2, @ptrCast(self)), precision, extents, data, dataCount, strides, lookupTable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateImageSourceFromDxgi(self: *const T, surfaces: [*]?*IDXGISurface, surfaceCount: u32, colorSpace: DXGI_COLOR_SPACE_TYPE, options: D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, imageSource: ?*?*ID2D1ImageSource) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateImageSourceFromDxgi(@ptrCast(*const ID2D1DeviceContext2, self), surfaces, surfaceCount, colorSpace, options, imageSource);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateImageSourceFromDxgi(@as(*const ID2D1DeviceContext2, @ptrCast(self)), surfaces, surfaceCount, colorSpace, options, imageSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_GetGradientMeshWorldBounds(self: *const T, gradientMesh: ?*ID2D1GradientMesh, pBounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).GetGradientMeshWorldBounds(@ptrCast(*const ID2D1DeviceContext2, self), gradientMesh, pBounds);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).GetGradientMeshWorldBounds(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gradientMesh, pBounds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_DrawInk(self: *const T, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) void {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawInk(@ptrCast(*const ID2D1DeviceContext2, self), ink, brush, inkStyle);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawInk(@as(*const ID2D1DeviceContext2, @ptrCast(self)), ink, brush, inkStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_DrawGradientMesh(self: *const T, gradientMesh: ?*ID2D1GradientMesh) void {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawGradientMesh(@ptrCast(*const ID2D1DeviceContext2, self), gradientMesh);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawGradientMesh(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gradientMesh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) void {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1DeviceContext2, self), gdiMetafile, destinationRectangle, sourceRectangle);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1DeviceContext2, @ptrCast(self)), gdiMetafile, destinationRectangle, sourceRectangle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext2_CreateTransformedImageSource(self: *const T, imageSource: ?*ID2D1ImageSource, properties: ?*const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES, transformedImageSource: ?*?*ID2D1TransformedImageSource) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext2.VTable, self.vtable).CreateTransformedImageSource(@ptrCast(*const ID2D1DeviceContext2, self), imageSource, properties, transformedImageSource);
+                return @as(*const ID2D1DeviceContext2.VTable, @ptrCast(self.vtable)).CreateTransformedImageSource(@as(*const ID2D1DeviceContext2, @ptrCast(self)), imageSource, properties, transformedImageSource);
             }
         };
     }
@@ -11604,15 +11604,15 @@ pub const ID2D1Device2 = extern struct {
             pub usingnamespace ID2D1Device1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device2_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext2: ?*?*ID2D1DeviceContext2) HRESULT {
-                return @ptrCast(*const ID2D1Device2.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device2, self), options, deviceContext2);
+                return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device2, @ptrCast(self)), options, deviceContext2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device2_FlushDeviceContexts(self: *const T, bitmap: ?*ID2D1Bitmap) void {
-                return @ptrCast(*const ID2D1Device2.VTable, self.vtable).FlushDeviceContexts(@ptrCast(*const ID2D1Device2, self), bitmap);
+                return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).FlushDeviceContexts(@as(*const ID2D1Device2, @ptrCast(self)), bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device2_GetDxgiDevice(self: *const T, dxgiDevice: ?*?*IDXGIDevice) HRESULT {
-                return @ptrCast(*const ID2D1Device2.VTable, self.vtable).GetDxgiDevice(@ptrCast(*const ID2D1Device2, self), dxgiDevice);
+                return @as(*const ID2D1Device2.VTable, @ptrCast(self.vtable)).GetDxgiDevice(@as(*const ID2D1Device2, @ptrCast(self)), dxgiDevice);
             }
         };
     }
@@ -11643,7 +11643,7 @@ pub const ID2D1Factory3 = extern struct {
             pub usingnamespace ID2D1Factory2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory3_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice2: ?*?*ID2D1Device2) HRESULT {
-                return @ptrCast(*const ID2D1Factory3.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory3, self), dxgiDevice, d2dDevice2);
+                return @as(*const ID2D1Factory3.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory3, @ptrCast(self)), dxgiDevice, d2dDevice2);
             }
         };
     }
@@ -11701,15 +11701,15 @@ pub const ID2D1CommandSink2 = extern struct {
             pub usingnamespace ID2D1CommandSink1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink2_DrawInk(self: *const T, ink: ?*ID2D1Ink, brush: ?*ID2D1Brush, inkStyle: ?*ID2D1InkStyle) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawInk(@ptrCast(*const ID2D1CommandSink2, self), ink, brush, inkStyle);
+                return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawInk(@as(*const ID2D1CommandSink2, @ptrCast(self)), ink, brush, inkStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink2_DrawGradientMesh(self: *const T, gradientMesh: ?*ID2D1GradientMesh) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawGradientMesh(@ptrCast(*const ID2D1CommandSink2, self), gradientMesh);
+                return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawGradientMesh(@as(*const ID2D1CommandSink2, @ptrCast(self)), gradientMesh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink2_DrawGdiMetafile(self: *const T, gdiMetafile: ?*ID2D1GdiMetafile, destinationRectangle: ?*const D2D_RECT_F, sourceRectangle: ?*const D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink2.VTable, self.vtable).DrawGdiMetafile(@ptrCast(*const ID2D1CommandSink2, self), gdiMetafile, destinationRectangle, sourceRectangle);
+                return @as(*const ID2D1CommandSink2.VTable, @ptrCast(self.vtable)).DrawGdiMetafile(@as(*const ID2D1CommandSink2, @ptrCast(self)), gdiMetafile, destinationRectangle, sourceRectangle);
             }
         };
     }
@@ -11751,11 +11751,11 @@ pub const ID2D1GdiMetafile1 = extern struct {
             pub usingnamespace ID2D1GdiMetafile.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafile1_GetDpi(self: *const T, dpiX: ?*f32, dpiY: ?*f32) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafile1.VTable, self.vtable).GetDpi(@ptrCast(*const ID2D1GdiMetafile1, self), dpiX, dpiY);
+                return @as(*const ID2D1GdiMetafile1.VTable, @ptrCast(self.vtable)).GetDpi(@as(*const ID2D1GdiMetafile1, @ptrCast(self)), dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafile1_GetSourceBounds(self: *const T, bounds: ?*D2D_RECT_F) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafile1.VTable, self.vtable).GetSourceBounds(@ptrCast(*const ID2D1GdiMetafile1, self), bounds);
+                return @as(*const ID2D1GdiMetafile1.VTable, @ptrCast(self.vtable)).GetSourceBounds(@as(*const ID2D1GdiMetafile1, @ptrCast(self)), bounds);
             }
         };
     }
@@ -11791,7 +11791,7 @@ pub const ID2D1GdiMetafileSink1 = extern struct {
             pub usingnamespace ID2D1GdiMetafileSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1GdiMetafileSink1_ProcessRecord(self: *const T, recordType: u32, recordData: ?*const anyopaque, recordDataSize: u32, flags: u32) HRESULT {
-                return @ptrCast(*const ID2D1GdiMetafileSink1.VTable, self.vtable).ProcessRecord(@ptrCast(*const ID2D1GdiMetafileSink1, self), recordType, recordData, recordDataSize, flags);
+                return @as(*const ID2D1GdiMetafileSink1.VTable, @ptrCast(self.vtable)).ProcessRecord(@as(*const ID2D1GdiMetafileSink1, @ptrCast(self)), recordType, recordData, recordDataSize, flags);
             }
         };
     }
@@ -11900,23 +11900,23 @@ pub const ID2D1SpriteBatch = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SpriteBatch_AddSprites(self: *const T, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) HRESULT {
-                return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).AddSprites(@ptrCast(*const ID2D1SpriteBatch, self), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
+                return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).AddSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SpriteBatch_SetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?*const D2D_RECT_F, sourceRectangles: ?*const D2D_RECT_U, colors: ?*const D2D1_COLOR_F, transforms: ?*const D2D_MATRIX_3X2_F, destinationRectanglesStride: u32, sourceRectanglesStride: u32, colorsStride: u32, transformsStride: u32) HRESULT {
-                return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).SetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
+                return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).SetSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms, destinationRectanglesStride, sourceRectanglesStride, colorsStride, transformsStride);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SpriteBatch_GetSprites(self: *const T, startIndex: u32, spriteCount: u32, destinationRectangles: ?[*]D2D_RECT_F, sourceRectangles: ?[*]D2D_RECT_U, colors: ?[*]D2D1_COLOR_F, transforms: ?[*]D2D_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).GetSprites(@ptrCast(*const ID2D1SpriteBatch, self), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
+                return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).GetSprites(@as(*const ID2D1SpriteBatch, @ptrCast(self)), startIndex, spriteCount, destinationRectangles, sourceRectangles, colors, transforms);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SpriteBatch_GetSpriteCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).GetSpriteCount(@ptrCast(*const ID2D1SpriteBatch, self));
+                return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).GetSpriteCount(@as(*const ID2D1SpriteBatch, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SpriteBatch_Clear(self: *const T) void {
-                return @ptrCast(*const ID2D1SpriteBatch.VTable, self.vtable).Clear(@ptrCast(*const ID2D1SpriteBatch, self));
+                return @as(*const ID2D1SpriteBatch.VTable, @ptrCast(self.vtable)).Clear(@as(*const ID2D1SpriteBatch, @ptrCast(self)));
             }
         };
     }
@@ -11965,11 +11965,11 @@ pub const ID2D1DeviceContext3 = extern struct {
             pub usingnamespace ID2D1DeviceContext2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext3_CreateSpriteBatch(self: *const T, spriteBatch: ?*?*ID2D1SpriteBatch) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext3.VTable, self.vtable).CreateSpriteBatch(@ptrCast(*const ID2D1DeviceContext3, self), spriteBatch);
+                return @as(*const ID2D1DeviceContext3.VTable, @ptrCast(self.vtable)).CreateSpriteBatch(@as(*const ID2D1DeviceContext3, @ptrCast(self)), spriteBatch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext3_DrawSpriteBatch(self: *const T, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) void {
-                return @ptrCast(*const ID2D1DeviceContext3.VTable, self.vtable).DrawSpriteBatch(@ptrCast(*const ID2D1DeviceContext3, self), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
+                return @as(*const ID2D1DeviceContext3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1DeviceContext3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
             }
         };
     }
@@ -12000,7 +12000,7 @@ pub const ID2D1Device3 = extern struct {
             pub usingnamespace ID2D1Device2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device3_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext3: ?*?*ID2D1DeviceContext3) HRESULT {
-                return @ptrCast(*const ID2D1Device3.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device3, self), options, deviceContext3);
+                return @as(*const ID2D1Device3.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device3, @ptrCast(self)), options, deviceContext3);
             }
         };
     }
@@ -12031,7 +12031,7 @@ pub const ID2D1Factory4 = extern struct {
             pub usingnamespace ID2D1Factory3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory4_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice3: ?*?*ID2D1Device3) HRESULT {
-                return @ptrCast(*const ID2D1Factory4.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory4, self), dxgiDevice, d2dDevice3);
+                return @as(*const ID2D1Factory4.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory4, @ptrCast(self)), dxgiDevice, d2dDevice3);
             }
         };
     }
@@ -12070,7 +12070,7 @@ pub const ID2D1CommandSink3 = extern struct {
             pub usingnamespace ID2D1CommandSink2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink3_DrawSpriteBatch(self: *const T, spriteBatch: ?*ID2D1SpriteBatch, startIndex: u32, spriteCount: u32, bitmap: ?*ID2D1Bitmap, interpolationMode: D2D1_BITMAP_INTERPOLATION_MODE, spriteOptions: D2D1_SPRITE_OPTIONS) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink3.VTable, self.vtable).DrawSpriteBatch(@ptrCast(*const ID2D1CommandSink3, self), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
+                return @as(*const ID2D1CommandSink3.VTable, @ptrCast(self.vtable)).DrawSpriteBatch(@as(*const ID2D1CommandSink3, @ptrCast(self)), spriteBatch, startIndex, spriteCount, bitmap, interpolationMode, spriteOptions);
             }
         };
     }
@@ -12153,23 +12153,23 @@ pub const ID2D1SvgGlyphStyle = extern struct {
             pub usingnamespace ID2D1Resource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgGlyphStyle_SetFill(self: *const T, brush: ?*ID2D1Brush) HRESULT {
-                return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).SetFill(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush);
+                return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).SetFill(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgGlyphStyle_GetFill(self: *const T, brush: ?*?*ID2D1Brush) void {
-                return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetFill(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush);
+                return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetFill(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgGlyphStyle_SetStroke(self: *const T, brush: ?*ID2D1Brush, strokeWidth: f32, dashes: ?[*]const f32, dashesCount: u32, dashOffset: f32) HRESULT {
-                return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).SetStroke(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush, strokeWidth, dashes, dashesCount, dashOffset);
+                return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).SetStroke(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush, strokeWidth, dashes, dashesCount, dashOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgGlyphStyle_GetStrokeDashesCount(self: *const T) u32 {
-                return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetStrokeDashesCount(@ptrCast(*const ID2D1SvgGlyphStyle, self));
+                return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetStrokeDashesCount(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1SvgGlyphStyle_GetStroke(self: *const T, brush: ?*?*ID2D1Brush, strokeWidth: ?*f32, dashes: ?[*]f32, dashesCount: u32, dashOffset: ?*f32) void {
-                return @ptrCast(*const ID2D1SvgGlyphStyle.VTable, self.vtable).GetStroke(@ptrCast(*const ID2D1SvgGlyphStyle, self), brush, strokeWidth, dashes, dashesCount, dashOffset);
+                return @as(*const ID2D1SvgGlyphStyle.VTable, @ptrCast(self.vtable)).GetStroke(@as(*const ID2D1SvgGlyphStyle, @ptrCast(self)), brush, strokeWidth, dashes, dashesCount, dashOffset);
             }
         };
     }
@@ -12342,31 +12342,31 @@ pub const ID2D1DeviceContext4 = extern struct {
             pub usingnamespace ID2D1DeviceContext3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_CreateSvgGlyphStyle(self: *const T, svgGlyphStyle: ?*?*ID2D1SvgGlyphStyle) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).CreateSvgGlyphStyle(@ptrCast(*const ID2D1DeviceContext4, self), svgGlyphStyle);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).CreateSvgGlyphStyle(@as(*const ID2D1DeviceContext4, @ptrCast(self)), svgGlyphStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_DrawText(self: *const T, string: [*:0]const u16, stringLength: u32, textFormat: ?*IDWriteTextFormat, layoutRect: ?*const D2D_RECT_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS, measuringMode: DWRITE_MEASURING_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawText(@ptrCast(*const ID2D1DeviceContext4, self), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawText(@as(*const ID2D1DeviceContext4, @ptrCast(self)), string, stringLength, textFormat, layoutRect, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_DrawTextLayout(self: *const T, origin: D2D_POINT_2F, textLayout: ?*IDWriteTextLayout, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, options: D2D1_DRAW_TEXT_OPTIONS) void {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawTextLayout(@ptrCast(*const ID2D1DeviceContext4, self), origin, textLayout, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawTextLayout(@as(*const ID2D1DeviceContext4, @ptrCast(self)), origin, textLayout, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, options);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_DrawColorBitmapGlyphRun(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, measuringMode: DWRITE_MEASURING_MODE, bitmapSnapOption: D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION) void {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawColorBitmapGlyphRun(@ptrCast(*const ID2D1DeviceContext4, self), glyphImageFormat, baselineOrigin, glyphRun, measuringMode, bitmapSnapOption);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawColorBitmapGlyphRun(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphImageFormat, baselineOrigin, glyphRun, measuringMode, bitmapSnapOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_DrawSvgGlyphRun(self: *const T, baselineOrigin: D2D_POINT_2F, glyphRun: ?*const DWRITE_GLYPH_RUN, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, measuringMode: DWRITE_MEASURING_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).DrawSvgGlyphRun(@ptrCast(*const ID2D1DeviceContext4, self), baselineOrigin, glyphRun, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, measuringMode);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).DrawSvgGlyphRun(@as(*const ID2D1DeviceContext4, @ptrCast(self)), baselineOrigin, glyphRun, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, measuringMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_GetColorBitmapGlyphImage(self: *const T, glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, dpiX: f32, dpiY: f32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1Image) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).GetColorBitmapGlyphImage(@ptrCast(*const ID2D1DeviceContext4, self), glyphImageFormat, glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, dpiX, dpiY, glyphTransform, glyphImage);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).GetColorBitmapGlyphImage(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphImageFormat, glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, dpiX, dpiY, glyphTransform, glyphImage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext4_GetSvgGlyphImage(self: *const T, glyphOrigin: D2D_POINT_2F, fontFace: ?*IDWriteFontFace, fontEmSize: f32, glyphIndex: u16, isSideways: BOOL, worldTransform: ?*const D2D_MATRIX_3X2_F, defaultFillBrush: ?*ID2D1Brush, svgGlyphStyle: ?*ID2D1SvgGlyphStyle, colorPaletteIndex: u32, glyphTransform: ?*D2D_MATRIX_3X2_F, glyphImage: ?*?*ID2D1CommandList) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext4.VTable, self.vtable).GetSvgGlyphImage(@ptrCast(*const ID2D1DeviceContext4, self), glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, glyphTransform, glyphImage);
+                return @as(*const ID2D1DeviceContext4.VTable, @ptrCast(self.vtable)).GetSvgGlyphImage(@as(*const ID2D1DeviceContext4, @ptrCast(self)), glyphOrigin, fontFace, fontEmSize, glyphIndex, isSideways, worldTransform, defaultFillBrush, svgGlyphStyle, colorPaletteIndex, glyphTransform, glyphImage);
             }
         };
     }
@@ -12415,15 +12415,15 @@ pub const ID2D1Device4 = extern struct {
             pub usingnamespace ID2D1Device3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device4_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext4: ?*?*ID2D1DeviceContext4) HRESULT {
-                return @ptrCast(*const ID2D1Device4.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device4, self), options, deviceContext4);
+                return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device4, @ptrCast(self)), options, deviceContext4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device4_SetMaximumColorGlyphCacheMemory(self: *const T, maximumInBytes: u64) void {
-                return @ptrCast(*const ID2D1Device4.VTable, self.vtable).SetMaximumColorGlyphCacheMemory(@ptrCast(*const ID2D1Device4, self), maximumInBytes);
+                return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).SetMaximumColorGlyphCacheMemory(@as(*const ID2D1Device4, @ptrCast(self)), maximumInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device4_GetMaximumColorGlyphCacheMemory(self: *const T) u64 {
-                return @ptrCast(*const ID2D1Device4.VTable, self.vtable).GetMaximumColorGlyphCacheMemory(@ptrCast(*const ID2D1Device4, self));
+                return @as(*const ID2D1Device4.VTable, @ptrCast(self.vtable)).GetMaximumColorGlyphCacheMemory(@as(*const ID2D1Device4, @ptrCast(self)));
             }
         };
     }
@@ -12454,7 +12454,7 @@ pub const ID2D1Factory5 = extern struct {
             pub usingnamespace ID2D1Factory4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory5_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice4: ?*?*ID2D1Device4) HRESULT {
-                return @ptrCast(*const ID2D1Factory5.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory5, self), dxgiDevice, d2dDevice4);
+                return @as(*const ID2D1Factory5.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory5, @ptrCast(self)), dxgiDevice, d2dDevice4);
             }
         };
     }
@@ -12483,7 +12483,7 @@ pub const ID2D1CommandSink4 = extern struct {
             pub usingnamespace ID2D1CommandSink3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink4_SetPrimitiveBlend2(self: *const T, primitiveBlend: D2D1_PRIMITIVE_BLEND) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink4.VTable, self.vtable).SetPrimitiveBlend2(@ptrCast(*const ID2D1CommandSink4, self), primitiveBlend);
+                return @as(*const ID2D1CommandSink4.VTable, @ptrCast(self.vtable)).SetPrimitiveBlend2(@as(*const ID2D1CommandSink4, @ptrCast(self)), primitiveBlend);
             }
         };
     }
@@ -12528,15 +12528,15 @@ pub const ID2D1ColorContext1 = extern struct {
             pub usingnamespace ID2D1ColorContext.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext1_GetColorContextType(self: *const T) D2D1_COLOR_CONTEXT_TYPE {
-                return @ptrCast(*const ID2D1ColorContext1.VTable, self.vtable).GetColorContextType(@ptrCast(*const ID2D1ColorContext1, self));
+                return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetColorContextType(@as(*const ID2D1ColorContext1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext1_GetDXGIColorSpace(self: *const T) DXGI_COLOR_SPACE_TYPE {
-                return @ptrCast(*const ID2D1ColorContext1.VTable, self.vtable).GetDXGIColorSpace(@ptrCast(*const ID2D1ColorContext1, self));
+                return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetDXGIColorSpace(@as(*const ID2D1ColorContext1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1ColorContext1_GetSimpleColorProfile(self: *const T, simpleProfile: ?*D2D1_SIMPLE_COLOR_PROFILE) HRESULT {
-                return @ptrCast(*const ID2D1ColorContext1.VTable, self.vtable).GetSimpleColorProfile(@ptrCast(*const ID2D1ColorContext1, self), simpleProfile);
+                return @as(*const ID2D1ColorContext1.VTable, @ptrCast(self.vtable)).GetSimpleColorProfile(@as(*const ID2D1ColorContext1, @ptrCast(self)), simpleProfile);
             }
         };
     }
@@ -12603,19 +12603,19 @@ pub const ID2D1DeviceContext5 = extern struct {
             pub usingnamespace ID2D1DeviceContext4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext5_CreateSvgDocument(self: *const T, inputXmlStream: ?*IStream, viewportSize: D2D_SIZE_F, svgDocument: ?*?*ID2D1SvgDocument) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateSvgDocument(@ptrCast(*const ID2D1DeviceContext5, self), inputXmlStream, viewportSize, svgDocument);
+                return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateSvgDocument(@as(*const ID2D1DeviceContext5, @ptrCast(self)), inputXmlStream, viewportSize, svgDocument);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext5_DrawSvgDocument(self: *const T, svgDocument: ?*ID2D1SvgDocument) void {
-                return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).DrawSvgDocument(@ptrCast(*const ID2D1DeviceContext5, self), svgDocument);
+                return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).DrawSvgDocument(@as(*const ID2D1DeviceContext5, @ptrCast(self)), svgDocument);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext5_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateColorContextFromDxgiColorSpace(@ptrCast(*const ID2D1DeviceContext5, self), colorSpace, colorContext);
+                return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateColorContextFromDxgiColorSpace(@as(*const ID2D1DeviceContext5, @ptrCast(self)), colorSpace, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext5_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) HRESULT {
-                return @ptrCast(*const ID2D1DeviceContext5.VTable, self.vtable).CreateColorContextFromSimpleColorProfile(@ptrCast(*const ID2D1DeviceContext5, self), simpleProfile, colorContext);
+                return @as(*const ID2D1DeviceContext5.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1DeviceContext5, @ptrCast(self)), simpleProfile, colorContext);
             }
         };
     }
@@ -12646,7 +12646,7 @@ pub const ID2D1Device5 = extern struct {
             pub usingnamespace ID2D1Device4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device5_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext5: ?*?*ID2D1DeviceContext5) HRESULT {
-                return @ptrCast(*const ID2D1Device5.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device5, self), options, deviceContext5);
+                return @as(*const ID2D1Device5.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device5, @ptrCast(self)), options, deviceContext5);
             }
         };
     }
@@ -12677,7 +12677,7 @@ pub const ID2D1Factory6 = extern struct {
             pub usingnamespace ID2D1Factory5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory6_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice5: ?*?*ID2D1Device5) HRESULT {
-                return @ptrCast(*const ID2D1Factory6.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory6, self), dxgiDevice, d2dDevice5);
+                return @as(*const ID2D1Factory6.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory6, @ptrCast(self)), dxgiDevice, d2dDevice5);
             }
         };
     }
@@ -12714,7 +12714,7 @@ pub const ID2D1CommandSink5 = extern struct {
             pub usingnamespace ID2D1CommandSink4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1CommandSink5_BlendImage(self: *const T, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) HRESULT {
-                return @ptrCast(*const ID2D1CommandSink5.VTable, self.vtable).BlendImage(@ptrCast(*const ID2D1CommandSink5, self), image, blendMode, targetOffset, imageRectangle, interpolationMode);
+                return @as(*const ID2D1CommandSink5.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1CommandSink5, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
             }
         };
     }
@@ -12751,7 +12751,7 @@ pub const ID2D1DeviceContext6 = extern struct {
             pub usingnamespace ID2D1DeviceContext5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1DeviceContext6_BlendImage(self: *const T, image: ?*ID2D1Image, blendMode: D2D1_BLEND_MODE, targetOffset: ?*const D2D_POINT_2F, imageRectangle: ?*const D2D_RECT_F, interpolationMode: D2D1_INTERPOLATION_MODE) void {
-                return @ptrCast(*const ID2D1DeviceContext6.VTable, self.vtable).BlendImage(@ptrCast(*const ID2D1DeviceContext6, self), image, blendMode, targetOffset, imageRectangle, interpolationMode);
+                return @as(*const ID2D1DeviceContext6.VTable, @ptrCast(self.vtable)).BlendImage(@as(*const ID2D1DeviceContext6, @ptrCast(self)), image, blendMode, targetOffset, imageRectangle, interpolationMode);
             }
         };
     }
@@ -12782,7 +12782,7 @@ pub const ID2D1Device6 = extern struct {
             pub usingnamespace ID2D1Device5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Device6_CreateDeviceContext(self: *const T, options: D2D1_DEVICE_CONTEXT_OPTIONS, deviceContext6: ?*?*ID2D1DeviceContext6) HRESULT {
-                return @ptrCast(*const ID2D1Device6.VTable, self.vtable).CreateDeviceContext(@ptrCast(*const ID2D1Device6, self), options, deviceContext6);
+                return @as(*const ID2D1Device6.VTable, @ptrCast(self.vtable)).CreateDeviceContext(@as(*const ID2D1Device6, @ptrCast(self)), options, deviceContext6);
             }
         };
     }
@@ -12813,7 +12813,7 @@ pub const ID2D1Factory7 = extern struct {
             pub usingnamespace ID2D1Factory6.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1Factory7_CreateDevice(self: *const T, dxgiDevice: ?*IDXGIDevice, d2dDevice6: ?*?*ID2D1Device6) HRESULT {
-                return @ptrCast(*const ID2D1Factory7.VTable, self.vtable).CreateDevice(@ptrCast(*const ID2D1Factory7, self), dxgiDevice, d2dDevice6);
+                return @as(*const ID2D1Factory7.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const ID2D1Factory7, @ptrCast(self)), dxgiDevice, d2dDevice6);
             }
         };
     }
@@ -12852,7 +12852,7 @@ pub const ID2D1EffectContext1 = extern struct {
             pub usingnamespace ID2D1EffectContext.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext1_CreateLookupTable3D(self: *const T, precision: D2D1_BUFFER_PRECISION, extents: *[3]u32, data: [*:0]const u8, dataCount: u32, strides: *[2]u32, lookupTable: ?*?*ID2D1LookupTable3D) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext1.VTable, self.vtable).CreateLookupTable3D(@ptrCast(*const ID2D1EffectContext1, self), precision, extents, data, dataCount, strides, lookupTable);
+                return @as(*const ID2D1EffectContext1.VTable, @ptrCast(self.vtable)).CreateLookupTable3D(@as(*const ID2D1EffectContext1, @ptrCast(self)), precision, extents, data, dataCount, strides, lookupTable);
             }
         };
     }
@@ -12895,11 +12895,11 @@ pub const ID2D1EffectContext2 = extern struct {
             pub usingnamespace ID2D1EffectContext1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext2_CreateColorContextFromDxgiColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE, colorContext: ?*?*ID2D1ColorContext1) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext2.VTable, self.vtable).CreateColorContextFromDxgiColorSpace(@ptrCast(*const ID2D1EffectContext2, self), colorSpace, colorContext);
+                return @as(*const ID2D1EffectContext2.VTable, @ptrCast(self.vtable)).CreateColorContextFromDxgiColorSpace(@as(*const ID2D1EffectContext2, @ptrCast(self)), colorSpace, colorContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID2D1EffectContext2_CreateColorContextFromSimpleColorProfile(self: *const T, simpleProfile: ?*const D2D1_SIMPLE_COLOR_PROFILE, colorContext: ?*?*ID2D1ColorContext1) HRESULT {
-                return @ptrCast(*const ID2D1EffectContext2.VTable, self.vtable).CreateColorContextFromSimpleColorProfile(@ptrCast(*const ID2D1EffectContext2, self), simpleProfile, colorContext);
+                return @as(*const ID2D1EffectContext2.VTable, @ptrCast(self.vtable)).CreateColorContextFromSimpleColorProfile(@as(*const ID2D1EffectContext2, @ptrCast(self)), simpleProfile, colorContext);
             }
         };
     }

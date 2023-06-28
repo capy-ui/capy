@@ -158,15 +158,15 @@ pub const IOpcUri = extern struct {
             pub usingnamespace IUri.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcUri_GetRelationshipsPartUri(self: *const T, relationshipPartUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcUri.VTable, self.vtable).GetRelationshipsPartUri(@ptrCast(*const IOpcUri, self), relationshipPartUri);
+                return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).GetRelationshipsPartUri(@as(*const IOpcUri, @ptrCast(self)), relationshipPartUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcUri_GetRelativeUri(self: *const T, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) HRESULT {
-                return @ptrCast(*const IOpcUri.VTable, self.vtable).GetRelativeUri(@ptrCast(*const IOpcUri, self), targetPartUri, relativeUri);
+                return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).GetRelativeUri(@as(*const IOpcUri, @ptrCast(self)), targetPartUri, relativeUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcUri_CombinePartUri(self: *const T, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcUri.VTable, self.vtable).CombinePartUri(@ptrCast(*const IOpcUri, self), relativeUri, combinedUri);
+                return @as(*const IOpcUri.VTable, @ptrCast(self.vtable)).CombinePartUri(@as(*const IOpcUri, @ptrCast(self)), relativeUri, combinedUri);
             }
         };
     }
@@ -218,15 +218,15 @@ pub const IOpcPartUri = extern struct {
             pub usingnamespace IOpcUri.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartUri_ComparePartUri(self: *const T, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) HRESULT {
-                return @ptrCast(*const IOpcPartUri.VTable, self.vtable).ComparePartUri(@ptrCast(*const IOpcPartUri, self), partUri, comparisonResult);
+                return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).ComparePartUri(@as(*const IOpcPartUri, @ptrCast(self)), partUri, comparisonResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartUri_GetSourceUri(self: *const T, sourceUri: ?*?*IOpcUri) HRESULT {
-                return @ptrCast(*const IOpcPartUri.VTable, self.vtable).GetSourceUri(@ptrCast(*const IOpcPartUri, self), sourceUri);
+                return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcPartUri, @ptrCast(self)), sourceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartUri_IsRelationshipsPartUri(self: *const T, isRelationshipUri: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcPartUri.VTable, self.vtable).IsRelationshipsPartUri(@ptrCast(*const IOpcPartUri, self), isRelationshipUri);
+                return @as(*const IOpcPartUri.VTable, @ptrCast(self.vtable)).IsRelationshipsPartUri(@as(*const IOpcPartUri, @ptrCast(self)), isRelationshipUri);
             }
         };
     }
@@ -270,7 +270,7 @@ pub const OPC_READ_FLAGS = enum(u32) {
         VALIDATE_ON_LOAD: u1 = 0,
         CACHE_ON_ACCESS: u1 = 0,
     }) OPC_READ_FLAGS {
-        return @enumFromInt(OPC_READ_FLAGS, (if (o.READ_DEFAULT == 1) @intFromEnum(OPC_READ_FLAGS.READ_DEFAULT) else 0) | (if (o.VALIDATE_ON_LOAD == 1) @intFromEnum(OPC_READ_FLAGS.VALIDATE_ON_LOAD) else 0) | (if (o.CACHE_ON_ACCESS == 1) @intFromEnum(OPC_READ_FLAGS.CACHE_ON_ACCESS) else 0));
+        return @as(OPC_READ_FLAGS, @enumFromInt((if (o.READ_DEFAULT == 1) @intFromEnum(OPC_READ_FLAGS.READ_DEFAULT) else 0) | (if (o.VALIDATE_ON_LOAD == 1) @intFromEnum(OPC_READ_FLAGS.VALIDATE_ON_LOAD) else 0) | (if (o.CACHE_ON_ACCESS == 1) @intFromEnum(OPC_READ_FLAGS.CACHE_ON_ACCESS) else 0)));
     }
 };
 pub const OPC_READ_DEFAULT = OPC_READ_FLAGS.READ_DEFAULT;
@@ -285,7 +285,7 @@ pub const OPC_WRITE_FLAGS = enum(u32) {
         DEFAULT: u1 = 0,
         FORCE_ZIP32: u1 = 0,
     }) OPC_WRITE_FLAGS {
-        return @enumFromInt(OPC_WRITE_FLAGS, (if (o.DEFAULT == 1) @intFromEnum(OPC_WRITE_FLAGS.DEFAULT) else 0) | (if (o.FORCE_ZIP32 == 1) @intFromEnum(OPC_WRITE_FLAGS.FORCE_ZIP32) else 0));
+        return @as(OPC_WRITE_FLAGS, @enumFromInt((if (o.DEFAULT == 1) @intFromEnum(OPC_WRITE_FLAGS.DEFAULT) else 0) | (if (o.FORCE_ZIP32 == 1) @intFromEnum(OPC_WRITE_FLAGS.FORCE_ZIP32) else 0)));
     }
 };
 pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS.DEFAULT;
@@ -378,11 +378,11 @@ pub const IOpcPackage = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPackage_GetPartSet(self: *const T, partSet: ?*?*IOpcPartSet) HRESULT {
-                return @ptrCast(*const IOpcPackage.VTable, self.vtable).GetPartSet(@ptrCast(*const IOpcPackage, self), partSet);
+                return @as(*const IOpcPackage.VTable, @ptrCast(self.vtable)).GetPartSet(@as(*const IOpcPackage, @ptrCast(self)), partSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPackage_GetRelationshipSet(self: *const T, relationshipSet: ?*?*IOpcRelationshipSet) HRESULT {
-                return @ptrCast(*const IOpcPackage.VTable, self.vtable).GetRelationshipSet(@ptrCast(*const IOpcPackage, self), relationshipSet);
+                return @as(*const IOpcPackage.VTable, @ptrCast(self.vtable)).GetRelationshipSet(@as(*const IOpcPackage, @ptrCast(self)), relationshipSet);
             }
         };
     }
@@ -452,23 +452,23 @@ pub const IOpcPart = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPart_GetRelationshipSet(self: *const T, relationshipSet: ?*?*IOpcRelationshipSet) HRESULT {
-                return @ptrCast(*const IOpcPart.VTable, self.vtable).GetRelationshipSet(@ptrCast(*const IOpcPart, self), relationshipSet);
+                return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetRelationshipSet(@as(*const IOpcPart, @ptrCast(self)), relationshipSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPart_GetContentStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IOpcPart.VTable, self.vtable).GetContentStream(@ptrCast(*const IOpcPart, self), stream);
+                return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetContentStream(@as(*const IOpcPart, @ptrCast(self)), stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPart_GetName(self: *const T, name: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcPart.VTable, self.vtable).GetName(@ptrCast(*const IOpcPart, self), name);
+                return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetName(@as(*const IOpcPart, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPart_GetContentType(self: *const T, contentType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcPart.VTable, self.vtable).GetContentType(@ptrCast(*const IOpcPart, self), contentType);
+                return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IOpcPart, @ptrCast(self)), contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPart_GetCompressionOptions(self: *const T, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) HRESULT {
-                return @ptrCast(*const IOpcPart.VTable, self.vtable).GetCompressionOptions(@ptrCast(*const IOpcPart, self), compressionOptions);
+                return @as(*const IOpcPart.VTable, @ptrCast(self.vtable)).GetCompressionOptions(@as(*const IOpcPart, @ptrCast(self)), compressionOptions);
             }
         };
     }
@@ -538,23 +538,23 @@ pub const IOpcRelationship = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationship_GetId(self: *const T, relationshipIdentifier: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcRelationship.VTable, self.vtable).GetId(@ptrCast(*const IOpcRelationship, self), relationshipIdentifier);
+                return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetId(@as(*const IOpcRelationship, @ptrCast(self)), relationshipIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationship_GetRelationshipType(self: *const T, relationshipType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcRelationship.VTable, self.vtable).GetRelationshipType(@ptrCast(*const IOpcRelationship, self), relationshipType);
+                return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetRelationshipType(@as(*const IOpcRelationship, @ptrCast(self)), relationshipType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationship_GetSourceUri(self: *const T, sourceUri: ?*?*IOpcUri) HRESULT {
-                return @ptrCast(*const IOpcRelationship.VTable, self.vtable).GetSourceUri(@ptrCast(*const IOpcRelationship, self), sourceUri);
+                return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcRelationship, @ptrCast(self)), sourceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationship_GetTargetUri(self: *const T, targetUri: ?*?*IUri) HRESULT {
-                return @ptrCast(*const IOpcRelationship.VTable, self.vtable).GetTargetUri(@ptrCast(*const IOpcRelationship, self), targetUri);
+                return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetTargetUri(@as(*const IOpcRelationship, @ptrCast(self)), targetUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationship_GetTargetMode(self: *const T, targetMode: ?*OPC_URI_TARGET_MODE) HRESULT {
-                return @ptrCast(*const IOpcRelationship.VTable, self.vtable).GetTargetMode(@ptrCast(*const IOpcRelationship, self), targetMode);
+                return @as(*const IOpcRelationship.VTable, @ptrCast(self.vtable)).GetTargetMode(@as(*const IOpcRelationship, @ptrCast(self)), targetMode);
             }
         };
     }
@@ -634,23 +634,23 @@ pub const IOpcPartSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartSet_GetPart(self: *const T, name: ?*IOpcPartUri, part: ?*?*IOpcPart) HRESULT {
-                return @ptrCast(*const IOpcPartSet.VTable, self.vtable).GetPart(@ptrCast(*const IOpcPartSet, self), name, part);
+                return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).GetPart(@as(*const IOpcPartSet, @ptrCast(self)), name, part);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartSet_CreatePart(self: *const T, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) HRESULT {
-                return @ptrCast(*const IOpcPartSet.VTable, self.vtable).CreatePart(@ptrCast(*const IOpcPartSet, self), name, contentType, compressionOptions, part);
+                return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).CreatePart(@as(*const IOpcPartSet, @ptrCast(self)), name, contentType, compressionOptions, part);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartSet_DeletePart(self: *const T, name: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcPartSet.VTable, self.vtable).DeletePart(@ptrCast(*const IOpcPartSet, self), name);
+                return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).DeletePart(@as(*const IOpcPartSet, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartSet_PartExists(self: *const T, name: ?*IOpcPartUri, partExists: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcPartSet.VTable, self.vtable).PartExists(@ptrCast(*const IOpcPartSet, self), name, partExists);
+                return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).PartExists(@as(*const IOpcPartSet, @ptrCast(self)), name, partExists);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartSet_GetEnumerator(self: *const T, partEnumerator: ?*?*IOpcPartEnumerator) HRESULT {
-                return @ptrCast(*const IOpcPartSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcPartSet, self), partEnumerator);
+                return @as(*const IOpcPartSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcPartSet, @ptrCast(self)), partEnumerator);
             }
         };
     }
@@ -754,31 +754,31 @@ pub const IOpcRelationshipSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_GetRelationship(self: *const T, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).GetRelationship(@ptrCast(*const IOpcRelationshipSet, self), relationshipIdentifier, relationship);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationship);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_CreateRelationship(self: *const T, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).CreateRelationship(@ptrCast(*const IOpcRelationshipSet, self), relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).CreateRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_DeleteRelationship(self: *const T, relationshipIdentifier: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).DeleteRelationship(@ptrCast(*const IOpcRelationshipSet, self), relationshipIdentifier);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).DeleteRelationship(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_RelationshipExists(self: *const T, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).RelationshipExists(@ptrCast(*const IOpcRelationshipSet, self), relationshipIdentifier, relationshipExists);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).RelationshipExists(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipIdentifier, relationshipExists);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_GetEnumerator(self: *const T, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcRelationshipSet, self), relationshipEnumerator);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_GetEnumeratorForType(self: *const T, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).GetEnumeratorForType(@ptrCast(*const IOpcRelationshipSet, self), relationshipType, relationshipEnumerator);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetEnumeratorForType(@as(*const IOpcRelationshipSet, @ptrCast(self)), relationshipType, relationshipEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSet_GetRelationshipsContentStream(self: *const T, contents: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSet.VTable, self.vtable).GetRelationshipsContentStream(@ptrCast(*const IOpcRelationshipSet, self), contents);
+                return @as(*const IOpcRelationshipSet.VTable, @ptrCast(self.vtable)).GetRelationshipsContentStream(@as(*const IOpcRelationshipSet, @ptrCast(self)), contents);
             }
         };
     }
@@ -838,19 +838,19 @@ pub const IOpcPartEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcPartEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcPartEnumerator, self), hasNext);
+                return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcPartEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcPartEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcPartEnumerator, self), hasPrevious);
+                return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcPartEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartEnumerator_GetCurrent(self: *const T, part: ?*?*IOpcPart) HRESULT {
-                return @ptrCast(*const IOpcPartEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcPartEnumerator, self), part);
+                return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcPartEnumerator, @ptrCast(self)), part);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcPartEnumerator_Clone(self: *const T, copy: ?*?*IOpcPartEnumerator) HRESULT {
-                return @ptrCast(*const IOpcPartEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcPartEnumerator, self), copy);
+                return @as(*const IOpcPartEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcPartEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -910,19 +910,19 @@ pub const IOpcRelationshipEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcRelationshipEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcRelationshipEnumerator, self), hasNext);
+                return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcRelationshipEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcRelationshipEnumerator, self), hasPrevious);
+                return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipEnumerator_GetCurrent(self: *const T, relationship: ?*?*IOpcRelationship) HRESULT {
-                return @ptrCast(*const IOpcRelationshipEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcRelationshipEnumerator, self), relationship);
+                return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), relationship);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipEnumerator_Clone(self: *const T, copy: ?*?*IOpcRelationshipEnumerator) HRESULT {
-                return @ptrCast(*const IOpcRelationshipEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcRelationshipEnumerator, self), copy);
+                return @as(*const IOpcRelationshipEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -994,23 +994,23 @@ pub const IOpcSignaturePartReference = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReference_GetPartName(self: *const T, partName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReference.VTable, self.vtable).GetPartName(@ptrCast(*const IOpcSignaturePartReference, self), partName);
+                return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IOpcSignaturePartReference, @ptrCast(self)), partName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReference_GetContentType(self: *const T, contentType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReference.VTable, self.vtable).GetContentType(@ptrCast(*const IOpcSignaturePartReference, self), contentType);
+                return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IOpcSignaturePartReference, @ptrCast(self)), contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReference_GetDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReference.VTable, self.vtable).GetDigestMethod(@ptrCast(*const IOpcSignaturePartReference, self), digestMethod);
+                return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReference.VTable, self.vtable).GetDigestValue(@ptrCast(*const IOpcSignaturePartReference, self), digestValue, count);
+                return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestValue, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReference_GetTransformMethod(self: *const T, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReference.VTable, self.vtable).GetTransformMethod(@ptrCast(*const IOpcSignaturePartReference, self), transformMethod);
+                return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), transformMethod);
             }
         };
     }
@@ -1092,27 +1092,27 @@ pub const IOpcSignatureRelationshipReference = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetSourceUri(self: *const T, sourceUri: ?*?*IOpcUri) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetSourceUri(@ptrCast(*const IOpcSignatureRelationshipReference, self), sourceUri);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetSourceUri(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), sourceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetDigestMethod(@ptrCast(*const IOpcSignatureRelationshipReference, self), digestMethod);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetDigestValue(@ptrCast(*const IOpcSignatureRelationshipReference, self), digestValue, count);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestValue, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetTransformMethod(self: *const T, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetTransformMethod(@ptrCast(*const IOpcSignatureRelationshipReference, self), transformMethod);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), transformMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetRelationshipSigningOption(self: *const T, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetRelationshipSigningOption(@ptrCast(*const IOpcSignatureRelationshipReference, self), relationshipSigningOption);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetRelationshipSigningOption(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), relationshipSigningOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReference_GetRelationshipSelectorEnumerator(self: *const T, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReference.VTable, self.vtable).GetRelationshipSelectorEnumerator(@ptrCast(*const IOpcSignatureRelationshipReference, self), selectorEnumerator);
+                return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetRelationshipSelectorEnumerator(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), selectorEnumerator);
             }
         };
     }
@@ -1152,11 +1152,11 @@ pub const IOpcRelationshipSelector = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelector_GetSelectorType(self: *const T, selector: ?*OPC_RELATIONSHIP_SELECTOR) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelector.VTable, self.vtable).GetSelectorType(@ptrCast(*const IOpcRelationshipSelector, self), selector);
+                return @as(*const IOpcRelationshipSelector.VTable, @ptrCast(self.vtable)).GetSelectorType(@as(*const IOpcRelationshipSelector, @ptrCast(self)), selector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelector_GetSelectionCriterion(self: *const T, selectionCriterion: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelector.VTable, self.vtable).GetSelectionCriterion(@ptrCast(*const IOpcRelationshipSelector, self), selectionCriterion);
+                return @as(*const IOpcRelationshipSelector.VTable, @ptrCast(self.vtable)).GetSelectionCriterion(@as(*const IOpcRelationshipSelector, @ptrCast(self)), selectionCriterion);
             }
         };
     }
@@ -1238,27 +1238,27 @@ pub const IOpcSignatureReference = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetId(self: *const T, referenceId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetId(@ptrCast(*const IOpcSignatureReference, self), referenceId);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetId(@as(*const IOpcSignatureReference, @ptrCast(self)), referenceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetUri(self: *const T, referenceUri: ?*?*IUri) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetUri(@ptrCast(*const IOpcSignatureReference, self), referenceUri);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetUri(@as(*const IOpcSignatureReference, @ptrCast(self)), referenceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetType(self: *const T, type_: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetType(@ptrCast(*const IOpcSignatureReference, self), type_);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetType(@as(*const IOpcSignatureReference, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetTransformMethod(self: *const T, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetTransformMethod(@ptrCast(*const IOpcSignatureReference, self), transformMethod);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetTransformMethod(@as(*const IOpcSignatureReference, @ptrCast(self)), transformMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetDigestMethod(@ptrCast(*const IOpcSignatureReference, self), digestMethod);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureReference, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcSignatureReference.VTable, self.vtable).GetDigestValue(@ptrCast(*const IOpcSignatureReference, self), digestValue, count);
+                return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureReference, @ptrCast(self)), digestValue, count);
             }
         };
     }
@@ -1290,7 +1290,7 @@ pub const IOpcSignatureCustomObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObject_GetXml(self: *const T, xmlMarkup: ?[*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObject.VTable, self.vtable).GetXml(@ptrCast(*const IOpcSignatureCustomObject, self), xmlMarkup, count);
+                return @as(*const IOpcSignatureCustomObject.VTable, @ptrCast(self.vtable)).GetXml(@as(*const IOpcSignatureCustomObject, @ptrCast(self)), xmlMarkup, count);
             }
         };
     }
@@ -1468,63 +1468,63 @@ pub const IOpcDigitalSignature = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetNamespaces(self: *const T, prefixes: ?[*]?*?PWSTR, namespaces: ?[*]?*?PWSTR, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetNamespaces(@ptrCast(*const IOpcDigitalSignature, self), prefixes, namespaces, count);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const IOpcDigitalSignature, @ptrCast(self)), prefixes, namespaces, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignatureId(self: *const T, signatureId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignatureId(@ptrCast(*const IOpcDigitalSignature, self), signatureId);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignaturePartName(@ptrCast(*const IOpcDigitalSignature, self), signaturePartName);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IOpcDigitalSignature, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignatureMethod(self: *const T, signatureMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignatureMethod(@ptrCast(*const IOpcDigitalSignature, self), signatureMethod);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetCanonicalizationMethod(self: *const T, canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetCanonicalizationMethod(@ptrCast(*const IOpcDigitalSignature, self), canonicalizationMethod);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCanonicalizationMethod(@as(*const IOpcDigitalSignature, @ptrCast(self)), canonicalizationMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignatureValue(self: *const T, signatureValue: ?[*]?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignatureValue(@ptrCast(*const IOpcDigitalSignature, self), signatureValue, count);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureValue, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignaturePartReferenceEnumerator(self: *const T, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignaturePartReferenceEnumerator(@ptrCast(*const IOpcDigitalSignature, self), partReferenceEnumerator);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), partReferenceEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignatureRelationshipReferenceEnumerator(self: *const T, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignatureRelationshipReferenceEnumerator(@ptrCast(*const IOpcDigitalSignature, self), relationshipReferenceEnumerator);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureRelationshipReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), relationshipReferenceEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSigningTime(self: *const T, signingTime: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSigningTime(@ptrCast(*const IOpcDigitalSignature, self), signingTime);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSigningTime(@as(*const IOpcDigitalSignature, @ptrCast(self)), signingTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetTimeFormat(@ptrCast(*const IOpcDigitalSignature, self), timeFormat);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetTimeFormat(@as(*const IOpcDigitalSignature, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetPackageObjectReference(self: *const T, packageObjectReference: ?*?*IOpcSignatureReference) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetPackageObjectReference(@ptrCast(*const IOpcDigitalSignature, self), packageObjectReference);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetPackageObjectReference(@as(*const IOpcDigitalSignature, @ptrCast(self)), packageObjectReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetCertificateEnumerator(self: *const T, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetCertificateEnumerator(@ptrCast(*const IOpcDigitalSignature, self), certificateEnumerator);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCertificateEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), certificateEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetCustomReferenceEnumerator(self: *const T, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetCustomReferenceEnumerator(@ptrCast(*const IOpcDigitalSignature, self), customReferenceEnumerator);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCustomReferenceEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), customReferenceEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetCustomObjectEnumerator(self: *const T, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetCustomObjectEnumerator(@ptrCast(*const IOpcDigitalSignature, self), customObjectEnumerator);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCustomObjectEnumerator(@as(*const IOpcDigitalSignature, @ptrCast(self)), customObjectEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignature_GetSignatureXml(self: *const T, signatureXml: ?*?*u8, count: ?*u32) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignature.VTable, self.vtable).GetSignatureXml(@ptrCast(*const IOpcDigitalSignature, self), signatureXml, count);
+                return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureXml, count);
             }
         };
     }
@@ -1714,71 +1714,71 @@ pub const IOpcSigningOptions = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetSignatureId(self: *const T, signatureId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetSignatureId(@ptrCast(*const IOpcSigningOptions, self), signatureId);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetSignatureId(self: *const T, signatureId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetSignatureId(@ptrCast(*const IOpcSigningOptions, self), signatureId);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureId(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetSignatureMethod(self: *const T, signatureMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetSignatureMethod(@ptrCast(*const IOpcSigningOptions, self), signatureMethod);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetSignatureMethod(self: *const T, signatureMethod: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetSignatureMethod(@ptrCast(*const IOpcSigningOptions, self), signatureMethod);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), signatureMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetDefaultDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetDefaultDigestMethod(@ptrCast(*const IOpcSigningOptions, self), digestMethod);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetDefaultDigestMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetDefaultDigestMethod(self: *const T, digestMethod: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetDefaultDigestMethod(@ptrCast(*const IOpcSigningOptions, self), digestMethod);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetDefaultDigestMethod(@as(*const IOpcSigningOptions, @ptrCast(self)), digestMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetCertificateEmbeddingOption(self: *const T, embeddingOption: ?*OPC_CERTIFICATE_EMBEDDING_OPTION) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetCertificateEmbeddingOption(@ptrCast(*const IOpcSigningOptions, self), embeddingOption);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateEmbeddingOption(@as(*const IOpcSigningOptions, @ptrCast(self)), embeddingOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetCertificateEmbeddingOption(self: *const T, embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetCertificateEmbeddingOption(@ptrCast(*const IOpcSigningOptions, self), embeddingOption);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetCertificateEmbeddingOption(@as(*const IOpcSigningOptions, @ptrCast(self)), embeddingOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetTimeFormat(@ptrCast(*const IOpcSigningOptions, self), timeFormat);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetTimeFormat(@as(*const IOpcSigningOptions, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetTimeFormat(self: *const T, timeFormat: OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetTimeFormat(@ptrCast(*const IOpcSigningOptions, self), timeFormat);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetTimeFormat(@as(*const IOpcSigningOptions, @ptrCast(self)), timeFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetSignaturePartReferenceSet(self: *const T, partReferenceSet: ?*?*IOpcSignaturePartReferenceSet) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetSignaturePartReferenceSet(@ptrCast(*const IOpcSigningOptions, self), partReferenceSet);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), partReferenceSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetSignatureRelationshipReferenceSet(self: *const T, relationshipReferenceSet: ?*?*IOpcSignatureRelationshipReferenceSet) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetSignatureRelationshipReferenceSet(@ptrCast(*const IOpcSigningOptions, self), relationshipReferenceSet);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureRelationshipReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), relationshipReferenceSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetCustomObjectSet(self: *const T, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetCustomObjectSet(@ptrCast(*const IOpcSigningOptions, self), customObjectSet);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomObjectSet(@as(*const IOpcSigningOptions, @ptrCast(self)), customObjectSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetCustomReferenceSet(self: *const T, customReferenceSet: ?*?*IOpcSignatureReferenceSet) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetCustomReferenceSet(@ptrCast(*const IOpcSigningOptions, self), customReferenceSet);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomReferenceSet(@as(*const IOpcSigningOptions, @ptrCast(self)), customReferenceSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetCertificateSet(self: *const T, certificateSet: ?*?*IOpcCertificateSet) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetCertificateSet(@ptrCast(*const IOpcSigningOptions, self), certificateSet);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateSet(@as(*const IOpcSigningOptions, @ptrCast(self)), certificateSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).GetSignaturePartName(@ptrCast(*const IOpcSigningOptions, self), signaturePartName);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IOpcSigningOptions, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSigningOptions_SetSignaturePartName(self: *const T, signaturePartName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcSigningOptions.VTable, self.vtable).SetSignaturePartName(@ptrCast(*const IOpcSigningOptions, self), signaturePartName);
+                return @as(*const IOpcSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IOpcSigningOptions, @ptrCast(self)), signaturePartName);
             }
         };
     }
@@ -1892,35 +1892,35 @@ pub const IOpcDigitalSignatureManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_GetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).GetSignatureOriginPartName(@ptrCast(*const IOpcDigitalSignatureManager, self), signatureOriginPartName);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureOriginPartName(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureOriginPartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_SetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).SetSignatureOriginPartName(@ptrCast(*const IOpcDigitalSignatureManager, self), signatureOriginPartName);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).SetSignatureOriginPartName(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureOriginPartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_GetSignatureEnumerator(self: *const T, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).GetSignatureEnumerator(@ptrCast(*const IOpcDigitalSignatureManager, self), signatureEnumerator);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureEnumerator(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signatureEnumerator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_RemoveSignature(self: *const T, signaturePartName: ?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).RemoveSignature(@ptrCast(*const IOpcDigitalSignatureManager, self), signaturePartName);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).RemoveSignature(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signaturePartName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_CreateSigningOptions(self: *const T, signingOptions: ?*?*IOpcSigningOptions) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).CreateSigningOptions(@ptrCast(*const IOpcDigitalSignatureManager, self), signingOptions);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).CreateSigningOptions(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signingOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_Validate(self: *const T, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).Validate(@ptrCast(*const IOpcDigitalSignatureManager, self), signature, certificate, validationResult);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).Validate(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signature, certificate, validationResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_Sign(self: *const T, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).Sign(@ptrCast(*const IOpcDigitalSignatureManager, self), certificate, signingOptions, digitalSignature);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).Sign(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), certificate, signingOptions, digitalSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureManager_ReplaceSignatureXml(self: *const T, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureManager.VTable, self.vtable).ReplaceSignatureXml(@ptrCast(*const IOpcDigitalSignatureManager, self), signaturePartName, newSignatureXml, count, digitalSignature);
+                return @as(*const IOpcDigitalSignatureManager.VTable, @ptrCast(self.vtable)).ReplaceSignatureXml(@as(*const IOpcDigitalSignatureManager, @ptrCast(self)), signaturePartName, newSignatureXml, count, digitalSignature);
             }
         };
     }
@@ -1980,19 +1980,19 @@ pub const IOpcSignaturePartReferenceEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcSignaturePartReferenceEnumerator, self), hasNext);
+                return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcSignaturePartReferenceEnumerator, self), hasPrevious);
+                return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceEnumerator_GetCurrent(self: *const T, partReference: ?*?*IOpcSignaturePartReference) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcSignaturePartReferenceEnumerator, self), partReference);
+                return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), partReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceEnumerator_Clone(self: *const T, copy: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcSignaturePartReferenceEnumerator, self), copy);
+                return @as(*const IOpcSignaturePartReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignaturePartReferenceEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2052,19 +2052,19 @@ pub const IOpcSignatureRelationshipReferenceEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator, self), hasNext);
+                return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator, self), hasPrevious);
+                return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceEnumerator_GetCurrent(self: *const T, relationshipReference: ?*?*IOpcSignatureRelationshipReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator, self), relationshipReference);
+                return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), relationshipReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceEnumerator_Clone(self: *const T, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcSignatureRelationshipReferenceEnumerator, self), copy);
+                return @as(*const IOpcSignatureRelationshipReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureRelationshipReferenceEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2124,19 +2124,19 @@ pub const IOpcRelationshipSelectorEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcRelationshipSelectorEnumerator, self), hasNext);
+                return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcRelationshipSelectorEnumerator, self), hasPrevious);
+                return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorEnumerator_GetCurrent(self: *const T, relationshipSelector: ?*?*IOpcRelationshipSelector) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcRelationshipSelectorEnumerator, self), relationshipSelector);
+                return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), relationshipSelector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorEnumerator_Clone(self: *const T, copy: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcRelationshipSelectorEnumerator, self), copy);
+                return @as(*const IOpcRelationshipSelectorEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcRelationshipSelectorEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2196,19 +2196,19 @@ pub const IOpcSignatureReferenceEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcSignatureReferenceEnumerator, self), hasNext);
+                return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcSignatureReferenceEnumerator, self), hasPrevious);
+                return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceEnumerator_GetCurrent(self: *const T, reference: ?*?*IOpcSignatureReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcSignatureReferenceEnumerator, self), reference);
+                return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), reference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceEnumerator_Clone(self: *const T, copy: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcSignatureReferenceEnumerator, self), copy);
+                return @as(*const IOpcSignatureReferenceEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureReferenceEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2268,19 +2268,19 @@ pub const IOpcSignatureCustomObjectEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcSignatureCustomObjectEnumerator, self), hasNext);
+                return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcSignatureCustomObjectEnumerator, self), hasPrevious);
+                return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectEnumerator_GetCurrent(self: *const T, customObject: ?*?*IOpcSignatureCustomObject) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcSignatureCustomObjectEnumerator, self), customObject);
+                return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), customObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectEnumerator_Clone(self: *const T, copy: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcSignatureCustomObjectEnumerator, self), copy);
+                return @as(*const IOpcSignatureCustomObjectEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcSignatureCustomObjectEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2340,19 +2340,19 @@ pub const IOpcCertificateEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcCertificateEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcCertificateEnumerator, self), hasNext);
+                return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcCertificateEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcCertificateEnumerator, self), hasPrevious);
+                return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateEnumerator_GetCurrent(self: *const T, certificate: ?*const ?*CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IOpcCertificateEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcCertificateEnumerator, self), certificate);
+                return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), certificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateEnumerator_Clone(self: *const T, copy: ?*?*IOpcCertificateEnumerator) HRESULT {
-                return @ptrCast(*const IOpcCertificateEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcCertificateEnumerator, self), copy);
+                return @as(*const IOpcCertificateEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcCertificateEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2412,19 +2412,19 @@ pub const IOpcDigitalSignatureEnumerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureEnumerator_MoveNext(self: *const T, hasNext: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureEnumerator.VTable, self.vtable).MoveNext(@ptrCast(*const IOpcDigitalSignatureEnumerator, self), hasNext);
+                return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).MoveNext(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), hasNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureEnumerator_MovePrevious(self: *const T, hasPrevious: ?*BOOL) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureEnumerator.VTable, self.vtable).MovePrevious(@ptrCast(*const IOpcDigitalSignatureEnumerator, self), hasPrevious);
+                return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).MovePrevious(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), hasPrevious);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureEnumerator_GetCurrent(self: *const T, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureEnumerator.VTable, self.vtable).GetCurrent(@ptrCast(*const IOpcDigitalSignatureEnumerator, self), digitalSignature);
+                return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), digitalSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcDigitalSignatureEnumerator_Clone(self: *const T, copy: ?*?*IOpcDigitalSignatureEnumerator) HRESULT {
-                return @ptrCast(*const IOpcDigitalSignatureEnumerator.VTable, self.vtable).Clone(@ptrCast(*const IOpcDigitalSignatureEnumerator, self), copy);
+                return @as(*const IOpcDigitalSignatureEnumerator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IOpcDigitalSignatureEnumerator, @ptrCast(self)), copy);
             }
         };
     }
@@ -2480,15 +2480,15 @@ pub const IOpcSignaturePartReferenceSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceSet_Create(self: *const T, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignaturePartReferenceSet, self), partUri, digestMethod, transformMethod, partReference);
+                return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partUri, digestMethod, transformMethod, partReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceSet_Delete(self: *const T, partReference: ?*IOpcSignaturePartReference) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceSet.VTable, self.vtable).Delete(@ptrCast(*const IOpcSignaturePartReferenceSet, self), partReference);
+                return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignaturePartReferenceSet_GetEnumerator(self: *const T, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignaturePartReferenceSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcSignaturePartReferenceSet, self), partReferenceEnumerator);
+                return @as(*const IOpcSignaturePartReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignaturePartReferenceSet, @ptrCast(self)), partReferenceEnumerator);
             }
         };
     }
@@ -2558,19 +2558,19 @@ pub const IOpcSignatureRelationshipReferenceSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceSet_Create(self: *const T, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignatureRelationshipReferenceSet, self), sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
+                return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceSet_CreateRelationshipSelectorSet(self: *const T, selectorSet: ?*?*IOpcRelationshipSelectorSet) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceSet.VTable, self.vtable).CreateRelationshipSelectorSet(@ptrCast(*const IOpcSignatureRelationshipReferenceSet, self), selectorSet);
+                return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).CreateRelationshipSelectorSet(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), selectorSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceSet_Delete(self: *const T, relationshipReference: ?*IOpcSignatureRelationshipReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceSet.VTable, self.vtable).Delete(@ptrCast(*const IOpcSignatureRelationshipReferenceSet, self), relationshipReference);
+                return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), relationshipReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureRelationshipReferenceSet_GetEnumerator(self: *const T, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureRelationshipReferenceSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcSignatureRelationshipReferenceSet, self), relationshipReferenceEnumerator);
+                return @as(*const IOpcSignatureRelationshipReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureRelationshipReferenceSet, @ptrCast(self)), relationshipReferenceEnumerator);
             }
         };
     }
@@ -2624,15 +2624,15 @@ pub const IOpcRelationshipSelectorSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorSet_Create(self: *const T, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorSet.VTable, self.vtable).Create(@ptrCast(*const IOpcRelationshipSelectorSet, self), selector, selectionCriterion, relationshipSelector);
+                return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), selector, selectionCriterion, relationshipSelector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorSet_Delete(self: *const T, relationshipSelector: ?*IOpcRelationshipSelector) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorSet.VTable, self.vtable).Delete(@ptrCast(*const IOpcRelationshipSelectorSet, self), relationshipSelector);
+                return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), relationshipSelector);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcRelationshipSelectorSet_GetEnumerator(self: *const T, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
-                return @ptrCast(*const IOpcRelationshipSelectorSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcRelationshipSelectorSet, self), relationshipSelectorEnumerator);
+                return @as(*const IOpcRelationshipSelectorSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcRelationshipSelectorSet, @ptrCast(self)), relationshipSelectorEnumerator);
             }
         };
     }
@@ -2692,15 +2692,15 @@ pub const IOpcSignatureReferenceSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceSet_Create(self: *const T, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, type_: ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignatureReferenceSet, self), referenceUri, referenceId, type_, digestMethod, transformMethod, reference);
+                return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), referenceUri, referenceId, type_, digestMethod, transformMethod, reference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceSet_Delete(self: *const T, reference: ?*IOpcSignatureReference) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceSet.VTable, self.vtable).Delete(@ptrCast(*const IOpcSignatureReferenceSet, self), reference);
+                return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), reference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureReferenceSet_GetEnumerator(self: *const T, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureReferenceSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcSignatureReferenceSet, self), referenceEnumerator);
+                return @as(*const IOpcSignatureReferenceSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureReferenceSet, @ptrCast(self)), referenceEnumerator);
             }
         };
     }
@@ -2754,15 +2754,15 @@ pub const IOpcSignatureCustomObjectSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectSet_Create(self: *const T, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectSet.VTable, self.vtable).Create(@ptrCast(*const IOpcSignatureCustomObjectSet, self), xmlMarkup, count, customObject);
+                return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).Create(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), xmlMarkup, count, customObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectSet_Delete(self: *const T, customObject: ?*IOpcSignatureCustomObject) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectSet.VTable, self.vtable).Delete(@ptrCast(*const IOpcSignatureCustomObjectSet, self), customObject);
+                return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).Delete(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), customObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcSignatureCustomObjectSet_GetEnumerator(self: *const T, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
-                return @ptrCast(*const IOpcSignatureCustomObjectSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcSignatureCustomObjectSet, self), customObjectEnumerator);
+                return @as(*const IOpcSignatureCustomObjectSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcSignatureCustomObjectSet, @ptrCast(self)), customObjectEnumerator);
             }
         };
     }
@@ -2812,15 +2812,15 @@ pub const IOpcCertificateSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateSet_Add(self: *const T, certificate: ?*const CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IOpcCertificateSet.VTable, self.vtable).Add(@ptrCast(*const IOpcCertificateSet, self), certificate);
+                return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IOpcCertificateSet, @ptrCast(self)), certificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateSet_Remove(self: *const T, certificate: ?*const CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IOpcCertificateSet.VTable, self.vtable).Remove(@ptrCast(*const IOpcCertificateSet, self), certificate);
+                return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).Remove(@as(*const IOpcCertificateSet, @ptrCast(self)), certificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcCertificateSet_GetEnumerator(self: *const T, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
-                return @ptrCast(*const IOpcCertificateSet.VTable, self.vtable).GetEnumerator(@ptrCast(*const IOpcCertificateSet, self), certificateEnumerator);
+                return @as(*const IOpcCertificateSet.VTable, @ptrCast(self.vtable)).GetEnumerator(@as(*const IOpcCertificateSet, @ptrCast(self)), certificateEnumerator);
             }
         };
     }
@@ -2930,31 +2930,31 @@ pub const IOpcFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_CreatePackageRootUri(self: *const T, rootUri: ?*?*IOpcUri) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).CreatePackageRootUri(@ptrCast(*const IOpcFactory, self), rootUri);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePackageRootUri(@as(*const IOpcFactory, @ptrCast(self)), rootUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_CreatePartUri(self: *const T, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).CreatePartUri(@ptrCast(*const IOpcFactory, self), pwzUri, partUri);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePartUri(@as(*const IOpcFactory, @ptrCast(self)), pwzUri, partUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_CreateStreamOnFile(self: *const T, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).CreateStreamOnFile(@ptrCast(*const IOpcFactory, self), filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreateStreamOnFile(@as(*const IOpcFactory, @ptrCast(self)), filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_CreatePackage(self: *const T, package: ?*?*IOpcPackage) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).CreatePackage(@ptrCast(*const IOpcFactory, self), package);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreatePackage(@as(*const IOpcFactory, @ptrCast(self)), package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_ReadPackageFromStream(self: *const T, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).ReadPackageFromStream(@ptrCast(*const IOpcFactory, self), stream, flags, package);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).ReadPackageFromStream(@as(*const IOpcFactory, @ptrCast(self)), stream, flags, package);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_WritePackageToStream(self: *const T, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).WritePackageToStream(@ptrCast(*const IOpcFactory, self), package, flags, stream);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).WritePackageToStream(@as(*const IOpcFactory, @ptrCast(self)), package, flags, stream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOpcFactory_CreateDigitalSignatureManager(self: *const T, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) HRESULT {
-                return @ptrCast(*const IOpcFactory.VTable, self.vtable).CreateDigitalSignatureManager(@ptrCast(*const IOpcFactory, self), package, signatureManager);
+                return @as(*const IOpcFactory.VTable, @ptrCast(self.vtable)).CreateDigitalSignatureManager(@as(*const IOpcFactory, @ptrCast(self)), package, signatureManager);
             }
         };
     }

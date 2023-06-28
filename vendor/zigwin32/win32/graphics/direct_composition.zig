@@ -205,27 +205,27 @@ pub const IDCompositionAnimation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).Reset(@ptrCast(*const IDCompositionAnimation, self));
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDCompositionAnimation, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_SetAbsoluteBeginTime(self: *const T, beginTime: LARGE_INTEGER) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).SetAbsoluteBeginTime(@ptrCast(*const IDCompositionAnimation, self), beginTime);
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).SetAbsoluteBeginTime(@as(*const IDCompositionAnimation, @ptrCast(self)), beginTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_AddCubic(self: *const T, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).AddCubic(@ptrCast(*const IDCompositionAnimation, self), beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddCubic(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_AddSinusoidal(self: *const T, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).AddSinusoidal(@ptrCast(*const IDCompositionAnimation, self), beginOffset, bias, amplitude, frequency, phase);
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddSinusoidal(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, bias, amplitude, frequency, phase);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_AddRepeat(self: *const T, beginOffset: f64, durationToRepeat: f64) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).AddRepeat(@ptrCast(*const IDCompositionAnimation, self), beginOffset, durationToRepeat);
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddRepeat(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, durationToRepeat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAnimation_End(self: *const T, endOffset: f64, endValue: f32) HRESULT {
-                return @ptrCast(*const IDCompositionAnimation.VTable, self.vtable).End(@ptrCast(*const IDCompositionAnimation, self), endOffset, endValue);
+                return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).End(@as(*const IDCompositionAnimation, @ptrCast(self)), endOffset, endValue);
             }
         };
     }
@@ -513,99 +513,99 @@ pub const IDCompositionDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).Commit(@ptrCast(*const IDCompositionDevice, self));
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDCompositionDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_WaitForCommitCompletion(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).WaitForCommitCompletion(@ptrCast(*const IDCompositionDevice, self));
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).WaitForCommitCompletion(@as(*const IDCompositionDevice, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_GetFrameStatistics(self: *const T, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).GetFrameStatistics(@ptrCast(*const IDCompositionDevice, self), statistics);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDCompositionDevice, @ptrCast(self)), statistics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateTargetForHwnd(self: *const T, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateTargetForHwnd(@ptrCast(*const IDCompositionDevice, self), hwnd, topmost, target);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTargetForHwnd(@as(*const IDCompositionDevice, @ptrCast(self)), hwnd, topmost, target);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateVisual(self: *const T, visual: ?*?*IDCompositionVisual) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateVisual(@ptrCast(*const IDCompositionDevice, self), visual);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateVisual(@as(*const IDCompositionDevice, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateSurface(self: *const T, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateSurface(@ptrCast(*const IDCompositionDevice, self), width, height, pixelFormat, alphaMode, surface);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionDevice, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateVirtualSurface(self: *const T, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateVirtualSurface(@ptrCast(*const IDCompositionDevice, self), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionDevice, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateSurfaceFromHandle(self: *const T, handle: ?HANDLE, surface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateSurfaceFromHandle(@ptrCast(*const IDCompositionDevice, self), handle, surface);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHandle(@as(*const IDCompositionDevice, @ptrCast(self)), handle, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateSurfaceFromHwnd(self: *const T, hwnd: ?HWND, surface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateSurfaceFromHwnd(@ptrCast(*const IDCompositionDevice, self), hwnd, surface);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHwnd(@as(*const IDCompositionDevice, @ptrCast(self)), hwnd, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateTranslateTransform(self: *const T, translateTransform: ?*?*IDCompositionTranslateTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateTranslateTransform(@ptrCast(*const IDCompositionDevice, self), translateTransform);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTranslateTransform(@as(*const IDCompositionDevice, @ptrCast(self)), translateTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateScaleTransform(self: *const T, scaleTransform: ?*?*IDCompositionScaleTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateScaleTransform(@ptrCast(*const IDCompositionDevice, self), scaleTransform);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateScaleTransform(@as(*const IDCompositionDevice, @ptrCast(self)), scaleTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateRotateTransform(self: *const T, rotateTransform: ?*?*IDCompositionRotateTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateRotateTransform(@ptrCast(*const IDCompositionDevice, self), rotateTransform);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRotateTransform(@as(*const IDCompositionDevice, @ptrCast(self)), rotateTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateSkewTransform(self: *const T, skewTransform: ?*?*IDCompositionSkewTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateSkewTransform(@ptrCast(*const IDCompositionDevice, self), skewTransform);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSkewTransform(@as(*const IDCompositionDevice, @ptrCast(self)), skewTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateMatrixTransform(self: *const T, matrixTransform: ?*?*IDCompositionMatrixTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateMatrixTransform(@ptrCast(*const IDCompositionDevice, self), matrixTransform);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IDCompositionDevice, @ptrCast(self)), matrixTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateTransformGroup(self: *const T, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateTransformGroup(@ptrCast(*const IDCompositionDevice, self), transforms, elements, transformGroup);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTransformGroup(@as(*const IDCompositionDevice, @ptrCast(self)), transforms, elements, transformGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateTranslateTransform3D(self: *const T, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateTranslateTransform3D(@ptrCast(*const IDCompositionDevice, self), translateTransform3D);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTranslateTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), translateTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateScaleTransform3D(self: *const T, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateScaleTransform3D(@ptrCast(*const IDCompositionDevice, self), scaleTransform3D);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateScaleTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), scaleTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateRotateTransform3D(self: *const T, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateRotateTransform3D(@ptrCast(*const IDCompositionDevice, self), rotateTransform3D);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRotateTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), rotateTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateMatrixTransform3D(self: *const T, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateMatrixTransform3D(@ptrCast(*const IDCompositionDevice, self), matrixTransform3D);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateMatrixTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), matrixTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateTransform3DGroup(self: *const T, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateTransform3DGroup(@ptrCast(*const IDCompositionDevice, self), transforms3D, elements, transform3DGroup);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTransform3DGroup(@as(*const IDCompositionDevice, @ptrCast(self)), transforms3D, elements, transform3DGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateEffectGroup(self: *const T, effectGroup: ?*?*IDCompositionEffectGroup) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateEffectGroup(@ptrCast(*const IDCompositionDevice, self), effectGroup);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateEffectGroup(@as(*const IDCompositionDevice, @ptrCast(self)), effectGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateRectangleClip(self: *const T, clip: ?*?*IDCompositionRectangleClip) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateRectangleClip(@ptrCast(*const IDCompositionDevice, self), clip);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRectangleClip(@as(*const IDCompositionDevice, @ptrCast(self)), clip);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CreateAnimation(self: *const T, animation: ?*?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CreateAnimation(@ptrCast(*const IDCompositionDevice, self), animation);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateAnimation(@as(*const IDCompositionDevice, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice_CheckDeviceState(self: *const T, pfValid: ?*BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionDevice.VTable, self.vtable).CheckDeviceState(@ptrCast(*const IDCompositionDevice, self), pfValid);
+                return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CheckDeviceState(@as(*const IDCompositionDevice, @ptrCast(self)), pfValid);
             }
         };
     }
@@ -635,7 +635,7 @@ pub const IDCompositionTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTarget_SetRoot(self: *const T, visual: ?*IDCompositionVisual) HRESULT {
-                return @ptrCast(*const IDCompositionTarget.VTable, self.vtable).SetRoot(@ptrCast(*const IDCompositionTarget, self), visual);
+                return @as(*const IDCompositionTarget.VTable, @ptrCast(self.vtable)).SetRoot(@as(*const IDCompositionTarget, @ptrCast(self)), visual);
             }
         };
     }
@@ -827,71 +827,71 @@ pub const IDCompositionVisual = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetOffsetX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionVisual, self), animation);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionVisual, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetOffsetX1(self: *const T, offsetX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionVisual, self), offsetX);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionVisual, @ptrCast(self)), offsetX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetOffsetY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionVisual, self), animation);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionVisual, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetOffsetY1(self: *const T, offsetY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionVisual, self), offsetY);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionVisual, @ptrCast(self)), offsetY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetTransform(self: *const T, transform: ?*IDCompositionTransform) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetTransform(@ptrCast(*const IDCompositionVisual, self), transform);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetTransform1(self: *const T, matrix: ?*const D2D_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetTransform(@ptrCast(*const IDCompositionVisual, self), matrix);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetTransformParent(self: *const T, visual: ?*IDCompositionVisual) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetTransformParent(@ptrCast(*const IDCompositionVisual, self), visual);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransformParent(@as(*const IDCompositionVisual, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetEffect(self: *const T, effect: ?*IDCompositionEffect) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetEffect(@ptrCast(*const IDCompositionVisual, self), effect);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetEffect(@as(*const IDCompositionVisual, @ptrCast(self)), effect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetBitmapInterpolationMode(self: *const T, interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetBitmapInterpolationMode(@ptrCast(*const IDCompositionVisual, self), interpolationMode);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetBitmapInterpolationMode(@as(*const IDCompositionVisual, @ptrCast(self)), interpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetBorderMode(self: *const T, borderMode: DCOMPOSITION_BORDER_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetBorderMode(@ptrCast(*const IDCompositionVisual, self), borderMode);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionVisual, @ptrCast(self)), borderMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetClip(self: *const T, clip: ?*IDCompositionClip) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetClip(@ptrCast(*const IDCompositionVisual, self), clip);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetClip(@as(*const IDCompositionVisual, @ptrCast(self)), clip);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetClip1(self: *const T, rect: ?*const D2D_RECT_F) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetClip(@ptrCast(*const IDCompositionVisual, self), rect);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetClip(@as(*const IDCompositionVisual, @ptrCast(self)), rect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetContent(self: *const T, content: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetContent(@ptrCast(*const IDCompositionVisual, self), content);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IDCompositionVisual, @ptrCast(self)), content);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_AddVisual(self: *const T, visual: ?*IDCompositionVisual, insertAbove: BOOL, referenceVisual: ?*IDCompositionVisual) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).AddVisual(@ptrCast(*const IDCompositionVisual, self), visual, insertAbove, referenceVisual);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).AddVisual(@as(*const IDCompositionVisual, @ptrCast(self)), visual, insertAbove, referenceVisual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_RemoveVisual(self: *const T, visual: ?*IDCompositionVisual) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).RemoveVisual(@ptrCast(*const IDCompositionVisual, self), visual);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).RemoveVisual(@as(*const IDCompositionVisual, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_RemoveAllVisuals(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).RemoveAllVisuals(@ptrCast(*const IDCompositionVisual, self));
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).RemoveAllVisuals(@as(*const IDCompositionVisual, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual_SetCompositeMode(self: *const T, compositeMode: DCOMPOSITION_COMPOSITE_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionVisual.VTable, self.vtable).SetCompositeMode(@ptrCast(*const IDCompositionVisual, self), compositeMode);
+                return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetCompositeMode(@as(*const IDCompositionVisual, @ptrCast(self)), compositeMode);
             }
         };
     }
@@ -999,19 +999,19 @@ pub const IDCompositionTranslateTransform = extern struct {
             pub usingnamespace IDCompositionTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform_SetOffsetX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionTranslateTransform, self), animation);
+                return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform_SetOffsetX1(self: *const T, offsetX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionTranslateTransform, self), offsetX);
+                return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), offsetX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform_SetOffsetY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionTranslateTransform, self), animation);
+                return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform_SetOffsetY1(self: *const T, offsetY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionTranslateTransform, self), offsetY);
+                return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), offsetY);
             }
         };
     }
@@ -1111,35 +1111,35 @@ pub const IDCompositionScaleTransform = extern struct {
             pub usingnamespace IDCompositionTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetScaleX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetScaleX(@ptrCast(*const IDCompositionScaleTransform, self), animation);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetScaleX1(self: *const T, scaleX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetScaleX(@ptrCast(*const IDCompositionScaleTransform, self), scaleX);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), scaleX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetScaleY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetScaleY(@ptrCast(*const IDCompositionScaleTransform, self), animation);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetScaleY1(self: *const T, scaleY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetScaleY(@ptrCast(*const IDCompositionScaleTransform, self), scaleY);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), scaleY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetCenterX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionScaleTransform, self), animation);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetCenterX1(self: *const T, centerX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionScaleTransform, self), centerX);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), centerX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetCenterY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionScaleTransform, self), animation);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform_SetCenterY1(self: *const T, centerY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionScaleTransform, self), centerY);
+                return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), centerY);
             }
         };
     }
@@ -1219,27 +1219,27 @@ pub const IDCompositionRotateTransform = extern struct {
             pub usingnamespace IDCompositionTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetAngle(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionRotateTransform, self), animation);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetAngle1(self: *const T, angle: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionRotateTransform, self), angle);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform, @ptrCast(self)), angle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetCenterX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionRotateTransform, self), animation);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetCenterX1(self: *const T, centerX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionRotateTransform, self), centerX);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform, @ptrCast(self)), centerX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetCenterY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionRotateTransform, self), animation);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform_SetCenterY1(self: *const T, centerY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionRotateTransform, self), centerY);
+                return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform, @ptrCast(self)), centerY);
             }
         };
     }
@@ -1339,35 +1339,35 @@ pub const IDCompositionSkewTransform = extern struct {
             pub usingnamespace IDCompositionTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetAngleX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetAngleX(@ptrCast(*const IDCompositionSkewTransform, self), animation);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetAngleX1(self: *const T, angleX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetAngleX(@ptrCast(*const IDCompositionSkewTransform, self), angleX);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), angleX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetAngleY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetAngleY(@ptrCast(*const IDCompositionSkewTransform, self), animation);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetAngleY1(self: *const T, angleY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetAngleY(@ptrCast(*const IDCompositionSkewTransform, self), angleY);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), angleY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetCenterX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionSkewTransform, self), animation);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetCenterX1(self: *const T, centerX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionSkewTransform, self), centerX);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), centerX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetCenterY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionSkewTransform, self), animation);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSkewTransform_SetCenterY1(self: *const T, centerY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionSkewTransform.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionSkewTransform, self), centerY);
+                return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), centerY);
             }
         };
     }
@@ -1425,15 +1425,15 @@ pub const IDCompositionMatrixTransform = extern struct {
             pub usingnamespace IDCompositionTransform.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform_SetMatrix(self: *const T, matrix: ?*const D2D_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform.VTable, self.vtable).SetMatrix(@ptrCast(*const IDCompositionMatrixTransform, self), matrix);
+                return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform_SetMatrixElement(self: *const T, row: i32, column: i32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionMatrixTransform, self), row, column, animation);
+                return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), row, column, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform_SetMatrixElement1(self: *const T, row: i32, column: i32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionMatrixTransform, self), row, column, value);
+                return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), row, column, value);
             }
         };
     }
@@ -1483,15 +1483,15 @@ pub const IDCompositionEffectGroup = extern struct {
             pub usingnamespace IDCompositionEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionEffectGroup_SetOpacity(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionEffectGroup.VTable, self.vtable).SetOpacity(@ptrCast(*const IDCompositionEffectGroup, self), animation);
+                return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionEffectGroup, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionEffectGroup_SetOpacity1(self: *const T, opacity: f32) HRESULT {
-                return @ptrCast(*const IDCompositionEffectGroup.VTable, self.vtable).SetOpacity(@ptrCast(*const IDCompositionEffectGroup, self), opacity);
+                return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionEffectGroup, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionEffectGroup_SetTransform3D(self: *const T, transform3D: ?*IDCompositionTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionEffectGroup.VTable, self.vtable).SetTransform3D(@ptrCast(*const IDCompositionEffectGroup, self), transform3D);
+                return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetTransform3D(@as(*const IDCompositionEffectGroup, @ptrCast(self)), transform3D);
             }
         };
     }
@@ -1571,27 +1571,27 @@ pub const IDCompositionTranslateTransform3D = extern struct {
             pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionTranslateTransform3D, self), animation);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetX1(self: *const T, offsetX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetX(@ptrCast(*const IDCompositionTranslateTransform3D, self), offsetX);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionTranslateTransform3D, self), animation);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetY1(self: *const T, offsetY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetY(@ptrCast(*const IDCompositionTranslateTransform3D, self), offsetY);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetZ(@ptrCast(*const IDCompositionTranslateTransform3D, self), animation);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTranslateTransform3D_SetOffsetZ1(self: *const T, offsetZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTranslateTransform3D.VTable, self.vtable).SetOffsetZ(@ptrCast(*const IDCompositionTranslateTransform3D, self), offsetZ);
+                return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetZ);
             }
         };
     }
@@ -1731,51 +1731,51 @@ pub const IDCompositionScaleTransform3D = extern struct {
             pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleX(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleX1(self: *const T, scaleX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleX(@ptrCast(*const IDCompositionScaleTransform3D, self), scaleX);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleY(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleY1(self: *const T, scaleY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleY(@ptrCast(*const IDCompositionScaleTransform3D, self), scaleY);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleZ(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetScaleZ1(self: *const T, scaleZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetScaleZ(@ptrCast(*const IDCompositionScaleTransform3D, self), scaleZ);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleZ);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterX1(self: *const T, centerX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionScaleTransform3D, self), centerX);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterY1(self: *const T, centerY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionScaleTransform3D, self), centerY);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterZ(@ptrCast(*const IDCompositionScaleTransform3D, self), animation);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionScaleTransform3D_SetCenterZ1(self: *const T, centerZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionScaleTransform3D.VTable, self.vtable).SetCenterZ(@ptrCast(*const IDCompositionScaleTransform3D, self), centerZ);
+                return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerZ);
             }
         };
     }
@@ -1935,59 +1935,59 @@ pub const IDCompositionRotateTransform3D = extern struct {
             pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAngle(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAngle1(self: *const T, angle: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionRotateTransform3D, self), angle);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), angle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisX(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisX1(self: *const T, axisX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisX(@ptrCast(*const IDCompositionRotateTransform3D, self), axisX);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisY(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisY1(self: *const T, axisY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisY(@ptrCast(*const IDCompositionRotateTransform3D, self), axisY);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisZ(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetAxisZ1(self: *const T, axisZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetAxisZ(@ptrCast(*const IDCompositionRotateTransform3D, self), axisZ);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisZ);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterX1(self: *const T, centerX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterX(@ptrCast(*const IDCompositionRotateTransform3D, self), centerX);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterY1(self: *const T, centerY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterY(@ptrCast(*const IDCompositionRotateTransform3D, self), centerY);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterZ(@ptrCast(*const IDCompositionRotateTransform3D, self), animation);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRotateTransform3D_SetCenterZ1(self: *const T, centerZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRotateTransform3D.VTable, self.vtable).SetCenterZ(@ptrCast(*const IDCompositionRotateTransform3D, self), centerZ);
+                return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerZ);
             }
         };
     }
@@ -2045,15 +2045,15 @@ pub const IDCompositionMatrixTransform3D = extern struct {
             pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform3D_SetMatrix(self: *const T, matrix: ?*const D3DMATRIX) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform3D.VTable, self.vtable).SetMatrix(@ptrCast(*const IDCompositionMatrixTransform3D, self), matrix);
+                return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform3D_SetMatrixElement(self: *const T, row: i32, column: i32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform3D.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionMatrixTransform3D, self), row, column, animation);
+                return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), row, column, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionMatrixTransform3D_SetMatrixElement1(self: *const T, row: i32, column: i32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionMatrixTransform3D.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionMatrixTransform3D, self), row, column, value);
+                return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), row, column, value);
             }
         };
     }
@@ -2329,99 +2329,99 @@ pub const IDCompositionRectangleClip = extern struct {
             pub usingnamespace IDCompositionClip.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetLeft(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetLeft(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetLeft(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetLeft1(self: *const T, left: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetLeft(@ptrCast(*const IDCompositionRectangleClip, self), left);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetLeft(@as(*const IDCompositionRectangleClip, @ptrCast(self)), left);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTop(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTop(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTop(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTop1(self: *const T, top: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTop(@ptrCast(*const IDCompositionRectangleClip, self), top);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTop(@as(*const IDCompositionRectangleClip, @ptrCast(self)), top);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetRight(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetRight(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetRight(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetRight1(self: *const T, right: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetRight(@ptrCast(*const IDCompositionRectangleClip, self), right);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetRight(@as(*const IDCompositionRectangleClip, @ptrCast(self)), right);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottom(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottom(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottom(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottom1(self: *const T, bottom: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottom(@ptrCast(*const IDCompositionRectangleClip, self), bottom);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottom(@as(*const IDCompositionRectangleClip, @ptrCast(self)), bottom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopLeftRadiusX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopLeftRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopLeftRadiusX1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopLeftRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopLeftRadiusY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopLeftRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopLeftRadiusY1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopLeftRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopRightRadiusX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopRightRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopRightRadiusX1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopRightRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopRightRadiusY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopRightRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetTopRightRadiusY1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetTopRightRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomLeftRadiusX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomLeftRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomLeftRadiusX1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomLeftRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomLeftRadiusY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomLeftRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomLeftRadiusY1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomLeftRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomRightRadiusX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomRightRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomRightRadiusX1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomRightRadiusX(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomRightRadiusY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomRightRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), animation);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionRectangleClip_SetBottomRightRadiusY1(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IDCompositionRectangleClip.VTable, self.vtable).SetBottomRightRadiusY(@ptrCast(*const IDCompositionRectangleClip, self), radius);
+                return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
             }
         };
     }
@@ -2497,23 +2497,23 @@ pub const IDCompositionSurface = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurface_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) HRESULT {
-                return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).BeginDraw(@ptrCast(*const IDCompositionSurface, self), updateRect, iid, updateObject, updateOffset);
+                return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const IDCompositionSurface, @ptrCast(self)), updateRect, iid, updateObject, updateOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurface_EndDraw(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).EndDraw(@ptrCast(*const IDCompositionSurface, self));
+                return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurface_SuspendDraw(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).SuspendDraw(@ptrCast(*const IDCompositionSurface, self));
+                return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurface_ResumeDraw(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).ResumeDraw(@ptrCast(*const IDCompositionSurface, self));
+                return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurface_Scroll(self: *const T, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) HRESULT {
-                return @ptrCast(*const IDCompositionSurface.VTable, self.vtable).Scroll(@ptrCast(*const IDCompositionSurface, self), scrollRect, clipRect, offsetX, offsetY);
+                return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IDCompositionSurface, @ptrCast(self)), scrollRect, clipRect, offsetX, offsetY);
             }
         };
     }
@@ -2557,11 +2557,11 @@ pub const IDCompositionVirtualSurface = extern struct {
             pub usingnamespace IDCompositionSurface.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVirtualSurface_Resize(self: *const T, width: u32, height: u32) HRESULT {
-                return @ptrCast(*const IDCompositionVirtualSurface.VTable, self.vtable).Resize(@ptrCast(*const IDCompositionVirtualSurface, self), width, height);
+                return @as(*const IDCompositionVirtualSurface.VTable, @ptrCast(self.vtable)).Resize(@as(*const IDCompositionVirtualSurface, @ptrCast(self)), width, height);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVirtualSurface_Trim(self: *const T, rectangles: ?[*]const RECT, count: u32) HRESULT {
-                return @ptrCast(*const IDCompositionVirtualSurface.VTable, self.vtable).Trim(@ptrCast(*const IDCompositionVirtualSurface, self), rectangles, count);
+                return @as(*const IDCompositionVirtualSurface.VTable, @ptrCast(self.vtable)).Trim(@as(*const IDCompositionVirtualSurface, @ptrCast(self)), rectangles, count);
             }
         };
     }
@@ -2813,87 +2813,87 @@ pub const IDCompositionDevice2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).Commit(@ptrCast(*const IDCompositionDevice2, self));
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDCompositionDevice2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_WaitForCommitCompletion(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).WaitForCommitCompletion(@ptrCast(*const IDCompositionDevice2, self));
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).WaitForCommitCompletion(@as(*const IDCompositionDevice2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_GetFrameStatistics(self: *const T, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).GetFrameStatistics(@ptrCast(*const IDCompositionDevice2, self), statistics);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDCompositionDevice2, @ptrCast(self)), statistics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateVisual(self: *const T, visual: ?*?*IDCompositionVisual2) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateVisual(@ptrCast(*const IDCompositionDevice2, self), visual);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateVisual(@as(*const IDCompositionDevice2, @ptrCast(self)), visual);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateSurfaceFactory(self: *const T, renderingDevice: ?*IUnknown, surfaceFactory: ?*?*IDCompositionSurfaceFactory) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateSurfaceFactory(@ptrCast(*const IDCompositionDevice2, self), renderingDevice, surfaceFactory);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSurfaceFactory(@as(*const IDCompositionDevice2, @ptrCast(self)), renderingDevice, surfaceFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateSurface(self: *const T, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateSurface(@ptrCast(*const IDCompositionDevice2, self), width, height, pixelFormat, alphaMode, surface);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionDevice2, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateVirtualSurface(self: *const T, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateVirtualSurface(@ptrCast(*const IDCompositionDevice2, self), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionDevice2, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateTranslateTransform(self: *const T, translateTransform: ?*?*IDCompositionTranslateTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateTranslateTransform(@ptrCast(*const IDCompositionDevice2, self), translateTransform);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTranslateTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), translateTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateScaleTransform(self: *const T, scaleTransform: ?*?*IDCompositionScaleTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateScaleTransform(@ptrCast(*const IDCompositionDevice2, self), scaleTransform);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateScaleTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), scaleTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateRotateTransform(self: *const T, rotateTransform: ?*?*IDCompositionRotateTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateRotateTransform(@ptrCast(*const IDCompositionDevice2, self), rotateTransform);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRotateTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), rotateTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateSkewTransform(self: *const T, skewTransform: ?*?*IDCompositionSkewTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateSkewTransform(@ptrCast(*const IDCompositionDevice2, self), skewTransform);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSkewTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), skewTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateMatrixTransform(self: *const T, matrixTransform: ?*?*IDCompositionMatrixTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateMatrixTransform(@ptrCast(*const IDCompositionDevice2, self), matrixTransform);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), matrixTransform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateTransformGroup(self: *const T, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateTransformGroup(@ptrCast(*const IDCompositionDevice2, self), transforms, elements, transformGroup);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTransformGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), transforms, elements, transformGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateTranslateTransform3D(self: *const T, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateTranslateTransform3D(@ptrCast(*const IDCompositionDevice2, self), translateTransform3D);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTranslateTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), translateTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateScaleTransform3D(self: *const T, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateScaleTransform3D(@ptrCast(*const IDCompositionDevice2, self), scaleTransform3D);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateScaleTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), scaleTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateRotateTransform3D(self: *const T, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateRotateTransform3D(@ptrCast(*const IDCompositionDevice2, self), rotateTransform3D);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRotateTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), rotateTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateMatrixTransform3D(self: *const T, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateMatrixTransform3D(@ptrCast(*const IDCompositionDevice2, self), matrixTransform3D);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateMatrixTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), matrixTransform3D);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateTransform3DGroup(self: *const T, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateTransform3DGroup(@ptrCast(*const IDCompositionDevice2, self), transforms3D, elements, transform3DGroup);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTransform3DGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), transforms3D, elements, transform3DGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateEffectGroup(self: *const T, effectGroup: ?*?*IDCompositionEffectGroup) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateEffectGroup(@ptrCast(*const IDCompositionDevice2, self), effectGroup);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateEffectGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), effectGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateRectangleClip(self: *const T, clip: ?*?*IDCompositionRectangleClip) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateRectangleClip(@ptrCast(*const IDCompositionDevice2, self), clip);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRectangleClip(@as(*const IDCompositionDevice2, @ptrCast(self)), clip);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice2_CreateAnimation(self: *const T, animation: ?*?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionDevice2.VTable, self.vtable).CreateAnimation(@ptrCast(*const IDCompositionDevice2, self), animation);
+                return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateAnimation(@as(*const IDCompositionDevice2, @ptrCast(self)), animation);
             }
         };
     }
@@ -2951,15 +2951,15 @@ pub const IDCompositionDesktopDevice = extern struct {
             pub usingnamespace IDCompositionDevice2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDesktopDevice_CreateTargetForHwnd(self: *const T, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) HRESULT {
-                return @ptrCast(*const IDCompositionDesktopDevice.VTable, self.vtable).CreateTargetForHwnd(@ptrCast(*const IDCompositionDesktopDevice, self), hwnd, topmost, target);
+                return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateTargetForHwnd(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), hwnd, topmost, target);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDesktopDevice_CreateSurfaceFromHandle(self: *const T, handle: ?HANDLE, surface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDCompositionDesktopDevice.VTable, self.vtable).CreateSurfaceFromHandle(@ptrCast(*const IDCompositionDesktopDevice, self), handle, surface);
+                return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHandle(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), handle, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDesktopDevice_CreateSurfaceFromHwnd(self: *const T, hwnd: ?HWND, surface: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IDCompositionDesktopDevice.VTable, self.vtable).CreateSurfaceFromHwnd(@ptrCast(*const IDCompositionDesktopDevice, self), hwnd, surface);
+                return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHwnd(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), hwnd, surface);
             }
         };
     }
@@ -2994,11 +2994,11 @@ pub const IDCompositionDeviceDebug = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDeviceDebug_EnableDebugCounters(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDeviceDebug.VTable, self.vtable).EnableDebugCounters(@ptrCast(*const IDCompositionDeviceDebug, self));
+                return @as(*const IDCompositionDeviceDebug.VTable, @ptrCast(self.vtable)).EnableDebugCounters(@as(*const IDCompositionDeviceDebug, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDeviceDebug_DisableDebugCounters(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionDeviceDebug.VTable, self.vtable).DisableDebugCounters(@ptrCast(*const IDCompositionDeviceDebug, self));
+                return @as(*const IDCompositionDeviceDebug.VTable, @ptrCast(self.vtable)).DisableDebugCounters(@as(*const IDCompositionDeviceDebug, @ptrCast(self)));
             }
         };
     }
@@ -3054,11 +3054,11 @@ pub const IDCompositionSurfaceFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurfaceFactory_CreateSurface(self: *const T, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) HRESULT {
-                return @ptrCast(*const IDCompositionSurfaceFactory.VTable, self.vtable).CreateSurface(@ptrCast(*const IDCompositionSurfaceFactory, self), width, height, pixelFormat, alphaMode, surface);
+                return @as(*const IDCompositionSurfaceFactory.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionSurfaceFactory, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSurfaceFactory_CreateVirtualSurface(self: *const T, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) HRESULT {
-                return @ptrCast(*const IDCompositionSurfaceFactory.VTable, self.vtable).CreateVirtualSurface(@ptrCast(*const IDCompositionSurfaceFactory, self), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+                return @as(*const IDCompositionSurfaceFactory.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionSurfaceFactory, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
             }
         };
     }
@@ -3098,11 +3098,11 @@ pub const IDCompositionVisual2 = extern struct {
             pub usingnamespace IDCompositionVisual.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual2_SetOpacityMode(self: *const T, mode: DCOMPOSITION_OPACITY_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionVisual2.VTable, self.vtable).SetOpacityMode(@ptrCast(*const IDCompositionVisual2, self), mode);
+                return @as(*const IDCompositionVisual2.VTable, @ptrCast(self.vtable)).SetOpacityMode(@as(*const IDCompositionVisual2, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual2_SetBackFaceVisibility(self: *const T, visibility: DCOMPOSITION_BACKFACE_VISIBILITY) HRESULT {
-                return @ptrCast(*const IDCompositionVisual2.VTable, self.vtable).SetBackFaceVisibility(@ptrCast(*const IDCompositionVisual2, self), visibility);
+                return @as(*const IDCompositionVisual2.VTable, @ptrCast(self.vtable)).SetBackFaceVisibility(@as(*const IDCompositionVisual2, @ptrCast(self)), visibility);
             }
         };
     }
@@ -3156,19 +3156,19 @@ pub const IDCompositionVisualDebug = extern struct {
             pub usingnamespace IDCompositionVisual2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisualDebug_EnableHeatMap(self: *const T, color: ?*const D2D1_COLOR_F) HRESULT {
-                return @ptrCast(*const IDCompositionVisualDebug.VTable, self.vtable).EnableHeatMap(@ptrCast(*const IDCompositionVisualDebug, self), color);
+                return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).EnableHeatMap(@as(*const IDCompositionVisualDebug, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisualDebug_DisableHeatMap(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionVisualDebug.VTable, self.vtable).DisableHeatMap(@ptrCast(*const IDCompositionVisualDebug, self));
+                return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).DisableHeatMap(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisualDebug_EnableRedrawRegions(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionVisualDebug.VTable, self.vtable).EnableRedrawRegions(@ptrCast(*const IDCompositionVisualDebug, self));
+                return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).EnableRedrawRegions(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisualDebug_DisableRedrawRegions(self: *const T) HRESULT {
-                return @ptrCast(*const IDCompositionVisualDebug.VTable, self.vtable).DisableRedrawRegions(@ptrCast(*const IDCompositionVisualDebug, self));
+                return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).DisableRedrawRegions(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
             }
         };
     }
@@ -3268,35 +3268,35 @@ pub const IDCompositionVisual3 = extern struct {
             pub usingnamespace IDCompositionVisualDebug.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetDepthMode(self: *const T, mode: DCOMPOSITION_DEPTH_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetDepthMode(@ptrCast(*const IDCompositionVisual3, self), mode);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetDepthMode(@as(*const IDCompositionVisual3, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetOffsetZ(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetOffsetZ(@ptrCast(*const IDCompositionVisual3, self), animation);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionVisual3, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetOffsetZ1(self: *const T, offsetZ: f32) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetOffsetZ(@ptrCast(*const IDCompositionVisual3, self), offsetZ);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionVisual3, @ptrCast(self)), offsetZ);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetOpacity(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetOpacity(@ptrCast(*const IDCompositionVisual3, self), animation);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionVisual3, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetOpacity1(self: *const T, opacity: f32) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetOpacity(@ptrCast(*const IDCompositionVisual3, self), opacity);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionVisual3, @ptrCast(self)), opacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetTransform(self: *const T, transform: ?*IDCompositionTransform3D) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetTransform(@ptrCast(*const IDCompositionVisual3, self), transform);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual3, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetTransform1(self: *const T, matrix: ?*const D2D_MATRIX_4X4_F) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetTransform(@ptrCast(*const IDCompositionVisual3, self), matrix);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual3, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionVisual3_SetVisible(self: *const T, visible: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionVisual3.VTable, self.vtable).SetVisible(@ptrCast(*const IDCompositionVisual3, self), visible);
+                return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetVisible(@as(*const IDCompositionVisual3, @ptrCast(self)), visible);
             }
         };
     }
@@ -3446,55 +3446,55 @@ pub const IDCompositionDevice3 = extern struct {
             pub usingnamespace IDCompositionDevice2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateGaussianBlurEffect(self: *const T, gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateGaussianBlurEffect(@ptrCast(*const IDCompositionDevice3, self), gaussianBlurEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateGaussianBlurEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), gaussianBlurEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateBrightnessEffect(self: *const T, brightnessEffect: ?*?*IDCompositionBrightnessEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateBrightnessEffect(@ptrCast(*const IDCompositionDevice3, self), brightnessEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateBrightnessEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), brightnessEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateColorMatrixEffect(self: *const T, colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateColorMatrixEffect(@ptrCast(*const IDCompositionDevice3, self), colorMatrixEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateColorMatrixEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), colorMatrixEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateShadowEffect(self: *const T, shadowEffect: ?*?*IDCompositionShadowEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateShadowEffect(@ptrCast(*const IDCompositionDevice3, self), shadowEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateShadowEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), shadowEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateHueRotationEffect(self: *const T, hueRotationEffect: ?*?*IDCompositionHueRotationEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateHueRotationEffect(@ptrCast(*const IDCompositionDevice3, self), hueRotationEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateHueRotationEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), hueRotationEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateSaturationEffect(self: *const T, saturationEffect: ?*?*IDCompositionSaturationEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateSaturationEffect(@ptrCast(*const IDCompositionDevice3, self), saturationEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateSaturationEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), saturationEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateTurbulenceEffect(self: *const T, turbulenceEffect: ?*?*IDCompositionTurbulenceEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateTurbulenceEffect(@ptrCast(*const IDCompositionDevice3, self), turbulenceEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateTurbulenceEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), turbulenceEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateLinearTransferEffect(self: *const T, linearTransferEffect: ?*?*IDCompositionLinearTransferEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateLinearTransferEffect(@ptrCast(*const IDCompositionDevice3, self), linearTransferEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateLinearTransferEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), linearTransferEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateTableTransferEffect(self: *const T, tableTransferEffect: ?*?*IDCompositionTableTransferEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateTableTransferEffect(@ptrCast(*const IDCompositionDevice3, self), tableTransferEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateTableTransferEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), tableTransferEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateCompositeEffect(self: *const T, compositeEffect: ?*?*IDCompositionCompositeEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateCompositeEffect(@ptrCast(*const IDCompositionDevice3, self), compositeEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateCompositeEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), compositeEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateBlendEffect(self: *const T, blendEffect: ?*?*IDCompositionBlendEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateBlendEffect(@ptrCast(*const IDCompositionDevice3, self), blendEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateBlendEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), blendEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateArithmeticCompositeEffect(self: *const T, arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateArithmeticCompositeEffect(@ptrCast(*const IDCompositionDevice3, self), arithmeticCompositeEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateArithmeticCompositeEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), arithmeticCompositeEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDevice3_CreateAffineTransform2DEffect(self: *const T, affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect) HRESULT {
-                return @ptrCast(*const IDCompositionDevice3.VTable, self.vtable).CreateAffineTransform2DEffect(@ptrCast(*const IDCompositionDevice3, self), affineTransform2dEffect);
+                return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateAffineTransform2DEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), affineTransform2dEffect);
             }
         };
     }
@@ -3528,7 +3528,7 @@ pub const IDCompositionFilterEffect = extern struct {
             pub usingnamespace IDCompositionEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionFilterEffect_SetInput(self: *const T, index: u32, input: ?*IUnknown, flags: u32) HRESULT {
-                return @ptrCast(*const IDCompositionFilterEffect.VTable, self.vtable).SetInput(@ptrCast(*const IDCompositionFilterEffect, self), index, input, flags);
+                return @as(*const IDCompositionFilterEffect.VTable, @ptrCast(self.vtable)).SetInput(@as(*const IDCompositionFilterEffect, @ptrCast(self)), index, input, flags);
             }
         };
     }
@@ -3577,15 +3577,15 @@ pub const IDCompositionGaussianBlurEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionGaussianBlurEffect_SetStandardDeviation(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionGaussianBlurEffect.VTable, self.vtable).SetStandardDeviation(@ptrCast(*const IDCompositionGaussianBlurEffect, self), animation);
+                return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionGaussianBlurEffect_SetStandardDeviation1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionGaussianBlurEffect.VTable, self.vtable).SetStandardDeviation(@ptrCast(*const IDCompositionGaussianBlurEffect, self), amount);
+                return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), amount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionGaussianBlurEffect_SetBorderMode(self: *const T, mode: D2D1_BORDER_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionGaussianBlurEffect.VTable, self.vtable).SetBorderMode(@ptrCast(*const IDCompositionGaussianBlurEffect, self), mode);
+                return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), mode);
             }
         };
     }
@@ -3704,43 +3704,43 @@ pub const IDCompositionBrightnessEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetWhitePoint(self: *const T, whitePoint: ?*const D2D_VECTOR_2F) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetWhitePoint(@ptrCast(*const IDCompositionBrightnessEffect, self), whitePoint);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePoint(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetBlackPoint(self: *const T, blackPoint: ?*const D2D_VECTOR_2F) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetBlackPoint(@ptrCast(*const IDCompositionBrightnessEffect, self), blackPoint);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPoint(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPoint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetWhitePointX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetWhitePointX(@ptrCast(*const IDCompositionBrightnessEffect, self), animation);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetWhitePointX1(self: *const T, whitePointX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetWhitePointX(@ptrCast(*const IDCompositionBrightnessEffect, self), whitePointX);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePointX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetWhitePointY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetWhitePointY(@ptrCast(*const IDCompositionBrightnessEffect, self), animation);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetWhitePointY1(self: *const T, whitePointY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetWhitePointY(@ptrCast(*const IDCompositionBrightnessEffect, self), whitePointY);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePointY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetBlackPointX(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetBlackPointX(@ptrCast(*const IDCompositionBrightnessEffect, self), animation);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetBlackPointX1(self: *const T, blackPointX: f32) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetBlackPointX(@ptrCast(*const IDCompositionBrightnessEffect, self), blackPointX);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPointX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetBlackPointY(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetBlackPointY(@ptrCast(*const IDCompositionBrightnessEffect, self), animation);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBrightnessEffect_SetBlackPointY1(self: *const T, blackPointY: f32) HRESULT {
-                return @ptrCast(*const IDCompositionBrightnessEffect.VTable, self.vtable).SetBlackPointY(@ptrCast(*const IDCompositionBrightnessEffect, self), blackPointY);
+                return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPointY);
             }
         };
     }
@@ -3817,23 +3817,23 @@ pub const IDCompositionColorMatrixEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionColorMatrixEffect_SetMatrix(self: *const T, matrix: ?*const D2D_MATRIX_5X4_F) HRESULT {
-                return @ptrCast(*const IDCompositionColorMatrixEffect.VTable, self.vtable).SetMatrix(@ptrCast(*const IDCompositionColorMatrixEffect, self), matrix);
+                return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), matrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionColorMatrixEffect_SetMatrixElement(self: *const T, row: i32, column: i32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionColorMatrixEffect.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionColorMatrixEffect, self), row, column, animation);
+                return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), row, column, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionColorMatrixEffect_SetMatrixElement1(self: *const T, row: i32, column: i32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionColorMatrixEffect.VTable, self.vtable).SetMatrixElement(@ptrCast(*const IDCompositionColorMatrixEffect, self), row, column, value);
+                return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), row, column, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionColorMatrixEffect_SetAlphaMode(self: *const T, mode: D2D1_COLORMATRIX_ALPHA_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionColorMatrixEffect.VTable, self.vtable).SetAlphaMode(@ptrCast(*const IDCompositionColorMatrixEffect, self), mode);
+                return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetAlphaMode(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), mode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionColorMatrixEffect_SetClampOutput(self: *const T, clamp: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionColorMatrixEffect.VTable, self.vtable).SetClampOutput(@ptrCast(*const IDCompositionColorMatrixEffect, self), clamp);
+                return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), clamp);
             }
         };
     }
@@ -3962,47 +3962,47 @@ pub const IDCompositionShadowEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetStandardDeviation(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetStandardDeviation(@ptrCast(*const IDCompositionShadowEffect, self), animation);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetStandardDeviation1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetStandardDeviation(@ptrCast(*const IDCompositionShadowEffect, self), amount);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetColor(self: *const T, color: ?*const D2D_VECTOR_4F) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetColor(@ptrCast(*const IDCompositionShadowEffect, self), color);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IDCompositionShadowEffect, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetRed(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetRed(@ptrCast(*const IDCompositionShadowEffect, self), animation);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetRed(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetRed1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetRed(@ptrCast(*const IDCompositionShadowEffect, self), amount);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetRed(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetGreen(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetGreen(@ptrCast(*const IDCompositionShadowEffect, self), animation);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetGreen(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetGreen1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetGreen(@ptrCast(*const IDCompositionShadowEffect, self), amount);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetGreen(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetBlue(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetBlue(@ptrCast(*const IDCompositionShadowEffect, self), animation);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetBlue(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetBlue1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetBlue(@ptrCast(*const IDCompositionShadowEffect, self), amount);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetBlue(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetAlpha(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetAlpha(@ptrCast(*const IDCompositionShadowEffect, self), animation);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetAlpha(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionShadowEffect_SetAlpha1(self: *const T, amount: f32) HRESULT {
-                return @ptrCast(*const IDCompositionShadowEffect.VTable, self.vtable).SetAlpha(@ptrCast(*const IDCompositionShadowEffect, self), amount);
+                return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetAlpha(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
             }
         };
     }
@@ -4041,11 +4041,11 @@ pub const IDCompositionHueRotationEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionHueRotationEffect_SetAngle(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionHueRotationEffect.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionHueRotationEffect, self), animation);
+                return @as(*const IDCompositionHueRotationEffect.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionHueRotationEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionHueRotationEffect_SetAngle1(self: *const T, amountDegrees: f32) HRESULT {
-                return @ptrCast(*const IDCompositionHueRotationEffect.VTable, self.vtable).SetAngle(@ptrCast(*const IDCompositionHueRotationEffect, self), amountDegrees);
+                return @as(*const IDCompositionHueRotationEffect.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionHueRotationEffect, @ptrCast(self)), amountDegrees);
             }
         };
     }
@@ -4084,11 +4084,11 @@ pub const IDCompositionSaturationEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSaturationEffect_SetSaturation(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionSaturationEffect.VTable, self.vtable).SetSaturation(@ptrCast(*const IDCompositionSaturationEffect, self), animation);
+                return @as(*const IDCompositionSaturationEffect.VTable, @ptrCast(self.vtable)).SetSaturation(@as(*const IDCompositionSaturationEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionSaturationEffect_SetSaturation1(self: *const T, ratio: f32) HRESULT {
-                return @ptrCast(*const IDCompositionSaturationEffect.VTable, self.vtable).SetSaturation(@ptrCast(*const IDCompositionSaturationEffect, self), ratio);
+                return @as(*const IDCompositionSaturationEffect.VTable, @ptrCast(self.vtable)).SetSaturation(@as(*const IDCompositionSaturationEffect, @ptrCast(self)), ratio);
             }
         };
     }
@@ -4177,31 +4177,31 @@ pub const IDCompositionTurbulenceEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetOffset(self: *const T, offset: ?*const D2D_VECTOR_2F) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetOffset(@ptrCast(*const IDCompositionTurbulenceEffect, self), offset);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetBaseFrequency(self: *const T, frequency: ?*const D2D_VECTOR_2F) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetBaseFrequency(@ptrCast(*const IDCompositionTurbulenceEffect, self), frequency);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetBaseFrequency(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), frequency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetSize(self: *const T, size: ?*const D2D_VECTOR_2F) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetSize(@ptrCast(*const IDCompositionTurbulenceEffect, self), size);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetNumOctaves(self: *const T, numOctaves: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetNumOctaves(@ptrCast(*const IDCompositionTurbulenceEffect, self), numOctaves);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetNumOctaves(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), numOctaves);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetSeed(self: *const T, seed: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetSeed(@ptrCast(*const IDCompositionTurbulenceEffect, self), seed);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetSeed(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), seed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetNoise(self: *const T, noise: D2D1_TURBULENCE_NOISE) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetNoise(@ptrCast(*const IDCompositionTurbulenceEffect, self), noise);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetNoise(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), noise);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTurbulenceEffect_SetStitchable(self: *const T, stitchable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTurbulenceEffect.VTable, self.vtable).SetStitchable(@ptrCast(*const IDCompositionTurbulenceEffect, self), stitchable);
+                return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetStitchable(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), stitchable);
             }
         };
     }
@@ -4430,87 +4430,87 @@ pub const IDCompositionLinearTransferEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetRedYIntercept(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetRedYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetRedYIntercept1(self: *const T, redYIntercept: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetRedYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), redYIntercept);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redYIntercept);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetRedSlope(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetRedSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetRedSlope1(self: *const T, redSlope: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetRedSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), redSlope);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redSlope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetRedDisable(self: *const T, redDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetRedDisable(@ptrCast(*const IDCompositionLinearTransferEffect, self), redDisable);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetGreenYIntercept(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetGreenYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetGreenYIntercept1(self: *const T, greenYIntercept: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetGreenYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), greenYIntercept);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenYIntercept);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetGreenSlope(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetGreenSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetGreenSlope1(self: *const T, greenSlope: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetGreenSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), greenSlope);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenSlope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetGreenDisable(self: *const T, greenDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetGreenDisable(@ptrCast(*const IDCompositionLinearTransferEffect, self), greenDisable);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetBlueYIntercept(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetBlueYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetBlueYIntercept1(self: *const T, blueYIntercept: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetBlueYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), blueYIntercept);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueYIntercept);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetBlueSlope(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetBlueSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetBlueSlope1(self: *const T, blueSlope: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetBlueSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), blueSlope);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueSlope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetBlueDisable(self: *const T, blueDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetBlueDisable(@ptrCast(*const IDCompositionLinearTransferEffect, self), blueDisable);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetAlphaYIntercept(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetAlphaYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetAlphaYIntercept1(self: *const T, alphaYIntercept: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetAlphaYIntercept(@ptrCast(*const IDCompositionLinearTransferEffect, self), alphaYIntercept);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaYIntercept);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetAlphaSlope(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetAlphaSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), animation);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetAlphaSlope1(self: *const T, alphaSlope: f32) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetAlphaSlope(@ptrCast(*const IDCompositionLinearTransferEffect, self), alphaSlope);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaSlope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetAlphaDisable(self: *const T, alphaDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetAlphaDisable(@ptrCast(*const IDCompositionLinearTransferEffect, self), alphaDisable);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionLinearTransferEffect_SetClampOutput(self: *const T, clampOutput: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionLinearTransferEffect.VTable, self.vtable).SetClampOutput(@ptrCast(*const IDCompositionLinearTransferEffect, self), clampOutput);
+                return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), clampOutput);
             }
         };
     }
@@ -4723,71 +4723,71 @@ pub const IDCompositionTableTransferEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetRedTable(self: *const T, tableValues: [*]const f32, count: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetRedTable(@ptrCast(*const IDCompositionTableTransferEffect, self), tableValues, count);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetGreenTable(self: *const T, tableValues: [*]const f32, count: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetGreenTable(@ptrCast(*const IDCompositionTableTransferEffect, self), tableValues, count);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetBlueTable(self: *const T, tableValues: [*]const f32, count: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetBlueTable(@ptrCast(*const IDCompositionTableTransferEffect, self), tableValues, count);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetAlphaTable(self: *const T, tableValues: [*]const f32, count: u32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetAlphaTable(@ptrCast(*const IDCompositionTableTransferEffect, self), tableValues, count);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetRedDisable(self: *const T, redDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetRedDisable(@ptrCast(*const IDCompositionTableTransferEffect, self), redDisable);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), redDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetGreenDisable(self: *const T, greenDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetGreenDisable(@ptrCast(*const IDCompositionTableTransferEffect, self), greenDisable);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), greenDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetBlueDisable(self: *const T, blueDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetBlueDisable(@ptrCast(*const IDCompositionTableTransferEffect, self), blueDisable);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), blueDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetAlphaDisable(self: *const T, alphaDisable: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetAlphaDisable(@ptrCast(*const IDCompositionTableTransferEffect, self), alphaDisable);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), alphaDisable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetClampOutput(self: *const T, clampOutput: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetClampOutput(@ptrCast(*const IDCompositionTableTransferEffect, self), clampOutput);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), clampOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetRedTableValue(self: *const T, index: u32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetRedTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, animation);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetRedTableValue1(self: *const T, index: u32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetRedTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, value);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetGreenTableValue(self: *const T, index: u32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetGreenTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, animation);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetGreenTableValue1(self: *const T, index: u32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetGreenTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, value);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetBlueTableValue(self: *const T, index: u32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetBlueTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, animation);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetBlueTableValue1(self: *const T, index: u32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetBlueTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, value);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetAlphaTableValue(self: *const T, index: u32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetAlphaTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, animation);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionTableTransferEffect_SetAlphaTableValue1(self: *const T, index: u32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionTableTransferEffect.VTable, self.vtable).SetAlphaTableValue(@ptrCast(*const IDCompositionTableTransferEffect, self), index, value);
+                return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
             }
         };
     }
@@ -4816,7 +4816,7 @@ pub const IDCompositionCompositeEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionCompositeEffect_SetMode(self: *const T, mode: D2D1_COMPOSITE_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionCompositeEffect.VTable, self.vtable).SetMode(@ptrCast(*const IDCompositionCompositeEffect, self), mode);
+                return @as(*const IDCompositionCompositeEffect.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDCompositionCompositeEffect, @ptrCast(self)), mode);
             }
         };
     }
@@ -4845,7 +4845,7 @@ pub const IDCompositionBlendEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionBlendEffect_SetMode(self: *const T, mode: D2D1_BLEND_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionBlendEffect.VTable, self.vtable).SetMode(@ptrCast(*const IDCompositionBlendEffect, self), mode);
+                return @as(*const IDCompositionBlendEffect.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDCompositionBlendEffect, @ptrCast(self)), mode);
             }
         };
     }
@@ -4964,43 +4964,43 @@ pub const IDCompositionArithmeticCompositeEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficients(self: *const T, coefficients: ?*const D2D_VECTOR_4F) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficients(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), coefficients);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficients(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), coefficients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetClampOutput(self: *const T, clampoutput: BOOL) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetClampOutput(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), clampoutput);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), clampoutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient1(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient1(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), animation);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient1(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient11(self: *const T, Coeffcient1: f32) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient1(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), Coeffcient1);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient1(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coeffcient1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient2(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient2(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), animation);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient2(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient21(self: *const T, Coefficient2: f32) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient2(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), Coefficient2);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient2(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient3(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient3(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), animation);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient3(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient31(self: *const T, Coefficient3: f32) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient3(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), Coefficient3);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient3(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient4(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient4(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), animation);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient4(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionArithmeticCompositeEffect_SetCoefficient41(self: *const T, Coefficient4: f32) HRESULT {
-                return @ptrCast(*const IDCompositionArithmeticCompositeEffect.VTable, self.vtable).SetCoefficient4(@ptrCast(*const IDCompositionArithmeticCompositeEffect, self), Coefficient4);
+                return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient4(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient4);
             }
         };
     }
@@ -5097,31 +5097,31 @@ pub const IDCompositionAffineTransform2DEffect = extern struct {
             pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetInterpolationMode(self: *const T, interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetInterpolationMode(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), interpolationMode);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), interpolationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetBorderMode(self: *const T, borderMode: D2D1_BORDER_MODE) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetBorderMode(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), borderMode);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), borderMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetTransformMatrix(self: *const T, transformMatrix: ?*const D2D_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetTransformMatrix(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), transformMatrix);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrix(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), transformMatrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetTransformMatrixElement(self: *const T, row: i32, column: i32, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetTransformMatrixElement(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), row, column, animation);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrixElement(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), row, column, animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetTransformMatrixElement1(self: *const T, row: i32, column: i32, value: f32) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetTransformMatrixElement(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), row, column, value);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrixElement(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), row, column, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetSharpness(self: *const T, animation: ?*IDCompositionAnimation) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetSharpness(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), animation);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetSharpness(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), animation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionAffineTransform2DEffect_SetSharpness1(self: *const T, sharpness: f32) HRESULT {
-                return @ptrCast(*const IDCompositionAffineTransform2DEffect.VTable, self.vtable).SetSharpness(@ptrCast(*const IDCompositionAffineTransform2DEffect, self), sharpness);
+                return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetSharpness(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), sharpness);
             }
         };
     }
@@ -5198,19 +5198,19 @@ pub const IDCompositionDelegatedInkTrail = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDelegatedInkTrail_AddTrailPoints(self: *const T, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, generationId: ?*u32) HRESULT {
-                return @ptrCast(*const IDCompositionDelegatedInkTrail.VTable, self.vtable).AddTrailPoints(@ptrCast(*const IDCompositionDelegatedInkTrail, self), inkPoints, inkPointsCount, generationId);
+                return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).AddTrailPoints(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), inkPoints, inkPointsCount, generationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDelegatedInkTrail_AddTrailPointsWithPrediction(self: *const T, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, predictedInkPoints: [*]const DCompositionInkTrailPoint, predictedInkPointsCount: u32, generationId: ?*u32) HRESULT {
-                return @ptrCast(*const IDCompositionDelegatedInkTrail.VTable, self.vtable).AddTrailPointsWithPrediction(@ptrCast(*const IDCompositionDelegatedInkTrail, self), inkPoints, inkPointsCount, predictedInkPoints, predictedInkPointsCount, generationId);
+                return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).AddTrailPointsWithPrediction(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), inkPoints, inkPointsCount, predictedInkPoints, predictedInkPointsCount, generationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDelegatedInkTrail_RemoveTrailPoints(self: *const T, generationId: u32) HRESULT {
-                return @ptrCast(*const IDCompositionDelegatedInkTrail.VTable, self.vtable).RemoveTrailPoints(@ptrCast(*const IDCompositionDelegatedInkTrail, self), generationId);
+                return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).RemoveTrailPoints(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), generationId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionDelegatedInkTrail_StartNewTrail(self: *const T, color: ?*const D2D1_COLOR_F) HRESULT {
-                return @ptrCast(*const IDCompositionDelegatedInkTrail.VTable, self.vtable).StartNewTrail(@ptrCast(*const IDCompositionDelegatedInkTrail, self), color);
+                return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).StartNewTrail(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), color);
             }
         };
     }
@@ -5251,11 +5251,11 @@ pub const IDCompositionInkTrailDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionInkTrailDevice_CreateDelegatedInkTrail(self: *const T, inkTrail: ?*?*IDCompositionDelegatedInkTrail) HRESULT {
-                return @ptrCast(*const IDCompositionInkTrailDevice.VTable, self.vtable).CreateDelegatedInkTrail(@ptrCast(*const IDCompositionInkTrailDevice, self), inkTrail);
+                return @as(*const IDCompositionInkTrailDevice.VTable, @ptrCast(self.vtable)).CreateDelegatedInkTrail(@as(*const IDCompositionInkTrailDevice, @ptrCast(self)), inkTrail);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDCompositionInkTrailDevice_CreateDelegatedInkTrailForSwapChain(self: *const T, swapChain: ?*IUnknown, inkTrail: ?*?*IDCompositionDelegatedInkTrail) HRESULT {
-                return @ptrCast(*const IDCompositionInkTrailDevice.VTable, self.vtable).CreateDelegatedInkTrailForSwapChain(@ptrCast(*const IDCompositionInkTrailDevice, self), swapChain, inkTrail);
+                return @as(*const IDCompositionInkTrailDevice.VTable, @ptrCast(self.vtable)).CreateDelegatedInkTrailForSwapChain(@as(*const IDCompositionInkTrailDevice, @ptrCast(self)), swapChain, inkTrail);
             }
         };
     }

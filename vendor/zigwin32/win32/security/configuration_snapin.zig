@@ -209,15 +209,15 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentPersistInfo_Save(self: *const T, lpTemplateName: ?*i8, scesvcHandle: ?*?*anyopaque, ppvData: ?*?*anyopaque, pbOverwriteAll: ?*BOOL) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).Save(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
+                return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).Save(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), lpTemplateName, scesvcHandle, ppvData, pbOverwriteAll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentPersistInfo_IsDirty(self: *const T, lpTemplateName: ?*i8) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).IsDirty(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), lpTemplateName);
+                return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), lpTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentPersistInfo_FreeBuffer(self: *const T, pvData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentPersistInfo.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentPersistInfo, self), pvData);
+                return @as(*const ISceSvcAttachmentPersistInfo.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const ISceSvcAttachmentPersistInfo, @ptrCast(self)), pvData);
             }
         };
     }
@@ -289,19 +289,19 @@ pub const ISceSvcAttachmentData = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentData_GetData(self: *const T, scesvcHandle: ?*anyopaque, sceType: SCESVC_INFO_TYPE, ppvData: ?*?*anyopaque, psceEnumHandle: ?*u32) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).GetData(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle, sceType, ppvData, psceEnumHandle);
+                return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISceSvcAttachmentData, @ptrCast(self)), scesvcHandle, sceType, ppvData, psceEnumHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentData_Initialize(self: *const T, lpServiceName: ?*i8, lpTemplateName: ?*i8, lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo, pscesvcHandle: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).Initialize(@ptrCast(*const ISceSvcAttachmentData, self), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
+                return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISceSvcAttachmentData, @ptrCast(self)), lpServiceName, lpTemplateName, lpSceSvcPersistInfo, pscesvcHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentData_FreeBuffer(self: *const T, pvData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).FreeBuffer(@ptrCast(*const ISceSvcAttachmentData, self), pvData);
+                return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const ISceSvcAttachmentData, @ptrCast(self)), pvData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISceSvcAttachmentData_CloseHandle(self: *const T, scesvcHandle: ?*anyopaque) HRESULT {
-                return @ptrCast(*const ISceSvcAttachmentData.VTable, self.vtable).CloseHandle(@ptrCast(*const ISceSvcAttachmentData, self), scesvcHandle);
+                return @as(*const ISceSvcAttachmentData.VTable, @ptrCast(self.vtable)).CloseHandle(@as(*const ISceSvcAttachmentData, @ptrCast(self)), scesvcHandle);
             }
         };
     }

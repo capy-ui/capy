@@ -164,43 +164,43 @@ pub const IChannelCredentials = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetWindowsCredential(self: *const T, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetWindowsCredential(@ptrCast(*const IChannelCredentials, self), domain, username, password, impersonationLevel, allowNtlm);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetWindowsCredential(@as(*const IChannelCredentials, @ptrCast(self)), domain, username, password, impersonationLevel, allowNtlm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetUserNameCredential(self: *const T, username: ?BSTR, password: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetUserNameCredential(@ptrCast(*const IChannelCredentials, self), username, password);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetUserNameCredential(@as(*const IChannelCredentials, @ptrCast(self)), username, password);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetClientCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findYype, findValue);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findYype, findValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetClientCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetClientCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetClientCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetClientCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromStore(self: *const T, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStore(@ptrCast(*const IChannelCredentials, self), storeLocation, storeName, findType, findValue);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStore(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, storeName, findType, findValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromStoreByName(self: *const T, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromStoreByName(@ptrCast(*const IChannelCredentials, self), subjectName, storeLocation, storeName);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromStoreByName(@as(*const IChannelCredentials, @ptrCast(self)), subjectName, storeLocation, storeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetDefaultServiceCertificateFromFile(self: *const T, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetDefaultServiceCertificateFromFile(@ptrCast(*const IChannelCredentials, self), filename, password, keystorageFlags);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetDefaultServiceCertificateFromFile(@as(*const IChannelCredentials, @ptrCast(self)), filename, password, keystorageFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetServiceCertificateAuthentication(self: *const T, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetServiceCertificateAuthentication(@ptrCast(*const IChannelCredentials, self), storeLocation, revocationMode, certificateValidationMode);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetServiceCertificateAuthentication(@as(*const IChannelCredentials, @ptrCast(self)), storeLocation, revocationMode, certificateValidationMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IChannelCredentials_SetIssuedToken(self: *const T, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) HRESULT {
-                return @ptrCast(*const IChannelCredentials.VTable, self.vtable).SetIssuedToken(@ptrCast(*const IChannelCredentials, self), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
+                return @as(*const IChannelCredentials.VTable, @ptrCast(self.vtable)).SetIssuedToken(@as(*const IChannelCredentials, @ptrCast(self)), localIssuerAddres, localIssuerBindingType, localIssuerBinding);
             }
         };
     }

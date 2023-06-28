@@ -19,7 +19,7 @@ pub fn ChunkWriter(comptime buffer_size: usize, comptime WriterType: type) type 
         const Self = @This();
 
         pub fn flush(self: *Self) !void {
-            try self.unbuffered_writer.writeIntBig(u32, @truncate(u32, self.end));
+            try self.unbuffered_writer.writeIntBig(u32, @as(u32, @truncate(self.end)));
 
             var crc = Crc.init();
 

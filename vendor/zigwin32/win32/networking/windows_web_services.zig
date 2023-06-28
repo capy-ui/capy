@@ -4654,11 +4654,11 @@ pub const IContentPrefetcherTaskTrigger = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContentPrefetcherTaskTrigger_TriggerContentPrefetcherTask(self: *const T, packageFullName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).TriggerContentPrefetcherTask(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName);
+                return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).TriggerContentPrefetcherTask(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IContentPrefetcherTaskTrigger_IsRegisteredForContentPrefetch(self: *const T, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) HRESULT {
-                return @ptrCast(*const IContentPrefetcherTaskTrigger.VTable, self.vtable).IsRegisteredForContentPrefetch(@ptrCast(*const IContentPrefetcherTaskTrigger, self), packageFullName, isRegistered);
+                return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).IsRegisteredForContentPrefetch(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName, isRegistered);
             }
         };
     }

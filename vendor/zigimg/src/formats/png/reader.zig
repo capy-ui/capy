@@ -35,7 +35,7 @@ fn callChunkProcessors(processors: []ReaderProcessor, chunk_process_data: *Chunk
 
     // If noone loaded this chunk we need to skip over it
     if (!processed) {
-        try chunk_process_data.stream.seekBy(@intCast(i64, chunk_process_data.chunk_length + 4));
+        try chunk_process_data.stream.seekBy(@as(i64, @intCast(chunk_process_data.chunk_length + 4)));
     }
 }
 
@@ -97,7 +97,7 @@ const IDatChunksReader = struct {
             to_read = try self.fillBuffer(to_read);
         }
         std.mem.copy(u8, new_dest[0..to_read], self.data[0..to_read]);
-        self.remaining_chunk_length -= @intCast(u32, to_read);
+        self.remaining_chunk_length -= @as(u32, @intCast(to_read));
         self.data = self.data[to_read..];
 
         if (self.remaining_chunk_length == 0) {
@@ -302,7 +302,7 @@ fn readAllData(
     const filter_stride = (header.bit_depth + 7) / 8 * channel_count; // 1 to 8 bytes
     const line_bytes = header.lineBytes();
     const virtual_line_bytes = line_bytes + filter_stride;
-    const result_line_bytes = @intCast(u32, destination.len / height);
+    const result_line_bytes = @as(u32, @intCast(destination.len / height));
     var tmpbytes = 2 * virtual_line_bytes;
     // For deinterlacing we also need one additional temporary row of resulting pixels
     if (header.interlace_method == .adam7) {
@@ -314,7 +314,7 @@ fn readAllData(
     @memset(tmp_buffer, 0);
     var prev_row = tmp_buffer[0..virtual_line_bytes];
     var current_row = tmp_buffer[virtual_line_bytes .. 2 * virtual_line_bytes];
-    const pixel_stride = @intCast(u8, result_line_bytes / width);
+    const pixel_stride = @as(u8, @intCast(result_line_bytes / width));
     std.debug.assert(pixel_stride == dest_format.pixelStride());
 
     var process_row_data = RowProcessData{
@@ -455,7 +455,7 @@ fn defilter(current_row: []u8, prev_row: []u8, filter_stride: u8) Image.ReadErro
     if (filter_byte > @intFromEnum(png.FilterType.paeth)) {
         return Image.ReadError.InvalidData;
     }
-    const filter = @enumFromInt(png.FilterType, filter_byte);
+    const filter = @as(png.FilterType, @enumFromInt(filter_byte));
     current_row[filter_stride - 1] = 0;
 
     var x: u32 = filter_stride;
@@ -468,14 +468,14 @@ fn defilter(current_row: []u8, prev_row: []u8, filter_stride: u8) Image.ReadErro
             current_row[x] +%= prev_row[x];
         },
         .average => while (x < current_row.len) : (x += 1) {
-            current_row[x] +%= @truncate(u8, (@intCast(u32, current_row[x - filter_stride]) + @intCast(u32, prev_row[x])) / 2);
+            current_row[x] +%= @as(u8, @truncate((@as(u32, @intCast(current_row[x - filter_stride])) + @as(u32, @intCast(prev_row[x]))) / 2));
         },
         .paeth => while (x < current_row.len) : (x += 1) {
             const a = current_row[x - filter_stride];
             const b = prev_row[x];
             const c = prev_row[x - filter_stride];
-            var pa: i32 = @intCast(i32, b) - c;
-            var pb: i32 = @intCast(i32, a) - c;
+            var pa: i32 = @as(i32, @intCast(b)) - c;
+            var pb: i32 = @as(i32, @intCast(a)) - c;
             var pc: i32 = pa + pb;
             if (pa < 0) pa = -pa;
             if (pb < 0) pb = -pb;
@@ -504,12 +504,12 @@ fn spreadRowData(
         1, 2, 4 => {
             while (dest_index < result_line_bytes) {
                 // color_type must be Grayscale or Indexed
-                var shift = @intCast(i4, 8 - bit_depth);
-                var mask = @as(u8, 0xff) << @intCast(u3, shift);
-                while (shift >= 0 and dest_index < result_line_bytes) : (shift -= @intCast(i4, bit_depth)) {
-                    dest_row[dest_index] = (current_row[source_index] & mask) >> @intCast(u3, shift);
+                var shift = @as(i4, @intCast(8 - bit_depth));
+                var mask = @as(u8, 0xff) << @as(u3, @intCast(shift));
+                while (shift >= 0 and dest_index < result_line_bytes) : (shift -= @as(i4, @intCast(bit_depth))) {
+                    dest_row[dest_index] = (current_row[source_index] & mask) >> @as(u3, @intCast(shift));
                     dest_index += pixel_stride;
-                    mask >>= @intCast(u3, bit_depth);
+                    mask >>= @as(u3, @intCast(bit_depth));
                 }
                 source_index += 1;
             }
@@ -612,19 +612,17 @@ pub const ReaderProcessor = struct {
         std.debug.assert(ptr_info == .Pointer); // Must be a pointer
         std.debug.assert(ptr_info.Pointer.size == .One); // Must be a single-item pointer
 
-        const alignment = ptr_info.Pointer.alignment;
-
         const gen = struct {
             fn chunkProcessor(ptr: *anyopaque, data: *ChunkProcessData) Image.ReadError!PixelFormat {
-                const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
+                const self = @as(Ptr, @ptrCast(@alignCast(ptr)));
                 return @call(.always_inline, chunkProcessorFn.?, .{ self, data });
             }
             fn paletteProcessor(ptr: *anyopaque, data: *PaletteProcessData) Image.ReadError!void {
-                const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
+                const self = @as(Ptr, @ptrCast(@alignCast(ptr)));
                 return @call(.always_inline, paletteProcessorFn.?, .{ self, data });
             }
             fn dataRowProcessor(ptr: *anyopaque, data: *RowProcessData) Image.ReadError!PixelFormat {
-                const self = @ptrCast(Ptr, @alignCast(alignment, ptr));
+                const self = @as(Ptr, @ptrCast(@alignCast(ptr)));
                 return @call(.always_inline, dataRowProcessorFn.?, .{ self, data });
             }
 
@@ -731,7 +729,7 @@ pub const TrnsProcessor = struct {
                 switch (data.src_format) {
                     .grayscale1, .grayscale2, .grayscale4, .grayscale8 => {
                         while (pixel_pos + 1 < data.dest_row.len) : (pixel_pos += pixel_stride) {
-                            data.dest_row[pixel_pos + 1] = (data.dest_row[pixel_pos] ^ @truncate(u8, gray_alpha)) *| 255;
+                            data.dest_row[pixel_pos + 1] = (data.dest_row[pixel_pos] ^ @as(u8, @truncate(gray_alpha))) *| 255;
                         }
                         return .grayscale8Alpha;
                     },

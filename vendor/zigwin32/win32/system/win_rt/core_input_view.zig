@@ -32,7 +32,7 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICoreFrameworkInputViewInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ICoreFrameworkInputViewInterop, self), appWindow, riid, coreFrameworkInputView);
+                return @as(*const ICoreFrameworkInputViewInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ICoreFrameworkInputViewInterop, @ptrCast(self)), appWindow, riid, coreFrameworkInputView);
             }
         };
     }

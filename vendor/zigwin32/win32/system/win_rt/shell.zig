@@ -53,7 +53,7 @@ pub const IDDEInitializer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDDEInitializer_Initialize(self: *const T, fileExtensionOrProtocol: ?[*:0]const u16, method: CreateProcessMethod, currentDirectory: ?[*:0]const u16, execTarget: ?*IShellItem, site: ?*IUnknown, application: ?[*:0]const u16, targetFile: ?[*:0]const u16, arguments: ?[*:0]const u16, verb: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IDDEInitializer.VTable, self.vtable).Initialize(@ptrCast(*const IDDEInitializer, self), fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
+                return @as(*const IDDEInitializer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDDEInitializer, @ptrCast(self)), fileExtensionOrProtocol, method, currentDirectory, execTarget, site, application, targetFile, arguments, verb);
             }
         };
     }

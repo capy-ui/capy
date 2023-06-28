@@ -543,95 +543,95 @@ pub const IXmlReader = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_SetInput(self: *const T, pInput: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).SetInput(@ptrCast(*const IXmlReader, self), pInput);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetInput(@as(*const IXmlReader, @ptrCast(self)), pInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetProperty(@ptrCast(*const IXmlReader, self), nProperty, ppValue);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).SetProperty(@ptrCast(*const IXmlReader, self), nProperty, pValue);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_Read(self: *const T, pNodeType: ?*XmlNodeType) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).Read(@ptrCast(*const IXmlReader, self), pNodeType);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).Read(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetNodeType(self: *const T, pNodeType: ?*XmlNodeType) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetNodeType(@ptrCast(*const IXmlReader, self), pNodeType);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNodeType(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_MoveToFirstAttribute(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).MoveToFirstAttribute(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToFirstAttribute(@as(*const IXmlReader, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_MoveToNextAttribute(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).MoveToNextAttribute(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToNextAttribute(@as(*const IXmlReader, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_MoveToAttributeByName(self: *const T, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).MoveToAttributeByName(@ptrCast(*const IXmlReader, self), pwszLocalName, pwszNamespaceUri);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToAttributeByName(@as(*const IXmlReader, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_MoveToElement(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).MoveToElement(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToElement(@as(*const IXmlReader, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetQualifiedName(self: *const T, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetQualifiedName(@ptrCast(*const IXmlReader, self), ppwszQualifiedName, pcwchQualifiedName);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetQualifiedName(@as(*const IXmlReader, @ptrCast(self)), ppwszQualifiedName, pcwchQualifiedName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetNamespaceUri(self: *const T, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetNamespaceUri(@ptrCast(*const IXmlReader, self), ppwszNamespaceUri, pcwchNamespaceUri);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNamespaceUri(@as(*const IXmlReader, @ptrCast(self)), ppwszNamespaceUri, pcwchNamespaceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetLocalName(self: *const T, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetLocalName(@ptrCast(*const IXmlReader, self), ppwszLocalName, pcwchLocalName);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IXmlReader, @ptrCast(self)), ppwszLocalName, pcwchLocalName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetPrefix(self: *const T, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetPrefix(@ptrCast(*const IXmlReader, self), ppwszPrefix, pcwchPrefix);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetPrefix(@as(*const IXmlReader, @ptrCast(self)), ppwszPrefix, pcwchPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetValue(self: *const T, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetValue(@ptrCast(*const IXmlReader, self), ppwszValue, pcwchValue);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IXmlReader, @ptrCast(self)), ppwszValue, pcwchValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_ReadValueChunk(self: *const T, pwchBuffer: [*:0]u16, cwchChunkSize: u32, pcwchRead: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).ReadValueChunk(@ptrCast(*const IXmlReader, self), pwchBuffer, cwchChunkSize, pcwchRead);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).ReadValueChunk(@as(*const IXmlReader, @ptrCast(self)), pwchBuffer, cwchChunkSize, pcwchRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetBaseUri(self: *const T, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetBaseUri(@ptrCast(*const IXmlReader, self), ppwszBaseUri, pcwchBaseUri);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetBaseUri(@as(*const IXmlReader, @ptrCast(self)), ppwszBaseUri, pcwchBaseUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_IsDefault(self: *const T) BOOL {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).IsDefault(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsDefault(@as(*const IXmlReader, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_IsEmptyElement(self: *const T) BOOL {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).IsEmptyElement(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEmptyElement(@as(*const IXmlReader, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetLineNumber(self: *const T, pnLineNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetLineNumber(@ptrCast(*const IXmlReader, self), pnLineNumber);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLineNumber(@as(*const IXmlReader, @ptrCast(self)), pnLineNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetLinePosition(self: *const T, pnLinePosition: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetLinePosition(@ptrCast(*const IXmlReader, self), pnLinePosition);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLinePosition(@as(*const IXmlReader, @ptrCast(self)), pnLinePosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetAttributeCount(self: *const T, pnAttributeCount: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetAttributeCount(@ptrCast(*const IXmlReader, self), pnAttributeCount);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetAttributeCount(@as(*const IXmlReader, @ptrCast(self)), pnAttributeCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_GetDepth(self: *const T, pnDepth: ?*u32) HRESULT {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).GetDepth(@ptrCast(*const IXmlReader, self), pnDepth);
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetDepth(@as(*const IXmlReader, @ptrCast(self)), pnDepth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlReader_IsEOF(self: *const T) BOOL {
-                return @ptrCast(*const IXmlReader.VTable, self.vtable).IsEOF(@ptrCast(*const IXmlReader, self));
+                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEOF(@as(*const IXmlReader, @ptrCast(self)));
             }
         };
     }
@@ -666,7 +666,7 @@ pub const IXmlResolver = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlResolver_ResolveUri(self: *const T, pwszBaseUri: ?[*:0]const u16, pwszPublicIdentifier: ?[*:0]const u16, pwszSystemIdentifier: ?[*:0]const u16, ppResolvedInput: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IXmlResolver.VTable, self.vtable).ResolveUri(@ptrCast(*const IXmlResolver, self), pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
+                return @as(*const IXmlResolver.VTable, @ptrCast(self.vtable)).ResolveUri(@as(*const IXmlResolver, @ptrCast(self)), pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
             }
         };
     }
@@ -1009,119 +1009,119 @@ pub const IXmlWriter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_SetOutput(self: *const T, pOutput: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).SetOutput(@ptrCast(*const IXmlWriter, self), pOutput);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriter, @ptrCast(self)), pOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).GetProperty(@ptrCast(*const IXmlWriter, self), nProperty, ppValue);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).SetProperty(@ptrCast(*const IXmlWriter, self), nProperty, pValue);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteAttributes(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteAttributes(@ptrCast(*const IXmlWriter, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteAttributeString(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteAttributeString(@ptrCast(*const IXmlWriter, self), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteCData(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteCData(@ptrCast(*const IXmlWriter, self), pwszText);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteCharEntity(self: *const T, wch: u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteCharEntity(@ptrCast(*const IXmlWriter, self), wch);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteChars(@ptrCast(*const IXmlWriter, self), pwch, cwch);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteComment(self: *const T, pwszComment: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteComment(@ptrCast(*const IXmlWriter, self), pwszComment);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriter, @ptrCast(self)), pwszComment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteDocType(self: *const T, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteDocType(@ptrCast(*const IXmlWriter, self), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteElementString(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteElementString(@ptrCast(*const IXmlWriter, self), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteEndDocument(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteEndDocument(@ptrCast(*const IXmlWriter, self));
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteEndElement(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteEndElement(@ptrCast(*const IXmlWriter, self));
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteEntityRef(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteEntityRef(@ptrCast(*const IXmlWriter, self), pwszName);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteFullEndElement(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteFullEndElement(@ptrCast(*const IXmlWriter, self));
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteName(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteName(@ptrCast(*const IXmlWriter, self), pwszName);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteNmToken(self: *const T, pwszNmToken: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteNmToken(@ptrCast(*const IXmlWriter, self), pwszNmToken);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriter, @ptrCast(self)), pwszNmToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteNode(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteNode(@ptrCast(*const IXmlWriter, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteNodeShallow(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteNodeShallow(@ptrCast(*const IXmlWriter, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteProcessingInstruction(self: *const T, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteProcessingInstruction(@ptrCast(*const IXmlWriter, self), pwszName, pwszText);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteQualifiedName(self: *const T, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteQualifiedName(@ptrCast(*const IXmlWriter, self), pwszLocalName, pwszNamespaceUri);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteQualifiedName(@as(*const IXmlWriter, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteRaw(self: *const T, pwszData: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteRaw(@ptrCast(*const IXmlWriter, self), pwszData);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriter, @ptrCast(self)), pwszData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteRawChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteRawChars(@ptrCast(*const IXmlWriter, self), pwch, cwch);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteStartDocument(self: *const T, standalone: XmlStandalone) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteStartDocument(@ptrCast(*const IXmlWriter, self), standalone);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriter, @ptrCast(self)), standalone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteStartElement(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteStartElement(@ptrCast(*const IXmlWriter, self), pwszPrefix, pwszLocalName, pwszNamespaceUri);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteString(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteString(@ptrCast(*const IXmlWriter, self), pwszText);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteSurrogateCharEntity(self: *const T, wchLow: u16, wchHigh: u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteSurrogateCharEntity(@ptrCast(*const IXmlWriter, self), wchLow, wchHigh);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wchLow, wchHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_WriteWhitespace(self: *const T, pwszWhitespace: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).WriteWhitespace(@ptrCast(*const IXmlWriter, self), pwszWhitespace);
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriter, @ptrCast(self)), pwszWhitespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriter_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriter.VTable, self.vtable).Flush(@ptrCast(*const IXmlWriter, self));
+                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriter, @ptrCast(self)));
             }
         };
     }
@@ -1456,115 +1456,115 @@ pub const IXmlWriterLite = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_SetOutput(self: *const T, pOutput: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).SetOutput(@ptrCast(*const IXmlWriterLite, self), pOutput);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriterLite, @ptrCast(self)), pOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).GetProperty(@ptrCast(*const IXmlWriterLite, self), nProperty, ppValue);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).SetProperty(@ptrCast(*const IXmlWriterLite, self), nProperty, pValue);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteAttributes(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteAttributes(@ptrCast(*const IXmlWriterLite, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteAttributeString(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16, cwszValue: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteAttributeString(@ptrCast(*const IXmlWriterLite, self), pwszQName, cwszQName, pwszValue, cwszValue);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue, cwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteCData(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteCData(@ptrCast(*const IXmlWriterLite, self), pwszText);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteCharEntity(self: *const T, wch: u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteCharEntity(@ptrCast(*const IXmlWriterLite, self), wch);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteChars(@ptrCast(*const IXmlWriterLite, self), pwch, cwch);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteComment(self: *const T, pwszComment: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteComment(@ptrCast(*const IXmlWriterLite, self), pwszComment);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriterLite, @ptrCast(self)), pwszComment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteDocType(self: *const T, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteDocType(@ptrCast(*const IXmlWriterLite, self), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteElementString(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteElementString(@ptrCast(*const IXmlWriterLite, self), pwszQName, cwszQName, pwszValue);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteEndDocument(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteEndDocument(@ptrCast(*const IXmlWriterLite, self));
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriterLite, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteEndElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteEndElement(@ptrCast(*const IXmlWriterLite, self), pwszQName, cwszQName);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteEntityRef(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteEntityRef(@ptrCast(*const IXmlWriterLite, self), pwszName);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteFullEndElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteFullEndElement(@ptrCast(*const IXmlWriterLite, self), pwszQName, cwszQName);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteName(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteName(@ptrCast(*const IXmlWriterLite, self), pwszName);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteNmToken(self: *const T, pwszNmToken: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteNmToken(@ptrCast(*const IXmlWriterLite, self), pwszNmToken);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriterLite, @ptrCast(self)), pwszNmToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteNode(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteNode(@ptrCast(*const IXmlWriterLite, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteNodeShallow(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteNodeShallow(@ptrCast(*const IXmlWriterLite, self), pReader, fWriteDefaultAttributes);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteProcessingInstruction(self: *const T, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteProcessingInstruction(@ptrCast(*const IXmlWriterLite, self), pwszName, pwszText);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteRaw(self: *const T, pwszData: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteRaw(@ptrCast(*const IXmlWriterLite, self), pwszData);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriterLite, @ptrCast(self)), pwszData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteRawChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteRawChars(@ptrCast(*const IXmlWriterLite, self), pwch, cwch);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteStartDocument(self: *const T, standalone: XmlStandalone) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteStartDocument(@ptrCast(*const IXmlWriterLite, self), standalone);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriterLite, @ptrCast(self)), standalone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteStartElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteStartElement(@ptrCast(*const IXmlWriterLite, self), pwszQName, cwszQName);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteString(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteString(@ptrCast(*const IXmlWriterLite, self), pwszText);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteSurrogateCharEntity(self: *const T, wchLow: u16, wchHigh: u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteSurrogateCharEntity(@ptrCast(*const IXmlWriterLite, self), wchLow, wchHigh);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wchLow, wchHigh);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_WriteWhitespace(self: *const T, pwszWhitespace: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).WriteWhitespace(@ptrCast(*const IXmlWriterLite, self), pwszWhitespace);
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriterLite, @ptrCast(self)), pwszWhitespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXmlWriterLite_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IXmlWriterLite.VTable, self.vtable).Flush(@ptrCast(*const IXmlWriterLite, self));
+                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriterLite, @ptrCast(self)));
             }
         };
     }

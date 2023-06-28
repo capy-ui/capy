@@ -767,19 +767,19 @@ pub const IWdsTransportCacheable = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCacheable_get_Dirty(self: *const T, pbDirty: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportCacheable.VTable, self.vtable).get_Dirty(@ptrCast(*const IWdsTransportCacheable, self), pbDirty);
+                return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).get_Dirty(@as(*const IWdsTransportCacheable, @ptrCast(self)), pbDirty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCacheable_Discard(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportCacheable.VTable, self.vtable).Discard(@ptrCast(*const IWdsTransportCacheable, self));
+                return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Discard(@as(*const IWdsTransportCacheable, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCacheable_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportCacheable.VTable, self.vtable).Refresh(@ptrCast(*const IWdsTransportCacheable, self));
+                return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWdsTransportCacheable, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCacheable_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportCacheable.VTable, self.vtable).Commit(@ptrCast(*const IWdsTransportCacheable, self));
+                return @as(*const IWdsTransportCacheable.VTable, @ptrCast(self.vtable)).Commit(@as(*const IWdsTransportCacheable, @ptrCast(self)));
             }
         };
     }
@@ -840,15 +840,15 @@ pub const IWdsTransportCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportCollection.VTable, self.vtable).get_Count(@ptrCast(*const IWdsTransportCollection, self), pulCount);
+                return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWdsTransportCollection, @ptrCast(self)), pulCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCollection_get_Item(self: *const T, ulIndex: u32, ppVal: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IWdsTransportCollection.VTable, self.vtable).get_Item(@ptrCast(*const IWdsTransportCollection, self), ulIndex, ppVal);
+                return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWdsTransportCollection, @ptrCast(self)), ulIndex, ppVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWdsTransportCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IWdsTransportCollection, self), ppVal);
+                return @as(*const IWdsTransportCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IWdsTransportCollection, @ptrCast(self)), ppVal);
             }
         };
     }
@@ -880,7 +880,7 @@ pub const IWdsTransportManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportManager_GetWdsTransportServer(self: *const T, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) HRESULT {
-                return @ptrCast(*const IWdsTransportManager.VTable, self.vtable).GetWdsTransportServer(@ptrCast(*const IWdsTransportManager, self), bszServerName, ppWdsTransportServer);
+                return @as(*const IWdsTransportManager.VTable, @ptrCast(self.vtable)).GetWdsTransportServer(@as(*const IWdsTransportManager, @ptrCast(self)), bszServerName, ppWdsTransportServer);
             }
         };
     }
@@ -964,23 +964,23 @@ pub const IWdsTransportServer = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer_get_Name(self: *const T, pbszName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportServer.VTable, self.vtable).get_Name(@ptrCast(*const IWdsTransportServer, self), pbszName);
+                return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportServer, @ptrCast(self)), pbszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer_get_SetupManager(self: *const T, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) HRESULT {
-                return @ptrCast(*const IWdsTransportServer.VTable, self.vtable).get_SetupManager(@ptrCast(*const IWdsTransportServer, self), ppWdsTransportSetupManager);
+                return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_SetupManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportSetupManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer_get_ConfigurationManager(self: *const T, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) HRESULT {
-                return @ptrCast(*const IWdsTransportServer.VTable, self.vtable).get_ConfigurationManager(@ptrCast(*const IWdsTransportServer, self), ppWdsTransportConfigurationManager);
+                return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_ConfigurationManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportConfigurationManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer_get_NamespaceManager(self: *const T, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) HRESULT {
-                return @ptrCast(*const IWdsTransportServer.VTable, self.vtable).get_NamespaceManager(@ptrCast(*const IWdsTransportServer, self), ppWdsTransportNamespaceManager);
+                return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).get_NamespaceManager(@as(*const IWdsTransportServer, @ptrCast(self)), ppWdsTransportNamespaceManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer_DisconnectClient(self: *const T, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportServer.VTable, self.vtable).DisconnectClient(@ptrCast(*const IWdsTransportServer, self), ulClientId, DisconnectionType);
+                return @as(*const IWdsTransportServer.VTable, @ptrCast(self.vtable)).DisconnectClient(@as(*const IWdsTransportServer, @ptrCast(self)), ulClientId, DisconnectionType);
             }
         };
     }
@@ -1013,7 +1013,7 @@ pub const IWdsTransportServer2 = extern struct {
             pub usingnamespace IWdsTransportServer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServer2_get_TftpManager(self: *const T, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) HRESULT {
-                return @ptrCast(*const IWdsTransportServer2.VTable, self.vtable).get_TftpManager(@ptrCast(*const IWdsTransportServer2, self), ppWdsTransportTftpManager);
+                return @as(*const IWdsTransportServer2.VTable, @ptrCast(self.vtable)).get_TftpManager(@as(*const IWdsTransportServer2, @ptrCast(self)), ppWdsTransportTftpManager);
             }
         };
     }
@@ -1098,23 +1098,23 @@ pub const IWdsTransportSetupManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager_get_Version(self: *const T, pullVersion: ?*u64) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager.VTable, self.vtable).get_Version(@ptrCast(*const IWdsTransportSetupManager, self), pullVersion);
+                return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pullVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager_get_InstalledFeatures(self: *const T, pulInstalledFeatures: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager.VTable, self.vtable).get_InstalledFeatures(@ptrCast(*const IWdsTransportSetupManager, self), pulInstalledFeatures);
+                return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_InstalledFeatures(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pulInstalledFeatures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager_get_Protocols(self: *const T, pulProtocols: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager.VTable, self.vtable).get_Protocols(@ptrCast(*const IWdsTransportSetupManager, self), pulProtocols);
+                return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).get_Protocols(@as(*const IWdsTransportSetupManager, @ptrCast(self)), pulProtocols);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager_RegisterContentProvider(self: *const T, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager.VTable, self.vtable).RegisterContentProvider(@ptrCast(*const IWdsTransportSetupManager, self), bszName, bszDescription, bszFilePath, bszInitializationRoutine);
+                return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).RegisterContentProvider(@as(*const IWdsTransportSetupManager, @ptrCast(self)), bszName, bszDescription, bszFilePath, bszInitializationRoutine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager_DeregisterContentProvider(self: *const T, bszName: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager.VTable, self.vtable).DeregisterContentProvider(@ptrCast(*const IWdsTransportSetupManager, self), bszName);
+                return @as(*const IWdsTransportSetupManager.VTable, @ptrCast(self.vtable)).DeregisterContentProvider(@as(*const IWdsTransportSetupManager, @ptrCast(self)), bszName);
             }
         };
     }
@@ -1160,11 +1160,11 @@ pub const IWdsTransportSetupManager2 = extern struct {
             pub usingnamespace IWdsTransportSetupManager.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager2_get_TftpCapabilities(self: *const T, pulTftpCapabilities: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager2.VTable, self.vtable).get_TftpCapabilities(@ptrCast(*const IWdsTransportSetupManager2, self), pulTftpCapabilities);
+                return @as(*const IWdsTransportSetupManager2.VTable, @ptrCast(self.vtable)).get_TftpCapabilities(@as(*const IWdsTransportSetupManager2, @ptrCast(self)), pulTftpCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSetupManager2_get_ContentProviders(self: *const T, ppProviderCollection: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportSetupManager2.VTable, self.vtable).get_ContentProviders(@ptrCast(*const IWdsTransportSetupManager2, self), ppProviderCollection);
+                return @as(*const IWdsTransportSetupManager2.VTable, @ptrCast(self.vtable)).get_ContentProviders(@as(*const IWdsTransportSetupManager2, @ptrCast(self)), ppProviderCollection);
             }
         };
     }
@@ -1275,39 +1275,39 @@ pub const IWdsTransportConfigurationManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_get_ServicePolicy(self: *const T, ppWdsTransportServicePolicy: ?*?*IWdsTransportServicePolicy) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).get_ServicePolicy(@ptrCast(*const IWdsTransportConfigurationManager, self), ppWdsTransportServicePolicy);
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_ServicePolicy(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ppWdsTransportServicePolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_get_DiagnosticsPolicy(self: *const T, ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).get_DiagnosticsPolicy(@ptrCast(*const IWdsTransportConfigurationManager, self), ppWdsTransportDiagnosticsPolicy);
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_DiagnosticsPolicy(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ppWdsTransportDiagnosticsPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_get_WdsTransportServicesRunning(self: *const T, bRealtimeStatus: i16, pbServicesRunning: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).get_WdsTransportServicesRunning(@ptrCast(*const IWdsTransportConfigurationManager, self), bRealtimeStatus, pbServicesRunning);
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).get_WdsTransportServicesRunning(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), bRealtimeStatus, pbServicesRunning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_EnableWdsTransportServices(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).EnableWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self));
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).EnableWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_DisableWdsTransportServices(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).DisableWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self));
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).DisableWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_StartWdsTransportServices(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).StartWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self));
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).StartWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_StopWdsTransportServices(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).StopWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self));
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).StopWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_RestartWdsTransportServices(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).RestartWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self));
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).RestartWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager_NotifyWdsTransportServices(self: *const T, ServiceNotification: WDSTRANSPORT_SERVICE_NOTIFICATION) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager.VTable, self.vtable).NotifyWdsTransportServices(@ptrCast(*const IWdsTransportConfigurationManager, self), ServiceNotification);
+                return @as(*const IWdsTransportConfigurationManager.VTable, @ptrCast(self.vtable)).NotifyWdsTransportServices(@as(*const IWdsTransportConfigurationManager, @ptrCast(self)), ServiceNotification);
             }
         };
     }
@@ -1340,7 +1340,7 @@ pub const IWdsTransportConfigurationManager2 = extern struct {
             pub usingnamespace IWdsTransportConfigurationManager.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportConfigurationManager2_get_MulticastSessionPolicy(self: *const T, ppWdsTransportMulticastSessionPolicy: ?*?*IWdsTransportMulticastSessionPolicy) HRESULT {
-                return @ptrCast(*const IWdsTransportConfigurationManager2.VTable, self.vtable).get_MulticastSessionPolicy(@ptrCast(*const IWdsTransportConfigurationManager2, self), ppWdsTransportMulticastSessionPolicy);
+                return @as(*const IWdsTransportConfigurationManager2.VTable, @ptrCast(self.vtable)).get_MulticastSessionPolicy(@as(*const IWdsTransportConfigurationManager2, @ptrCast(self)), ppWdsTransportMulticastSessionPolicy);
             }
         };
     }
@@ -1406,15 +1406,15 @@ pub const IWdsTransportNamespaceManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceManager_CreateNamespace(self: *const T, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceManager.VTable, self.vtable).CreateNamespace(@ptrCast(*const IWdsTransportNamespaceManager, self), NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
+                return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).CreateNamespace(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceManager_RetrieveNamespace(self: *const T, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceManager.VTable, self.vtable).RetrieveNamespace(@ptrCast(*const IWdsTransportNamespaceManager, self), bszNamespaceName, ppWdsTransportNamespace);
+                return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).RetrieveNamespace(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), bszNamespaceName, ppWdsTransportNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceManager_RetrieveNamespaces(self: *const T, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceManager.VTable, self.vtable).RetrieveNamespaces(@ptrCast(*const IWdsTransportNamespaceManager, self), bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
+                return @as(*const IWdsTransportNamespaceManager.VTable, @ptrCast(self.vtable)).RetrieveNamespaces(@as(*const IWdsTransportNamespaceManager, @ptrCast(self)), bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
             }
         };
     }
@@ -1444,7 +1444,7 @@ pub const IWdsTransportTftpManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpManager_RetrieveTftpClients(self: *const T, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpManager.VTable, self.vtable).RetrieveTftpClients(@ptrCast(*const IWdsTransportTftpManager, self), ppWdsTransportTftpClients);
+                return @as(*const IWdsTransportTftpManager.VTable, @ptrCast(self.vtable)).RetrieveTftpClients(@as(*const IWdsTransportTftpManager, @ptrCast(self)), ppWdsTransportTftpClients);
             }
         };
     }
@@ -1632,51 +1632,51 @@ pub const IWdsTransportServicePolicy = extern struct {
             pub usingnamespace IWdsTransportCacheable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_IpAddressSource(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_IpAddressSource(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, pSourceType);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_IpAddressSource(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pSourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_IpAddressSource(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_IpAddressSource(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, SourceType);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_IpAddressSource(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, SourceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_StartIpAddress(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_StartIpAddress(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, pbszStartIpAddress);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_StartIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pbszStartIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_StartIpAddress(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_StartIpAddress(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, bszStartIpAddress);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_StartIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, bszStartIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_EndIpAddress(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_EndIpAddress(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, pbszEndIpAddress);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_EndIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, pbszEndIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_EndIpAddress(self: *const T, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_EndIpAddress(@ptrCast(*const IWdsTransportServicePolicy, self), AddressType, bszEndIpAddress);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_EndIpAddress(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), AddressType, bszEndIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_StartPort(self: *const T, pulStartPort: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_StartPort(@ptrCast(*const IWdsTransportServicePolicy, self), pulStartPort);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_StartPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pulStartPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_StartPort(self: *const T, ulStartPort: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_StartPort(@ptrCast(*const IWdsTransportServicePolicy, self), ulStartPort);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_StartPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ulStartPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_EndPort(self: *const T, pulEndPort: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_EndPort(@ptrCast(*const IWdsTransportServicePolicy, self), pulEndPort);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_EndPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pulEndPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_EndPort(self: *const T, ulEndPort: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_EndPort(@ptrCast(*const IWdsTransportServicePolicy, self), ulEndPort);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_EndPort(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ulEndPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_get_NetworkProfile(self: *const T, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).get_NetworkProfile(@ptrCast(*const IWdsTransportServicePolicy, self), pProfileType);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).get_NetworkProfile(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), pProfileType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy_put_NetworkProfile(self: *const T, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy.VTable, self.vtable).put_NetworkProfile(@ptrCast(*const IWdsTransportServicePolicy, self), ProfileType);
+                return @as(*const IWdsTransportServicePolicy.VTable, @ptrCast(self.vtable)).put_NetworkProfile(@as(*const IWdsTransportServicePolicy, @ptrCast(self)), ProfileType);
             }
         };
     }
@@ -1774,27 +1774,27 @@ pub const IWdsTransportServicePolicy2 = extern struct {
             pub usingnamespace IWdsTransportServicePolicy.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_get_UdpPortPolicy(self: *const T, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).get_UdpPortPolicy(@ptrCast(*const IWdsTransportServicePolicy2, self), pUdpPortPolicy);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_UdpPortPolicy(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pUdpPortPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_put_UdpPortPolicy(self: *const T, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).put_UdpPortPolicy(@ptrCast(*const IWdsTransportServicePolicy2, self), UdpPortPolicy);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_UdpPortPolicy(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), UdpPortPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_get_TftpMaximumBlockSize(self: *const T, pulTftpMaximumBlockSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).get_TftpMaximumBlockSize(@ptrCast(*const IWdsTransportServicePolicy2, self), pulTftpMaximumBlockSize);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_TftpMaximumBlockSize(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pulTftpMaximumBlockSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_put_TftpMaximumBlockSize(self: *const T, ulTftpMaximumBlockSize: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).put_TftpMaximumBlockSize(@ptrCast(*const IWdsTransportServicePolicy2, self), ulTftpMaximumBlockSize);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_TftpMaximumBlockSize(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), ulTftpMaximumBlockSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_get_EnableTftpVariableWindowExtension(self: *const T, pbEnableTftpVariableWindowExtension: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).get_EnableTftpVariableWindowExtension(@ptrCast(*const IWdsTransportServicePolicy2, self), pbEnableTftpVariableWindowExtension);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).get_EnableTftpVariableWindowExtension(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), pbEnableTftpVariableWindowExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportServicePolicy2_put_EnableTftpVariableWindowExtension(self: *const T, bEnableTftpVariableWindowExtension: i16) HRESULT {
-                return @ptrCast(*const IWdsTransportServicePolicy2.VTable, self.vtable).put_EnableTftpVariableWindowExtension(@ptrCast(*const IWdsTransportServicePolicy2, self), bEnableTftpVariableWindowExtension);
+                return @as(*const IWdsTransportServicePolicy2.VTable, @ptrCast(self.vtable)).put_EnableTftpVariableWindowExtension(@as(*const IWdsTransportServicePolicy2, @ptrCast(self)), bEnableTftpVariableWindowExtension);
             }
         };
     }
@@ -1866,19 +1866,19 @@ pub const IWdsTransportDiagnosticsPolicy = extern struct {
             pub usingnamespace IWdsTransportCacheable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportDiagnosticsPolicy_get_Enabled(self: *const T, pbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportDiagnosticsPolicy.VTable, self.vtable).get_Enabled(@ptrCast(*const IWdsTransportDiagnosticsPolicy, self), pbEnabled);
+                return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), pbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportDiagnosticsPolicy_put_Enabled(self: *const T, bEnabled: i16) HRESULT {
-                return @ptrCast(*const IWdsTransportDiagnosticsPolicy.VTable, self.vtable).put_Enabled(@ptrCast(*const IWdsTransportDiagnosticsPolicy, self), bEnabled);
+                return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), bEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportDiagnosticsPolicy_get_Components(self: *const T, pulComponents: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportDiagnosticsPolicy.VTable, self.vtable).get_Components(@ptrCast(*const IWdsTransportDiagnosticsPolicy, self), pulComponents);
+                return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).get_Components(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), pulComponents);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportDiagnosticsPolicy_put_Components(self: *const T, ulComponents: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportDiagnosticsPolicy.VTable, self.vtable).put_Components(@ptrCast(*const IWdsTransportDiagnosticsPolicy, self), ulComponents);
+                return @as(*const IWdsTransportDiagnosticsPolicy.VTable, @ptrCast(self.vtable)).put_Components(@as(*const IWdsTransportDiagnosticsPolicy, @ptrCast(self)), ulComponents);
             }
         };
     }
@@ -2002,35 +2002,35 @@ pub const IWdsTransportMulticastSessionPolicy = extern struct {
             pub usingnamespace IWdsTransportCacheable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_get_SlowClientHandling(self: *const T, pSlowClientHandling: ?*WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).get_SlowClientHandling(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), pSlowClientHandling);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_SlowClientHandling(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pSlowClientHandling);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_put_SlowClientHandling(self: *const T, SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).put_SlowClientHandling(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), SlowClientHandling);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_SlowClientHandling(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), SlowClientHandling);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_get_AutoDisconnectThreshold(self: *const T, pulThreshold: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).get_AutoDisconnectThreshold(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), pulThreshold);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_AutoDisconnectThreshold(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pulThreshold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_put_AutoDisconnectThreshold(self: *const T, ulThreshold: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).put_AutoDisconnectThreshold(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), ulThreshold);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_AutoDisconnectThreshold(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), ulThreshold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_get_MultistreamStreamCount(self: *const T, pulStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).get_MultistreamStreamCount(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), pulStreamCount);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_MultistreamStreamCount(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pulStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_put_MultistreamStreamCount(self: *const T, ulStreamCount: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).put_MultistreamStreamCount(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), ulStreamCount);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_MultistreamStreamCount(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), ulStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_get_SlowClientFallback(self: *const T, pbClientFallback: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).get_SlowClientFallback(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), pbClientFallback);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).get_SlowClientFallback(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), pbClientFallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportMulticastSessionPolicy_put_SlowClientFallback(self: *const T, bClientFallback: i16) HRESULT {
-                return @ptrCast(*const IWdsTransportMulticastSessionPolicy.VTable, self.vtable).put_SlowClientFallback(@ptrCast(*const IWdsTransportMulticastSessionPolicy, self), bClientFallback);
+                return @as(*const IWdsTransportMulticastSessionPolicy.VTable, @ptrCast(self.vtable)).put_SlowClientFallback(@as(*const IWdsTransportMulticastSessionPolicy, @ptrCast(self)), bClientFallback);
             }
         };
     }
@@ -2304,87 +2304,87 @@ pub const IWdsTransportNamespace = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Type(self: *const T, pType: ?*WDSTRANSPORT_NAMESPACE_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Type(@ptrCast(*const IWdsTransportNamespace, self), pType);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IWdsTransportNamespace, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Id(self: *const T, pulId: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Id(@ptrCast(*const IWdsTransportNamespace, self), pulId);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportNamespace, @ptrCast(self)), pulId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Name(self: *const T, pbszName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Name(@ptrCast(*const IWdsTransportNamespace, self), pbszName);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_put_Name(self: *const T, bszName: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).put_Name(@ptrCast(*const IWdsTransportNamespace, self), bszName);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_FriendlyName(self: *const T, pbszFriendlyName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IWdsTransportNamespace, self), pbszFriendlyName);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_put_FriendlyName(self: *const T, bszFriendlyName: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).put_FriendlyName(@ptrCast(*const IWdsTransportNamespace, self), bszFriendlyName);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Description(self: *const T, pbszDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Description(@ptrCast(*const IWdsTransportNamespace, self), pbszDescription);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_put_Description(self: *const T, bszDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).put_Description(@ptrCast(*const IWdsTransportNamespace, self), bszDescription);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_ContentProvider(self: *const T, pbszContentProvider: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_ContentProvider(@ptrCast(*const IWdsTransportNamespace, self), pbszContentProvider);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_ContentProvider(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszContentProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_put_ContentProvider(self: *const T, bszContentProvider: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).put_ContentProvider(@ptrCast(*const IWdsTransportNamespace, self), bszContentProvider);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_ContentProvider(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszContentProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Configuration(self: *const T, pbszConfiguration: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Configuration(@ptrCast(*const IWdsTransportNamespace, self), pbszConfiguration);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Configuration(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbszConfiguration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_put_Configuration(self: *const T, bszConfiguration: ?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).put_Configuration(@ptrCast(*const IWdsTransportNamespace, self), bszConfiguration);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).put_Configuration(@as(*const IWdsTransportNamespace, @ptrCast(self)), bszConfiguration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Registered(self: *const T, pbRegistered: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Registered(@ptrCast(*const IWdsTransportNamespace, self), pbRegistered);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Registered(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbRegistered);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_Tombstoned(self: *const T, pbTombstoned: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_Tombstoned(@ptrCast(*const IWdsTransportNamespace, self), pbTombstoned);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_Tombstoned(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbTombstoned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_TombstoneTime(self: *const T, pTombstoneTime: ?*f64) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_TombstoneTime(@ptrCast(*const IWdsTransportNamespace, self), pTombstoneTime);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_TombstoneTime(@as(*const IWdsTransportNamespace, @ptrCast(self)), pTombstoneTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_get_TransmissionStarted(self: *const T, pbTransmissionStarted: ?*i16) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).get_TransmissionStarted(@ptrCast(*const IWdsTransportNamespace, self), pbTransmissionStarted);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).get_TransmissionStarted(@as(*const IWdsTransportNamespace, @ptrCast(self)), pbTransmissionStarted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_Register(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).Register(@ptrCast(*const IWdsTransportNamespace, self));
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Register(@as(*const IWdsTransportNamespace, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_Deregister(self: *const T, bTerminateSessions: i16) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).Deregister(@ptrCast(*const IWdsTransportNamespace, self), bTerminateSessions);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Deregister(@as(*const IWdsTransportNamespace, @ptrCast(self)), bTerminateSessions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_Clone(self: *const T, ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).Clone(@ptrCast(*const IWdsTransportNamespace, self), ppWdsTransportNamespaceClone);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Clone(@as(*const IWdsTransportNamespace, @ptrCast(self)), ppWdsTransportNamespaceClone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).Refresh(@ptrCast(*const IWdsTransportNamespace, self));
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWdsTransportNamespace, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespace_RetrieveContents(self: *const T, ppWdsTransportContents: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespace.VTable, self.vtable).RetrieveContents(@ptrCast(*const IWdsTransportNamespace, self), ppWdsTransportContents);
+                return @as(*const IWdsTransportNamespace.VTable, @ptrCast(self.vtable)).RetrieveContents(@as(*const IWdsTransportNamespace, @ptrCast(self)), ppWdsTransportContents);
             }
         };
     }
@@ -2428,7 +2428,7 @@ pub const IWdsTransportNamespaceScheduledCast = extern struct {
             pub usingnamespace IWdsTransportNamespace.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceScheduledCast_StartTransmission(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceScheduledCast.VTable, self.vtable).StartTransmission(@ptrCast(*const IWdsTransportNamespaceScheduledCast, self));
+                return @as(*const IWdsTransportNamespaceScheduledCast.VTable, @ptrCast(self.vtable)).StartTransmission(@as(*const IWdsTransportNamespaceScheduledCast, @ptrCast(self)));
             }
         };
     }
@@ -2516,19 +2516,19 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern struct {
             pub usingnamespace IWdsTransportNamespaceScheduledCast.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceScheduledCastAutoStart_get_MinimumClients(self: *const T, pulMinimumClients: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, self.vtable).get_MinimumClients(@ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart, self), pulMinimumClients);
+                return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).get_MinimumClients(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), pulMinimumClients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceScheduledCastAutoStart_put_MinimumClients(self: *const T, ulMinimumClients: u32) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, self.vtable).put_MinimumClients(@ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart, self), ulMinimumClients);
+                return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).put_MinimumClients(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), ulMinimumClients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceScheduledCastAutoStart_get_StartTime(self: *const T, pStartTime: ?*f64) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, self.vtable).get_StartTime(@ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart, self), pStartTime);
+                return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), pStartTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportNamespaceScheduledCastAutoStart_put_StartTime(self: *const T, StartTime: f64) HRESULT {
-                return @ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, self.vtable).put_StartTime(@ptrCast(*const IWdsTransportNamespaceScheduledCastAutoStart, self), StartTime);
+                return @as(*const IWdsTransportNamespaceScheduledCastAutoStart.VTable, @ptrCast(self.vtable)).put_StartTime(@as(*const IWdsTransportNamespaceScheduledCastAutoStart, @ptrCast(self)), StartTime);
             }
         };
     }
@@ -2605,23 +2605,23 @@ pub const IWdsTransportContent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContent_get_Namespace(self: *const T, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
-                return @ptrCast(*const IWdsTransportContent.VTable, self.vtable).get_Namespace(@ptrCast(*const IWdsTransportContent, self), ppWdsTransportNamespace);
+                return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const IWdsTransportContent, @ptrCast(self)), ppWdsTransportNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContent_get_Id(self: *const T, pulId: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportContent.VTable, self.vtable).get_Id(@ptrCast(*const IWdsTransportContent, self), pulId);
+                return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportContent, @ptrCast(self)), pulId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContent_get_Name(self: *const T, pbszName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportContent.VTable, self.vtable).get_Name(@ptrCast(*const IWdsTransportContent, self), pbszName);
+                return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportContent, @ptrCast(self)), pbszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContent_RetrieveSessions(self: *const T, ppWdsTransportSessions: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportContent.VTable, self.vtable).RetrieveSessions(@ptrCast(*const IWdsTransportContent, self), ppWdsTransportSessions);
+                return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).RetrieveSessions(@as(*const IWdsTransportContent, @ptrCast(self)), ppWdsTransportSessions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContent_Terminate(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportContent.VTable, self.vtable).Terminate(@ptrCast(*const IWdsTransportContent, self));
+                return @as(*const IWdsTransportContent.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportContent, @ptrCast(self)));
             }
         };
     }
@@ -2737,35 +2737,35 @@ pub const IWdsTransportSession = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_Content(self: *const T, ppWdsTransportContent: ?*?*IWdsTransportContent) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_Content(@ptrCast(*const IWdsTransportSession, self), ppWdsTransportContent);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_Content(@as(*const IWdsTransportSession, @ptrCast(self)), ppWdsTransportContent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_Id(self: *const T, pulId: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_Id(@ptrCast(*const IWdsTransportSession, self), pulId);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportSession, @ptrCast(self)), pulId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_NetworkInterfaceName(self: *const T, pbszNetworkInterfaceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_NetworkInterfaceName(@ptrCast(*const IWdsTransportSession, self), pbszNetworkInterfaceName);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_NetworkInterfaceName(@as(*const IWdsTransportSession, @ptrCast(self)), pbszNetworkInterfaceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_NetworkInterfaceAddress(self: *const T, pbszNetworkInterfaceAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_NetworkInterfaceAddress(@ptrCast(*const IWdsTransportSession, self), pbszNetworkInterfaceAddress);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_NetworkInterfaceAddress(@as(*const IWdsTransportSession, @ptrCast(self)), pbszNetworkInterfaceAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_TransferRate(self: *const T, pulTransferRate: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_TransferRate(@ptrCast(*const IWdsTransportSession, self), pulTransferRate);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_TransferRate(@as(*const IWdsTransportSession, @ptrCast(self)), pulTransferRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_get_MasterClientId(self: *const T, pulMasterClientId: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).get_MasterClientId(@ptrCast(*const IWdsTransportSession, self), pulMasterClientId);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).get_MasterClientId(@as(*const IWdsTransportSession, @ptrCast(self)), pulMasterClientId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_RetrieveClients(self: *const T, ppWdsTransportClients: ?*?*IWdsTransportCollection) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).RetrieveClients(@ptrCast(*const IWdsTransportSession, self), ppWdsTransportClients);
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).RetrieveClients(@as(*const IWdsTransportSession, @ptrCast(self)), ppWdsTransportClients);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportSession_Terminate(self: *const T) HRESULT {
-                return @ptrCast(*const IWdsTransportSession.VTable, self.vtable).Terminate(@ptrCast(*const IWdsTransportSession, self));
+                return @as(*const IWdsTransportSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWdsTransportSession, @ptrCast(self)));
             }
         };
     }
@@ -2938,51 +2938,51 @@ pub const IWdsTransportClient = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_Session(self: *const T, ppWdsTransportSession: ?*?*IWdsTransportSession) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_Session(@ptrCast(*const IWdsTransportClient, self), ppWdsTransportSession);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IWdsTransportClient, @ptrCast(self)), ppWdsTransportSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_Id(self: *const T, pulId: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_Id(@ptrCast(*const IWdsTransportClient, self), pulId);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IWdsTransportClient, @ptrCast(self)), pulId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_Name(self: *const T, pbszName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_Name(@ptrCast(*const IWdsTransportClient, self), pbszName);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportClient, @ptrCast(self)), pbszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_MacAddress(self: *const T, pbszMacAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_MacAddress(@ptrCast(*const IWdsTransportClient, self), pbszMacAddress);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_MacAddress(@as(*const IWdsTransportClient, @ptrCast(self)), pbszMacAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_IpAddress(self: *const T, pbszIpAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_IpAddress(@ptrCast(*const IWdsTransportClient, self), pbszIpAddress);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_IpAddress(@as(*const IWdsTransportClient, @ptrCast(self)), pbszIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_PercentCompletion(self: *const T, pulPercentCompletion: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_PercentCompletion(@ptrCast(*const IWdsTransportClient, self), pulPercentCompletion);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_PercentCompletion(@as(*const IWdsTransportClient, @ptrCast(self)), pulPercentCompletion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_JoinDuration(self: *const T, pulJoinDuration: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_JoinDuration(@ptrCast(*const IWdsTransportClient, self), pulJoinDuration);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_JoinDuration(@as(*const IWdsTransportClient, @ptrCast(self)), pulJoinDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_CpuUtilization(self: *const T, pulCpuUtilization: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_CpuUtilization(@ptrCast(*const IWdsTransportClient, self), pulCpuUtilization);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_CpuUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulCpuUtilization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_MemoryUtilization(self: *const T, pulMemoryUtilization: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_MemoryUtilization(@ptrCast(*const IWdsTransportClient, self), pulMemoryUtilization);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_MemoryUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulMemoryUtilization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_NetworkUtilization(self: *const T, pulNetworkUtilization: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_NetworkUtilization(@ptrCast(*const IWdsTransportClient, self), pulNetworkUtilization);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_NetworkUtilization(@as(*const IWdsTransportClient, @ptrCast(self)), pulNetworkUtilization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_get_UserIdentity(self: *const T, pbszUserIdentity: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).get_UserIdentity(@ptrCast(*const IWdsTransportClient, self), pbszUserIdentity);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).get_UserIdentity(@as(*const IWdsTransportClient, @ptrCast(self)), pbszUserIdentity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportClient_Disconnect(self: *const T, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) HRESULT {
-                return @ptrCast(*const IWdsTransportClient.VTable, self.vtable).Disconnect(@ptrCast(*const IWdsTransportClient, self), DisconnectionType);
+                return @as(*const IWdsTransportClient.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IWdsTransportClient, @ptrCast(self)), DisconnectionType);
             }
         };
     }
@@ -3093,31 +3093,31 @@ pub const IWdsTransportTftpClient = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_FileName(self: *const T, pbszFileName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_FileName(@ptrCast(*const IWdsTransportTftpClient, self), pbszFileName);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_FileName(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pbszFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_IpAddress(self: *const T, pbszIpAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_IpAddress(@ptrCast(*const IWdsTransportTftpClient, self), pbszIpAddress);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_IpAddress(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pbszIpAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_Timeout(self: *const T, pulTimeout: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_Timeout(@ptrCast(*const IWdsTransportTftpClient, self), pulTimeout);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_Timeout(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_CurrentFileOffset(self: *const T, pul64CurrentOffset: ?*u64) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_CurrentFileOffset(@ptrCast(*const IWdsTransportTftpClient, self), pul64CurrentOffset);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_CurrentFileOffset(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pul64CurrentOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_FileSize(self: *const T, pul64FileSize: ?*u64) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_FileSize(@ptrCast(*const IWdsTransportTftpClient, self), pul64FileSize);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_FileSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pul64FileSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_BlockSize(self: *const T, pulBlockSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_BlockSize(@ptrCast(*const IWdsTransportTftpClient, self), pulBlockSize);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_BlockSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulBlockSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportTftpClient_get_WindowSize(self: *const T, pulWindowSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWdsTransportTftpClient.VTable, self.vtable).get_WindowSize(@ptrCast(*const IWdsTransportTftpClient, self), pulWindowSize);
+                return @as(*const IWdsTransportTftpClient.VTable, @ptrCast(self.vtable)).get_WindowSize(@as(*const IWdsTransportTftpClient, @ptrCast(self)), pulWindowSize);
             }
         };
     }
@@ -3189,19 +3189,19 @@ pub const IWdsTransportContentProvider = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContentProvider_get_Name(self: *const T, pbszName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportContentProvider.VTable, self.vtable).get_Name(@ptrCast(*const IWdsTransportContentProvider, self), pbszName);
+                return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContentProvider_get_Description(self: *const T, pbszDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportContentProvider.VTable, self.vtable).get_Description(@ptrCast(*const IWdsTransportContentProvider, self), pbszDescription);
+                return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContentProvider_get_FilePath(self: *const T, pbszFilePath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportContentProvider.VTable, self.vtable).get_FilePath(@ptrCast(*const IWdsTransportContentProvider, self), pbszFilePath);
+                return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_FilePath(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszFilePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWdsTransportContentProvider_get_InitializationRoutine(self: *const T, pbszInitializationRoutine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWdsTransportContentProvider.VTable, self.vtable).get_InitializationRoutine(@ptrCast(*const IWdsTransportContentProvider, self), pbszInitializationRoutine);
+                return @as(*const IWdsTransportContentProvider.VTable, @ptrCast(self.vtable)).get_InitializationRoutine(@as(*const IWdsTransportContentProvider, @ptrCast(self)), pbszInitializationRoutine);
             }
         };
     }

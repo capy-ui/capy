@@ -144,12 +144,12 @@ pub fn Widgeting(comptime T: type) type {
 
         pub fn getWidth(self: *T) u32 {
             if (self.peer == null) return 0;
-            return @intCast(u32, self.peer.?.getWidth());
+            return @as(u32, @intCast(self.peer.?.getWidth()));
         }
 
         pub fn getHeight(self: *T) u32 {
             if (self.peer == null) return 0;
-            return @intCast(u32, self.peer.?.getHeight());
+            return @as(u32, @intCast(self.peer.?.getHeight()));
         }
 
         pub fn asWidget(self: *T) anyerror!Widget {
@@ -163,7 +163,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn getUserdata(self: *T, comptime U: type) U {
-            return @ptrCast(U, self.widget_data.handlers.userdata);
+            return @as(U, @ptrCast(self.widget_data.handlers.userdata));
         }
 
         // Properties
@@ -205,7 +205,7 @@ pub fn Widgeting(comptime T: type) type {
         pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) T {
             // TODO: use another system for binding components
             // This is DANGEROUSLY unsafe (and unoptimized)
-            const self = @ptrFromInt(*T, @intFromPtr(immutable_self));
+            const self = @as(*T, @ptrFromInt(@intFromPtr(immutable_self)));
 
             if (@hasField(Atoms, name)) {
                 @field(self.widget_data.atoms, name).bind(other);
@@ -274,14 +274,14 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "onclick",
             .type = ?T.Callback,
-            .default_value = @ptrCast(?*const anyopaque, &default_value),
+            .default_value = @as(?*const anyopaque, @ptrCast(&default_value)),
             .is_comptime = false,
             .alignment = @alignOf(?T.Callback),
         }};
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "ondraw",
             .type = ?T.DrawCallback,
-            .default_value = @ptrCast(?*const anyopaque, &default_draw_value),
+            .default_value = @as(?*const anyopaque, @ptrCast(&default_draw_value)),
             .is_comptime = false,
             .alignment = @alignOf(?T.DrawCallback),
         }};
@@ -301,13 +301,13 @@ fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, 
     for (std.meta.fields(T)) |field| {
         const FieldType = field.type;
         if (dataStructures.isAtom(FieldType)) {
-            const default_value = if (field.default_value) |default| @ptrCast(*const FieldType, @alignCast(@alignOf(FieldType), default)).getUnsafe() else null;
+            const default_value = if (field.default_value) |default| @as(*const FieldType, @ptrCast(@alignCast(default))).getUnsafe() else null;
             const has_default_value = field.default_value != null;
 
             config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
                 .name = field.name,
                 .type = FieldType.ValueType,
-                .default_value = if (has_default_value) @ptrCast(?*const anyopaque, @alignCast(1, &default_value)) else null,
+                .default_value = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
             }};
@@ -489,56 +489,56 @@ pub fn Events(comptime T: type) type {
         }
 
         fn clickHandler(data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.clickHandlers.items) |func| {
                 func(self) catch |err| errorHandler(err);
             }
         }
 
         fn drawHandler(ctx: *backend.Canvas.DrawContext, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.drawHandlers.items) |func| {
                 func(self, ctx) catch |err| errorHandler(err);
             }
         }
 
         fn buttonHandler(button: MouseButton, pressed: bool, x: i32, y: i32, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.buttonHandlers.items) |func| {
                 func(self, button, pressed, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn mouseMovedHandler(x: i32, y: i32, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.mouseMoveHandlers.items) |func| {
                 func(self, x, y) catch |err| errorHandler(err);
             }
         }
 
         fn keyTypeHandler(str: []const u8, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.keyTypeHandlers.items) |func| {
                 func(self, str) catch |err| errorHandler(err);
             }
         }
 
         fn keyPressHandler(keycode: u16, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.keyPressHandlers.items) |func| {
                 func(self, keycode) catch |err| errorHandler(err);
             }
         }
 
         fn scrollHandler(dx: f32, dy: f32, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.scrollHandlers.items) |func| {
                 func(self, dx, dy) catch |err| errorHandler(err);
             }
         }
 
         fn resizeHandler(width: u32, height: u32, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             const size = Size{ .width = width, .height = height };
             for (self.widget_data.handlers.resizeHandlers.items) |func| {
                 func(self, size) catch |err| errorHandler(err);
@@ -546,7 +546,7 @@ pub fn Events(comptime T: type) type {
         }
 
         fn propertyChangeHandler(name: []const u8, value: *const anyopaque, data: usize) void {
-            const self = @ptrFromInt(*T, data);
+            const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.propertyChangeHandlers.items) |func| {
                 func(self, name, value) catch |err| errorHandler(err);
             }
@@ -554,7 +554,7 @@ pub fn Events(comptime T: type) type {
 
         /// When the value is changed in the opacity data wrapper
         fn opacityChanged(newValue: f32, userdata: usize) void {
-            const widget = @ptrFromInt(*T, userdata);
+            const widget = @as(*T, @ptrFromInt(userdata));
             if (widget.peer) |*peer| {
                 peer.setOpacity(newValue);
             }
@@ -577,41 +577,41 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn addClickHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.clickHandlers.append(@ptrCast(Callback, handler));
+            try self.widget_data.handlers.clickHandlers.append(@as(Callback, @ptrCast(handler)));
         }
 
         pub fn addDrawHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.drawHandlers.append(@ptrCast(DrawCallback, handler));
+            try self.widget_data.handlers.drawHandlers.append(@as(DrawCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.buttonHandlers.append(@ptrCast(ButtonCallback, handler));
+            try self.widget_data.handlers.buttonHandlers.append(@as(ButtonCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseMotionHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.mouseMoveHandlers.append(@ptrCast(MouseMoveCallback, handler));
+            try self.widget_data.handlers.mouseMoveHandlers.append(@as(MouseMoveCallback, @ptrCast(handler)));
         }
 
         pub fn addScrollHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.scrollHandlers.append(@ptrCast(ScrollCallback, handler));
+            try self.widget_data.handlers.scrollHandlers.append(@as(ScrollCallback, @ptrCast(handler)));
         }
 
         pub fn addResizeHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.resizeHandlers.append(@ptrCast(ResizeCallback, handler));
+            try self.widget_data.handlers.resizeHandlers.append(@as(ResizeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyTypeHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.keyTypeHandlers.append(@ptrCast(KeyTypeCallback, handler));
+            try self.widget_data.handlers.keyTypeHandlers.append(@as(KeyTypeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.keyPressHandlers.append(@ptrCast(KeyPressCallback, handler));
+            try self.widget_data.handlers.keyPressHandlers.append(@as(KeyPressCallback, @ptrCast(handler)));
         }
 
         /// This shouldn't be used by user applications directly.
         /// Instead set a change listener to the corresponding data wrapper.
         pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
-            try self.widget_data.handlers.propertyChangeHandlers.append(@ptrCast(PropertyChangeCallback, handler));
+            try self.widget_data.handlers.propertyChangeHandlers.append(@as(PropertyChangeCallback, @ptrCast(handler)));
         }
 
         pub fn requestDraw(self: *T) !void {

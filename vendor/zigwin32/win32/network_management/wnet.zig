@@ -119,7 +119,7 @@ pub const WNET_OPEN_ENUM_USAGE = enum(u32) {
         ATTACHED: u1 = 0,
         ALL: u1 = 0,
     }) WNET_OPEN_ENUM_USAGE {
-        return @enumFromInt(WNET_OPEN_ENUM_USAGE, (if (o.NONE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.NONE) else 0) | (if (o.CONNECTABLE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONNECTABLE) else 0) | (if (o.CONTAINER == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONTAINER) else 0) | (if (o.ATTACHED == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ATTACHED) else 0) | (if (o.ALL == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ALL) else 0));
+        return @as(WNET_OPEN_ENUM_USAGE, @enumFromInt((if (o.NONE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.NONE) else 0) | (if (o.CONNECTABLE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONNECTABLE) else 0) | (if (o.CONTAINER == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONTAINER) else 0) | (if (o.ATTACHED == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ATTACHED) else 0) | (if (o.ALL == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ALL) else 0)));
     }
 };
 pub const RESOURCEUSAGE_NONE = WNET_OPEN_ENUM_USAGE.NONE;
@@ -150,7 +150,7 @@ pub const NET_USE_CONNECT_FLAGS = enum(u32) {
         DEFERRED: u1 = 0,
         UPDATE_RECENT: u1 = 0,
     }) NET_USE_CONNECT_FLAGS {
-        return @enumFromInt(NET_USE_CONNECT_FLAGS, (if (o.INTERACTIVE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.INTERACTIVE) else 0) | (if (o.PROMPT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.PROMPT) else 0) | (if (o.REDIRECT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.REDIRECT) else 0) | (if (o.UPDATE_PROFILE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.COMMANDLINE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.COMMANDLINE) else 0) | (if (o.CMD_SAVECRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.CMD_SAVECRED) else 0) | (if (o.TEMPORARY == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.TEMPORARY) else 0) | (if (o.DEFERRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.DEFERRED) else 0) | (if (o.UPDATE_RECENT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_RECENT) else 0));
+        return @as(NET_USE_CONNECT_FLAGS, @enumFromInt((if (o.INTERACTIVE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.INTERACTIVE) else 0) | (if (o.PROMPT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.PROMPT) else 0) | (if (o.REDIRECT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.REDIRECT) else 0) | (if (o.UPDATE_PROFILE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.COMMANDLINE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.COMMANDLINE) else 0) | (if (o.CMD_SAVECRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.CMD_SAVECRED) else 0) | (if (o.TEMPORARY == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.TEMPORARY) else 0) | (if (o.DEFERRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.DEFERRED) else 0) | (if (o.UPDATE_RECENT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_RECENT) else 0)));
     }
 };
 pub const CONNECT_INTERACTIVE = NET_USE_CONNECT_FLAGS.INTERACTIVE;
@@ -191,7 +191,7 @@ pub const NET_RESOURCE_TYPE = enum(u32) {
         DISK: u1 = 0,
         PRINT: u1 = 0,
     }) NET_RESOURCE_TYPE {
-        return @enumFromInt(NET_RESOURCE_TYPE, (if (o.ANY == 1) @intFromEnum(NET_RESOURCE_TYPE.ANY) else 0) | (if (o.DISK == 1) @intFromEnum(NET_RESOURCE_TYPE.DISK) else 0) | (if (o.PRINT == 1) @intFromEnum(NET_RESOURCE_TYPE.PRINT) else 0));
+        return @as(NET_RESOURCE_TYPE, @enumFromInt((if (o.ANY == 1) @intFromEnum(NET_RESOURCE_TYPE.ANY) else 0) | (if (o.DISK == 1) @intFromEnum(NET_RESOURCE_TYPE.DISK) else 0) | (if (o.PRINT == 1) @intFromEnum(NET_RESOURCE_TYPE.PRINT) else 0)));
     }
 };
 pub const RESOURCETYPE_ANY = NET_RESOURCE_TYPE.ANY;
@@ -226,7 +226,7 @@ pub const NETINFOSTRUCT_CHARACTERISTICS = enum(u32) {
         DISKRED: u1 = 0,
         PRINTERRED: u1 = 0,
     }) NETINFOSTRUCT_CHARACTERISTICS {
-        return @enumFromInt(NETINFOSTRUCT_CHARACTERISTICS, (if (o.DLL16 == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DLL16) else 0) | (if (o.DISKRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DISKRED) else 0) | (if (o.PRINTERRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED) else 0));
+        return @as(NETINFOSTRUCT_CHARACTERISTICS, @enumFromInt((if (o.DLL16 == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DLL16) else 0) | (if (o.DISKRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DISKRED) else 0) | (if (o.PRINTERRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED) else 0)));
     }
 };
 pub const NETINFO_DLL16 = NETINFOSTRUCT_CHARACTERISTICS.DLL16;
@@ -249,7 +249,7 @@ pub const CONNECTDLGSTRUCT_FLAGS = enum(u32) {
         PERSIST: u1 = 0,
         NOT_PERSIST: u1 = 0,
     }) CONNECTDLGSTRUCT_FLAGS {
-        return @enumFromInt(CONNECTDLGSTRUCT_FLAGS, (if (o.RO_PATH == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.RO_PATH) else 0) | (if (o.CONN_POINT == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.CONN_POINT) else 0) | (if (o.USE_MRU == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.USE_MRU) else 0) | (if (o.HIDE_BOX == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.HIDE_BOX) else 0) | (if (o.PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.PERSIST) else 0) | (if (o.NOT_PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST) else 0));
+        return @as(CONNECTDLGSTRUCT_FLAGS, @enumFromInt((if (o.RO_PATH == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.RO_PATH) else 0) | (if (o.CONN_POINT == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.CONN_POINT) else 0) | (if (o.USE_MRU == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.USE_MRU) else 0) | (if (o.HIDE_BOX == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.HIDE_BOX) else 0) | (if (o.PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.PERSIST) else 0) | (if (o.NOT_PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST) else 0)));
     }
 };
 pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCT_FLAGS.RO_PATH;
@@ -267,7 +267,7 @@ pub const DISCDLGSTRUCT_FLAGS = enum(u32) {
         UPDATE_PROFILE: u1 = 0,
         NO_FORCE: u1 = 0,
     }) DISCDLGSTRUCT_FLAGS {
-        return @enumFromInt(DISCDLGSTRUCT_FLAGS, (if (o.UPDATE_PROFILE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.NO_FORCE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.NO_FORCE) else 0));
+        return @as(DISCDLGSTRUCT_FLAGS, @enumFromInt((if (o.UPDATE_PROFILE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE) else 0) | (if (o.NO_FORCE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.NO_FORCE) else 0)));
     }
 };
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;

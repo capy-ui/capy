@@ -100,7 +100,7 @@ pub const HCS_EVENT_OPTIONS = enum(u32) {
         None: u1 = 0,
         EnableOperationCallbacks: u1 = 0,
     }) HCS_EVENT_OPTIONS {
-        return @enumFromInt(HCS_EVENT_OPTIONS, (if (o.None == 1) @intFromEnum(HCS_EVENT_OPTIONS.None) else 0) | (if (o.EnableOperationCallbacks == 1) @intFromEnum(HCS_EVENT_OPTIONS.EnableOperationCallbacks) else 0));
+        return @as(HCS_EVENT_OPTIONS, @enumFromInt((if (o.None == 1) @intFromEnum(HCS_EVENT_OPTIONS.None) else 0) | (if (o.EnableOperationCallbacks == 1) @intFromEnum(HCS_EVENT_OPTIONS.EnableOperationCallbacks) else 0)));
     }
 };
 pub const HcsEventOptionNone = HCS_EVENT_OPTIONS.None;

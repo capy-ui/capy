@@ -46,11 +46,11 @@ pub const IGraphicsCaptureItemInterop = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGraphicsCaptureItemInterop_CreateForWindow(self: *const T, window: ?HWND, riid: ?*const Guid, result: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IGraphicsCaptureItemInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IGraphicsCaptureItemInterop, self), window, riid, result);
+                return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), window, riid, result);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGraphicsCaptureItemInterop_CreateForMonitor(self: *const T, monitor: ?HMONITOR, riid: ?*const Guid, result: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IGraphicsCaptureItemInterop.VTable, self.vtable).CreateForMonitor(@ptrCast(*const IGraphicsCaptureItemInterop, self), monitor, riid, result);
+                return @as(*const IGraphicsCaptureItemInterop.VTable, @ptrCast(self.vtable)).CreateForMonitor(@as(*const IGraphicsCaptureItemInterop, @ptrCast(self)), monitor, riid, result);
             }
         };
     }

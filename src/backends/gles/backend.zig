@@ -79,7 +79,7 @@ const Shader = struct {
         c.glGetShaderiv(self.id, c.GL_COMPILE_STATUS, &result);
         c.glGetShaderiv(self.id, c.GL_INFO_LOG_LENGTH, &infoLogLen);
         if (infoLogLen > 0) {
-            const infoLog = try lib.internal.scratch_allocator.allocSentinel(u8, @intCast(usize, infoLogLen), 0);
+            const infoLog = try lib.internal.scratch_allocator.allocSentinel(u8, @as(usize, @intCast(infoLogLen)), 0);
             defer lib.internal.scratch_allocator.free(infoLog);
             c.glGetShaderInfoLog(self.id, infoLogLen, null, infoLog.ptr);
             std.log.crit("shader compile error:\n{s}", .{infoLog});

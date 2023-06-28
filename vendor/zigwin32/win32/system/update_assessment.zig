@@ -89,7 +89,7 @@ pub const IWaaSAssessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) HRESULT {
-                return @ptrCast(*const IWaaSAssessor.VTable, self.vtable).GetOSUpdateAssessment(@ptrCast(*const IWaaSAssessor, self), result);
+                return @as(*const IWaaSAssessor.VTable, @ptrCast(self.vtable)).GetOSUpdateAssessment(@as(*const IWaaSAssessor, @ptrCast(self)), result);
             }
         };
     }

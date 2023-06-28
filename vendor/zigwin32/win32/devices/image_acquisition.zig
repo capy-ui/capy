@@ -1241,39 +1241,39 @@ pub const IWiaDevMgr = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_EnumDeviceInfo(self: *const T, lFlag: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr, self), lFlag, ppIEnum);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).EnumDeviceInfo(@as(*const IWiaDevMgr, @ptrCast(self)), lFlag, ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_CreateDevice(self: *const T, bstrDeviceID: ?BSTR, ppWiaItemRoot: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr, self), bstrDeviceID, ppWiaItemRoot);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IWiaDevMgr, @ptrCast(self)), bstrDeviceID, ppWiaItemRoot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).SelectDeviceDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).SelectDeviceDlgID(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_GetImageDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, lIntent: i32, pItemRoot: ?*IWiaItem, bstrFilename: ?BSTR, pguidFormat: ?*Guid) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).GetImageDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lDeviceType, lFlags, lIntent, pItemRoot, bstrFilename, pguidFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrCommandline: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackProgram(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, bstrCommandline, bstrName, bstrDescription, bstrIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackInterface(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).RegisterEventCallbackCLSID(@as(*const IWiaDevMgr, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr_AddDeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32) HRESULT {
-                return @ptrCast(*const IWiaDevMgr.VTable, self.vtable).AddDeviceDlg(@ptrCast(*const IWiaDevMgr, self), hwndParent, lFlags);
+                return @as(*const IWiaDevMgr.VTable, @ptrCast(self.vtable)).AddDeviceDlg(@as(*const IWiaDevMgr, @ptrCast(self)), hwndParent, lFlags);
             }
         };
     }
@@ -1345,23 +1345,23 @@ pub const IEnumWIA_DEV_INFO = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_INFO_Next(self: *const T, celt: u32, rgelt: ?*?*IWiaPropertyStorage, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_INFO_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
+                return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_INFO_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_INFO, self));
+                return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_INFO, self), ppIEnum);
+                return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_INFO_GetCount(self: *const T, celt: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_INFO, self), celt);
+                return @as(*const IEnumWIA_DEV_INFO.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_DEV_INFO, @ptrCast(self)), celt);
             }
         };
     }
@@ -1405,7 +1405,7 @@ pub const IWiaEventCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaEventCallback_ImageEventCallback(self: *const T, pEventGUID: ?*const Guid, bstrEventDescription: ?BSTR, bstrDeviceID: ?BSTR, bstrDeviceDescription: ?BSTR, dwDeviceType: u32, bstrFullItemName: ?BSTR, pulEventType: ?*u32, ulReserved: u32) HRESULT {
-                return @ptrCast(*const IWiaEventCallback.VTable, self.vtable).ImageEventCallback(@ptrCast(*const IWiaEventCallback, self), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
+                return @as(*const IWiaEventCallback.VTable, @ptrCast(self.vtable)).ImageEventCallback(@as(*const IWiaEventCallback, @ptrCast(self)), pEventGUID, bstrEventDescription, bstrDeviceID, bstrDeviceDescription, dwDeviceType, bstrFullItemName, pulEventType, ulReserved);
             }
         };
     }
@@ -1456,7 +1456,7 @@ pub const IWiaDataCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataCallback_BandedDataCallback(self: *const T, lMessage: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, lReserved: i32, lResLength: i32, pbBuffer: ?*u8) HRESULT {
-                return @ptrCast(*const IWiaDataCallback.VTable, self.vtable).BandedDataCallback(@ptrCast(*const IWiaDataCallback, self), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
+                return @as(*const IWiaDataCallback.VTable, @ptrCast(self.vtable)).BandedDataCallback(@as(*const IWiaDataCallback, @ptrCast(self)), lMessage, lStatus, lPercentComplete, lOffset, lLength, lReserved, lResLength, pbBuffer);
             }
         };
     }
@@ -1548,23 +1548,23 @@ pub const IWiaDataTransfer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataTransfer_idtGetData(self: *const T, pMedium: ?*STGMEDIUM, pIWiaDataCallback: ?*IWiaDataCallback) HRESULT {
-                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetData(@ptrCast(*const IWiaDataTransfer, self), pMedium, pIWiaDataCallback);
+                return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetData(@as(*const IWiaDataTransfer, @ptrCast(self)), pMedium, pIWiaDataCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataTransfer_idtGetBandedData(self: *const T, pWiaDataTransInfo: ?*WIA_DATA_TRANSFER_INFO, pIWiaDataCallback: ?*IWiaDataCallback) HRESULT {
-                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetBandedData(@ptrCast(*const IWiaDataTransfer, self), pWiaDataTransInfo, pIWiaDataCallback);
+                return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetBandedData(@as(*const IWiaDataTransfer, @ptrCast(self)), pWiaDataTransInfo, pIWiaDataCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataTransfer_idtQueryGetData(self: *const T, pfe: ?*WIA_FORMAT_INFO) HRESULT {
-                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtQueryGetData(@ptrCast(*const IWiaDataTransfer, self), pfe);
+                return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtQueryGetData(@as(*const IWiaDataTransfer, @ptrCast(self)), pfe);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataTransfer_idtEnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
-                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtEnumWIA_FORMAT_INFO(@ptrCast(*const IWiaDataTransfer, self), ppEnum);
+                return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtEnumWIA_FORMAT_INFO(@as(*const IWiaDataTransfer, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDataTransfer_idtGetExtendedTransferInfo(self: *const T, pExtendedTransferInfo: ?*WIA_EXTENDED_TRANSFER_INFO) HRESULT {
-                return @ptrCast(*const IWiaDataTransfer.VTable, self.vtable).idtGetExtendedTransferInfo(@ptrCast(*const IWiaDataTransfer, self), pExtendedTransferInfo);
+                return @as(*const IWiaDataTransfer.VTable, @ptrCast(self.vtable)).idtGetExtendedTransferInfo(@as(*const IWiaDataTransfer, @ptrCast(self)), pExtendedTransferInfo);
             }
         };
     }
@@ -1764,63 +1764,63 @@ pub const IWiaItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_GetItemType(self: *const T, pItemType: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem, self), pItemType);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IWiaItem, @ptrCast(self)), pItemType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_AnalyzeItem(self: *const T, lFlags: i32) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).AnalyzeItem(@ptrCast(*const IWiaItem, self), lFlags);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).AnalyzeItem(@as(*const IWiaItem, @ptrCast(self)), lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_EnumChildItems(self: *const T, ppIEnumWiaItem: ?*?*IEnumWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem, self), ppIEnumWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumChildItems(@as(*const IWiaItem, @ptrCast(self)), ppIEnumWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DeleteItem(self: *const T, lFlags: i32) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem, self), lFlags);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IWiaItem, @ptrCast(self)), lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_CreateChildItem(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem, self), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).CreateChildItem(@as(*const IWiaItem, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppIWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem, self), lFlags, pEventGUID, ppIEnum);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumRegisterEventInfo(@as(*const IWiaItem, @ptrCast(self)), lFlags, pEventGUID, ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem, self), lFlags, bstrFullItemName, ppIWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaItem, @ptrCast(self)), lFlags, bstrFullItemName, ppIWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DeviceDlg(self: *const T, hwndParent: ?HWND, lFlags: i32, lIntent: i32, plItemCount: ?*i32, ppIWiaItem: ?*?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem, self), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeviceDlg(@as(*const IWiaItem, @ptrCast(self)), hwndParent, lFlags, lIntent, plItemCount, ppIWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, pIWiaItem: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem, self), lFlags, pCmdGUID, pIWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DeviceCommand(@as(*const IWiaItem, @ptrCast(self)), lFlags, pCmdGUID, pIWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_GetRootItem(self: *const T, ppIWiaItem: ?*?*IWiaItem) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem, self), ppIWiaItem);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).GetRootItem(@as(*const IWiaItem, @ptrCast(self)), ppIWiaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem, self), lFlags, ppIEnumWIA_DEV_CAPS);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).EnumDeviceCapabilities(@as(*const IWiaItem, @ptrCast(self)), lFlags, ppIEnumWIA_DEV_CAPS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DumpItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaItem, self), bstrData);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DumpDrvItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpDrvItemData(@ptrCast(*const IWiaItem, self), bstrData);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpDrvItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_DumpTreeItemData(self: *const T, bstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).DumpTreeItemData(@ptrCast(*const IWiaItem, self), bstrData);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).DumpTreeItemData(@as(*const IWiaItem, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) HRESULT {
-                return @ptrCast(*const IWiaItem.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem, self), ulSize, pBuffer);
+                return @as(*const IWiaItem.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IWiaItem, @ptrCast(self)), ulSize, pBuffer);
             }
         };
     }
@@ -2034,67 +2034,67 @@ pub const IWiaPropertyStorage = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).ReadMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgpropvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: ?*const PROPSPEC, rgpropvar: ?*const PROPVARIANT, propidNameFirst: u32) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).WriteMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgpropvar, propidNameFirst);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).DeleteMultiple(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]?PWSTR) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).ReadPropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid, rglpwstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).WritePropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid, rglpwstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).DeletePropertyNames(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpropid, rgpropid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IWiaPropertyStorage, self), grfCommitFlags);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Commit(@as(*const IWiaPropertyStorage, @ptrCast(self)), grfCommitFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_Revert(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IWiaPropertyStorage, self));
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Revert(@as(*const IWiaPropertyStorage, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_Enum(self: *const T, ppenum: ?*?*IEnumSTATPROPSTG) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IWiaPropertyStorage, self), ppenum);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Enum(@as(*const IWiaPropertyStorage, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_SetTimes(self: *const T, pctime: ?*const FILETIME, patime: ?*const FILETIME, pmtime: ?*const FILETIME) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IWiaPropertyStorage, self), pctime, patime, pmtime);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetTimes(@as(*const IWiaPropertyStorage, @ptrCast(self)), pctime, patime, pmtime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_SetClass(self: *const T, clsid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IWiaPropertyStorage, self), clsid);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetClass(@as(*const IWiaPropertyStorage, @ptrCast(self)), clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_Stat(self: *const T, pstatpsstg: ?*STATPROPSETSTG) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IWiaPropertyStorage, self), pstatpsstg);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).Stat(@as(*const IWiaPropertyStorage, @ptrCast(self)), pstatpsstg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_GetPropertyAttributes(self: *const T, cpspec: u32, rgpspec: [*]PROPSPEC, rgflags: [*]u32, rgpropvar: [*]PROPVARIANT) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyAttributes(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec, rgflags, rgpropvar);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetPropertyAttributes(@as(*const IWiaPropertyStorage, @ptrCast(self)), cpspec, rgpspec, rgflags, rgpropvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_GetCount(self: *const T, pulNumProps: ?*u32) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetCount(@ptrCast(*const IWiaPropertyStorage, self), pulNumProps);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IWiaPropertyStorage, @ptrCast(self)), pulNumProps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_GetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, ppIStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).GetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, ppIStream);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).GetPropertyStream(@as(*const IWiaPropertyStorage, @ptrCast(self)), pCompatibilityId, ppIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPropertyStorage_SetPropertyStream(self: *const T, pCompatibilityId: ?*Guid, pIStream: ?*IStream) HRESULT {
-                return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).SetPropertyStream(@ptrCast(*const IWiaPropertyStorage, self), pCompatibilityId, pIStream);
+                return @as(*const IWiaPropertyStorage.VTable, @ptrCast(self.vtable)).SetPropertyStream(@as(*const IWiaPropertyStorage, @ptrCast(self)), pCompatibilityId, pIStream);
             }
         };
     }
@@ -2166,23 +2166,23 @@ pub const IEnumWiaItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem_Next(self: *const T, celt: u32, ppIWiaItem: ?*?*IWiaItem, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem, self), celt, ppIWiaItem, pceltFetched);
+                return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWiaItem, @ptrCast(self)), celt, ppIWiaItem, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem, self), celt);
+                return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWiaItem, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem, self));
+                return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWiaItem, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem) HRESULT {
-                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem, self), ppIEnum);
+                return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWiaItem, @ptrCast(self)), ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem_GetCount(self: *const T, celt: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem, self), celt);
+                return @as(*const IEnumWiaItem.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWiaItem, @ptrCast(self)), celt);
             }
         };
     }
@@ -2263,23 +2263,23 @@ pub const IEnumWIA_DEV_CAPS = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_CAPS_Next(self: *const T, celt: u32, rgelt: ?*WIA_DEV_CAP, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_CAPS_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_DEV_CAPS, self), celt);
+                return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_CAPS_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_DEV_CAPS, self));
+                return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_CAPS_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_DEV_CAPS, self), ppIEnum);
+                return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_DEV_CAPS_GetCount(self: *const T, pcelt: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_DEV_CAPS.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_DEV_CAPS, self), pcelt);
+                return @as(*const IEnumWIA_DEV_CAPS.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_DEV_CAPS, @ptrCast(self)), pcelt);
             }
         };
     }
@@ -2351,23 +2351,23 @@ pub const IEnumWIA_FORMAT_INFO = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_FORMAT_INFO_Next(self: *const T, celt: u32, rgelt: ?*WIA_FORMAT_INFO, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Next(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_FORMAT_INFO_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Skip(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), celt);
+                return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_FORMAT_INFO_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Reset(@ptrCast(*const IEnumWIA_FORMAT_INFO, self));
+                return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_FORMAT_INFO_Clone(self: *const T, ppIEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
-                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).Clone(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), ppIEnum);
+                return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWIA_FORMAT_INFO_GetCount(self: *const T, pcelt: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWIA_FORMAT_INFO.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWIA_FORMAT_INFO, self), pcelt);
+                return @as(*const IEnumWIA_FORMAT_INFO.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWIA_FORMAT_INFO, @ptrCast(self)), pcelt);
             }
         };
     }
@@ -2423,15 +2423,15 @@ pub const IWiaLog = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLog_InitializeLog(self: *const T, hInstance: i32) HRESULT {
-                return @ptrCast(*const IWiaLog.VTable, self.vtable).InitializeLog(@ptrCast(*const IWiaLog, self), hInstance);
+                return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).InitializeLog(@as(*const IWiaLog, @ptrCast(self)), hInstance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLog_hResult(self: *const T, hResult: HRESULT) HRESULT {
-                return @ptrCast(*const IWiaLog.VTable, self.vtable).hResult(@ptrCast(*const IWiaLog, self), hResult);
+                return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).hResult(@as(*const IWiaLog, @ptrCast(self)), hResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLog_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaLog.VTable, self.vtable).Log(@ptrCast(*const IWiaLog, self), lFlags, lResID, lDetail, bstrText);
+                return @as(*const IWiaLog.VTable, @ptrCast(self.vtable)).Log(@as(*const IWiaLog, @ptrCast(self)), lFlags, lResID, lDetail, bstrText);
             }
         };
     }
@@ -2517,23 +2517,23 @@ pub const IWiaLogEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLogEx_InitializeLogEx(self: *const T, hInstance: ?*u8) HRESULT {
-                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).InitializeLogEx(@ptrCast(*const IWiaLogEx, self), hInstance);
+                return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).InitializeLogEx(@as(*const IWiaLogEx, @ptrCast(self)), hInstance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLogEx_hResult(self: *const T, hResult: HRESULT) HRESULT {
-                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResult(@ptrCast(*const IWiaLogEx, self), hResult);
+                return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).hResult(@as(*const IWiaLogEx, @ptrCast(self)), hResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLogEx_Log(self: *const T, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).Log(@ptrCast(*const IWiaLogEx, self), lFlags, lResID, lDetail, bstrText);
+                return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).Log(@as(*const IWiaLogEx, @ptrCast(self)), lFlags, lResID, lDetail, bstrText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLogEx_hResultEx(self: *const T, lMethodId: i32, hResult: HRESULT) HRESULT {
-                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).hResultEx(@ptrCast(*const IWiaLogEx, self), lMethodId, hResult);
+                return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).hResultEx(@as(*const IWiaLogEx, @ptrCast(self)), lMethodId, hResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaLogEx_LogEx(self: *const T, lMethodId: i32, lFlags: i32, lResID: i32, lDetail: i32, bstrText: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaLogEx.VTable, self.vtable).LogEx(@ptrCast(*const IWiaLogEx, self), lMethodId, lFlags, lResID, lDetail, bstrText);
+                return @as(*const IWiaLogEx.VTable, @ptrCast(self.vtable)).LogEx(@as(*const IWiaLogEx, @ptrCast(self)), lMethodId, lFlags, lResID, lDetail, bstrText);
             }
         };
     }
@@ -2561,7 +2561,7 @@ pub const IWiaNotifyDevMgr = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaNotifyDevMgr_NewDeviceArrival(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaNotifyDevMgr.VTable, self.vtable).NewDeviceArrival(@ptrCast(*const IWiaNotifyDevMgr, self));
+                return @as(*const IWiaNotifyDevMgr.VTable, @ptrCast(self.vtable)).NewDeviceArrival(@as(*const IWiaNotifyDevMgr, @ptrCast(self)));
             }
         };
     }
@@ -2619,15 +2619,15 @@ pub const IWiaItemExtras = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItemExtras_GetExtendedErrorInfo(self: *const T, bstrErrorText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).GetExtendedErrorInfo(@ptrCast(*const IWiaItemExtras, self), bstrErrorText);
+                return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).GetExtendedErrorInfo(@as(*const IWiaItemExtras, @ptrCast(self)), bstrErrorText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItemExtras_Escape(self: *const T, dwEscapeCode: u32, lpInData: [*:0]u8, cbInDataSize: u32, pOutData: ?*u8, dwOutDataSize: u32, pdwActualDataSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).Escape(@ptrCast(*const IWiaItemExtras, self), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
+                return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).Escape(@as(*const IWiaItemExtras, @ptrCast(self)), dwEscapeCode, lpInData, cbInDataSize, pOutData, dwOutDataSize, pdwActualDataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItemExtras_CancelPendingIO(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaItemExtras.VTable, self.vtable).CancelPendingIO(@ptrCast(*const IWiaItemExtras, self));
+                return @as(*const IWiaItemExtras.VTable, @ptrCast(self.vtable)).CancelPendingIO(@as(*const IWiaItemExtras, @ptrCast(self)));
             }
         };
     }
@@ -2672,11 +2672,11 @@ pub const IWiaAppErrorHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaAppErrorHandler_GetWindow(self: *const T, phwnd: ?*?HWND) HRESULT {
-                return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).GetWindow(@ptrCast(*const IWiaAppErrorHandler, self), phwnd);
+                return @as(*const IWiaAppErrorHandler.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IWiaAppErrorHandler, @ptrCast(self)), phwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaAppErrorHandler_ReportStatus(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) HRESULT {
-                return @ptrCast(*const IWiaAppErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaAppErrorHandler, self), lFlags, pWiaItem2, hrStatus, lPercentComplete);
+                return @as(*const IWiaAppErrorHandler.VTable, @ptrCast(self.vtable)).ReportStatus(@as(*const IWiaAppErrorHandler, @ptrCast(self)), lFlags, pWiaItem2, hrStatus, lPercentComplete);
             }
         };
     }
@@ -2729,11 +2729,11 @@ pub const IWiaErrorHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaErrorHandler_ReportStatus(self: *const T, lFlags: i32, hwndParent: ?HWND, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, lPercentComplete: i32) HRESULT {
-                return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).ReportStatus(@ptrCast(*const IWiaErrorHandler, self), lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
+                return @as(*const IWiaErrorHandler.VTable, @ptrCast(self.vtable)).ReportStatus(@as(*const IWiaErrorHandler, @ptrCast(self)), lFlags, hwndParent, pWiaItem2, hrStatus, lPercentComplete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaErrorHandler_GetStatusDescription(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, hrStatus: HRESULT, pbstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaErrorHandler.VTable, self.vtable).GetStatusDescription(@ptrCast(*const IWiaErrorHandler, self), lFlags, pWiaItem2, hrStatus, pbstrDescription);
+                return @as(*const IWiaErrorHandler.VTable, @ptrCast(self.vtable)).GetStatusDescription(@as(*const IWiaErrorHandler, @ptrCast(self)), lFlags, pWiaItem2, hrStatus, pbstrDescription);
             }
         };
     }
@@ -2796,19 +2796,19 @@ pub const IWiaTransfer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransfer_Download(self: *const T, lFlags: i32, pIWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Download(@ptrCast(*const IWiaTransfer, self), lFlags, pIWiaTransferCallback);
+                return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Download(@as(*const IWiaTransfer, @ptrCast(self)), lFlags, pIWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransfer_Upload(self: *const T, lFlags: i32, pSource: ?*IStream, pIWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Upload(@ptrCast(*const IWiaTransfer, self), lFlags, pSource, pIWiaTransferCallback);
+                return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Upload(@as(*const IWiaTransfer, @ptrCast(self)), lFlags, pSource, pIWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransfer_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).Cancel(@ptrCast(*const IWiaTransfer, self));
+                return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWiaTransfer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransfer_EnumWIA_FORMAT_INFO(self: *const T, ppEnum: ?*?*IEnumWIA_FORMAT_INFO) HRESULT {
-                return @ptrCast(*const IWiaTransfer.VTable, self.vtable).EnumWIA_FORMAT_INFO(@ptrCast(*const IWiaTransfer, self), ppEnum);
+                return @as(*const IWiaTransfer.VTable, @ptrCast(self.vtable)).EnumWIA_FORMAT_INFO(@as(*const IWiaTransfer, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -2862,11 +2862,11 @@ pub const IWiaTransferCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransferCallback_TransferCallback(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) HRESULT {
-                return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).TransferCallback(@ptrCast(*const IWiaTransferCallback, self), lFlags, pWiaTransferParams);
+                return @as(*const IWiaTransferCallback.VTable, @ptrCast(self.vtable)).TransferCallback(@as(*const IWiaTransferCallback, @ptrCast(self)), lFlags, pWiaTransferParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppDestination: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IWiaTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppDestination);
+                return @as(*const IWiaTransferCallback.VTable, @ptrCast(self.vtable)).GetNextStream(@as(*const IWiaTransferCallback, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppDestination);
             }
         };
     }
@@ -2899,7 +2899,7 @@ pub const IWiaSegmentationFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaSegmentationFilter_DetectRegions(self: *const T, lFlags: i32, pInputStream: ?*IStream, pWiaItem2: ?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaSegmentationFilter.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaSegmentationFilter, self), lFlags, pInputStream, pWiaItem2);
+                return @as(*const IWiaSegmentationFilter.VTable, @ptrCast(self.vtable)).DetectRegions(@as(*const IWiaSegmentationFilter, @ptrCast(self)), lFlags, pInputStream, pWiaItem2);
             }
         };
     }
@@ -2966,19 +2966,19 @@ pub const IWiaImageFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaImageFilter_InitializeFilter(self: *const T, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).InitializeFilter(@ptrCast(*const IWiaImageFilter, self), pWiaItem2, pWiaTransferCallback);
+                return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).InitializeFilter(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaItem2, pWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaImageFilter_SetNewCallback(self: *const T, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).SetNewCallback(@ptrCast(*const IWiaImageFilter, self), pWiaTransferCallback);
+                return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).SetNewCallback(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaImageFilter_FilterPreviewImage(self: *const T, lFlags: i32, pWiaChildItem2: ?*IWiaItem2, InputImageExtents: RECT, pInputStream: ?*IStream) HRESULT {
-                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).FilterPreviewImage(@ptrCast(*const IWiaImageFilter, self), lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
+                return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).FilterPreviewImage(@as(*const IWiaImageFilter, @ptrCast(self)), lFlags, pWiaChildItem2, InputImageExtents, pInputStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaImageFilter_ApplyProperties(self: *const T, pWiaPropertyStorage: ?*IWiaPropertyStorage) HRESULT {
-                return @ptrCast(*const IWiaImageFilter.VTable, self.vtable).ApplyProperties(@ptrCast(*const IWiaImageFilter, self), pWiaPropertyStorage);
+                return @as(*const IWiaImageFilter.VTable, @ptrCast(self.vtable)).ApplyProperties(@as(*const IWiaImageFilter, @ptrCast(self)), pWiaPropertyStorage);
             }
         };
     }
@@ -3043,19 +3043,19 @@ pub const IWiaPreview = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPreview_GetNewPreview(self: *const T, lFlags: i32, pWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaPreview.VTable, self.vtable).GetNewPreview(@ptrCast(*const IWiaPreview, self), lFlags, pWiaItem2, pWiaTransferCallback);
+                return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).GetNewPreview(@as(*const IWiaPreview, @ptrCast(self)), lFlags, pWiaItem2, pWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPreview_UpdatePreview(self: *const T, lFlags: i32, pChildWiaItem2: ?*IWiaItem2, pWiaTransferCallback: ?*IWiaTransferCallback) HRESULT {
-                return @ptrCast(*const IWiaPreview.VTable, self.vtable).UpdatePreview(@ptrCast(*const IWiaPreview, self), lFlags, pChildWiaItem2, pWiaTransferCallback);
+                return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).UpdatePreview(@as(*const IWiaPreview, @ptrCast(self)), lFlags, pChildWiaItem2, pWiaTransferCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPreview_DetectRegions(self: *const T, lFlags: i32) HRESULT {
-                return @ptrCast(*const IWiaPreview.VTable, self.vtable).DetectRegions(@ptrCast(*const IWiaPreview, self), lFlags);
+                return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).DetectRegions(@as(*const IWiaPreview, @ptrCast(self)), lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaPreview_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaPreview.VTable, self.vtable).Clear(@ptrCast(*const IWiaPreview, self));
+                return @as(*const IWiaPreview.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWiaPreview, @ptrCast(self)));
             }
         };
     }
@@ -3126,23 +3126,23 @@ pub const IEnumWiaItem2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem2_Next(self: *const T, cElt: u32, ppIWiaItem2: ?*?*IWiaItem2, pcEltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Next(@ptrCast(*const IEnumWiaItem2, self), cElt, ppIWiaItem2, pcEltFetched);
+                return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt, ppIWiaItem2, pcEltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem2_Skip(self: *const T, cElt: u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Skip(@ptrCast(*const IEnumWiaItem2, self), cElt);
+                return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem2_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Reset(@ptrCast(*const IEnumWiaItem2, self));
+                return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumWiaItem2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem2_Clone(self: *const T, ppIEnum: ?*?*IEnumWiaItem2) HRESULT {
-                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).Clone(@ptrCast(*const IEnumWiaItem2, self), ppIEnum);
+                return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumWiaItem2, @ptrCast(self)), ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumWiaItem2_GetCount(self: *const T, cElt: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumWiaItem2.VTable, self.vtable).GetCount(@ptrCast(*const IEnumWiaItem2, self), cElt);
+                return @as(*const IEnumWiaItem2.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumWiaItem2, @ptrCast(self)), cElt);
             }
         };
     }
@@ -3371,67 +3371,67 @@ pub const IWiaItem2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_CreateChildItem(self: *const T, lItemFlags: i32, lCreationFlags: i32, bstrItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).CreateChildItem(@ptrCast(*const IWiaItem2, self), lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).CreateChildItem(@as(*const IWiaItem2, @ptrCast(self)), lItemFlags, lCreationFlags, bstrItemName, ppIWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_DeleteItem(self: *const T, lFlags: i32) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeleteItem(@ptrCast(*const IWiaItem2, self), lFlags);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IWiaItem2, @ptrCast(self)), lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_EnumChildItems(self: *const T, pCategoryGUID: ?*const Guid, ppIEnumWiaItem2: ?*?*IEnumWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumChildItems(@ptrCast(*const IWiaItem2, self), pCategoryGUID, ppIEnumWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumChildItems(@as(*const IWiaItem2, @ptrCast(self)), pCategoryGUID, ppIEnumWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_FindItemByName(self: *const T, lFlags: i32, bstrFullItemName: ?BSTR, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaItem2, self), lFlags, bstrFullItemName, ppIWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrFullItemName, ppIWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetItemCategory(self: *const T, pItemCategoryGUID: ?*Guid) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemCategory(@ptrCast(*const IWiaItem2, self), pItemCategoryGUID);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetItemCategory(@as(*const IWiaItem2, @ptrCast(self)), pItemCategoryGUID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetItemType(self: *const T, pItemType: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetItemType(@ptrCast(*const IWiaItem2, self), pItemType);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IWiaItem2, @ptrCast(self)), pItemType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_DeviceDlg(self: *const T, lFlags: i32, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceDlg(@ptrCast(*const IWiaItem2, self), lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeviceDlg(@as(*const IWiaItem2, @ptrCast(self)), lFlags, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_DeviceCommand(self: *const T, lFlags: i32, pCmdGUID: ?*const Guid, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).DeviceCommand(@ptrCast(*const IWiaItem2, self), lFlags, pCmdGUID, ppIWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).DeviceCommand(@as(*const IWiaItem2, @ptrCast(self)), lFlags, pCmdGUID, ppIWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_EnumDeviceCapabilities(self: *const T, lFlags: i32, ppIEnumWIA_DEV_CAPS: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumDeviceCapabilities(@ptrCast(*const IWiaItem2, self), lFlags, ppIEnumWIA_DEV_CAPS);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumDeviceCapabilities(@as(*const IWiaItem2, @ptrCast(self)), lFlags, ppIEnumWIA_DEV_CAPS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_CheckExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, pbExtensionExists: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).CheckExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).CheckExtension(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrName, riidExtensionInterface, pbExtensionExists);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetExtension(self: *const T, lFlags: i32, bstrName: ?BSTR, riidExtensionInterface: ?*const Guid, ppOut: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetExtension(@ptrCast(*const IWiaItem2, self), lFlags, bstrName, riidExtensionInterface, ppOut);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetExtension(@as(*const IWiaItem2, @ptrCast(self)), lFlags, bstrName, riidExtensionInterface, ppOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetParentItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetParentItem(@as(*const IWiaItem2, @ptrCast(self)), ppIWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetRootItem(self: *const T, ppIWiaItem2: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetRootItem(@ptrCast(*const IWiaItem2, self), ppIWiaItem2);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetRootItem(@as(*const IWiaItem2, @ptrCast(self)), ppIWiaItem2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_GetPreviewComponent(self: *const T, lFlags: i32, ppWiaPreview: ?*?*IWiaPreview) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).GetPreviewComponent(@ptrCast(*const IWiaItem2, self), lFlags, ppWiaPreview);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).GetPreviewComponent(@as(*const IWiaItem2, @ptrCast(self)), lFlags, ppWiaPreview);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_EnumRegisterEventInfo(self: *const T, lFlags: i32, pEventGUID: ?*const Guid, ppIEnum: ?*?*IEnumWIA_DEV_CAPS) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).EnumRegisterEventInfo(@ptrCast(*const IWiaItem2, self), lFlags, pEventGUID, ppIEnum);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).EnumRegisterEventInfo(@as(*const IWiaItem2, @ptrCast(self)), lFlags, pEventGUID, ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaItem2_Diagnostic(self: *const T, ulSize: u32, pBuffer: [*:0]u8) HRESULT {
-                return @ptrCast(*const IWiaItem2.VTable, self.vtable).Diagnostic(@ptrCast(*const IWiaItem2, self), ulSize, pBuffer);
+                return @as(*const IWiaItem2.VTable, @ptrCast(self.vtable)).Diagnostic(@as(*const IWiaItem2, @ptrCast(self)), ulSize, pBuffer);
             }
         };
     }
@@ -3598,35 +3598,35 @@ pub const IWiaDevMgr2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_EnumDeviceInfo(self: *const T, lFlags: i32, ppIEnum: ?*?*IEnumWIA_DEV_INFO) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).EnumDeviceInfo(@ptrCast(*const IWiaDevMgr2, self), lFlags, ppIEnum);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).EnumDeviceInfo(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, ppIEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_CreateDevice(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, ppWiaItem2Root: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).CreateDevice(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, ppWiaItem2Root);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, ppWiaItem2Root);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_SelectDeviceDlg(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR, ppItemRoot: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlg(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).SelectDeviceDlg(@as(*const IWiaDevMgr2, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID, ppItemRoot);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_SelectDeviceDlgID(self: *const T, hwndParent: ?HWND, lDeviceType: i32, lFlags: i32, pbstrDeviceID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).SelectDeviceDlgID(@ptrCast(*const IWiaDevMgr2, self), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).SelectDeviceDlgID(@as(*const IWiaDevMgr2, @ptrCast(self)), hwndParent, lDeviceType, lFlags, pbstrDeviceID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_RegisterEventCallbackInterface(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pIWiaEventCallback: ?*IWiaEventCallback, pEventObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackInterface(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackInterface(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pIWiaEventCallback, pEventObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_RegisterEventCallbackProgram(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, bstrFullAppName: ?BSTR, bstrCommandLineArg: ?BSTR, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackProgram(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackProgram(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, bstrFullAppName, bstrCommandLineArg, bstrName, bstrDescription, bstrIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_RegisterEventCallbackCLSID(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, pEventGUID: ?*const Guid, pClsID: ?*const Guid, bstrName: ?BSTR, bstrDescription: ?BSTR, bstrIcon: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).RegisterEventCallbackCLSID(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).RegisterEventCallbackCLSID(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, pEventGUID, pClsID, bstrName, bstrDescription, bstrIcon);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDevMgr2_GetImageDlg(self: *const T, lFlags: i32, bstrDeviceID: ?BSTR, hwndParent: ?HWND, bstrFolderName: ?BSTR, bstrFilename: ?BSTR, plNumFiles: ?*i32, ppbstrFilePaths: ?*?*?BSTR, ppItem: ?*?*IWiaItem2) HRESULT {
-                return @ptrCast(*const IWiaDevMgr2.VTable, self.vtable).GetImageDlg(@ptrCast(*const IWiaDevMgr2, self), lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
+                return @as(*const IWiaDevMgr2.VTable, @ptrCast(self.vtable)).GetImageDlg(@as(*const IWiaDevMgr2, @ptrCast(self)), lFlags, bstrDeviceID, hwndParent, bstrFolderName, bstrFilename, plNumFiles, ppbstrFilePaths, ppItem);
             }
         };
     }
@@ -3955,71 +3955,71 @@ pub const IWiaMiniDrv = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0000: ?*u8, __MIDL__IWiaMiniDrv0001: i32, __MIDL__IWiaMiniDrv0002: ?BSTR, __MIDL__IWiaMiniDrv0003: ?BSTR, __MIDL__IWiaMiniDrv0004: ?*IUnknown, __MIDL__IWiaMiniDrv0005: ?*IUnknown, __MIDL__IWiaMiniDrv0006: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0007: ?*?*IUnknown, __MIDL__IWiaMiniDrv0008: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvInitializeWia(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0000, __MIDL__IWiaMiniDrv0001, __MIDL__IWiaMiniDrv0002, __MIDL__IWiaMiniDrv0003, __MIDL__IWiaMiniDrv0004, __MIDL__IWiaMiniDrv0005, __MIDL__IWiaMiniDrv0006, __MIDL__IWiaMiniDrv0007, __MIDL__IWiaMiniDrv0008);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvAcquireItemData(self: *const T, __MIDL__IWiaMiniDrv0009: ?*u8, __MIDL__IWiaMiniDrv0010: i32, __MIDL__IWiaMiniDrv0011: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0012: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAcquireItemData(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvAcquireItemData(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0009, __MIDL__IWiaMiniDrv0010, __MIDL__IWiaMiniDrv0011, __MIDL__IWiaMiniDrv0012);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvInitItemProperties(self: *const T, __MIDL__IWiaMiniDrv0013: ?*u8, __MIDL__IWiaMiniDrv0014: i32, __MIDL__IWiaMiniDrv0015: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvInitItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvInitItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0013, __MIDL__IWiaMiniDrv0014, __MIDL__IWiaMiniDrv0015);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvValidateItemProperties(self: *const T, __MIDL__IWiaMiniDrv0016: ?*u8, __MIDL__IWiaMiniDrv0017: i32, __MIDL__IWiaMiniDrv0018: u32, __MIDL__IWiaMiniDrv0019: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0020: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvValidateItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvValidateItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0016, __MIDL__IWiaMiniDrv0017, __MIDL__IWiaMiniDrv0018, __MIDL__IWiaMiniDrv0019, __MIDL__IWiaMiniDrv0020);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvWriteItemProperties(self: *const T, __MIDL__IWiaMiniDrv0021: ?*u8, __MIDL__IWiaMiniDrv0022: i32, __MIDL__IWiaMiniDrv0023: ?*MINIDRV_TRANSFER_CONTEXT, __MIDL__IWiaMiniDrv0024: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvWriteItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvWriteItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0021, __MIDL__IWiaMiniDrv0022, __MIDL__IWiaMiniDrv0023, __MIDL__IWiaMiniDrv0024);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvReadItemProperties(self: *const T, __MIDL__IWiaMiniDrv0025: ?*u8, __MIDL__IWiaMiniDrv0026: i32, __MIDL__IWiaMiniDrv0027: u32, __MIDL__IWiaMiniDrv0028: ?*const PROPSPEC, __MIDL__IWiaMiniDrv0029: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvReadItemProperties(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvReadItemProperties(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0025, __MIDL__IWiaMiniDrv0026, __MIDL__IWiaMiniDrv0027, __MIDL__IWiaMiniDrv0028, __MIDL__IWiaMiniDrv0029);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0030: ?*u8, __MIDL__IWiaMiniDrv0031: i32, __MIDL__IWiaMiniDrv0032: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvLockWiaDevice(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0030, __MIDL__IWiaMiniDrv0031, __MIDL__IWiaMiniDrv0032);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvUnLockWiaDevice(self: *const T, __MIDL__IWiaMiniDrv0033: ?*u8, __MIDL__IWiaMiniDrv0034: i32, __MIDL__IWiaMiniDrv0035: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnLockWiaDevice(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvUnLockWiaDevice(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0033, __MIDL__IWiaMiniDrv0034, __MIDL__IWiaMiniDrv0035);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvAnalyzeItem(self: *const T, __MIDL__IWiaMiniDrv0036: ?*u8, __MIDL__IWiaMiniDrv0037: i32, __MIDL__IWiaMiniDrv0038: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvAnalyzeItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvAnalyzeItem(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0036, __MIDL__IWiaMiniDrv0037, __MIDL__IWiaMiniDrv0038);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvGetDeviceErrorStr(self: *const T, __MIDL__IWiaMiniDrv0039: i32, __MIDL__IWiaMiniDrv0040: i32, __MIDL__IWiaMiniDrv0041: ?*?PWSTR, __MIDL__IWiaMiniDrv0042: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetDeviceErrorStr(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetDeviceErrorStr(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0039, __MIDL__IWiaMiniDrv0040, __MIDL__IWiaMiniDrv0041, __MIDL__IWiaMiniDrv0042);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvDeviceCommand(self: *const T, __MIDL__IWiaMiniDrv0043: ?*u8, __MIDL__IWiaMiniDrv0044: i32, __MIDL__IWiaMiniDrv0045: ?*const Guid, __MIDL__IWiaMiniDrv0046: ?*?*IWiaDrvItem, __MIDL__IWiaMiniDrv0047: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeviceCommand(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvDeviceCommand(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0043, __MIDL__IWiaMiniDrv0044, __MIDL__IWiaMiniDrv0045, __MIDL__IWiaMiniDrv0046, __MIDL__IWiaMiniDrv0047);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvGetCapabilities(self: *const T, __MIDL__IWiaMiniDrv0048: ?*u8, __MIDL__IWiaMiniDrv0049: i32, __MIDL__IWiaMiniDrv0050: ?*i32, __MIDL__IWiaMiniDrv0051: ?*?*WIA_DEV_CAP_DRV, __MIDL__IWiaMiniDrv0052: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetCapabilities(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetCapabilities(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0048, __MIDL__IWiaMiniDrv0049, __MIDL__IWiaMiniDrv0050, __MIDL__IWiaMiniDrv0051, __MIDL__IWiaMiniDrv0052);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvDeleteItem(self: *const T, __MIDL__IWiaMiniDrv0053: ?*u8, __MIDL__IWiaMiniDrv0054: i32, __MIDL__IWiaMiniDrv0055: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvDeleteItem(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvDeleteItem(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0053, __MIDL__IWiaMiniDrv0054, __MIDL__IWiaMiniDrv0055);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvFreeDrvItemContext(self: *const T, __MIDL__IWiaMiniDrv0056: i32, __MIDL__IWiaMiniDrv0057: ?*u8, __MIDL__IWiaMiniDrv0058: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvFreeDrvItemContext(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvFreeDrvItemContext(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0056, __MIDL__IWiaMiniDrv0057, __MIDL__IWiaMiniDrv0058);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvGetWiaFormatInfo(self: *const T, __MIDL__IWiaMiniDrv0059: ?*u8, __MIDL__IWiaMiniDrv0060: i32, __MIDL__IWiaMiniDrv0061: ?*i32, __MIDL__IWiaMiniDrv0062: ?*?*WIA_FORMAT_INFO, __MIDL__IWiaMiniDrv0063: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvGetWiaFormatInfo(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvGetWiaFormatInfo(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0059, __MIDL__IWiaMiniDrv0060, __MIDL__IWiaMiniDrv0061, __MIDL__IWiaMiniDrv0062, __MIDL__IWiaMiniDrv0063);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvNotifyPnpEvent(self: *const T, pEventGUID: ?*const Guid, bstrDeviceID: ?BSTR, ulReserved: u32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvNotifyPnpEvent(@ptrCast(*const IWiaMiniDrv, self), pEventGUID, bstrDeviceID, ulReserved);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvNotifyPnpEvent(@as(*const IWiaMiniDrv, @ptrCast(self)), pEventGUID, bstrDeviceID, ulReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrv_drvUnInitializeWia(self: *const T, __MIDL__IWiaMiniDrv0064: ?*u8) HRESULT {
-                return @ptrCast(*const IWiaMiniDrv.VTable, self.vtable).drvUnInitializeWia(@ptrCast(*const IWiaMiniDrv, self), __MIDL__IWiaMiniDrv0064);
+                return @as(*const IWiaMiniDrv.VTable, @ptrCast(self.vtable)).drvUnInitializeWia(@as(*const IWiaMiniDrv, @ptrCast(self)), __MIDL__IWiaMiniDrv0064);
             }
         };
     }
@@ -4060,7 +4060,7 @@ pub const IWiaMiniDrvCallBack = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrvCallBack_MiniDrvCallback(self: *const T, lReason: i32, lStatus: i32, lPercentComplete: i32, lOffset: i32, lLength: i32, pTranCtx: ?*MINIDRV_TRANSFER_CONTEXT, lReserved: i32) HRESULT {
-                return @ptrCast(*const IWiaMiniDrvCallBack.VTable, self.vtable).MiniDrvCallback(@ptrCast(*const IWiaMiniDrvCallBack, self), lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
+                return @as(*const IWiaMiniDrvCallBack.VTable, @ptrCast(self.vtable)).MiniDrvCallback(@as(*const IWiaMiniDrvCallBack, @ptrCast(self)), lReason, lStatus, lPercentComplete, lOffset, lLength, pTranCtx, lReserved);
             }
         };
     }
@@ -4107,11 +4107,11 @@ pub const IWiaMiniDrvTransferCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrvTransferCallback_GetNextStream(self: *const T, lFlags: i32, bstrItemName: ?BSTR, bstrFullItemName: ?BSTR, ppIStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).GetNextStream(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, bstrItemName, bstrFullItemName, ppIStream);
+                return @as(*const IWiaMiniDrvTransferCallback.VTable, @ptrCast(self.vtable)).GetNextStream(@as(*const IWiaMiniDrvTransferCallback, @ptrCast(self)), lFlags, bstrItemName, bstrFullItemName, ppIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaMiniDrvTransferCallback_SendMessage(self: *const T, lFlags: i32, pWiaTransferParams: ?*WiaTransferParams) HRESULT {
-                return @ptrCast(*const IWiaMiniDrvTransferCallback.VTable, self.vtable).SendMessage(@ptrCast(*const IWiaMiniDrvTransferCallback, self), lFlags, pWiaTransferParams);
+                return @as(*const IWiaMiniDrvTransferCallback.VTable, @ptrCast(self.vtable)).SendMessage(@as(*const IWiaMiniDrvTransferCallback, @ptrCast(self)), lFlags, pWiaTransferParams);
             }
         };
     }
@@ -4266,55 +4266,55 @@ pub const IWiaDrvItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetItemFlags(self: *const T, __MIDL__IWiaDrvItem0000: ?*i32) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemFlags(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0000);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetItemFlags(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0000);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetDeviceSpecContext(self: *const T, __MIDL__IWiaDrvItem0001: ?*?*u8) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetDeviceSpecContext(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0001);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetDeviceSpecContext(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0001);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetFullItemName(self: *const T, __MIDL__IWiaDrvItem0002: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFullItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0002);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetFullItemName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0002);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetItemName(self: *const T, __MIDL__IWiaDrvItem0003: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetItemName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0003);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetItemName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0003);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_AddItemToFolder(self: *const T, __MIDL__IWiaDrvItem0004: ?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).AddItemToFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0004);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).AddItemToFolder(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0004);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_UnlinkItemTree(self: *const T, __MIDL__IWiaDrvItem0005: i32) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).UnlinkItemTree(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0005);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).UnlinkItemTree(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0005);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_RemoveItemFromFolder(self: *const T, __MIDL__IWiaDrvItem0006: i32) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).RemoveItemFromFolder(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0006);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).RemoveItemFromFolder(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0006);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_FindItemByName(self: *const T, __MIDL__IWiaDrvItem0007: i32, __MIDL__IWiaDrvItem0008: ?BSTR, __MIDL__IWiaDrvItem0009: ?*?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).FindItemByName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0007, __MIDL__IWiaDrvItem0008, __MIDL__IWiaDrvItem0009);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_FindChildItemByName(self: *const T, __MIDL__IWiaDrvItem0010: ?BSTR, __MIDL__IWiaDrvItem0011: ?*?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).FindChildItemByName(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).FindChildItemByName(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0010, __MIDL__IWiaDrvItem0011);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetParentItem(self: *const T, __MIDL__IWiaDrvItem0012: ?*?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetParentItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0012);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetParentItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0012);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetFirstChildItem(self: *const T, __MIDL__IWiaDrvItem0013: ?*?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetFirstChildItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0013);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetFirstChildItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0013);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_GetNextSiblingItem(self: *const T, __MIDL__IWiaDrvItem0014: ?*?*IWiaDrvItem) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).GetNextSiblingItem(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0014);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).GetNextSiblingItem(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0014);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaDrvItem_DumpItemData(self: *const T, __MIDL__IWiaDrvItem0015: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaDrvItem.VTable, self.vtable).DumpItemData(@ptrCast(*const IWiaDrvItem, self), __MIDL__IWiaDrvItem0015);
+                return @as(*const IWiaDrvItem.VTable, @ptrCast(self.vtable)).DumpItemData(@as(*const IWiaDrvItem, @ptrCast(self)), __MIDL__IWiaDrvItem0015);
             }
         };
     }
@@ -4601,55 +4601,55 @@ pub const IWiaVideo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_get_PreviewVisible(self: *const T, pbPreviewVisible: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_PreviewVisible(@ptrCast(*const IWiaVideo, self), pbPreviewVisible);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).get_PreviewVisible(@as(*const IWiaVideo, @ptrCast(self)), pbPreviewVisible);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_put_PreviewVisible(self: *const T, bPreviewVisible: BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_PreviewVisible(@ptrCast(*const IWiaVideo, self), bPreviewVisible);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).put_PreviewVisible(@as(*const IWiaVideo, @ptrCast(self)), bPreviewVisible);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_get_ImagesDirectory(self: *const T, pbstrImageDirectory: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).get_ImagesDirectory(@ptrCast(*const IWiaVideo, self), pbstrImageDirectory);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).get_ImagesDirectory(@as(*const IWiaVideo, @ptrCast(self)), pbstrImageDirectory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_put_ImagesDirectory(self: *const T, bstrImageDirectory: ?BSTR) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).put_ImagesDirectory(@ptrCast(*const IWiaVideo, self), bstrImageDirectory);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).put_ImagesDirectory(@as(*const IWiaVideo, @ptrCast(self)), bstrImageDirectory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_CreateVideoByWiaDevID(self: *const T, bstrWiaDeviceID: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByWiaDevID(@ptrCast(*const IWiaVideo, self), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByWiaDevID(@as(*const IWiaVideo, @ptrCast(self)), bstrWiaDeviceID, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_CreateVideoByDevNum(self: *const T, uiDeviceNumber: u32, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByDevNum(@ptrCast(*const IWiaVideo, self), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByDevNum(@as(*const IWiaVideo, @ptrCast(self)), uiDeviceNumber, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_CreateVideoByName(self: *const T, bstrFriendlyName: ?BSTR, hwndParent: ?HWND, bStretchToFitParent: BOOL, bAutoBeginPlayback: BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).CreateVideoByName(@ptrCast(*const IWiaVideo, self), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).CreateVideoByName(@as(*const IWiaVideo, @ptrCast(self)), bstrFriendlyName, hwndParent, bStretchToFitParent, bAutoBeginPlayback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_DestroyVideo(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).DestroyVideo(@ptrCast(*const IWiaVideo, self));
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).DestroyVideo(@as(*const IWiaVideo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_Play(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).Play(@ptrCast(*const IWiaVideo, self));
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).Play(@as(*const IWiaVideo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).Pause(@ptrCast(*const IWiaVideo, self));
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).Pause(@as(*const IWiaVideo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_TakePicture(self: *const T, pbstrNewImageFilename: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).TakePicture(@ptrCast(*const IWiaVideo, self), pbstrNewImageFilename);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).TakePicture(@as(*const IWiaVideo, @ptrCast(self)), pbstrNewImageFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_ResizeVideo(self: *const T, bStretchToFitParent: BOOL) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).ResizeVideo(@ptrCast(*const IWiaVideo, self), bStretchToFitParent);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).ResizeVideo(@as(*const IWiaVideo, @ptrCast(self)), bStretchToFitParent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaVideo_GetCurrentState(self: *const T, pState: ?*WIAVIDEO_STATE) HRESULT {
-                return @ptrCast(*const IWiaVideo.VTable, self.vtable).GetCurrentState(@ptrCast(*const IWiaVideo, self), pState);
+                return @as(*const IWiaVideo.VTable, @ptrCast(self.vtable)).GetCurrentState(@as(*const IWiaVideo, @ptrCast(self)), pState);
             }
         };
     }
@@ -4704,11 +4704,11 @@ pub const IWiaUIExtension2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaUIExtension2_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA2) HRESULT {
-                return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension2, self), pDeviceDialogData);
+                return @as(*const IWiaUIExtension2.VTable, @ptrCast(self.vtable)).DeviceDialog(@as(*const IWiaUIExtension2, @ptrCast(self)), pDeviceDialogData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaUIExtension2_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) HRESULT {
-                return @ptrCast(*const IWiaUIExtension2.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension2, self), bstrDeviceId, phIcon, nSize);
+                return @as(*const IWiaUIExtension2.VTable, @ptrCast(self.vtable)).GetDeviceIcon(@as(*const IWiaUIExtension2, @ptrCast(self)), bstrDeviceId, phIcon, nSize);
             }
         };
     }
@@ -4777,15 +4777,15 @@ pub const IWiaUIExtension = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaUIExtension_DeviceDialog(self: *const T, pDeviceDialogData: ?*DEVICEDIALOGDATA) HRESULT {
-                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).DeviceDialog(@ptrCast(*const IWiaUIExtension, self), pDeviceDialogData);
+                return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).DeviceDialog(@as(*const IWiaUIExtension, @ptrCast(self)), pDeviceDialogData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaUIExtension_GetDeviceIcon(self: *const T, bstrDeviceId: ?BSTR, phIcon: ?*?HICON, nSize: u32) HRESULT {
-                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceIcon(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phIcon, nSize);
+                return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).GetDeviceIcon(@as(*const IWiaUIExtension, @ptrCast(self)), bstrDeviceId, phIcon, nSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWiaUIExtension_GetDeviceBitmapLogo(self: *const T, bstrDeviceId: ?BSTR, phBitmap: ?*?HBITMAP, nMaxWidth: u32, nMaxHeight: u32) HRESULT {
-                return @ptrCast(*const IWiaUIExtension.VTable, self.vtable).GetDeviceBitmapLogo(@ptrCast(*const IWiaUIExtension, self), bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
+                return @as(*const IWiaUIExtension.VTable, @ptrCast(self.vtable)).GetDeviceBitmapLogo(@as(*const IWiaUIExtension, @ptrCast(self)), bstrDeviceId, phBitmap, nMaxWidth, nMaxHeight);
             }
         };
     }

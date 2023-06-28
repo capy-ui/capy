@@ -72,9 +72,9 @@ pub const ImageData = struct {
         //defer img.deinit();
         const bytes = img.rawBytes();
         return try ImageData.fromBytes(
-            @intCast(u32, img.width),
-            @intCast(u32, img.height),
-            @intCast(u32, img.rowByteSize()),
+            @as(u32, @intCast(img.width)),
+            @as(u32, @intCast(img.height)),
+            @as(u32, @intCast(img.rowByteSize())),
             .RGBA,
             bytes,
             allocator,

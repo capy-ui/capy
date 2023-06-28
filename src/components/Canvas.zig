@@ -90,13 +90,13 @@ pub const Rect_Impl = struct {
             self.peer = try backend.Canvas.create();
             _ = try self.color.addChangeListener(.{ .function = struct {
                 fn callback(_: Color, userdata: usize) void {
-                    const peer = @ptrFromInt(*?backend.Canvas, userdata);
+                    const peer = @as(*?backend.Canvas, @ptrFromInt(userdata));
                     peer.*.?.requestDraw() catch {};
                 }
             }.callback, .userdata = @intFromPtr(&self.peer) });
             _ = try self.cornerRadius.addChangeListener(.{ .function = struct {
                 fn callback(_: [4]f32, userdata: usize) void {
-                    const peer = @ptrFromInt(*?backend.Canvas, userdata);
+                    const peer = @as(*?backend.Canvas, @ptrFromInt(userdata));
                     peer.*.?.requestDraw() catch {};
                 }
             }.callback, .userdata = @intFromPtr(&self.peer) });

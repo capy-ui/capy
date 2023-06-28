@@ -283,7 +283,7 @@ pub const WORD_WHEEL_OPEN_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         T: u1 = 0,
     }) WORD_WHEEL_OPEN_FLAGS {
-        return @enumFromInt(WORD_WHEEL_OPEN_FLAGS, (if (o.T == 1) @intFromEnum(WORD_WHEEL_OPEN_FLAGS.T) else 0));
+        return @as(WORD_WHEEL_OPEN_FLAGS, @enumFromInt((if (o.T == 1) @intFromEnum(WORD_WHEEL_OPEN_FLAGS.T) else 0)));
     }
 };
 pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS.T;
@@ -651,75 +651,75 @@ pub const IITPropList = extern struct {
             pub usingnamespace IPersistStreamInit.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Set(self: *const T, PropID: u32, lpszwString: ?[*:0]const u16, dwOperation: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, lpszwString, dwOperation);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Set(@as(*const IITPropList, @ptrCast(self)), PropID, lpszwString, dwOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Set1(self: *const T, PropID: u32, lpvData: ?*anyopaque, cbData: u32, dwOperation: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, lpvData, cbData, dwOperation);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Set(@as(*const IITPropList, @ptrCast(self)), PropID, lpvData, cbData, dwOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Set2(self: *const T, PropID: u32, dwData: u32, dwOperation: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Set(@ptrCast(*const IITPropList, self), PropID, dwData, dwOperation);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Set(@as(*const IITPropList, @ptrCast(self)), PropID, dwData, dwOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Add(self: *const T, Prop: ?*CProperty) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Add(@ptrCast(*const IITPropList, self), Prop);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Add(@as(*const IITPropList, @ptrCast(self)), Prop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Get(self: *const T, PropID: u32, Property: ?*CProperty) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Get(@ptrCast(*const IITPropList, self), PropID, Property);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Get(@as(*const IITPropList, @ptrCast(self)), PropID, Property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).Clear(@ptrCast(*const IITPropList, self));
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).Clear(@as(*const IITPropList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SetPersist(self: *const T, fPersist: BOOL) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SetPersist(@ptrCast(*const IITPropList, self), fPersist);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SetPersist(@as(*const IITPropList, @ptrCast(self)), fPersist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SetPersist1(self: *const T, PropID: u32, fPersist: BOOL) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SetPersist(@ptrCast(*const IITPropList, self), PropID, fPersist);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SetPersist(@as(*const IITPropList, @ptrCast(self)), PropID, fPersist);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_GetFirst(self: *const T, Property: ?*CProperty) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).GetFirst(@ptrCast(*const IITPropList, self), Property);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).GetFirst(@as(*const IITPropList, @ptrCast(self)), Property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_GetNext(self: *const T, Property: ?*CProperty) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).GetNext(@ptrCast(*const IITPropList, self), Property);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).GetNext(@as(*const IITPropList, @ptrCast(self)), Property);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_GetPropCount(self: *const T, cProp: ?*i32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).GetPropCount(@ptrCast(*const IITPropList, self), cProp);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).GetPropCount(@as(*const IITPropList, @ptrCast(self)), cProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SaveHeader(self: *const T, lpvData: ?*anyopaque, dwHdrSize: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SaveHeader(@ptrCast(*const IITPropList, self), lpvData, dwHdrSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SaveHeader(@as(*const IITPropList, @ptrCast(self)), lpvData, dwHdrSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SaveData(self: *const T, lpvHeader: ?*anyopaque, dwHdrSize: u32, lpvData: ?*anyopaque, dwBufSize: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SaveData(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, lpvData, dwBufSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SaveData(@as(*const IITPropList, @ptrCast(self)), lpvHeader, dwHdrSize, lpvData, dwBufSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_GetHeaderSize(self: *const T, dwHdrSize: ?*u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).GetHeaderSize(@ptrCast(*const IITPropList, self), dwHdrSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).GetHeaderSize(@as(*const IITPropList, @ptrCast(self)), dwHdrSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_GetDataSize(self: *const T, lpvHeader: ?*anyopaque, dwHdrSize: u32, dwDataSize: ?*u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).GetDataSize(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, dwDataSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).GetDataSize(@as(*const IITPropList, @ptrCast(self)), lpvHeader, dwHdrSize, dwDataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SaveDataToStream(self: *const T, lpvHeader: ?*anyopaque, dwHdrSize: u32, pStream: ?*IStream) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SaveDataToStream(@ptrCast(*const IITPropList, self), lpvHeader, dwHdrSize, pStream);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SaveDataToStream(@as(*const IITPropList, @ptrCast(self)), lpvHeader, dwHdrSize, pStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_LoadFromMem(self: *const T, lpvData: ?*anyopaque, dwBufSize: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).LoadFromMem(@ptrCast(*const IITPropList, self), lpvData, dwBufSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).LoadFromMem(@as(*const IITPropList, @ptrCast(self)), lpvData, dwBufSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITPropList_SaveToMem(self: *const T, lpvData: ?*anyopaque, dwBufSize: u32) HRESULT {
-                return @ptrCast(*const IITPropList.VTable, self.vtable).SaveToMem(@ptrCast(*const IITPropList, self), lpvData, dwBufSize);
+                return @as(*const IITPropList.VTable, @ptrCast(self.vtable)).SaveToMem(@as(*const IITPropList, @ptrCast(self)), lpvData, dwBufSize);
             }
         };
     }
@@ -802,23 +802,23 @@ pub const IITDatabase = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITDatabase_Open(self: *const T, lpszHost: ?[*:0]const u16, lpszMoniker: ?[*:0]const u16, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IITDatabase.VTable, self.vtable).Open(@ptrCast(*const IITDatabase, self), lpszHost, lpszMoniker, dwFlags);
+                return @as(*const IITDatabase.VTable, @ptrCast(self.vtable)).Open(@as(*const IITDatabase, @ptrCast(self)), lpszHost, lpszMoniker, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITDatabase_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IITDatabase.VTable, self.vtable).Close(@ptrCast(*const IITDatabase, self));
+                return @as(*const IITDatabase.VTable, @ptrCast(self.vtable)).Close(@as(*const IITDatabase, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITDatabase_CreateObject(self: *const T, rclsid: ?*const Guid, pdwObjInstance: ?*u32) HRESULT {
-                return @ptrCast(*const IITDatabase.VTable, self.vtable).CreateObject(@ptrCast(*const IITDatabase, self), rclsid, pdwObjInstance);
+                return @as(*const IITDatabase.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IITDatabase, @ptrCast(self)), rclsid, pdwObjInstance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITDatabase_GetObject(self: *const T, dwObjInstance: u32, riid: ?*const Guid, ppvObj: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IITDatabase.VTable, self.vtable).GetObject(@ptrCast(*const IITDatabase, self), dwObjInstance, riid, ppvObj);
+                return @as(*const IITDatabase.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IITDatabase, @ptrCast(self)), dwObjInstance, riid, ppvObj);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITDatabase_GetObjectPersistence(self: *const T, lpwszObject: ?[*:0]const u16, dwObjInstance: u32, ppvPersistence: ?*?*anyopaque, fStream: BOOL) HRESULT {
-                return @ptrCast(*const IITDatabase.VTable, self.vtable).GetObjectPersistence(@ptrCast(*const IITDatabase, self), lpwszObject, dwObjInstance, ppvPersistence, fStream);
+                return @as(*const IITDatabase.VTable, @ptrCast(self.vtable)).GetObjectPersistence(@as(*const IITDatabase, @ptrCast(self)), lpwszObject, dwObjInstance, ppvPersistence, fStream);
             }
         };
     }
@@ -995,55 +995,55 @@ pub const IITWordWheel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Open(self: *const T, lpITDB: ?*IITDatabase, lpszMoniker: ?[*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Open(@ptrCast(*const IITWordWheel, self), lpITDB, lpszMoniker, dwFlags);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Open(@as(*const IITWordWheel, @ptrCast(self)), lpITDB, lpszMoniker, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Close(@ptrCast(*const IITWordWheel, self));
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Close(@as(*const IITWordWheel, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IITWordWheel, self), pdwCodePageID, plcid);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetLocaleInfo(@as(*const IITWordWheel, @ptrCast(self)), pdwCodePageID, plcid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetSorterInstance(self: *const T, pdwObjInstance: ?*u32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetSorterInstance(@ptrCast(*const IITWordWheel, self), pdwObjInstance);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetSorterInstance(@as(*const IITWordWheel, @ptrCast(self)), pdwObjInstance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Count(self: *const T, pcEntries: ?*i32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Count(@ptrCast(*const IITWordWheel, self), pcEntries);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Count(@as(*const IITWordWheel, @ptrCast(self)), pcEntries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Lookup(self: *const T, lpcvPrefix: ?*const anyopaque, fExactMatch: BOOL, plEntry: ?*i32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lpcvPrefix, fExactMatch, plEntry);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Lookup(@as(*const IITWordWheel, @ptrCast(self)), lpcvPrefix, fExactMatch, plEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Lookup1(self: *const T, lEntry: i32, lpITResult: ?*IITResultSet, cEntries: i32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lEntry, lpITResult, cEntries);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Lookup(@as(*const IITWordWheel, @ptrCast(self)), lEntry, lpITResult, cEntries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_Lookup2(self: *const T, lEntry: i32, lpvKeyBuf: ?*anyopaque, cbKeyBuf: u32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).Lookup(@ptrCast(*const IITWordWheel, self), lEntry, lpvKeyBuf, cbKeyBuf);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).Lookup(@as(*const IITWordWheel, @ptrCast(self)), lEntry, lpvKeyBuf, cbKeyBuf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_SetGroup(self: *const T, piitGroup: ?*IITGroup) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).SetGroup(@ptrCast(*const IITWordWheel, self), piitGroup);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).SetGroup(@as(*const IITWordWheel, @ptrCast(self)), piitGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetGroup(self: *const T, ppiitGroup: ?*?*IITGroup) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetGroup(@ptrCast(*const IITWordWheel, self), ppiitGroup);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetGroup(@as(*const IITWordWheel, @ptrCast(self)), ppiitGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetDataCount(self: *const T, lEntry: i32, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetDataCount(@ptrCast(*const IITWordWheel, self), lEntry, pdwCount);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetDataCount(@as(*const IITWordWheel, @ptrCast(self)), lEntry, pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetData(self: *const T, lEntry: i32, lpITResult: ?*IITResultSet) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetData(@ptrCast(*const IITWordWheel, self), lEntry, lpITResult);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetData(@as(*const IITWordWheel, @ptrCast(self)), lEntry, lpITResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITWordWheel_GetDataColumns(self: *const T, pRS: ?*IITResultSet) HRESULT {
-                return @ptrCast(*const IITWordWheel.VTable, self.vtable).GetDataColumns(@ptrCast(*const IITWordWheel, self), pRS);
+                return @as(*const IITWordWheel.VTable, @ptrCast(self.vtable)).GetDataColumns(@as(*const IITWordWheel, @ptrCast(self)), pRS);
             }
         };
     }
@@ -1086,11 +1086,11 @@ pub const IStemSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemSink_PutAltWord(self: *const T, pwcInBuf: ?[*:0]const u16, cwc: u32) HRESULT {
-                return @ptrCast(*const IStemSink.VTable, self.vtable).PutAltWord(@ptrCast(*const IStemSink, self), pwcInBuf, cwc);
+                return @as(*const IStemSink.VTable, @ptrCast(self.vtable)).PutAltWord(@as(*const IStemSink, @ptrCast(self)), pwcInBuf, cwc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemSink_PutWord(self: *const T, pwcInBuf: ?[*:0]const u16, cwc: u32) HRESULT {
-                return @ptrCast(*const IStemSink.VTable, self.vtable).PutWord(@ptrCast(*const IStemSink, self), pwcInBuf, cwc);
+                return @as(*const IStemSink.VTable, @ptrCast(self.vtable)).PutWord(@as(*const IStemSink, @ptrCast(self)), pwcInBuf, cwc);
             }
         };
     }
@@ -1169,23 +1169,23 @@ pub const IStemmerConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemmerConfig_SetLocaleInfo(self: *const T, dwCodePageID: u32, lcid: u32) HRESULT {
-                return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IStemmerConfig, self), dwCodePageID, lcid);
+                return @as(*const IStemmerConfig.VTable, @ptrCast(self.vtable)).SetLocaleInfo(@as(*const IStemmerConfig, @ptrCast(self)), dwCodePageID, lcid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemmerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) HRESULT {
-                return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IStemmerConfig, self), pdwCodePageID, plcid);
+                return @as(*const IStemmerConfig.VTable, @ptrCast(self.vtable)).GetLocaleInfo(@as(*const IStemmerConfig, @ptrCast(self)), pdwCodePageID, plcid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemmerConfig_SetControlInfo(self: *const T, grfStemFlags: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IStemmerConfig.VTable, self.vtable).SetControlInfo(@ptrCast(*const IStemmerConfig, self), grfStemFlags, dwReserved);
+                return @as(*const IStemmerConfig.VTable, @ptrCast(self.vtable)).SetControlInfo(@as(*const IStemmerConfig, @ptrCast(self)), grfStemFlags, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemmerConfig_GetControlInfo(self: *const T, pgrfStemFlags: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IStemmerConfig.VTable, self.vtable).GetControlInfo(@ptrCast(*const IStemmerConfig, self), pgrfStemFlags, pdwReserved);
+                return @as(*const IStemmerConfig.VTable, @ptrCast(self.vtable)).GetControlInfo(@as(*const IStemmerConfig, @ptrCast(self)), pgrfStemFlags, pdwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStemmerConfig_LoadExternalStemmerData(self: *const T, pStream: ?*IStream, dwExtDataType: u32) HRESULT {
-                return @ptrCast(*const IStemmerConfig.VTable, self.vtable).LoadExternalStemmerData(@ptrCast(*const IStemmerConfig, self), pStream, dwExtDataType);
+                return @as(*const IStemmerConfig.VTable, @ptrCast(self.vtable)).LoadExternalStemmerData(@as(*const IStemmerConfig, @ptrCast(self)), pStream, dwExtDataType);
             }
         };
     }
@@ -1310,39 +1310,39 @@ pub const IWordBreakerConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_SetLocaleInfo(self: *const T, dwCodePageID: u32, lcid: u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), dwCodePageID, lcid);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).SetLocaleInfo(@as(*const IWordBreakerConfig, @ptrCast(self)), dwCodePageID, lcid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_GetLocaleInfo(self: *const T, pdwCodePageID: ?*u32, plcid: ?*u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetLocaleInfo(@ptrCast(*const IWordBreakerConfig, self), pdwCodePageID, plcid);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).GetLocaleInfo(@as(*const IWordBreakerConfig, @ptrCast(self)), pdwCodePageID, plcid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_SetBreakWordType(self: *const T, dwBreakWordType: u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetBreakWordType(@ptrCast(*const IWordBreakerConfig, self), dwBreakWordType);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).SetBreakWordType(@as(*const IWordBreakerConfig, @ptrCast(self)), dwBreakWordType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_GetBreakWordType(self: *const T, pdwBreakWordType: ?*u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetBreakWordType(@ptrCast(*const IWordBreakerConfig, self), pdwBreakWordType);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).GetBreakWordType(@as(*const IWordBreakerConfig, @ptrCast(self)), pdwBreakWordType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_SetControlInfo(self: *const T, grfBreakFlags: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetControlInfo(@ptrCast(*const IWordBreakerConfig, self), grfBreakFlags, dwReserved);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).SetControlInfo(@as(*const IWordBreakerConfig, @ptrCast(self)), grfBreakFlags, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_GetControlInfo(self: *const T, pgrfBreakFlags: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetControlInfo(@ptrCast(*const IWordBreakerConfig, self), pgrfBreakFlags, pdwReserved);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).GetControlInfo(@as(*const IWordBreakerConfig, @ptrCast(self)), pgrfBreakFlags, pdwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_LoadExternalBreakerData(self: *const T, pStream: ?*IStream, dwExtDataType: u32) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).LoadExternalBreakerData(@ptrCast(*const IWordBreakerConfig, self), pStream, dwExtDataType);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).LoadExternalBreakerData(@as(*const IWordBreakerConfig, @ptrCast(self)), pStream, dwExtDataType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_SetWordStemmer(self: *const T, rclsid: ?*const Guid, pStemmer: ?*IStemmer) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).SetWordStemmer(@ptrCast(*const IWordBreakerConfig, self), rclsid, pStemmer);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).SetWordStemmer(@as(*const IWordBreakerConfig, @ptrCast(self)), rclsid, pStemmer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWordBreakerConfig_GetWordStemmer(self: *const T, ppStemmer: ?*?*IStemmer) HRESULT {
-                return @ptrCast(*const IWordBreakerConfig.VTable, self.vtable).GetWordStemmer(@ptrCast(*const IWordBreakerConfig, self), ppStemmer);
+                return @as(*const IWordBreakerConfig.VTable, @ptrCast(self.vtable)).GetWordStemmer(@as(*const IWordBreakerConfig, @ptrCast(self)), ppStemmer);
             }
         };
     }
@@ -1751,123 +1751,123 @@ pub const IITResultSet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_SetColumnPriority(self: *const T, lColumnIndex: i32, ColumnPriority: PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).SetColumnPriority(@ptrCast(*const IITResultSet, self), lColumnIndex, ColumnPriority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).SetColumnPriority(@as(*const IITResultSet, @ptrCast(self)), lColumnIndex, ColumnPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_SetColumnHeap(self: *const T, lColumnIndex: i32, lpvHeap: ?*anyopaque, pfnColHeapFree: ?PFNCOLHEAPFREE) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).SetColumnHeap(@ptrCast(*const IITResultSet, self), lColumnIndex, lpvHeap, pfnColHeapFree);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).SetColumnHeap(@as(*const IITResultSet, @ptrCast(self)), lColumnIndex, lpvHeap, pfnColHeapFree);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_SetKeyProp(self: *const T, PropID: u32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).SetKeyProp(@ptrCast(*const IITResultSet, self), PropID);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).SetKeyProp(@as(*const IITResultSet, @ptrCast(self)), PropID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Add(self: *const T, PropID: u32, dwDefaultData: u32, Priority: PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, dwDefaultData, Priority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IITResultSet, @ptrCast(self)), PropID, dwDefaultData, Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Add1(self: *const T, PropID: u32, lpszwDefault: ?[*:0]const u16, Priority: PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, lpszwDefault, Priority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IITResultSet, @ptrCast(self)), PropID, lpszwDefault, Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Add2(self: *const T, PropID: u32, lpvDefaultData: ?*anyopaque, cbData: u32, Priority: PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), PropID, lpvDefaultData, cbData, Priority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IITResultSet, @ptrCast(self)), PropID, lpvDefaultData, cbData, Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Add3(self: *const T, lpvHdr: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Add(@ptrCast(*const IITResultSet, self), lpvHdr);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Add(@as(*const IITResultSet, @ptrCast(self)), lpvHdr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Append(self: *const T, lpvHdr: ?*anyopaque, lpvData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Append(@ptrCast(*const IITResultSet, self), lpvHdr, lpvData);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Append(@as(*const IITResultSet, @ptrCast(self)), lpvHdr, lpvData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Set(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpvData: ?*anyopaque, cbData: u32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, lpvData, cbData);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Set(@as(*const IITResultSet, @ptrCast(self)), lRowIndex, lColumnIndex, lpvData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Set1(self: *const T, lRowIndex: i32, lColumnIndex: i32, lpwStr: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, lpwStr);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Set(@as(*const IITResultSet, @ptrCast(self)), lRowIndex, lColumnIndex, lpwStr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Set2(self: *const T, lRowIndex: i32, lColumnIndex: i32, dwData: usize) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, dwData);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Set(@as(*const IITResultSet, @ptrCast(self)), lRowIndex, lColumnIndex, dwData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Set3(self: *const T, lRowIndex: i32, lpvHdr: ?*anyopaque, lpvData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Set(@ptrCast(*const IITResultSet, self), lRowIndex, lpvHdr, lpvData);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Set(@as(*const IITResultSet, @ptrCast(self)), lRowIndex, lpvHdr, lpvData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Copy(self: *const T, pRSCopy: ?*IITResultSet) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Copy(@ptrCast(*const IITResultSet, self), pRSCopy);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Copy(@as(*const IITResultSet, @ptrCast(self)), pRSCopy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_AppendRows(self: *const T, pResSrc: ?*IITResultSet, lRowSrcFirst: i32, cSrcRows: i32, lRowFirstDest: ?*i32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).AppendRows(@ptrCast(*const IITResultSet, self), pResSrc, lRowSrcFirst, cSrcRows, lRowFirstDest);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).AppendRows(@as(*const IITResultSet, @ptrCast(self)), pResSrc, lRowSrcFirst, cSrcRows, lRowFirstDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Get(self: *const T, lRowIndex: i32, lColumnIndex: i32, Prop: ?*CProperty) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Get(@ptrCast(*const IITResultSet, self), lRowIndex, lColumnIndex, Prop);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Get(@as(*const IITResultSet, @ptrCast(self)), lRowIndex, lColumnIndex, Prop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetKeyProp(self: *const T, KeyPropID: ?*u32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetKeyProp(@ptrCast(*const IITResultSet, self), KeyPropID);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetKeyProp(@as(*const IITResultSet, @ptrCast(self)), KeyPropID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumnPriority(self: *const T, lColumnIndex: i32, ColumnPriority: ?*PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnPriority(@ptrCast(*const IITResultSet, self), lColumnIndex, ColumnPriority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumnPriority(@as(*const IITResultSet, @ptrCast(self)), lColumnIndex, ColumnPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetRowCount(self: *const T, lNumberOfRows: ?*i32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetRowCount(@ptrCast(*const IITResultSet, self), lNumberOfRows);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetRowCount(@as(*const IITResultSet, @ptrCast(self)), lNumberOfRows);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumnCount(self: *const T, lNumberOfColumns: ?*i32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnCount(@ptrCast(*const IITResultSet, self), lNumberOfColumns);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const IITResultSet, @ptrCast(self)), lNumberOfColumns);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumn(self: *const T, lColumnIndex: i32, PropID: ?*u32, dwType: ?*u32, lpvDefaultValue: ?*?*anyopaque, cbSize: ?*u32, ColumnPriority: ?*PRIORITY) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumn(@ptrCast(*const IITResultSet, self), lColumnIndex, PropID, dwType, lpvDefaultValue, cbSize, ColumnPriority);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const IITResultSet, @ptrCast(self)), lColumnIndex, PropID, dwType, lpvDefaultValue, cbSize, ColumnPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumn1(self: *const T, lColumnIndex: i32, PropID: ?*u32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumn(@ptrCast(*const IITResultSet, self), lColumnIndex, PropID);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const IITResultSet, @ptrCast(self)), lColumnIndex, PropID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumnFromPropID(self: *const T, PropID: u32, lColumnIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnFromPropID(@ptrCast(*const IITResultSet, self), PropID, lColumnIndex);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumnFromPropID(@as(*const IITResultSet, @ptrCast(self)), PropID, lColumnIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Clear(@ptrCast(*const IITResultSet, self));
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Clear(@as(*const IITResultSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_ClearRows(self: *const T) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).ClearRows(@ptrCast(*const IITResultSet, self));
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).ClearRows(@as(*const IITResultSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Free(self: *const T) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Free(@ptrCast(*const IITResultSet, self));
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Free(@as(*const IITResultSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_IsCompleted(self: *const T) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).IsCompleted(@ptrCast(*const IITResultSet, self));
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).IsCompleted(@as(*const IITResultSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Cancel(@ptrCast(*const IITResultSet, self));
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IITResultSet, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_Pause(self: *const T, fPause: BOOL) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).Pause(@ptrCast(*const IITResultSet, self), fPause);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).Pause(@as(*const IITResultSet, @ptrCast(self)), fPause);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetRowStatus(self: *const T, lRowFirst: i32, cRows: i32, lpRowStatus: ?*ROWSTATUS) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetRowStatus(@ptrCast(*const IITResultSet, self), lRowFirst, cRows, lpRowStatus);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetRowStatus(@as(*const IITResultSet, @ptrCast(self)), lRowFirst, cRows, lpRowStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IITResultSet_GetColumnStatus(self: *const T, lpColStatus: ?*COLUMNSTATUS) HRESULT {
-                return @ptrCast(*const IITResultSet.VTable, self.vtable).GetColumnStatus(@ptrCast(*const IITResultSet, self), lpColStatus);
+                return @as(*const IITResultSet.VTable, @ptrCast(self.vtable)).GetColumnStatus(@as(*const IITResultSet, @ptrCast(self)), lpColStatus);
             }
         };
     }

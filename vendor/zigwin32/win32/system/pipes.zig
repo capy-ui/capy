@@ -29,7 +29,7 @@ pub const NAMED_PIPE_MODE = enum(u32) {
         TYPE_MESSAGE: u1 = 0,
         REJECT_REMOTE_CLIENTS: u1 = 0,
     }) NAMED_PIPE_MODE {
-        return @enumFromInt(NAMED_PIPE_MODE, (if (o.WAIT == 1) @intFromEnum(NAMED_PIPE_MODE.WAIT) else 0) | (if (o.NOWAIT == 1) @intFromEnum(NAMED_PIPE_MODE.NOWAIT) else 0) | (if (o.READMODE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0) | (if (o.TYPE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0) | (if (o.REJECT_REMOTE_CLIENTS == 1) @intFromEnum(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0));
+        return @as(NAMED_PIPE_MODE, @enumFromInt((if (o.WAIT == 1) @intFromEnum(NAMED_PIPE_MODE.WAIT) else 0) | (if (o.NOWAIT == 1) @intFromEnum(NAMED_PIPE_MODE.NOWAIT) else 0) | (if (o.READMODE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0) | (if (o.TYPE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0) | (if (o.REJECT_REMOTE_CLIENTS == 1) @intFromEnum(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0)));
     }
 };
 pub const PIPE_WAIT = NAMED_PIPE_MODE.WAIT;

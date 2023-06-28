@@ -555,7 +555,7 @@ pub const CERTADMIN_GET_ROLES_FLAGS = enum(u32) {
         OPERATOR: u1 = 0,
         READ: u1 = 0,
     }) CERTADMIN_GET_ROLES_FLAGS {
-        return @enumFromInt(CERTADMIN_GET_ROLES_FLAGS, (if (o.ADMIN == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ADMIN) else 0) | (if (o.AUDITOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.AUDITOR) else 0) | (if (o.ENROLL == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ENROLL) else 0) | (if (o.OFFICER == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OFFICER) else 0) | (if (o.OPERATOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OPERATOR) else 0) | (if (o.READ == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.READ) else 0));
+        return @as(CERTADMIN_GET_ROLES_FLAGS, @enumFromInt((if (o.ADMIN == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ADMIN) else 0) | (if (o.AUDITOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.AUDITOR) else 0) | (if (o.ENROLL == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ENROLL) else 0) | (if (o.OFFICER == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OFFICER) else 0) | (if (o.OPERATOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OPERATOR) else 0) | (if (o.READ == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.READ) else 0)));
     }
 };
 pub const CA_ACCESS_ADMIN = CERTADMIN_GET_ROLES_FLAGS.ADMIN;
@@ -618,7 +618,7 @@ pub const CERT_EXIT_EVENT_MASK = enum(u32) {
         CRLISSUED: u1 = 0,
         SHUTDOWN: u1 = 0,
     }) CERT_EXIT_EVENT_MASK {
-        return @enumFromInt(CERT_EXIT_EVENT_MASK, (if (o.CERTDENIED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTDENIED) else 0) | (if (o.CERTISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTISSUED) else 0) | (if (o.CERTPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTPENDING) else 0) | (if (o.CERTRETRIEVEPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTRETRIEVEPENDING) else 0) | (if (o.CERTREVOKED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTREVOKED) else 0) | (if (o.CRLISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CRLISSUED) else 0) | (if (o.SHUTDOWN == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.SHUTDOWN) else 0));
+        return @as(CERT_EXIT_EVENT_MASK, @enumFromInt((if (o.CERTDENIED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTDENIED) else 0) | (if (o.CERTISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTISSUED) else 0) | (if (o.CERTPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTPENDING) else 0) | (if (o.CERTRETRIEVEPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTRETRIEVEPENDING) else 0) | (if (o.CERTREVOKED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTREVOKED) else 0) | (if (o.CRLISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CRLISSUED) else 0) | (if (o.SHUTDOWN == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.SHUTDOWN) else 0)));
     }
 };
 pub const EXITEVENT_CERTDENIED = CERT_EXIT_EVENT_MASK.CERTDENIED;
@@ -836,43 +836,43 @@ pub const IEnumCERTVIEWCOLUMN = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_Next(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).Next(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pIndex);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_GetName(self: *const T, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).GetName(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pstrOut);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_GetDisplayName(self: *const T, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).GetDisplayName(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pstrOut);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_GetType(self: *const T, pType: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).GetType(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pType);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetType(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_IsIndexed(self: *const T, pIndexed: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).IsIndexed(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pIndexed);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).IsIndexed(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pIndexed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_GetMaxLength(self: *const T, pMaxLength: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).GetMaxLength(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), pMaxLength);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), pMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_GetValue(self: *const T, Flags: ENUM_CERT_COLUMN_VALUE_FLAGS, pvarValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).GetValue(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), Flags, pvarValue);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), Flags, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_Skip(self: *const T, celt: i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).Skip(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), celt);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).Reset(@ptrCast(*const IEnumCERTVIEWCOLUMN, self));
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWCOLUMN_Clone(self: *const T, ppenum: ?*?*IEnumCERTVIEWCOLUMN) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWCOLUMN.VTable, self.vtable).Clone(@ptrCast(*const IEnumCERTVIEWCOLUMN, self), ppenum);
+                return @as(*const IEnumCERTVIEWCOLUMN.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWCOLUMN, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -950,27 +950,27 @@ pub const IEnumCERTVIEWATTRIBUTE = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_Next(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).Next(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self), pIndex);
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_GetName(self: *const T, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).GetName(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self), pstrOut);
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_GetValue(self: *const T, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).GetValue(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self), pstrOut);
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_Skip(self: *const T, celt: i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).Skip(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self), celt);
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).Reset(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self));
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWATTRIBUTE_Clone(self: *const T, ppenum: ?*?*IEnumCERTVIEWATTRIBUTE) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWATTRIBUTE.VTable, self.vtable).Clone(@ptrCast(*const IEnumCERTVIEWATTRIBUTE, self), ppenum);
+                return @as(*const IEnumCERTVIEWATTRIBUTE.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWATTRIBUTE, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -1062,31 +1062,31 @@ pub const IEnumCERTVIEWEXTENSION = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_Next(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).Next(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), pIndex);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_GetName(self: *const T, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).GetName(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), pstrOut);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_GetFlags(self: *const T, pFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).GetFlags(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), pFlags);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_GetValue(self: *const T, Type: CERT_PROPERTY_TYPE, Flags: ENUM_CERT_COLUMN_VALUE_FLAGS, pvarValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).GetValue(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), Type, Flags, pvarValue);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), Type, Flags, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_Skip(self: *const T, celt: i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).Skip(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), celt);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).Reset(@ptrCast(*const IEnumCERTVIEWEXTENSION, self));
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWEXTENSION_Clone(self: *const T, ppenum: ?*?*IEnumCERTVIEWEXTENSION) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWEXTENSION.VTable, self.vtable).Clone(@ptrCast(*const IEnumCERTVIEWEXTENSION, self), ppenum);
+                return @as(*const IEnumCERTVIEWEXTENSION.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWEXTENSION, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -1188,35 +1188,35 @@ pub const IEnumCERTVIEWROW = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_Next(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).Next(@ptrCast(*const IEnumCERTVIEWROW, self), pIndex);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_EnumCertViewColumn(self: *const T, ppenum: ?*?*IEnumCERTVIEWCOLUMN) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).EnumCertViewColumn(@ptrCast(*const IEnumCERTVIEWROW, self), ppenum);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewColumn(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_EnumCertViewAttribute(self: *const T, Flags: i32, ppenum: ?*?*IEnumCERTVIEWATTRIBUTE) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).EnumCertViewAttribute(@ptrCast(*const IEnumCERTVIEWROW, self), Flags, ppenum);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewAttribute(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), Flags, ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_EnumCertViewExtension(self: *const T, Flags: i32, ppenum: ?*?*IEnumCERTVIEWEXTENSION) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).EnumCertViewExtension(@ptrCast(*const IEnumCERTVIEWROW, self), Flags, ppenum);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).EnumCertViewExtension(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), Flags, ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_Skip(self: *const T, celt: i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).Skip(@ptrCast(*const IEnumCERTVIEWROW, self), celt);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).Reset(@ptrCast(*const IEnumCERTVIEWROW, self));
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumCERTVIEWROW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_Clone(self: *const T, ppenum: ?*?*IEnumCERTVIEWROW) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).Clone(@ptrCast(*const IEnumCERTVIEWROW, self), ppenum);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumCERTVIEWROW_GetMaxIndex(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IEnumCERTVIEWROW.VTable, self.vtable).GetMaxIndex(@ptrCast(*const IEnumCERTVIEWROW, self), pIndex);
+                return @as(*const IEnumCERTVIEWROW.VTable, @ptrCast(self.vtable)).GetMaxIndex(@as(*const IEnumCERTVIEWROW, @ptrCast(self)), pIndex);
             }
         };
     }
@@ -1330,35 +1330,35 @@ pub const ICertView = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_OpenConnection(self: *const T, strConfig: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).OpenConnection(@ptrCast(*const ICertView, self), strConfig);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).OpenConnection(@as(*const ICertView, @ptrCast(self)), strConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_EnumCertViewColumn(self: *const T, fResultColumn: CVRC_COLUMN, ppenum: ?*?*IEnumCERTVIEWCOLUMN) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).EnumCertViewColumn(@ptrCast(*const ICertView, self), fResultColumn, ppenum);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).EnumCertViewColumn(@as(*const ICertView, @ptrCast(self)), fResultColumn, ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_GetColumnCount(self: *const T, fResultColumn: CVRC_COLUMN, pcColumn: ?*i32) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).GetColumnCount(@ptrCast(*const ICertView, self), fResultColumn, pcColumn);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICertView, @ptrCast(self)), fResultColumn, pcColumn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_GetColumnIndex(self: *const T, fResultColumn: CVRC_COLUMN, strColumnName: ?BSTR, pColumnIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).GetColumnIndex(@ptrCast(*const ICertView, self), fResultColumn, strColumnName, pColumnIndex);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).GetColumnIndex(@as(*const ICertView, @ptrCast(self)), fResultColumn, strColumnName, pColumnIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_SetResultColumnCount(self: *const T, cResultColumn: i32) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).SetResultColumnCount(@ptrCast(*const ICertView, self), cResultColumn);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetResultColumnCount(@as(*const ICertView, @ptrCast(self)), cResultColumn);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_SetResultColumn(self: *const T, ColumnIndex: i32) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).SetResultColumn(@ptrCast(*const ICertView, self), ColumnIndex);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetResultColumn(@as(*const ICertView, @ptrCast(self)), ColumnIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_SetRestriction(self: *const T, ColumnIndex: CERT_VIEW_COLUMN_INDEX, SeekOperator: CERT_VIEW_SEEK_OPERATOR_FLAGS, SortOrder: i32, pvarValue: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).SetRestriction(@ptrCast(*const ICertView, self), ColumnIndex, SeekOperator, SortOrder, pvarValue);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).SetRestriction(@as(*const ICertView, @ptrCast(self)), ColumnIndex, SeekOperator, SortOrder, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView_OpenView(self: *const T, ppenum: ?*?*IEnumCERTVIEWROW) HRESULT {
-                return @ptrCast(*const ICertView.VTable, self.vtable).OpenView(@ptrCast(*const ICertView, self), ppenum);
+                return @as(*const ICertView.VTable, @ptrCast(self.vtable)).OpenView(@as(*const ICertView, @ptrCast(self)), ppenum);
             }
         };
     }
@@ -1388,7 +1388,7 @@ pub const ICertView2 = extern struct {
             pub usingnamespace ICertView.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertView2_SetTable(self: *const T, Table: CVRC_TABLE) HRESULT {
-                return @ptrCast(*const ICertView2.VTable, self.vtable).SetTable(@ptrCast(*const ICertView2, self), Table);
+                return @as(*const ICertView2.VTable, @ptrCast(self.vtable)).SetTable(@as(*const ICertView2, @ptrCast(self)), Table);
             }
         };
     }
@@ -1550,43 +1550,43 @@ pub const ICertAdmin = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_IsValidCertificate(self: *const T, strConfig: ?BSTR, strSerialNumber: ?BSTR, pDisposition: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).IsValidCertificate(@ptrCast(*const ICertAdmin, self), strConfig, strSerialNumber, pDisposition);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).IsValidCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strSerialNumber, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_GetRevocationReason(self: *const T, pReason: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).GetRevocationReason(@ptrCast(*const ICertAdmin, self), pReason);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).GetRevocationReason(@as(*const ICertAdmin, @ptrCast(self)), pReason);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_RevokeCertificate(self: *const T, strConfig: ?BSTR, strSerialNumber: ?BSTR, Reason: i32, Date: f64) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).RevokeCertificate(@ptrCast(*const ICertAdmin, self), strConfig, strSerialNumber, Reason, Date);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).RevokeCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strSerialNumber, Reason, Date);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_SetRequestAttributes(self: *const T, strConfig: ?BSTR, RequestId: i32, strAttributes: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).SetRequestAttributes(@ptrCast(*const ICertAdmin, self), strConfig, RequestId, strAttributes);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).SetRequestAttributes(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, strAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_SetCertificateExtension(self: *const T, strConfig: ?BSTR, RequestId: i32, strExtensionName: ?BSTR, Type: CERT_PROPERTY_TYPE, Flags: i32, pvarValue: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).SetCertificateExtension(@ptrCast(*const ICertAdmin, self), strConfig, RequestId, strExtensionName, Type, Flags, pvarValue);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).SetCertificateExtension(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, strExtensionName, Type, Flags, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_DenyRequest(self: *const T, strConfig: ?BSTR, RequestId: i32) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).DenyRequest(@ptrCast(*const ICertAdmin, self), strConfig, RequestId);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).DenyRequest(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_ResubmitRequest(self: *const T, strConfig: ?BSTR, RequestId: i32, pDisposition: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).ResubmitRequest(@ptrCast(*const ICertAdmin, self), strConfig, RequestId, pDisposition);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).ResubmitRequest(@as(*const ICertAdmin, @ptrCast(self)), strConfig, RequestId, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_PublishCRL(self: *const T, strConfig: ?BSTR, Date: f64) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).PublishCRL(@ptrCast(*const ICertAdmin, self), strConfig, Date);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).PublishCRL(@as(*const ICertAdmin, @ptrCast(self)), strConfig, Date);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_GetCRL(self: *const T, strConfig: ?BSTR, Flags: i32, pstrCRL: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).GetCRL(@ptrCast(*const ICertAdmin, self), strConfig, Flags, pstrCRL);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).GetCRL(@as(*const ICertAdmin, @ptrCast(self)), strConfig, Flags, pstrCRL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin_ImportCertificate(self: *const T, strConfig: ?BSTR, strCertificate: ?BSTR, Flags: CERT_IMPORT_FLAGS, pRequestId: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin.VTable, self.vtable).ImportCertificate(@ptrCast(*const ICertAdmin, self), strConfig, strCertificate, Flags, pRequestId);
+                return @as(*const ICertAdmin.VTable, @ptrCast(self.vtable)).ImportCertificate(@as(*const ICertAdmin, @ptrCast(self)), strConfig, strCertificate, Flags, pRequestId);
             }
         };
     }
@@ -1784,47 +1784,47 @@ pub const ICertAdmin2 = extern struct {
             pub usingnamespace ICertAdmin.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_PublishCRLs(self: *const T, strConfig: ?BSTR, Date: f64, CRLFlags: i32) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).PublishCRLs(@ptrCast(*const ICertAdmin2, self), strConfig, Date, CRLFlags);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).PublishCRLs(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, Date, CRLFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetCAProperty(self: *const T, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: i32, Flags: i32, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetCAProperty(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_SetCAProperty(self: *const T, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: CERT_PROPERTY_TYPE, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).SetCAProperty(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, PropIndex, PropType, pvarPropertyValue);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).SetCAProperty(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetCAPropertyFlags(self: *const T, strConfig: ?BSTR, PropId: i32, pPropFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetCAPropertyFlags(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, pPropFlags);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAPropertyFlags(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, pPropFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetCAPropertyDisplayName(self: *const T, strConfig: ?BSTR, PropId: i32, pstrDisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetCAPropertyDisplayName(@ptrCast(*const ICertAdmin2, self), strConfig, PropId, pstrDisplayName);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetCAPropertyDisplayName(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, PropId, pstrDisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetArchivedKey(self: *const T, strConfig: ?BSTR, RequestId: i32, Flags: i32, pstrArchivedKey: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetArchivedKey(@ptrCast(*const ICertAdmin2, self), strConfig, RequestId, Flags, pstrArchivedKey);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetArchivedKey(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, RequestId, Flags, pstrArchivedKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetConfigEntry(self: *const T, strConfig: ?BSTR, strNodePath: ?BSTR, strEntryName: ?BSTR, pvarEntry: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetConfigEntry(@ptrCast(*const ICertAdmin2, self), strConfig, strNodePath, strEntryName, pvarEntry);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetConfigEntry(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, strNodePath, strEntryName, pvarEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_SetConfigEntry(self: *const T, strConfig: ?BSTR, strNodePath: ?BSTR, strEntryName: ?BSTR, pvarEntry: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).SetConfigEntry(@ptrCast(*const ICertAdmin2, self), strConfig, strNodePath, strEntryName, pvarEntry);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).SetConfigEntry(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, strNodePath, strEntryName, pvarEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_ImportKey(self: *const T, strConfig: ?BSTR, RequestId: i32, strCertHash: ?BSTR, Flags: CERT_IMPORT_FLAGS, strKey: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).ImportKey(@ptrCast(*const ICertAdmin2, self), strConfig, RequestId, strCertHash, Flags, strKey);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).ImportKey(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, RequestId, strCertHash, Flags, strKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_GetMyRoles(self: *const T, strConfig: ?BSTR, pRoles: ?*CERTADMIN_GET_ROLES_FLAGS) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).GetMyRoles(@ptrCast(*const ICertAdmin2, self), strConfig, pRoles);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).GetMyRoles(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, pRoles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertAdmin2_DeleteRow(self: *const T, strConfig: ?BSTR, Flags: CERT_DELETE_ROW_FLAGS, Date: f64, Table: CVRC_TABLE, RowId: i32, pcDeleted: ?*i32) HRESULT {
-                return @ptrCast(*const ICertAdmin2.VTable, self.vtable).DeleteRow(@ptrCast(*const ICertAdmin2, self), strConfig, Flags, Date, Table, RowId, pcDeleted);
+                return @as(*const ICertAdmin2.VTable, @ptrCast(self.vtable)).DeleteRow(@as(*const ICertAdmin2, @ptrCast(self)), strConfig, Flags, Date, Table, RowId, pcDeleted);
             }
         };
     }
@@ -1896,19 +1896,19 @@ pub const IOCSPProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPProperty_get_Name(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPProperty.VTable, self.vtable).get_Name(@ptrCast(*const IOCSPProperty, self), pVal);
+                return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPProperty_get_Value(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPProperty.VTable, self.vtable).get_Value(@ptrCast(*const IOCSPProperty, self), pVal);
+                return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPProperty_put_Value(self: *const T, newVal: VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPProperty.VTable, self.vtable).put_Value(@ptrCast(*const IOCSPProperty, self), newVal);
+                return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IOCSPProperty, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPProperty_get_Modified(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IOCSPProperty.VTable, self.vtable).get_Modified(@ptrCast(*const IOCSPProperty, self), pVal);
+                return @as(*const IOCSPProperty.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const IOCSPProperty, @ptrCast(self)), pVal);
             }
         };
     }
@@ -2028,35 +2028,35 @@ pub const IOCSPPropertyCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_get__NewEnum(self: *const T, ppVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IOCSPPropertyCollection, self), ppVal);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IOCSPPropertyCollection, @ptrCast(self)), ppVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_get_Item(self: *const T, Index: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get_Item(@ptrCast(*const IOCSPPropertyCollection, self), Index, pVal);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IOCSPPropertyCollection, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get_Count(@ptrCast(*const IOCSPPropertyCollection, self), pVal);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_get_ItemByName(self: *const T, bstrPropName: ?BSTR, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).get_ItemByName(@ptrCast(*const IOCSPPropertyCollection, self), bstrPropName, pVal);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_CreateProperty(self: *const T, bstrPropName: ?BSTR, pVarPropValue: ?*const VARIANT, ppVal: ?*?*IOCSPProperty) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).CreateProperty(@ptrCast(*const IOCSPPropertyCollection, self), bstrPropName, pVarPropValue, ppVal);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).CreateProperty(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName, pVarPropValue, ppVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_DeleteProperty(self: *const T, bstrPropName: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).DeleteProperty(@ptrCast(*const IOCSPPropertyCollection, self), bstrPropName);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IOCSPPropertyCollection, @ptrCast(self)), bstrPropName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_InitializeFromProperties(self: *const T, pVarProperties: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).InitializeFromProperties(@ptrCast(*const IOCSPPropertyCollection, self), pVarProperties);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).InitializeFromProperties(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVarProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPPropertyCollection_GetAllProperties(self: *const T, pVarProperties: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPPropertyCollection.VTable, self.vtable).GetAllProperties(@ptrCast(*const IOCSPPropertyCollection, self), pVarProperties);
+                return @as(*const IOCSPPropertyCollection.VTable, @ptrCast(self.vtable)).GetAllProperties(@as(*const IOCSPPropertyCollection, @ptrCast(self)), pVarProperties);
             }
         };
     }
@@ -2388,99 +2388,99 @@ pub const IOCSPCAConfiguration = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_Identifier(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_Identifier(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_Identifier(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_CACertificate(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CACertificate(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CACertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_HashAlgorithm(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_HashAlgorithm(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_SigningFlags(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_SigningFlags(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningFlags(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_SigningFlags(self: *const T, newVal: u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_SigningFlags(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningFlags(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_SigningCertificate(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_SigningCertificate(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningCertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_SigningCertificate(self: *const T, newVal: VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_SigningCertificate(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningCertificate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_ReminderDuration(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ReminderDuration(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ReminderDuration(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_ReminderDuration(self: *const T, newVal: u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_ReminderDuration(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ReminderDuration(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_ErrorCode(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ErrorCode(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ErrorCode(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_CSPName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CSPName(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CSPName(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_KeySpec(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_KeySpec(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_ProviderCLSID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ProviderCLSID(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ProviderCLSID(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_ProviderCLSID(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_ProviderCLSID(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ProviderCLSID(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_ProviderProperties(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_ProviderProperties(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_ProviderProperties(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_ProviderProperties(self: *const T, newVal: VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_ProviderProperties(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_ProviderProperties(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_Modified(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_Modified(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_LocalRevocationInformation(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_LocalRevocationInformation(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_LocalRevocationInformation(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_LocalRevocationInformation(self: *const T, newVal: VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_LocalRevocationInformation(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_LocalRevocationInformation(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_SigningCertificateTemplate(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_SigningCertificateTemplate(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_SigningCertificateTemplate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_SigningCertificateTemplate(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_SigningCertificateTemplate(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_SigningCertificateTemplate(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_get_CAConfig(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).get_CAConfig(@ptrCast(*const IOCSPCAConfiguration, self), pVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).get_CAConfig(@as(*const IOCSPCAConfiguration, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfiguration_put_CAConfig(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfiguration.VTable, self.vtable).put_CAConfig(@ptrCast(*const IOCSPCAConfiguration, self), newVal);
+                return @as(*const IOCSPCAConfiguration.VTable, @ptrCast(self.vtable)).put_CAConfig(@as(*const IOCSPCAConfiguration, @ptrCast(self)), newVal);
             }
         };
     }
@@ -2580,27 +2580,27 @@ pub const IOCSPCAConfigurationCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IOCSPCAConfigurationCollection, self), pVal);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_get_Item(self: *const T, Index: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get_Item(@ptrCast(*const IOCSPCAConfigurationCollection, self), Index, pVal);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get_Count(@ptrCast(*const IOCSPCAConfigurationCollection, self), pVal);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_get_ItemByName(self: *const T, bstrIdentifier: ?BSTR, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).get_ItemByName(@ptrCast(*const IOCSPCAConfigurationCollection, self), bstrIdentifier, pVal);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_CreateCAConfiguration(self: *const T, bstrIdentifier: ?BSTR, varCACert: VARIANT, ppVal: ?*?*IOCSPCAConfiguration) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).CreateCAConfiguration(@ptrCast(*const IOCSPCAConfigurationCollection, self), bstrIdentifier, varCACert, ppVal);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).CreateCAConfiguration(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier, varCACert, ppVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPCAConfigurationCollection_DeleteCAConfiguration(self: *const T, bstrIdentifier: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPCAConfigurationCollection.VTable, self.vtable).DeleteCAConfiguration(@ptrCast(*const IOCSPCAConfigurationCollection, self), bstrIdentifier);
+                return @as(*const IOCSPCAConfigurationCollection.VTable, @ptrCast(self.vtable)).DeleteCAConfiguration(@as(*const IOCSPCAConfigurationCollection, @ptrCast(self)), bstrIdentifier);
             }
         };
     }
@@ -2744,43 +2744,43 @@ pub const IOCSPAdmin = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_get_OCSPServiceProperties(self: *const T, ppVal: ?*?*IOCSPPropertyCollection) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).get_OCSPServiceProperties(@ptrCast(*const IOCSPAdmin, self), ppVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).get_OCSPServiceProperties(@as(*const IOCSPAdmin, @ptrCast(self)), ppVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_get_OCSPCAConfigurationCollection(self: *const T, pVal: ?*?*IOCSPCAConfigurationCollection) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).get_OCSPCAConfigurationCollection(@ptrCast(*const IOCSPAdmin, self), pVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).get_OCSPCAConfigurationCollection(@as(*const IOCSPAdmin, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_GetConfiguration(self: *const T, bstrServerName: ?BSTR, bForce: i16) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetConfiguration(@ptrCast(*const IOCSPAdmin, self), bstrServerName, bForce);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bForce);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_SetConfiguration(self: *const T, bstrServerName: ?BSTR, bForce: i16) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).SetConfiguration(@ptrCast(*const IOCSPAdmin, self), bstrServerName, bForce);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bForce);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_GetMyRoles(self: *const T, bstrServerName: ?BSTR, pRoles: ?*i32) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetMyRoles(@ptrCast(*const IOCSPAdmin, self), bstrServerName, pRoles);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetMyRoles(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pRoles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_Ping(self: *const T, bstrServerName: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).Ping(@ptrCast(*const IOCSPAdmin, self), bstrServerName);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).Ping(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_SetSecurity(self: *const T, bstrServerName: ?BSTR, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).SetSecurity(@ptrCast(*const IOCSPAdmin, self), bstrServerName, bstrVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_GetSecurity(self: *const T, bstrServerName: ?BSTR, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetSecurity(@ptrCast(*const IOCSPAdmin, self), bstrServerName, pVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_GetSigningCertificates(self: *const T, bstrServerName: ?BSTR, pCACertVar: ?*const VARIANT, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetSigningCertificates(@ptrCast(*const IOCSPAdmin, self), bstrServerName, pCACertVar, pVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetSigningCertificates(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, pCACertVar, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOCSPAdmin_GetHashAlgorithms(self: *const T, bstrServerName: ?BSTR, bstrCAId: ?BSTR, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IOCSPAdmin.VTable, self.vtable).GetHashAlgorithms(@ptrCast(*const IOCSPAdmin, self), bstrServerName, bstrCAId, pVal);
+                return @as(*const IOCSPAdmin.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const IOCSPAdmin, @ptrCast(self)), bstrServerName, bstrCAId, pVal);
             }
         };
     }
@@ -3223,59 +3223,59 @@ pub const ICertServerPolicy = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_SetContext(self: *const T, Context: i32) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).SetContext(@ptrCast(*const ICertServerPolicy, self), Context);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetContext(@as(*const ICertServerPolicy, @ptrCast(self)), Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_GetRequestProperty(self: *const T, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetRequestProperty(@ptrCast(*const ICertServerPolicy, self), strPropertyName, PropertyType, pvarPropertyValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetRequestProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_GetRequestAttribute(self: *const T, strAttributeName: ?BSTR, pstrAttributeValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetRequestAttribute(@ptrCast(*const ICertServerPolicy, self), strAttributeName, pstrAttributeValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetRequestAttribute(@as(*const ICertServerPolicy, @ptrCast(self)), strAttributeName, pstrAttributeValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_GetCertificateProperty(self: *const T, strPropertyName: ?BSTR, PropertyType: CERT_PROPERTY_TYPE, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetCertificateProperty(@ptrCast(*const ICertServerPolicy, self), strPropertyName, PropertyType, pvarPropertyValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_SetCertificateProperty(self: *const T, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).SetCertificateProperty(@ptrCast(*const ICertServerPolicy, self), strPropertyName, PropertyType, pvarPropertyValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetCertificateProperty(@as(*const ICertServerPolicy, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_GetCertificateExtension(self: *const T, strExtensionName: ?BSTR, Type: CERT_PROPERTY_TYPE, pvarValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetCertificateExtension(@ptrCast(*const ICertServerPolicy, self), strExtensionName, Type, pvarValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateExtension(@as(*const ICertServerPolicy, @ptrCast(self)), strExtensionName, Type, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_GetCertificateExtensionFlags(self: *const T, pExtFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).GetCertificateExtensionFlags(@ptrCast(*const ICertServerPolicy, self), pExtFlags);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).GetCertificateExtensionFlags(@as(*const ICertServerPolicy, @ptrCast(self)), pExtFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_SetCertificateExtension(self: *const T, strExtensionName: ?BSTR, Type: i32, ExtFlags: i32, pvarValue: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).SetCertificateExtension(@ptrCast(*const ICertServerPolicy, self), strExtensionName, Type, ExtFlags, pvarValue);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).SetCertificateExtension(@as(*const ICertServerPolicy, @ptrCast(self)), strExtensionName, Type, ExtFlags, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateExtensionsSetup(self: *const T, Flags: i32) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateExtensionsSetup(@ptrCast(*const ICertServerPolicy, self), Flags);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensionsSetup(@as(*const ICertServerPolicy, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateExtensions(self: *const T, pstrExtensionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateExtensions(@ptrCast(*const ICertServerPolicy, self), pstrExtensionName);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensions(@as(*const ICertServerPolicy, @ptrCast(self)), pstrExtensionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateExtensionsClose(self: *const T) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateExtensionsClose(@ptrCast(*const ICertServerPolicy, self));
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateExtensionsClose(@as(*const ICertServerPolicy, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateAttributesSetup(self: *const T, Flags: i32) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateAttributesSetup(@ptrCast(*const ICertServerPolicy, self), Flags);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributesSetup(@as(*const ICertServerPolicy, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateAttributes(self: *const T, pstrAttributeName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateAttributes(@ptrCast(*const ICertServerPolicy, self), pstrAttributeName);
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributes(@as(*const ICertServerPolicy, @ptrCast(self)), pstrAttributeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerPolicy_EnumerateAttributesClose(self: *const T) HRESULT {
-                return @ptrCast(*const ICertServerPolicy.VTable, self.vtable).EnumerateAttributesClose(@ptrCast(*const ICertServerPolicy, self));
+                return @as(*const ICertServerPolicy.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerPolicy, @ptrCast(self)));
             }
         };
     }
@@ -3425,51 +3425,51 @@ pub const ICertServerExit = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_SetContext(self: *const T, Context: i32) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).SetContext(@ptrCast(*const ICertServerExit, self), Context);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).SetContext(@as(*const ICertServerExit, @ptrCast(self)), Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_GetRequestProperty(self: *const T, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetRequestProperty(@ptrCast(*const ICertServerExit, self), strPropertyName, PropertyType, pvarPropertyValue);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetRequestProperty(@as(*const ICertServerExit, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_GetRequestAttribute(self: *const T, strAttributeName: ?BSTR, pstrAttributeValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetRequestAttribute(@ptrCast(*const ICertServerExit, self), strAttributeName, pstrAttributeValue);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetRequestAttribute(@as(*const ICertServerExit, @ptrCast(self)), strAttributeName, pstrAttributeValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_GetCertificateProperty(self: *const T, strPropertyName: ?BSTR, PropertyType: i32, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetCertificateProperty(@ptrCast(*const ICertServerExit, self), strPropertyName, PropertyType, pvarPropertyValue);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateProperty(@as(*const ICertServerExit, @ptrCast(self)), strPropertyName, PropertyType, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_GetCertificateExtension(self: *const T, strExtensionName: ?BSTR, Type: i32, pvarValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetCertificateExtension(@ptrCast(*const ICertServerExit, self), strExtensionName, Type, pvarValue);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateExtension(@as(*const ICertServerExit, @ptrCast(self)), strExtensionName, Type, pvarValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_GetCertificateExtensionFlags(self: *const T, pExtFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).GetCertificateExtensionFlags(@ptrCast(*const ICertServerExit, self), pExtFlags);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).GetCertificateExtensionFlags(@as(*const ICertServerExit, @ptrCast(self)), pExtFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateExtensionsSetup(self: *const T, Flags: i32) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateExtensionsSetup(@ptrCast(*const ICertServerExit, self), Flags);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensionsSetup(@as(*const ICertServerExit, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateExtensions(self: *const T, pstrExtensionName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateExtensions(@ptrCast(*const ICertServerExit, self), pstrExtensionName);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensions(@as(*const ICertServerExit, @ptrCast(self)), pstrExtensionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateExtensionsClose(self: *const T) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateExtensionsClose(@ptrCast(*const ICertServerExit, self));
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateExtensionsClose(@as(*const ICertServerExit, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateAttributesSetup(self: *const T, Flags: i32) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateAttributesSetup(@ptrCast(*const ICertServerExit, self), Flags);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributesSetup(@as(*const ICertServerExit, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateAttributes(self: *const T, pstrAttributeName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateAttributes(@ptrCast(*const ICertServerExit, self), pstrAttributeName);
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributes(@as(*const ICertServerExit, @ptrCast(self)), pstrAttributeName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertServerExit_EnumerateAttributesClose(self: *const T) HRESULT {
-                return @ptrCast(*const ICertServerExit.VTable, self.vtable).EnumerateAttributesClose(@ptrCast(*const ICertServerExit, self));
+                return @as(*const ICertServerExit.VTable, @ptrCast(self.vtable)).EnumerateAttributesClose(@as(*const ICertServerExit, @ptrCast(self)));
             }
         };
     }
@@ -3501,7 +3501,7 @@ pub const ICertGetConfig = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertGetConfig_GetConfig(self: *const T, Flags: CERT_GET_CONFIG_FLAGS, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertGetConfig.VTable, self.vtable).GetConfig(@ptrCast(*const ICertGetConfig, self), Flags, pstrOut);
+                return @as(*const ICertGetConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertGetConfig, @ptrCast(self)), Flags, pstrOut);
             }
         };
     }
@@ -3567,19 +3567,19 @@ pub const ICertConfig = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertConfig_Reset(self: *const T, Index: i32, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertConfig.VTable, self.vtable).Reset(@ptrCast(*const ICertConfig, self), Index, pCount);
+                return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertConfig, @ptrCast(self)), Index, pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertConfig_Next(self: *const T, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ICertConfig.VTable, self.vtable).Next(@ptrCast(*const ICertConfig, self), pIndex);
+                return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).Next(@as(*const ICertConfig, @ptrCast(self)), pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertConfig_GetField(self: *const T, strFieldName: ?BSTR, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertConfig.VTable, self.vtable).GetField(@ptrCast(*const ICertConfig, self), strFieldName, pstrOut);
+                return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).GetField(@as(*const ICertConfig, @ptrCast(self)), strFieldName, pstrOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertConfig_GetConfig(self: *const T, Flags: i32, pstrOut: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertConfig.VTable, self.vtable).GetConfig(@ptrCast(*const ICertConfig, self), Flags, pstrOut);
+                return @as(*const ICertConfig.VTable, @ptrCast(self.vtable)).GetConfig(@as(*const ICertConfig, @ptrCast(self)), Flags, pstrOut);
             }
         };
     }
@@ -3609,7 +3609,7 @@ pub const ICertConfig2 = extern struct {
             pub usingnamespace ICertConfig.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertConfig2_SetSharedFolder(self: *const T, strSharedFolder: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertConfig2.VTable, self.vtable).SetSharedFolder(@ptrCast(*const ICertConfig2, self), strSharedFolder);
+                return @as(*const ICertConfig2.VTable, @ptrCast(self.vtable)).SetSharedFolder(@as(*const ICertConfig2, @ptrCast(self)), strSharedFolder);
             }
         };
     }
@@ -3719,31 +3719,31 @@ pub const ICertRequest = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_Submit(self: *const T, Flags: i32, strRequest: ?BSTR, strAttributes: ?BSTR, strConfig: ?BSTR, pDisposition: ?*i32) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).Submit(@ptrCast(*const ICertRequest, self), Flags, strRequest, strAttributes, strConfig, pDisposition);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).Submit(@as(*const ICertRequest, @ptrCast(self)), Flags, strRequest, strAttributes, strConfig, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_RetrievePending(self: *const T, RequestId: i32, strConfig: ?BSTR, pDisposition: ?*i32) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).RetrievePending(@ptrCast(*const ICertRequest, self), RequestId, strConfig, pDisposition);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).RetrievePending(@as(*const ICertRequest, @ptrCast(self)), RequestId, strConfig, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_GetLastStatus(self: *const T, pStatus: ?*i32) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).GetLastStatus(@ptrCast(*const ICertRequest, self), pStatus);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetLastStatus(@as(*const ICertRequest, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_GetRequestId(self: *const T, pRequestId: ?*i32) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).GetRequestId(@ptrCast(*const ICertRequest, self), pRequestId);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetRequestId(@as(*const ICertRequest, @ptrCast(self)), pRequestId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_GetDispositionMessage(self: *const T, pstrDispositionMessage: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).GetDispositionMessage(@ptrCast(*const ICertRequest, self), pstrDispositionMessage);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetDispositionMessage(@as(*const ICertRequest, @ptrCast(self)), pstrDispositionMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_GetCACertificate(self: *const T, fExchangeCertificate: i32, strConfig: ?BSTR, Flags: i32, pstrCertificate: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).GetCACertificate(@ptrCast(*const ICertRequest, self), fExchangeCertificate, strConfig, Flags, pstrCertificate);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetCACertificate(@as(*const ICertRequest, @ptrCast(self)), fExchangeCertificate, strConfig, Flags, pstrCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest_GetCertificate(self: *const T, Flags: i32, pstrCertificate: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest.VTable, self.vtable).GetCertificate(@ptrCast(*const ICertRequest, self), Flags, pstrCertificate);
+                return @as(*const ICertRequest.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const ICertRequest, @ptrCast(self)), Flags, pstrCertificate);
             }
         };
     }
@@ -3859,27 +3859,27 @@ pub const ICertRequest2 = extern struct {
             pub usingnamespace ICertRequest.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetIssuedCertificate(self: *const T, strConfig: ?BSTR, RequestId: i32, strSerialNumber: ?BSTR, pDisposition: ?*CR_DISP) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetIssuedCertificate(@ptrCast(*const ICertRequest2, self), strConfig, RequestId, strSerialNumber, pDisposition);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetIssuedCertificate(@as(*const ICertRequest2, @ptrCast(self)), strConfig, RequestId, strSerialNumber, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetErrorMessageText(self: *const T, hrMessage: i32, Flags: i32, pstrErrorMessageText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetErrorMessageText(@ptrCast(*const ICertRequest2, self), hrMessage, Flags, pstrErrorMessageText);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetErrorMessageText(@as(*const ICertRequest2, @ptrCast(self)), hrMessage, Flags, pstrErrorMessageText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetCAProperty(self: *const T, strConfig: ?BSTR, PropId: i32, PropIndex: i32, PropType: i32, Flags: i32, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetCAProperty(@ptrCast(*const ICertRequest2, self), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, PropIndex, PropType, Flags, pvarPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetCAPropertyFlags(self: *const T, strConfig: ?BSTR, PropId: i32, pPropFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetCAPropertyFlags(@ptrCast(*const ICertRequest2, self), strConfig, PropId, pPropFlags);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAPropertyFlags(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, pPropFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetCAPropertyDisplayName(self: *const T, strConfig: ?BSTR, PropId: i32, pstrDisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetCAPropertyDisplayName(@ptrCast(*const ICertRequest2, self), strConfig, PropId, pstrDisplayName);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetCAPropertyDisplayName(@as(*const ICertRequest2, @ptrCast(self)), strConfig, PropId, pstrDisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest2_GetFullResponseProperty(self: *const T, PropId: FULL_RESPONSE_PROPERTY_ID, PropIndex: i32, PropType: CERT_PROPERTY_TYPE, Flags: CERT_REQUEST_OUT_TYPE, pvarPropertyValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertRequest2.VTable, self.vtable).GetFullResponseProperty(@ptrCast(*const ICertRequest2, self), PropId, PropIndex, PropType, Flags, pvarPropertyValue);
+                return @as(*const ICertRequest2.VTable, @ptrCast(self.vtable)).GetFullResponseProperty(@as(*const ICertRequest2, @ptrCast(self)), PropId, PropIndex, PropType, Flags, pvarPropertyValue);
             }
         };
     }
@@ -3964,19 +3964,19 @@ pub const ICertRequest3 = extern struct {
             pub usingnamespace ICertRequest2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest3_SetCredential(self: *const T, hWnd: i32, AuthType: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest3.VTable, self.vtable).SetCredential(@ptrCast(*const ICertRequest3, self), hWnd, AuthType, strCredential, strPassword);
+                return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).SetCredential(@as(*const ICertRequest3, @ptrCast(self)), hWnd, AuthType, strCredential, strPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest3_GetRequestIdString(self: *const T, pstrRequestId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertRequest3.VTable, self.vtable).GetRequestIdString(@ptrCast(*const ICertRequest3, self), pstrRequestId);
+                return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetRequestIdString(@as(*const ICertRequest3, @ptrCast(self)), pstrRequestId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest3_GetIssuedCertificate2(self: *const T, strConfig: ?BSTR, strRequestId: ?BSTR, strSerialNumber: ?BSTR, pDisposition: ?*CR_DISP) HRESULT {
-                return @ptrCast(*const ICertRequest3.VTable, self.vtable).GetIssuedCertificate2(@ptrCast(*const ICertRequest3, self), strConfig, strRequestId, strSerialNumber, pDisposition);
+                return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetIssuedCertificate2(@as(*const ICertRequest3, @ptrCast(self)), strConfig, strRequestId, strSerialNumber, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequest3_GetRefreshPolicy(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICertRequest3.VTable, self.vtable).GetRefreshPolicy(@ptrCast(*const ICertRequest3, self), pValue);
+                return @as(*const ICertRequest3.VTable, @ptrCast(self.vtable)).GetRefreshPolicy(@as(*const ICertRequest3, @ptrCast(self)), pValue);
             }
         };
     }
@@ -4295,15 +4295,15 @@ pub const ICertManageModule = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertManageModule_GetProperty(self: *const T, strConfig: ?BSTR, strStorageLocation: ?BSTR, strPropertyName: ?BSTR, Flags: i32, pvarProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertManageModule.VTable, self.vtable).GetProperty(@ptrCast(*const ICertManageModule, self), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
+                return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertManageModule_SetProperty(self: *const T, strConfig: ?BSTR, strStorageLocation: ?BSTR, strPropertyName: ?BSTR, Flags: i32, pvarProperty: ?*const VARIANT) HRESULT {
-                return @ptrCast(*const ICertManageModule.VTable, self.vtable).SetProperty(@ptrCast(*const ICertManageModule, self), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
+                return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, strPropertyName, Flags, pvarProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertManageModule_Configure(self: *const T, strConfig: ?BSTR, strStorageLocation: ?BSTR, Flags: i32) HRESULT {
-                return @ptrCast(*const ICertManageModule.VTable, self.vtable).Configure(@ptrCast(*const ICertManageModule, self), strConfig, strStorageLocation, Flags);
+                return @as(*const ICertManageModule.VTable, @ptrCast(self.vtable)).Configure(@as(*const ICertManageModule, @ptrCast(self)), strConfig, strStorageLocation, Flags);
             }
         };
     }
@@ -4382,19 +4382,19 @@ pub const ICertPolicy = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPolicy_Initialize(self: *const T, strConfig: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPolicy.VTable, self.vtable).Initialize(@ptrCast(*const ICertPolicy, self), strConfig);
+                return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPolicy, @ptrCast(self)), strConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPolicy_VerifyRequest(self: *const T, strConfig: ?BSTR, Context: i32, bNewRequest: i32, Flags: i32, pDisposition: ?*i32) HRESULT {
-                return @ptrCast(*const ICertPolicy.VTable, self.vtable).VerifyRequest(@ptrCast(*const ICertPolicy, self), strConfig, Context, bNewRequest, Flags, pDisposition);
+                return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).VerifyRequest(@as(*const ICertPolicy, @ptrCast(self)), strConfig, Context, bNewRequest, Flags, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPolicy_GetDescription(self: *const T, pstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPolicy.VTable, self.vtable).GetDescription(@ptrCast(*const ICertPolicy, self), pstrDescription);
+                return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICertPolicy, @ptrCast(self)), pstrDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPolicy_ShutDown(self: *const T) HRESULT {
-                return @ptrCast(*const ICertPolicy.VTable, self.vtable).ShutDown(@ptrCast(*const ICertPolicy, self));
+                return @as(*const ICertPolicy.VTable, @ptrCast(self.vtable)).ShutDown(@as(*const ICertPolicy, @ptrCast(self)));
             }
         };
     }
@@ -4424,7 +4424,7 @@ pub const ICertPolicy2 = extern struct {
             pub usingnamespace ICertPolicy.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPolicy2_GetManageModule(self: *const T, ppManageModule: ?*?*ICertManageModule) HRESULT {
-                return @ptrCast(*const ICertPolicy2.VTable, self.vtable).GetManageModule(@ptrCast(*const ICertPolicy2, self), ppManageModule);
+                return @as(*const ICertPolicy2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertPolicy2, @ptrCast(self)), ppManageModule);
             }
         };
     }
@@ -4554,23 +4554,23 @@ pub const INDESPolicy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INDESPolicy_Initialize(self: *const T) HRESULT {
-                return @ptrCast(*const INDESPolicy.VTable, self.vtable).Initialize(@ptrCast(*const INDESPolicy, self));
+                return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INDESPolicy, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INDESPolicy_Uninitialize(self: *const T) HRESULT {
-                return @ptrCast(*const INDESPolicy.VTable, self.vtable).Uninitialize(@ptrCast(*const INDESPolicy, self));
+                return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const INDESPolicy, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INDESPolicy_GenerateChallenge(self: *const T, pwszTemplate: ?[*:0]const u16, pwszParams: ?[*:0]const u16, ppwszResponse: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const INDESPolicy.VTable, self.vtable).GenerateChallenge(@ptrCast(*const INDESPolicy, self), pwszTemplate, pwszParams, ppwszResponse);
+                return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).GenerateChallenge(@as(*const INDESPolicy, @ptrCast(self)), pwszTemplate, pwszParams, ppwszResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INDESPolicy_VerifyRequest(self: *const T, pctbRequest: ?*CERTTRANSBLOB, pctbSigningCertEncoded: ?*CERTTRANSBLOB, pwszTemplate: ?[*:0]const u16, pwszTransactionId: ?[*:0]const u16, pfVerified: ?*BOOL) HRESULT {
-                return @ptrCast(*const INDESPolicy.VTable, self.vtable).VerifyRequest(@ptrCast(*const INDESPolicy, self), pctbRequest, pctbSigningCertEncoded, pwszTemplate, pwszTransactionId, pfVerified);
+                return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).VerifyRequest(@as(*const INDESPolicy, @ptrCast(self)), pctbRequest, pctbSigningCertEncoded, pwszTemplate, pwszTransactionId, pfVerified);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INDESPolicy_Notify(self: *const T, pwszChallenge: ?[*:0]const u16, pwszTransactionId: ?[*:0]const u16, disposition: X509SCEPDisposition, lastHResult: i32, pctbIssuedCertEncoded: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const INDESPolicy.VTable, self.vtable).Notify(@ptrCast(*const INDESPolicy, self), pwszChallenge, pwszTransactionId, disposition, lastHResult, pctbIssuedCertEncoded);
+                return @as(*const INDESPolicy.VTable, @ptrCast(self.vtable)).Notify(@as(*const INDESPolicy, @ptrCast(self)), pwszChallenge, pwszTransactionId, disposition, lastHResult, pctbIssuedCertEncoded);
             }
         };
     }
@@ -5693,35 +5693,35 @@ pub const IObjectId = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_InitializeFromName(self: *const T, Name: CERTENROLL_OBJECTID) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).InitializeFromName(@ptrCast(*const IObjectId, self), Name);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromName(@as(*const IObjectId, @ptrCast(self)), Name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_InitializeFromValue(self: *const T, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).InitializeFromValue(@ptrCast(*const IObjectId, self), strValue);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromValue(@as(*const IObjectId, @ptrCast(self)), strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_InitializeFromAlgorithmName(self: *const T, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, AlgFlags: AlgorithmFlags, strAlgorithmName: ?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).InitializeFromAlgorithmName(@ptrCast(*const IObjectId, self), GroupId, KeyFlags, AlgFlags, strAlgorithmName);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).InitializeFromAlgorithmName(@as(*const IObjectId, @ptrCast(self)), GroupId, KeyFlags, AlgFlags, strAlgorithmName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_get_Name(self: *const T, pValue: ?*CERTENROLL_OBJECTID) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).get_Name(@ptrCast(*const IObjectId, self), pValue);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IObjectId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_get_FriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IObjectId, self), pValue);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IObjectId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_put_FriendlyName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).put_FriendlyName(@ptrCast(*const IObjectId, self), Value);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IObjectId, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_get_Value(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).get_Value(@ptrCast(*const IObjectId, self), pValue);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IObjectId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectId_GetAlgorithmName(self: *const T, GroupId: ObjectIdGroupId, KeyFlags: ObjectIdPublicKeyFlags, pstrAlgorithmName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IObjectId.VTable, self.vtable).GetAlgorithmName(@ptrCast(*const IObjectId, self), GroupId, KeyFlags, pstrAlgorithmName);
+                return @as(*const IObjectId.VTable, @ptrCast(self.vtable)).GetAlgorithmName(@as(*const IObjectId, @ptrCast(self)), GroupId, KeyFlags, pstrAlgorithmName);
             }
         };
     }
@@ -5820,31 +5820,31 @@ pub const IObjectIds = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IObjectIds, self), Index, pVal);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IObjectIds, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).get_Count(@ptrCast(*const IObjectIds, self), pVal);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IObjectIds, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).get__NewEnum(@ptrCast(*const IObjectIds, self), pVal);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IObjectIds, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_Add(self: *const T, pVal: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).Add(@ptrCast(*const IObjectIds, self), pVal);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Add(@as(*const IObjectIds, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).Remove(@ptrCast(*const IObjectIds, self), Index);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Remove(@as(*const IObjectIds, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).Clear(@ptrCast(*const IObjectIds, self));
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectIds, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectIds_AddRange(self: *const T, pValue: ?*IObjectIds) HRESULT {
-                return @ptrCast(*const IObjectIds.VTable, self.vtable).AddRange(@ptrCast(*const IObjectIds, self), pValue);
+                return @as(*const IObjectIds.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IObjectIds, @ptrCast(self)), pValue);
             }
         };
     }
@@ -5908,15 +5908,15 @@ pub const IBinaryConverter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBinaryConverter_StringToString(self: *const T, strEncodedIn: ?BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncoded: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IBinaryConverter.VTable, self.vtable).StringToString(@ptrCast(*const IBinaryConverter, self), strEncodedIn, EncodingIn, Encoding, pstrEncoded);
+                return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).StringToString(@as(*const IBinaryConverter, @ptrCast(self)), strEncodedIn, EncodingIn, Encoding, pstrEncoded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBinaryConverter_VariantByteArrayToString(self: *const T, pvarByteArray: ?*VARIANT, Encoding: EncodingType, pstrEncoded: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IBinaryConverter.VTable, self.vtable).VariantByteArrayToString(@ptrCast(*const IBinaryConverter, self), pvarByteArray, Encoding, pstrEncoded);
+                return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).VariantByteArrayToString(@as(*const IBinaryConverter, @ptrCast(self)), pvarByteArray, Encoding, pstrEncoded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBinaryConverter_StringToVariantByteArray(self: *const T, strEncoded: ?BSTR, Encoding: EncodingType, pvarByteArray: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IBinaryConverter.VTable, self.vtable).StringToVariantByteArray(@ptrCast(*const IBinaryConverter, self), strEncoded, Encoding, pvarByteArray);
+                return @as(*const IBinaryConverter.VTable, @ptrCast(self.vtable)).StringToVariantByteArray(@as(*const IBinaryConverter, @ptrCast(self)), strEncoded, Encoding, pvarByteArray);
             }
         };
     }
@@ -5959,11 +5959,11 @@ pub const IBinaryConverter2 = extern struct {
             pub usingnamespace IBinaryConverter.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBinaryConverter2_StringArrayToVariantArray(self: *const T, pvarStringArray: ?*VARIANT, pvarVariantArray: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IBinaryConverter2.VTable, self.vtable).StringArrayToVariantArray(@ptrCast(*const IBinaryConverter2, self), pvarStringArray, pvarVariantArray);
+                return @as(*const IBinaryConverter2.VTable, @ptrCast(self.vtable)).StringArrayToVariantArray(@as(*const IBinaryConverter2, @ptrCast(self)), pvarStringArray, pvarVariantArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBinaryConverter2_VariantArrayToStringArray(self: *const T, pvarVariantArray: ?*VARIANT, pvarStringArray: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IBinaryConverter2.VTable, self.vtable).VariantArrayToStringArray(@ptrCast(*const IBinaryConverter2, self), pvarVariantArray, pvarStringArray);
+                return @as(*const IBinaryConverter2.VTable, @ptrCast(self.vtable)).VariantArrayToStringArray(@as(*const IBinaryConverter2, @ptrCast(self)), pvarVariantArray, pvarStringArray);
             }
         };
     }
@@ -6080,19 +6080,19 @@ pub const IX500DistinguishedName = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX500DistinguishedName_Decode(self: *const T, strEncodedName: ?BSTR, Encoding: EncodingType, NameFlags: X500NameFlags) HRESULT {
-                return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).Decode(@ptrCast(*const IX500DistinguishedName, self), strEncodedName, Encoding, NameFlags);
+                return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).Decode(@as(*const IX500DistinguishedName, @ptrCast(self)), strEncodedName, Encoding, NameFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX500DistinguishedName_Encode(self: *const T, strName: ?BSTR, NameFlags: X500NameFlags) HRESULT {
-                return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).Encode(@ptrCast(*const IX500DistinguishedName, self), strName, NameFlags);
+                return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX500DistinguishedName, @ptrCast(self)), strName, NameFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX500DistinguishedName_get_Name(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).get_Name(@ptrCast(*const IX500DistinguishedName, self), pValue);
+                return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IX500DistinguishedName, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX500DistinguishedName_get_EncodedName(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX500DistinguishedName.VTable, self.vtable).get_EncodedName(@ptrCast(*const IX500DistinguishedName, self), Encoding, pValue);
+                return @as(*const IX500DistinguishedName.VTable, @ptrCast(self.vtable)).get_EncodedName(@as(*const IX500DistinguishedName, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -6307,51 +6307,51 @@ pub const IX509EnrollmentStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_AppendText(self: *const T, strText: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).AppendText(@ptrCast(*const IX509EnrollmentStatus, self), strText);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).AppendText(@as(*const IX509EnrollmentStatus, @ptrCast(self)), strText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_Text(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Text(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Text(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_put_Text(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Text(@ptrCast(*const IX509EnrollmentStatus, self), Value);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Text(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_Selected(self: *const T, pValue: ?*EnrollmentSelectionStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Selected(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_put_Selected(self: *const T, Value: EnrollmentSelectionStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Selected(@ptrCast(*const IX509EnrollmentStatus, self), Value);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Selected(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_Display(self: *const T, pValue: ?*EnrollmentDisplayStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Display(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Display(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_put_Display(self: *const T, Value: EnrollmentDisplayStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Display(@ptrCast(*const IX509EnrollmentStatus, self), Value);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Display(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_Status(self: *const T, pValue: ?*EnrollmentEnrollStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Status(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_put_Status(self: *const T, Value: EnrollmentEnrollStatus) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Status(@ptrCast(*const IX509EnrollmentStatus, self), Value);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Status(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_Error(self: *const T, pValue: ?*HRESULT) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_Error(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_put_Error(self: *const T, Value: HRESULT) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).put_Error(@ptrCast(*const IX509EnrollmentStatus, self), Value);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).put_Error(@as(*const IX509EnrollmentStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentStatus_get_ErrorText(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentStatus.VTable, self.vtable).get_ErrorText(@ptrCast(*const IX509EnrollmentStatus, self), pValue);
+                return @as(*const IX509EnrollmentStatus.VTable, @ptrCast(self.vtable)).get_ErrorText(@as(*const IX509EnrollmentStatus, @ptrCast(self)), pValue);
             }
         };
     }
@@ -6591,43 +6591,43 @@ pub const ICspAlgorithm = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_GetAlgorithmOid(self: *const T, Length: i32, AlgFlags: AlgorithmFlags, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).GetAlgorithmOid(@ptrCast(*const ICspAlgorithm, self), Length, AlgFlags, ppValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).GetAlgorithmOid(@as(*const ICspAlgorithm, @ptrCast(self)), Length, AlgFlags, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_DefaultLength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_DefaultLength(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_DefaultLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_IncrementLength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_IncrementLength(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_IncrementLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_LongName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_LongName(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_LongName(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_Valid(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_Valid(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Valid(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_MaxLength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_MaxLength(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_MaxLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_MinLength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_MinLength(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_MinLength(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_Name(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_Name(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_Type(self: *const T, pValue: ?*AlgorithmType) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_Type(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithm_get_Operations(self: *const T, pValue: ?*AlgorithmOperationFlags) HRESULT {
-                return @ptrCast(*const ICspAlgorithm.VTable, self.vtable).get_Operations(@ptrCast(*const ICspAlgorithm, self), pValue);
+                return @as(*const ICspAlgorithm.VTable, @ptrCast(self.vtable)).get_Operations(@as(*const ICspAlgorithm, @ptrCast(self)), pValue);
             }
         };
     }
@@ -6746,35 +6746,35 @@ pub const ICspAlgorithms = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspAlgorithm) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspAlgorithms, self), Index, pVal);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspAlgorithms, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_Count(@ptrCast(*const ICspAlgorithms, self), pVal);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspAlgorithms, self), pVal);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_Add(self: *const T, pVal: ?*ICspAlgorithm) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).Add(@ptrCast(*const ICspAlgorithms, self), pVal);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspAlgorithms, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).Remove(@ptrCast(*const ICspAlgorithms, self), Index);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspAlgorithms, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).Clear(@ptrCast(*const ICspAlgorithms, self));
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspAlgorithms, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_get_ItemByName(self: *const T, strName: ?BSTR, ppValue: ?*?*ICspAlgorithm) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspAlgorithms, self), strName, ppValue);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspAlgorithms, @ptrCast(self)), strName, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspAlgorithms_get_IndexByObjectId(self: *const T, pObjectId: ?*IObjectId, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ICspAlgorithms.VTable, self.vtable).get_IndexByObjectId(@ptrCast(*const ICspAlgorithms, self), pObjectId, pIndex);
+                return @as(*const ICspAlgorithms.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const ICspAlgorithms, @ptrCast(self)), pObjectId, pIndex);
             }
         };
     }
@@ -7022,71 +7022,71 @@ pub const ICspInformation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_InitializeFromName(self: *const T, strName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).InitializeFromName(@ptrCast(*const ICspInformation, self), strName);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).InitializeFromName(@as(*const ICspInformation, @ptrCast(self)), strName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_InitializeFromType(self: *const T, Type: X509ProviderType, pAlgorithm: ?*IObjectId, MachineContext: i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).InitializeFromType(@ptrCast(*const ICspInformation, self), Type, pAlgorithm, MachineContext);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).InitializeFromType(@as(*const ICspInformation, @ptrCast(self)), Type, pAlgorithm, MachineContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_CspAlgorithms(self: *const T, ppValue: ?*?*ICspAlgorithms) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_CspAlgorithms(@ptrCast(*const ICspInformation, self), ppValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_CspAlgorithms(@as(*const ICspInformation, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_HasHardwareRandomNumberGenerator(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_HasHardwareRandomNumberGenerator(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_HasHardwareRandomNumberGenerator(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_IsHardwareDevice(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_IsHardwareDevice(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsHardwareDevice(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_IsRemovable(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_IsRemovable(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsRemovable(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_IsSoftwareDevice(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_IsSoftwareDevice(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsSoftwareDevice(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_Valid(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_Valid(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Valid(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_MaxKeyContainerNameLength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_MaxKeyContainerNameLength(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_MaxKeyContainerNameLength(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_Name(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_Name(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_Type(self: *const T, pValue: ?*X509ProviderType) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_Type(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_Version(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_Version(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_Version(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_KeySpec(self: *const T, pValue: ?*X509KeySpec) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_KeySpec(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_IsSmartCard(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_IsSmartCard(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_IsSmartCard(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_GetDefaultSecurityDescriptor(self: *const T, MachineContext: i16, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).GetDefaultSecurityDescriptor(@ptrCast(*const ICspInformation, self), MachineContext, pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).GetDefaultSecurityDescriptor(@as(*const ICspInformation, @ptrCast(self)), MachineContext, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_get_LegacyCsp(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).get_LegacyCsp(@ptrCast(*const ICspInformation, self), pValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).get_LegacyCsp(@as(*const ICspInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformation_GetCspStatusFromOperations(self: *const T, pAlgorithm: ?*IObjectId, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspInformation.VTable, self.vtable).GetCspStatusFromOperations(@ptrCast(*const ICspInformation, self), pAlgorithm, Operations, ppValue);
+                return @as(*const ICspInformation.VTable, @ptrCast(self.vtable)).GetCspStatusFromOperations(@as(*const ICspInformation, @ptrCast(self)), pAlgorithm, Operations, ppValue);
             }
         };
     }
@@ -7250,51 +7250,51 @@ pub const ICspInformations = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspInformation) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspInformations, self), Index, pVal);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspInformations, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).get_Count(@ptrCast(*const ICspInformations, self), pVal);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspInformations, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspInformations, self), pVal);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspInformations, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_Add(self: *const T, pVal: ?*ICspInformation) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).Add(@ptrCast(*const ICspInformations, self), pVal);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspInformations, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).Remove(@ptrCast(*const ICspInformations, self), Index);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspInformations, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).Clear(@ptrCast(*const ICspInformations, self));
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspInformations, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_AddAvailableCsps(self: *const T) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).AddAvailableCsps(@ptrCast(*const ICspInformations, self));
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).AddAvailableCsps(@as(*const ICspInformations, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_get_ItemByName(self: *const T, strName: ?BSTR, ppCspInformation: ?*?*ICspInformation) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspInformations, self), strName, ppCspInformation);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspInformations, @ptrCast(self)), strName, ppCspInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_GetCspStatusFromProviderName(self: *const T, strProviderName: ?BSTR, LegacyKeySpec: X509KeySpec, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).GetCspStatusFromProviderName(@ptrCast(*const ICspInformations, self), strProviderName, LegacyKeySpec, ppValue);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetCspStatusFromProviderName(@as(*const ICspInformations, @ptrCast(self)), strProviderName, LegacyKeySpec, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_GetCspStatusesFromOperations(self: *const T, Operations: AlgorithmOperationFlags, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspStatuses) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).GetCspStatusesFromOperations(@ptrCast(*const ICspInformations, self), Operations, pCspInformation, ppValue);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetCspStatusesFromOperations(@as(*const ICspInformations, @ptrCast(self)), Operations, pCspInformation, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_GetEncryptionCspAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: ?*?*ICspAlgorithms) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).GetEncryptionCspAlgorithms(@ptrCast(*const ICspInformations, self), pCspInformation, ppValue);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetEncryptionCspAlgorithms(@as(*const ICspInformations, @ptrCast(self)), pCspInformation, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspInformations_GetHashAlgorithms(self: *const T, pCspInformation: ?*ICspInformation, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const ICspInformations.VTable, self.vtable).GetHashAlgorithms(@ptrCast(*const ICspInformations, self), pCspInformation, ppValue);
+                return @as(*const ICspInformations.VTable, @ptrCast(self.vtable)).GetHashAlgorithms(@as(*const ICspInformations, @ptrCast(self)), pCspInformation, ppValue);
             }
         };
     }
@@ -7404,31 +7404,31 @@ pub const ICspStatus = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_Initialize(self: *const T, pCsp: ?*ICspInformation, pAlgorithm: ?*ICspAlgorithm) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).Initialize(@ptrCast(*const ICspStatus, self), pCsp, pAlgorithm);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICspStatus, @ptrCast(self)), pCsp, pAlgorithm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_get_Ordinal(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).get_Ordinal(@ptrCast(*const ICspStatus, self), pValue);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_Ordinal(@as(*const ICspStatus, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_put_Ordinal(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).put_Ordinal(@ptrCast(*const ICspStatus, self), Value);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).put_Ordinal(@as(*const ICspStatus, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_get_CspAlgorithm(self: *const T, ppValue: ?*?*ICspAlgorithm) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).get_CspAlgorithm(@ptrCast(*const ICspStatus, self), ppValue);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_CspAlgorithm(@as(*const ICspStatus, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_get_CspInformation(self: *const T, ppValue: ?*?*ICspInformation) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).get_CspInformation(@ptrCast(*const ICspStatus, self), ppValue);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_CspInformation(@as(*const ICspStatus, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_get_EnrollmentStatus(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).get_EnrollmentStatus(@ptrCast(*const ICspStatus, self), ppValue);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_EnrollmentStatus(@as(*const ICspStatus, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatus_get_DisplayName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICspStatus.VTable, self.vtable).get_DisplayName(@ptrCast(*const ICspStatus, self), pValue);
+                return @as(*const ICspStatus.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const ICspStatus, @ptrCast(self)), pValue);
             }
         };
     }
@@ -7583,43 +7583,43 @@ pub const ICspStatuses = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICspStatuses, self), Index, pVal);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICspStatuses, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_Count(@ptrCast(*const ICspStatuses, self), pVal);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICspStatuses, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICspStatuses, self), pVal);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICspStatuses, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_Add(self: *const T, pVal: ?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).Add(@ptrCast(*const ICspStatuses, self), pVal);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Add(@as(*const ICspStatuses, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).Remove(@ptrCast(*const ICspStatuses, self), Index);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICspStatuses, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).Clear(@ptrCast(*const ICspStatuses, self));
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICspStatuses, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_ItemByName(self: *const T, strCspName: ?BSTR, strAlgorithmName: ?BSTR, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICspStatuses, self), strCspName, strAlgorithmName, ppValue);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICspStatuses, @ptrCast(self)), strCspName, strAlgorithmName, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_ItemByOrdinal(self: *const T, Ordinal: i32, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByOrdinal(@ptrCast(*const ICspStatuses, self), Ordinal, ppValue);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByOrdinal(@as(*const ICspStatuses, @ptrCast(self)), Ordinal, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_ItemByOperations(self: *const T, strCspName: ?BSTR, strAlgorithmName: ?BSTR, Operations: AlgorithmOperationFlags, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByOperations(@ptrCast(*const ICspStatuses, self), strCspName, strAlgorithmName, Operations, ppValue);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByOperations(@as(*const ICspStatuses, @ptrCast(self)), strCspName, strAlgorithmName, Operations, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICspStatuses_get_ItemByProvider(self: *const T, pCspStatus: ?*ICspStatus, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const ICspStatuses.VTable, self.vtable).get_ItemByProvider(@ptrCast(*const ICspStatuses, self), pCspStatus, ppValue);
+                return @as(*const ICspStatuses.VTable, @ptrCast(self.vtable)).get_ItemByProvider(@as(*const ICspStatuses, @ptrCast(self)), pCspStatus, ppValue);
             }
         };
     }
@@ -7750,31 +7750,31 @@ pub const IX509PublicKey = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_Initialize(self: *const T, pObjectId: ?*IObjectId, strEncodedKey: ?BSTR, strEncodedParameters: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).Initialize(@ptrCast(*const IX509PublicKey, self), pObjectId, strEncodedKey, strEncodedParameters, Encoding);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PublicKey, @ptrCast(self)), pObjectId, strEncodedKey, strEncodedParameters, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_InitializeFromEncodedPublicKeyInfo(self: *const T, strEncodedPublicKeyInfo: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).InitializeFromEncodedPublicKeyInfo(@ptrCast(*const IX509PublicKey, self), strEncodedPublicKeyInfo, Encoding);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).InitializeFromEncodedPublicKeyInfo(@as(*const IX509PublicKey, @ptrCast(self)), strEncodedPublicKeyInfo, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_get_Algorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_Algorithm(@ptrCast(*const IX509PublicKey, self), ppValue);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_Algorithm(@as(*const IX509PublicKey, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_get_Length(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_Length(@ptrCast(*const IX509PublicKey, self), pValue);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509PublicKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_get_EncodedKey(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_EncodedKey(@ptrCast(*const IX509PublicKey, self), Encoding, pValue);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_EncodedKey(@as(*const IX509PublicKey, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_get_EncodedParameters(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).get_EncodedParameters(@ptrCast(*const IX509PublicKey, self), Encoding, pValue);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).get_EncodedParameters(@as(*const IX509PublicKey, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PublicKey_ComputeKeyIdentifier(self: *const T, Algorithm: KeyIdentifierHashAlgorithm, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PublicKey.VTable, self.vtable).ComputeKeyIdentifier(@ptrCast(*const IX509PublicKey, self), Algorithm, Encoding, pValue);
+                return @as(*const IX509PublicKey.VTable, @ptrCast(self.vtable)).ComputeKeyIdentifier(@as(*const IX509PublicKey, @ptrCast(self)), Algorithm, Encoding, pValue);
             }
         };
     }
@@ -8582,235 +8582,235 @@ pub const IX509PrivateKey = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Open(self: *const T) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Open(@ptrCast(*const IX509PrivateKey, self));
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Open(@as(*const IX509PrivateKey, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Create(self: *const T) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Create(@ptrCast(*const IX509PrivateKey, self));
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Create(@as(*const IX509PrivateKey, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Close(@ptrCast(*const IX509PrivateKey, self));
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Close(@as(*const IX509PrivateKey, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Delete(@ptrCast(*const IX509PrivateKey, self));
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Delete(@as(*const IX509PrivateKey, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Verify(self: *const T, VerifyType: X509PrivateKeyVerify) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Verify(@ptrCast(*const IX509PrivateKey, self), VerifyType);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Verify(@as(*const IX509PrivateKey, @ptrCast(self)), VerifyType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Import(self: *const T, strExportType: ?BSTR, strEncodedKey: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Import(@ptrCast(*const IX509PrivateKey, self), strExportType, strEncodedKey, Encoding);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Import(@as(*const IX509PrivateKey, @ptrCast(self)), strExportType, strEncodedKey, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_Export(self: *const T, strExportType: ?BSTR, Encoding: EncodingType, pstrEncodedKey: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).Export(@ptrCast(*const IX509PrivateKey, self), strExportType, Encoding, pstrEncodedKey);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).Export(@as(*const IX509PrivateKey, @ptrCast(self)), strExportType, Encoding, pstrEncodedKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_ExportPublicKey(self: *const T, ppPublicKey: ?*?*IX509PublicKey) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).ExportPublicKey(@ptrCast(*const IX509PrivateKey, self), ppPublicKey);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).ExportPublicKey(@as(*const IX509PrivateKey, @ptrCast(self)), ppPublicKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ContainerName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ContainerName(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ContainerName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ContainerName(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ContainerNamePrefix(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ContainerNamePrefix(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ContainerNamePrefix(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ContainerNamePrefix(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ContainerNamePrefix(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ContainerNamePrefix(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ReaderName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ReaderName(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ReaderName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ReaderName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ReaderName(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ReaderName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_CspInformations(self: *const T, ppValue: ?*?*ICspInformations) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_CspInformations(@ptrCast(*const IX509PrivateKey, self), ppValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_CspInformations(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_CspInformations(self: *const T, pValue: ?*ICspInformations) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_CspInformations(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_CspInformations(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_CspStatus(self: *const T, ppValue: ?*?*ICspStatus) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_CspStatus(@ptrCast(*const IX509PrivateKey, self), ppValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_CspStatus(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_CspStatus(self: *const T, pValue: ?*ICspStatus) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_CspStatus(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_CspStatus(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ProviderName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ProviderName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ProviderName(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ProviderType(self: *const T, pValue: ?*X509ProviderType) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ProviderType(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ProviderType(self: *const T, Value: X509ProviderType) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ProviderType(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_LegacyCsp(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_LegacyCsp(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_LegacyCsp(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_LegacyCsp(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_LegacyCsp(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_LegacyCsp(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Algorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Algorithm(@ptrCast(*const IX509PrivateKey, self), ppValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Algorithm(@as(*const IX509PrivateKey, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Algorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Algorithm(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Algorithm(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_KeySpec(self: *const T, pValue: ?*X509KeySpec) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_KeySpec(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_KeySpec(self: *const T, Value: X509KeySpec) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_KeySpec(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Length(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Length(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Length(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Length(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Length(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ExportPolicy(self: *const T, pValue: ?*X509PrivateKeyExportFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ExportPolicy(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ExportPolicy(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ExportPolicy(self: *const T, Value: X509PrivateKeyExportFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ExportPolicy(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ExportPolicy(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_KeyUsage(self: *const T, pValue: ?*X509PrivateKeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_KeyUsage(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeyUsage(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_KeyUsage(self: *const T, Value: X509PrivateKeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_KeyUsage(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeyUsage(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_KeyProtection(self: *const T, pValue: ?*X509PrivateKeyProtection) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_KeyProtection(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_KeyProtection(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_KeyProtection(self: *const T, Value: X509PrivateKeyProtection) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_KeyProtection(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_KeyProtection(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_MachineContext(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_MachineContext(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_MachineContext(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_MachineContext(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_MachineContext(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_MachineContext(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_SecurityDescriptor(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_SecurityDescriptor(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_SecurityDescriptor(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_SecurityDescriptor(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_SecurityDescriptor(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_SecurityDescriptor(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509PrivateKey, self), Encoding, pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509PrivateKey, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Certificate(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Certificate(@ptrCast(*const IX509PrivateKey, self), Encoding, Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Certificate(@as(*const IX509PrivateKey, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_UniqueContainerName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_UniqueContainerName(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_UniqueContainerName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Opened(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Opened(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Opened(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_DefaultContainer(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_DefaultContainer(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_DefaultContainer(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Existing(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Existing(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Existing(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Existing(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Existing(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Existing(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Silent(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Silent(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Silent(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Silent(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_ParentWindow(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_ParentWindow(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_ParentWindow(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_UIContextMessage(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_UIContextMessage(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_UIContextMessage(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Pin(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Pin(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Pin(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_FriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_FriendlyName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_FriendlyName(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_FriendlyName(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_get_Description(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).get_Description(@ptrCast(*const IX509PrivateKey, self), pValue);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IX509PrivateKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey_put_Description(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey.VTable, self.vtable).put_Description(@ptrCast(*const IX509PrivateKey, self), Value);
+                return @as(*const IX509PrivateKey.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IX509PrivateKey, @ptrCast(self)), Value);
             }
         };
     }
@@ -8989,43 +8989,43 @@ pub const IX509PrivateKey2 = extern struct {
             pub usingnamespace IX509PrivateKey.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_get_HardwareKeyUsage(self: *const T, pValue: ?*X509HardwareKeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_HardwareKeyUsage(@ptrCast(*const IX509PrivateKey2, self), pValue);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_HardwareKeyUsage(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_put_HardwareKeyUsage(self: *const T, Value: X509HardwareKeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_HardwareKeyUsage(@ptrCast(*const IX509PrivateKey2, self), Value);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_HardwareKeyUsage(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_get_AlternateStorageLocation(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlternateStorageLocation(@ptrCast(*const IX509PrivateKey2, self), pValue);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlternateStorageLocation(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_put_AlternateStorageLocation(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_AlternateStorageLocation(@ptrCast(*const IX509PrivateKey2, self), Value);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlternateStorageLocation(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_get_AlgorithmName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlgorithmName(@ptrCast(*const IX509PrivateKey2, self), pValue);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlgorithmName(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_put_AlgorithmName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_AlgorithmName(@ptrCast(*const IX509PrivateKey2, self), Value);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlgorithmName(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_get_AlgorithmParameters(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_AlgorithmParameters(@ptrCast(*const IX509PrivateKey2, self), Encoding, pValue);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_AlgorithmParameters(@as(*const IX509PrivateKey2, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_put_AlgorithmParameters(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_AlgorithmParameters(@ptrCast(*const IX509PrivateKey2, self), Encoding, Value);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_AlgorithmParameters(@as(*const IX509PrivateKey2, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_get_ParametersExportType(self: *const T, pValue: ?*X509KeyParametersExportType) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).get_ParametersExportType(@ptrCast(*const IX509PrivateKey2, self), pValue);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).get_ParametersExportType(@as(*const IX509PrivateKey2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PrivateKey2_put_ParametersExportType(self: *const T, Value: X509KeyParametersExportType) HRESULT {
-                return @ptrCast(*const IX509PrivateKey2.VTable, self.vtable).put_ParametersExportType(@ptrCast(*const IX509PrivateKey2, self), Value);
+                return @as(*const IX509PrivateKey2.VTable, @ptrCast(self.vtable)).put_ParametersExportType(@as(*const IX509PrivateKey2, @ptrCast(self)), Value);
             }
         };
     }
@@ -9174,47 +9174,47 @@ pub const IX509EndorsementKey = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_get_ProviderName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509EndorsementKey, self), pValue);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_put_ProviderName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).put_ProviderName(@ptrCast(*const IX509EndorsementKey, self), Value);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const IX509EndorsementKey, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_get_Length(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).get_Length(@ptrCast(*const IX509EndorsementKey, self), pValue);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_Length(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_get_Opened(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).get_Opened(@ptrCast(*const IX509EndorsementKey, self), pValue);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).get_Opened(@as(*const IX509EndorsementKey, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_AddCertificate(self: *const T, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).AddCertificate(@ptrCast(*const IX509EndorsementKey, self), Encoding, strCertificate);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).AddCertificate(@as(*const IX509EndorsementKey, @ptrCast(self)), Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_RemoveCertificate(self: *const T, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).RemoveCertificate(@ptrCast(*const IX509EndorsementKey, self), Encoding, strCertificate);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).RemoveCertificate(@as(*const IX509EndorsementKey, @ptrCast(self)), Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_GetCertificateByIndex(self: *const T, ManufacturerOnly: i16, dwIndex: i32, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).GetCertificateByIndex(@ptrCast(*const IX509EndorsementKey, self), ManufacturerOnly, dwIndex, Encoding, pValue);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).GetCertificateByIndex(@as(*const IX509EndorsementKey, @ptrCast(self)), ManufacturerOnly, dwIndex, Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_GetCertificateCount(self: *const T, ManufacturerOnly: i16, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).GetCertificateCount(@ptrCast(*const IX509EndorsementKey, self), ManufacturerOnly, pCount);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).GetCertificateCount(@as(*const IX509EndorsementKey, @ptrCast(self)), ManufacturerOnly, pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_ExportPublicKey(self: *const T, ppPublicKey: ?*?*IX509PublicKey) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).ExportPublicKey(@ptrCast(*const IX509EndorsementKey, self), ppPublicKey);
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).ExportPublicKey(@as(*const IX509EndorsementKey, @ptrCast(self)), ppPublicKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_Open(self: *const T) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).Open(@ptrCast(*const IX509EndorsementKey, self));
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).Open(@as(*const IX509EndorsementKey, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EndorsementKey_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IX509EndorsementKey.VTable, self.vtable).Close(@ptrCast(*const IX509EndorsementKey, self));
+                return @as(*const IX509EndorsementKey.VTable, @ptrCast(self.vtable)).Close(@as(*const IX509EndorsementKey, @ptrCast(self)));
             }
         };
     }
@@ -9302,23 +9302,23 @@ pub const IX509Extension = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extension_Initialize(self: *const T, pObjectId: ?*IObjectId, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Extension.VTable, self.vtable).Initialize(@ptrCast(*const IX509Extension, self), pObjectId, Encoding, strEncodedData);
+                return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Extension, @ptrCast(self)), pObjectId, Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extension_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509Extension.VTable, self.vtable).get_ObjectId(@ptrCast(*const IX509Extension, self), ppValue);
+                return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IX509Extension, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extension_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Extension.VTable, self.vtable).get_RawData(@ptrCast(*const IX509Extension, self), Encoding, pValue);
+                return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509Extension, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extension_get_Critical(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509Extension.VTable, self.vtable).get_Critical(@ptrCast(*const IX509Extension, self), pValue);
+                return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).get_Critical(@as(*const IX509Extension, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extension_put_Critical(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509Extension.VTable, self.vtable).put_Critical(@ptrCast(*const IX509Extension, self), Value);
+                return @as(*const IX509Extension.VTable, @ptrCast(self.vtable)).put_Critical(@as(*const IX509Extension, @ptrCast(self)), Value);
             }
         };
     }
@@ -9432,35 +9432,35 @@ pub const IX509Extensions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509Extension) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509Extensions, self), Index, pVal);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509Extensions, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).get_Count(@ptrCast(*const IX509Extensions, self), pVal);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509Extensions, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509Extensions, self), pVal);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509Extensions, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_Add(self: *const T, pVal: ?*IX509Extension) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).Add(@ptrCast(*const IX509Extensions, self), pVal);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509Extensions, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).Remove(@ptrCast(*const IX509Extensions, self), Index);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509Extensions, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).Clear(@ptrCast(*const IX509Extensions, self));
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509Extensions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_get_IndexByObjectId(self: *const T, pObjectId: ?*IObjectId, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).get_IndexByObjectId(@ptrCast(*const IX509Extensions, self), pObjectId, pIndex);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const IX509Extensions, @ptrCast(self)), pObjectId, pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Extensions_AddRange(self: *const T, pValue: ?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509Extensions.VTable, self.vtable).AddRange(@ptrCast(*const IX509Extensions, self), pValue);
+                return @as(*const IX509Extensions.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509Extensions, @ptrCast(self)), pValue);
             }
         };
     }
@@ -9540,15 +9540,15 @@ pub const IX509ExtensionKeyUsage = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionKeyUsage_InitializeEncode(self: *const T, UsageFlags: X509KeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509ExtensionKeyUsage.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionKeyUsage, self), UsageFlags);
+                return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), UsageFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionKeyUsage_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionKeyUsage.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionKeyUsage, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionKeyUsage_get_KeyUsage(self: *const T, pValue: ?*X509KeyUsageFlags) HRESULT {
-                return @ptrCast(*const IX509ExtensionKeyUsage.VTable, self.vtable).get_KeyUsage(@ptrCast(*const IX509ExtensionKeyUsage, self), pValue);
+                return @as(*const IX509ExtensionKeyUsage.VTable, @ptrCast(self.vtable)).get_KeyUsage(@as(*const IX509ExtensionKeyUsage, @ptrCast(self)), pValue);
             }
         };
     }
@@ -9603,15 +9603,15 @@ pub const IX509ExtensionEnhancedKeyUsage = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionEnhancedKeyUsage_InitializeEncode(self: *const T, pValue: ?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509ExtensionEnhancedKeyUsage.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionEnhancedKeyUsage, self), pValue);
+                return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionEnhancedKeyUsage_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionEnhancedKeyUsage.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionEnhancedKeyUsage, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionEnhancedKeyUsage_get_EnhancedKeyUsage(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509ExtensionEnhancedKeyUsage.VTable, self.vtable).get_EnhancedKeyUsage(@ptrCast(*const IX509ExtensionEnhancedKeyUsage, self), ppValue);
+                return @as(*const IX509ExtensionEnhancedKeyUsage.VTable, @ptrCast(self.vtable)).get_EnhancedKeyUsage(@as(*const IX509ExtensionEnhancedKeyUsage, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -9666,15 +9666,15 @@ pub const IX509ExtensionTemplateName = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplateName_InitializeEncode(self: *const T, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplateName.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionTemplateName, self), strTemplateName);
+                return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplateName_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplateName.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionTemplateName, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplateName_get_TemplateName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplateName.VTable, self.vtable).get_TemplateName(@ptrCast(*const IX509ExtensionTemplateName, self), pValue);
+                return @as(*const IX509ExtensionTemplateName.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const IX509ExtensionTemplateName, @ptrCast(self)), pValue);
             }
         };
     }
@@ -9759,23 +9759,23 @@ pub const IX509ExtensionTemplate = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplate_InitializeEncode(self: *const T, pTemplateOid: ?*IObjectId, MajorVersion: i32, MinorVersion: i32) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionTemplate, self), pTemplateOid, MajorVersion, MinorVersion);
+                return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pTemplateOid, MajorVersion, MinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplate_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionTemplate, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionTemplate, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplate_get_TemplateOid(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).get_TemplateOid(@ptrCast(*const IX509ExtensionTemplate, self), ppValue);
+                return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_TemplateOid(@as(*const IX509ExtensionTemplate, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplate_get_MajorVersion(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).get_MajorVersion(@ptrCast(*const IX509ExtensionTemplate, self), pValue);
+                return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionTemplate_get_MinorVersion(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509ExtensionTemplate.VTable, self.vtable).get_MinorVersion(@ptrCast(*const IX509ExtensionTemplate, self), pValue);
+                return @as(*const IX509ExtensionTemplate.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const IX509ExtensionTemplate, @ptrCast(self)), pValue);
             }
         };
     }
@@ -9918,31 +9918,31 @@ pub const IAlternativeName = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_InitializeFromString(self: *const T, Type: AlternativeNameType, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).InitializeFromString(@ptrCast(*const IAlternativeName, self), Type, strValue);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromString(@as(*const IAlternativeName, @ptrCast(self)), Type, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_InitializeFromRawData(self: *const T, Type: AlternativeNameType, Encoding: EncodingType, strRawData: ?BSTR) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).InitializeFromRawData(@ptrCast(*const IAlternativeName, self), Type, Encoding, strRawData);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromRawData(@as(*const IAlternativeName, @ptrCast(self)), Type, Encoding, strRawData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_InitializeFromOtherName(self: *const T, pObjectId: ?*IObjectId, Encoding: EncodingType, strRawData: ?BSTR, ToBeWrapped: i16) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).InitializeFromOtherName(@ptrCast(*const IAlternativeName, self), pObjectId, Encoding, strRawData, ToBeWrapped);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).InitializeFromOtherName(@as(*const IAlternativeName, @ptrCast(self)), pObjectId, Encoding, strRawData, ToBeWrapped);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_get_Type(self: *const T, pValue: ?*AlternativeNameType) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_Type(@ptrCast(*const IAlternativeName, self), pValue);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IAlternativeName, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_get_StrValue(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_StrValue(@ptrCast(*const IAlternativeName, self), pValue);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_StrValue(@as(*const IAlternativeName, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_ObjectId(@ptrCast(*const IAlternativeName, self), ppValue);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IAlternativeName, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeName_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IAlternativeName.VTable, self.vtable).get_RawData(@ptrCast(*const IAlternativeName, self), Encoding, pValue);
+                return @as(*const IAlternativeName.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IAlternativeName, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -10031,27 +10031,27 @@ pub const IAlternativeNames = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IAlternativeName) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IAlternativeNames, self), Index, pVal);
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IAlternativeNames, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get_Count(@ptrCast(*const IAlternativeNames, self), pVal);
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).get__NewEnum(@ptrCast(*const IAlternativeNames, self), pVal);
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_Add(self: *const T, pVal: ?*IAlternativeName) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).Add(@ptrCast(*const IAlternativeNames, self), pVal);
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Add(@as(*const IAlternativeNames, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).Remove(@ptrCast(*const IAlternativeNames, self), Index);
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Remove(@as(*const IAlternativeNames, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAlternativeNames_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IAlternativeNames.VTable, self.vtable).Clear(@ptrCast(*const IAlternativeNames, self));
+                return @as(*const IAlternativeNames.VTable, @ptrCast(self.vtable)).Clear(@as(*const IAlternativeNames, @ptrCast(self)));
             }
         };
     }
@@ -10106,15 +10106,15 @@ pub const IX509ExtensionAlternativeNames = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAlternativeNames_InitializeEncode(self: *const T, pValue: ?*IAlternativeNames) HRESULT {
-                return @ptrCast(*const IX509ExtensionAlternativeNames.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionAlternativeNames, self), pValue);
+                return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAlternativeNames_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionAlternativeNames.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionAlternativeNames, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAlternativeNames_get_AlternativeNames(self: *const T, ppValue: ?*?*IAlternativeNames) HRESULT {
-                return @ptrCast(*const IX509ExtensionAlternativeNames.VTable, self.vtable).get_AlternativeNames(@ptrCast(*const IX509ExtensionAlternativeNames, self), ppValue);
+                return @as(*const IX509ExtensionAlternativeNames.VTable, @ptrCast(self.vtable)).get_AlternativeNames(@as(*const IX509ExtensionAlternativeNames, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -10184,19 +10184,19 @@ pub const IX509ExtensionBasicConstraints = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionBasicConstraints_InitializeEncode(self: *const T, IsCA: i16, PathLenConstraint: i32) HRESULT {
-                return @ptrCast(*const IX509ExtensionBasicConstraints.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionBasicConstraints, self), IsCA, PathLenConstraint);
+                return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), IsCA, PathLenConstraint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionBasicConstraints_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionBasicConstraints.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionBasicConstraints, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionBasicConstraints_get_IsCA(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509ExtensionBasicConstraints.VTable, self.vtable).get_IsCA(@ptrCast(*const IX509ExtensionBasicConstraints, self), pValue);
+                return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).get_IsCA(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionBasicConstraints_get_PathLenConstraint(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509ExtensionBasicConstraints.VTable, self.vtable).get_PathLenConstraint(@ptrCast(*const IX509ExtensionBasicConstraints, self), pValue);
+                return @as(*const IX509ExtensionBasicConstraints.VTable, @ptrCast(self.vtable)).get_PathLenConstraint(@as(*const IX509ExtensionBasicConstraints, @ptrCast(self)), pValue);
             }
         };
     }
@@ -10255,15 +10255,15 @@ pub const IX509ExtensionSubjectKeyIdentifier = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSubjectKeyIdentifier_InitializeEncode(self: *const T, Encoding: EncodingType, strKeyIdentifier: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionSubjectKeyIdentifier.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionSubjectKeyIdentifier, self), Encoding, strKeyIdentifier);
+                return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, strKeyIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSubjectKeyIdentifier_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionSubjectKeyIdentifier.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionSubjectKeyIdentifier, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSubjectKeyIdentifier_get_SubjectKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionSubjectKeyIdentifier.VTable, self.vtable).get_SubjectKeyIdentifier(@ptrCast(*const IX509ExtensionSubjectKeyIdentifier, self), Encoding, pValue);
+                return @as(*const IX509ExtensionSubjectKeyIdentifier.VTable, @ptrCast(self.vtable)).get_SubjectKeyIdentifier(@as(*const IX509ExtensionSubjectKeyIdentifier, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -10322,15 +10322,15 @@ pub const IX509ExtensionAuthorityKeyIdentifier = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAuthorityKeyIdentifier_InitializeEncode(self: *const T, Encoding: EncodingType, strKeyIdentifier: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionAuthorityKeyIdentifier.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionAuthorityKeyIdentifier, self), Encoding, strKeyIdentifier);
+                return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, strKeyIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAuthorityKeyIdentifier_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionAuthorityKeyIdentifier.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionAuthorityKeyIdentifier, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionAuthorityKeyIdentifier_get_AuthorityKeyIdentifier(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionAuthorityKeyIdentifier.VTable, self.vtable).get_AuthorityKeyIdentifier(@ptrCast(*const IX509ExtensionAuthorityKeyIdentifier, self), Encoding, pValue);
+                return @as(*const IX509ExtensionAuthorityKeyIdentifier.VTable, @ptrCast(self.vtable)).get_AuthorityKeyIdentifier(@as(*const IX509ExtensionAuthorityKeyIdentifier, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -10388,15 +10388,15 @@ pub const ISmimeCapability = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapability_Initialize(self: *const T, pObjectId: ?*IObjectId, BitCount: i32) HRESULT {
-                return @ptrCast(*const ISmimeCapability.VTable, self.vtable).Initialize(@ptrCast(*const ISmimeCapability, self), pObjectId, BitCount);
+                return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISmimeCapability, @ptrCast(self)), pObjectId, BitCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapability_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const ISmimeCapability.VTable, self.vtable).get_ObjectId(@ptrCast(*const ISmimeCapability, self), ppValue);
+                return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ISmimeCapability, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapability_get_BitCount(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISmimeCapability.VTable, self.vtable).get_BitCount(@ptrCast(*const ISmimeCapability, self), pValue);
+                return @as(*const ISmimeCapability.VTable, @ptrCast(self.vtable)).get_BitCount(@as(*const ISmimeCapability, @ptrCast(self)), pValue);
             }
         };
     }
@@ -10505,35 +10505,35 @@ pub const ISmimeCapabilities = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ISmimeCapability) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ISmimeCapabilities, self), Index, pVal);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ISmimeCapabilities, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get_Count(@ptrCast(*const ISmimeCapabilities, self), pVal);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISmimeCapabilities, self), pVal);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_Add(self: *const T, pVal: ?*ISmimeCapability) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).Add(@ptrCast(*const ISmimeCapabilities, self), pVal);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Add(@as(*const ISmimeCapabilities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).Remove(@ptrCast(*const ISmimeCapabilities, self), Index);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISmimeCapabilities, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).Clear(@ptrCast(*const ISmimeCapabilities, self));
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISmimeCapabilities, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_AddFromCsp(self: *const T, pValue: ?*ICspInformation) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).AddFromCsp(@ptrCast(*const ISmimeCapabilities, self), pValue);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).AddFromCsp(@as(*const ISmimeCapabilities, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISmimeCapabilities_AddAvailableSmimeCapabilities(self: *const T, MachineContext: i16) HRESULT {
-                return @ptrCast(*const ISmimeCapabilities.VTable, self.vtable).AddAvailableSmimeCapabilities(@ptrCast(*const ISmimeCapabilities, self), MachineContext);
+                return @as(*const ISmimeCapabilities.VTable, @ptrCast(self.vtable)).AddAvailableSmimeCapabilities(@as(*const ISmimeCapabilities, @ptrCast(self)), MachineContext);
             }
         };
     }
@@ -10588,15 +10588,15 @@ pub const IX509ExtensionSmimeCapabilities = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSmimeCapabilities_InitializeEncode(self: *const T, pValue: ?*ISmimeCapabilities) HRESULT {
-                return @ptrCast(*const IX509ExtensionSmimeCapabilities.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionSmimeCapabilities, self), pValue);
+                return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSmimeCapabilities_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionSmimeCapabilities.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionSmimeCapabilities, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionSmimeCapabilities_get_SmimeCapabilities(self: *const T, ppValue: ?*?*ISmimeCapabilities) HRESULT {
-                return @ptrCast(*const IX509ExtensionSmimeCapabilities.VTable, self.vtable).get_SmimeCapabilities(@ptrCast(*const IX509ExtensionSmimeCapabilities, self), ppValue);
+                return @as(*const IX509ExtensionSmimeCapabilities.VTable, @ptrCast(self.vtable)).get_SmimeCapabilities(@as(*const IX509ExtensionSmimeCapabilities, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -10693,23 +10693,23 @@ pub const IPolicyQualifier = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifier_InitializeEncode(self: *const T, strQualifier: ?BSTR, Type: PolicyQualifierType) HRESULT {
-                return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).InitializeEncode(@ptrCast(*const IPolicyQualifier, self), strQualifier, Type);
+                return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IPolicyQualifier, @ptrCast(self)), strQualifier, Type);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifier_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_ObjectId(@ptrCast(*const IPolicyQualifier, self), ppValue);
+                return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IPolicyQualifier, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifier_get_Qualifier(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_Qualifier(@ptrCast(*const IPolicyQualifier, self), pValue);
+                return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_Qualifier(@as(*const IPolicyQualifier, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifier_get_Type(self: *const T, pValue: ?*PolicyQualifierType) HRESULT {
-                return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_Type(@ptrCast(*const IPolicyQualifier, self), pValue);
+                return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IPolicyQualifier, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifier_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPolicyQualifier.VTable, self.vtable).get_RawData(@ptrCast(*const IPolicyQualifier, self), Encoding, pValue);
+                return @as(*const IPolicyQualifier.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IPolicyQualifier, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -10798,27 +10798,27 @@ pub const IPolicyQualifiers = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IPolicyQualifier) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IPolicyQualifiers, self), Index, pVal);
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IPolicyQualifiers, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get_Count(@ptrCast(*const IPolicyQualifiers, self), pVal);
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPolicyQualifiers, self), pVal);
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_Add(self: *const T, pVal: ?*IPolicyQualifier) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).Add(@ptrCast(*const IPolicyQualifiers, self), pVal);
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Add(@as(*const IPolicyQualifiers, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).Remove(@ptrCast(*const IPolicyQualifiers, self), Index);
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Remove(@as(*const IPolicyQualifiers, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPolicyQualifiers_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IPolicyQualifiers.VTable, self.vtable).Clear(@ptrCast(*const IPolicyQualifiers, self));
+                return @as(*const IPolicyQualifiers.VTable, @ptrCast(self.vtable)).Clear(@as(*const IPolicyQualifiers, @ptrCast(self)));
             }
         };
     }
@@ -10874,15 +10874,15 @@ pub const ICertificatePolicy = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicy_Initialize(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).Initialize(@ptrCast(*const ICertificatePolicy, self), pValue);
+                return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertificatePolicy, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicy_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).get_ObjectId(@ptrCast(*const ICertificatePolicy, self), ppValue);
+                return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ICertificatePolicy, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicy_get_PolicyQualifiers(self: *const T, ppValue: ?*?*IPolicyQualifiers) HRESULT {
-                return @ptrCast(*const ICertificatePolicy.VTable, self.vtable).get_PolicyQualifiers(@ptrCast(*const ICertificatePolicy, self), ppValue);
+                return @as(*const ICertificatePolicy.VTable, @ptrCast(self.vtable)).get_PolicyQualifiers(@as(*const ICertificatePolicy, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -10971,27 +10971,27 @@ pub const ICertificatePolicies = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertificatePolicy) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertificatePolicies, self), Index, pVal);
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertificatePolicies, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get_Count(@ptrCast(*const ICertificatePolicies, self), pVal);
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertificatePolicies, self), pVal);
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_Add(self: *const T, pVal: ?*ICertificatePolicy) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).Add(@ptrCast(*const ICertificatePolicies, self), pVal);
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertificatePolicies, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).Remove(@ptrCast(*const ICertificatePolicies, self), Index);
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertificatePolicies, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificatePolicies_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICertificatePolicies.VTable, self.vtable).Clear(@ptrCast(*const ICertificatePolicies, self));
+                return @as(*const ICertificatePolicies.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertificatePolicies, @ptrCast(self)));
             }
         };
     }
@@ -11046,15 +11046,15 @@ pub const IX509ExtensionCertificatePolicies = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionCertificatePolicies_InitializeEncode(self: *const T, pValue: ?*ICertificatePolicies) HRESULT {
-                return @ptrCast(*const IX509ExtensionCertificatePolicies.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionCertificatePolicies, self), pValue);
+                return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionCertificatePolicies_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionCertificatePolicies.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionCertificatePolicies, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionCertificatePolicies_get_Policies(self: *const T, ppValue: ?*?*ICertificatePolicies) HRESULT {
-                return @ptrCast(*const IX509ExtensionCertificatePolicies.VTable, self.vtable).get_Policies(@ptrCast(*const IX509ExtensionCertificatePolicies, self), ppValue);
+                return @as(*const IX509ExtensionCertificatePolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionCertificatePolicies, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -11109,15 +11109,15 @@ pub const IX509ExtensionMSApplicationPolicies = extern struct {
             pub usingnamespace IX509Extension.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionMSApplicationPolicies_InitializeEncode(self: *const T, pValue: ?*ICertificatePolicies) HRESULT {
-                return @ptrCast(*const IX509ExtensionMSApplicationPolicies.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509ExtensionMSApplicationPolicies, self), pValue);
+                return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionMSApplicationPolicies_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509ExtensionMSApplicationPolicies.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509ExtensionMSApplicationPolicies, self), Encoding, strEncodedData);
+                return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509ExtensionMSApplicationPolicies_get_Policies(self: *const T, ppValue: ?*?*ICertificatePolicies) HRESULT {
-                return @ptrCast(*const IX509ExtensionMSApplicationPolicies.VTable, self.vtable).get_Policies(@ptrCast(*const IX509ExtensionMSApplicationPolicies, self), ppValue);
+                return @as(*const IX509ExtensionMSApplicationPolicies.VTable, @ptrCast(self.vtable)).get_Policies(@as(*const IX509ExtensionMSApplicationPolicies, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -11179,15 +11179,15 @@ pub const IX509Attribute = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attribute_Initialize(self: *const T, pObjectId: ?*IObjectId, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Attribute.VTable, self.vtable).Initialize(@ptrCast(*const IX509Attribute, self), pObjectId, Encoding, strEncodedData);
+                return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Attribute, @ptrCast(self)), pObjectId, Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attribute_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509Attribute.VTable, self.vtable).get_ObjectId(@ptrCast(*const IX509Attribute, self), ppValue);
+                return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const IX509Attribute, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attribute_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Attribute.VTable, self.vtable).get_RawData(@ptrCast(*const IX509Attribute, self), Encoding, pValue);
+                return @as(*const IX509Attribute.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509Attribute, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -11276,27 +11276,27 @@ pub const IX509Attributes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509Attribute) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509Attributes, self), Index, pVal);
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509Attributes, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).get_Count(@ptrCast(*const IX509Attributes, self), pVal);
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509Attributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509Attributes, self), pVal);
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509Attributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_Add(self: *const T, pVal: ?*IX509Attribute) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).Add(@ptrCast(*const IX509Attributes, self), pVal);
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509Attributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).Remove(@ptrCast(*const IX509Attributes, self), Index);
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509Attributes, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Attributes_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509Attributes.VTable, self.vtable).Clear(@ptrCast(*const IX509Attributes, self));
+                return @as(*const IX509Attributes.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509Attributes, @ptrCast(self)));
             }
         };
     }
@@ -11351,15 +11351,15 @@ pub const IX509AttributeExtensions = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeExtensions_InitializeEncode(self: *const T, pExtensions: ?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509AttributeExtensions.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeExtensions, self), pExtensions);
+                return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeExtensions, @ptrCast(self)), pExtensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeExtensions_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeExtensions.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeExtensions, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeExtensions, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeExtensions_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509AttributeExtensions.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509AttributeExtensions, self), ppValue);
+                return @as(*const IX509AttributeExtensions.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509AttributeExtensions, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -11488,27 +11488,27 @@ pub const IX509AttributeClientId = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_InitializeEncode(self: *const T, ClientId: RequestClientInfoClientId, strMachineDnsName: ?BSTR, strUserSamName: ?BSTR, strProcessName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeClientId, self), ClientId, strMachineDnsName, strUserSamName, strProcessName);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeClientId, @ptrCast(self)), ClientId, strMachineDnsName, strUserSamName, strProcessName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeClientId, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeClientId, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_get_ClientId(self: *const T, pValue: ?*RequestClientInfoClientId) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_ClientId(@ptrCast(*const IX509AttributeClientId, self), pValue);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_get_MachineDnsName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_MachineDnsName(@ptrCast(*const IX509AttributeClientId, self), pValue);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_MachineDnsName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_get_UserSamName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_UserSamName(@ptrCast(*const IX509AttributeClientId, self), pValue);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_UserSamName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeClientId_get_ProcessName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeClientId.VTable, self.vtable).get_ProcessName(@ptrCast(*const IX509AttributeClientId, self), pValue);
+                return @as(*const IX509AttributeClientId.VTable, @ptrCast(self.vtable)).get_ProcessName(@as(*const IX509AttributeClientId, @ptrCast(self)), pValue);
             }
         };
     }
@@ -11567,15 +11567,15 @@ pub const IX509AttributeRenewalCertificate = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeRenewalCertificate_InitializeEncode(self: *const T, Encoding: EncodingType, strCert: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeRenewalCertificate.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeRenewalCertificate, self), Encoding, strCert);
+                return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, strCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeRenewalCertificate_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeRenewalCertificate.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeRenewalCertificate, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeRenewalCertificate_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeRenewalCertificate.VTable, self.vtable).get_RenewalCertificate(@ptrCast(*const IX509AttributeRenewalCertificate, self), Encoding, pValue);
+                return @as(*const IX509AttributeRenewalCertificate.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IX509AttributeRenewalCertificate, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -11666,23 +11666,23 @@ pub const IX509AttributeArchiveKey = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKey_InitializeEncode(self: *const T, pKey: ?*IX509PrivateKey, Encoding: EncodingType, strCAXCert: ?BSTR, pAlgorithm: ?*IObjectId, EncryptionStrength: i32) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeArchiveKey, self), pKey, Encoding, strCAXCert, pAlgorithm, EncryptionStrength);
+                return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), pKey, Encoding, strCAXCert, pAlgorithm, EncryptionStrength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKey_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeArchiveKey, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKey_get_EncryptedKeyBlob(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).get_EncryptedKeyBlob(@ptrCast(*const IX509AttributeArchiveKey, self), Encoding, pValue);
+                return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptedKeyBlob(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKey_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509AttributeArchiveKey, self), ppValue);
+                return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKey_get_EncryptionStrength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKey.VTable, self.vtable).get_EncryptionStrength(@ptrCast(*const IX509AttributeArchiveKey, self), pValue);
+                return @as(*const IX509AttributeArchiveKey.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509AttributeArchiveKey, @ptrCast(self)), pValue);
             }
         };
     }
@@ -11741,15 +11741,15 @@ pub const IX509AttributeArchiveKeyHash = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKeyHash_InitializeEncodeFromEncryptedKeyBlob(self: *const T, Encoding: EncodingType, strEncryptedKeyBlob: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKeyHash.VTable, self.vtable).InitializeEncodeFromEncryptedKeyBlob(@ptrCast(*const IX509AttributeArchiveKeyHash, self), Encoding, strEncryptedKeyBlob);
+                return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).InitializeEncodeFromEncryptedKeyBlob(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, strEncryptedKeyBlob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKeyHash_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKeyHash.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeArchiveKeyHash, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeArchiveKeyHash_get_EncryptedKeyHashBlob(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeArchiveKeyHash.VTable, self.vtable).get_EncryptedKeyHashBlob(@ptrCast(*const IX509AttributeArchiveKeyHash, self), Encoding, pValue);
+                return @as(*const IX509AttributeArchiveKeyHash.VTable, @ptrCast(self.vtable)).get_EncryptedKeyHashBlob(@as(*const IX509AttributeArchiveKeyHash, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -11804,15 +11804,15 @@ pub const IX509AttributeOSVersion = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeOSVersion_InitializeEncode(self: *const T, strOSVersion: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeOSVersion.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeOSVersion, self), strOSVersion);
+                return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeOSVersion, @ptrCast(self)), strOSVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeOSVersion_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeOSVersion.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeOSVersion, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeOSVersion, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeOSVersion_get_OSVersion(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeOSVersion.VTable, self.vtable).get_OSVersion(@ptrCast(*const IX509AttributeOSVersion, self), pValue);
+                return @as(*const IX509AttributeOSVersion.VTable, @ptrCast(self.vtable)).get_OSVersion(@as(*const IX509AttributeOSVersion, @ptrCast(self)), pValue);
             }
         };
     }
@@ -11901,23 +11901,23 @@ pub const IX509AttributeCspProvider = extern struct {
             pub usingnamespace IX509Attribute.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeCspProvider_InitializeEncode(self: *const T, KeySpec: X509KeySpec, strProviderName: ?BSTR, Encoding: EncodingType, strSignature: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).InitializeEncode(@ptrCast(*const IX509AttributeCspProvider, self), KeySpec, strProviderName, Encoding, strSignature);
+                return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).InitializeEncode(@as(*const IX509AttributeCspProvider, @ptrCast(self)), KeySpec, strProviderName, Encoding, strSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeCspProvider_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509AttributeCspProvider, self), Encoding, strEncodedData);
+                return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509AttributeCspProvider, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeCspProvider_get_KeySpec(self: *const T, pValue: ?*X509KeySpec) HRESULT {
-                return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_KeySpec(@ptrCast(*const IX509AttributeCspProvider, self), pValue);
+                return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IX509AttributeCspProvider, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeCspProvider_get_ProviderName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_ProviderName(@ptrCast(*const IX509AttributeCspProvider, self), pValue);
+                return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IX509AttributeCspProvider, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509AttributeCspProvider_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509AttributeCspProvider.VTable, self.vtable).get_Signature(@ptrCast(*const IX509AttributeCspProvider, self), Encoding, pValue);
+                return @as(*const IX509AttributeCspProvider.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509AttributeCspProvider, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -11983,19 +11983,19 @@ pub const ICryptAttribute = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttribute_InitializeFromObjectId(self: *const T, pObjectId: ?*IObjectId) HRESULT {
-                return @ptrCast(*const ICryptAttribute.VTable, self.vtable).InitializeFromObjectId(@ptrCast(*const ICryptAttribute, self), pObjectId);
+                return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).InitializeFromObjectId(@as(*const ICryptAttribute, @ptrCast(self)), pObjectId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttribute_InitializeFromValues(self: *const T, pAttributes: ?*IX509Attributes) HRESULT {
-                return @ptrCast(*const ICryptAttribute.VTable, self.vtable).InitializeFromValues(@ptrCast(*const ICryptAttribute, self), pAttributes);
+                return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).InitializeFromValues(@as(*const ICryptAttribute, @ptrCast(self)), pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttribute_get_ObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const ICryptAttribute.VTable, self.vtable).get_ObjectId(@ptrCast(*const ICryptAttribute, self), ppValue);
+                return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).get_ObjectId(@as(*const ICryptAttribute, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttribute_get_Values(self: *const T, ppValue: ?*?*IX509Attributes) HRESULT {
-                return @ptrCast(*const ICryptAttribute.VTable, self.vtable).get_Values(@ptrCast(*const ICryptAttribute, self), ppValue);
+                return @as(*const ICryptAttribute.VTable, @ptrCast(self.vtable)).get_Values(@as(*const ICryptAttribute, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -12109,35 +12109,35 @@ pub const ICryptAttributes = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICryptAttribute) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICryptAttributes, self), Index, pVal);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICryptAttributes, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get_Count(@ptrCast(*const ICryptAttributes, self), pVal);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICryptAttributes, self), pVal);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_Add(self: *const T, pVal: ?*ICryptAttribute) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).Add(@ptrCast(*const ICryptAttributes, self), pVal);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Add(@as(*const ICryptAttributes, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).Remove(@ptrCast(*const ICryptAttributes, self), Index);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICryptAttributes, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).Clear(@ptrCast(*const ICryptAttributes, self));
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICryptAttributes, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_get_IndexByObjectId(self: *const T, pObjectId: ?*IObjectId, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).get_IndexByObjectId(@ptrCast(*const ICryptAttributes, self), pObjectId, pIndex);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).get_IndexByObjectId(@as(*const ICryptAttributes, @ptrCast(self)), pObjectId, pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICryptAttributes_AddRange(self: *const T, pValue: ?*ICryptAttributes) HRESULT {
-                return @ptrCast(*const ICryptAttributes.VTable, self.vtable).AddRange(@ptrCast(*const ICryptAttributes, self), pValue);
+                return @as(*const ICryptAttributes.VTable, @ptrCast(self.vtable)).AddRange(@as(*const ICryptAttributes, @ptrCast(self)), pValue);
             }
         };
     }
@@ -12455,31 +12455,31 @@ pub const ICertProperty = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_InitializeFromCertificate(self: *const T, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).InitializeFromCertificate(@ptrCast(*const ICertProperty, self), MachineContext, Encoding, strCertificate);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_InitializeDecode(self: *const T, Encoding: EncodingType, strEncodedData: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).InitializeDecode(@ptrCast(*const ICertProperty, self), Encoding, strEncodedData);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const ICertProperty, @ptrCast(self)), Encoding, strEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_get_PropertyId(self: *const T, pValue: ?*CERTENROLL_PROPERTYID) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).get_PropertyId(@ptrCast(*const ICertProperty, self), pValue);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const ICertProperty, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_put_PropertyId(self: *const T, Value: CERTENROLL_PROPERTYID) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).put_PropertyId(@ptrCast(*const ICertProperty, self), Value);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).put_PropertyId(@as(*const ICertProperty, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).get_RawData(@ptrCast(*const ICertProperty, self), Encoding, pValue);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const ICertProperty, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_RemoveFromCertificate(self: *const T, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).RemoveFromCertificate(@ptrCast(*const ICertProperty, self), MachineContext, Encoding, strCertificate);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).RemoveFromCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperty_SetValueOnCertificate(self: *const T, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperty.VTable, self.vtable).SetValueOnCertificate(@ptrCast(*const ICertProperty, self), MachineContext, Encoding, strCertificate);
+                return @as(*const ICertProperty.VTable, @ptrCast(self.vtable)).SetValueOnCertificate(@as(*const ICertProperty, @ptrCast(self)), MachineContext, Encoding, strCertificate);
             }
         };
     }
@@ -12582,31 +12582,31 @@ pub const ICertProperties = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertProperty) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertProperties, self), Index, pVal);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertProperties, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).get_Count(@ptrCast(*const ICertProperties, self), pVal);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertProperties, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertProperties, self), pVal);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertProperties, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_Add(self: *const T, pVal: ?*ICertProperty) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).Add(@ptrCast(*const ICertProperties, self), pVal);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertProperties, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).Remove(@ptrCast(*const ICertProperties, self), Index);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertProperties, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).Clear(@ptrCast(*const ICertProperties, self));
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertProperties, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertProperties_InitializeFromCertificate(self: *const T, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertProperties.VTable, self.vtable).InitializeFromCertificate(@ptrCast(*const ICertProperties, self), MachineContext, Encoding, strCertificate);
+                return @as(*const ICertProperties.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const ICertProperties, @ptrCast(self)), MachineContext, Encoding, strCertificate);
             }
         };
     }
@@ -12649,11 +12649,11 @@ pub const ICertPropertyFriendlyName = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyFriendlyName_Initialize(self: *const T, strFriendlyName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyFriendlyName.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyFriendlyName, self), strFriendlyName);
+                return @as(*const ICertPropertyFriendlyName.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyFriendlyName, @ptrCast(self)), strFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyFriendlyName_get_FriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyFriendlyName.VTable, self.vtable).get_FriendlyName(@ptrCast(*const ICertPropertyFriendlyName, self), pValue);
+                return @as(*const ICertPropertyFriendlyName.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyFriendlyName, @ptrCast(self)), pValue);
             }
         };
     }
@@ -12696,11 +12696,11 @@ pub const ICertPropertyDescription = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyDescription_Initialize(self: *const T, strDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyDescription.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyDescription, self), strDescription);
+                return @as(*const ICertPropertyDescription.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyDescription, @ptrCast(self)), strDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyDescription_get_Description(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyDescription.VTable, self.vtable).get_Description(@ptrCast(*const ICertPropertyDescription, self), pValue);
+                return @as(*const ICertPropertyDescription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const ICertPropertyDescription, @ptrCast(self)), pValue);
             }
         };
     }
@@ -12743,11 +12743,11 @@ pub const ICertPropertyAutoEnroll = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyAutoEnroll_Initialize(self: *const T, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyAutoEnroll.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyAutoEnroll, self), strTemplateName);
+                return @as(*const ICertPropertyAutoEnroll.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyAutoEnroll, @ptrCast(self)), strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyAutoEnroll_get_TemplateName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyAutoEnroll.VTable, self.vtable).get_TemplateName(@ptrCast(*const ICertPropertyAutoEnroll, self), pValue);
+                return @as(*const ICertPropertyAutoEnroll.VTable, @ptrCast(self.vtable)).get_TemplateName(@as(*const ICertPropertyAutoEnroll, @ptrCast(self)), pValue);
             }
         };
     }
@@ -12798,15 +12798,15 @@ pub const ICertPropertyRequestOriginator = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRequestOriginator_Initialize(self: *const T, strRequestOriginator: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyRequestOriginator.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyRequestOriginator, self), strRequestOriginator);
+                return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)), strRequestOriginator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRequestOriginator_InitializeFromLocalRequestOriginator(self: *const T) HRESULT {
-                return @ptrCast(*const ICertPropertyRequestOriginator.VTable, self.vtable).InitializeFromLocalRequestOriginator(@ptrCast(*const ICertPropertyRequestOriginator, self));
+                return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).InitializeFromLocalRequestOriginator(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRequestOriginator_get_RequestOriginator(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyRequestOriginator.VTable, self.vtable).get_RequestOriginator(@ptrCast(*const ICertPropertyRequestOriginator, self), pValue);
+                return @as(*const ICertPropertyRequestOriginator.VTable, @ptrCast(self.vtable)).get_RequestOriginator(@as(*const ICertPropertyRequestOriginator, @ptrCast(self)), pValue);
             }
         };
     }
@@ -12853,11 +12853,11 @@ pub const ICertPropertySHA1Hash = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertySHA1Hash_Initialize(self: *const T, Encoding: EncodingType, strRenewalValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertySHA1Hash.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertySHA1Hash, self), Encoding, strRenewalValue);
+                return @as(*const ICertPropertySHA1Hash.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertySHA1Hash, @ptrCast(self)), Encoding, strRenewalValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertySHA1Hash_get_SHA1Hash(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertySHA1Hash.VTable, self.vtable).get_SHA1Hash(@ptrCast(*const ICertPropertySHA1Hash, self), Encoding, pValue);
+                return @as(*const ICertPropertySHA1Hash.VTable, @ptrCast(self.vtable)).get_SHA1Hash(@as(*const ICertPropertySHA1Hash, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -12900,11 +12900,11 @@ pub const ICertPropertyKeyProvInfo = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyKeyProvInfo_Initialize(self: *const T, pValue: ?*IX509PrivateKey) HRESULT {
-                return @ptrCast(*const ICertPropertyKeyProvInfo.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyKeyProvInfo, self), pValue);
+                return @as(*const ICertPropertyKeyProvInfo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyKeyProvInfo, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyKeyProvInfo_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) HRESULT {
-                return @ptrCast(*const ICertPropertyKeyProvInfo.VTable, self.vtable).get_PrivateKey(@ptrCast(*const ICertPropertyKeyProvInfo, self), ppValue);
+                return @as(*const ICertPropertyKeyProvInfo.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const ICertPropertyKeyProvInfo, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -12947,11 +12947,11 @@ pub const ICertPropertyArchived = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyArchived_Initialize(self: *const T, ArchivedValue: i16) HRESULT {
-                return @ptrCast(*const ICertPropertyArchived.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyArchived, self), ArchivedValue);
+                return @as(*const ICertPropertyArchived.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyArchived, @ptrCast(self)), ArchivedValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyArchived_get_Archived(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICertPropertyArchived.VTable, self.vtable).get_Archived(@ptrCast(*const ICertPropertyArchived, self), pValue);
+                return @as(*const ICertPropertyArchived.VTable, @ptrCast(self.vtable)).get_Archived(@as(*const ICertPropertyArchived, @ptrCast(self)), pValue);
             }
         };
     }
@@ -13019,19 +13019,19 @@ pub const ICertPropertyBackedUp = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyBackedUp_InitializeFromCurrentTime(self: *const T, BackedUpValue: i16) HRESULT {
-                return @ptrCast(*const ICertPropertyBackedUp.VTable, self.vtable).InitializeFromCurrentTime(@ptrCast(*const ICertPropertyBackedUp, self), BackedUpValue);
+                return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).InitializeFromCurrentTime(@as(*const ICertPropertyBackedUp, @ptrCast(self)), BackedUpValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyBackedUp_Initialize(self: *const T, BackedUpValue: i16, Date: f64) HRESULT {
-                return @ptrCast(*const ICertPropertyBackedUp.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyBackedUp, self), BackedUpValue, Date);
+                return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyBackedUp, @ptrCast(self)), BackedUpValue, Date);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyBackedUp_get_BackedUpValue(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ICertPropertyBackedUp.VTable, self.vtable).get_BackedUpValue(@ptrCast(*const ICertPropertyBackedUp, self), pValue);
+                return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).get_BackedUpValue(@as(*const ICertPropertyBackedUp, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyBackedUp_get_BackedUpTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const ICertPropertyBackedUp.VTable, self.vtable).get_BackedUpTime(@ptrCast(*const ICertPropertyBackedUp, self), pDate);
+                return @as(*const ICertPropertyBackedUp.VTable, @ptrCast(self.vtable)).get_BackedUpTime(@as(*const ICertPropertyBackedUp, @ptrCast(self)), pDate);
             }
         };
     }
@@ -13119,23 +13119,23 @@ pub const ICertPropertyEnrollment = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollment_Initialize(self: *const T, RequestId: i32, strCADnsName: ?BSTR, strCAName: ?BSTR, strFriendlyName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyEnrollment, self), RequestId, strCADnsName, strCAName, strFriendlyName);
+                return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyEnrollment, @ptrCast(self)), RequestId, strCADnsName, strCAName, strFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollment_get_RequestId(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_RequestId(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
+                return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_RequestId(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollment_get_CADnsName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_CADnsName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
+                return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_CADnsName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollment_get_CAName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_CAName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
+                return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_CAName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollment_get_FriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollment.VTable, self.vtable).get_FriendlyName(@ptrCast(*const ICertPropertyEnrollment, self), pValue);
+                return @as(*const ICertPropertyEnrollment.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const ICertPropertyEnrollment, @ptrCast(self)), pValue);
             }
         };
     }
@@ -13196,15 +13196,15 @@ pub const ICertPropertyRenewal = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRenewal_Initialize(self: *const T, Encoding: EncodingType, strRenewalValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyRenewal.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyRenewal, self), Encoding, strRenewalValue);
+                return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyRenewal, @ptrCast(self)), Encoding, strRenewalValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRenewal_InitializeFromCertificateHash(self: *const T, MachineContext: i16, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyRenewal.VTable, self.vtable).InitializeFromCertificateHash(@ptrCast(*const ICertPropertyRenewal, self), MachineContext, Encoding, strCertificate);
+                return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).InitializeFromCertificateHash(@as(*const ICertPropertyRenewal, @ptrCast(self)), MachineContext, Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyRenewal_get_Renewal(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyRenewal.VTable, self.vtable).get_Renewal(@ptrCast(*const ICertPropertyRenewal, self), Encoding, pValue);
+                return @as(*const ICertPropertyRenewal.VTable, @ptrCast(self.vtable)).get_Renewal(@as(*const ICertPropertyRenewal, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -13251,11 +13251,11 @@ pub const ICertPropertyArchivedKeyHash = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyArchivedKeyHash_Initialize(self: *const T, Encoding: EncodingType, strArchivedKeyHashValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyArchivedKeyHash.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyArchivedKeyHash, self), Encoding, strArchivedKeyHashValue);
+                return @as(*const ICertPropertyArchivedKeyHash.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyArchivedKeyHash, @ptrCast(self)), Encoding, strArchivedKeyHashValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyArchivedKeyHash_get_ArchivedKeyHash(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyArchivedKeyHash.VTable, self.vtable).get_ArchivedKeyHash(@ptrCast(*const ICertPropertyArchivedKeyHash, self), Encoding, pValue);
+                return @as(*const ICertPropertyArchivedKeyHash.VTable, @ptrCast(self.vtable)).get_ArchivedKeyHash(@as(*const ICertPropertyArchivedKeyHash, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -13401,39 +13401,39 @@ pub const ICertPropertyEnrollmentPolicyServer = extern struct {
             pub usingnamespace ICertProperty.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_Initialize(self: *const T, PropertyFlags: EnrollmentPolicyServerPropertyFlags, AuthFlags: X509EnrollmentAuthFlags, EnrollmentServerAuthFlags: X509EnrollmentAuthFlags, UrlFlags: PolicyServerUrlFlags, strRequestId: ?BSTR, strUrl: ?BSTR, strId: ?BSTR, strEnrollmentServerUrl: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).Initialize(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), PropertyFlags, AuthFlags, EnrollmentServerAuthFlags, UrlFlags, strRequestId, strUrl, strId, strEnrollmentServerUrl);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), PropertyFlags, AuthFlags, EnrollmentServerAuthFlags, UrlFlags, strRequestId, strUrl, strId, strEnrollmentServerUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerUrl(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerUrl(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerId(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerId(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetEnrollmentServerUrl(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetEnrollmentServerUrl(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetEnrollmentServerUrl(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetRequestIdString(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetRequestIdString(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetRequestIdString(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetPropertyFlags(self: *const T, pValue: ?*EnrollmentPolicyServerPropertyFlags) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetPropertyFlags(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPropertyFlags(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetUrlFlags(self: *const T, pValue: ?*PolicyServerUrlFlags) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetUrlFlags(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetUrlFlags(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetAuthentication(self: *const T, pValue: ?*X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetAuthentication(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAuthentication(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertPropertyEnrollmentPolicyServer_GetEnrollmentServerAuthentication(self: *const T, pValue: ?*X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const ICertPropertyEnrollmentPolicyServer.VTable, self.vtable).GetEnrollmentServerAuthentication(@ptrCast(*const ICertPropertyEnrollmentPolicyServer, self), pValue);
+                return @as(*const ICertPropertyEnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetEnrollmentServerAuthentication(@as(*const ICertPropertyEnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
         };
     }
@@ -13622,55 +13622,55 @@ pub const IX509SignatureInformation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509SignatureInformation, self), ppValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_put_HashAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IX509SignatureInformation, self), pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_PublicKeyAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_PublicKeyAlgorithm(@ptrCast(*const IX509SignatureInformation, self), ppValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_PublicKeyAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_put_PublicKeyAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_PublicKeyAlgorithm(@ptrCast(*const IX509SignatureInformation, self), pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_PublicKeyAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_Parameters(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_Parameters(@ptrCast(*const IX509SignatureInformation, self), Encoding, pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IX509SignatureInformation, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_put_Parameters(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_Parameters(@ptrCast(*const IX509SignatureInformation, self), Encoding, Value);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IX509SignatureInformation, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_AlternateSignatureAlgorithm(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_AlternateSignatureAlgorithm(@ptrCast(*const IX509SignatureInformation, self), pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_put_AlternateSignatureAlgorithm(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_AlternateSignatureAlgorithm(@ptrCast(*const IX509SignatureInformation, self), Value);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_AlternateSignatureAlgorithmSet(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_AlternateSignatureAlgorithmSet(@ptrCast(*const IX509SignatureInformation, self), pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithmSet(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_get_NullSigned(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509SignatureInformation, self), pValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509SignatureInformation, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_put_NullSigned(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).put_NullSigned(@ptrCast(*const IX509SignatureInformation, self), Value);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).put_NullSigned(@as(*const IX509SignatureInformation, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_GetSignatureAlgorithm(self: *const T, Pkcs7Signature: i16, SignatureKey: i16, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).GetSignatureAlgorithm(@ptrCast(*const IX509SignatureInformation, self), Pkcs7Signature, SignatureKey, ppValue);
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).GetSignatureAlgorithm(@as(*const IX509SignatureInformation, @ptrCast(self)), Pkcs7Signature, SignatureKey, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SignatureInformation_SetDefaultValues(self: *const T) HRESULT {
-                return @ptrCast(*const IX509SignatureInformation.VTable, self.vtable).SetDefaultValues(@ptrCast(*const IX509SignatureInformation, self));
+                return @as(*const IX509SignatureInformation.VTable, @ptrCast(self.vtable)).SetDefaultValues(@as(*const IX509SignatureInformation, @ptrCast(self)));
             }
         };
     }
@@ -13838,47 +13838,47 @@ pub const ISignerCertificate = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_Initialize(self: *const T, MachineContext: i16, VerifyType: X509PrivateKeyVerify, Encoding: EncodingType, strCertificate: ?BSTR) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).Initialize(@ptrCast(*const ISignerCertificate, self), MachineContext, VerifyType, Encoding, strCertificate);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ISignerCertificate, @ptrCast(self)), MachineContext, VerifyType, Encoding, strCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_Certificate(@ptrCast(*const ISignerCertificate, self), Encoding, pValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const ISignerCertificate, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_PrivateKey(@ptrCast(*const ISignerCertificate, self), ppValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const ISignerCertificate, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_Silent(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_Silent(@ptrCast(*const ISignerCertificate, self), pValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_put_Silent(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_Silent(@ptrCast(*const ISignerCertificate, self), Value);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const ISignerCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_ParentWindow(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_ParentWindow(@ptrCast(*const ISignerCertificate, self), pValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_put_ParentWindow(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_ParentWindow(@ptrCast(*const ISignerCertificate, self), Value);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const ISignerCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_UIContextMessage(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const ISignerCertificate, self), pValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const ISignerCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_put_UIContextMessage(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_UIContextMessage(@ptrCast(*const ISignerCertificate, self), Value);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const ISignerCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_put_Pin(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).put_Pin(@ptrCast(*const ISignerCertificate, self), Value);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).put_Pin(@as(*const ISignerCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificate_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) HRESULT {
-                return @ptrCast(*const ISignerCertificate.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const ISignerCertificate, self), ppValue);
+                return @as(*const ISignerCertificate.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const ISignerCertificate, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -13979,31 +13979,31 @@ pub const ISignerCertificates = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ISignerCertificates, self), Index, pVal);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ISignerCertificates, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get_Count(@ptrCast(*const ISignerCertificates, self), pVal);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISignerCertificates, self), pVal);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_Add(self: *const T, pVal: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).Add(@ptrCast(*const ISignerCertificates, self), pVal);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Add(@as(*const ISignerCertificates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).Remove(@ptrCast(*const ISignerCertificates, self), Index);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISignerCertificates, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).Clear(@ptrCast(*const ISignerCertificates, self));
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISignerCertificates, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISignerCertificates_Find(self: *const T, pSignerCert: ?*ISignerCertificate, piSignerCert: ?*i32) HRESULT {
-                return @ptrCast(*const ISignerCertificates.VTable, self.vtable).Find(@ptrCast(*const ISignerCertificates, self), pSignerCert, piSignerCert);
+                return @as(*const ISignerCertificates.VTable, @ptrCast(self.vtable)).Find(@as(*const ISignerCertificates, @ptrCast(self)), pSignerCert, piSignerCert);
             }
         };
     }
@@ -14061,15 +14061,15 @@ pub const IX509NameValuePair = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePair_Initialize(self: *const T, strName: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).Initialize(@ptrCast(*const IX509NameValuePair, self), strName, strValue);
+                return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509NameValuePair, @ptrCast(self)), strName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePair_get_Value(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).get_Value(@ptrCast(*const IX509NameValuePair, self), pValue);
+                return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IX509NameValuePair, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePair_get_Name(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509NameValuePair.VTable, self.vtable).get_Name(@ptrCast(*const IX509NameValuePair, self), pValue);
+                return @as(*const IX509NameValuePair.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IX509NameValuePair, @ptrCast(self)), pValue);
             }
         };
     }
@@ -14158,27 +14158,27 @@ pub const IX509NameValuePairs = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509NameValuePair) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509NameValuePairs, self), Index, pVal);
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509NameValuePairs, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get_Count(@ptrCast(*const IX509NameValuePairs, self), pVal);
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509NameValuePairs, self), pVal);
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_Add(self: *const T, pVal: ?*IX509NameValuePair) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).Add(@ptrCast(*const IX509NameValuePairs, self), pVal);
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509NameValuePairs, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).Remove(@ptrCast(*const IX509NameValuePairs, self), Index);
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509NameValuePairs, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509NameValuePairs_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509NameValuePairs.VTable, self.vtable).Clear(@ptrCast(*const IX509NameValuePairs, self));
+                return @as(*const IX509NameValuePairs.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509NameValuePairs, @ptrCast(self)));
             }
         };
     }
@@ -14278,7 +14278,7 @@ pub const IX509CertificateTemplate = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplate_get_Property(self: *const T, property: EnrollmentTemplateProperty, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplate.VTable, self.vtable).get_Property(@ptrCast(*const IX509CertificateTemplate, self), property, pValue);
+                return @as(*const IX509CertificateTemplate.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IX509CertificateTemplate, @ptrCast(self)), property, pValue);
             }
         };
     }
@@ -14397,35 +14397,35 @@ pub const IX509CertificateTemplates = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509CertificateTemplates, self), Index, pVal);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509CertificateTemplates, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_Count(@ptrCast(*const IX509CertificateTemplates, self), pVal);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509CertificateTemplates, self), pVal);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_Add(self: *const T, pVal: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).Add(@ptrCast(*const IX509CertificateTemplates, self), pVal);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509CertificateTemplates, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).Remove(@ptrCast(*const IX509CertificateTemplates, self), Index);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509CertificateTemplates, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).Clear(@ptrCast(*const IX509CertificateTemplates, self));
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509CertificateTemplates, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_get_ItemByName(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByName(@ptrCast(*const IX509CertificateTemplates, self), bstrName, ppValue);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const IX509CertificateTemplates, @ptrCast(self)), bstrName, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplates_get_ItemByOid(self: *const T, pOid: ?*IObjectId, ppValue: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplates.VTable, self.vtable).get_ItemByOid(@ptrCast(*const IX509CertificateTemplates, self), pOid, ppValue);
+                return @as(*const IX509CertificateTemplates.VTable, @ptrCast(self.vtable)).get_ItemByOid(@as(*const IX509CertificateTemplates, @ptrCast(self)), pOid, ppValue);
             }
         };
     }
@@ -14521,23 +14521,23 @@ pub const IX509CertificateTemplateWritable = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplateWritable_Initialize(self: *const T, pValue: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).Initialize(@ptrCast(*const IX509CertificateTemplateWritable, self), pValue);
+                return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplateWritable_Commit(self: *const T, commitFlags: CommitTemplateFlags, strServerContext: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).Commit(@ptrCast(*const IX509CertificateTemplateWritable, self), commitFlags, strServerContext);
+                return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).Commit(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), commitFlags, strServerContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplateWritable_get_Property(self: *const T, property: EnrollmentTemplateProperty, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).get_Property(@ptrCast(*const IX509CertificateTemplateWritable, self), property, pValue);
+                return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), property, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplateWritable_put_Property(self: *const T, property: EnrollmentTemplateProperty, value: VARIANT) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).put_Property(@ptrCast(*const IX509CertificateTemplateWritable, self), property, value);
+                return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).put_Property(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), property, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateTemplateWritable_get_Template(self: *const T, ppValue: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateTemplateWritable.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateTemplateWritable, self), ppValue);
+                return @as(*const IX509CertificateTemplateWritable.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateTemplateWritable, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -14599,7 +14599,7 @@ pub const ICertificationAuthority = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthority_get_Property(self: *const T, property: EnrollmentCAProperty, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICertificationAuthority.VTable, self.vtable).get_Property(@ptrCast(*const ICertificationAuthority, self), property, pValue);
+                return @as(*const ICertificationAuthority.VTable, @ptrCast(self.vtable)).get_Property(@as(*const ICertificationAuthority, @ptrCast(self)), property, pValue);
             }
         };
     }
@@ -14711,35 +14711,35 @@ pub const ICertificationAuthorities = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*ICertificationAuthority) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const ICertificationAuthorities, self), Index, pVal);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const ICertificationAuthorities, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_Count(@ptrCast(*const ICertificationAuthorities, self), pVal);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get__NewEnum(@ptrCast(*const ICertificationAuthorities, self), pVal);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_Add(self: *const T, pVal: ?*ICertificationAuthority) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).Add(@ptrCast(*const ICertificationAuthorities, self), pVal);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Add(@as(*const ICertificationAuthorities, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).Remove(@ptrCast(*const ICertificationAuthorities, self), Index);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Remove(@as(*const ICertificationAuthorities, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).Clear(@ptrCast(*const ICertificationAuthorities, self));
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).Clear(@as(*const ICertificationAuthorities, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_ComputeSiteCosts(self: *const T) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).ComputeSiteCosts(@ptrCast(*const ICertificationAuthorities, self));
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).ComputeSiteCosts(@as(*const ICertificationAuthorities, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificationAuthorities_get_ItemByName(self: *const T, strName: ?BSTR, ppValue: ?*?*ICertificationAuthority) HRESULT {
-                return @ptrCast(*const ICertificationAuthorities.VTable, self.vtable).get_ItemByName(@ptrCast(*const ICertificationAuthorities, self), strName, ppValue);
+                return @as(*const ICertificationAuthorities.VTable, @ptrCast(self.vtable)).get_ItemByName(@as(*const ICertificationAuthorities, @ptrCast(self)), strName, ppValue);
             }
         };
     }
@@ -15055,99 +15055,99 @@ pub const IX509EnrollmentPolicyServer = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_Initialize(self: *const T, bstrPolicyServerUrl: ?BSTR, bstrPolicyServerId: ?BSTR, authFlags: X509EnrollmentAuthFlags, fIsUnTrusted: i16, context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).Initialize(@ptrCast(*const IX509EnrollmentPolicyServer, self), bstrPolicyServerUrl, bstrPolicyServerId, authFlags, fIsUnTrusted, context);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), bstrPolicyServerUrl, bstrPolicyServerId, authFlags, fIsUnTrusted, context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_LoadPolicy(self: *const T, option: X509EnrollmentPolicyLoadOption) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).LoadPolicy(@ptrCast(*const IX509EnrollmentPolicyServer, self), option);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).LoadPolicy(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), option);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetTemplates(self: *const T, pTemplates: ?*?*IX509CertificateTemplates) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetTemplates(@ptrCast(*const IX509EnrollmentPolicyServer, self), pTemplates);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetTemplates(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pTemplates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetCAsForTemplate(self: *const T, pTemplate: ?*IX509CertificateTemplate, ppCAs: ?*?*ICertificationAuthorities) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCAsForTemplate(@ptrCast(*const IX509EnrollmentPolicyServer, self), pTemplate, ppCAs);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCAsForTemplate(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pTemplate, ppCAs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetCAs(self: *const T, ppCAs: ?*?*ICertificationAuthorities) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCAs(@ptrCast(*const IX509EnrollmentPolicyServer, self), ppCAs);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCAs(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), ppCAs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_Validate(self: *const T) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).Validate(@ptrCast(*const IX509EnrollmentPolicyServer, self));
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Validate(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetCustomOids(self: *const T, ppObjectIds: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCustomOids(@ptrCast(*const IX509EnrollmentPolicyServer, self), ppObjectIds);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCustomOids(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), ppObjectIds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetNextUpdateTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetNextUpdateTime(@ptrCast(*const IX509EnrollmentPolicyServer, self), pDate);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetNextUpdateTime(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetLastUpdateTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetLastUpdateTime(@ptrCast(*const IX509EnrollmentPolicyServer, self), pDate);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetLastUpdateTime(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetPolicyServerUrl(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerUrl(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerUrl(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetPolicyServerId(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetPolicyServerId(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetPolicyServerId(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetFriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetIsDefaultCEP(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetIsDefaultCEP(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetIsDefaultCEP(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetUseClientId(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetUseClientId(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetUseClientId(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetAllowUnTrustedCA(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetAllowUnTrustedCA(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAllowUnTrustedCA(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetCachePath(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCachePath(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCachePath(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetCacheDir(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetCacheDir(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetCacheDir(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_GetAuthFlags(self: *const T, pValue: ?*X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).GetAuthFlags(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).GetAuthFlags(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_SetCredential(self: *const T, hWndParent: i32, flag: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).SetCredential(@ptrCast(*const IX509EnrollmentPolicyServer, self), hWndParent, flag, strCredential, strPassword);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).SetCredential(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), hWndParent, flag, strCredential, strPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_QueryChanges(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).QueryChanges(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).QueryChanges(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_InitializeImport(self: *const T, val: VARIANT) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).InitializeImport(@ptrCast(*const IX509EnrollmentPolicyServer, self), val);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).InitializeImport(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_Export(self: *const T, exportFlags: X509EnrollmentPolicyExportFlags, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).Export(@ptrCast(*const IX509EnrollmentPolicyServer, self), exportFlags, pVal);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).Export(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), exportFlags, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_get_Cost(self: *const T, pValue: ?*u32) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).get_Cost(@ptrCast(*const IX509EnrollmentPolicyServer, self), pValue);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).get_Cost(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentPolicyServer_put_Cost(self: *const T, value: u32) HRESULT {
-                return @ptrCast(*const IX509EnrollmentPolicyServer.VTable, self.vtable).put_Cost(@ptrCast(*const IX509EnrollmentPolicyServer, self), value);
+                return @as(*const IX509EnrollmentPolicyServer.VTable, @ptrCast(self.vtable)).put_Cost(@as(*const IX509EnrollmentPolicyServer, @ptrCast(self)), value);
             }
         };
     }
@@ -15351,63 +15351,63 @@ pub const IX509PolicyServerUrl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_Initialize(self: *const T, context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).Initialize(@ptrCast(*const IX509PolicyServerUrl, self), context);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_get_Url(self: *const T, ppValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_Url(@ptrCast(*const IX509PolicyServerUrl, self), ppValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Url(@as(*const IX509PolicyServerUrl, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_put_Url(self: *const T, pValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_Url(@ptrCast(*const IX509PolicyServerUrl, self), pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Url(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_get_Default(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_Default(@ptrCast(*const IX509PolicyServerUrl, self), pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Default(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_put_Default(self: *const T, value: i16) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_Default(@ptrCast(*const IX509PolicyServerUrl, self), value);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Default(@as(*const IX509PolicyServerUrl, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_get_Flags(self: *const T, pValue: ?*PolicyServerUrlFlags) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_Flags(@ptrCast(*const IX509PolicyServerUrl, self), pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_put_Flags(self: *const T, Flags: PolicyServerUrlFlags) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_Flags(@ptrCast(*const IX509PolicyServerUrl, self), Flags);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_get_AuthFlags(self: *const T, pValue: ?*X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_AuthFlags(@ptrCast(*const IX509PolicyServerUrl, self), pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_AuthFlags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_put_AuthFlags(self: *const T, Flags: X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_AuthFlags(@ptrCast(*const IX509PolicyServerUrl, self), Flags);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_AuthFlags(@as(*const IX509PolicyServerUrl, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_get_Cost(self: *const T, pValue: ?*u32) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).get_Cost(@ptrCast(*const IX509PolicyServerUrl, self), pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).get_Cost(@as(*const IX509PolicyServerUrl, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_put_Cost(self: *const T, value: u32) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).put_Cost(@ptrCast(*const IX509PolicyServerUrl, self), value);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).put_Cost(@as(*const IX509PolicyServerUrl, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_GetStringProperty(self: *const T, propertyId: PolicyServerUrlPropertyID, ppValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).GetStringProperty(@ptrCast(*const IX509PolicyServerUrl, self), propertyId, ppValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).GetStringProperty(@as(*const IX509PolicyServerUrl, @ptrCast(self)), propertyId, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_SetStringProperty(self: *const T, propertyId: PolicyServerUrlPropertyID, pValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).SetStringProperty(@ptrCast(*const IX509PolicyServerUrl, self), propertyId, pValue);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).SetStringProperty(@as(*const IX509PolicyServerUrl, @ptrCast(self)), propertyId, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_UpdateRegistry(self: *const T, context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).UpdateRegistry(@ptrCast(*const IX509PolicyServerUrl, self), context);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).UpdateRegistry(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerUrl_RemoveFromRegistry(self: *const T, context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509PolicyServerUrl.VTable, self.vtable).RemoveFromRegistry(@ptrCast(*const IX509PolicyServerUrl, self), context);
+                return @as(*const IX509PolicyServerUrl.VTable, @ptrCast(self.vtable)).RemoveFromRegistry(@as(*const IX509PolicyServerUrl, @ptrCast(self)), context);
             }
         };
     }
@@ -15508,31 +15508,31 @@ pub const IX509PolicyServerListManager = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509PolicyServerUrl) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509PolicyServerListManager, self), Index, pVal);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509PolicyServerListManager, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get_Count(@ptrCast(*const IX509PolicyServerListManager, self), pVal);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509PolicyServerListManager, self), pVal);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_Add(self: *const T, pVal: ?*IX509PolicyServerUrl) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).Add(@ptrCast(*const IX509PolicyServerListManager, self), pVal);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509PolicyServerListManager, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).Remove(@ptrCast(*const IX509PolicyServerListManager, self), Index);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509PolicyServerListManager, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).Clear(@ptrCast(*const IX509PolicyServerListManager, self));
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509PolicyServerListManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509PolicyServerListManager_Initialize(self: *const T, context: X509CertificateEnrollmentContext, Flags: PolicyServerUrlFlags) HRESULT {
-                return @ptrCast(*const IX509PolicyServerListManager.VTable, self.vtable).Initialize(@ptrCast(*const IX509PolicyServerListManager, self), context, Flags);
+                return @as(*const IX509PolicyServerListManager.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509PolicyServerListManager, @ptrCast(self)), context, Flags);
             }
         };
     }
@@ -15920,103 +15920,103 @@ pub const IX509CertificateRequest = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_Initialize(self: *const T, Context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).Initialize(@ptrCast(*const IX509CertificateRequest, self), Context);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRequest, @ptrCast(self)), Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_Encode(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).Encode(@ptrCast(*const IX509CertificateRequest, self));
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX509CertificateRequest, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_ResetForEncode(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).ResetForEncode(@ptrCast(*const IX509CertificateRequest, self));
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).ResetForEncode(@as(*const IX509CertificateRequest, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_GetInnerRequest(self: *const T, Level: InnerRequestLevel, ppValue: ?*?*IX509CertificateRequest) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).GetInnerRequest(@ptrCast(*const IX509CertificateRequest, self), Level, ppValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).GetInnerRequest(@as(*const IX509CertificateRequest, @ptrCast(self)), Level, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_Type(self: *const T, pValue: ?*X509RequestType) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_Type(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_EnrollmentContext(self: *const T, pValue: ?*X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_EnrollmentContext(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_EnrollmentContext(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_Silent(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_Silent(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_Silent(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_Silent(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_ParentWindow(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_ParentWindow(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_ParentWindow(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_UIContextMessage(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_UIContextMessage(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_UIContextMessage(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_UIContextMessage(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_UIContextMessage(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_UIContextMessage(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_SuppressDefaults(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_SuppressDefaults(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_SuppressDefaults(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_SuppressDefaults(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_SuppressDefaults(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_SuppressDefaults(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_RenewalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_RenewalCertificate(@ptrCast(*const IX509CertificateRequest, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_RenewalCertificate(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_RenewalCertificate(@ptrCast(*const IX509CertificateRequest, self), Encoding, Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_RenewalCertificate(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_ClientId(self: *const T, pValue: ?*RequestClientInfoClientId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_ClientId(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_ClientId(self: *const T, Value: RequestClientInfoClientId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_ClientId(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_CspInformations(self: *const T, ppValue: ?*?*ICspInformations) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_CspInformations(@ptrCast(*const IX509CertificateRequest, self), ppValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_CspInformations(@as(*const IX509CertificateRequest, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_CspInformations(self: *const T, pValue: ?*ICspInformations) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_CspInformations(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_CspInformations(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509CertificateRequest, self), ppValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_HashAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_AlternateSignatureAlgorithm(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRequest, self), pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_put_AlternateSignatureAlgorithm(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).put_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRequest, self), Value);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509CertificateRequest, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequest_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequest.VTable, self.vtable).get_RawData(@ptrCast(*const IX509CertificateRequest, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequest.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509CertificateRequest, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -16409,115 +16409,115 @@ pub const IX509CertificateRequestPkcs10 = extern struct {
             pub usingnamespace IX509CertificateRequest.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_InitializeFromTemplateName(self: *const T, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).InitializeFromTemplateName(@ptrCast(*const IX509CertificateRequestPkcs10, self), Context, strTemplateName);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_InitializeFromPrivateKey(self: *const T, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).InitializeFromPrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), Context, pPrivateKey, strTemplateName);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, pPrivateKey, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_InitializeFromPublicKey(self: *const T, Context: X509CertificateEnrollmentContext, pPublicKey: ?*IX509PublicKey, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).InitializeFromPublicKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), Context, pPublicKey, strTemplateName);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromPublicKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, pPublicKey, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_InitializeFromCertificate(self: *const T, Context: X509CertificateEnrollmentContext, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).InitializeFromCertificate(@ptrCast(*const IX509CertificateRequestPkcs10, self), Context, strCertificate, Encoding, InheritOptions);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Context, strCertificate, Encoding, InheritOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_InitializeDecode(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509CertificateRequestPkcs10, self), strEncodedData, Encoding);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_CheckSignature(self: *const T, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).CheckSignature(@ptrCast(*const IX509CertificateRequestPkcs10, self), AllowedSignatureTypes);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), AllowedSignatureTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_IsSmartCard(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).IsSmartCard(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).IsSmartCard(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_TemplateObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_TemplateObjectId(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_TemplateObjectId(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_PublicKey(self: *const T, ppValue: ?*?*IX509PublicKey) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_PublicKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_PublicKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_PrivateKey(self: *const T, ppValue: ?*?*IX509PrivateKey) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_PrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_PrivateKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_NullSigned(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_ReuseKey(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_ReuseKey(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_ReuseKey(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_OldCertificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_OldCertificate(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_OldCertificate(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_Subject(self: *const T, ppValue: ?*?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_Subject(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_Subject(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_put_Subject(self: *const T, pValue: ?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_Subject(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_Subject(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_CspStatuses(self: *const T, ppValue: ?*?*ICspStatuses) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CspStatuses(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CspStatuses(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_SmimeCapabilities(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_SmimeCapabilities(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SmimeCapabilities(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_put_SmimeCapabilities(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_SmimeCapabilities(@ptrCast(*const IX509CertificateRequestPkcs10, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_SmimeCapabilities(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_KeyContainerNamePrefix(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_KeyContainerNamePrefix(@ptrCast(*const IX509CertificateRequestPkcs10, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_KeyContainerNamePrefix(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_put_KeyContainerNamePrefix(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).put_KeyContainerNamePrefix(@ptrCast(*const IX509CertificateRequestPkcs10, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).put_KeyContainerNamePrefix(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_CryptAttributes(self: *const T, ppValue: ?*?*ICryptAttributes) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CryptAttributes(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CryptAttributes(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_SuppressOids(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_SuppressOids(@ptrCast(*const IX509CertificateRequestPkcs10, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_SuppressOids(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_RawDataToBeSigned(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_RawDataToBeSigned(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).get_Signature(@ptrCast(*const IX509CertificateRequestPkcs10, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10_GetCspStatuses(self: *const T, KeySpec: X509KeySpec, ppCspStatuses: ?*?*ICspStatuses) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10.VTable, self.vtable).GetCspStatuses(@ptrCast(*const IX509CertificateRequestPkcs10, self), KeySpec, ppCspStatuses);
+                return @as(*const IX509CertificateRequestPkcs10.VTable, @ptrCast(self.vtable)).GetCspStatuses(@as(*const IX509CertificateRequestPkcs10, @ptrCast(self)), KeySpec, ppCspStatuses);
             }
         };
     }
@@ -16609,23 +16609,23 @@ pub const IX509CertificateRequestPkcs10V2 = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs10.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V2_InitializeFromTemplate(self: *const T, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), context, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), context, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V2_InitializeFromPrivateKeyTemplate(self: *const T, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).InitializeFromPrivateKeyTemplate(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), Context, pPrivateKey, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKeyTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), Context, pPrivateKey, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V2_InitializeFromPublicKeyTemplate(self: *const T, Context: X509CertificateEnrollmentContext, pPublicKey: ?*IX509PublicKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).InitializeFromPublicKeyTemplate(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), Context, pPublicKey, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).InitializeFromPublicKeyTemplate(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), Context, pPublicKey, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), ppPolicyServer);
+                return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), ppPolicyServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestPkcs10V2, self), ppTemplate);
+                return @as(*const IX509CertificateRequestPkcs10V2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestPkcs10V2, @ptrCast(self)), ppTemplate);
             }
         };
     }
@@ -16791,47 +16791,47 @@ pub const IX509CertificateRequestPkcs10V3 = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs10V2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_AttestPrivateKey(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_AttestPrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_AttestPrivateKey(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_put_AttestPrivateKey(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_AttestPrivateKey(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_AttestPrivateKey(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_AttestationEncryptionCertificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_AttestationEncryptionCertificate(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_AttestationEncryptionCertificate(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_put_AttestationEncryptionCertificate(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_AttestationEncryptionCertificate(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Encoding, Value);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_AttestationEncryptionCertificate(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_put_EncryptionAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_EncryptionAlgorithm(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_EncryptionStrength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_EncryptionStrength(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_put_EncryptionStrength(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_EncryptionStrength(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_EncryptionStrength(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_ChallengePassword(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_ChallengePassword(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_ChallengePassword(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_put_ChallengePassword(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).put_ChallengePassword(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).put_ChallengePassword(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V3_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V3.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509CertificateRequestPkcs10V3, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs10V3.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509CertificateRequestPkcs10V3, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -16915,19 +16915,19 @@ pub const IX509CertificateRequestPkcs10V4 = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs10V3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V4_get_ClaimType(self: *const T, pValue: ?*KeyAttestationClaimType) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V4.VTable, self.vtable).get_ClaimType(@ptrCast(*const IX509CertificateRequestPkcs10V4, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).get_ClaimType(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V4_put_ClaimType(self: *const T, Value: KeyAttestationClaimType) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V4.VTable, self.vtable).put_ClaimType(@ptrCast(*const IX509CertificateRequestPkcs10V4, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).put_ClaimType(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V4_get_AttestPrivateKeyPreferred(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V4.VTable, self.vtable).get_AttestPrivateKeyPreferred(@ptrCast(*const IX509CertificateRequestPkcs10V4, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).get_AttestPrivateKeyPreferred(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs10V4_put_AttestPrivateKeyPreferred(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs10V4.VTable, self.vtable).put_AttestPrivateKeyPreferred(@ptrCast(*const IX509CertificateRequestPkcs10V4, self), Value);
+                return @as(*const IX509CertificateRequestPkcs10V4.VTable, @ptrCast(self.vtable)).put_AttestPrivateKeyPreferred(@as(*const IX509CertificateRequestPkcs10V4, @ptrCast(self)), Value);
             }
         };
     }
@@ -17091,47 +17091,47 @@ pub const IX509CertificateRequestCertificate = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs10.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_CheckPublicKeySignature(self: *const T, pPublicKey: ?*IX509PublicKey) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).CheckPublicKeySignature(@ptrCast(*const IX509CertificateRequestCertificate, self), pPublicKey);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).CheckPublicKeySignature(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pPublicKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_get_Issuer(self: *const T, ppValue: ?*?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_Issuer(@ptrCast(*const IX509CertificateRequestCertificate, self), ppValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_Issuer(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_put_Issuer(self: *const T, pValue: ?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_Issuer(@ptrCast(*const IX509CertificateRequestCertificate, self), pValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_Issuer(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_get_NotBefore(self: *const T, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_NotBefore(@ptrCast(*const IX509CertificateRequestCertificate, self), pValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_NotBefore(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_put_NotBefore(self: *const T, Value: f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_NotBefore(@ptrCast(*const IX509CertificateRequestCertificate, self), Value);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_NotBefore(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_get_NotAfter(self: *const T, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_NotAfter(@ptrCast(*const IX509CertificateRequestCertificate, self), pValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_NotAfter(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_put_NotAfter(self: *const T, Value: f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_NotAfter(@ptrCast(*const IX509CertificateRequestCertificate, self), Value);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_NotAfter(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IX509CertificateRequestCertificate, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_put_SerialNumber(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_SerialNumber(@ptrCast(*const IX509CertificateRequestCertificate, self), Encoding, Value);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_SerialNumber(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRequestCertificate, self), ppValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate_put_SignerCertificate(self: *const T, pValue: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509CertificateRequestCertificate, self), pValue);
+                return @as(*const IX509CertificateRequestCertificate.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestCertificate, @ptrCast(self)), pValue);
             }
         };
     }
@@ -17207,19 +17207,19 @@ pub const IX509CertificateRequestCertificate2 = extern struct {
             pub usingnamespace IX509CertificateRequestCertificate.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate2_InitializeFromTemplate(self: *const T, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509CertificateRequestCertificate2, self), context, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), context, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate2_InitializeFromPrivateKeyTemplate(self: *const T, Context: X509CertificateEnrollmentContext, pPrivateKey: ?*IX509PrivateKey, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).InitializeFromPrivateKeyTemplate(@ptrCast(*const IX509CertificateRequestCertificate2, self), Context, pPrivateKey, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).InitializeFromPrivateKeyTemplate(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), Context, pPrivateKey, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestCertificate2, self), ppPolicyServer);
+                return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), ppPolicyServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCertificate2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCertificate2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestCertificate2, self), ppTemplate);
+                return @as(*const IX509CertificateRequestCertificate2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestCertificate2, @ptrCast(self)), ppTemplate);
             }
         };
     }
@@ -17343,35 +17343,35 @@ pub const IX509CertificateRequestPkcs7 = extern struct {
             pub usingnamespace IX509CertificateRequest.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_InitializeFromTemplateName(self: *const T, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).InitializeFromTemplateName(@ptrCast(*const IX509CertificateRequestPkcs7, self), Context, strTemplateName);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Context, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_InitializeFromCertificate(self: *const T, Context: X509CertificateEnrollmentContext, RenewalRequest: i16, strCertificate: ?BSTR, Encoding: EncodingType, InheritOptions: X509RequestInheritOptions) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).InitializeFromCertificate(@ptrCast(*const IX509CertificateRequestPkcs7, self), Context, RenewalRequest, strCertificate, Encoding, InheritOptions);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Context, RenewalRequest, strCertificate, Encoding, InheritOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_InitializeFromInnerRequest(self: *const T, pInnerRequest: ?*IX509CertificateRequest) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).InitializeFromInnerRequest(@ptrCast(*const IX509CertificateRequestPkcs7, self), pInnerRequest);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequest(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pInnerRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_InitializeDecode(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509CertificateRequestPkcs7, self), strEncodedData, Encoding);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_get_RequesterName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).get_RequesterName(@ptrCast(*const IX509CertificateRequestPkcs7, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).get_RequesterName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_put_RequesterName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).put_RequesterName(@ptrCast(*const IX509CertificateRequestPkcs7, self), Value);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).put_RequesterName(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRequestPkcs7, self), ppValue);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7_put_SignerCertificate(self: *const T, pValue: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509CertificateRequestPkcs7, self), pValue);
+                return @as(*const IX509CertificateRequestPkcs7.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRequestPkcs7, @ptrCast(self)), pValue);
             }
         };
     }
@@ -17441,19 +17441,19 @@ pub const IX509CertificateRequestPkcs7V2 = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs7.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7V2_InitializeFromTemplate(self: *const T, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), context, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), context, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7V2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), ppPolicyServer);
+                return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ppPolicyServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7V2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), ppTemplate);
+                return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ppTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestPkcs7V2_CheckCertificateSignature(self: *const T, ValidateCertificateChain: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestPkcs7V2.VTable, self.vtable).CheckCertificateSignature(@ptrCast(*const IX509CertificateRequestPkcs7V2, self), ValidateCertificateChain);
+                return @as(*const IX509CertificateRequestPkcs7V2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestPkcs7V2, @ptrCast(self)), ValidateCertificateChain);
             }
         };
     }
@@ -17781,95 +17781,95 @@ pub const IX509CertificateRequestCmc = extern struct {
             pub usingnamespace IX509CertificateRequestPkcs7.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_InitializeFromInnerRequestTemplateName(self: *const T, pInnerRequest: ?*IX509CertificateRequest, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).InitializeFromInnerRequestTemplateName(@ptrCast(*const IX509CertificateRequestCmc, self), pInnerRequest, strTemplateName);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequestTemplateName(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pInnerRequest, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_TemplateObjectId(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_TemplateObjectId(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_TemplateObjectId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_NullSigned(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_CryptAttributes(self: *const T, ppValue: ?*?*ICryptAttributes) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_CryptAttributes(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_CryptAttributes(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_SuppressOids(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SuppressOids(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SuppressOids(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_TransactionId(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_TransactionId(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_TransactionId(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_TransactionId(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_TransactionId(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_SenderNonce(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SenderNonce(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SenderNonce(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_SenderNonce(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_SenderNonce(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, Value);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_SenderNonce(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_ArchivePrivateKey(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_ArchivePrivateKey(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_ArchivePrivateKey(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_ArchivePrivateKey(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_ArchivePrivateKey(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_ArchivePrivateKey(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_KeyArchivalCertificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_KeyArchivalCertificate(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_KeyArchivalCertificate(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_KeyArchivalCertificate(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_KeyArchivalCertificate(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, Value);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_KeyArchivalCertificate(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_EncryptionAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptionAlgorithm(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_EncryptionAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_EncryptionAlgorithm(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_EncryptionAlgorithm(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_EncryptionStrength(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_EncryptionStrength(@ptrCast(*const IX509CertificateRequestCmc, self), pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptionStrength(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_put_EncryptionStrength(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).put_EncryptionStrength(@ptrCast(*const IX509CertificateRequestCmc, self), Value);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).put_EncryptionStrength(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_EncryptedKeyHash(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_EncryptedKeyHash(@ptrCast(*const IX509CertificateRequestCmc, self), Encoding, pValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_EncryptedKeyHash(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc_get_SignerCertificates(self: *const T, ppValue: ?*?*ISignerCertificates) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc.VTable, self.vtable).get_SignerCertificates(@ptrCast(*const IX509CertificateRequestCmc, self), ppValue);
+                return @as(*const IX509CertificateRequestCmc.VTable, @ptrCast(self.vtable)).get_SignerCertificates(@as(*const IX509CertificateRequestCmc, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -17965,27 +17965,27 @@ pub const IX509CertificateRequestCmc2 = extern struct {
             pub usingnamespace IX509CertificateRequestCmc.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_InitializeFromTemplate(self: *const T, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509CertificateRequestCmc2, self), context, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), context, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_InitializeFromInnerRequestTemplate(self: *const T, pInnerRequest: ?*IX509CertificateRequest, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).InitializeFromInnerRequestTemplate(@ptrCast(*const IX509CertificateRequestCmc2, self), pInnerRequest, pPolicyServer, pTemplate);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).InitializeFromInnerRequestTemplate(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), pInnerRequest, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509CertificateRequestCmc2, self), ppPolicyServer);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), ppPolicyServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).get_Template(@ptrCast(*const IX509CertificateRequestCmc2, self), ppTemplate);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), ppTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_CheckSignature(self: *const T, AllowedSignatureTypes: Pkcs10AllowedSignatureTypes) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).CheckSignature(@ptrCast(*const IX509CertificateRequestCmc2, self), AllowedSignatureTypes);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), AllowedSignatureTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRequestCmc2_CheckCertificateSignature(self: *const T, pSignerCertificate: ?*ISignerCertificate, ValidateCertificateChain: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRequestCmc2.VTable, self.vtable).CheckCertificateSignature(@ptrCast(*const IX509CertificateRequestCmc2, self), pSignerCertificate, ValidateCertificateChain);
+                return @as(*const IX509CertificateRequestCmc2.VTable, @ptrCast(self.vtable)).CheckCertificateSignature(@as(*const IX509CertificateRequestCmc2, @ptrCast(self)), pSignerCertificate, ValidateCertificateChain);
             }
         };
     }
@@ -18312,95 +18312,95 @@ pub const IX509Enrollment = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_Initialize(self: *const T, Context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).Initialize(@ptrCast(*const IX509Enrollment, self), Context);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509Enrollment, @ptrCast(self)), Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_InitializeFromTemplateName(self: *const T, Context: X509CertificateEnrollmentContext, strTemplateName: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).InitializeFromTemplateName(@ptrCast(*const IX509Enrollment, self), Context, strTemplateName);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InitializeFromTemplateName(@as(*const IX509Enrollment, @ptrCast(self)), Context, strTemplateName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_InitializeFromRequest(self: *const T, pRequest: ?*IX509CertificateRequest) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).InitializeFromRequest(@ptrCast(*const IX509Enrollment, self), pRequest);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InitializeFromRequest(@as(*const IX509Enrollment, @ptrCast(self)), pRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_CreateRequest(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).CreateRequest(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_Enroll(self: *const T) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).Enroll(@ptrCast(*const IX509Enrollment, self));
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509Enrollment, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_InstallResponse(self: *const T, Restrictions: InstallResponseRestrictionFlags, strResponse: ?BSTR, Encoding: EncodingType, strPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).InstallResponse(@ptrCast(*const IX509Enrollment, self), Restrictions, strResponse, Encoding, strPassword);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).InstallResponse(@as(*const IX509Enrollment, @ptrCast(self)), Restrictions, strResponse, Encoding, strPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_CreatePFX(self: *const T, strPassword: ?BSTR, ExportOptions: PFXExportOptions, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).CreatePFX(@ptrCast(*const IX509Enrollment, self), strPassword, ExportOptions, Encoding, pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).CreatePFX(@as(*const IX509Enrollment, @ptrCast(self)), strPassword, ExportOptions, Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_Request(self: *const T, pValue: ?*?*IX509CertificateRequest) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Request(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_Silent(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Silent(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_put_Silent(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_Silent(@ptrCast(*const IX509Enrollment, self), Value);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509Enrollment, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_ParentWindow(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_ParentWindow(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_ParentWindow(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_put_ParentWindow(self: *const T, Value: i32) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_ParentWindow(@ptrCast(*const IX509Enrollment, self), Value);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_ParentWindow(@as(*const IX509Enrollment, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_NameValuePairs(self: *const T, ppValue: ?*?*IX509NameValuePairs) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_NameValuePairs(@ptrCast(*const IX509Enrollment, self), ppValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_NameValuePairs(@as(*const IX509Enrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_EnrollmentContext(self: *const T, pValue: ?*X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_EnrollmentContext(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_EnrollmentContext(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_Status(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Status(@ptrCast(*const IX509Enrollment, self), ppValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509Enrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_Response(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_Response(@ptrCast(*const IX509Enrollment, self), Encoding, pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_Response(@as(*const IX509Enrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_CertificateFriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CertificateFriendlyName(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CertificateFriendlyName(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_put_CertificateFriendlyName(self: *const T, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_CertificateFriendlyName(@ptrCast(*const IX509Enrollment, self), strValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_CertificateFriendlyName(@as(*const IX509Enrollment, @ptrCast(self)), strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_CertificateDescription(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CertificateDescription(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CertificateDescription(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_put_CertificateDescription(self: *const T, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).put_CertificateDescription(@ptrCast(*const IX509Enrollment, self), strValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).put_CertificateDescription(@as(*const IX509Enrollment, @ptrCast(self)), strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_RequestId(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_RequestId(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_RequestId(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment_get_CAConfigString(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment.VTable, self.vtable).get_CAConfigString(@ptrCast(*const IX509Enrollment, self), pValue);
+                return @as(*const IX509Enrollment.VTable, @ptrCast(self.vtable)).get_CAConfigString(@as(*const IX509Enrollment, @ptrCast(self)), pValue);
             }
         };
     }
@@ -18497,23 +18497,23 @@ pub const IX509Enrollment2 = extern struct {
             pub usingnamespace IX509Enrollment.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment2_InitializeFromTemplate(self: *const T, context: X509CertificateEnrollmentContext, pPolicyServer: ?*IX509EnrollmentPolicyServer, pTemplate: ?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).InitializeFromTemplate(@ptrCast(*const IX509Enrollment2, self), context, pPolicyServer, pTemplate);
+                return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).InitializeFromTemplate(@as(*const IX509Enrollment2, @ptrCast(self)), context, pPolicyServer, pTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment2_InstallResponse2(self: *const T, Restrictions: InstallResponseRestrictionFlags, strResponse: ?BSTR, Encoding: EncodingType, strPassword: ?BSTR, strEnrollmentPolicyServerUrl: ?BSTR, strEnrollmentPolicyServerID: ?BSTR, EnrollmentPolicyServerFlags: PolicyServerUrlFlags, authFlags: X509EnrollmentAuthFlags) HRESULT {
-                return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).InstallResponse2(@ptrCast(*const IX509Enrollment2, self), Restrictions, strResponse, Encoding, strPassword, strEnrollmentPolicyServerUrl, strEnrollmentPolicyServerID, EnrollmentPolicyServerFlags, authFlags);
+                return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).InstallResponse2(@as(*const IX509Enrollment2, @ptrCast(self)), Restrictions, strResponse, Encoding, strPassword, strEnrollmentPolicyServerUrl, strEnrollmentPolicyServerID, EnrollmentPolicyServerFlags, authFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment2_get_PolicyServer(self: *const T, ppPolicyServer: ?*?*IX509EnrollmentPolicyServer) HRESULT {
-                return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_PolicyServer(@ptrCast(*const IX509Enrollment2, self), ppPolicyServer);
+                return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_PolicyServer(@as(*const IX509Enrollment2, @ptrCast(self)), ppPolicyServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment2_get_Template(self: *const T, ppTemplate: ?*?*IX509CertificateTemplate) HRESULT {
-                return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_Template(@ptrCast(*const IX509Enrollment2, self), ppTemplate);
+                return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_Template(@as(*const IX509Enrollment2, @ptrCast(self)), ppTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509Enrollment2_get_RequestIdString(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509Enrollment2.VTable, self.vtable).get_RequestIdString(@ptrCast(*const IX509Enrollment2, self), pValue);
+                return @as(*const IX509Enrollment2.VTable, @ptrCast(self.vtable)).get_RequestIdString(@as(*const IX509Enrollment2, @ptrCast(self)), pValue);
             }
         };
     }
@@ -18602,19 +18602,19 @@ pub const IX509EnrollmentHelper = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentHelper_AddPolicyServer(self: *const T, strEnrollmentPolicyServerURI: ?BSTR, strEnrollmentPolicyID: ?BSTR, EnrollmentPolicyServerFlags: PolicyServerUrlFlags, authFlags: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).AddPolicyServer(@ptrCast(*const IX509EnrollmentHelper, self), strEnrollmentPolicyServerURI, strEnrollmentPolicyID, EnrollmentPolicyServerFlags, authFlags, strCredential, strPassword);
+                return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).AddPolicyServer(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentPolicyServerURI, strEnrollmentPolicyID, EnrollmentPolicyServerFlags, authFlags, strCredential, strPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentHelper_AddEnrollmentServer(self: *const T, strEnrollmentServerURI: ?BSTR, authFlags: X509EnrollmentAuthFlags, strCredential: ?BSTR, strPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).AddEnrollmentServer(@ptrCast(*const IX509EnrollmentHelper, self), strEnrollmentServerURI, authFlags, strCredential, strPassword);
+                return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).AddEnrollmentServer(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentServerURI, authFlags, strCredential, strPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentHelper_Enroll(self: *const T, strEnrollmentPolicyServerURI: ?BSTR, strTemplateName: ?BSTR, Encoding: EncodingType, enrollFlags: WebEnrollmentFlags, pstrCertificate: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).Enroll(@ptrCast(*const IX509EnrollmentHelper, self), strEnrollmentPolicyServerURI, strTemplateName, Encoding, enrollFlags, pstrCertificate);
+                return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509EnrollmentHelper, @ptrCast(self)), strEnrollmentPolicyServerURI, strTemplateName, Encoding, enrollFlags, pstrCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentHelper_Initialize(self: *const T, Context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509EnrollmentHelper.VTable, self.vtable).Initialize(@ptrCast(*const IX509EnrollmentHelper, self), Context);
+                return @as(*const IX509EnrollmentHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509EnrollmentHelper, @ptrCast(self)), Context);
             }
         };
     }
@@ -18646,7 +18646,7 @@ pub const IX509EnrollmentWebClassFactory = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509EnrollmentWebClassFactory_CreateObject(self: *const T, strProgID: ?BSTR, ppIUnknown: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509EnrollmentWebClassFactory.VTable, self.vtable).CreateObject(@ptrCast(*const IX509EnrollmentWebClassFactory, self), strProgID, ppIUnknown);
+                return @as(*const IX509EnrollmentWebClassFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509EnrollmentWebClassFactory, @ptrCast(self)), strProgID, ppIUnknown);
             }
         };
     }
@@ -18678,7 +18678,7 @@ pub const IX509MachineEnrollmentFactory = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509MachineEnrollmentFactory_CreateObject(self: *const T, strProgID: ?BSTR, ppIHelper: ?*?*IX509EnrollmentHelper) HRESULT {
-                return @ptrCast(*const IX509MachineEnrollmentFactory.VTable, self.vtable).CreateObject(@ptrCast(*const IX509MachineEnrollmentFactory, self), strProgID, ppIHelper);
+                return @as(*const IX509MachineEnrollmentFactory.VTable, @ptrCast(self.vtable)).CreateObject(@as(*const IX509MachineEnrollmentFactory, @ptrCast(self)), strProgID, ppIHelper);
             }
         };
     }
@@ -18814,31 +18814,31 @@ pub const IX509CertificateRevocationListEntry = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_Initialize(self: *const T, Encoding: EncodingType, SerialNumber: ?BSTR, RevocationDate: f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).Initialize(@ptrCast(*const IX509CertificateRevocationListEntry, self), Encoding, SerialNumber, RevocationDate);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Encoding, SerialNumber, RevocationDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_get_SerialNumber(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IX509CertificateRevocationListEntry, self), Encoding, pValue);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_get_RevocationDate(self: *const T, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_RevocationDate(@ptrCast(*const IX509CertificateRevocationListEntry, self), pValue);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_RevocationDate(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_get_RevocationReason(self: *const T, pValue: ?*CRLRevocationReason) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_RevocationReason(@ptrCast(*const IX509CertificateRevocationListEntry, self), pValue);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_RevocationReason(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_put_RevocationReason(self: *const T, Value: CRLRevocationReason) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).put_RevocationReason(@ptrCast(*const IX509CertificateRevocationListEntry, self), Value);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).put_RevocationReason(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRevocationListEntry, self), ppValue);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntry_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntry.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRevocationListEntry, self), ppValue);
+                return @as(*const IX509CertificateRevocationListEntry.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRevocationListEntry, @ptrCast(self)), ppValue);
             }
         };
     }
@@ -18953,35 +18953,35 @@ pub const IX509CertificateRevocationListEntries = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_get_ItemByIndex(self: *const T, Index: i32, pVal: ?*?*IX509CertificateRevocationListEntry) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get_ItemByIndex(@ptrCast(*const IX509CertificateRevocationListEntries, self), Index, pVal);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_ItemByIndex(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Index, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get_Count(@ptrCast(*const IX509CertificateRevocationListEntries, self), pVal);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_get__NewEnum(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get__NewEnum(@ptrCast(*const IX509CertificateRevocationListEntries, self), pVal);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_Add(self: *const T, pVal: ?*IX509CertificateRevocationListEntry) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).Add(@ptrCast(*const IX509CertificateRevocationListEntries, self), pVal);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Add(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_Remove(self: *const T, Index: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).Remove(@ptrCast(*const IX509CertificateRevocationListEntries, self), Index);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Remove(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).Clear(@ptrCast(*const IX509CertificateRevocationListEntries, self));
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).Clear(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_get_IndexBySerialNumber(self: *const T, Encoding: EncodingType, SerialNumber: ?BSTR, pIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).get_IndexBySerialNumber(@ptrCast(*const IX509CertificateRevocationListEntries, self), Encoding, SerialNumber, pIndex);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).get_IndexBySerialNumber(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), Encoding, SerialNumber, pIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationListEntries_AddRange(self: *const T, pValue: ?*IX509CertificateRevocationListEntries) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationListEntries.VTable, self.vtable).AddRange(@ptrCast(*const IX509CertificateRevocationListEntries, self), pValue);
+                return @as(*const IX509CertificateRevocationListEntries.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IX509CertificateRevocationListEntries, @ptrCast(self)), pValue);
             }
         };
     }
@@ -19389,127 +19389,127 @@ pub const IX509CertificateRevocationList = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_Initialize(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).Initialize(@ptrCast(*const IX509CertificateRevocationList, self));
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_InitializeDecode(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).InitializeDecode(@ptrCast(*const IX509CertificateRevocationList, self), strEncodedData, Encoding);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).InitializeDecode(@as(*const IX509CertificateRevocationList, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_Encode(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).Encode(@ptrCast(*const IX509CertificateRevocationList, self));
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).Encode(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_ResetForEncode(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).ResetForEncode(@ptrCast(*const IX509CertificateRevocationList, self));
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).ResetForEncode(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_CheckPublicKeySignature(self: *const T, pPublicKey: ?*IX509PublicKey) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).CheckPublicKeySignature(@ptrCast(*const IX509CertificateRevocationList, self), pPublicKey);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).CheckPublicKeySignature(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pPublicKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_CheckSignature(self: *const T) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).CheckSignature(@ptrCast(*const IX509CertificateRevocationList, self));
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).CheckSignature(@as(*const IX509CertificateRevocationList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_Issuer(self: *const T, ppValue: ?*?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_Issuer(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_Issuer(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_Issuer(self: *const T, pValue: ?*IX500DistinguishedName) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_Issuer(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_Issuer(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_ThisUpdate(self: *const T, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_ThisUpdate(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_ThisUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_ThisUpdate(self: *const T, Value: f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_ThisUpdate(@ptrCast(*const IX509CertificateRevocationList, self), Value);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_ThisUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_NextUpdate(self: *const T, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_NextUpdate(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_NextUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_NextUpdate(self: *const T, Value: f64) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_NextUpdate(@ptrCast(*const IX509CertificateRevocationList, self), Value);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_NextUpdate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_X509CRLEntries(self: *const T, ppValue: ?*?*IX509CertificateRevocationListEntries) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_X509CRLEntries(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_X509CRLEntries(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_X509Extensions(self: *const T, ppValue: ?*?*IX509Extensions) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_X509Extensions(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_X509Extensions(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_CriticalExtensions(self: *const T, ppValue: ?*?*IObjectIds) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_CriticalExtensions(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CriticalExtensions(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_SignerCertificate(self: *const T, pValue: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_CRLNumber(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_CRLNumber(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CRLNumber(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_CRLNumber(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_CRLNumber(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, Value);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_CRLNumber(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_CAVersion(self: *const T, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_CAVersion(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_CAVersion(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_CAVersion(self: *const T, pValue: i32) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_CAVersion(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_CAVersion(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_BaseCRL(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_BaseCRL(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_BaseCRL(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_NullSigned(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_NullSigned(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_NullSigned(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_HashAlgorithm(self: *const T, ppValue: ?*?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_HashAlgorithm(self: *const T, pValue: ?*IObjectId) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_AlternateSignatureAlgorithm(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_AlternateSignatureAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_put_AlternateSignatureAlgorithm(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).put_AlternateSignatureAlgorithm(@ptrCast(*const IX509CertificateRevocationList, self), Value);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).put_AlternateSignatureAlgorithm(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_SignatureInformation(self: *const T, ppValue: ?*?*IX509SignatureInformation) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_SignatureInformation(@ptrCast(*const IX509CertificateRevocationList, self), ppValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_SignatureInformation(@as(*const IX509CertificateRevocationList, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_RawData(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_RawData(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_RawData(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_RawDataToBeSigned(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_RawDataToBeSigned(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_RawDataToBeSigned(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509CertificateRevocationList_get_Signature(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509CertificateRevocationList.VTable, self.vtable).get_Signature(@ptrCast(*const IX509CertificateRevocationList, self), Encoding, pValue);
+                return @as(*const IX509CertificateRevocationList.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IX509CertificateRevocationList, @ptrCast(self)), Encoding, pValue);
             }
         };
     }
@@ -19565,15 +19565,15 @@ pub const ICertificateAttestationChallenge = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificateAttestationChallenge_Initialize(self: *const T, Encoding: EncodingType, strPendingFullCmcResponseWithChallenge: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).Initialize(@ptrCast(*const ICertificateAttestationChallenge, self), Encoding, strPendingFullCmcResponseWithChallenge);
+                return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), Encoding, strPendingFullCmcResponseWithChallenge);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificateAttestationChallenge_DecryptChallenge(self: *const T, Encoding: EncodingType, pstrEnvelopedPkcs7ReencryptedToCA: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).DecryptChallenge(@ptrCast(*const ICertificateAttestationChallenge, self), Encoding, pstrEnvelopedPkcs7ReencryptedToCA);
+                return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).DecryptChallenge(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), Encoding, pstrEnvelopedPkcs7ReencryptedToCA);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificateAttestationChallenge_get_RequestID(self: *const T, pstrRequestID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertificateAttestationChallenge.VTable, self.vtable).get_RequestID(@ptrCast(*const ICertificateAttestationChallenge, self), pstrRequestID);
+                return @as(*const ICertificateAttestationChallenge.VTable, @ptrCast(self.vtable)).get_RequestID(@as(*const ICertificateAttestationChallenge, @ptrCast(self)), pstrRequestID);
             }
         };
     }
@@ -19620,11 +19620,11 @@ pub const ICertificateAttestationChallenge2 = extern struct {
             pub usingnamespace ICertificateAttestationChallenge.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificateAttestationChallenge2_put_KeyContainerName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertificateAttestationChallenge2.VTable, self.vtable).put_KeyContainerName(@ptrCast(*const ICertificateAttestationChallenge2, self), Value);
+                return @as(*const ICertificateAttestationChallenge2.VTable, @ptrCast(self.vtable)).put_KeyContainerName(@as(*const ICertificateAttestationChallenge2, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertificateAttestationChallenge2_put_KeyBlob(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertificateAttestationChallenge2.VTable, self.vtable).put_KeyBlob(@ptrCast(*const ICertificateAttestationChallenge2, self), Encoding, Value);
+                return @as(*const ICertificateAttestationChallenge2.VTable, @ptrCast(self.vtable)).put_KeyBlob(@as(*const ICertificateAttestationChallenge2, @ptrCast(self)), Encoding, Value);
             }
         };
     }
@@ -19940,91 +19940,91 @@ pub const IX509SCEPEnrollment = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_Initialize(self: *const T, pRequest: ?*IX509CertificateRequestPkcs10, strThumbprint: ?BSTR, ThumprintEncoding: EncodingType, strServerCertificates: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).Initialize(@ptrCast(*const IX509SCEPEnrollment, self), pRequest, strThumbprint, ThumprintEncoding, strServerCertificates, Encoding);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pRequest, strThumbprint, ThumprintEncoding, strServerCertificates, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_InitializeForPending(self: *const T, Context: X509CertificateEnrollmentContext) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).InitializeForPending(@ptrCast(*const IX509SCEPEnrollment, self), Context);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).InitializeForPending(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_CreateRequestMessage(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRequestMessage(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRequestMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_CreateRetrievePendingMessage(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRetrievePendingMessage(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRetrievePendingMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_CreateRetrieveCertificateMessage(self: *const T, Context: X509CertificateEnrollmentContext, strIssuer: ?BSTR, IssuerEncoding: EncodingType, strSerialNumber: ?BSTR, SerialNumberEncoding: EncodingType, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).CreateRetrieveCertificateMessage(@ptrCast(*const IX509SCEPEnrollment, self), Context, strIssuer, IssuerEncoding, strSerialNumber, SerialNumberEncoding, Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).CreateRetrieveCertificateMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Context, strIssuer, IssuerEncoding, strSerialNumber, SerialNumberEncoding, Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_ProcessResponseMessage(self: *const T, strResponse: ?BSTR, Encoding: EncodingType, pDisposition: ?*X509SCEPDisposition) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).ProcessResponseMessage(@ptrCast(*const IX509SCEPEnrollment, self), strResponse, Encoding, pDisposition);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).ProcessResponseMessage(@as(*const IX509SCEPEnrollment, @ptrCast(self)), strResponse, Encoding, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_ServerCapabilities(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_ServerCapabilities(@ptrCast(*const IX509SCEPEnrollment, self), Value);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_ServerCapabilities(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_FailInfo(self: *const T, pValue: ?*X509SCEPFailInfo) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_FailInfo(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_FailInfo(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_SignerCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_SignerCertificate(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_SignerCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_SignerCertificate(self: *const T, pValue: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_OldCertificate(self: *const T, ppValue: ?*?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_OldCertificate(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_OldCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_OldCertificate(self: *const T, pValue: ?*ISignerCertificate) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_OldCertificate(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_OldCertificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_TransactionId(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_TransactionId(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_TransactionId(self: *const T, Encoding: EncodingType, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_TransactionId(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, Value);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_TransactionId(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_Request(self: *const T, ppValue: ?*?*IX509CertificateRequestPkcs10) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Request(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_CertificateFriendlyName(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_CertificateFriendlyName(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_CertificateFriendlyName(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_CertificateFriendlyName(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_CertificateFriendlyName(@ptrCast(*const IX509SCEPEnrollment, self), Value);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_CertificateFriendlyName(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_Status(self: *const T, ppValue: ?*?*IX509EnrollmentStatus) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Status(@ptrCast(*const IX509SCEPEnrollment, self), ppValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IX509SCEPEnrollment, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_Certificate(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Certificate(@ptrCast(*const IX509SCEPEnrollment, self), Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Certificate(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_get_Silent(self: *const T, pValue: ?*i16) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).get_Silent(@ptrCast(*const IX509SCEPEnrollment, self), pValue);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).get_Silent(@as(*const IX509SCEPEnrollment, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_put_Silent(self: *const T, Value: i16) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).put_Silent(@ptrCast(*const IX509SCEPEnrollment, self), Value);
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).put_Silent(@as(*const IX509SCEPEnrollment, @ptrCast(self)), Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment_DeleteRequest(self: *const T) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment.VTable, self.vtable).DeleteRequest(@ptrCast(*const IX509SCEPEnrollment, self));
+                return @as(*const IX509SCEPEnrollment.VTable, @ptrCast(self.vtable)).DeleteRequest(@as(*const IX509SCEPEnrollment, @ptrCast(self)));
             }
         };
     }
@@ -20145,27 +20145,27 @@ pub const IX509SCEPEnrollment2 = extern struct {
             pub usingnamespace IX509SCEPEnrollment.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_CreateChallengeAnswerMessage(self: *const T, Encoding: EncodingType, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).CreateChallengeAnswerMessage(@ptrCast(*const IX509SCEPEnrollment2, self), Encoding, pValue);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).CreateChallengeAnswerMessage(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Encoding, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_ProcessResponseMessage2(self: *const T, Flags: X509SCEPProcessMessageFlags, strResponse: ?BSTR, Encoding: EncodingType, pDisposition: ?*X509SCEPDisposition) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).ProcessResponseMessage2(@ptrCast(*const IX509SCEPEnrollment2, self), Flags, strResponse, Encoding, pDisposition);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).ProcessResponseMessage2(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Flags, strResponse, Encoding, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_get_ResultMessageText(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_ResultMessageText(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_ResultMessageText(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_get_DelayRetry(self: *const T, pValue: ?*DelayRetryAction) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_DelayRetry(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_DelayRetry(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_get_ActivityId(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).get_ActivityId(@ptrCast(*const IX509SCEPEnrollment2, self), pValue);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).get_ActivityId(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollment2_put_ActivityId(self: *const T, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollment2.VTable, self.vtable).put_ActivityId(@ptrCast(*const IX509SCEPEnrollment2, self), Value);
+                return @as(*const IX509SCEPEnrollment2.VTable, @ptrCast(self.vtable)).put_ActivityId(@as(*const IX509SCEPEnrollment2, @ptrCast(self)), Value);
             }
         };
     }
@@ -20266,27 +20266,27 @@ pub const IX509SCEPEnrollmentHelper = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_Initialize(self: *const T, strServerUrl: ?BSTR, strRequestHeaders: ?BSTR, pRequest: ?*IX509CertificateRequestPkcs10, strCACertificateThumbprint: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).Initialize(@ptrCast(*const IX509SCEPEnrollmentHelper, self), strServerUrl, strRequestHeaders, pRequest, strCACertificateThumbprint);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), strServerUrl, strRequestHeaders, pRequest, strCACertificateThumbprint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_InitializeForPending(self: *const T, strServerUrl: ?BSTR, strRequestHeaders: ?BSTR, Context: X509CertificateEnrollmentContext, strTransactionId: ?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).InitializeForPending(@ptrCast(*const IX509SCEPEnrollmentHelper, self), strServerUrl, strRequestHeaders, Context, strTransactionId);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).InitializeForPending(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), strServerUrl, strRequestHeaders, Context, strTransactionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_Enroll(self: *const T, ProcessFlags: X509SCEPProcessMessageFlags, pDisposition: ?*X509SCEPDisposition) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).Enroll(@ptrCast(*const IX509SCEPEnrollmentHelper, self), ProcessFlags, pDisposition);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).Enroll(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ProcessFlags, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_FetchPending(self: *const T, ProcessFlags: X509SCEPProcessMessageFlags, pDisposition: ?*X509SCEPDisposition) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).FetchPending(@ptrCast(*const IX509SCEPEnrollmentHelper, self), ProcessFlags, pDisposition);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).FetchPending(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ProcessFlags, pDisposition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_get_X509SCEPEnrollment(self: *const T, ppValue: ?*?*IX509SCEPEnrollment) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).get_X509SCEPEnrollment(@ptrCast(*const IX509SCEPEnrollmentHelper, self), ppValue);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).get_X509SCEPEnrollment(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IX509SCEPEnrollmentHelper_get_ResultMessageText(self: *const T, pValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IX509SCEPEnrollmentHelper.VTable, self.vtable).get_ResultMessageText(@ptrCast(*const IX509SCEPEnrollmentHelper, self), pValue);
+                return @as(*const IX509SCEPEnrollmentHelper.VTable, @ptrCast(self.vtable)).get_ResultMessageText(@as(*const IX509SCEPEnrollmentHelper, @ptrCast(self)), pValue);
             }
         };
     }
@@ -20583,31 +20583,31 @@ pub const ICertEncodeStringArray = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeStringArray, self), strBinary);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeStringArray, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_GetStringType(self: *const T, pStringType: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).GetStringType(@ptrCast(*const ICertEncodeStringArray, self), pStringType);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetStringType(@as(*const ICertEncodeStringArray, @ptrCast(self)), pStringType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_GetCount(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).GetCount(@ptrCast(*const ICertEncodeStringArray, self), pCount);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeStringArray, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_GetValue(self: *const T, Index: i32, pstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).GetValue(@ptrCast(*const ICertEncodeStringArray, self), Index, pstr);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeStringArray, @ptrCast(self)), Index, pstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_Reset(self: *const T, Count: i32, StringType: CERT_RDN_ATTR_VALUE_TYPE) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).Reset(@ptrCast(*const ICertEncodeStringArray, self), Count, StringType);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeStringArray, @ptrCast(self)), Count, StringType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_SetValue(self: *const T, Index: i32, str: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeStringArray, self), Index, str);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeStringArray, @ptrCast(self)), Index, str);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray_Encode(self: *const T, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeStringArray, self), pstrBinary);
+                return @as(*const ICertEncodeStringArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeStringArray, @ptrCast(self)), pstrBinary);
             }
         };
     }
@@ -20650,11 +20650,11 @@ pub const ICertEncodeStringArray2 = extern struct {
             pub usingnamespace ICertEncodeStringArray.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeStringArray2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeStringArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeStringArray2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeStringArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeStringArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeStringArray2, self), Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeStringArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeStringArray2, @ptrCast(self)), Encoding, pstrEncodedData);
             }
         };
     }
@@ -20738,27 +20738,27 @@ pub const ICertEncodeLongArray = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeLongArray, self), strBinary);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeLongArray, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_GetCount(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).GetCount(@ptrCast(*const ICertEncodeLongArray, self), pCount);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeLongArray, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_GetValue(self: *const T, Index: i32, pValue: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).GetValue(@ptrCast(*const ICertEncodeLongArray, self), Index, pValue);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeLongArray, @ptrCast(self)), Index, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_Reset(self: *const T, Count: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).Reset(@ptrCast(*const ICertEncodeLongArray, self), Count);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeLongArray, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_SetValue(self: *const T, Index: i32, Value: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeLongArray, self), Index, Value);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeLongArray, @ptrCast(self)), Index, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray_Encode(self: *const T, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeLongArray, self), pstrBinary);
+                return @as(*const ICertEncodeLongArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeLongArray, @ptrCast(self)), pstrBinary);
             }
         };
     }
@@ -20801,11 +20801,11 @@ pub const ICertEncodeLongArray2 = extern struct {
             pub usingnamespace ICertEncodeLongArray.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeLongArray2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeLongArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeLongArray2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeLongArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeLongArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeLongArray2, self), Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeLongArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeLongArray2, @ptrCast(self)), Encoding, pstrEncodedData);
             }
         };
     }
@@ -20889,27 +20889,27 @@ pub const ICertEncodeDateArray = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeDateArray, self), strBinary);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeDateArray, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_GetCount(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).GetCount(@ptrCast(*const ICertEncodeDateArray, self), pCount);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ICertEncodeDateArray, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_GetValue(self: *const T, Index: i32, pValue: ?*f64) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).GetValue(@ptrCast(*const ICertEncodeDateArray, self), Index, pValue);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICertEncodeDateArray, @ptrCast(self)), Index, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_Reset(self: *const T, Count: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).Reset(@ptrCast(*const ICertEncodeDateArray, self), Count);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeDateArray, @ptrCast(self)), Count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_SetValue(self: *const T, Index: i32, Value: f64) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).SetValue(@ptrCast(*const ICertEncodeDateArray, self), Index, Value);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICertEncodeDateArray, @ptrCast(self)), Index, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray_Encode(self: *const T, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeDateArray, self), pstrBinary);
+                return @as(*const ICertEncodeDateArray.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeDateArray, @ptrCast(self)), pstrBinary);
             }
         };
     }
@@ -20952,11 +20952,11 @@ pub const ICertEncodeDateArray2 = extern struct {
             pub usingnamespace ICertEncodeDateArray.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeDateArray2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeDateArray2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeDateArray2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeDateArray2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeDateArray2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeDateArray2, self), Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeDateArray2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeDateArray2, @ptrCast(self)), Encoding, pstrEncodedData);
             }
         };
     }
@@ -21084,39 +21084,39 @@ pub const ICertEncodeCRLDistInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeCRLDistInfo, self), strBinary);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_GetDistPointCount(self: *const T, pDistPointCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetDistPointCount(@ptrCast(*const ICertEncodeCRLDistInfo, self), pDistPointCount);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetDistPointCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), pDistPointCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_GetNameCount(self: *const T, DistPointIndex: i32, pNameCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetNameCount(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, pNameCount);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, pNameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_GetNameChoice(self: *const T, DistPointIndex: i32, NameIndex: i32, pNameChoice: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetNameChoice(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, pNameChoice);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetNameChoice(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, pNameChoice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_GetName(self: *const T, DistPointIndex: i32, NameIndex: i32, pstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).GetName(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, pstrName);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).GetName(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, pstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_Reset(self: *const T, DistPointCount: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).Reset(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointCount);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_SetNameCount(self: *const T, DistPointIndex: i32, NameCount: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).SetNameCount(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameCount);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).SetNameCount(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_SetNameEntry(self: *const T, DistPointIndex: i32, NameIndex: i32, NameChoice: CERT_ALT_NAME, strName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).SetNameEntry(@ptrCast(*const ICertEncodeCRLDistInfo, self), DistPointIndex, NameIndex, NameChoice, strName);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).SetNameEntry(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), DistPointIndex, NameIndex, NameChoice, strName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo_Encode(self: *const T, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeCRLDistInfo, self), pstrBinary);
+                return @as(*const ICertEncodeCRLDistInfo.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeCRLDistInfo, @ptrCast(self)), pstrBinary);
             }
         };
     }
@@ -21159,11 +21159,11 @@ pub const ICertEncodeCRLDistInfo2 = extern struct {
             pub usingnamespace ICertEncodeCRLDistInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeCRLDistInfo2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeCRLDistInfo2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeCRLDistInfo2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeCRLDistInfo2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeCRLDistInfo2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeCRLDistInfo2, self), Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeCRLDistInfo2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeCRLDistInfo2, @ptrCast(self)), Encoding, pstrEncodedData);
             }
         };
     }
@@ -21261,31 +21261,31 @@ pub const ICertEncodeAltName = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeAltName, self), strBinary);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeAltName, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_GetNameCount(self: *const T, pNameCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).GetNameCount(@ptrCast(*const ICertEncodeAltName, self), pNameCount);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetNameCount(@as(*const ICertEncodeAltName, @ptrCast(self)), pNameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_GetNameChoice(self: *const T, NameIndex: i32, pNameChoice: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).GetNameChoice(@ptrCast(*const ICertEncodeAltName, self), NameIndex, pNameChoice);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetNameChoice(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, pNameChoice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_GetName(self: *const T, NameIndex: i32, pstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).GetName(@ptrCast(*const ICertEncodeAltName, self), NameIndex, pstrName);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).GetName(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, pstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_Reset(self: *const T, NameCount: i32) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).Reset(@ptrCast(*const ICertEncodeAltName, self), NameCount);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICertEncodeAltName, @ptrCast(self)), NameCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_SetNameEntry(self: *const T, NameIndex: i32, NameChoice: CERT_ALT_NAME, strName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).SetNameEntry(@ptrCast(*const ICertEncodeAltName, self), NameIndex, NameChoice, strName);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).SetNameEntry(@as(*const ICertEncodeAltName, @ptrCast(self)), NameIndex, NameChoice, strName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName_Encode(self: *const T, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeAltName, self), pstrBinary);
+                return @as(*const ICertEncodeAltName.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeAltName, @ptrCast(self)), pstrBinary);
             }
         };
     }
@@ -21358,19 +21358,19 @@ pub const ICertEncodeAltName2 = extern struct {
             pub usingnamespace ICertEncodeAltName.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeAltName2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName2_EncodeBlob(self: *const T, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeAltName2, self), Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), Encoding, pstrEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName2_GetNameBlob(self: *const T, NameIndex: i32, Encoding: EncodingType, pstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).GetNameBlob(@ptrCast(*const ICertEncodeAltName2, self), NameIndex, Encoding, pstrName);
+                return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).GetNameBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), NameIndex, Encoding, pstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeAltName2_SetNameEntryBlob(self: *const T, NameIndex: i32, NameChoice: i32, strName: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeAltName2.VTable, self.vtable).SetNameEntryBlob(@ptrCast(*const ICertEncodeAltName2, self), NameIndex, NameChoice, strName, Encoding);
+                return @as(*const ICertEncodeAltName2.VTable, @ptrCast(self.vtable)).SetNameEntryBlob(@as(*const ICertEncodeAltName2, @ptrCast(self)), NameIndex, NameChoice, strName, Encoding);
             }
         };
     }
@@ -21434,19 +21434,19 @@ pub const ICertEncodeBitString = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString_Decode(self: *const T, strBinary: ?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).Decode(@ptrCast(*const ICertEncodeBitString, self), strBinary);
+                return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).Decode(@as(*const ICertEncodeBitString, @ptrCast(self)), strBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString_GetBitCount(self: *const T, pBitCount: ?*i32) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).GetBitCount(@ptrCast(*const ICertEncodeBitString, self), pBitCount);
+                return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).GetBitCount(@as(*const ICertEncodeBitString, @ptrCast(self)), pBitCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString_GetBitString(self: *const T, pstrBitString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).GetBitString(@ptrCast(*const ICertEncodeBitString, self), pstrBitString);
+                return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).GetBitString(@as(*const ICertEncodeBitString, @ptrCast(self)), pstrBitString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString_Encode(self: *const T, BitCount: i32, strBitString: ?BSTR, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString.VTable, self.vtable).Encode(@ptrCast(*const ICertEncodeBitString, self), BitCount, strBitString, pstrBinary);
+                return @as(*const ICertEncodeBitString.VTable, @ptrCast(self.vtable)).Encode(@as(*const ICertEncodeBitString, @ptrCast(self)), BitCount, strBitString, pstrBinary);
             }
         };
     }
@@ -21507,15 +21507,15 @@ pub const ICertEncodeBitString2 = extern struct {
             pub usingnamespace ICertEncodeBitString.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString2_DecodeBlob(self: *const T, strEncodedData: ?BSTR, Encoding: EncodingType) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).DecodeBlob(@ptrCast(*const ICertEncodeBitString2, self), strEncodedData, Encoding);
+                return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).DecodeBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), strEncodedData, Encoding);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString2_EncodeBlob(self: *const T, BitCount: i32, strBitString: ?BSTR, EncodingIn: EncodingType, Encoding: EncodingType, pstrEncodedData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).EncodeBlob(@ptrCast(*const ICertEncodeBitString2, self), BitCount, strBitString, EncodingIn, Encoding, pstrEncodedData);
+                return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).EncodeBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), BitCount, strBitString, EncodingIn, Encoding, pstrEncodedData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertEncodeBitString2_GetBitStringBlob(self: *const T, Encoding: EncodingType, pstrBitString: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertEncodeBitString2.VTable, self.vtable).GetBitStringBlob(@ptrCast(*const ICertEncodeBitString2, self), Encoding, pstrBitString);
+                return @as(*const ICertEncodeBitString2.VTable, @ptrCast(self.vtable)).GetBitStringBlob(@as(*const ICertEncodeBitString2, @ptrCast(self)), Encoding, pstrBitString);
             }
         };
     }
@@ -21569,15 +21569,15 @@ pub const ICertExit = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertExit_Initialize(self: *const T, strConfig: ?BSTR, pEventMask: ?*CERT_EXIT_EVENT_MASK) HRESULT {
-                return @ptrCast(*const ICertExit.VTable, self.vtable).Initialize(@ptrCast(*const ICertExit, self), strConfig, pEventMask);
+                return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const ICertExit, @ptrCast(self)), strConfig, pEventMask);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertExit_Notify(self: *const T, ExitEvent: i32, Context: i32) HRESULT {
-                return @ptrCast(*const ICertExit.VTable, self.vtable).Notify(@ptrCast(*const ICertExit, self), ExitEvent, Context);
+                return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).Notify(@as(*const ICertExit, @ptrCast(self)), ExitEvent, Context);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertExit_GetDescription(self: *const T, pstrDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICertExit.VTable, self.vtable).GetDescription(@ptrCast(*const ICertExit, self), pstrDescription);
+                return @as(*const ICertExit.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ICertExit, @ptrCast(self)), pstrDescription);
             }
         };
     }
@@ -21607,7 +21607,7 @@ pub const ICertExit2 = extern struct {
             pub usingnamespace ICertExit.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertExit2_GetManageModule(self: *const T, ppManageModule: ?*?*ICertManageModule) HRESULT {
-                return @ptrCast(*const ICertExit2.VTable, self.vtable).GetManageModule(@ptrCast(*const ICertExit2, self), ppManageModule);
+                return @as(*const ICertExit2.VTable, @ptrCast(self.vtable)).GetManageModule(@as(*const ICertExit2, @ptrCast(self)), ppManageModule);
             }
         };
     }
@@ -22379,227 +22379,227 @@ pub const ICEnroll = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_createFilePKCS10(self: *const T, DNName: ?BSTR, Usage: ?BSTR, wszPKCS10FileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).createFilePKCS10(@ptrCast(*const ICEnroll, self), DNName, Usage, wszPKCS10FileName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).createFilePKCS10(@as(*const ICEnroll, @ptrCast(self)), DNName, Usage, wszPKCS10FileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_acceptFilePKCS7(self: *const T, wszPKCS7FileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).acceptFilePKCS7(@ptrCast(*const ICEnroll, self), wszPKCS7FileName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).acceptFilePKCS7(@as(*const ICEnroll, @ptrCast(self)), wszPKCS7FileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_createPKCS10(self: *const T, DNName: ?BSTR, Usage: ?BSTR, pPKCS10: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).createPKCS10(@ptrCast(*const ICEnroll, self), DNName, Usage, pPKCS10);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).createPKCS10(@as(*const ICEnroll, @ptrCast(self)), DNName, Usage, pPKCS10);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_acceptPKCS7(self: *const T, PKCS7: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).acceptPKCS7(@ptrCast(*const ICEnroll, self), PKCS7);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).acceptPKCS7(@as(*const ICEnroll, @ptrCast(self)), PKCS7);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_getCertFromPKCS7(self: *const T, wszPKCS7: ?BSTR, pbstrCert: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).getCertFromPKCS7(@ptrCast(*const ICEnroll, self), wszPKCS7, pbstrCert);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).getCertFromPKCS7(@as(*const ICEnroll, @ptrCast(self)), wszPKCS7, pbstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_enumProviders(self: *const T, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).enumProviders(@ptrCast(*const ICEnroll, self), dwIndex, dwFlags, pbstrProvName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).enumProviders(@as(*const ICEnroll, @ptrCast(self)), dwIndex, dwFlags, pbstrProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_enumContainers(self: *const T, dwIndex: i32, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).enumContainers(@ptrCast(*const ICEnroll, self), dwIndex, pbstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).enumContainers(@as(*const ICEnroll, @ptrCast(self)), dwIndex, pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_freeRequestInfo(self: *const T, PKCS7OrPKCS10: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).freeRequestInfo(@ptrCast(*const ICEnroll, self), PKCS7OrPKCS10);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).freeRequestInfo(@as(*const ICEnroll, @ptrCast(self)), PKCS7OrPKCS10);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_MyStoreName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_MyStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_MyStoreName(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_MyStoreName(@ptrCast(*const ICEnroll, self), bstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_MyStoreType(self: *const T, pbstrType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_MyStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_MyStoreType(self: *const T, bstrType: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_MyStoreType(@ptrCast(*const ICEnroll, self), bstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_MyStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_MyStoreFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_MyStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_MyStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_CAStoreName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_CAStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_CAStoreName(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_CAStoreName(@ptrCast(*const ICEnroll, self), bstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_CAStoreType(self: *const T, pbstrType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_CAStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_CAStoreType(self: *const T, bstrType: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_CAStoreType(@ptrCast(*const ICEnroll, self), bstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_CAStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_CAStoreFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_CAStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_CAStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RootStoreName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RootStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RootStoreName(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RootStoreName(@ptrCast(*const ICEnroll, self), bstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RootStoreType(self: *const T, pbstrType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RootStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RootStoreType(self: *const T, bstrType: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RootStoreType(@ptrCast(*const ICEnroll, self), bstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RootStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RootStoreFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RootStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RootStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RequestStoreName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RequestStoreName(@ptrCast(*const ICEnroll, self), pbstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreName(@as(*const ICEnroll, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RequestStoreName(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RequestStoreName(@ptrCast(*const ICEnroll, self), bstrName);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreName(@as(*const ICEnroll, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RequestStoreType(self: *const T, pbstrType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RequestStoreType(@ptrCast(*const ICEnroll, self), pbstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreType(@as(*const ICEnroll, @ptrCast(self)), pbstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RequestStoreType(self: *const T, bstrType: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RequestStoreType(@ptrCast(*const ICEnroll, self), bstrType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreType(@as(*const ICEnroll, @ptrCast(self)), bstrType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_RequestStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_RequestStoreFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_RequestStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_RequestStoreFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_ContainerName(self: *const T, pbstrContainer: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ContainerName(@ptrCast(*const ICEnroll, self), pbstrContainer);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ContainerName(@as(*const ICEnroll, @ptrCast(self)), pbstrContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_ContainerName(self: *const T, bstrContainer: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_ContainerName(@ptrCast(*const ICEnroll, self), bstrContainer);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ContainerName(@as(*const ICEnroll, @ptrCast(self)), bstrContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_ProviderName(self: *const T, pbstrProvider: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ProviderName(@ptrCast(*const ICEnroll, self), pbstrProvider);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const ICEnroll, @ptrCast(self)), pbstrProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_ProviderName(self: *const T, bstrProvider: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_ProviderName(@ptrCast(*const ICEnroll, self), bstrProvider);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderName(@as(*const ICEnroll, @ptrCast(self)), bstrProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_ProviderType(self: *const T, pdwType: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ProviderType(@ptrCast(*const ICEnroll, self), pdwType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const ICEnroll, @ptrCast(self)), pdwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_ProviderType(self: *const T, dwType: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_ProviderType(@ptrCast(*const ICEnroll, self), dwType);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const ICEnroll, @ptrCast(self)), dwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_KeySpec(self: *const T, pdw: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_KeySpec(@ptrCast(*const ICEnroll, self), pdw);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const ICEnroll, @ptrCast(self)), pdw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_KeySpec(self: *const T, dw: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_KeySpec(@ptrCast(*const ICEnroll, self), dw);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const ICEnroll, @ptrCast(self)), dw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_ProviderFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_ProviderFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_ProviderFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_ProviderFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_ProviderFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_ProviderFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_UseExistingKeySet(self: *const T, fUseExistingKeys: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_UseExistingKeySet(@ptrCast(*const ICEnroll, self), fUseExistingKeys);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_UseExistingKeySet(@as(*const ICEnroll, @ptrCast(self)), fUseExistingKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_UseExistingKeySet(self: *const T, fUseExistingKeys: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_UseExistingKeySet(@ptrCast(*const ICEnroll, self), fUseExistingKeys);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_UseExistingKeySet(@as(*const ICEnroll, @ptrCast(self)), fUseExistingKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_GenKeyFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_GenKeyFlags(@ptrCast(*const ICEnroll, self), pdwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_GenKeyFlags(@as(*const ICEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_GenKeyFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_GenKeyFlags(@ptrCast(*const ICEnroll, self), dwFlags);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_GenKeyFlags(@as(*const ICEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_DeleteRequestCert(self: *const T, fDelete: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_DeleteRequestCert(@ptrCast(*const ICEnroll, self), fDelete);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_DeleteRequestCert(@as(*const ICEnroll, @ptrCast(self)), fDelete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_DeleteRequestCert(self: *const T, fDelete: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_DeleteRequestCert(@ptrCast(*const ICEnroll, self), fDelete);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_DeleteRequestCert(@as(*const ICEnroll, @ptrCast(self)), fDelete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_WriteCertToCSP(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_WriteCertToCSP(@ptrCast(*const ICEnroll, self), fBool);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToCSP(@as(*const ICEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_WriteCertToCSP(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_WriteCertToCSP(@ptrCast(*const ICEnroll, self), fBool);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToCSP(@as(*const ICEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_SPCFileName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_SPCFileName(@ptrCast(*const ICEnroll, self), pbstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_SPCFileName(@as(*const ICEnroll, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_SPCFileName(self: *const T, bstr: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_SPCFileName(@ptrCast(*const ICEnroll, self), bstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_SPCFileName(@as(*const ICEnroll, @ptrCast(self)), bstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_PVKFileName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_PVKFileName(@ptrCast(*const ICEnroll, self), pbstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_PVKFileName(@as(*const ICEnroll, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_PVKFileName(self: *const T, bstr: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_PVKFileName(@ptrCast(*const ICEnroll, self), bstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_PVKFileName(@as(*const ICEnroll, @ptrCast(self)), bstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_get_HashAlgorithm(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const ICEnroll, self), pbstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const ICEnroll, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll_put_HashAlgorithm(self: *const T, bstr: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const ICEnroll, self), bstr);
+                return @as(*const ICEnroll.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const ICEnroll, @ptrCast(self)), bstr);
             }
         };
     }
@@ -22693,27 +22693,27 @@ pub const ICEnroll2 = extern struct {
             pub usingnamespace ICEnroll.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_addCertTypeToRequest(self: *const T, CertType: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).addCertTypeToRequest(@ptrCast(*const ICEnroll2, self), CertType);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).addCertTypeToRequest(@as(*const ICEnroll2, @ptrCast(self)), CertType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_addNameValuePairToSignature(self: *const T, Name: ?BSTR, Value: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).addNameValuePairToSignature(@ptrCast(*const ICEnroll2, self), Name, Value);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).addNameValuePairToSignature(@as(*const ICEnroll2, @ptrCast(self)), Name, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_get_WriteCertToUserDS(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).get_WriteCertToUserDS(@ptrCast(*const ICEnroll2, self), fBool);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).get_WriteCertToUserDS(@as(*const ICEnroll2, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_put_WriteCertToUserDS(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).put_WriteCertToUserDS(@ptrCast(*const ICEnroll2, self), fBool);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).put_WriteCertToUserDS(@as(*const ICEnroll2, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_get_EnableT61DNEncoding(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).get_EnableT61DNEncoding(@ptrCast(*const ICEnroll2, self), fBool);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).get_EnableT61DNEncoding(@as(*const ICEnroll2, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll2_put_EnableT61DNEncoding(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll2.VTable, self.vtable).put_EnableT61DNEncoding(@ptrCast(*const ICEnroll2, self), fBool);
+                return @as(*const ICEnroll2.VTable, @ptrCast(self.vtable)).put_EnableT61DNEncoding(@as(*const ICEnroll2, @ptrCast(self)), fBool);
             }
         };
     }
@@ -22905,59 +22905,59 @@ pub const ICEnroll3 = extern struct {
             pub usingnamespace ICEnroll2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_InstallPKCS7(self: *const T, PKCS7: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).InstallPKCS7(@ptrCast(*const ICEnroll3, self), PKCS7);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).InstallPKCS7(@as(*const ICEnroll3, @ptrCast(self)), PKCS7);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).Reset(@ptrCast(*const ICEnroll3, self));
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICEnroll3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_GetSupportedKeySpec(self: *const T, pdwKeySpec: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).GetSupportedKeySpec(@ptrCast(*const ICEnroll3, self), pdwKeySpec);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetSupportedKeySpec(@as(*const ICEnroll3, @ptrCast(self)), pdwKeySpec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_GetKeyLen(self: *const T, fMin: BOOL, fExchange: BOOL, pdwKeySize: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).GetKeyLen(@ptrCast(*const ICEnroll3, self), fMin, fExchange, pdwKeySize);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetKeyLen(@as(*const ICEnroll3, @ptrCast(self)), fMin, fExchange, pdwKeySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_EnumAlgs(self: *const T, dwIndex: i32, algClass: i32, pdwAlgID: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).EnumAlgs(@ptrCast(*const ICEnroll3, self), dwIndex, algClass, pdwAlgID);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).EnumAlgs(@as(*const ICEnroll3, @ptrCast(self)), dwIndex, algClass, pdwAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_GetAlgName(self: *const T, algID: i32, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).GetAlgName(@ptrCast(*const ICEnroll3, self), algID, pbstr);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).GetAlgName(@as(*const ICEnroll3, @ptrCast(self)), algID, pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_put_ReuseHardwareKeyIfUnableToGenNew(self: *const T, fReuseHardwareKeyIfUnableToGenNew: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).put_ReuseHardwareKeyIfUnableToGenNew(@ptrCast(*const ICEnroll3, self), fReuseHardwareKeyIfUnableToGenNew);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_ReuseHardwareKeyIfUnableToGenNew(@as(*const ICEnroll3, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_get_ReuseHardwareKeyIfUnableToGenNew(self: *const T, fReuseHardwareKeyIfUnableToGenNew: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).get_ReuseHardwareKeyIfUnableToGenNew(@ptrCast(*const ICEnroll3, self), fReuseHardwareKeyIfUnableToGenNew);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_ReuseHardwareKeyIfUnableToGenNew(@as(*const ICEnroll3, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_put_HashAlgID(self: *const T, hashAlgID: i32) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).put_HashAlgID(@ptrCast(*const ICEnroll3, self), hashAlgID);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_HashAlgID(@as(*const ICEnroll3, @ptrCast(self)), hashAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_get_HashAlgID(self: *const T, hashAlgID: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).get_HashAlgID(@ptrCast(*const ICEnroll3, self), hashAlgID);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_HashAlgID(@as(*const ICEnroll3, @ptrCast(self)), hashAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_put_LimitExchangeKeyToEncipherment(self: *const T, fLimitExchangeKeyToEncipherment: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).put_LimitExchangeKeyToEncipherment(@ptrCast(*const ICEnroll3, self), fLimitExchangeKeyToEncipherment);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_LimitExchangeKeyToEncipherment(@as(*const ICEnroll3, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_get_LimitExchangeKeyToEncipherment(self: *const T, fLimitExchangeKeyToEncipherment: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).get_LimitExchangeKeyToEncipherment(@ptrCast(*const ICEnroll3, self), fLimitExchangeKeyToEncipherment);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_LimitExchangeKeyToEncipherment(@as(*const ICEnroll3, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_put_EnableSMIMECapabilities(self: *const T, fEnableSMIMECapabilities: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).put_EnableSMIMECapabilities(@ptrCast(*const ICEnroll3, self), fEnableSMIMECapabilities);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).put_EnableSMIMECapabilities(@as(*const ICEnroll3, @ptrCast(self)), fEnableSMIMECapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll3_get_EnableSMIMECapabilities(self: *const T, fEnableSMIMECapabilities: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll3.VTable, self.vtable).get_EnableSMIMECapabilities(@ptrCast(*const ICEnroll3, self), fEnableSMIMECapabilities);
+                return @as(*const ICEnroll3.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const ICEnroll3, @ptrCast(self)), fEnableSMIMECapabilities);
             }
         };
     }
@@ -23398,135 +23398,135 @@ pub const ICEnroll4 = extern struct {
             pub usingnamespace ICEnroll3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_put_PrivateKeyArchiveCertificate(self: *const T, bstrCert: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_PrivateKeyArchiveCertificate(@ptrCast(*const ICEnroll4, self), bstrCert);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_PrivateKeyArchiveCertificate(@as(*const ICEnroll4, @ptrCast(self)), bstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_get_PrivateKeyArchiveCertificate(self: *const T, pbstrCert: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_PrivateKeyArchiveCertificate(@ptrCast(*const ICEnroll4, self), pbstrCert);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_PrivateKeyArchiveCertificate(@as(*const ICEnroll4, @ptrCast(self)), pbstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_put_ThumbPrint(self: *const T, bstrThumbPrint: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_ThumbPrint(@ptrCast(*const ICEnroll4, self), bstrThumbPrint);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_ThumbPrint(@as(*const ICEnroll4, @ptrCast(self)), bstrThumbPrint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_get_ThumbPrint(self: *const T, pbstrThumbPrint: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_ThumbPrint(@ptrCast(*const ICEnroll4, self), pbstrThumbPrint);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_ThumbPrint(@as(*const ICEnroll4, @ptrCast(self)), pbstrThumbPrint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_binaryToString(self: *const T, Flags: i32, strBinary: ?BSTR, pstrEncoded: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).binaryToString(@ptrCast(*const ICEnroll4, self), Flags, strBinary, pstrEncoded);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).binaryToString(@as(*const ICEnroll4, @ptrCast(self)), Flags, strBinary, pstrEncoded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_stringToBinary(self: *const T, Flags: i32, strEncoded: ?BSTR, pstrBinary: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).stringToBinary(@ptrCast(*const ICEnroll4, self), Flags, strEncoded, pstrBinary);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).stringToBinary(@as(*const ICEnroll4, @ptrCast(self)), Flags, strEncoded, pstrBinary);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_addExtensionToRequest(self: *const T, Flags: i32, strName: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).addExtensionToRequest(@ptrCast(*const ICEnroll4, self), Flags, strName, strValue);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addExtensionToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_addAttributeToRequest(self: *const T, Flags: i32, strName: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).addAttributeToRequest(@ptrCast(*const ICEnroll4, self), Flags, strName, strValue);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addAttributeToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_addNameValuePairToRequest(self: *const T, Flags: i32, strName: ?BSTR, strValue: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).addNameValuePairToRequest(@ptrCast(*const ICEnroll4, self), Flags, strName, strValue);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addNameValuePairToRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strName, strValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_resetExtensions(self: *const T) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).resetExtensions(@ptrCast(*const ICEnroll4, self));
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetExtensions(@as(*const ICEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_resetAttributes(self: *const T) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).resetAttributes(@ptrCast(*const ICEnroll4, self));
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetAttributes(@as(*const ICEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_createRequest(self: *const T, Flags: CERT_CREATE_REQUEST_FLAGS, strDNName: ?BSTR, Usage: ?BSTR, pstrRequest: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).createRequest(@ptrCast(*const ICEnroll4, self), Flags, strDNName, Usage, pstrRequest);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strDNName, Usage, pstrRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_createFileRequest(self: *const T, Flags: CERT_CREATE_REQUEST_FLAGS, strDNName: ?BSTR, strUsage: ?BSTR, strRequestFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).createFileRequest(@ptrCast(*const ICEnroll4, self), Flags, strDNName, strUsage, strRequestFileName);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createFileRequest(@as(*const ICEnroll4, @ptrCast(self)), Flags, strDNName, strUsage, strRequestFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_acceptResponse(self: *const T, strResponse: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).acceptResponse(@ptrCast(*const ICEnroll4, self), strResponse);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).acceptResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_acceptFileResponse(self: *const T, strResponseFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).acceptFileResponse(@ptrCast(*const ICEnroll4, self), strResponseFileName);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).acceptFileResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponseFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_getCertFromResponse(self: *const T, strResponse: ?BSTR, pstrCert: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).getCertFromResponse(@ptrCast(*const ICEnroll4, self), strResponse, pstrCert);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getCertFromResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponse, pstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_getCertFromFileResponse(self: *const T, strResponseFileName: ?BSTR, pstrCert: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).getCertFromFileResponse(@ptrCast(*const ICEnroll4, self), strResponseFileName, pstrCert);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getCertFromFileResponse(@as(*const ICEnroll4, @ptrCast(self)), strResponseFileName, pstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_createPFX(self: *const T, strPassword: ?BSTR, pstrPFX: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).createPFX(@ptrCast(*const ICEnroll4, self), strPassword, pstrPFX);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createPFX(@as(*const ICEnroll4, @ptrCast(self)), strPassword, pstrPFX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_createFilePFX(self: *const T, strPassword: ?BSTR, strPFXFileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).createFilePFX(@ptrCast(*const ICEnroll4, self), strPassword, strPFXFileName);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).createFilePFX(@as(*const ICEnroll4, @ptrCast(self)), strPassword, strPFXFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_setPendingRequestInfo(self: *const T, lRequestID: i32, strCADNS: ?BSTR, strCAName: ?BSTR, strFriendlyName: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).setPendingRequestInfo(@ptrCast(*const ICEnroll4, self), lRequestID, strCADNS, strCAName, strFriendlyName);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).setPendingRequestInfo(@as(*const ICEnroll4, @ptrCast(self)), lRequestID, strCADNS, strCAName, strFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_enumPendingRequest(self: *const T, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, pvarProperty: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).enumPendingRequest(@ptrCast(*const ICEnroll4, self), lIndex, lDesiredProperty, pvarProperty);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).enumPendingRequest(@as(*const ICEnroll4, @ptrCast(self)), lIndex, lDesiredProperty, pvarProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_removePendingRequest(self: *const T, strThumbprint: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).removePendingRequest(@ptrCast(*const ICEnroll4, self), strThumbprint);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).removePendingRequest(@as(*const ICEnroll4, @ptrCast(self)), strThumbprint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_GetKeyLenEx(self: *const T, lSizeSpec: XEKL_KEYSIZE, lKeySpec: XEKL_KEYSPEC, pdwKeySize: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).GetKeyLenEx(@ptrCast(*const ICEnroll4, self), lSizeSpec, lKeySpec, pdwKeySize);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).GetKeyLenEx(@as(*const ICEnroll4, @ptrCast(self)), lSizeSpec, lKeySpec, pdwKeySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_InstallPKCS7Ex(self: *const T, PKCS7: ?BSTR, plCertInstalled: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).InstallPKCS7Ex(@ptrCast(*const ICEnroll4, self), PKCS7, plCertInstalled);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).InstallPKCS7Ex(@as(*const ICEnroll4, @ptrCast(self)), PKCS7, plCertInstalled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_addCertTypeToRequestEx(self: *const T, lType: ADDED_CERT_TYPE, bstrOIDOrName: ?BSTR, lMajorVersion: i32, fMinorVersion: BOOL, lMinorVersion: i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).addCertTypeToRequestEx(@ptrCast(*const ICEnroll4, self), lType, bstrOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addCertTypeToRequestEx(@as(*const ICEnroll4, @ptrCast(self)), lType, bstrOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_getProviderType(self: *const T, strProvName: ?BSTR, plProvType: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).getProviderType(@ptrCast(*const ICEnroll4, self), strProvName, plProvType);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).getProviderType(@as(*const ICEnroll4, @ptrCast(self)), strProvName, plProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_put_SignerCertificate(self: *const T, bstrCert: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_SignerCertificate(@ptrCast(*const ICEnroll4, self), bstrCert);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_SignerCertificate(@as(*const ICEnroll4, @ptrCast(self)), bstrCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_put_ClientId(self: *const T, lClientId: i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_ClientId(@ptrCast(*const ICEnroll4, self), lClientId);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const ICEnroll4, @ptrCast(self)), lClientId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_get_ClientId(self: *const T, plClientId: ?*i32) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_ClientId(@ptrCast(*const ICEnroll4, self), plClientId);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const ICEnroll4, @ptrCast(self)), plClientId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_addBlobPropertyToCertificate(self: *const T, lPropertyId: i32, lReserved: i32, bstrProperty: ?BSTR) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).addBlobPropertyToCertificate(@ptrCast(*const ICEnroll4, self), lPropertyId, lReserved, bstrProperty);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).addBlobPropertyToCertificate(@as(*const ICEnroll4, @ptrCast(self)), lPropertyId, lReserved, bstrProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_resetBlobProperties(self: *const T) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).resetBlobProperties(@ptrCast(*const ICEnroll4, self));
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).resetBlobProperties(@as(*const ICEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_put_IncludeSubjectKeyID(self: *const T, fInclude: BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).put_IncludeSubjectKeyID(@ptrCast(*const ICEnroll4, self), fInclude);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).put_IncludeSubjectKeyID(@as(*const ICEnroll4, @ptrCast(self)), fInclude);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICEnroll4_get_IncludeSubjectKeyID(self: *const T, pfInclude: ?*BOOL) HRESULT {
-                return @ptrCast(*const ICEnroll4.VTable, self.vtable).get_IncludeSubjectKeyID(@ptrCast(*const ICEnroll4, self), pfInclude);
+                return @as(*const ICEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const ICEnroll4, @ptrCast(self)), pfInclude);
             }
         };
     }
@@ -24422,283 +24422,283 @@ pub const IEnroll = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_createFilePKCS10WStr(self: *const T, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, wszPKCS10FileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).createFilePKCS10WStr(@ptrCast(*const IEnroll, self), DNName, Usage, wszPKCS10FileName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).createFilePKCS10WStr(@as(*const IEnroll, @ptrCast(self)), DNName, Usage, wszPKCS10FileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_acceptFilePKCS7WStr(self: *const T, wszPKCS7FileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).acceptFilePKCS7WStr(@ptrCast(*const IEnroll, self), wszPKCS7FileName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).acceptFilePKCS7WStr(@as(*const IEnroll, @ptrCast(self)), wszPKCS7FileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_createPKCS10WStr(self: *const T, DNName: ?[*:0]const u16, Usage: ?[*:0]const u16, pPkcs10Blob: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).createPKCS10WStr(@ptrCast(*const IEnroll, self), DNName, Usage, pPkcs10Blob);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).createPKCS10WStr(@as(*const IEnroll, @ptrCast(self)), DNName, Usage, pPkcs10Blob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_acceptPKCS7Blob(self: *const T, pBlobPKCS7: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).acceptPKCS7Blob(@ptrCast(*const IEnroll, self), pBlobPKCS7);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).acceptPKCS7Blob(@as(*const IEnroll, @ptrCast(self)), pBlobPKCS7);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_getCertContextFromPKCS7(self: *const T, pBlobPKCS7: ?*CRYPTOAPI_BLOB) ?*CERT_CONTEXT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).getCertContextFromPKCS7(@ptrCast(*const IEnroll, self), pBlobPKCS7);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getCertContextFromPKCS7(@as(*const IEnroll, @ptrCast(self)), pBlobPKCS7);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_getMyStore(self: *const T) ?*anyopaque {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).getMyStore(@ptrCast(*const IEnroll, self));
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getMyStore(@as(*const IEnroll, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_getCAStore(self: *const T) ?*anyopaque {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).getCAStore(@ptrCast(*const IEnroll, self));
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getCAStore(@as(*const IEnroll, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_getROOTHStore(self: *const T) ?*anyopaque {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).getROOTHStore(@ptrCast(*const IEnroll, self));
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).getROOTHStore(@as(*const IEnroll, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_enumProvidersWStr(self: *const T, dwIndex: i32, dwFlags: i32, pbstrProvName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).enumProvidersWStr(@ptrCast(*const IEnroll, self), dwIndex, dwFlags, pbstrProvName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).enumProvidersWStr(@as(*const IEnroll, @ptrCast(self)), dwIndex, dwFlags, pbstrProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_enumContainersWStr(self: *const T, dwIndex: i32, pbstr: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).enumContainersWStr(@ptrCast(*const IEnroll, self), dwIndex, pbstr);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).enumContainersWStr(@as(*const IEnroll, @ptrCast(self)), dwIndex, pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_freeRequestInfoBlob(self: *const T, pkcs7OrPkcs10: CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).freeRequestInfoBlob(@ptrCast(*const IEnroll, self), pkcs7OrPkcs10);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).freeRequestInfoBlob(@as(*const IEnroll, @ptrCast(self)), pkcs7OrPkcs10);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_MyStoreNameWStr(self: *const T, szwName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_MyStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_MyStoreNameWStr(self: *const T, szwName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_MyStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_MyStoreTypeWStr(self: *const T, szwType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_MyStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_MyStoreTypeWStr(self: *const T, szwType: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_MyStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_MyStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_MyStoreFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_MyStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_MyStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_MyStoreFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_MyStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_CAStoreNameWStr(self: *const T, szwName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_CAStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_CAStoreNameWStr(self: *const T, szwName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_CAStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_CAStoreTypeWStr(self: *const T, szwType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_CAStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_CAStoreTypeWStr(self: *const T, szwType: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_CAStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_CAStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_CAStoreFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_CAStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_CAStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_CAStoreFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_CAStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RootStoreNameWStr(self: *const T, szwName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RootStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RootStoreNameWStr(self: *const T, szwName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RootStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RootStoreTypeWStr(self: *const T, szwType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RootStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RootStoreTypeWStr(self: *const T, szwType: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RootStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RootStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RootStoreFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RootStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RootStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RootStoreFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RootStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RequestStoreNameWStr(self: *const T, szwName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RequestStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RequestStoreNameWStr(self: *const T, szwName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RequestStoreNameWStr(@ptrCast(*const IEnroll, self), szwName);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreNameWStr(@as(*const IEnroll, @ptrCast(self)), szwName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RequestStoreTypeWStr(self: *const T, szwType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RequestStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RequestStoreTypeWStr(self: *const T, szwType: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RequestStoreTypeWStr(@ptrCast(*const IEnroll, self), szwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreTypeWStr(@as(*const IEnroll, @ptrCast(self)), szwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RequestStoreFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RequestStoreFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RequestStoreFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RequestStoreFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RequestStoreFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RequestStoreFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_ContainerNameWStr(self: *const T, szwContainer: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_ContainerNameWStr(@ptrCast(*const IEnroll, self), szwContainer);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ContainerNameWStr(@as(*const IEnroll, @ptrCast(self)), szwContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_ContainerNameWStr(self: *const T, szwContainer: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_ContainerNameWStr(@ptrCast(*const IEnroll, self), szwContainer);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ContainerNameWStr(@as(*const IEnroll, @ptrCast(self)), szwContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_ProviderNameWStr(self: *const T, szwProvider: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_ProviderNameWStr(@ptrCast(*const IEnroll, self), szwProvider);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderNameWStr(@as(*const IEnroll, @ptrCast(self)), szwProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_ProviderNameWStr(self: *const T, szwProvider: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_ProviderNameWStr(@ptrCast(*const IEnroll, self), szwProvider);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderNameWStr(@as(*const IEnroll, @ptrCast(self)), szwProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_ProviderType(self: *const T, pdwType: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_ProviderType(@ptrCast(*const IEnroll, self), pdwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderType(@as(*const IEnroll, @ptrCast(self)), pdwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_ProviderType(self: *const T, dwType: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_ProviderType(@ptrCast(*const IEnroll, self), dwType);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderType(@as(*const IEnroll, @ptrCast(self)), dwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_KeySpec(self: *const T, pdw: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_KeySpec(@ptrCast(*const IEnroll, self), pdw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_KeySpec(@as(*const IEnroll, @ptrCast(self)), pdw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_KeySpec(self: *const T, dw: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_KeySpec(@ptrCast(*const IEnroll, self), dw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_KeySpec(@as(*const IEnroll, @ptrCast(self)), dw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_ProviderFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_ProviderFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_ProviderFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_ProviderFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_ProviderFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_ProviderFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_UseExistingKeySet(self: *const T, fUseExistingKeys: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_UseExistingKeySet(@ptrCast(*const IEnroll, self), fUseExistingKeys);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_UseExistingKeySet(@as(*const IEnroll, @ptrCast(self)), fUseExistingKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_UseExistingKeySet(self: *const T, fUseExistingKeys: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_UseExistingKeySet(@ptrCast(*const IEnroll, self), fUseExistingKeys);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_UseExistingKeySet(@as(*const IEnroll, @ptrCast(self)), fUseExistingKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_GenKeyFlags(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_GenKeyFlags(@ptrCast(*const IEnroll, self), pdwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_GenKeyFlags(@as(*const IEnroll, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_GenKeyFlags(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_GenKeyFlags(@ptrCast(*const IEnroll, self), dwFlags);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_GenKeyFlags(@as(*const IEnroll, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_DeleteRequestCert(self: *const T, fDelete: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_DeleteRequestCert(@ptrCast(*const IEnroll, self), fDelete);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_DeleteRequestCert(@as(*const IEnroll, @ptrCast(self)), fDelete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_DeleteRequestCert(self: *const T, fDelete: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_DeleteRequestCert(@ptrCast(*const IEnroll, self), fDelete);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_DeleteRequestCert(@as(*const IEnroll, @ptrCast(self)), fDelete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_WriteCertToUserDS(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_WriteCertToUserDS(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToUserDS(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_WriteCertToUserDS(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_WriteCertToUserDS(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToUserDS(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_EnableT61DNEncoding(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_EnableT61DNEncoding(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_EnableT61DNEncoding(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_EnableT61DNEncoding(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_EnableT61DNEncoding(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_EnableT61DNEncoding(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_WriteCertToCSP(self: *const T, fBool: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_WriteCertToCSP(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_WriteCertToCSP(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_WriteCertToCSP(self: *const T, fBool: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_WriteCertToCSP(@ptrCast(*const IEnroll, self), fBool);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_WriteCertToCSP(@as(*const IEnroll, @ptrCast(self)), fBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_SPCFileNameWStr(self: *const T, szw: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_SPCFileNameWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_SPCFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_SPCFileNameWStr(self: *const T, szw: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_SPCFileNameWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_SPCFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_PVKFileNameWStr(self: *const T, szw: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_PVKFileNameWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_PVKFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_PVKFileNameWStr(self: *const T, szw: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_PVKFileNameWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_PVKFileNameWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_HashAlgorithmWStr(self: *const T, szw: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_HashAlgorithmWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_HashAlgorithmWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_HashAlgorithmWStr(self: *const T, szw: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_HashAlgorithmWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_HashAlgorithmWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_get_RenewalCertificate(self: *const T, ppCertContext: ?*?*CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).get_RenewalCertificate(@ptrCast(*const IEnroll, self), ppCertContext);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).get_RenewalCertificate(@as(*const IEnroll, @ptrCast(self)), ppCertContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_put_RenewalCertificate(self: *const T, pCertContext: ?*const CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).put_RenewalCertificate(@ptrCast(*const IEnroll, self), pCertContext);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).put_RenewalCertificate(@as(*const IEnroll, @ptrCast(self)), pCertContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_AddCertTypeToRequestWStr(self: *const T, szw: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).AddCertTypeToRequestWStr(@ptrCast(*const IEnroll, self), szw);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddCertTypeToRequestWStr(@as(*const IEnroll, @ptrCast(self)), szw);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_AddNameValuePairToSignatureWStr(self: *const T, Name: ?PWSTR, Value: ?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).AddNameValuePairToSignatureWStr(@ptrCast(*const IEnroll, self), Name, Value);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddNameValuePairToSignatureWStr(@as(*const IEnroll, @ptrCast(self)), Name, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_AddExtensionsToRequest(self: *const T, pCertExtensions: ?*CERT_EXTENSIONS) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).AddExtensionsToRequest(@ptrCast(*const IEnroll, self), pCertExtensions);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddExtensionsToRequest(@as(*const IEnroll, @ptrCast(self)), pCertExtensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_AddAuthenticatedAttributesToPKCS7Request(self: *const T, pAttributes: ?*CRYPT_ATTRIBUTES) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).AddAuthenticatedAttributesToPKCS7Request(@ptrCast(*const IEnroll, self), pAttributes);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).AddAuthenticatedAttributesToPKCS7Request(@as(*const IEnroll, @ptrCast(self)), pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll_CreatePKCS7RequestFromRequest(self: *const T, pRequest: ?*CRYPTOAPI_BLOB, pSigningCertContext: ?*const CERT_CONTEXT, pPkcs7Blob: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll.VTable, self.vtable).CreatePKCS7RequestFromRequest(@ptrCast(*const IEnroll, self), pRequest, pSigningCertContext, pPkcs7Blob);
+                return @as(*const IEnroll.VTable, @ptrCast(self.vtable)).CreatePKCS7RequestFromRequest(@as(*const IEnroll, @ptrCast(self)), pRequest, pSigningCertContext, pPkcs7Blob);
             }
         };
     }
@@ -24930,75 +24930,75 @@ pub const IEnroll2 = extern struct {
             pub usingnamespace IEnroll.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_InstallPKCS7Blob(self: *const T, pBlobPKCS7: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).InstallPKCS7Blob(@ptrCast(*const IEnroll2, self), pBlobPKCS7);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).InstallPKCS7Blob(@as(*const IEnroll2, @ptrCast(self)), pBlobPKCS7);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).Reset(@ptrCast(*const IEnroll2, self));
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnroll2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_GetSupportedKeySpec(self: *const T, pdwKeySpec: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).GetSupportedKeySpec(@ptrCast(*const IEnroll2, self), pdwKeySpec);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetSupportedKeySpec(@as(*const IEnroll2, @ptrCast(self)), pdwKeySpec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_GetKeyLen(self: *const T, fMin: BOOL, fExchange: BOOL, pdwKeySize: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).GetKeyLen(@ptrCast(*const IEnroll2, self), fMin, fExchange, pdwKeySize);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetKeyLen(@as(*const IEnroll2, @ptrCast(self)), fMin, fExchange, pdwKeySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_EnumAlgs(self: *const T, dwIndex: i32, algClass: i32, pdwAlgID: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).EnumAlgs(@ptrCast(*const IEnroll2, self), dwIndex, algClass, pdwAlgID);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).EnumAlgs(@as(*const IEnroll2, @ptrCast(self)), dwIndex, algClass, pdwAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_GetAlgNameWStr(self: *const T, algID: i32, ppwsz: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).GetAlgNameWStr(@ptrCast(*const IEnroll2, self), algID, ppwsz);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).GetAlgNameWStr(@as(*const IEnroll2, @ptrCast(self)), algID, ppwsz);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_put_ReuseHardwareKeyIfUnableToGenNew(self: *const T, fReuseHardwareKeyIfUnableToGenNew: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).put_ReuseHardwareKeyIfUnableToGenNew(@ptrCast(*const IEnroll2, self), fReuseHardwareKeyIfUnableToGenNew);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_ReuseHardwareKeyIfUnableToGenNew(@as(*const IEnroll2, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_get_ReuseHardwareKeyIfUnableToGenNew(self: *const T, fReuseHardwareKeyIfUnableToGenNew: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).get_ReuseHardwareKeyIfUnableToGenNew(@ptrCast(*const IEnroll2, self), fReuseHardwareKeyIfUnableToGenNew);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_ReuseHardwareKeyIfUnableToGenNew(@as(*const IEnroll2, @ptrCast(self)), fReuseHardwareKeyIfUnableToGenNew);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_put_HashAlgID(self: *const T, hashAlgID: i32) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).put_HashAlgID(@ptrCast(*const IEnroll2, self), hashAlgID);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_HashAlgID(@as(*const IEnroll2, @ptrCast(self)), hashAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_get_HashAlgID(self: *const T, hashAlgID: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).get_HashAlgID(@ptrCast(*const IEnroll2, self), hashAlgID);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_HashAlgID(@as(*const IEnroll2, @ptrCast(self)), hashAlgID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_SetHStoreMy(self: *const T, hStore: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreMy(@ptrCast(*const IEnroll2, self), hStore);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreMy(@as(*const IEnroll2, @ptrCast(self)), hStore);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_SetHStoreCA(self: *const T, hStore: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreCA(@ptrCast(*const IEnroll2, self), hStore);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreCA(@as(*const IEnroll2, @ptrCast(self)), hStore);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_SetHStoreROOT(self: *const T, hStore: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreROOT(@ptrCast(*const IEnroll2, self), hStore);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreROOT(@as(*const IEnroll2, @ptrCast(self)), hStore);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_SetHStoreRequest(self: *const T, hStore: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreRequest(@ptrCast(*const IEnroll2, self), hStore);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).SetHStoreRequest(@as(*const IEnroll2, @ptrCast(self)), hStore);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_put_LimitExchangeKeyToEncipherment(self: *const T, fLimitExchangeKeyToEncipherment: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).put_LimitExchangeKeyToEncipherment(@ptrCast(*const IEnroll2, self), fLimitExchangeKeyToEncipherment);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_LimitExchangeKeyToEncipherment(@as(*const IEnroll2, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_get_LimitExchangeKeyToEncipherment(self: *const T, fLimitExchangeKeyToEncipherment: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).get_LimitExchangeKeyToEncipherment(@ptrCast(*const IEnroll2, self), fLimitExchangeKeyToEncipherment);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_LimitExchangeKeyToEncipherment(@as(*const IEnroll2, @ptrCast(self)), fLimitExchangeKeyToEncipherment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_put_EnableSMIMECapabilities(self: *const T, fEnableSMIMECapabilities: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).put_EnableSMIMECapabilities(@ptrCast(*const IEnroll2, self), fEnableSMIMECapabilities);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).put_EnableSMIMECapabilities(@as(*const IEnroll2, @ptrCast(self)), fEnableSMIMECapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll2_get_EnableSMIMECapabilities(self: *const T, fEnableSMIMECapabilities: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll2.VTable, self.vtable).get_EnableSMIMECapabilities(@ptrCast(*const IEnroll2, self), fEnableSMIMECapabilities);
+                return @as(*const IEnroll2.VTable, @ptrCast(self.vtable)).get_EnableSMIMECapabilities(@as(*const IEnroll2, @ptrCast(self)), fEnableSMIMECapabilities);
             }
         };
     }
@@ -25424,131 +25424,131 @@ pub const IEnroll4 = extern struct {
             pub usingnamespace IEnroll2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_put_ThumbPrintWStr(self: *const T, thumbPrintBlob: CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).put_ThumbPrintWStr(@ptrCast(*const IEnroll4, self), thumbPrintBlob);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_ThumbPrintWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_get_ThumbPrintWStr(self: *const T, thumbPrintBlob: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).get_ThumbPrintWStr(@ptrCast(*const IEnroll4, self), thumbPrintBlob);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_ThumbPrintWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_SetPrivateKeyArchiveCertificate(self: *const T, pPrivateKeyArchiveCert: ?*const CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).SetPrivateKeyArchiveCertificate(@ptrCast(*const IEnroll4, self), pPrivateKeyArchiveCert);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).SetPrivateKeyArchiveCertificate(@as(*const IEnroll4, @ptrCast(self)), pPrivateKeyArchiveCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_GetPrivateKeyArchiveCertificate(self: *const T) ?*CERT_CONTEXT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).GetPrivateKeyArchiveCertificate(@ptrCast(*const IEnroll4, self));
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).GetPrivateKeyArchiveCertificate(@as(*const IEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_binaryBlobToString(self: *const T, Flags: i32, pblobBinary: ?*CRYPTOAPI_BLOB, ppwszString: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).binaryBlobToString(@ptrCast(*const IEnroll4, self), Flags, pblobBinary, ppwszString);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).binaryBlobToString(@as(*const IEnroll4, @ptrCast(self)), Flags, pblobBinary, ppwszString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_stringToBinaryBlob(self: *const T, Flags: i32, pwszString: ?[*:0]const u16, pblobBinary: ?*CRYPTOAPI_BLOB, pdwSkip: ?*i32, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).stringToBinaryBlob(@ptrCast(*const IEnroll4, self), Flags, pwszString, pblobBinary, pdwSkip, pdwFlags);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).stringToBinaryBlob(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszString, pblobBinary, pdwSkip, pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_addExtensionToRequestWStr(self: *const T, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).addExtensionToRequestWStr(@ptrCast(*const IEnroll4, self), Flags, pwszName, pblobValue);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addExtensionToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pblobValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_addAttributeToRequestWStr(self: *const T, Flags: i32, pwszName: ?[*:0]const u16, pblobValue: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).addAttributeToRequestWStr(@ptrCast(*const IEnroll4, self), Flags, pwszName, pblobValue);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addAttributeToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pblobValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_addNameValuePairToRequestWStr(self: *const T, Flags: i32, pwszName: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).addNameValuePairToRequestWStr(@ptrCast(*const IEnroll4, self), Flags, pwszName, pwszValue);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addNameValuePairToRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszName, pwszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_resetExtensions(self: *const T) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).resetExtensions(@ptrCast(*const IEnroll4, self));
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).resetExtensions(@as(*const IEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_resetAttributes(self: *const T) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).resetAttributes(@ptrCast(*const IEnroll4, self));
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).resetAttributes(@as(*const IEnroll4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_createRequestWStr(self: *const T, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pblobRequest: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).createRequestWStr(@ptrCast(*const IEnroll4, self), Flags, pwszDNName, pwszUsage, pblobRequest);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszDNName, pwszUsage, pblobRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_createFileRequestWStr(self: *const T, Flags: CERT_CREATE_REQUEST_FLAGS, pwszDNName: ?[*:0]const u16, pwszUsage: ?[*:0]const u16, pwszRequestFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).createFileRequestWStr(@ptrCast(*const IEnroll4, self), Flags, pwszDNName, pwszUsage, pwszRequestFileName);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createFileRequestWStr(@as(*const IEnroll4, @ptrCast(self)), Flags, pwszDNName, pwszUsage, pwszRequestFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_acceptResponseBlob(self: *const T, pblobResponse: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).acceptResponseBlob(@ptrCast(*const IEnroll4, self), pblobResponse);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).acceptResponseBlob(@as(*const IEnroll4, @ptrCast(self)), pblobResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_acceptFileResponseWStr(self: *const T, pwszResponseFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).acceptFileResponseWStr(@ptrCast(*const IEnroll4, self), pwszResponseFileName);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).acceptFileResponseWStr(@as(*const IEnroll4, @ptrCast(self)), pwszResponseFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_getCertContextFromResponseBlob(self: *const T, pblobResponse: ?*CRYPTOAPI_BLOB, ppCertContext: ?*?*CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).getCertContextFromResponseBlob(@ptrCast(*const IEnroll4, self), pblobResponse, ppCertContext);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getCertContextFromResponseBlob(@as(*const IEnroll4, @ptrCast(self)), pblobResponse, ppCertContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_getCertContextFromFileResponseWStr(self: *const T, pwszResponseFileName: ?[*:0]const u16, ppCertContext: ?*?*CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).getCertContextFromFileResponseWStr(@ptrCast(*const IEnroll4, self), pwszResponseFileName, ppCertContext);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getCertContextFromFileResponseWStr(@as(*const IEnroll4, @ptrCast(self)), pwszResponseFileName, ppCertContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_createPFXWStr(self: *const T, pwszPassword: ?[*:0]const u16, pblobPFX: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).createPFXWStr(@ptrCast(*const IEnroll4, self), pwszPassword, pblobPFX);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createPFXWStr(@as(*const IEnroll4, @ptrCast(self)), pwszPassword, pblobPFX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_createFilePFXWStr(self: *const T, pwszPassword: ?[*:0]const u16, pwszPFXFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).createFilePFXWStr(@ptrCast(*const IEnroll4, self), pwszPassword, pwszPFXFileName);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).createFilePFXWStr(@as(*const IEnroll4, @ptrCast(self)), pwszPassword, pwszPFXFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_setPendingRequestInfoWStr(self: *const T, lRequestID: i32, pwszCADNS: ?[*:0]const u16, pwszCAName: ?[*:0]const u16, pwszFriendlyName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).setPendingRequestInfoWStr(@ptrCast(*const IEnroll4, self), lRequestID, pwszCADNS, pwszCAName, pwszFriendlyName);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).setPendingRequestInfoWStr(@as(*const IEnroll4, @ptrCast(self)), lRequestID, pwszCADNS, pwszCAName, pwszFriendlyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_enumPendingRequestWStr(self: *const T, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, ppProperty: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).enumPendingRequestWStr(@ptrCast(*const IEnroll4, self), lIndex, lDesiredProperty, ppProperty);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).enumPendingRequestWStr(@as(*const IEnroll4, @ptrCast(self)), lIndex, lDesiredProperty, ppProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_removePendingRequestWStr(self: *const T, thumbPrintBlob: CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).removePendingRequestWStr(@ptrCast(*const IEnroll4, self), thumbPrintBlob);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).removePendingRequestWStr(@as(*const IEnroll4, @ptrCast(self)), thumbPrintBlob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_GetKeyLenEx(self: *const T, lSizeSpec: XEKL_KEYSIZE, lKeySpec: XEKL_KEYSPEC, pdwKeySize: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).GetKeyLenEx(@ptrCast(*const IEnroll4, self), lSizeSpec, lKeySpec, pdwKeySize);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).GetKeyLenEx(@as(*const IEnroll4, @ptrCast(self)), lSizeSpec, lKeySpec, pdwKeySize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_InstallPKCS7BlobEx(self: *const T, pBlobPKCS7: ?*CRYPTOAPI_BLOB, plCertInstalled: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).InstallPKCS7BlobEx(@ptrCast(*const IEnroll4, self), pBlobPKCS7, plCertInstalled);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).InstallPKCS7BlobEx(@as(*const IEnroll4, @ptrCast(self)), pBlobPKCS7, plCertInstalled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_AddCertTypeToRequestWStrEx(self: *const T, lType: ADDED_CERT_TYPE, pwszOIDOrName: ?[*:0]const u16, lMajorVersion: i32, fMinorVersion: BOOL, lMinorVersion: i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).AddCertTypeToRequestWStrEx(@ptrCast(*const IEnroll4, self), lType, pwszOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).AddCertTypeToRequestWStrEx(@as(*const IEnroll4, @ptrCast(self)), lType, pwszOIDOrName, lMajorVersion, fMinorVersion, lMinorVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_getProviderTypeWStr(self: *const T, pwszProvName: ?[*:0]const u16, plProvType: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).getProviderTypeWStr(@ptrCast(*const IEnroll4, self), pwszProvName, plProvType);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).getProviderTypeWStr(@as(*const IEnroll4, @ptrCast(self)), pwszProvName, plProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_addBlobPropertyToCertificateWStr(self: *const T, lPropertyId: i32, lReserved: i32, pBlobProperty: ?*CRYPTOAPI_BLOB) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).addBlobPropertyToCertificateWStr(@ptrCast(*const IEnroll4, self), lPropertyId, lReserved, pBlobProperty);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).addBlobPropertyToCertificateWStr(@as(*const IEnroll4, @ptrCast(self)), lPropertyId, lReserved, pBlobProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_SetSignerCertificate(self: *const T, pSignerCert: ?*const CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).SetSignerCertificate(@ptrCast(*const IEnroll4, self), pSignerCert);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).SetSignerCertificate(@as(*const IEnroll4, @ptrCast(self)), pSignerCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_put_ClientId(self: *const T, lClientId: i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).put_ClientId(@ptrCast(*const IEnroll4, self), lClientId);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_ClientId(@as(*const IEnroll4, @ptrCast(self)), lClientId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_get_ClientId(self: *const T, plClientId: ?*i32) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).get_ClientId(@ptrCast(*const IEnroll4, self), plClientId);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_ClientId(@as(*const IEnroll4, @ptrCast(self)), plClientId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_put_IncludeSubjectKeyID(self: *const T, fInclude: BOOL) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).put_IncludeSubjectKeyID(@ptrCast(*const IEnroll4, self), fInclude);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).put_IncludeSubjectKeyID(@as(*const IEnroll4, @ptrCast(self)), fInclude);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnroll4_get_IncludeSubjectKeyID(self: *const T, pfInclude: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnroll4.VTable, self.vtable).get_IncludeSubjectKeyID(@ptrCast(*const IEnroll4, self), pfInclude);
+                return @as(*const IEnroll4.VTable, @ptrCast(self.vtable)).get_IncludeSubjectKeyID(@as(*const IEnroll4, @ptrCast(self)), pfInclude);
             }
         };
     }
@@ -25617,15 +25617,15 @@ pub const ICertRequestD = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD_Request(self: *const T, dwFlags: u32, pwszAuthority: ?[*:0]const u16, pdwRequestId: ?*u32, pdwDisposition: ?*u32, pwszAttributes: ?[*:0]const u16, pctbRequest: ?*const CERTTRANSBLOB, pctbCertChain: ?*CERTTRANSBLOB, pctbEncodedCert: ?*CERTTRANSBLOB, pctbDispositionMessage: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const ICertRequestD.VTable, self.vtable).Request(@ptrCast(*const ICertRequestD, self), dwFlags, pwszAuthority, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbCertChain, pctbEncodedCert, pctbDispositionMessage);
+                return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).Request(@as(*const ICertRequestD, @ptrCast(self)), dwFlags, pwszAuthority, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbCertChain, pctbEncodedCert, pctbDispositionMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD_GetCACert(self: *const T, fchain: u32, pwszAuthority: ?[*:0]const u16, pctbOut: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const ICertRequestD.VTable, self.vtable).GetCACert(@ptrCast(*const ICertRequestD, self), fchain, pwszAuthority, pctbOut);
+                return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).GetCACert(@as(*const ICertRequestD, @ptrCast(self)), fchain, pwszAuthority, pctbOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD_Ping(self: *const T, pwszAuthority: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ICertRequestD.VTable, self.vtable).Ping(@ptrCast(*const ICertRequestD, self), pwszAuthority);
+                return @as(*const ICertRequestD.VTable, @ptrCast(self.vtable)).Ping(@as(*const ICertRequestD, @ptrCast(self)), pwszAuthority);
             }
         };
     }
@@ -25714,19 +25714,19 @@ pub const ICertRequestD2 = extern struct {
             pub usingnamespace ICertRequestD.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD2_Request2(self: *const T, pwszAuthority: ?[*:0]const u16, dwFlags: u32, pwszSerialNumber: ?[*:0]const u16, pdwRequestId: ?*u32, pdwDisposition: ?*u32, pwszAttributes: ?[*:0]const u16, pctbRequest: ?*const CERTTRANSBLOB, pctbFullResponse: ?*CERTTRANSBLOB, pctbEncodedCert: ?*CERTTRANSBLOB, pctbDispositionMessage: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const ICertRequestD2.VTable, self.vtable).Request2(@ptrCast(*const ICertRequestD2, self), pwszAuthority, dwFlags, pwszSerialNumber, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbFullResponse, pctbEncodedCert, pctbDispositionMessage);
+                return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).Request2(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, dwFlags, pwszSerialNumber, pdwRequestId, pdwDisposition, pwszAttributes, pctbRequest, pctbFullResponse, pctbEncodedCert, pctbDispositionMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD2_GetCAProperty(self: *const T, pwszAuthority: ?[*:0]const u16, PropId: i32, PropIndex: i32, PropType: i32, pctbPropertyValue: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const ICertRequestD2.VTable, self.vtable).GetCAProperty(@ptrCast(*const ICertRequestD2, self), pwszAuthority, PropId, PropIndex, PropType, pctbPropertyValue);
+                return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).GetCAProperty(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, PropId, PropIndex, PropType, pctbPropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD2_GetCAPropertyInfo(self: *const T, pwszAuthority: ?[*:0]const u16, pcProperty: ?*i32, pctbPropInfo: ?*CERTTRANSBLOB) HRESULT {
-                return @ptrCast(*const ICertRequestD2.VTable, self.vtable).GetCAPropertyInfo(@ptrCast(*const ICertRequestD2, self), pwszAuthority, pcProperty, pctbPropInfo);
+                return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).GetCAPropertyInfo(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority, pcProperty, pctbPropInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICertRequestD2_Ping2(self: *const T, pwszAuthority: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ICertRequestD2.VTable, self.vtable).Ping2(@ptrCast(*const ICertRequestD2, self), pwszAuthority);
+                return @as(*const ICertRequestD2.VTable, @ptrCast(self.vtable)).Ping2(@as(*const ICertRequestD2, @ptrCast(self)), pwszAuthority);
             }
         };
     }

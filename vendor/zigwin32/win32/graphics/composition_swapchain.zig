@@ -60,11 +60,11 @@ pub const IPresentationBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationBuffer_GetAvailableEvent(self: *const T, availableEventHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IPresentationBuffer.VTable, self.vtable).GetAvailableEvent(@ptrCast(*const IPresentationBuffer, self), availableEventHandle);
+                return @as(*const IPresentationBuffer.VTable, @ptrCast(self.vtable)).GetAvailableEvent(@as(*const IPresentationBuffer, @ptrCast(self)), availableEventHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationBuffer_IsAvailable(self: *const T, isAvailable: ?*u8) HRESULT {
-                return @ptrCast(*const IPresentationBuffer.VTable, self.vtable).IsAvailable(@ptrCast(*const IPresentationBuffer, self), isAvailable);
+                return @as(*const IPresentationBuffer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IPresentationBuffer, @ptrCast(self)), isAvailable);
             }
         };
     }
@@ -93,7 +93,7 @@ pub const IPresentationContent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationContent_SetTag(self: *const T, tag: usize) void {
-                return @ptrCast(*const IPresentationContent.VTable, self.vtable).SetTag(@ptrCast(*const IPresentationContent, self), tag);
+                return @as(*const IPresentationContent.VTable, @ptrCast(self.vtable)).SetTag(@as(*const IPresentationContent, @ptrCast(self)), tag);
             }
         };
     }
@@ -198,35 +198,35 @@ pub const IPresentationSurface = extern struct {
             pub usingnamespace IPresentationContent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetBuffer(self: *const T, presentationBuffer: ?*IPresentationBuffer) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetBuffer(@ptrCast(*const IPresentationSurface, self), presentationBuffer);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetBuffer(@as(*const IPresentationSurface, @ptrCast(self)), presentationBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetColorSpace(self: *const T, colorSpace: DXGI_COLOR_SPACE_TYPE) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetColorSpace(@ptrCast(*const IPresentationSurface, self), colorSpace);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetColorSpace(@as(*const IPresentationSurface, @ptrCast(self)), colorSpace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetAlphaMode(self: *const T, alphaMode: DXGI_ALPHA_MODE) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetAlphaMode(@ptrCast(*const IPresentationSurface, self), alphaMode);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetAlphaMode(@as(*const IPresentationSurface, @ptrCast(self)), alphaMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetSourceRect(self: *const T, sourceRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetSourceRect(@ptrCast(*const IPresentationSurface, self), sourceRect);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetSourceRect(@as(*const IPresentationSurface, @ptrCast(self)), sourceRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetTransform(self: *const T, transform: ?*PresentationTransform) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetTransform(@ptrCast(*const IPresentationSurface, self), transform);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IPresentationSurface, @ptrCast(self)), transform);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_RestrictToOutput(self: *const T, output: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).RestrictToOutput(@ptrCast(*const IPresentationSurface, self), output);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).RestrictToOutput(@as(*const IPresentationSurface, @ptrCast(self)), output);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetDisableReadback(self: *const T, value: u8) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetDisableReadback(@ptrCast(*const IPresentationSurface, self), value);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetDisableReadback(@as(*const IPresentationSurface, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationSurface_SetLetterboxingMargins(self: *const T, leftLetterboxSize: f32, topLetterboxSize: f32, rightLetterboxSize: f32, bottomLetterboxSize: f32) HRESULT {
-                return @ptrCast(*const IPresentationSurface.VTable, self.vtable).SetLetterboxingMargins(@ptrCast(*const IPresentationSurface, self), leftLetterboxSize, topLetterboxSize, rightLetterboxSize, bottomLetterboxSize);
+                return @as(*const IPresentationSurface.VTable, @ptrCast(self.vtable)).SetLetterboxingMargins(@as(*const IPresentationSurface, @ptrCast(self)), leftLetterboxSize, topLetterboxSize, rightLetterboxSize, bottomLetterboxSize);
             }
         };
     }
@@ -261,11 +261,11 @@ pub const IPresentStatistics = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentStatistics_GetPresentId(self: *const T) u64 {
-                return @ptrCast(*const IPresentStatistics.VTable, self.vtable).GetPresentId(@ptrCast(*const IPresentStatistics, self));
+                return @as(*const IPresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentId(@as(*const IPresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentStatistics_GetKind(self: *const T) PresentStatisticsKind {
-                return @ptrCast(*const IPresentStatistics.VTable, self.vtable).GetKind(@ptrCast(*const IPresentStatistics, self));
+                return @as(*const IPresentStatistics.VTable, @ptrCast(self.vtable)).GetKind(@as(*const IPresentStatistics, @ptrCast(self)));
             }
         };
     }
@@ -420,55 +420,55 @@ pub const IPresentationManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_AddBufferFromResource(self: *const T, resource: ?*IUnknown, presentationBuffer: ?*?*IPresentationBuffer) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).AddBufferFromResource(@ptrCast(*const IPresentationManager, self), resource, presentationBuffer);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).AddBufferFromResource(@as(*const IPresentationManager, @ptrCast(self)), resource, presentationBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_CreatePresentationSurface(self: *const T, compositionSurfaceHandle: ?HANDLE, presentationSurface: ?*?*IPresentationSurface) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).CreatePresentationSurface(@ptrCast(*const IPresentationManager, self), compositionSurfaceHandle, presentationSurface);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).CreatePresentationSurface(@as(*const IPresentationManager, @ptrCast(self)), compositionSurfaceHandle, presentationSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_GetNextPresentId(self: *const T) u64 {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetNextPresentId(@ptrCast(*const IPresentationManager, self));
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetNextPresentId(@as(*const IPresentationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_SetTargetTime(self: *const T, targetTime: SystemInterruptTime) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).SetTargetTime(@ptrCast(*const IPresentationManager, self), targetTime);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).SetTargetTime(@as(*const IPresentationManager, @ptrCast(self)), targetTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_SetPreferredPresentDuration(self: *const T, preferredDuration: SystemInterruptTime, deviationTolerance: SystemInterruptTime) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).SetPreferredPresentDuration(@ptrCast(*const IPresentationManager, self), preferredDuration, deviationTolerance);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).SetPreferredPresentDuration(@as(*const IPresentationManager, @ptrCast(self)), preferredDuration, deviationTolerance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_ForceVSyncInterrupt(self: *const T, forceVsyncInterrupt: u8) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).ForceVSyncInterrupt(@ptrCast(*const IPresentationManager, self), forceVsyncInterrupt);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).ForceVSyncInterrupt(@as(*const IPresentationManager, @ptrCast(self)), forceVsyncInterrupt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_Present(self: *const T) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).Present(@ptrCast(*const IPresentationManager, self));
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).Present(@as(*const IPresentationManager, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_GetPresentRetiringFence(self: *const T, riid: ?*const Guid, fence: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetPresentRetiringFence(@ptrCast(*const IPresentationManager, self), riid, fence);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetPresentRetiringFence(@as(*const IPresentationManager, @ptrCast(self)), riid, fence);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_CancelPresentsFrom(self: *const T, presentIdToCancelFrom: u64) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).CancelPresentsFrom(@ptrCast(*const IPresentationManager, self), presentIdToCancelFrom);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).CancelPresentsFrom(@as(*const IPresentationManager, @ptrCast(self)), presentIdToCancelFrom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_GetLostEvent(self: *const T, lostEventHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetLostEvent(@ptrCast(*const IPresentationManager, self), lostEventHandle);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetLostEvent(@as(*const IPresentationManager, @ptrCast(self)), lostEventHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_GetPresentStatisticsAvailableEvent(self: *const T, presentStatisticsAvailableEventHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetPresentStatisticsAvailableEvent(@ptrCast(*const IPresentationManager, self), presentStatisticsAvailableEventHandle);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetPresentStatisticsAvailableEvent(@as(*const IPresentationManager, @ptrCast(self)), presentStatisticsAvailableEventHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_EnablePresentStatisticsKind(self: *const T, presentStatisticsKind: PresentStatisticsKind, enabled: u8) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).EnablePresentStatisticsKind(@ptrCast(*const IPresentationManager, self), presentStatisticsKind, enabled);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).EnablePresentStatisticsKind(@as(*const IPresentationManager, @ptrCast(self)), presentStatisticsKind, enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationManager_GetNextPresentStatistics(self: *const T, nextPresentStatistics: ?*?*IPresentStatistics) HRESULT {
-                return @ptrCast(*const IPresentationManager.VTable, self.vtable).GetNextPresentStatistics(@ptrCast(*const IPresentationManager, self), nextPresentStatistics);
+                return @as(*const IPresentationManager.VTable, @ptrCast(self.vtable)).GetNextPresentStatistics(@as(*const IPresentationManager, @ptrCast(self)), nextPresentStatistics);
             }
         };
     }
@@ -513,15 +513,15 @@ pub const IPresentationFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationFactory_IsPresentationSupported(self: *const T) u8 {
-                return @ptrCast(*const IPresentationFactory.VTable, self.vtable).IsPresentationSupported(@ptrCast(*const IPresentationFactory, self));
+                return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).IsPresentationSupported(@as(*const IPresentationFactory, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationFactory_IsPresentationSupportedWithIndependentFlip(self: *const T) u8 {
-                return @ptrCast(*const IPresentationFactory.VTable, self.vtable).IsPresentationSupportedWithIndependentFlip(@ptrCast(*const IPresentationFactory, self));
+                return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).IsPresentationSupportedWithIndependentFlip(@as(*const IPresentationFactory, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentationFactory_CreatePresentationManager(self: *const T, ppPresentationManager: ?*?*IPresentationManager) HRESULT {
-                return @ptrCast(*const IPresentationFactory.VTable, self.vtable).CreatePresentationManager(@ptrCast(*const IPresentationFactory, self), ppPresentationManager);
+                return @as(*const IPresentationFactory.VTable, @ptrCast(self.vtable)).CreatePresentationManager(@as(*const IPresentationFactory, @ptrCast(self)), ppPresentationManager);
             }
         };
     }
@@ -565,11 +565,11 @@ pub const IPresentStatusPresentStatistics = extern struct {
             pub usingnamespace IPresentStatistics.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentStatusPresentStatistics_GetCompositionFrameId(self: *const T) u64 {
-                return @ptrCast(*const IPresentStatusPresentStatistics.VTable, self.vtable).GetCompositionFrameId(@ptrCast(*const IPresentStatusPresentStatistics, self));
+                return @as(*const IPresentStatusPresentStatistics.VTable, @ptrCast(self.vtable)).GetCompositionFrameId(@as(*const IPresentStatusPresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPresentStatusPresentStatistics_GetPresentStatus(self: *const T) PresentStatus {
-                return @ptrCast(*const IPresentStatusPresentStatistics.VTable, self.vtable).GetPresentStatus(@ptrCast(*const IPresentStatusPresentStatistics, self));
+                return @as(*const IPresentStatusPresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentStatus(@as(*const IPresentStatusPresentStatistics, @ptrCast(self)));
             }
         };
     }
@@ -636,15 +636,15 @@ pub const ICompositionFramePresentStatistics = extern struct {
             pub usingnamespace IPresentStatistics.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICompositionFramePresentStatistics_GetContentTag(self: *const T) usize {
-                return @ptrCast(*const ICompositionFramePresentStatistics.VTable, self.vtable).GetContentTag(@ptrCast(*const ICompositionFramePresentStatistics, self));
+                return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetContentTag(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICompositionFramePresentStatistics_GetCompositionFrameId(self: *const T) u64 {
-                return @ptrCast(*const ICompositionFramePresentStatistics.VTable, self.vtable).GetCompositionFrameId(@ptrCast(*const ICompositionFramePresentStatistics, self));
+                return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetCompositionFrameId(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICompositionFramePresentStatistics_GetDisplayInstanceArray(self: *const T, displayInstanceArrayCount: ?*u32, displayInstanceArray: ?*const ?*CompositionFrameDisplayInstance) void {
-                return @ptrCast(*const ICompositionFramePresentStatistics.VTable, self.vtable).GetDisplayInstanceArray(@ptrCast(*const ICompositionFramePresentStatistics, self), displayInstanceArrayCount, displayInstanceArray);
+                return @as(*const ICompositionFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetDisplayInstanceArray(@as(*const ICompositionFramePresentStatistics, @ptrCast(self)), displayInstanceArrayCount, displayInstanceArray);
             }
         };
     }
@@ -703,23 +703,23 @@ pub const IIndependentFlipFramePresentStatistics = extern struct {
             pub usingnamespace IPresentStatistics.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIndependentFlipFramePresentStatistics_GetOutputAdapterLUID(self: *const T) LUID {
-                return @ptrCast(*const IIndependentFlipFramePresentStatistics.VTable, self.vtable).GetOutputAdapterLUID(@ptrCast(*const IIndependentFlipFramePresentStatistics, self));
+                return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetOutputAdapterLUID(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIndependentFlipFramePresentStatistics_GetOutputVidPnSourceId(self: *const T) u32 {
-                return @ptrCast(*const IIndependentFlipFramePresentStatistics.VTable, self.vtable).GetOutputVidPnSourceId(@ptrCast(*const IIndependentFlipFramePresentStatistics, self));
+                return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetOutputVidPnSourceId(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIndependentFlipFramePresentStatistics_GetContentTag(self: *const T) usize {
-                return @ptrCast(*const IIndependentFlipFramePresentStatistics.VTable, self.vtable).GetContentTag(@ptrCast(*const IIndependentFlipFramePresentStatistics, self));
+                return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetContentTag(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIndependentFlipFramePresentStatistics_GetDisplayedTime(self: *const T) SystemInterruptTime {
-                return @ptrCast(*const IIndependentFlipFramePresentStatistics.VTable, self.vtable).GetDisplayedTime(@ptrCast(*const IIndependentFlipFramePresentStatistics, self));
+                return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetDisplayedTime(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIndependentFlipFramePresentStatistics_GetPresentDuration(self: *const T) SystemInterruptTime {
-                return @ptrCast(*const IIndependentFlipFramePresentStatistics.VTable, self.vtable).GetPresentDuration(@ptrCast(*const IIndependentFlipFramePresentStatistics, self));
+                return @as(*const IIndependentFlipFramePresentStatistics.VTable, @ptrCast(self.vtable)).GetPresentDuration(@as(*const IIndependentFlipFramePresentStatistics, @ptrCast(self)));
             }
         };
     }

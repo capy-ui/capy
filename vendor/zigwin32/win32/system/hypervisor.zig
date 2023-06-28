@@ -299,7 +299,7 @@ pub const WHV_X64_CPUID_RESULT2_FLAGS = enum(u32) {
         SubleafSpecific: u1 = 0,
         VpSpecific: u1 = 0,
     }) WHV_X64_CPUID_RESULT2_FLAGS {
-        return @enumFromInt(WHV_X64_CPUID_RESULT2_FLAGS, (if (o.SubleafSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific) else 0) | (if (o.VpSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific) else 0));
+        return @as(WHV_X64_CPUID_RESULT2_FLAGS, @enumFromInt((if (o.SubleafSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific) else 0) | (if (o.VpSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific) else 0)));
     }
 };
 pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific;
@@ -430,7 +430,7 @@ pub const WHV_MAP_GPA_RANGE_FLAGS = enum(u32) {
         Execute: u1 = 0,
         TrackDirtyPages: u1 = 0,
     }) WHV_MAP_GPA_RANGE_FLAGS {
-        return @enumFromInt(WHV_MAP_GPA_RANGE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.None) else 0) | (if (o.Read == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0) | (if (o.Write == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0) | (if (o.Execute == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0) | (if (o.TrackDirtyPages == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0));
+        return @as(WHV_MAP_GPA_RANGE_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.None) else 0) | (if (o.Read == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0) | (if (o.Write == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0) | (if (o.Execute == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0) | (if (o.TrackDirtyPages == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0)));
     }
 };
 pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS.None;
@@ -459,7 +459,7 @@ pub const WHV_TRANSLATE_GVA_FLAGS = enum(u32) {
         EnforceSmap: u1 = 0,
         OverrideSmap: u1 = 0,
     }) WHV_TRANSLATE_GVA_FLAGS {
-        return @enumFromInt(WHV_TRANSLATE_GVA_FLAGS, (if (o.None == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.None) else 0) | (if (o.ValidateRead == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0) | (if (o.ValidateWrite == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0) | (if (o.ValidateExecute == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0) | (if (o.PrivilegeExempt == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0) | (if (o.SetPageTableBits == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0) | (if (o.EnforceSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.EnforceSmap) else 0) | (if (o.OverrideSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.OverrideSmap) else 0));
+        return @as(WHV_TRANSLATE_GVA_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.None) else 0) | (if (o.ValidateRead == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0) | (if (o.ValidateWrite == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0) | (if (o.ValidateExecute == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0) | (if (o.PrivilegeExempt == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0) | (if (o.SetPageTableBits == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0) | (if (o.EnforceSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.EnforceSmap) else 0) | (if (o.OverrideSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.OverrideSmap) else 0)));
     }
 };
 pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS.None;
@@ -1541,7 +1541,7 @@ pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = enum(u32) {
         None: u1 = 0,
         AllowDirectP2P: u1 = 0,
     }) WHV_ALLOCATE_VPCI_RESOURCE_FLAGS {
-        return @enumFromInt(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None) else 0) | (if (o.AllowDirectP2P == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P) else 0));
+        return @as(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None) else 0) | (if (o.AllowDirectP2P == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P) else 0)));
     }
 };
 pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None;
@@ -1581,7 +1581,7 @@ pub const WHV_CREATE_VPCI_DEVICE_FLAGS = enum(u32) {
         PhysicallyBacked: u1 = 0,
         UseLogicalInterrupts: u1 = 0,
     }) WHV_CREATE_VPCI_DEVICE_FLAGS {
-        return @enumFromInt(WHV_CREATE_VPCI_DEVICE_FLAGS, (if (o.None == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.None) else 0) | (if (o.PhysicallyBacked == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked) else 0) | (if (o.UseLogicalInterrupts == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts) else 0));
+        return @as(WHV_CREATE_VPCI_DEVICE_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.None) else 0) | (if (o.PhysicallyBacked == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked) else 0) | (if (o.UseLogicalInterrupts == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts) else 0)));
     }
 };
 pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS.None;
@@ -1620,7 +1620,7 @@ pub const WHV_VPCI_MMIO_RANGE_FLAGS = enum(u32) {
         ReadAccess: u1 = 0,
         WriteAccess: u1 = 0,
     }) WHV_VPCI_MMIO_RANGE_FLAGS {
-        return @enumFromInt(WHV_VPCI_MMIO_RANGE_FLAGS, (if (o.ReadAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess) else 0) | (if (o.WriteAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess) else 0));
+        return @as(WHV_VPCI_MMIO_RANGE_FLAGS, @enumFromInt((if (o.ReadAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess) else 0) | (if (o.WriteAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess) else 0)));
     }
 };
 pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess;
@@ -1665,7 +1665,7 @@ pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = enum(u32) {
         None: u1 = 0,
         Multicast: u1 = 0,
     }) WHV_VPCI_INTERRUPT_TARGET_FLAGS {
-        return @enumFromInt(WHV_VPCI_INTERRUPT_TARGET_FLAGS, (if (o.None == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.None) else 0) | (if (o.Multicast == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast) else 0));
+        return @as(WHV_VPCI_INTERRUPT_TARGET_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.None) else 0) | (if (o.Multicast == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast) else 0)));
     }
 };
 pub const WHvVpciInterruptTargetFlagNone = WHV_VPCI_INTERRUPT_TARGET_FLAGS.None;
@@ -1918,7 +1918,7 @@ pub const HDV_MMIO_MAPPING_FLAGS = enum(u32) {
         Writeable: u1 = 0,
         Executable: u1 = 0,
     }) HDV_MMIO_MAPPING_FLAGS {
-        return @enumFromInt(HDV_MMIO_MAPPING_FLAGS, (if (o.None == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.None) else 0) | (if (o.Writeable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Writeable) else 0) | (if (o.Executable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Executable) else 0));
+        return @as(HDV_MMIO_MAPPING_FLAGS, @enumFromInt((if (o.None == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.None) else 0) | (if (o.Writeable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Writeable) else 0) | (if (o.Executable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Executable) else 0)));
     }
 };
 pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS.None;

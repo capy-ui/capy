@@ -124,15 +124,15 @@ pub const IProvideWinSATAssessmentInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATAssessmentInfo_get_Score(self: *const T, score: ?*f32) HRESULT {
-                return @ptrCast(*const IProvideWinSATAssessmentInfo.VTable, self.vtable).get_Score(@ptrCast(*const IProvideWinSATAssessmentInfo, self), score);
+                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Score(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), score);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATAssessmentInfo_get_Title(self: *const T, title: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IProvideWinSATAssessmentInfo.VTable, self.vtable).get_Title(@ptrCast(*const IProvideWinSATAssessmentInfo, self), title);
+                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), title);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATAssessmentInfo_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IProvideWinSATAssessmentInfo.VTable, self.vtable).get_Description(@ptrCast(*const IProvideWinSATAssessmentInfo, self), description);
+                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), description);
             }
         };
     }
@@ -216,23 +216,23 @@ pub const IProvideWinSATResultsInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATResultsInfo_GetAssessmentInfo(self: *const T, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) HRESULT {
-                return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).GetAssessmentInfo(@ptrCast(*const IProvideWinSATResultsInfo, self), assessment, ppinfo);
+                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).GetAssessmentInfo(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), assessment, ppinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATResultsInfo_get_AssessmentState(self: *const T, state: ?*WINSAT_ASSESSMENT_STATE) HRESULT {
-                return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_AssessmentState(@ptrCast(*const IProvideWinSATResultsInfo, self), state);
+                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentState(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), state);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATResultsInfo_get_AssessmentDateTime(self: *const T, fileTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_AssessmentDateTime(@ptrCast(*const IProvideWinSATResultsInfo, self), fileTime);
+                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentDateTime(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), fileTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATResultsInfo_get_SystemRating(self: *const T, level: ?*f32) HRESULT {
-                return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_SystemRating(@ptrCast(*const IProvideWinSATResultsInfo, self), level);
+                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_SystemRating(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), level);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATResultsInfo_get_RatingStateDesc(self: *const T, description: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IProvideWinSATResultsInfo.VTable, self.vtable).get_RatingStateDesc(@ptrCast(*const IProvideWinSATResultsInfo, self), description);
+                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_RatingStateDesc(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), description);
             }
         };
     }
@@ -282,11 +282,11 @@ pub const IQueryRecentWinSATAssessment = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IQueryRecentWinSATAssessment_get_XML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IQueryRecentWinSATAssessment.VTable, self.vtable).get_XML(@ptrCast(*const IQueryRecentWinSATAssessment, self), xPath, namespaces, ppDomNodeList);
+                return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IQueryRecentWinSATAssessment_get_Info(self: *const T, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) HRESULT {
-                return @ptrCast(*const IQueryRecentWinSATAssessment.VTable, self.vtable).get_Info(@ptrCast(*const IQueryRecentWinSATAssessment, self), ppWinSATAssessmentInfo);
+                return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), ppWinSATAssessmentInfo);
             }
         };
     }
@@ -325,7 +325,7 @@ pub const IProvideWinSATVisuals = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProvideWinSATVisuals_get_Bitmap(self: *const T, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) HRESULT {
-                return @ptrCast(*const IProvideWinSATVisuals.VTable, self.vtable).get_Bitmap(@ptrCast(*const IProvideWinSATVisuals, self), bitmapSize, state, rating, pBitmap);
+                return @as(*const IProvideWinSATVisuals.VTable, @ptrCast(self.vtable)).get_Bitmap(@as(*const IProvideWinSATVisuals, @ptrCast(self)), bitmapSize, state, rating, pBitmap);
             }
         };
     }
@@ -362,7 +362,7 @@ pub const IQueryAllWinSATAssessments = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IQueryAllWinSATAssessments_get_AllXML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @ptrCast(*const IQueryAllWinSATAssessments.VTable, self.vtable).get_AllXML(@ptrCast(*const IQueryAllWinSATAssessments, self), xPath, namespaces, ppDomNodeList);
+                return @as(*const IQueryAllWinSATAssessments.VTable, @ptrCast(self.vtable)).get_AllXML(@as(*const IQueryAllWinSATAssessments, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
             }
         };
     }
@@ -408,11 +408,11 @@ pub const IWinSATInitiateEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinSATInitiateEvents_WinSATComplete(self: *const T, hresult: HRESULT, strDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWinSATInitiateEvents.VTable, self.vtable).WinSATComplete(@ptrCast(*const IWinSATInitiateEvents, self), hresult, strDescription);
+                return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATComplete(@as(*const IWinSATInitiateEvents, @ptrCast(self)), hresult, strDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinSATInitiateEvents_WinSATUpdate(self: *const T, uCurrentTick: u32, uTickTotal: u32, strCurrentState: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWinSATInitiateEvents.VTable, self.vtable).WinSATUpdate(@ptrCast(*const IWinSATInitiateEvents, self), uCurrentTick, uTickTotal, strCurrentState);
+                return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATUpdate(@as(*const IWinSATInitiateEvents, @ptrCast(self)), uCurrentTick, uTickTotal, strCurrentState);
             }
         };
     }
@@ -466,15 +466,15 @@ pub const IInitiateWinSATAssessment = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInitiateWinSATAssessment_InitiateAssessment(self: *const T, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) HRESULT {
-                return @ptrCast(*const IInitiateWinSATAssessment.VTable, self.vtable).InitiateAssessment(@ptrCast(*const IInitiateWinSATAssessment, self), cmdLine, pCallbacks, callerHwnd);
+                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), cmdLine, pCallbacks, callerHwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInitiateWinSATAssessment_InitiateFormalAssessment(self: *const T, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) HRESULT {
-                return @ptrCast(*const IInitiateWinSATAssessment.VTable, self.vtable).InitiateFormalAssessment(@ptrCast(*const IInitiateWinSATAssessment, self), pCallbacks, callerHwnd);
+                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateFormalAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), pCallbacks, callerHwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInitiateWinSATAssessment_CancelAssessment(self: *const T) HRESULT {
-                return @ptrCast(*const IInitiateWinSATAssessment.VTable, self.vtable).CancelAssessment(@ptrCast(*const IInitiateWinSATAssessment, self));
+                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).CancelAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)));
             }
         };
     }
@@ -507,7 +507,7 @@ pub const IAccessibleWinSAT = extern struct {
             pub usingnamespace IAccessible.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAccessibleWinSAT_SetAccessiblityData(self: *const T, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IAccessibleWinSAT.VTable, self.vtable).SetAccessiblityData(@ptrCast(*const IAccessibleWinSAT, self), wsName, wsValue, wsDesc);
+                return @as(*const IAccessibleWinSAT.VTable, @ptrCast(self.vtable)).SetAccessiblityData(@as(*const IAccessibleWinSAT, @ptrCast(self)), wsName, wsValue, wsDesc);
             }
         };
     }
@@ -536,7 +536,7 @@ pub const IQueryOEMWinSATCustomization = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IQueryOEMWinSATCustomization_GetOEMPrePopulationInfo(self: *const T, state: ?*WINSAT_OEM_DATA_TYPE) HRESULT {
-                return @ptrCast(*const IQueryOEMWinSATCustomization.VTable, self.vtable).GetOEMPrePopulationInfo(@ptrCast(*const IQueryOEMWinSATCustomization, self), state);
+                return @as(*const IQueryOEMWinSATCustomization.VTable, @ptrCast(self.vtable)).GetOEMPrePopulationInfo(@as(*const IQueryOEMWinSATCustomization, @ptrCast(self)), state);
             }
         };
     }

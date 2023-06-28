@@ -201,23 +201,23 @@ pub const IUPnPDeviceFinder = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinder_FindByType(self: *const T, bstrTypeURI: ?BSTR, dwFlags: u32, pDevices: ?*?*IUPnPDevices) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinder.VTable, self.vtable).FindByType(@ptrCast(*const IUPnPDeviceFinder, self), bstrTypeURI, dwFlags, pDevices);
+                return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByType(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, pDevices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinder_CreateAsyncFind(self: *const T, bstrTypeURI: ?BSTR, dwFlags: u32, punkDeviceFinderCallback: ?*IUnknown, plFindData: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinder.VTable, self.vtable).CreateAsyncFind(@ptrCast(*const IUPnPDeviceFinder, self), bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
+                return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CreateAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinder_StartAsyncFind(self: *const T, lFindData: i32) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinder.VTable, self.vtable).StartAsyncFind(@ptrCast(*const IUPnPDeviceFinder, self), lFindData);
+                return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).StartAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinder_CancelAsyncFind(self: *const T, lFindData: i32) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinder.VTable, self.vtable).CancelAsyncFind(@ptrCast(*const IUPnPDeviceFinder, self), lFindData);
+                return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CancelAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinder_FindByUDN(self: *const T, bstrUDN: ?BSTR, pDevice: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinder.VTable, self.vtable).FindByUDN(@ptrCast(*const IUPnPDeviceFinder, self), bstrUDN, pDevice);
+                return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByUDN(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrUDN, pDevice);
             }
         };
     }
@@ -257,11 +257,11 @@ pub const IUPnPAddressFamilyControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPAddressFamilyControl_SetAddressFamily(self: *const T, dwFlags: i32) HRESULT {
-                return @ptrCast(*const IUPnPAddressFamilyControl.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IUPnPAddressFamilyControl, self), dwFlags);
+                return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPAddressFamilyControl_GetAddressFamily(self: *const T, pdwFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPAddressFamilyControl.VTable, self.vtable).GetAddressFamily(@ptrCast(*const IUPnPAddressFamilyControl, self), pdwFlags);
+                return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).GetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), pdwFlags);
             }
         };
     }
@@ -291,7 +291,7 @@ pub const IUPnPHttpHeaderControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPHttpHeaderControl_AddRequestHeaders(self: *const T, bstrHttpHeaders: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPHttpHeaderControl.VTable, self.vtable).AddRequestHeaders(@ptrCast(*const IUPnPHttpHeaderControl, self), bstrHttpHeaders);
+                return @as(*const IUPnPHttpHeaderControl.VTable, @ptrCast(self.vtable)).AddRequestHeaders(@as(*const IUPnPHttpHeaderControl, @ptrCast(self)), bstrHttpHeaders);
             }
         };
     }
@@ -345,15 +345,15 @@ pub const IUPnPDeviceFinderCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinderCallback_DeviceAdded(self: *const T, lFindData: i32, pDevice: ?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinderCallback.VTable, self.vtable).DeviceAdded(@ptrCast(*const IUPnPDeviceFinderCallback, self), lFindData, pDevice);
+                return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceAdded(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, pDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinderCallback_DeviceRemoved(self: *const T, lFindData: i32, bstrUDN: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinderCallback.VTable, self.vtable).DeviceRemoved(@ptrCast(*const IUPnPDeviceFinderCallback, self), lFindData, bstrUDN);
+                return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceRemoved(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, bstrUDN);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinderCallback_SearchComplete(self: *const T, lFindData: i32) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinderCallback.VTable, self.vtable).SearchComplete(@ptrCast(*const IUPnPDeviceFinderCallback, self), lFindData);
+                return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData);
             }
         };
     }
@@ -414,15 +414,15 @@ pub const IUPnPServices = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServices_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPServices.VTable, self.vtable).get_Count(@ptrCast(*const IUPnPServices, self), plCount);
+                return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPServices, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServices_get__NewEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IUPnPServices.VTable, self.vtable).get__NewEnum(@ptrCast(*const IUPnPServices, self), ppunk);
+                return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPServices, @ptrCast(self)), ppunk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServices_get_Item(self: *const T, bstrServiceId: ?BSTR, ppService: ?*?*IUPnPService) HRESULT {
-                return @ptrCast(*const IUPnPServices.VTable, self.vtable).get_Item(@ptrCast(*const IUPnPServices, self), bstrServiceId, ppService);
+                return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPServices, @ptrCast(self)), bstrServiceId, ppService);
             }
         };
     }
@@ -519,27 +519,27 @@ pub const IUPnPService = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_QueryStateVariable(self: *const T, bstrVariableName: ?BSTR, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).QueryStateVariable(@ptrCast(*const IUPnPService, self), bstrVariableName, pValue);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).QueryStateVariable(@as(*const IUPnPService, @ptrCast(self)), bstrVariableName, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_InvokeAction(self: *const T, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).InvokeAction(@ptrCast(*const IUPnPService, self), bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).InvokeAction(@as(*const IUPnPService, @ptrCast(self)), bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_get_ServiceTypeIdentifier(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).get_ServiceTypeIdentifier(@ptrCast(*const IUPnPService, self), pVal);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_ServiceTypeIdentifier(@as(*const IUPnPService, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_AddCallback(self: *const T, pUnkCallback: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).AddCallback(@ptrCast(*const IUPnPService, self), pUnkCallback);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).AddCallback(@as(*const IUPnPService, @ptrCast(self)), pUnkCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_get_Id(self: *const T, pbstrId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).get_Id(@ptrCast(*const IUPnPService, self), pbstrId);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IUPnPService, @ptrCast(self)), pbstrId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPService_get_LastTransportStatus(self: *const T, plValue: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPService.VTable, self.vtable).get_LastTransportStatus(@ptrCast(*const IUPnPService, self), plValue);
+                return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_LastTransportStatus(@as(*const IUPnPService, @ptrCast(self)), plValue);
             }
         };
     }
@@ -569,7 +569,7 @@ pub const IUPnPAsyncResult = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPAsyncResult_AsyncOperationComplete(self: *const T, ullRequestID: u64) HRESULT {
-                return @ptrCast(*const IUPnPAsyncResult.VTable, self.vtable).AsyncOperationComplete(@ptrCast(*const IUPnPAsyncResult, self), ullRequestID);
+                return @as(*const IUPnPAsyncResult.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IUPnPAsyncResult, @ptrCast(self)), ullRequestID);
             }
         };
     }
@@ -703,39 +703,39 @@ pub const IUPnPServiceAsync = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_BeginInvokeAction(self: *const T, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).BeginInvokeAction(@ptrCast(*const IUPnPServiceAsync, self), bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_EndInvokeAction(self: *const T, ullRequestID: u64, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).EndInvokeAction(@ptrCast(*const IUPnPServiceAsync, self), ullRequestID, pvOutActionArgs, pvRetVal);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pvOutActionArgs, pvRetVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_BeginQueryStateVariable(self: *const T, bstrVariableName: ?BSTR, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).BeginQueryStateVariable(@ptrCast(*const IUPnPServiceAsync, self), bstrVariableName, pAsyncResult, pullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrVariableName, pAsyncResult, pullRequestID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_EndQueryStateVariable(self: *const T, ullRequestID: u64, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).EndQueryStateVariable(@ptrCast(*const IUPnPServiceAsync, self), ullRequestID, pValue);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_BeginSubscribeToEvents(self: *const T, pUnkCallback: ?*IUnknown, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).BeginSubscribeToEvents(@ptrCast(*const IUPnPServiceAsync, self), pUnkCallback, pAsyncResult, pullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), pUnkCallback, pAsyncResult, pullRequestID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_EndSubscribeToEvents(self: *const T, ullRequestID: u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).EndSubscribeToEvents(@ptrCast(*const IUPnPServiceAsync, self), ullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_BeginSCPDDownload(self: *const T, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).BeginSCPDDownload(@ptrCast(*const IUPnPServiceAsync, self), pAsyncResult, pullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), pAsyncResult, pullRequestID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_EndSCPDDownload(self: *const T, ullRequestID: u64, pbstrSCPDDoc: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).EndSCPDDownload(@ptrCast(*const IUPnPServiceAsync, self), ullRequestID, pbstrSCPDDoc);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pbstrSCPDDoc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceAsync_CancelAsyncOperation(self: *const T, ullRequestID: u64) HRESULT {
-                return @ptrCast(*const IUPnPServiceAsync.VTable, self.vtable).CancelAsyncOperation(@ptrCast(*const IUPnPServiceAsync, self), ullRequestID);
+                return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).CancelAsyncOperation(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
             }
         };
     }
@@ -779,11 +779,11 @@ pub const IUPnPServiceCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceCallback_StateVariableChanged(self: *const T, pus: ?*IUPnPService, pcwszStateVarName: ?[*:0]const u16, vaValue: VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPServiceCallback.VTable, self.vtable).StateVariableChanged(@ptrCast(*const IUPnPServiceCallback, self), pus, pcwszStateVarName, vaValue);
+                return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).StateVariableChanged(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus, pcwszStateVarName, vaValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceCallback_ServiceInstanceDied(self: *const T, pus: ?*IUPnPService) HRESULT {
-                return @ptrCast(*const IUPnPServiceCallback.VTable, self.vtable).ServiceInstanceDied(@ptrCast(*const IUPnPServiceCallback, self), pus);
+                return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).ServiceInstanceDied(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus);
             }
         };
     }
@@ -813,7 +813,7 @@ pub const IUPnPServiceEnumProperty = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceEnumProperty_SetServiceEnumProperty(self: *const T, dwMask: u32) HRESULT {
-                return @ptrCast(*const IUPnPServiceEnumProperty.VTable, self.vtable).SetServiceEnumProperty(@ptrCast(*const IUPnPServiceEnumProperty, self), dwMask);
+                return @as(*const IUPnPServiceEnumProperty.VTable, @ptrCast(self.vtable)).SetServiceEnumProperty(@as(*const IUPnPServiceEnumProperty, @ptrCast(self)), dwMask);
             }
         };
     }
@@ -853,11 +853,11 @@ pub const IUPnPServiceDocumentAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceDocumentAccess_GetDocumentURL(self: *const T, pbstrDocUrl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPServiceDocumentAccess.VTable, self.vtable).GetDocumentURL(@ptrCast(*const IUPnPServiceDocumentAccess, self), pbstrDocUrl);
+                return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDocUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPServiceDocumentAccess_GetDocument(self: *const T, pbstrDoc: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPServiceDocumentAccess.VTable, self.vtable).GetDocument(@ptrCast(*const IUPnPServiceDocumentAccess, self), pbstrDoc);
+                return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDoc);
             }
         };
     }
@@ -918,15 +918,15 @@ pub const IUPnPDevices = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevices_get_Count(self: *const T, plCount: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPDevices.VTable, self.vtable).get_Count(@ptrCast(*const IUPnPDevices, self), plCount);
+                return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPDevices, @ptrCast(self)), plCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevices_get__NewEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IUPnPDevices.VTable, self.vtable).get__NewEnum(@ptrCast(*const IUPnPDevices, self), ppunk);
+                return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPDevices, @ptrCast(self)), ppunk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevices_get_Item(self: *const T, bstrUDN: ?BSTR, ppDevice: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDevices.VTable, self.vtable).get_Item(@ptrCast(*const IUPnPDevices, self), bstrUDN, ppDevice);
+                return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPDevices, @ptrCast(self)), bstrUDN, ppDevice);
             }
         };
     }
@@ -1198,79 +1198,79 @@ pub const IUPnPDevice = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_IsRootDevice(self: *const T, pvarb: ?*i16) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_IsRootDevice(@ptrCast(*const IUPnPDevice, self), pvarb);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_IsRootDevice(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_RootDevice(self: *const T, ppudRootDevice: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_RootDevice(@ptrCast(*const IUPnPDevice, self), ppudRootDevice);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_RootDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudRootDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ParentDevice(self: *const T, ppudDeviceParent: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ParentDevice(@ptrCast(*const IUPnPDevice, self), ppudDeviceParent);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ParentDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudDeviceParent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_HasChildren(self: *const T, pvarb: ?*i16) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_HasChildren(@ptrCast(*const IUPnPDevice, self), pvarb);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_HasChildren(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_Children(self: *const T, ppudChildren: ?*?*IUPnPDevices) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_Children(@ptrCast(*const IUPnPDevice, self), ppudChildren);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Children(@as(*const IUPnPDevice, @ptrCast(self)), ppudChildren);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_UniqueDeviceName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_UniqueDeviceName(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UniqueDeviceName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_FriendlyName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_FriendlyName(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_Type(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_Type(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_PresentationURL(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_PresentationURL(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_PresentationURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ManufacturerName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ManufacturerName(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ManufacturerURL(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ManufacturerURL(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ModelName(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ModelName(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ModelNumber(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ModelNumber(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_Description(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_Description(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_ModelURL(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_ModelURL(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_UPC(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_UPC(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UPC(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_SerialNumber(self: *const T, pbstr: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_SerialNumber(@ptrCast(*const IUPnPDevice, self), pbstr);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_IconURL(self: *const T, bstrEncodingFormat: ?BSTR, lSizeX: i32, lSizeY: i32, lBitDepth: i32, pbstrIconURL: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).IconURL(@ptrCast(*const IUPnPDevice, self), bstrEncodingFormat, lSizeX, lSizeY, lBitDepth, pbstrIconURL);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).IconURL(@as(*const IUPnPDevice, @ptrCast(self)), bstrEncodingFormat, lSizeX, lSizeY, lBitDepth, pbstrIconURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDevice_get_Services(self: *const T, ppusServices: ?*?*IUPnPServices) HRESULT {
-                return @ptrCast(*const IUPnPDevice.VTable, self.vtable).get_Services(@ptrCast(*const IUPnPDevice, self), ppusServices);
+                return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUPnPDevice, @ptrCast(self)), ppusServices);
             }
         };
     }
@@ -1300,7 +1300,7 @@ pub const IUPnPDeviceDocumentAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceDocumentAccess_GetDocumentURL(self: *const T, pbstrDocument: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceDocumentAccess.VTable, self.vtable).GetDocumentURL(@ptrCast(*const IUPnPDeviceDocumentAccess, self), pbstrDocument);
+                return @as(*const IUPnPDeviceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPDeviceDocumentAccess, @ptrCast(self)), pbstrDocument);
             }
         };
     }
@@ -1330,7 +1330,7 @@ pub const IUPnPDeviceDocumentAccessEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceDocumentAccessEx_GetDocument(self: *const T, pbstrDocument: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceDocumentAccessEx.VTable, self.vtable).GetDocument(@ptrCast(*const IUPnPDeviceDocumentAccessEx, self), pbstrDocument);
+                return @as(*const IUPnPDeviceDocumentAccessEx.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPDeviceDocumentAccessEx, @ptrCast(self)), pbstrDocument);
             }
         };
     }
@@ -1428,31 +1428,31 @@ pub const IUPnPDescriptionDocument = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_get_ReadyState(self: *const T, plReadyState: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).get_ReadyState(@ptrCast(*const IUPnPDescriptionDocument, self), plReadyState);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_ReadyState(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), plReadyState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_Load(self: *const T, bstrUrl: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).Load(@ptrCast(*const IUPnPDescriptionDocument, self), bstrUrl);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Load(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_LoadAsync(self: *const T, bstrUrl: ?BSTR, punkCallback: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).LoadAsync(@ptrCast(*const IUPnPDescriptionDocument, self), bstrUrl, punkCallback);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).LoadAsync(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl, punkCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_get_LoadResult(self: *const T, phrError: ?*i32) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).get_LoadResult(@ptrCast(*const IUPnPDescriptionDocument, self), phrError);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_LoadResult(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), phrError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).Abort(@ptrCast(*const IUPnPDescriptionDocument, self));
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Abort(@as(*const IUPnPDescriptionDocument, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_RootDevice(self: *const T, ppudRootDevice: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).RootDevice(@ptrCast(*const IUPnPDescriptionDocument, self), ppudRootDevice);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).RootDevice(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), ppudRootDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocument_DeviceByUDN(self: *const T, bstrUDN: ?BSTR, ppudDevice: ?*?*IUPnPDevice) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocument.VTable, self.vtable).DeviceByUDN(@ptrCast(*const IUPnPDescriptionDocument, self), bstrUDN, ppudDevice);
+                return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).DeviceByUDN(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUDN, ppudDevice);
             }
         };
     }
@@ -1486,7 +1486,7 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceFinderAddCallbackWithInterface_DeviceAddedWithInterface(self: *const T, lFindData: i32, pDevice: ?*IUPnPDevice, pguidInterface: ?*Guid) HRESULT {
-                return @ptrCast(*const IUPnPDeviceFinderAddCallbackWithInterface.VTable, self.vtable).DeviceAddedWithInterface(@ptrCast(*const IUPnPDeviceFinderAddCallbackWithInterface, self), lFindData, pDevice, pguidInterface);
+                return @as(*const IUPnPDeviceFinderAddCallbackWithInterface.VTable, @ptrCast(self.vtable)).DeviceAddedWithInterface(@as(*const IUPnPDeviceFinderAddCallbackWithInterface, @ptrCast(self)), lFindData, pDevice, pguidInterface);
             }
         };
     }
@@ -1516,7 +1516,7 @@ pub const IUPnPDescriptionDocumentCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDescriptionDocumentCallback_LoadComplete(self: *const T, hrLoadResult: HRESULT) HRESULT {
-                return @ptrCast(*const IUPnPDescriptionDocumentCallback.VTable, self.vtable).LoadComplete(@ptrCast(*const IUPnPDescriptionDocumentCallback, self), hrLoadResult);
+                return @as(*const IUPnPDescriptionDocumentCallback.VTable, @ptrCast(self.vtable)).LoadComplete(@as(*const IUPnPDescriptionDocumentCallback, @ptrCast(self)), hrLoadResult);
             }
         };
     }
@@ -1564,11 +1564,11 @@ pub const IUPnPEventSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPEventSink_OnStateChanged(self: *const T, cChanges: u32, rgdispidChanges: [*]i32) HRESULT {
-                return @ptrCast(*const IUPnPEventSink.VTable, self.vtable).OnStateChanged(@ptrCast(*const IUPnPEventSink, self), cChanges, rgdispidChanges);
+                return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const IUPnPEventSink, @ptrCast(self)), cChanges, rgdispidChanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPEventSink_OnStateChangedSafe(self: *const T, varsadispidChanges: VARIANT) HRESULT {
-                return @ptrCast(*const IUPnPEventSink.VTable, self.vtable).OnStateChangedSafe(@ptrCast(*const IUPnPEventSink, self), varsadispidChanges);
+                return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChangedSafe(@as(*const IUPnPEventSink, @ptrCast(self)), varsadispidChanges);
             }
         };
     }
@@ -1608,11 +1608,11 @@ pub const IUPnPEventSource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPEventSource_Advise(self: *const T, pesSubscriber: ?*IUPnPEventSink) HRESULT {
-                return @ptrCast(*const IUPnPEventSource.VTable, self.vtable).Advise(@ptrCast(*const IUPnPEventSource, self), pesSubscriber);
+                return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Advise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPEventSource_Unadvise(self: *const T, pesSubscriber: ?*IUPnPEventSink) HRESULT {
-                return @ptrCast(*const IUPnPEventSource.VTable, self.vtable).Unadvise(@ptrCast(*const IUPnPEventSource, self), pesSubscriber);
+                return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
             }
         };
     }
@@ -1726,27 +1726,27 @@ pub const IUPnPRegistrar = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_RegisterDevice(self: *const T, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).RegisterDevice(@ptrCast(*const IUPnPRegistrar, self), bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_RegisterRunningDevice(self: *const T, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).RegisterRunningDevice(@ptrCast(*const IUPnPRegistrar, self), bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterRunningDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_RegisterDeviceProvider(self: *const T, bstrProviderName: ?BSTR, bstrProgIDProviderClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).RegisterDeviceProvider(@ptrCast(*const IUPnPRegistrar, self), bstrProviderName, bstrProgIDProviderClass, bstrInitString, bstrContainerId);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName, bstrProgIDProviderClass, bstrInitString, bstrContainerId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_GetUniqueDeviceName(self: *const T, bstrDeviceIdentifier: ?BSTR, bstrTemplateUDN: ?BSTR, pbstrUDN: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).GetUniqueDeviceName(@ptrCast(*const IUPnPRegistrar, self), bstrDeviceIdentifier, bstrTemplateUDN, pbstrUDN);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).GetUniqueDeviceName(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrTemplateUDN, pbstrUDN);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_UnregisterDevice(self: *const T, bstrDeviceIdentifier: ?BSTR, fPermanent: BOOL) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).UnregisterDevice(@ptrCast(*const IUPnPRegistrar, self), bstrDeviceIdentifier, fPermanent);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, fPermanent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRegistrar_UnregisterDeviceProvider(self: *const T, bstrProviderName: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRegistrar.VTable, self.vtable).UnregisterDeviceProvider(@ptrCast(*const IUPnPRegistrar, self), bstrProviderName);
+                return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName);
             }
         };
     }
@@ -1808,11 +1808,11 @@ pub const IUPnPReregistrar = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPReregistrar_ReregisterDevice(self: *const T, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) HRESULT {
-                return @ptrCast(*const IUPnPReregistrar.VTable, self.vtable).ReregisterDevice(@ptrCast(*const IUPnPReregistrar, self), bstrDeviceIdentifier, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime);
+                return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPReregistrar_ReregisterRunningDevice(self: *const T, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) HRESULT {
-                return @ptrCast(*const IUPnPReregistrar.VTable, self.vtable).ReregisterRunningDevice(@ptrCast(*const IUPnPReregistrar, self), bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
+                return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterRunningDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
             }
         };
     }
@@ -1860,11 +1860,11 @@ pub const IUPnPDeviceControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceControl_Initialize(self: *const T, bstrXMLDesc: ?BSTR, bstrDeviceIdentifier: ?BSTR, bstrInitString: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceControl.VTable, self.vtable).Initialize(@ptrCast(*const IUPnPDeviceControl, self), bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
+                return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceControl_GetServiceObject(self: *const T, bstrUDN: ?BSTR, bstrServiceId: ?BSTR, ppdispService: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IUPnPDeviceControl.VTable, self.vtable).GetServiceObject(@ptrCast(*const IUPnPDeviceControl, self), bstrUDN, bstrServiceId, ppdispService);
+                return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).GetServiceObject(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrUDN, bstrServiceId, ppdispService);
             }
         };
     }
@@ -1893,7 +1893,7 @@ pub const IUPnPDeviceControlHttpHeaders = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceControlHttpHeaders_GetAdditionalResponseHeaders(self: *const T, bstrHttpResponseHeaders: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceControlHttpHeaders.VTable, self.vtable).GetAdditionalResponseHeaders(@ptrCast(*const IUPnPDeviceControlHttpHeaders, self), bstrHttpResponseHeaders);
+                return @as(*const IUPnPDeviceControlHttpHeaders.VTable, @ptrCast(self.vtable)).GetAdditionalResponseHeaders(@as(*const IUPnPDeviceControlHttpHeaders, @ptrCast(self)), bstrHttpResponseHeaders);
             }
         };
     }
@@ -1931,11 +1931,11 @@ pub const IUPnPDeviceProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceProvider_Start(self: *const T, bstrInitString: ?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPDeviceProvider.VTable, self.vtable).Start(@ptrCast(*const IUPnPDeviceProvider, self), bstrInitString);
+                return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Start(@as(*const IUPnPDeviceProvider, @ptrCast(self)), bstrInitString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPDeviceProvider_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IUPnPDeviceProvider.VTable, self.vtable).Stop(@ptrCast(*const IUPnPDeviceProvider, self));
+                return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Stop(@as(*const IUPnPDeviceProvider, @ptrCast(self)));
             }
         };
     }
@@ -1991,15 +1991,15 @@ pub const IUPnPRemoteEndpointInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRemoteEndpointInfo_GetDwordValue(self: *const T, bstrValueName: ?BSTR, pdwValue: ?*u32) HRESULT {
-                return @ptrCast(*const IUPnPRemoteEndpointInfo.VTable, self.vtable).GetDwordValue(@ptrCast(*const IUPnPRemoteEndpointInfo, self), bstrValueName, pdwValue);
+                return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetDwordValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pdwValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRemoteEndpointInfo_GetStringValue(self: *const T, bstrValueName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IUPnPRemoteEndpointInfo.VTable, self.vtable).GetStringValue(@ptrCast(*const IUPnPRemoteEndpointInfo, self), bstrValueName, pbstrValue);
+                return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUPnPRemoteEndpointInfo_GetGuidValue(self: *const T, bstrValueName: ?BSTR, pguidValue: ?*Guid) HRESULT {
-                return @ptrCast(*const IUPnPRemoteEndpointInfo.VTable, self.vtable).GetGuidValue(@ptrCast(*const IUPnPRemoteEndpointInfo, self), bstrValueName, pguidValue);
+                return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetGuidValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pguidValue);
             }
         };
     }

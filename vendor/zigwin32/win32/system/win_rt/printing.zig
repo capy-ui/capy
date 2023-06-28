@@ -46,11 +46,11 @@ pub const IPrinting3DManagerInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, printManager);
+                return @as(*const IPrinting3DManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPrinting3DManagerInterop, @ptrCast(self)), appWindow, riid, printManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, asyncOperation);
+                return @as(*const IPrinting3DManagerInterop.VTable, @ptrCast(self.vtable)).ShowPrintUIForWindowAsync(@as(*const IPrinting3DManagerInterop, @ptrCast(self)), appWindow, riid, asyncOperation);
             }
         };
     }
@@ -98,11 +98,11 @@ pub const IPrintManagerInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, printManager);
+                return @as(*const IPrintManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPrintManagerInterop, @ptrCast(self)), appWindow, riid, printManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, asyncOperation);
+                return @as(*const IPrintManagerInterop.VTable, @ptrCast(self.vtable)).ShowPrintUIForWindowAsync(@as(*const IPrintManagerInterop, @ptrCast(self)), appWindow, riid, asyncOperation);
             }
         };
     }
@@ -179,23 +179,23 @@ pub const IPrintWorkflowXpsReceiver = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver_SetDocumentSequencePrintTicket(self: *const T, documentSequencePrintTicket: ?*IStream) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequencePrintTicket(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequencePrintTicket);
+                return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).SetDocumentSequencePrintTicket(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentSequencePrintTicket);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver_SetDocumentSequenceUri(self: *const T, documentSequenceUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).SetDocumentSequenceUri(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentSequenceUri);
+                return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).SetDocumentSequenceUri(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentSequenceUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver_AddDocumentData(self: *const T, documentId: u32, documentPrintTicket: ?*IStream, documentUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddDocumentData(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, documentPrintTicket, documentUri);
+                return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).AddDocumentData(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentId, documentPrintTicket, documentUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver_AddPage(self: *const T, documentId: u32, pageId: u32, pageReference: ?*IXpsOMPageReference, pageUri: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).AddPage(@ptrCast(*const IPrintWorkflowXpsReceiver, self), documentId, pageId, pageReference, pageUri);
+                return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).AddPage(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentId, pageId, pageReference, pageUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver.VTable, self.vtable).Close(@ptrCast(*const IPrintWorkflowXpsReceiver, self));
+                return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).Close(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)));
             }
         };
     }
@@ -224,7 +224,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern struct {
             pub usingnamespace IPrintWorkflowXpsReceiver.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsReceiver2_Failed(self: *const T, XpsError: HRESULT) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsReceiver2.VTable, self.vtable).Failed(@ptrCast(*const IPrintWorkflowXpsReceiver2, self), XpsError);
+                return @as(*const IPrintWorkflowXpsReceiver2.VTable, @ptrCast(self.vtable)).Failed(@as(*const IPrintWorkflowXpsReceiver2, @ptrCast(self)), XpsError);
             }
         };
     }
@@ -266,11 +266,11 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowObjectModelSourceFileContentNative_StartXpsOMGeneration(self: *const T, receiver: ?*IPrintWorkflowXpsReceiver) HRESULT {
-                return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).StartXpsOMGeneration(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), receiver);
+                return @as(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, @ptrCast(self.vtable)).StartXpsOMGeneration(@as(*const IPrintWorkflowObjectModelSourceFileContentNative, @ptrCast(self)), receiver);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowObjectModelSourceFileContentNative_get_ObjectFactory(self: *const T, value: ?*?*IXpsOMObjectFactory1) HRESULT {
-                return @ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, self.vtable).get_ObjectFactory(@ptrCast(*const IPrintWorkflowObjectModelSourceFileContentNative, self), value);
+                return @as(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, @ptrCast(self.vtable)).get_ObjectFactory(@as(*const IPrintWorkflowObjectModelSourceFileContentNative, @ptrCast(self)), value);
             }
         };
     }
@@ -302,7 +302,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowXpsObjectModelTargetPackageNative_get_DocumentPackageTarget(self: *const T, value: ?*?*IXpsDocumentPackageTarget) HRESULT {
-                return @ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative.VTable, self.vtable).get_DocumentPackageTarget(@ptrCast(*const IPrintWorkflowXpsObjectModelTargetPackageNative, self), value);
+                return @as(*const IPrintWorkflowXpsObjectModelTargetPackageNative.VTable, @ptrCast(self.vtable)).get_DocumentPackageTarget(@as(*const IPrintWorkflowXpsObjectModelTargetPackageNative, @ptrCast(self)), value);
             }
         };
     }
@@ -360,15 +360,15 @@ pub const IPrintWorkflowConfigurationNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowConfigurationNative_get_PrinterQueue(self: *const T, value: ?*?*IPrinterQueue) HRESULT {
-                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+                return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_PrinterQueue(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowConfigurationNative_get_DriverProperties(self: *const T, value: ?*?*IPrinterPropertyBag) HRESULT {
-                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+                return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintWorkflowConfigurationNative_get_UserProperties(self: *const T, value: ?*?*IPrinterPropertyBag) HRESULT {
-                return @ptrCast(*const IPrintWorkflowConfigurationNative.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrintWorkflowConfigurationNative, self), value);
+                return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
             }
         };
     }

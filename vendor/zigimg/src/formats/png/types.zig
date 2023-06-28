@@ -135,7 +135,7 @@ pub const HeaderData = extern struct {
     }
 
     pub fn maxPaletteSize(self: *const Self) u16 {
-        return if (self.bit_depth > 8) 256 else @as(u16, 1) << @truncate(u4, self.bit_depth);
+        return if (self.bit_depth > 8) 256 else @as(u16, 1) << @as(u4, @truncate(self.bit_depth));
     }
 
     pub fn channelCount(self: *const Self) u8 {

@@ -1264,19 +1264,19 @@ pub const IWSMan = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSMan_CreateSession(self: *const T, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IWSMan.VTable, self.vtable).CreateSession(@ptrCast(*const IWSMan, self), connection, flags, connectionOptions, session);
+                return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IWSMan, @ptrCast(self)), connection, flags, connectionOptions, session);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSMan_CreateConnectionOptions(self: *const T, connectionOptions: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IWSMan.VTable, self.vtable).CreateConnectionOptions(@ptrCast(*const IWSMan, self), connectionOptions);
+                return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).CreateConnectionOptions(@as(*const IWSMan, @ptrCast(self)), connectionOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSMan_get_CommandLine(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSMan.VTable, self.vtable).get_CommandLine(@ptrCast(*const IWSMan, self), value);
+                return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).get_CommandLine(@as(*const IWSMan, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSMan_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSMan.VTable, self.vtable).get_Error(@ptrCast(*const IWSMan, self), value);
+                return @as(*const IWSMan.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSMan, @ptrCast(self)), value);
             }
         };
     }
@@ -1500,83 +1500,83 @@ pub const IWSManEx = extern struct {
             pub usingnamespace IWSMan.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_CreateResourceLocator(self: *const T, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).CreateResourceLocator(@ptrCast(*const IWSManEx, self), strResourceLocator, newResourceLocator);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).CreateResourceLocator(@as(*const IWSManEx, @ptrCast(self)), strResourceLocator, newResourceLocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUTF8(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUTF8(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUTF8(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagCredUsernamePassword(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagCredUsernamePassword(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagCredUsernamePassword(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagSkipCACheck(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCACheck(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagSkipCACheck(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagSkipCNCheck(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagSkipCNCheck(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagSkipCNCheck(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUseDigest(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseDigest(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseDigest(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUseNegotiate(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNegotiate(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseNegotiate(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUseBasic(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseBasic(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseBasic(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUseKerberos(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseKerberos(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseKerberos(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagNoEncryption(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagNoEncryption(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagNoEncryption(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagEnableSPNServerPort(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagEnableSPNServerPort(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagEnableSPNServerPort(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_SessionFlagUseNoAuthentication(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).SessionFlagUseNoAuthentication(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).SessionFlagUseNoAuthentication(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagNonXmlText(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagNonXmlText(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagNonXmlText(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagReturnEPR(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnEPR(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnEPR(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagReturnObjectAndEPR(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObjectAndEPR(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnObjectAndEPR(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_GetErrorMessage(self: *const T, errorNumber: u32, errorMessage: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).GetErrorMessage(@ptrCast(*const IWSManEx, self), errorNumber, errorMessage);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).GetErrorMessage(@as(*const IWSManEx, @ptrCast(self)), errorNumber, errorMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagHierarchyDeep(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeep(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyDeep(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagHierarchyShallow(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyShallow(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyShallow(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagHierarchyDeepBasePropsOnly(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagHierarchyDeepBasePropsOnly(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagHierarchyDeepBasePropsOnly(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx_EnumerationFlagReturnObject(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx.VTable, self.vtable).EnumerationFlagReturnObject(@ptrCast(*const IWSManEx, self), flags);
+                return @as(*const IWSManEx.VTable, @ptrCast(self.vtable)).EnumerationFlagReturnObject(@as(*const IWSManEx, @ptrCast(self)), flags);
             }
         };
     }
@@ -1606,7 +1606,7 @@ pub const IWSManEx2 = extern struct {
             pub usingnamespace IWSManEx.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx2_SessionFlagUseClientCertificate(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx2.VTable, self.vtable).SessionFlagUseClientCertificate(@ptrCast(*const IWSManEx2, self), flags);
+                return @as(*const IWSManEx2.VTable, @ptrCast(self.vtable)).SessionFlagUseClientCertificate(@as(*const IWSManEx2, @ptrCast(self)), flags);
             }
         };
     }
@@ -1696,31 +1696,31 @@ pub const IWSManEx3 = extern struct {
             pub usingnamespace IWSManEx2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_SessionFlagUTF16(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUTF16(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUTF16(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_SessionFlagUseCredSsp(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseCredSsp(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUseCredSsp(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_EnumerationFlagAssociationInstance(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociationInstance(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).EnumerationFlagAssociationInstance(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_EnumerationFlagAssociatedInstance(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).EnumerationFlagAssociatedInstance(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).EnumerationFlagAssociatedInstance(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_SessionFlagSkipRevocationCheck(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagSkipRevocationCheck(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagSkipRevocationCheck(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_SessionFlagAllowNegotiateImplicitCredentials(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagAllowNegotiateImplicitCredentials(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagAllowNegotiateImplicitCredentials(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEx3_SessionFlagUseSsl(self: *const T, flags: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManEx3.VTable, self.vtable).SessionFlagUseSsl(@ptrCast(*const IWSManEx3, self), flags);
+                return @as(*const IWSManEx3.VTable, @ptrCast(self.vtable)).SessionFlagUseSsl(@as(*const IWSManEx3, @ptrCast(self)), flags);
             }
         };
     }
@@ -1779,15 +1779,15 @@ pub const IWSManConnectionOptions = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptions_get_UserName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).get_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
+                return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IWSManConnectionOptions, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptions_put_UserName(self: *const T, name: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_UserName(@ptrCast(*const IWSManConnectionOptions, self), name);
+                return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).put_UserName(@as(*const IWSManConnectionOptions, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptions_put_Password(self: *const T, password: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptions.VTable, self.vtable).put_Password(@ptrCast(*const IWSManConnectionOptions, self), password);
+                return @as(*const IWSManConnectionOptions.VTable, @ptrCast(self.vtable)).put_Password(@as(*const IWSManConnectionOptions, @ptrCast(self)), password);
             }
         };
     }
@@ -1833,11 +1833,11 @@ pub const IWSManConnectionOptionsEx = extern struct {
             pub usingnamespace IWSManConnectionOptions.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx_get_CertificateThumbprint(self: *const T, thumbprint: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).get_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
+                return @as(*const IWSManConnectionOptionsEx.VTable, @ptrCast(self.vtable)).get_CertificateThumbprint(@as(*const IWSManConnectionOptionsEx, @ptrCast(self)), thumbprint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx_put_CertificateThumbprint(self: *const T, thumbprint: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx.VTable, self.vtable).put_CertificateThumbprint(@ptrCast(*const IWSManConnectionOptionsEx, self), thumbprint);
+                return @as(*const IWSManConnectionOptionsEx.VTable, @ptrCast(self.vtable)).put_CertificateThumbprint(@as(*const IWSManConnectionOptionsEx, @ptrCast(self)), thumbprint);
             }
         };
     }
@@ -1943,35 +1943,35 @@ pub const IWSManConnectionOptionsEx2 = extern struct {
             pub usingnamespace IWSManConnectionOptionsEx.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_SetProxy(self: *const T, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).SetProxy(@ptrCast(*const IWSManConnectionOptionsEx2, self), accessType, authenticationMechanism, userName, password);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).SetProxy(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), accessType, authenticationMechanism, userName, password);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyIEConfig(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyIEConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyIEConfig(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyWinHttpConfig(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyWinHttpConfig(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyWinHttpConfig(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyAutoDetect(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAutoDetect(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAutoDetect(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyNoProxyServer(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyNoProxyServer(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyNoProxyServer(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseNegotiate(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseNegotiate(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseNegotiate(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseBasic(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseBasic(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseBasic(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManConnectionOptionsEx2_ProxyAuthenticationUseDigest(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManConnectionOptionsEx2.VTable, self.vtable).ProxyAuthenticationUseDigest(@ptrCast(*const IWSManConnectionOptionsEx2, self), value);
+                return @as(*const IWSManConnectionOptionsEx2.VTable, @ptrCast(self.vtable)).ProxyAuthenticationUseDigest(@as(*const IWSManConnectionOptionsEx2, @ptrCast(self)), value);
             }
         };
     }
@@ -2162,51 +2162,51 @@ pub const IWSManSession = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Get(self: *const T, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Get(@ptrCast(*const IWSManSession, self), resourceUri, flags, resource);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Get(@as(*const IWSManSession, @ptrCast(self)), resourceUri, flags, resource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Put(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Put(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, resultResource);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Put(@as(*const IWSManSession, @ptrCast(self)), resourceUri, resource, flags, resultResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Create(self: *const T, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Create(@ptrCast(*const IWSManSession, self), resourceUri, resource, flags, newUri);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Create(@as(*const IWSManSession, @ptrCast(self)), resourceUri, resource, flags, newUri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Delete(self: *const T, resourceUri: VARIANT, flags: i32) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Delete(@ptrCast(*const IWSManSession, self), resourceUri, flags);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Delete(@as(*const IWSManSession, @ptrCast(self)), resourceUri, flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Invoke(self: *const T, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Invoke(@ptrCast(*const IWSManSession, self), actionUri, resourceUri, parameters, flags, result);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IWSManSession, @ptrCast(self)), actionUri, resourceUri, parameters, flags, result);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Enumerate(self: *const T, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Enumerate(@ptrCast(*const IWSManSession, self), resourceUri, filter, dialect, flags, resultSet);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Enumerate(@as(*const IWSManSession, @ptrCast(self)), resourceUri, filter, dialect, flags, resultSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_Identify(self: *const T, flags: i32, result: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).Identify(@ptrCast(*const IWSManSession, self), flags, result);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).Identify(@as(*const IWSManSession, @ptrCast(self)), flags, result);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Error(@ptrCast(*const IWSManSession, self), value);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManSession, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_get_BatchItems(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_BatchItems(@ptrCast(*const IWSManSession, self), value);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_BatchItems(@as(*const IWSManSession, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_put_BatchItems(self: *const T, value: i32) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).put_BatchItems(@ptrCast(*const IWSManSession, self), value);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).put_BatchItems(@as(*const IWSManSession, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_get_Timeout(self: *const T, value: ?*i32) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).get_Timeout(@ptrCast(*const IWSManSession, self), value);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).get_Timeout(@as(*const IWSManSession, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManSession_put_Timeout(self: *const T, value: i32) HRESULT {
-                return @ptrCast(*const IWSManSession.VTable, self.vtable).put_Timeout(@ptrCast(*const IWSManSession, self), value);
+                return @as(*const IWSManSession.VTable, @ptrCast(self.vtable)).put_Timeout(@as(*const IWSManSession, @ptrCast(self)), value);
             }
         };
     }
@@ -2262,15 +2262,15 @@ pub const IWSManEnumerator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEnumerator_ReadItem(self: *const T, resource: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).ReadItem(@ptrCast(*const IWSManEnumerator, self), resource);
+                return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).ReadItem(@as(*const IWSManEnumerator, @ptrCast(self)), resource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEnumerator_get_AtEndOfStream(self: *const T, eos: ?*i16) HRESULT {
-                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_AtEndOfStream(@ptrCast(*const IWSManEnumerator, self), eos);
+                return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).get_AtEndOfStream(@as(*const IWSManEnumerator, @ptrCast(self)), eos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManEnumerator_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManEnumerator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManEnumerator, self), value);
+                return @as(*const IWSManEnumerator.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManEnumerator, @ptrCast(self)), value);
             }
         };
     }
@@ -2449,55 +2449,55 @@ pub const IWSManResourceLocator = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_put_ResourceURI(self: *const T, uri: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_ResourceURI(@as(*const IWSManResourceLocator, @ptrCast(self)), uri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_get_ResourceURI(self: *const T, uri: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_ResourceURI(@ptrCast(*const IWSManResourceLocator, self), uri);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_ResourceURI(@as(*const IWSManResourceLocator, @ptrCast(self)), uri);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_AddSelector(self: *const T, resourceSelName: ?BSTR, selValue: VARIANT) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddSelector(@ptrCast(*const IWSManResourceLocator, self), resourceSelName, selValue);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).AddSelector(@as(*const IWSManResourceLocator, @ptrCast(self)), resourceSelName, selValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_ClearSelectors(self: *const T) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearSelectors(@ptrCast(*const IWSManResourceLocator, self));
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).ClearSelectors(@as(*const IWSManResourceLocator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_get_FragmentPath(self: *const T, text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_FragmentPath(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_put_FragmentPath(self: *const T, text: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentPath(@ptrCast(*const IWSManResourceLocator, self), text);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_FragmentPath(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_get_FragmentDialect(self: *const T, text: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_FragmentDialect(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_put_FragmentDialect(self: *const T, text: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_FragmentDialect(@ptrCast(*const IWSManResourceLocator, self), text);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_FragmentDialect(@as(*const IWSManResourceLocator, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_AddOption(self: *const T, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).AddOption(@ptrCast(*const IWSManResourceLocator, self), OptionName, OptionValue, mustComply);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).AddOption(@as(*const IWSManResourceLocator, @ptrCast(self)), OptionName, OptionValue, mustComply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_put_MustUnderstandOptions(self: *const T, mustUnderstand: BOOL) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).put_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).put_MustUnderstandOptions(@as(*const IWSManResourceLocator, @ptrCast(self)), mustUnderstand);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_get_MustUnderstandOptions(self: *const T, mustUnderstand: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_MustUnderstandOptions(@ptrCast(*const IWSManResourceLocator, self), mustUnderstand);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_MustUnderstandOptions(@as(*const IWSManResourceLocator, @ptrCast(self)), mustUnderstand);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_ClearOptions(self: *const T) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).ClearOptions(@ptrCast(*const IWSManResourceLocator, self));
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).ClearOptions(@as(*const IWSManResourceLocator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManResourceLocator_get_Error(self: *const T, value: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManResourceLocator.VTable, self.vtable).get_Error(@ptrCast(*const IWSManResourceLocator, self), value);
+                return @as(*const IWSManResourceLocator.VTable, @ptrCast(self.vtable)).get_Error(@as(*const IWSManResourceLocator, @ptrCast(self)), value);
             }
         };
     }
@@ -2547,7 +2547,7 @@ pub const IWSManInternal = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSManInternal_ConfigSDDL(self: *const T, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWSManInternal.VTable, self.vtable).ConfigSDDL(@ptrCast(*const IWSManInternal, self), session, resourceUri, flags, resource);
+                return @as(*const IWSManInternal.VTable, @ptrCast(self.vtable)).ConfigSDDL(@as(*const IWSManInternal, @ptrCast(self)), session, resourceUri, flags, resource);
             }
         };
     }

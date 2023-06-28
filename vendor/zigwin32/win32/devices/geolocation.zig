@@ -156,15 +156,15 @@ pub const ILocationReport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReport_GetSensorID(self: *const T, pSensorID: ?*Guid) HRESULT {
-                return @ptrCast(*const ILocationReport.VTable, self.vtable).GetSensorID(@ptrCast(*const ILocationReport, self), pSensorID);
+                return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetSensorID(@as(*const ILocationReport, @ptrCast(self)), pSensorID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReport_GetTimestamp(self: *const T, pCreationTime: ?*SYSTEMTIME) HRESULT {
-                return @ptrCast(*const ILocationReport.VTable, self.vtable).GetTimestamp(@ptrCast(*const ILocationReport, self), pCreationTime);
+                return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetTimestamp(@as(*const ILocationReport, @ptrCast(self)), pCreationTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReport_GetValue(self: *const T, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const ILocationReport.VTable, self.vtable).GetValue(@ptrCast(*const ILocationReport, self), pKey, pValue);
+                return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ILocationReport, @ptrCast(self)), pKey, pValue);
             }
         };
     }
@@ -234,23 +234,23 @@ pub const ILatLongReport = extern struct {
             pub usingnamespace ILocationReport.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReport_GetLatitude(self: *const T, pLatitude: ?*f64) HRESULT {
-                return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetLatitude(@ptrCast(*const ILatLongReport, self), pLatitude);
+                return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetLatitude(@as(*const ILatLongReport, @ptrCast(self)), pLatitude);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReport_GetLongitude(self: *const T, pLongitude: ?*f64) HRESULT {
-                return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetLongitude(@ptrCast(*const ILatLongReport, self), pLongitude);
+                return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetLongitude(@as(*const ILatLongReport, @ptrCast(self)), pLongitude);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReport_GetErrorRadius(self: *const T, pErrorRadius: ?*f64) HRESULT {
-                return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetErrorRadius(@ptrCast(*const ILatLongReport, self), pErrorRadius);
+                return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetErrorRadius(@as(*const ILatLongReport, @ptrCast(self)), pErrorRadius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReport_GetAltitude(self: *const T, pAltitude: ?*f64) HRESULT {
-                return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetAltitude(@ptrCast(*const ILatLongReport, self), pAltitude);
+                return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetAltitude(@as(*const ILatLongReport, @ptrCast(self)), pAltitude);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReport_GetAltitudeError(self: *const T, pAltitudeError: ?*f64) HRESULT {
-                return @ptrCast(*const ILatLongReport.VTable, self.vtable).GetAltitudeError(@ptrCast(*const ILatLongReport, self), pAltitudeError);
+                return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetAltitudeError(@as(*const ILatLongReport, @ptrCast(self)), pAltitudeError);
             }
         };
     }
@@ -340,31 +340,31 @@ pub const ICivicAddressReport = extern struct {
             pub usingnamespace ILocationReport.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetAddressLine1(self: *const T, pbstrAddress1: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine1(@ptrCast(*const ICivicAddressReport, self), pbstrAddress1);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetAddressLine1(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrAddress1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetAddressLine2(self: *const T, pbstrAddress2: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetAddressLine2(@ptrCast(*const ICivicAddressReport, self), pbstrAddress2);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetAddressLine2(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrAddress2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetCity(self: *const T, pbstrCity: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCity(@ptrCast(*const ICivicAddressReport, self), pbstrCity);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetCity(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrCity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetStateProvince(self: *const T, pbstrStateProvince: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetStateProvince(@ptrCast(*const ICivicAddressReport, self), pbstrStateProvince);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetStateProvince(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrStateProvince);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetPostalCode(self: *const T, pbstrPostalCode: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetPostalCode(@ptrCast(*const ICivicAddressReport, self), pbstrPostalCode);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetPostalCode(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrPostalCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetCountryRegion(self: *const T, pbstrCountryRegion: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetCountryRegion(@ptrCast(*const ICivicAddressReport, self), pbstrCountryRegion);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetCountryRegion(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrCountryRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReport_GetDetailLevel(self: *const T, pDetailLevel: ?*u32) HRESULT {
-                return @ptrCast(*const ICivicAddressReport.VTable, self.vtable).GetDetailLevel(@ptrCast(*const ICivicAddressReport, self), pDetailLevel);
+                return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetDetailLevel(@as(*const ICivicAddressReport, @ptrCast(self)), pDetailLevel);
             }
         };
     }
@@ -496,39 +496,39 @@ pub const ILocation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_RegisterForReport(self: *const T, pEvents: ?*ILocationEvents, reportType: ?*const Guid, dwRequestedReportInterval: u32) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).RegisterForReport(@ptrCast(*const ILocation, self), pEvents, reportType, dwRequestedReportInterval);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).RegisterForReport(@as(*const ILocation, @ptrCast(self)), pEvents, reportType, dwRequestedReportInterval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_UnregisterForReport(self: *const T, reportType: ?*const Guid) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).UnregisterForReport(@ptrCast(*const ILocation, self), reportType);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).UnregisterForReport(@as(*const ILocation, @ptrCast(self)), reportType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_GetReport(self: *const T, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).GetReport(@ptrCast(*const ILocation, self), reportType, ppLocationReport);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReport(@as(*const ILocation, @ptrCast(self)), reportType, ppLocationReport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_GetReportStatus(self: *const T, reportType: ?*const Guid, pStatus: ?*LOCATION_REPORT_STATUS) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).GetReportStatus(@ptrCast(*const ILocation, self), reportType, pStatus);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReportStatus(@as(*const ILocation, @ptrCast(self)), reportType, pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_GetReportInterval(self: *const T, reportType: ?*const Guid, pMilliseconds: ?*u32) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).GetReportInterval(@ptrCast(*const ILocation, self), reportType, pMilliseconds);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReportInterval(@as(*const ILocation, @ptrCast(self)), reportType, pMilliseconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_SetReportInterval(self: *const T, reportType: ?*const Guid, millisecondsRequested: u32) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).SetReportInterval(@ptrCast(*const ILocation, self), reportType, millisecondsRequested);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).SetReportInterval(@as(*const ILocation, @ptrCast(self)), reportType, millisecondsRequested);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_GetDesiredAccuracy(self: *const T, reportType: ?*const Guid, pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).GetDesiredAccuracy(@ptrCast(*const ILocation, self), reportType, pDesiredAccuracy);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetDesiredAccuracy(@as(*const ILocation, @ptrCast(self)), reportType, pDesiredAccuracy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_SetDesiredAccuracy(self: *const T, reportType: ?*const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).SetDesiredAccuracy(@ptrCast(*const ILocation, self), reportType, desiredAccuracy);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).SetDesiredAccuracy(@as(*const ILocation, @ptrCast(self)), reportType, desiredAccuracy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocation_RequestPermissions(self: *const T, hParent: ?HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) HRESULT {
-                return @ptrCast(*const ILocation.VTable, self.vtable).RequestPermissions(@ptrCast(*const ILocation, self), hParent, pReportTypes, count, fModal);
+                return @as(*const ILocation.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ILocation, @ptrCast(self)), hParent, pReportTypes, count, fModal);
             }
         };
     }
@@ -564,11 +564,11 @@ pub const ILocationPower = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationPower_Connect(self: *const T) HRESULT {
-                return @ptrCast(*const ILocationPower.VTable, self.vtable).Connect(@ptrCast(*const ILocationPower, self));
+                return @as(*const ILocationPower.VTable, @ptrCast(self.vtable)).Connect(@as(*const ILocationPower, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationPower_Disconnect(self: *const T) HRESULT {
-                return @ptrCast(*const ILocationPower.VTable, self.vtable).Disconnect(@ptrCast(*const ILocationPower, self));
+                return @as(*const ILocationPower.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const ILocationPower, @ptrCast(self)));
             }
         };
     }
@@ -612,11 +612,11 @@ pub const IDefaultLocation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDefaultLocation_SetReport(self: *const T, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) HRESULT {
-                return @ptrCast(*const IDefaultLocation.VTable, self.vtable).SetReport(@ptrCast(*const IDefaultLocation, self), reportType, pLocationReport);
+                return @as(*const IDefaultLocation.VTable, @ptrCast(self.vtable)).SetReport(@as(*const IDefaultLocation, @ptrCast(self)), reportType, pLocationReport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDefaultLocation_GetReport(self: *const T, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) HRESULT {
-                return @ptrCast(*const IDefaultLocation.VTable, self.vtable).GetReport(@ptrCast(*const IDefaultLocation, self), reportType, ppLocationReport);
+                return @as(*const IDefaultLocation.VTable, @ptrCast(self.vtable)).GetReport(@as(*const IDefaultLocation, @ptrCast(self)), reportType, ppLocationReport);
             }
         };
     }
@@ -660,11 +660,11 @@ pub const ILocationEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationEvents_OnLocationChanged(self: *const T, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) HRESULT {
-                return @ptrCast(*const ILocationEvents.VTable, self.vtable).OnLocationChanged(@ptrCast(*const ILocationEvents, self), reportType, pLocationReport);
+                return @as(*const ILocationEvents.VTable, @ptrCast(self.vtable)).OnLocationChanged(@as(*const ILocationEvents, @ptrCast(self)), reportType, pLocationReport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationEvents_OnStatusChanged(self: *const T, reportType: ?*const Guid, newStatus: LOCATION_REPORT_STATUS) HRESULT {
-                return @ptrCast(*const ILocationEvents.VTable, self.vtable).OnStatusChanged(@ptrCast(*const ILocationEvents, self), reportType, newStatus);
+                return @as(*const ILocationEvents.VTable, @ptrCast(self.vtable)).OnStatusChanged(@as(*const ILocationEvents, @ptrCast(self)), reportType, newStatus);
             }
         };
     }
@@ -761,27 +761,27 @@ pub const IDispLatLongReport = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_Latitude(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Latitude(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Latitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_Longitude(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Longitude(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Longitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_ErrorRadius(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_ErrorRadius(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_ErrorRadius(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_Altitude(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Altitude(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Altitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_AltitudeError(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_AltitudeError(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_AltitudeError(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispLatLongReport_get_Timestamp(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispLatLongReport.VTable, self.vtable).get_Timestamp(@ptrCast(*const IDispLatLongReport, self), pVal);
+                return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
             }
         };
     }
@@ -904,35 +904,35 @@ pub const IDispCivicAddressReport = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_AddressLine1(self: *const T, pAddress1: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine1(@ptrCast(*const IDispCivicAddressReport, self), pAddress1);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_AddressLine1(@as(*const IDispCivicAddressReport, @ptrCast(self)), pAddress1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_AddressLine2(self: *const T, pAddress2: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_AddressLine2(@ptrCast(*const IDispCivicAddressReport, self), pAddress2);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_AddressLine2(@as(*const IDispCivicAddressReport, @ptrCast(self)), pAddress2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_City(self: *const T, pCity: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_City(@ptrCast(*const IDispCivicAddressReport, self), pCity);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_City(@as(*const IDispCivicAddressReport, @ptrCast(self)), pCity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_StateProvince(self: *const T, pStateProvince: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_StateProvince(@ptrCast(*const IDispCivicAddressReport, self), pStateProvince);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_StateProvince(@as(*const IDispCivicAddressReport, @ptrCast(self)), pStateProvince);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_PostalCode(self: *const T, pPostalCode: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_PostalCode(@ptrCast(*const IDispCivicAddressReport, self), pPostalCode);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_PostalCode(@as(*const IDispCivicAddressReport, @ptrCast(self)), pPostalCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_CountryRegion(self: *const T, pCountryRegion: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_CountryRegion(@ptrCast(*const IDispCivicAddressReport, self), pCountryRegion);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_CountryRegion(@as(*const IDispCivicAddressReport, @ptrCast(self)), pCountryRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_DetailLevel(self: *const T, pDetailLevel: ?*u32) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_DetailLevel(@ptrCast(*const IDispCivicAddressReport, self), pDetailLevel);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_DetailLevel(@as(*const IDispCivicAddressReport, @ptrCast(self)), pDetailLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDispCivicAddressReport_get_Timestamp(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IDispCivicAddressReport.VTable, self.vtable).get_Timestamp(@ptrCast(*const IDispCivicAddressReport, self), pVal);
+                return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IDispCivicAddressReport, @ptrCast(self)), pVal);
             }
         };
     }
@@ -1044,35 +1044,35 @@ pub const ILocationReportFactory = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_ListenForReports(self: *const T, requestedReportInterval: u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).ListenForReports(@ptrCast(*const ILocationReportFactory, self), requestedReportInterval);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).ListenForReports(@as(*const ILocationReportFactory, @ptrCast(self)), requestedReportInterval);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_StopListeningForReports(self: *const T) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).StopListeningForReports(@ptrCast(*const ILocationReportFactory, self));
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).StopListeningForReports(@as(*const ILocationReportFactory, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_get_Status(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_Status(@ptrCast(*const ILocationReportFactory, self), pVal);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ILocationReportFactory, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_get_ReportInterval(self: *const T, pMilliseconds: ?*u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_ReportInterval(@ptrCast(*const ILocationReportFactory, self), pMilliseconds);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_ReportInterval(@as(*const ILocationReportFactory, @ptrCast(self)), pMilliseconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_put_ReportInterval(self: *const T, millisecondsRequested: u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).put_ReportInterval(@ptrCast(*const ILocationReportFactory, self), millisecondsRequested);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).put_ReportInterval(@as(*const ILocationReportFactory, @ptrCast(self)), millisecondsRequested);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_get_DesiredAccuracy(self: *const T, pDesiredAccuracy: ?*u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).get_DesiredAccuracy(@ptrCast(*const ILocationReportFactory, self), pDesiredAccuracy);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_DesiredAccuracy(@as(*const ILocationReportFactory, @ptrCast(self)), pDesiredAccuracy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_put_DesiredAccuracy(self: *const T, desiredAccuracy: u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).put_DesiredAccuracy(@ptrCast(*const ILocationReportFactory, self), desiredAccuracy);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).put_DesiredAccuracy(@as(*const ILocationReportFactory, @ptrCast(self)), desiredAccuracy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILocationReportFactory_RequestPermissions(self: *const T, hWnd: ?*u32) HRESULT {
-                return @ptrCast(*const ILocationReportFactory.VTable, self.vtable).RequestPermissions(@ptrCast(*const ILocationReportFactory, self), hWnd);
+                return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ILocationReportFactory, @ptrCast(self)), hWnd);
             }
         };
     }
@@ -1104,7 +1104,7 @@ pub const ILatLongReportFactory = extern struct {
             pub usingnamespace ILocationReportFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILatLongReportFactory_get_LatLongReport(self: *const T, pVal: ?*?*IDispLatLongReport) HRESULT {
-                return @ptrCast(*const ILatLongReportFactory.VTable, self.vtable).get_LatLongReport(@ptrCast(*const ILatLongReportFactory, self), pVal);
+                return @as(*const ILatLongReportFactory.VTable, @ptrCast(self.vtable)).get_LatLongReport(@as(*const ILatLongReportFactory, @ptrCast(self)), pVal);
             }
         };
     }
@@ -1136,7 +1136,7 @@ pub const ICivicAddressReportFactory = extern struct {
             pub usingnamespace ILocationReportFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICivicAddressReportFactory_get_CivicAddressReport(self: *const T, pVal: ?*?*IDispCivicAddressReport) HRESULT {
-                return @ptrCast(*const ICivicAddressReportFactory.VTable, self.vtable).get_CivicAddressReport(@ptrCast(*const ICivicAddressReportFactory, self), pVal);
+                return @as(*const ICivicAddressReportFactory.VTable, @ptrCast(self.vtable)).get_CivicAddressReport(@as(*const ICivicAddressReportFactory, @ptrCast(self)), pVal);
             }
         };
     }

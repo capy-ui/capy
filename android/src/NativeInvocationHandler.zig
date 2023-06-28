@@ -59,7 +59,7 @@ const InvocationHandler = struct {
         const Class = try jni.invokeJni(.GetObjectClass, .{this});
         const ptrField = try jni.invokeJni(.GetFieldID, .{ Class, "ptr", "J" });
         const jptr = try jni.getLongField(this, ptrField);
-        const h = @ptrFromInt(*InvocationHandler, @intCast(usize, jptr));
+        const h = @as(*InvocationHandler, @ptrFromInt(@as(usize, @intCast(jptr))));
         return h.function(h.pointer, jni, method, args);
     }
 };

@@ -25,7 +25,7 @@ pub const GESTURECONFIG_ID = enum(u32) {
         TWOFINGERTAP: u1 = 0,
         PRESSANDTAP: u1 = 0,
     }) GESTURECONFIG_ID {
-        return @enumFromInt(GESTURECONFIG_ID, (if (o.BEGIN == 1) @intFromEnum(GESTURECONFIG_ID.BEGIN) else 0) | (if (o.END == 1) @intFromEnum(GESTURECONFIG_ID.END) else 0) | (if (o.ZOOM == 1) @intFromEnum(GESTURECONFIG_ID.ZOOM) else 0) | (if (o.PAN == 1) @intFromEnum(GESTURECONFIG_ID.PAN) else 0) | (if (o.ROTATE == 1) @intFromEnum(GESTURECONFIG_ID.ROTATE) else 0) | (if (o.TWOFINGERTAP == 1) @intFromEnum(GESTURECONFIG_ID.TWOFINGERTAP) else 0) | (if (o.PRESSANDTAP == 1) @intFromEnum(GESTURECONFIG_ID.PRESSANDTAP) else 0));
+        return @as(GESTURECONFIG_ID, @enumFromInt((if (o.BEGIN == 1) @intFromEnum(GESTURECONFIG_ID.BEGIN) else 0) | (if (o.END == 1) @intFromEnum(GESTURECONFIG_ID.END) else 0) | (if (o.ZOOM == 1) @intFromEnum(GESTURECONFIG_ID.ZOOM) else 0) | (if (o.PAN == 1) @intFromEnum(GESTURECONFIG_ID.PAN) else 0) | (if (o.ROTATE == 1) @intFromEnum(GESTURECONFIG_ID.ROTATE) else 0) | (if (o.TWOFINGERTAP == 1) @intFromEnum(GESTURECONFIG_ID.TWOFINGERTAP) else 0) | (if (o.PRESSANDTAP == 1) @intFromEnum(GESTURECONFIG_ID.PRESSANDTAP) else 0)));
     }
 };
 pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
@@ -57,7 +57,7 @@ pub const TOUCHEVENTF_FLAGS = enum(u32) {
         PEN: u1 = 0,
         PALM: u1 = 0,
     }) TOUCHEVENTF_FLAGS {
-        return @enumFromInt(TOUCHEVENTF_FLAGS, (if (o.MOVE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.MOVE) else 0) | (if (o.DOWN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.DOWN) else 0) | (if (o.UP == 1) @intFromEnum(TOUCHEVENTF_FLAGS.UP) else 0) | (if (o.INRANGE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.INRANGE) else 0) | (if (o.PRIMARY == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PRIMARY) else 0) | (if (o.NOCOALESCE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0) | (if (o.PEN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PEN) else 0) | (if (o.PALM == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PALM) else 0));
+        return @as(TOUCHEVENTF_FLAGS, @enumFromInt((if (o.MOVE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.MOVE) else 0) | (if (o.DOWN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.DOWN) else 0) | (if (o.UP == 1) @intFromEnum(TOUCHEVENTF_FLAGS.UP) else 0) | (if (o.INRANGE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.INRANGE) else 0) | (if (o.PRIMARY == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PRIMARY) else 0) | (if (o.NOCOALESCE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0) | (if (o.PEN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PEN) else 0) | (if (o.PALM == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PALM) else 0)));
     }
 };
 pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
@@ -79,7 +79,7 @@ pub const TOUCHINPUTMASKF_MASK = enum(u32) {
         EXTRAINFO: u1 = 0,
         CONTACTAREA: u1 = 0,
     }) TOUCHINPUTMASKF_MASK {
-        return @enumFromInt(TOUCHINPUTMASKF_MASK, (if (o.TIMEFROMSYSTEM == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0) | (if (o.EXTRAINFO == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0) | (if (o.CONTACTAREA == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0));
+        return @as(TOUCHINPUTMASKF_MASK, @enumFromInt((if (o.TIMEFROMSYSTEM == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0) | (if (o.EXTRAINFO == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0) | (if (o.CONTACTAREA == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0)));
     }
 };
 pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
@@ -197,15 +197,15 @@ pub const _IManipulationEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IManipulationEvents_ManipulationStarted(self: *const T, x: f32, y: f32) HRESULT {
-                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationStarted(@ptrCast(*const _IManipulationEvents, self), x, y);
+                return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationStarted(@as(*const _IManipulationEvents, @ptrCast(self)), x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IManipulationEvents_ManipulationDelta(self: *const T, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
-                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationDelta(@ptrCast(*const _IManipulationEvents, self), x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+                return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationDelta(@as(*const _IManipulationEvents, @ptrCast(self)), x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn _IManipulationEvents_ManipulationCompleted(self: *const T, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
-                return @ptrCast(*const _IManipulationEvents.VTable, self.vtable).ManipulationCompleted(@ptrCast(*const _IManipulationEvents, self), x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+                return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationCompleted(@as(*const _IManipulationEvents, @ptrCast(self)), x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
             }
         };
     }
@@ -845,199 +845,199 @@ pub const IInertiaProcessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialOriginX(self: *const T, x: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialOriginX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialOriginX(self: *const T, x: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginX(@ptrCast(*const IInertiaProcessor, self), x);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialOriginX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialOriginY(self: *const T, y: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialOriginY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialOriginY(self: *const T, y: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialOriginY(@ptrCast(*const IInertiaProcessor, self), y);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialOriginY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialVelocityX(self: *const T, x: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialVelocityX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialVelocityX(self: *const T, x: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityX(@ptrCast(*const IInertiaProcessor, self), x);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialVelocityX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialVelocityY(self: *const T, y: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialVelocityY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialVelocityY(self: *const T, y: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialVelocityY(@ptrCast(*const IInertiaProcessor, self), y);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialVelocityY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialAngularVelocity(self: *const T, velocity: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialAngularVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialAngularVelocity(self: *const T, velocity: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialAngularVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialAngularVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialExpansionVelocity(self: *const T, velocity: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialExpansionVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialExpansionVelocity(self: *const T, velocity: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialExpansionVelocity(@ptrCast(*const IInertiaProcessor, self), velocity);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialExpansionVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialRadius(self: *const T, radius: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialRadius(@as(*const IInertiaProcessor, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialRadius(self: *const T, radius: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialRadius(@ptrCast(*const IInertiaProcessor, self), radius);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialRadius(@as(*const IInertiaProcessor, @ptrCast(self)), radius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_BoundaryLeft(self: *const T, left: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_BoundaryLeft(self: *const T, left: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryLeft(@ptrCast(*const IInertiaProcessor, self), left);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_BoundaryTop(self: *const T, top: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_BoundaryTop(self: *const T, top: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryTop(@ptrCast(*const IInertiaProcessor, self), top);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_BoundaryRight(self: *const T, right: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_BoundaryRight(self: *const T, right: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryRight(@ptrCast(*const IInertiaProcessor, self), right);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_BoundaryBottom(self: *const T, bottom: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_BoundaryBottom(self: *const T, bottom: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_BoundaryBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_ElasticMarginLeft(self: *const T, left: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_ElasticMarginLeft(self: *const T, left: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginLeft(@ptrCast(*const IInertiaProcessor, self), left);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_ElasticMarginTop(self: *const T, top: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_ElasticMarginTop(self: *const T, top: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginTop(@ptrCast(*const IInertiaProcessor, self), top);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_ElasticMarginRight(self: *const T, right: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_ElasticMarginRight(self: *const T, right: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginRight(@ptrCast(*const IInertiaProcessor, self), right);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_ElasticMarginBottom(self: *const T, bottom: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_ElasticMarginBottom(self: *const T, bottom: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_ElasticMarginBottom(@ptrCast(*const IInertiaProcessor, self), bottom);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredDisplacement(self: *const T, displacement: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredDisplacement(@as(*const IInertiaProcessor, @ptrCast(self)), displacement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredDisplacement(self: *const T, displacement: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDisplacement(@ptrCast(*const IInertiaProcessor, self), displacement);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredDisplacement(@as(*const IInertiaProcessor, @ptrCast(self)), displacement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredRotation(self: *const T, rotation: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredRotation(@as(*const IInertiaProcessor, @ptrCast(self)), rotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredRotation(self: *const T, rotation: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredRotation(@ptrCast(*const IInertiaProcessor, self), rotation);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredRotation(@as(*const IInertiaProcessor, @ptrCast(self)), rotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredExpansion(self: *const T, expansion: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredExpansion(@as(*const IInertiaProcessor, @ptrCast(self)), expansion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredExpansion(self: *const T, expansion: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansion(@ptrCast(*const IInertiaProcessor, self), expansion);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredExpansion(@as(*const IInertiaProcessor, @ptrCast(self)), expansion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredDeceleration(self: *const T, deceleration: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredAngularDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredAngularDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredAngularDeceleration(self: *const T, deceleration: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredAngularDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredAngularDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_DesiredExpansionDeceleration(self: *const T, deceleration: ?*f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredExpansionDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_DesiredExpansionDeceleration(self: *const T, deceleration: f32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_DesiredExpansionDeceleration(@ptrCast(*const IInertiaProcessor, self), deceleration);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredExpansionDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_get_InitialTimestamp(self: *const T, timestamp: ?*u32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).get_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialTimestamp(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_put_InitialTimestamp(self: *const T, timestamp: u32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).put_InitialTimestamp(@ptrCast(*const IInertiaProcessor, self), timestamp);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialTimestamp(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Reset(@ptrCast(*const IInertiaProcessor, self));
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Reset(@as(*const IInertiaProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_Process(self: *const T, completed: ?*BOOL) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Process(@ptrCast(*const IInertiaProcessor, self), completed);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Process(@as(*const IInertiaProcessor, @ptrCast(self)), completed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_ProcessTime(self: *const T, timestamp: u32, completed: ?*BOOL) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).ProcessTime(@ptrCast(*const IInertiaProcessor, self), timestamp, completed);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).ProcessTime(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp, completed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_Complete(self: *const T) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).Complete(@ptrCast(*const IInertiaProcessor, self));
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Complete(@as(*const IInertiaProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInertiaProcessor_CompleteTime(self: *const T, timestamp: u32) HRESULT {
-                return @ptrCast(*const IInertiaProcessor.VTable, self.vtable).CompleteTime(@ptrCast(*const IInertiaProcessor, self), timestamp);
+                return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).CompleteTime(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
             }
         };
     }
@@ -1325,87 +1325,87 @@ pub const IManipulationProcessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_get_SupportedManipulations(self: *const T, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_SupportedManipulations(@as(*const IManipulationProcessor, @ptrCast(self)), manipulations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_put_SupportedManipulations(self: *const T, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_SupportedManipulations(@ptrCast(*const IManipulationProcessor, self), manipulations);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_SupportedManipulations(@as(*const IManipulationProcessor, @ptrCast(self)), manipulations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_get_PivotPointX(self: *const T, pivotPointX: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotPointX(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_put_PivotPointX(self: *const T, pivotPointX: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointX(@ptrCast(*const IManipulationProcessor, self), pivotPointX);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotPointX(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_get_PivotPointY(self: *const T, pivotPointY: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotPointY(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_put_PivotPointY(self: *const T, pivotPointY: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotPointY(@ptrCast(*const IManipulationProcessor, self), pivotPointY);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotPointY(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_get_PivotRadius(self: *const T, pivotRadius: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotRadius(@as(*const IManipulationProcessor, @ptrCast(self)), pivotRadius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_put_PivotRadius(self: *const T, pivotRadius: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_PivotRadius(@ptrCast(*const IManipulationProcessor, self), pivotRadius);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotRadius(@as(*const IManipulationProcessor, @ptrCast(self)), pivotRadius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_CompleteManipulation(self: *const T) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).CompleteManipulation(@ptrCast(*const IManipulationProcessor, self));
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).CompleteManipulation(@as(*const IManipulationProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessDown(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDown(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessDown(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessMove(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMove(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessMove(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessUp(self: *const T, manipulatorId: u32, x: f32, y: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUp(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessUp(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessDownWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessDownWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessDownWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessMoveWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessMoveWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessMoveWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_ProcessUpWithTime(self: *const T, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).ProcessUpWithTime(@ptrCast(*const IManipulationProcessor, self), manipulatorId, x, y, timestamp);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessUpWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_GetVelocityX(self: *const T, velocityX: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityX(@ptrCast(*const IManipulationProcessor, self), velocityX);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetVelocityX(@as(*const IManipulationProcessor, @ptrCast(self)), velocityX);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_GetVelocityY(self: *const T, velocityY: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetVelocityY(@ptrCast(*const IManipulationProcessor, self), velocityY);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetVelocityY(@as(*const IManipulationProcessor, @ptrCast(self)), velocityY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_GetExpansionVelocity(self: *const T, expansionVelocity: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetExpansionVelocity(@ptrCast(*const IManipulationProcessor, self), expansionVelocity);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetExpansionVelocity(@as(*const IManipulationProcessor, @ptrCast(self)), expansionVelocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_GetAngularVelocity(self: *const T, angularVelocity: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).GetAngularVelocity(@ptrCast(*const IManipulationProcessor, self), angularVelocity);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetAngularVelocity(@as(*const IManipulationProcessor, @ptrCast(self)), angularVelocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_get_MinimumScaleRotateRadius(self: *const T, minRadius: ?*f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).get_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_MinimumScaleRotateRadius(@as(*const IManipulationProcessor, @ptrCast(self)), minRadius);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IManipulationProcessor_put_MinimumScaleRotateRadius(self: *const T, minRadius: f32) HRESULT {
-                return @ptrCast(*const IManipulationProcessor.VTable, self.vtable).put_MinimumScaleRotateRadius(@ptrCast(*const IManipulationProcessor, self), minRadius);
+                return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_MinimumScaleRotateRadius(@as(*const IManipulationProcessor, @ptrCast(self)), minRadius);
             }
         };
     }

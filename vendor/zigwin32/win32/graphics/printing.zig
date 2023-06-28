@@ -3534,39 +3534,39 @@ pub const IPrintCoreHelper = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_GetOption(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetOption(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureRequested, ppszOption);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).GetOption(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureRequested, ppszOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_SetOptions(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_EnumConstrainedOptions(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumConstrainedOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_WhyConstrained(self: *const T, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreHelper, self), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).WhyConstrained(@as(*const IPrintCoreHelper, @ptrCast(self)), pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_EnumFeatures(self: *const T, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreHelper, self), pFeatureList, pdwNumFeatures);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumFeatures(@as(*const IPrintCoreHelper, @ptrCast(self)), pFeatureList, pdwNumFeatures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_EnumOptions(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreHelper, self), pszFeatureKeyword, pOptionList, pdwNumOptions);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).EnumOptions(@as(*const IPrintCoreHelper, @ptrCast(self)), pszFeatureKeyword, pOptionList, pdwNumOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_GetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).GetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, ppszDevFontName);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).GetFontSubstitution(@as(*const IPrintCoreHelper, @ptrCast(self)), pszTrueTypeFontName, ppszDevFontName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_SetFontSubstitution(self: *const T, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, pszDevFontName);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).SetFontSubstitution(@as(*const IPrintCoreHelper, @ptrCast(self)), pszTrueTypeFontName, pszDevFontName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelper_CreateInstanceOfMSXMLObject(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).CreateInstanceOfMSXMLObject(@ptrCast(*const IPrintCoreHelper, self), rclsid, pUnkOuter, dwClsContext, riid, ppv);
+                return @as(*const IPrintCoreHelper.VTable, @ptrCast(self.vtable)).CreateInstanceOfMSXMLObject(@as(*const IPrintCoreHelper, @ptrCast(self)), rclsid, pUnkOuter, dwClsContext, riid, ppv);
             }
         };
     }
@@ -3613,11 +3613,11 @@ pub const IPrintCoreHelperUni = extern struct {
             pub usingnamespace IPrintCoreHelper.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperUni_CreateGDLSnapshot(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), pDevmode, cbSize, dwFlags, ppSnapshotStream);
+                return @as(*const IPrintCoreHelperUni.VTable, @ptrCast(self.vtable)).CreateGDLSnapshot(@as(*const IPrintCoreHelperUni, @ptrCast(self)), pDevmode, cbSize, dwFlags, ppSnapshotStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperUni_CreateDefaultGDLSnapshot(self: *const T, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperUni.VTable, self.vtable).CreateDefaultGDLSnapshot(@ptrCast(*const IPrintCoreHelperUni, self), dwFlags, ppSnapshotStream);
+                return @as(*const IPrintCoreHelperUni.VTable, @ptrCast(self.vtable)).CreateDefaultGDLSnapshot(@as(*const IPrintCoreHelperUni, @ptrCast(self)), dwFlags, ppSnapshotStream);
             }
         };
     }
@@ -3656,7 +3656,7 @@ pub const IPrintCoreHelperUni2 = extern struct {
             pub usingnamespace IPrintCoreHelperUni.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperUni2_GetNamedCommand(self: *const T, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperUni2.VTable, self.vtable).GetNamedCommand(@ptrCast(*const IPrintCoreHelperUni2, self), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
+                return @as(*const IPrintCoreHelperUni2.VTable, @ptrCast(self.vtable)).GetNamedCommand(@as(*const IPrintCoreHelperUni2, @ptrCast(self)), pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
             }
         };
     }
@@ -3729,15 +3729,15 @@ pub const IPrintCoreHelperPS = extern struct {
             pub usingnamespace IPrintCoreHelper.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperPS_GetGlobalAttribute(self: *const T, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszAttribute, pdwDataType, ppbData, pcbSize);
+                return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetGlobalAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszAttribute, pdwDataType, ppbData, pcbSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperPS_GetFeatureAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+                return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetFeatureAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreHelperPS_GetOptionAttribute(self: *const T, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreHelperPS.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreHelperPS, self), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
+                return @as(*const IPrintCoreHelperPS.VTable, @ptrCast(self.vtable)).GetOptionAttribute(@as(*const IPrintCoreHelperPS, @ptrCast(self)), pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
             }
         };
     }
@@ -3786,11 +3786,11 @@ pub const IPrintOemCommon = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemCommon_GetInfo(self: *const T, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).GetInfo(@ptrCast(*const IPrintOemCommon, self), dwMode, pBuffer, cbSize, pcbNeeded);
+                return @as(*const IPrintOemCommon.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IPrintOemCommon, @ptrCast(self)), dwMode, pBuffer, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemCommon_DevMode(self: *const T, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).DevMode(@ptrCast(*const IPrintOemCommon, self), dwMode, pOemDMParam);
+                return @as(*const IPrintOemCommon.VTable, @ptrCast(self.vtable)).DevMode(@as(*const IPrintOemCommon, @ptrCast(self)), dwMode, pOemDMParam);
             }
         };
     }
@@ -3995,51 +3995,51 @@ pub const IPrintOemUI = extern struct {
             pub usingnamespace IPrintOemCommon.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_PublishDriverInterface(self: *const T, pIUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PublishDriverInterface(@ptrCast(*const IPrintOemUI, self), pIUnknown);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).PublishDriverInterface(@as(*const IPrintOemUI, @ptrCast(self)), pIUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_CommonUIProp(self: *const T, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).CommonUIProp(@ptrCast(*const IPrintOemUI, self), dwMode, pOemCUIPParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).CommonUIProp(@as(*const IPrintOemUI, @ptrCast(self)), dwMode, pOemCUIPParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_DocumentPropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DocumentPropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DocumentPropertySheets(@as(*const IPrintOemUI, @ptrCast(self)), pPSUIInfo, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_DevicePropertySheets(self: *const T, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevicePropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DevicePropertySheets(@as(*const IPrintOemUI, @ptrCast(self)), pPSUIInfo, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_DevQueryPrintEx(self: *const T, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevQueryPrintEx(@ptrCast(*const IPrintOemUI, self), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DevQueryPrintEx(@as(*const IPrintOemUI, @ptrCast(self)), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_DeviceCapabilitiesA(self: *const T, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DeviceCapabilitiesA(@ptrCast(*const IPrintOemUI, self), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DeviceCapabilitiesA(@as(*const IPrintOemUI, @ptrCast(self)), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_UpgradePrinter(self: *const T, dwLevel: u32, pDriverUpgradeInfo: ?*u8) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpgradePrinter(@ptrCast(*const IPrintOemUI, self), dwLevel, pDriverUpgradeInfo);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).UpgradePrinter(@as(*const IPrintOemUI, @ptrCast(self)), dwLevel, pDriverUpgradeInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_PrinterEvent(self: *const T, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).PrinterEvent(@ptrCast(*const IPrintOemUI, self), pPrinterName, iDriverEvent, dwFlags, lParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).PrinterEvent(@as(*const IPrintOemUI, @ptrCast(self)), pPrinterName, iDriverEvent, dwFlags, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_DriverEvent(self: *const T, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DriverEvent(@ptrCast(*const IPrintOemUI, self), dwDriverEvent, dwLevel, pDriverInfo, lParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).DriverEvent(@as(*const IPrintOemUI, @ptrCast(self)), dwDriverEvent, dwLevel, pDriverInfo, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_QueryColorProfile(self: *const T, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).QueryColorProfile(@ptrCast(*const IPrintOemUI, self), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).QueryColorProfile(@as(*const IPrintOemUI, @ptrCast(self)), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_FontInstallerDlgProc(self: *const T, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).FontInstallerDlgProc(@ptrCast(*const IPrintOemUI, self), hWnd, usMsg, wParam, lParam);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).FontInstallerDlgProc(@as(*const IPrintOemUI, @ptrCast(self)), hWnd, usMsg, wParam, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI_UpdateExternalFonts(self: *const T, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) HRESULT {
-                return @ptrCast(*const IPrintOemUI.VTable, self.vtable).UpdateExternalFonts(@ptrCast(*const IPrintOemUI, self), hPrinter, hHeap, pwstrCartridges);
+                return @as(*const IPrintOemUI.VTable, @ptrCast(self.vtable)).UpdateExternalFonts(@as(*const IPrintOemUI, @ptrCast(self)), hPrinter, hHeap, pwstrCartridges);
             }
         };
     }
@@ -4108,15 +4108,15 @@ pub const IPrintOemUI2 = extern struct {
             pub usingnamespace IPrintOemUI.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI2_QueryJobAttributes(self: *const T, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) HRESULT {
-                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).QueryJobAttributes(@ptrCast(*const IPrintOemUI2, self), hPrinter, pDevmode, dwLevel, lpAttributeInfo);
+                return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).QueryJobAttributes(@as(*const IPrintOemUI2, @ptrCast(self)), hPrinter, pDevmode, dwLevel, lpAttributeInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI2_HideStandardUI(self: *const T, dwMode: u32) HRESULT {
-                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).HideStandardUI(@ptrCast(*const IPrintOemUI2, self), dwMode);
+                return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).HideStandardUI(@as(*const IPrintOemUI2, @ptrCast(self)), dwMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUI2_DocumentEvent(self: *const T, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).DocumentEvent(@ptrCast(*const IPrintOemUI2, self), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
+                return @as(*const IPrintOemUI2.VTable, @ptrCast(self.vtable)).DocumentEvent(@as(*const IPrintOemUI2, @ptrCast(self)), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
             }
         };
     }
@@ -4195,15 +4195,15 @@ pub const IPrintOemUIMXDC = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUIMXDC_AdjustImageableArea(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) HRESULT {
-                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageableArea(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
+                return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustImageableArea(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUIMXDC_AdjustImageCompression(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageCompression(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
+                return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustImageCompression(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemUIMXDC_AdjustDPI(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustDPI(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
+                return @as(*const IPrintOemUIMXDC.VTable, @ptrCast(self.vtable)).AdjustDPI(@as(*const IPrintOemUIMXDC, @ptrCast(self)), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
             }
         };
     }
@@ -4272,15 +4272,15 @@ pub const IPrintOemDriverUI = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemDriverUI_DrvGetDriverSetting(self: *const T, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvGetDriverSetting(@ptrCast(*const IPrintOemDriverUI, self), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
+                return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvGetDriverSetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemDriverUI_DrvUpgradeRegistrySetting(self: *const T, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) HRESULT {
-                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpgradeRegistrySetting(@ptrCast(*const IPrintOemDriverUI, self), hPrinter, pFeature, pOption);
+                return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvUpgradeRegistrySetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), hPrinter, pFeature, pOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintOemDriverUI_DrvUpdateUISetting(self: *const T, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) HRESULT {
-                return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpdateUISetting(@ptrCast(*const IPrintOemDriverUI, self), pci, pOptItem, dwPreviousSelection, dwMode);
+                return @as(*const IPrintOemDriverUI.VTable, @ptrCast(self.vtable)).DrvUpdateUISetting(@as(*const IPrintOemDriverUI, @ptrCast(self)), pci, pOptItem, dwPreviousSelection, dwMode);
             }
         };
     }
@@ -4531,43 +4531,43 @@ pub const IPrintCoreUI2 = extern struct {
             pub usingnamespace IPrintOemDriverUI.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_GetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_SetOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).SetOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_EnumConstrainedOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumConstrainedOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumConstrainedOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_WhyConstrained(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).WhyConstrained(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).WhyConstrained(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_GetGlobalAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetGlobalAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetGlobalAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_GetFeatureAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetFeatureAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetFeatureAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_GetOptionAttribute(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).GetOptionAttribute(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).GetOptionAttribute(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_EnumFeatures(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumFeatures(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumFeatures(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_EnumOptions(self: *const T, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).EnumOptions(@ptrCast(*const IPrintCoreUI2, self), poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).EnumOptions(@as(*const IPrintCoreUI2, @ptrCast(self)), poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintCoreUI2_QuerySimulationSupport(self: *const T, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintCoreUI2.VTable, self.vtable).QuerySimulationSupport(@ptrCast(*const IPrintCoreUI2, self), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
+                return @as(*const IPrintCoreUI2.VTable, @ptrCast(self.vtable)).QuerySimulationSupport(@as(*const IPrintCoreUI2, @ptrCast(self)), hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
             }
         };
     }
@@ -4691,31 +4691,31 @@ pub const IPrintTicketProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_GetSupportedVersions(self: *const T, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetSupportedVersions(@ptrCast(*const IPrintTicketProvider, self), hPrinter, ppVersions, cVersions);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).GetSupportedVersions(@as(*const IPrintTicketProvider, @ptrCast(self)), hPrinter, ppVersions, cVersions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_BindPrinter(self: *const T, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).BindPrinter(@ptrCast(*const IPrintTicketProvider, self), hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).BindPrinter(@as(*const IPrintTicketProvider, @ptrCast(self)), hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_QueryDeviceNamespace(self: *const T, pDefaultNamespace: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).QueryDeviceNamespace(@ptrCast(*const IPrintTicketProvider, self), pDefaultNamespace);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).QueryDeviceNamespace(@as(*const IPrintTicketProvider, @ptrCast(self)), pDefaultNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_ConvertPrintTicketToDevMode(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertPrintTicketToDevMode(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ConvertPrintTicketToDevMode(@as(*const IPrintTicketProvider, @ptrCast(self)), pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_ConvertDevModeToPrintTicket(self: *const T, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ConvertDevModeToPrintTicket(@ptrCast(*const IPrintTicketProvider, self), cbDevmode, pDevmode, pPrintTicket);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ConvertDevModeToPrintTicket(@as(*const IPrintTicketProvider, @ptrCast(self)), cbDevmode, pDevmode, pPrintTicket);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_GetPrintCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).GetPrintCapabilities(@ptrCast(*const IPrintTicketProvider, self), pPrintTicket, ppCapabilities);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).GetPrintCapabilities(@as(*const IPrintTicketProvider, @ptrCast(self)), pPrintTicket, ppCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider_ValidatePrintTicket(self: *const T, pBaseTicket: ?*IXMLDOMDocument2) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider.VTable, self.vtable).ValidatePrintTicket(@ptrCast(*const IPrintTicketProvider, self), pBaseTicket);
+                return @as(*const IPrintTicketProvider.VTable, @ptrCast(self.vtable)).ValidatePrintTicket(@as(*const IPrintTicketProvider, @ptrCast(self)), pBaseTicket);
             }
         };
     }
@@ -4760,11 +4760,11 @@ pub const IPrintTicketProvider2 = extern struct {
             pub usingnamespace IPrintTicketProvider.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider2_GetPrintDeviceCapabilities(self: *const T, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceCapabilities(@ptrCast(*const IPrintTicketProvider2, self), pPrintTicket, ppDeviceCapabilities);
+                return @as(*const IPrintTicketProvider2.VTable, @ptrCast(self.vtable)).GetPrintDeviceCapabilities(@as(*const IPrintTicketProvider2, @ptrCast(self)), pPrintTicket, ppDeviceCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintTicketProvider2_GetPrintDeviceResources(self: *const T, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) HRESULT {
-                return @ptrCast(*const IPrintTicketProvider2.VTable, self.vtable).GetPrintDeviceResources(@ptrCast(*const IPrintTicketProvider2, self), pszLocaleName, pPrintTicket, ppDeviceResources);
+                return @as(*const IPrintTicketProvider2.VTable, @ptrCast(self.vtable)).GetPrintDeviceResources(@as(*const IPrintTicketProvider2, @ptrCast(self)), pszLocaleName, pPrintTicket, ppDeviceResources);
             }
         };
     }
@@ -4834,15 +4834,15 @@ pub const IPrintSchemaElement = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaElement_get_XmlNode(self: *const T, ppXmlNode: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_XmlNode(@ptrCast(*const IPrintSchemaElement, self), ppXmlNode);
+                return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_XmlNode(@as(*const IPrintSchemaElement, @ptrCast(self)), ppXmlNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaElement_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_Name(@ptrCast(*const IPrintSchemaElement, self), pbstrName);
+                return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrintSchemaElement, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaElement_get_NamespaceUri(self: *const T, pbstrNamespaceUri: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintSchemaElement.VTable, self.vtable).get_NamespaceUri(@ptrCast(*const IPrintSchemaElement, self), pbstrNamespaceUri);
+                return @as(*const IPrintSchemaElement.VTable, @ptrCast(self.vtable)).get_NamespaceUri(@as(*const IPrintSchemaElement, @ptrCast(self)), pbstrNamespaceUri);
             }
         };
     }
@@ -4874,7 +4874,7 @@ pub const IPrintSchemaDisplayableElement = extern struct {
             pub usingnamespace IPrintSchemaElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaDisplayableElement_get_DisplayName(self: *const T, pbstrDisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintSchemaDisplayableElement.VTable, self.vtable).get_DisplayName(@ptrCast(*const IPrintSchemaDisplayableElement, self), pbstrDisplayName);
+                return @as(*const IPrintSchemaDisplayableElement.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IPrintSchemaDisplayableElement, @ptrCast(self)), pbstrDisplayName);
             }
         };
     }
@@ -4944,15 +4944,15 @@ pub const IPrintSchemaOption = extern struct {
             pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOption_get_Selected(self: *const T, pbIsSelected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Selected(@ptrCast(*const IPrintSchemaOption, self), pbIsSelected);
+                return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).get_Selected(@as(*const IPrintSchemaOption, @ptrCast(self)), pbIsSelected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOption_get_Constrained(self: *const T, pSetting: ?*PrintSchemaConstrainedSetting) HRESULT {
-                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).get_Constrained(@ptrCast(*const IPrintSchemaOption, self), pSetting);
+                return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).get_Constrained(@as(*const IPrintSchemaOption, @ptrCast(self)), pSetting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOption_GetPropertyValue(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrintSchemaOption.VTable, self.vtable).GetPropertyValue(@ptrCast(*const IPrintSchemaOption, self), bstrName, bstrNamespaceUri, ppXmlValueNode);
+                return @as(*const IPrintSchemaOption.VTable, @ptrCast(self.vtable)).GetPropertyValue(@as(*const IPrintSchemaOption, @ptrCast(self)), bstrName, bstrNamespaceUri, ppXmlValueNode);
             }
         };
     }
@@ -4997,11 +4997,11 @@ pub const IPrintSchemaPageMediaSizeOption = extern struct {
             pub usingnamespace IPrintSchemaOption.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageMediaSizeOption_get_WidthInMicrons(self: *const T, pulWidth: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_WidthInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulWidth);
+                return @as(*const IPrintSchemaPageMediaSizeOption.VTable, @ptrCast(self.vtable)).get_WidthInMicrons(@as(*const IPrintSchemaPageMediaSizeOption, @ptrCast(self)), pulWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageMediaSizeOption_get_HeightInMicrons(self: *const T, pulHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageMediaSizeOption.VTable, self.vtable).get_HeightInMicrons(@ptrCast(*const IPrintSchemaPageMediaSizeOption, self), pulHeight);
+                return @as(*const IPrintSchemaPageMediaSizeOption.VTable, @ptrCast(self.vtable)).get_HeightInMicrons(@as(*const IPrintSchemaPageMediaSizeOption, @ptrCast(self)), pulHeight);
             }
         };
     }
@@ -5033,7 +5033,7 @@ pub const IPrintSchemaNUpOption = extern struct {
             pub usingnamespace IPrintSchemaOption.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaNUpOption_get_PagesPerSheet(self: *const T, pulPagesPerSheet: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaNUpOption.VTable, self.vtable).get_PagesPerSheet(@ptrCast(*const IPrintSchemaNUpOption, self), pulPagesPerSheet);
+                return @as(*const IPrintSchemaNUpOption.VTable, @ptrCast(self.vtable)).get_PagesPerSheet(@as(*const IPrintSchemaNUpOption, @ptrCast(self)), pulPagesPerSheet);
             }
         };
     }
@@ -5097,15 +5097,15 @@ pub const IPrintSchemaOptionCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOptionCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintSchemaOptionCollection, self), pulCount);
+                return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), pulCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOptionCollection_GetAt(self: *const T, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) HRESULT {
-                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintSchemaOptionCollection, self), ulIndex, ppOption);
+                return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), ulIndex, ppOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaOptionCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrintSchemaOptionCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintSchemaOptionCollection, self), ppUnk);
+                return @as(*const IPrintSchemaOptionCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintSchemaOptionCollection, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -5190,23 +5190,23 @@ pub const IPrintSchemaFeature = extern struct {
             pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaFeature_get_SelectedOption(self: *const T, ppOption: ?*?*IPrintSchemaOption) HRESULT {
-                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), ppOption);
+                return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_SelectedOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), ppOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaFeature_put_SelectedOption(self: *const T, pOption: ?*IPrintSchemaOption) HRESULT {
-                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).put_SelectedOption(@ptrCast(*const IPrintSchemaFeature, self), pOption);
+                return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).put_SelectedOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), pOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaFeature_get_SelectionType(self: *const T, pSelectionType: ?*PrintSchemaSelectionType) HRESULT {
-                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_SelectionType(@ptrCast(*const IPrintSchemaFeature, self), pSelectionType);
+                return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_SelectionType(@as(*const IPrintSchemaFeature, @ptrCast(self)), pSelectionType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaFeature_GetOption(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) HRESULT {
-                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).GetOption(@ptrCast(*const IPrintSchemaFeature, self), bstrName, bstrNamespaceUri, ppOption);
+                return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).GetOption(@as(*const IPrintSchemaFeature, @ptrCast(self)), bstrName, bstrNamespaceUri, ppOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaFeature_get_DisplayUI(self: *const T, pbShow: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrintSchemaFeature.VTable, self.vtable).get_DisplayUI(@ptrCast(*const IPrintSchemaFeature, self), pbShow);
+                return @as(*const IPrintSchemaFeature.VTable, @ptrCast(self.vtable)).get_DisplayUI(@as(*const IPrintSchemaFeature, @ptrCast(self)), pbShow);
             }
         };
     }
@@ -5303,27 +5303,27 @@ pub const IPrintSchemaPageImageableSize = extern struct {
             pub usingnamespace IPrintSchemaElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_ImageableSizeWidthInMicrons(self: *const T, pulImageableSizeWidth: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeWidth);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ImageableSizeWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulImageableSizeWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_ImageableSizeHeightInMicrons(self: *const T, pulImageableSizeHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ImageableSizeHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulImageableSizeHeight);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ImageableSizeHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulImageableSizeHeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_OriginWidthInMicrons(self: *const T, pulOriginWidth: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginWidth);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_OriginWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulOriginWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_OriginHeightInMicrons(self: *const T, pulOriginHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_OriginHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulOriginHeight);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_OriginHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulOriginHeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_ExtentWidthInMicrons(self: *const T, pulExtentWidth: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentWidthInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentWidth);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ExtentWidthInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulExtentWidth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaPageImageableSize_get_ExtentHeightInMicrons(self: *const T, pulExtentHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaPageImageableSize.VTable, self.vtable).get_ExtentHeightInMicrons(@ptrCast(*const IPrintSchemaPageImageableSize, self), pulExtentHeight);
+                return @as(*const IPrintSchemaPageImageableSize.VTable, @ptrCast(self.vtable)).get_ExtentHeightInMicrons(@as(*const IPrintSchemaPageImageableSize, @ptrCast(self)), pulExtentHeight);
             }
         };
     }
@@ -5416,23 +5416,23 @@ pub const IPrintSchemaParameterDefinition = extern struct {
             pub usingnamespace IPrintSchemaDisplayableElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterDefinition_get_UserInputRequired(self: *const T, pbIsRequired: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UserInputRequired(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbIsRequired);
+                return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_UserInputRequired(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pbIsRequired);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterDefinition_get_UnitType(self: *const T, pbstrUnitType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_UnitType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pbstrUnitType);
+                return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_UnitType(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pbstrUnitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterDefinition_get_DataType(self: *const T, pDataType: ?*PrintSchemaParameterDataType) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_DataType(@ptrCast(*const IPrintSchemaParameterDefinition, self), pDataType);
+                return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_DataType(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pDataType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterDefinition_get_RangeMin(self: *const T, pRangeMin: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMin(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMin);
+                return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_RangeMin(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pRangeMin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterDefinition_get_RangeMax(self: *const T, pRangeMax: ?*i32) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterDefinition.VTable, self.vtable).get_RangeMax(@ptrCast(*const IPrintSchemaParameterDefinition, self), pRangeMax);
+                return @as(*const IPrintSchemaParameterDefinition.VTable, @ptrCast(self.vtable)).get_RangeMax(@as(*const IPrintSchemaParameterDefinition, @ptrCast(self)), pRangeMax);
             }
         };
     }
@@ -5477,11 +5477,11 @@ pub const IPrintSchemaParameterInitializer = extern struct {
             pub usingnamespace IPrintSchemaElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterInitializer_get_Value(self: *const T, pVar: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).get_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
+                return @as(*const IPrintSchemaParameterInitializer.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IPrintSchemaParameterInitializer, @ptrCast(self)), pVar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaParameterInitializer_put_Value(self: *const T, pVar: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IPrintSchemaParameterInitializer.VTable, self.vtable).put_Value(@ptrCast(*const IPrintSchemaParameterInitializer, self), pVar);
+                return @as(*const IPrintSchemaParameterInitializer.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IPrintSchemaParameterInitializer, @ptrCast(self)), pVar);
             }
         };
     }
@@ -5589,31 +5589,31 @@ pub const IPrintSchemaCapabilities = extern struct {
             pub usingnamespace IPrintSchemaElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaCapabilities, self), bstrKeyName, ppFeature);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetFeatureByKeyName(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), bstrKeyName, ppFeature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaCapabilities, self), bstrName, bstrNamespaceUri, ppFeature);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetFeature(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), bstrName, bstrNamespaceUri, ppFeature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_get_PageImageableSize(self: *const T, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_PageImageableSize(@ptrCast(*const IPrintSchemaCapabilities, self), ppPageImageableSize);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_PageImageableSize(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), ppPageImageableSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMinValue(self: *const T, pulJobCopiesAllDocumentsMinValue: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMinValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMinValue);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocumentsMinValue(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pulJobCopiesAllDocumentsMinValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_get_JobCopiesAllDocumentsMaxValue(self: *const T, pulJobCopiesAllDocumentsMaxValue: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).get_JobCopiesAllDocumentsMaxValue(@ptrCast(*const IPrintSchemaCapabilities, self), pulJobCopiesAllDocumentsMaxValue);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocumentsMaxValue(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pulJobCopiesAllDocumentsMaxValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_GetSelectedOptionInPrintTicket(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetSelectedOptionInPrintTicket(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOption);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetSelectedOptionInPrintTicket(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pFeature, ppOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities_GetOptions(self: *const T, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities.VTable, self.vtable).GetOptions(@ptrCast(*const IPrintSchemaCapabilities, self), pFeature, ppOptionCollection);
+                return @as(*const IPrintSchemaCapabilities.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IPrintSchemaCapabilities, @ptrCast(self)), pFeature, ppOptionCollection);
             }
         };
     }
@@ -5646,7 +5646,7 @@ pub const IPrintSchemaCapabilities2 = extern struct {
             pub usingnamespace IPrintSchemaCapabilities.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaCapabilities2_GetParameterDefinition(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) HRESULT {
-                return @ptrCast(*const IPrintSchemaCapabilities2.VTable, self.vtable).GetParameterDefinition(@ptrCast(*const IPrintSchemaCapabilities2, self), bstrName, bstrNamespaceUri, ppParameterDefinition);
+                return @as(*const IPrintSchemaCapabilities2.VTable, @ptrCast(self.vtable)).GetParameterDefinition(@as(*const IPrintSchemaCapabilities2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterDefinition);
             }
         };
     }
@@ -5681,11 +5681,11 @@ pub const IPrintSchemaAsyncOperation = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaAsyncOperation_Start(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Start(@ptrCast(*const IPrintSchemaAsyncOperation, self));
+                return @as(*const IPrintSchemaAsyncOperation.VTable, @ptrCast(self.vtable)).Start(@as(*const IPrintSchemaAsyncOperation, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaAsyncOperation_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintSchemaAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrintSchemaAsyncOperation, self));
+                return @as(*const IPrintSchemaAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintSchemaAsyncOperation, @ptrCast(self)));
             }
         };
     }
@@ -5796,35 +5796,35 @@ pub const IPrintSchemaTicket = extern struct {
             pub usingnamespace IPrintSchemaElement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_GetFeatureByKeyName(self: *const T, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeatureByKeyName(@ptrCast(*const IPrintSchemaTicket, self), bstrKeyName, ppFeature);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetFeatureByKeyName(@as(*const IPrintSchemaTicket, @ptrCast(self)), bstrKeyName, ppFeature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_GetFeature(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetFeature(@ptrCast(*const IPrintSchemaTicket, self), bstrName, bstrNamespaceUri, ppFeature);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetFeature(@as(*const IPrintSchemaTicket, @ptrCast(self)), bstrName, bstrNamespaceUri, ppFeature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_ValidateAsync(self: *const T, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).ValidateAsync(@ptrCast(*const IPrintSchemaTicket, self), ppAsyncOperation);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).ValidateAsync(@as(*const IPrintSchemaTicket, @ptrCast(self)), ppAsyncOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_CommitAsync(self: *const T, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).CommitAsync(@ptrCast(*const IPrintSchemaTicket, self), pPrintTicketCommit, ppAsyncOperation);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).CommitAsync(@as(*const IPrintSchemaTicket, @ptrCast(self)), pPrintTicketCommit, ppAsyncOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_NotifyXmlChanged(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).NotifyXmlChanged(@ptrCast(*const IPrintSchemaTicket, self));
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).NotifyXmlChanged(@as(*const IPrintSchemaTicket, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_GetCapabilities(self: *const T, ppCapabilities: ?*?*IPrintSchemaCapabilities) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).GetCapabilities(@ptrCast(*const IPrintSchemaTicket, self), ppCapabilities);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IPrintSchemaTicket, @ptrCast(self)), ppCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_get_JobCopiesAllDocuments(self: *const T, pulJobCopiesAllDocuments: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).get_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), pulJobCopiesAllDocuments);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).get_JobCopiesAllDocuments(@as(*const IPrintSchemaTicket, @ptrCast(self)), pulJobCopiesAllDocuments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket_put_JobCopiesAllDocuments(self: *const T, ulJobCopiesAllDocuments: u32) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket.VTable, self.vtable).put_JobCopiesAllDocuments(@ptrCast(*const IPrintSchemaTicket, self), ulJobCopiesAllDocuments);
+                return @as(*const IPrintSchemaTicket.VTable, @ptrCast(self.vtable)).put_JobCopiesAllDocuments(@as(*const IPrintSchemaTicket, @ptrCast(self)), ulJobCopiesAllDocuments);
             }
         };
     }
@@ -5857,7 +5857,7 @@ pub const IPrintSchemaTicket2 = extern struct {
             pub usingnamespace IPrintSchemaTicket.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaTicket2_GetParameterInitializer(self: *const T, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) HRESULT {
-                return @ptrCast(*const IPrintSchemaTicket2.VTable, self.vtable).GetParameterInitializer(@ptrCast(*const IPrintSchemaTicket2, self), bstrName, bstrNamespaceUri, ppParameterInitializer);
+                return @as(*const IPrintSchemaTicket2.VTable, @ptrCast(self.vtable)).GetParameterInitializer(@as(*const IPrintSchemaTicket2, @ptrCast(self)), bstrName, bstrNamespaceUri, ppParameterInitializer);
             }
         };
     }
@@ -5888,7 +5888,7 @@ pub const IPrintSchemaAsyncOperationEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintSchemaAsyncOperationEvent_Completed(self: *const T, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) HRESULT {
-                return @ptrCast(*const IPrintSchemaAsyncOperationEvent.VTable, self.vtable).Completed(@ptrCast(*const IPrintSchemaAsyncOperationEvent, self), pTicket, hrOperation);
+                return @as(*const IPrintSchemaAsyncOperationEvent.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrintSchemaAsyncOperationEvent, @ptrCast(self)), pTicket, hrOperation);
             }
         };
     }
@@ -5931,11 +5931,11 @@ pub const IPrinterScriptableSequentialStream = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptableSequentialStream_Read(self: *const T, cbRead: i32, ppArray: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Read(@ptrCast(*const IPrinterScriptableSequentialStream, self), cbRead, ppArray);
+                return @as(*const IPrinterScriptableSequentialStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IPrinterScriptableSequentialStream, @ptrCast(self)), cbRead, ppArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptableSequentialStream_Write(self: *const T, pArray: ?*IDispatch, pcbWritten: ?*i32) HRESULT {
-                return @ptrCast(*const IPrinterScriptableSequentialStream.VTable, self.vtable).Write(@ptrCast(*const IPrinterScriptableSequentialStream, self), pArray, pcbWritten);
+                return @as(*const IPrinterScriptableSequentialStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IPrinterScriptableSequentialStream, @ptrCast(self)), pArray, pcbWritten);
             }
         };
     }
@@ -5986,15 +5986,15 @@ pub const IPrinterScriptableStream = extern struct {
             pub usingnamespace IPrinterScriptableSequentialStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptableStream_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Commit(@ptrCast(*const IPrinterScriptableStream, self));
+                return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).Commit(@as(*const IPrinterScriptableStream, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptableStream_Seek(self: *const T, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) HRESULT {
-                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).Seek(@ptrCast(*const IPrinterScriptableStream, self), lOffset, streamSeek, plPosition);
+                return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const IPrinterScriptableStream, @ptrCast(self)), lOffset, streamSeek, plPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptableStream_SetSize(self: *const T, lSize: i32) HRESULT {
-                return @ptrCast(*const IPrinterScriptableStream.VTable, self.vtable).SetSize(@ptrCast(*const IPrinterScriptableStream, self), lSize);
+                return @as(*const IPrinterScriptableStream.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IPrinterScriptableStream, @ptrCast(self)), lSize);
             }
         };
     }
@@ -6137,43 +6137,43 @@ pub const IPrinterPropertyBag = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetBool(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pbValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetBool(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, bValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pnValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetInt32(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pnValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterPropertyBag, self), bstrName, nValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetInt32(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, nValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pbstrValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetString(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterPropertyBag, self), bstrName, bstrValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetString(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, bstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, pcbValue, ppValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetBytes(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, pcbValue, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterPropertyBag, self), bstrName, cbValue, pValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).SetBytes(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, cbValue, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetReadStream(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, ppValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterPropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
-                return @ptrCast(*const IPrinterPropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterPropertyBag, self), bstrName, ppValue);
+                return @as(*const IPrinterPropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterPropertyBag, @ptrCast(self)), bstrName, ppValue);
             }
         };
     }
@@ -6312,43 +6312,43 @@ pub const IPrinterScriptablePropertyBag = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetBool(self: *const T, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetBool(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pbValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_SetBool(self: *const T, bstrName: ?BSTR, bValue: BOOL) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBool(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetBool(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, bValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetInt32(self: *const T, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pnValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetInt32(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pnValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_SetInt32(self: *const T, bstrName: ?BSTR, nValue: i32) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetInt32(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, nValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetInt32(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, nValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetString(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pbstrValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetString(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_SetString(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetString(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, bstrValue);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetString(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, bstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetBytes(self: *const T, bstrName: ?BSTR, ppArray: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppArray);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetBytes(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_SetBytes(self: *const T, bstrName: ?BSTR, pArray: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).SetBytes(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, pArray);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).SetBytes(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, pArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetReadStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetReadStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetReadStream(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag_GetWriteStream(self: *const T, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag.VTable, self.vtable).GetWriteStream(@ptrCast(*const IPrinterScriptablePropertyBag, self), bstrName, ppStream);
+                return @as(*const IPrinterScriptablePropertyBag.VTable, @ptrCast(self.vtable)).GetWriteStream(@as(*const IPrinterScriptablePropertyBag, @ptrCast(self)), bstrName, ppStream);
             }
         };
     }
@@ -6379,7 +6379,7 @@ pub const IPrinterScriptablePropertyBag2 = extern struct {
             pub usingnamespace IPrinterScriptablePropertyBag.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptablePropertyBag2_GetReadStreamAsXML(self: *const T, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrinterScriptablePropertyBag2.VTable, self.vtable).GetReadStreamAsXML(@ptrCast(*const IPrinterScriptablePropertyBag2, self), bstrName, ppXmlNode);
+                return @as(*const IPrinterScriptablePropertyBag2.VTable, @ptrCast(self.vtable)).GetReadStreamAsXML(@as(*const IPrinterScriptablePropertyBag2, @ptrCast(self)), bstrName, ppXmlNode);
             }
         };
     }
@@ -6444,19 +6444,19 @@ pub const IPrinterQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue_get_Handle(self: *const T, phPrinter: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IPrinterQueue, self), phPrinter);
+                return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IPrinterQueue, @ptrCast(self)), phPrinter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).get_Name(@ptrCast(*const IPrinterQueue, self), pbstrName);
+                return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrinterQueue, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue_SendBidiQuery(self: *const T, bstrBidiQuery: ?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).SendBidiQuery(@ptrCast(*const IPrinterQueue, self), bstrBidiQuery);
+                return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).SendBidiQuery(@as(*const IPrinterQueue, @ptrCast(self)), bstrBidiQuery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue_GetProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterQueue.VTable, self.vtable).GetProperties(@ptrCast(*const IPrinterQueue, self), ppPropertyBag);
+                return @as(*const IPrinterQueue.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IPrinterQueue, @ptrCast(self)), ppPropertyBag);
             }
         };
     }
@@ -6592,31 +6592,31 @@ pub const IPrintJob = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Name(@ptrCast(*const IPrintJob, self), pbstrName);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IPrintJob, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_Id(self: *const T, pulID: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Id(@ptrCast(*const IPrintJob, self), pulID);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IPrintJob, @ptrCast(self)), pulID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_PrintedPages(self: *const T, pulPages: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_PrintedPages(@ptrCast(*const IPrintJob, self), pulPages);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_PrintedPages(@as(*const IPrintJob, @ptrCast(self)), pulPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_TotalPages(self: *const T, pulPages: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_TotalPages(@ptrCast(*const IPrintJob, self), pulPages);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_TotalPages(@as(*const IPrintJob, @ptrCast(self)), pulPages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_Status(self: *const T, pStatus: ?*PrintJobStatus) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_Status(@ptrCast(*const IPrintJob, self), pStatus);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IPrintJob, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_get_SubmissionTime(self: *const T, pSubmissionTime: ?*f64) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).get_SubmissionTime(@ptrCast(*const IPrintJob, self), pSubmissionTime);
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).get_SubmissionTime(@as(*const IPrintJob, @ptrCast(self)), pSubmissionTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJob_RequestCancel(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintJob.VTable, self.vtable).RequestCancel(@ptrCast(*const IPrintJob, self));
+                return @as(*const IPrintJob.VTable, @ptrCast(self.vtable)).RequestCancel(@as(*const IPrintJob, @ptrCast(self)));
             }
         };
     }
@@ -6673,15 +6673,15 @@ pub const IPrintJobCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJobCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
-                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrintJobCollection, self), pulCount);
+                return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrintJobCollection, @ptrCast(self)), pulCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJobCollection_GetAt(self: *const T, ulIndex: u32, ppJob: ?*?*IPrintJob) HRESULT {
-                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrintJobCollection, self), ulIndex, ppJob);
+                return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrintJobCollection, @ptrCast(self)), ulIndex, ppJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintJobCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrintJobCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrintJobCollection, self), ppUnk);
+                return @as(*const IPrintJobCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrintJobCollection, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -6716,7 +6716,7 @@ pub const IPrinterQueueViewEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueueViewEvent_OnChanged(self: *const T, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) HRESULT {
-                return @ptrCast(*const IPrinterQueueViewEvent.VTable, self.vtable).OnChanged(@ptrCast(*const IPrinterQueueViewEvent, self), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
+                return @as(*const IPrinterQueueViewEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IPrinterQueueViewEvent, @ptrCast(self)), pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
             }
         };
     }
@@ -6747,7 +6747,7 @@ pub const IPrinterQueueView = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueueView_SetViewRange(self: *const T, ulViewOffset: u32, ulViewSize: u32) HRESULT {
-                return @ptrCast(*const IPrinterQueueView.VTable, self.vtable).SetViewRange(@ptrCast(*const IPrinterQueueView, self), ulViewOffset, ulViewSize);
+                return @as(*const IPrinterQueueView.VTable, @ptrCast(self.vtable)).SetViewRange(@as(*const IPrinterQueueView, @ptrCast(self)), ulViewOffset, ulViewSize);
             }
         };
     }
@@ -6778,7 +6778,7 @@ pub const IPrinterQueueEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueueEvent_OnBidiResponseReceived(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IPrinterQueueEvent.VTable, self.vtable).OnBidiResponseReceived(@ptrCast(*const IPrinterQueueEvent, self), bstrResponse, hrStatus);
+                return @as(*const IPrinterQueueEvent.VTable, @ptrCast(self.vtable)).OnBidiResponseReceived(@as(*const IPrinterQueueEvent, @ptrCast(self)), bstrResponse, hrStatus);
             }
         };
     }
@@ -6809,7 +6809,7 @@ pub const IPrinterBidiSetRequestCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterBidiSetRequestCallback_Completed(self: *const T, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IPrinterBidiSetRequestCallback.VTable, self.vtable).Completed(@ptrCast(*const IPrinterBidiSetRequestCallback, self), bstrResponse, hrStatus);
+                return @as(*const IPrinterBidiSetRequestCallback.VTable, @ptrCast(self.vtable)).Completed(@as(*const IPrinterBidiSetRequestCallback, @ptrCast(self)), bstrResponse, hrStatus);
             }
         };
     }
@@ -6836,7 +6836,7 @@ pub const IPrinterExtensionAsyncOperation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionAsyncOperation_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IPrinterExtensionAsyncOperation.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionAsyncOperation, self));
+                return @as(*const IPrinterExtensionAsyncOperation.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrinterExtensionAsyncOperation, @ptrCast(self)));
             }
         };
     }
@@ -6883,11 +6883,11 @@ pub const IPrinterQueue2 = extern struct {
             pub usingnamespace IPrinterQueue.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue2_SendBidiSetRequestAsync(self: *const T, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) HRESULT {
-                return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).SendBidiSetRequestAsync(@ptrCast(*const IPrinterQueue2, self), bstrBidiRequest, pCallback, ppAsyncOperation);
+                return @as(*const IPrinterQueue2.VTable, @ptrCast(self.vtable)).SendBidiSetRequestAsync(@as(*const IPrinterQueue2, @ptrCast(self)), bstrBidiRequest, pCallback, ppAsyncOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterQueue2_GetPrinterQueueView(self: *const T, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) HRESULT {
-                return @ptrCast(*const IPrinterQueue2.VTable, self.vtable).GetPrinterQueueView(@ptrCast(*const IPrinterQueue2, self), ulViewOffset, ulViewSize, ppJobView);
+                return @as(*const IPrinterQueue2.VTable, @ptrCast(self.vtable)).GetPrinterQueueView(@as(*const IPrinterQueue2, @ptrCast(self)), ulViewOffset, ulViewSize, ppJobView);
             }
         };
     }
@@ -6958,19 +6958,19 @@ pub const IPrinterExtensionContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContext_get_PrinterQueue(self: *const T, ppQueue: ?*?*IPrinterQueue) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrinterQueue(@ptrCast(*const IPrinterExtensionContext, self), ppQueue);
+                return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_PrinterQueue(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContext_get_PrintSchemaTicket(self: *const T, ppTicket: ?*?*IPrintSchemaTicket) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_PrintSchemaTicket(@ptrCast(*const IPrinterExtensionContext, self), ppTicket);
+                return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_PrintSchemaTicket(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppTicket);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
+                return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppPropertyBag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterExtensionContext, self), ppPropertyBag);
+                return @as(*const IPrinterExtensionContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterExtensionContext, @ptrCast(self)), ppPropertyBag);
             }
         };
     }
@@ -7009,11 +7009,11 @@ pub const IPrinterExtensionRequest = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionRequest_Cancel(self: *const T, hrStatus: HRESULT, bstrLogMessage: ?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Cancel(@ptrCast(*const IPrinterExtensionRequest, self), hrStatus, bstrLogMessage);
+                return @as(*const IPrinterExtensionRequest.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrinterExtensionRequest, @ptrCast(self)), hrStatus, bstrLogMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionRequest_Complete(self: *const T) HRESULT {
-                return @ptrCast(*const IPrinterExtensionRequest.VTable, self.vtable).Complete(@ptrCast(*const IPrinterExtensionRequest, self));
+                return @as(*const IPrinterExtensionRequest.VTable, @ptrCast(self.vtable)).Complete(@as(*const IPrinterExtensionRequest, @ptrCast(self)));
             }
         };
     }
@@ -7123,31 +7123,31 @@ pub const IPrinterExtensionEventArgs = extern struct {
             pub usingnamespace IPrinterExtensionContext.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_BidiNotification(self: *const T, pbstrBidiNotification: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_BidiNotification(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrBidiNotification);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_BidiNotification(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbstrBidiNotification);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_ReasonId(self: *const T, pReasonId: ?*Guid) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_ReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pReasonId);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_ReasonId(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pReasonId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_Request(self: *const T, ppRequest: ?*?*IPrinterExtensionRequest) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_Request(@ptrCast(*const IPrinterExtensionEventArgs, self), ppRequest);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_Request(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), ppRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_SourceApplication(self: *const T, pbstrApplication: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_SourceApplication(@ptrCast(*const IPrinterExtensionEventArgs, self), pbstrApplication);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_SourceApplication(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbstrApplication);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_DetailedReasonId(self: *const T, pDetailedReasonId: ?*Guid) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_DetailedReasonId(@ptrCast(*const IPrinterExtensionEventArgs, self), pDetailedReasonId);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_DetailedReasonId(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pDetailedReasonId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_WindowModal(self: *const T, pbModal: ?*BOOL) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowModal(@ptrCast(*const IPrinterExtensionEventArgs, self), pbModal);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_WindowModal(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), pbModal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEventArgs_get_WindowParent(self: *const T, phwndParent: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEventArgs.VTable, self.vtable).get_WindowParent(@ptrCast(*const IPrinterExtensionEventArgs, self), phwndParent);
+                return @as(*const IPrinterExtensionEventArgs.VTable, @ptrCast(self.vtable)).get_WindowParent(@as(*const IPrinterExtensionEventArgs, @ptrCast(self)), phwndParent);
             }
         };
     }
@@ -7204,15 +7204,15 @@ pub const IPrinterExtensionContextCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContextCollection_get_Count(self: *const T, pulCount: ?*u32) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get_Count(@ptrCast(*const IPrinterExtensionContextCollection, self), pulCount);
+                return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), pulCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContextCollection_GetAt(self: *const T, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).GetAt(@ptrCast(*const IPrinterExtensionContextCollection, self), ulIndex, ppContext);
+                return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), ulIndex, ppContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionContextCollection_get__NewEnum(self: *const T, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IPrinterExtensionContextCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IPrinterExtensionContextCollection, self), ppUnk);
+                return @as(*const IPrinterExtensionContextCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IPrinterExtensionContextCollection, @ptrCast(self)), ppUnk);
             }
         };
     }
@@ -7251,11 +7251,11 @@ pub const IPrinterExtensionEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEvent_OnDriverEvent(self: *const T, pEventArgs: ?*IPrinterExtensionEventArgs) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnDriverEvent(@ptrCast(*const IPrinterExtensionEvent, self), pEventArgs);
+                return @as(*const IPrinterExtensionEvent.VTable, @ptrCast(self.vtable)).OnDriverEvent(@as(*const IPrinterExtensionEvent, @ptrCast(self)), pEventArgs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionEvent_OnPrinterQueuesEnumerated(self: *const T, pContextCollection: ?*IPrinterExtensionContextCollection) HRESULT {
-                return @ptrCast(*const IPrinterExtensionEvent.VTable, self.vtable).OnPrinterQueuesEnumerated(@ptrCast(*const IPrinterExtensionEvent, self), pContextCollection);
+                return @as(*const IPrinterExtensionEvent.VTable, @ptrCast(self.vtable)).OnPrinterQueuesEnumerated(@as(*const IPrinterExtensionEvent, @ptrCast(self)), pContextCollection);
             }
         };
     }
@@ -7292,11 +7292,11 @@ pub const IPrinterExtensionManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionManager_EnableEvents(self: *const T, printerDriverId: Guid) HRESULT {
-                return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).EnableEvents(@ptrCast(*const IPrinterExtensionManager, self), printerDriverId);
+                return @as(*const IPrinterExtensionManager.VTable, @ptrCast(self.vtable)).EnableEvents(@as(*const IPrinterExtensionManager, @ptrCast(self)), printerDriverId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterExtensionManager_DisableEvents(self: *const T) HRESULT {
-                return @ptrCast(*const IPrinterExtensionManager.VTable, self.vtable).DisableEvents(@ptrCast(*const IPrinterExtensionManager, self));
+                return @as(*const IPrinterExtensionManager.VTable, @ptrCast(self.vtable)).DisableEvents(@as(*const IPrinterExtensionManager, @ptrCast(self)));
             }
         };
     }
@@ -7354,15 +7354,15 @@ pub const IPrinterScriptContext = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptContext_get_DriverProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_DriverProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+                return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptContext_get_QueueProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_QueueProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+                return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_QueueProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrinterScriptContext_get_UserProperties(self: *const T, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
-                return @ptrCast(*const IPrinterScriptContext.VTable, self.vtable).get_UserProperties(@ptrCast(*const IPrinterScriptContext, self), ppPropertyBag);
+                return @as(*const IPrinterScriptContext.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrinterScriptContext, @ptrCast(self)), ppPropertyBag);
             }
         };
     }
@@ -7418,11 +7418,11 @@ pub const IPrintAsyncNotifyDataObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyDataObject_AcquireData(self: *const T, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).AcquireData(@ptrCast(*const IPrintAsyncNotifyDataObject, self), ppNotificationData, pSize, ppSchema);
+                return @as(*const IPrintAsyncNotifyDataObject.VTable, @ptrCast(self.vtable)).AcquireData(@as(*const IPrintAsyncNotifyDataObject, @ptrCast(self)), ppNotificationData, pSize, ppSchema);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyDataObject_ReleaseData(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyDataObject.VTable, self.vtable).ReleaseData(@ptrCast(*const IPrintAsyncNotifyDataObject, self));
+                return @as(*const IPrintAsyncNotifyDataObject.VTable, @ptrCast(self.vtable)).ReleaseData(@as(*const IPrintAsyncNotifyDataObject, @ptrCast(self)));
             }
         };
     }
@@ -7462,11 +7462,11 @@ pub const IPrintAsyncNotifyChannel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyChannel_SendNotification(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).SendNotification(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
+                return @as(*const IPrintAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).SendNotification(@as(*const IPrintAsyncNotifyChannel, @ptrCast(self)), pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyChannel_CloseChannel(self: *const T, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyChannel.VTable, self.vtable).CloseChannel(@ptrCast(*const IPrintAsyncNotifyChannel, self), pData);
+                return @as(*const IPrintAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).CloseChannel(@as(*const IPrintAsyncNotifyChannel, @ptrCast(self)), pData);
             }
         };
     }
@@ -7510,11 +7510,11 @@ pub const IPrintAsyncNotifyCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyCallback_OnEventNotify(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).OnEventNotify(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
+                return @as(*const IPrintAsyncNotifyCallback.VTable, @ptrCast(self.vtable)).OnEventNotify(@as(*const IPrintAsyncNotifyCallback, @ptrCast(self)), pChannel, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyCallback_ChannelClosed(self: *const T, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyCallback.VTable, self.vtable).ChannelClosed(@ptrCast(*const IPrintAsyncNotifyCallback, self), pChannel, pData);
+                return @as(*const IPrintAsyncNotifyCallback.VTable, @ptrCast(self.vtable)).ChannelClosed(@as(*const IPrintAsyncNotifyCallback, @ptrCast(self)), pChannel, pData);
             }
         };
     }
@@ -7600,11 +7600,11 @@ pub const IPrintAsyncNotifyRegistration = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyRegistration_RegisterForNotifications(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).RegisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
+                return @as(*const IPrintAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).RegisterForNotifications(@as(*const IPrintAsyncNotifyRegistration, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyRegistration_UnregisterForNotifications(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyRegistration.VTable, self.vtable).UnregisterForNotifications(@ptrCast(*const IPrintAsyncNotifyRegistration, self));
+                return @as(*const IPrintAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).UnregisterForNotifications(@as(*const IPrintAsyncNotifyRegistration, @ptrCast(self)));
             }
         };
     }
@@ -7661,11 +7661,11 @@ pub const IPrintAsyncNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotify_CreatePrintAsyncNotifyChannel(self: *const T, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyChannel(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4, param5);
+                return @as(*const IPrintAsyncNotify.VTable, @ptrCast(self.vtable)).CreatePrintAsyncNotifyChannel(@as(*const IPrintAsyncNotify, @ptrCast(self)), param0, param1, param2, param3, param4, param5);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotify_CreatePrintAsyncNotifyRegistration(self: *const T, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotify.VTable, self.vtable).CreatePrintAsyncNotifyRegistration(@ptrCast(*const IPrintAsyncNotify, self), param0, param1, param2, param3, param4);
+                return @as(*const IPrintAsyncNotify.VTable, @ptrCast(self.vtable)).CreatePrintAsyncNotifyRegistration(@as(*const IPrintAsyncNotify, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
         };
     }
@@ -7702,11 +7702,11 @@ pub const IPrintAsyncCookie = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncCookie_FinishAsyncCall(self: *const T, param0: HRESULT) HRESULT {
-                return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
+                return @as(*const IPrintAsyncCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCall(@as(*const IPrintAsyncCookie, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncCookie_CancelAsyncCall(self: *const T, param0: HRESULT) HRESULT {
-                return @ptrCast(*const IPrintAsyncCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IPrintAsyncCookie, self), param0);
+                return @as(*const IPrintAsyncCookie.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IPrintAsyncCookie, @ptrCast(self)), param0);
             }
         };
     }
@@ -7735,7 +7735,7 @@ pub const IPrintAsyncNewChannelCookie = extern struct {
             pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNewChannelCookie_FinishAsyncCallWithData(self: *const T, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) HRESULT {
-                return @ptrCast(*const IPrintAsyncNewChannelCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IPrintAsyncNewChannelCookie, self), param0, param1);
+                return @as(*const IPrintAsyncNewChannelCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IPrintAsyncNewChannelCookie, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -7764,7 +7764,7 @@ pub const IAsyncGetSendNotificationCookie = extern struct {
             pub usingnamespace IPrintAsyncCookie.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAsyncGetSendNotificationCookie_FinishAsyncCallWithData(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) HRESULT {
-                return @ptrCast(*const IAsyncGetSendNotificationCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSendNotificationCookie, self), param0, param1);
+                return @as(*const IAsyncGetSendNotificationCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSendNotificationCookie, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -7811,15 +7811,15 @@ pub const IAsyncGetSrvReferralCookie = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAsyncGetSrvReferralCookie_FinishAsyncCall(self: *const T, param0: HRESULT) HRESULT {
-                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+                return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCall(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAsyncGetSrvReferralCookie_CancelAsyncCall(self: *const T, param0: HRESULT) HRESULT {
-                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).CancelAsyncCall(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+                return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).CancelAsyncCall(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAsyncGetSrvReferralCookie_FinishAsyncCallWithData(self: *const T, param0: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IAsyncGetSrvReferralCookie.VTable, self.vtable).FinishAsyncCallWithData(@ptrCast(*const IAsyncGetSrvReferralCookie, self), param0);
+                return @as(*const IAsyncGetSrvReferralCookie.VTable, @ptrCast(self.vtable)).FinishAsyncCallWithData(@as(*const IAsyncGetSrvReferralCookie, @ptrCast(self)), param0);
             }
         };
     }
@@ -7846,7 +7846,7 @@ pub const IPrintBidiAsyncNotifyRegistration = extern struct {
             pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintBidiAsyncNotifyRegistration_AsyncGetNewChannel(self: *const T, param0: ?*IPrintAsyncNewChannelCookie) HRESULT {
-                return @ptrCast(*const IPrintBidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNewChannel(@ptrCast(*const IPrintBidiAsyncNotifyRegistration, self), param0);
+                return @as(*const IPrintBidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNewChannel(@as(*const IPrintBidiAsyncNotifyRegistration, @ptrCast(self)), param0);
             }
         };
     }
@@ -7873,7 +7873,7 @@ pub const IPrintUnidiAsyncNotifyRegistration = extern struct {
             pub usingnamespace IPrintAsyncNotifyRegistration.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintUnidiAsyncNotifyRegistration_AsyncGetNotification(self: *const T, param0: ?*IAsyncGetSendNotificationCookie) HRESULT {
-                return @ptrCast(*const IPrintUnidiAsyncNotifyRegistration.VTable, self.vtable).AsyncGetNotification(@ptrCast(*const IPrintUnidiAsyncNotifyRegistration, self), param0);
+                return @as(*const IPrintUnidiAsyncNotifyRegistration.VTable, @ptrCast(self.vtable)).AsyncGetNotification(@as(*const IPrintUnidiAsyncNotifyRegistration, @ptrCast(self)), param0);
             }
         };
     }
@@ -7920,15 +7920,15 @@ pub const IPrintAsyncNotifyServerReferral = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyServerReferral_GetServerReferral(self: *const T, param0: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).GetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
+                return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).GetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyServerReferral_AsyncGetServerReferral(self: *const T, param0: ?*IAsyncGetSrvReferralCookie) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).AsyncGetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), param0);
+                return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).AsyncGetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintAsyncNotifyServerReferral_SetServerReferral(self: *const T, pRmtServerReferral: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IPrintAsyncNotifyServerReferral.VTable, self.vtable).SetServerReferral(@ptrCast(*const IPrintAsyncNotifyServerReferral, self), pRmtServerReferral);
+                return @as(*const IPrintAsyncNotifyServerReferral.VTable, @ptrCast(self.vtable)).SetServerReferral(@as(*const IPrintAsyncNotifyServerReferral, @ptrCast(self)), pRmtServerReferral);
             }
         };
     }
@@ -7999,23 +7999,23 @@ pub const IBidiAsyncNotifyChannel = extern struct {
             pub usingnamespace IPrintAsyncNotifyChannel.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBidiAsyncNotifyChannel_CreateNotificationChannel(self: *const T) HRESULT {
-                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).CreateNotificationChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self));
+                return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).CreateNotificationChannel(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBidiAsyncNotifyChannel_GetPrintName(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetPrintName(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
+                return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).GetPrintName(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBidiAsyncNotifyChannel_GetChannelNotificationType(self: *const T, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
-                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).GetChannelNotificationType(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0);
+                return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).GetChannelNotificationType(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBidiAsyncNotifyChannel_AsyncGetNotificationSendResponse(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) HRESULT {
-                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncGetNotificationSendResponse(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
+                return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).AsyncGetNotificationSendResponse(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBidiAsyncNotifyChannel_AsyncCloseChannel(self: *const T, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) HRESULT {
-                return @ptrCast(*const IBidiAsyncNotifyChannel.VTable, self.vtable).AsyncCloseChannel(@ptrCast(*const IBidiAsyncNotifyChannel, self), param0, param1);
+                return @as(*const IBidiAsyncNotifyChannel.VTable, @ptrCast(self.vtable)).AsyncCloseChannel(@as(*const IBidiAsyncNotifyChannel, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -8714,7 +8714,7 @@ pub const IXpsRasterizerNotificationCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizerNotificationCallback_Continue(self: *const T) HRESULT {
-                return @ptrCast(*const IXpsRasterizerNotificationCallback.VTable, self.vtable).Continue(@ptrCast(*const IXpsRasterizerNotificationCallback, self));
+                return @as(*const IXpsRasterizerNotificationCallback.VTable, @ptrCast(self.vtable)).Continue(@as(*const IXpsRasterizerNotificationCallback, @ptrCast(self)));
             }
         };
     }
@@ -8770,11 +8770,11 @@ pub const IXpsRasterizer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizer_RasterizeRect(self: *const T, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) HRESULT {
-                return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).RasterizeRect(@ptrCast(*const IXpsRasterizer, self), x, y, width, height, notificationCallback, bitmap);
+                return @as(*const IXpsRasterizer.VTable, @ptrCast(self.vtable)).RasterizeRect(@as(*const IXpsRasterizer, @ptrCast(self)), x, y, width, height, notificationCallback, bitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizer_SetMinimalLineWidth(self: *const T, width: i32) HRESULT {
-                return @ptrCast(*const IXpsRasterizer.VTable, self.vtable).SetMinimalLineWidth(@ptrCast(*const IXpsRasterizer, self), width);
+                return @as(*const IXpsRasterizer.VTable, @ptrCast(self.vtable)).SetMinimalLineWidth(@as(*const IXpsRasterizer, @ptrCast(self)), width);
             }
         };
     }
@@ -8811,7 +8811,7 @@ pub const IXpsRasterizationFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizationFactory_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
-                return @ptrCast(*const IXpsRasterizationFactory.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
+                return @as(*const IXpsRasterizationFactory.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
             }
         };
     }
@@ -8859,7 +8859,7 @@ pub const IXpsRasterizationFactory1 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizationFactory1_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
-                return @ptrCast(*const IXpsRasterizationFactory1.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory1, self), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
+                return @as(*const IXpsRasterizationFactory1.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory1, @ptrCast(self)), xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
             }
         };
     }
@@ -8909,7 +8909,7 @@ pub const IXpsRasterizationFactory2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IXpsRasterizationFactory2_CreateRasterizer(self: *const T, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) HRESULT {
-                return @ptrCast(*const IXpsRasterizationFactory2.VTable, self.vtable).CreateRasterizer(@ptrCast(*const IXpsRasterizationFactory2, self), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
+                return @as(*const IXpsRasterizationFactory2.VTable, @ptrCast(self.vtable)).CreateRasterizer(@as(*const IXpsRasterizationFactory2, @ptrCast(self)), xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
             }
         };
     }
@@ -8971,15 +8971,15 @@ pub const IPrintPreviewDxgiPackageTarget = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintPreviewDxgiPackageTarget_SetJobPageCount(self: *const T, countType: PageCountType, count: u32) HRESULT {
-                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).SetJobPageCount(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), countType, count);
+                return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).SetJobPageCount(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)), countType, count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintPreviewDxgiPackageTarget_DrawPage(self: *const T, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) HRESULT {
-                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).DrawPage(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self), jobPageNumber, pageImage, dpiX, dpiY);
+                return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).DrawPage(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)), jobPageNumber, pageImage, dpiX, dpiY);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPrintPreviewDxgiPackageTarget_InvalidatePreview(self: *const T) HRESULT {
-                return @ptrCast(*const IPrintPreviewDxgiPackageTarget.VTable, self.vtable).InvalidatePreview(@ptrCast(*const IPrintPreviewDxgiPackageTarget, self));
+                return @as(*const IPrintPreviewDxgiPackageTarget.VTable, @ptrCast(self.vtable)).InvalidatePreview(@as(*const IPrintPreviewDxgiPackageTarget, @ptrCast(self)));
             }
         };
     }

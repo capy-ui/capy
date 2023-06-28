@@ -314,23 +314,23 @@ pub const IFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFilter_Init(self: *const T, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) i32 {
-                return @ptrCast(*const IFilter.VTable, self.vtable).Init(@ptrCast(*const IFilter, self), grfFlags, cAttributes, aAttributes, pFlags);
+                return @as(*const IFilter.VTable, @ptrCast(self.vtable)).Init(@as(*const IFilter, @ptrCast(self)), grfFlags, cAttributes, aAttributes, pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFilter_GetChunk(self: *const T, pStat: ?*STAT_CHUNK) i32 {
-                return @ptrCast(*const IFilter.VTable, self.vtable).GetChunk(@ptrCast(*const IFilter, self), pStat);
+                return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetChunk(@as(*const IFilter, @ptrCast(self)), pStat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFilter_GetText(self: *const T, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) i32 {
-                return @ptrCast(*const IFilter.VTable, self.vtable).GetText(@ptrCast(*const IFilter, self), pcwcBuffer, awcBuffer);
+                return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetText(@as(*const IFilter, @ptrCast(self)), pcwcBuffer, awcBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFilter_GetValue(self: *const T, ppPropValue: ?*?*PROPVARIANT) i32 {
-                return @ptrCast(*const IFilter.VTable, self.vtable).GetValue(@ptrCast(*const IFilter, self), ppPropValue);
+                return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IFilter, @ptrCast(self)), ppPropValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) i32 {
-                return @ptrCast(*const IFilter.VTable, self.vtable).BindRegion(@ptrCast(*const IFilter, self), origPos, riid, ppunk);
+                return @as(*const IFilter.VTable, @ptrCast(self.vtable)).BindRegion(@as(*const IFilter, @ptrCast(self)), origPos, riid, ppunk);
             }
         };
     }
@@ -380,11 +380,11 @@ pub const IPhraseSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPhraseSink_PutSmallPhrase(self: *const T, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) HRESULT {
-                return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutSmallPhrase(@ptrCast(*const IPhraseSink, self), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
+                return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutSmallPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPhraseSink_PutPhrase(self: *const T, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) HRESULT {
-                return @ptrCast(*const IPhraseSink.VTable, self.vtable).PutPhrase(@ptrCast(*const IPhraseSink, self), pwcPhrase, cwcPhrase);
+                return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcPhrase, cwcPhrase);
             }
         };
     }

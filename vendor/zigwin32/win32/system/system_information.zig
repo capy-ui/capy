@@ -139,7 +139,7 @@ pub const VER_FLAGS = enum(u32) {
         SUITENAME: u1 = 0,
         PRODUCT_TYPE: u1 = 0,
     }) VER_FLAGS {
-        return @enumFromInt(VER_FLAGS, (if (o.MINORVERSION == 1) @intFromEnum(VER_FLAGS.MINORVERSION) else 0) | (if (o.MAJORVERSION == 1) @intFromEnum(VER_FLAGS.MAJORVERSION) else 0) | (if (o.BUILDNUMBER == 1) @intFromEnum(VER_FLAGS.BUILDNUMBER) else 0) | (if (o.PLATFORMID == 1) @intFromEnum(VER_FLAGS.PLATFORMID) else 0) | (if (o.SERVICEPACKMINOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMINOR) else 0) | (if (o.SERVICEPACKMAJOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMAJOR) else 0) | (if (o.SUITENAME == 1) @intFromEnum(VER_FLAGS.SUITENAME) else 0) | (if (o.PRODUCT_TYPE == 1) @intFromEnum(VER_FLAGS.PRODUCT_TYPE) else 0));
+        return @as(VER_FLAGS, @enumFromInt((if (o.MINORVERSION == 1) @intFromEnum(VER_FLAGS.MINORVERSION) else 0) | (if (o.MAJORVERSION == 1) @intFromEnum(VER_FLAGS.MAJORVERSION) else 0) | (if (o.BUILDNUMBER == 1) @intFromEnum(VER_FLAGS.BUILDNUMBER) else 0) | (if (o.PLATFORMID == 1) @intFromEnum(VER_FLAGS.PLATFORMID) else 0) | (if (o.SERVICEPACKMINOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMINOR) else 0) | (if (o.SERVICEPACKMAJOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMAJOR) else 0) | (if (o.SUITENAME == 1) @intFromEnum(VER_FLAGS.SUITENAME) else 0) | (if (o.PRODUCT_TYPE == 1) @intFromEnum(VER_FLAGS.PRODUCT_TYPE) else 0)));
     }
 };
 pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;

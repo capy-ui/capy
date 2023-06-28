@@ -59,7 +59,7 @@ pub fn main() !void {
 }
 
 fn onConnect(widget: *anyopaque) !void {
-    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), widget));
+    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), widget)));
     const parent = button.getParent().?.getParent().?.as(capy.Container_Impl);
     const root = button.getRoot().?.as(capy.Navigation_Impl);
 
@@ -73,4 +73,7 @@ fn onConnect(widget: *anyopaque) !void {
     const address = addressList.addrs[0];
     dev_protocol_stream = try std.net.tcpConnectToAddress(address);
     try root.navigateTo("Dev Tools", .{});
+
+    const writer = dev_protocol_stream.?.writer();
+    try writer.writeByte(@intFromEnum(capy.dev_tools.RequestId.get_windows_num));
 }

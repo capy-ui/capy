@@ -5,8 +5,8 @@ const PixelFormat = @import("pixel_format.zig").PixelFormat;
 const TypeInfo = std.builtin.TypeInfo;
 
 pub inline fn toIntColor(comptime T: type, value: f32) T {
-    const float_value = @round(value * @floatFromInt(f32, math.maxInt(T)));
-    return @intFromFloat(T, math.clamp(float_value, math.minInt(T), math.maxInt(T)));
+    const float_value = @round(value * @as(f32, @floatFromInt(math.maxInt(T))));
+    return @as(T, @intFromFloat(math.clamp(float_value, math.minInt(T), math.maxInt(T))));
 }
 
 pub inline fn scaleToIntColor(comptime T: type, value: anytype) T {
@@ -19,16 +19,16 @@ pub inline fn scaleToIntColor(comptime T: type, value: anytype) T {
     const cur_value_bits = @bitSizeOf(ValueT);
     const new_value_bits = @bitSizeOf(T);
     if (cur_value_bits > new_value_bits) {
-        return @truncate(T, value >> (cur_value_bits - new_value_bits));
+        return @as(T, @truncate(value >> (cur_value_bits - new_value_bits)));
     } else if (cur_value_bits < new_value_bits) {
         const cur_value_max = math.maxInt(ValueT);
         const new_value_max = math.maxInt(T);
-        return @truncate(T, (@as(u32, value) * new_value_max + cur_value_max / 2) / cur_value_max);
+        return @as(T, @truncate((@as(u32, value) * new_value_max + cur_value_max / 2) / cur_value_max));
     } else return @as(T, value);
 }
 
 pub inline fn toF32Color(value: anytype) f32 {
-    return @floatFromInt(f32, value) / @floatFromInt(f32, math.maxInt(@TypeOf(value)));
+    return @as(f32, @floatFromInt(value)) / @as(f32, @floatFromInt(math.maxInt(@TypeOf(value))));
 }
 
 pub const Colorf32 = extern struct {
@@ -58,10 +58,10 @@ pub const Colorf32 = extern struct {
 
     pub fn fromU32Rgba(value: u32) Self {
         return Self{
-            .r = toF32Color(@truncate(u8, value >> 24)),
-            .g = toF32Color(@truncate(u8, value >> 16)),
-            .b = toF32Color(@truncate(u8, value >> 8)),
-            .a = toF32Color(@truncate(u8, value)),
+            .r = toF32Color(@as(u8, @truncate(value >> 24))),
+            .g = toF32Color(@as(u8, @truncate(value >> 16))),
+            .b = toF32Color(@as(u8, @truncate(value >> 8))),
+            .a = toF32Color(@as(u8, @truncate(value))),
         };
     }
 
@@ -74,10 +74,10 @@ pub const Colorf32 = extern struct {
 
     pub fn fromU64Rgba(value: u64) Self {
         return Self{
-            .r = toF32Color(@truncate(u16, value >> 48)),
-            .g = toF32Color(@truncate(u16, value >> 32)),
-            .b = toF32Color(@truncate(u16, value >> 16)),
-            .a = toF32Color(@truncate(u16, value)),
+            .r = toF32Color(@as(u16, @truncate(value >> 48))),
+            .g = toF32Color(@as(u16, @truncate(value >> 32))),
+            .b = toF32Color(@as(u16, @truncate(value >> 16))),
+            .a = toF32Color(@as(u16, @truncate(value))),
         };
     }
 
@@ -115,11 +115,11 @@ pub const Colorf32 = extern struct {
     }
 
     pub fn toArray(self: Self) [4]f32 {
-        return @bitCast([4]f32, self);
+        return @as([4]f32, @bitCast(self));
     }
 
     pub fn fromArray(value: [4]f32) Self {
-        return @bitCast(Self, value);
+        return @as(Self, @bitCast(value));
     }
 };
 
@@ -155,41 +155,41 @@ fn RgbMethods(comptime Self: type) type {
 
         pub fn fromU32Rgba(value: u32) Self {
             var res = Self{
-                .r = scaleToIntColor(RedT, @truncate(u8, value >> 24)),
-                .g = scaleToIntColor(GreenT, @truncate(u8, value >> 16)),
-                .b = scaleToIntColor(BlueT, @truncate(u8, value >> 8)),
+                .r = scaleToIntColor(RedT, @as(u8, @truncate(value >> 24))),
+                .g = scaleToIntColor(GreenT, @as(u8, @truncate(value >> 16))),
+                .b = scaleToIntColor(BlueT, @as(u8, @truncate(value >> 8))),
             };
             if (has_alpha_type) {
-                res.a = scaleToIntColor(AlphaT, @truncate(u8, value));
+                res.a = scaleToIntColor(AlphaT, @as(u8, @truncate(value)));
             }
             return res;
         }
 
         pub fn fromU32Rgb(value: u32) Self {
             return Self{
-                .r = scaleToIntColor(RedT, @truncate(u8, value >> 16)),
-                .g = scaleToIntColor(GreenT, @truncate(u8, value >> 8)),
-                .b = scaleToIntColor(BlueT, @truncate(u8, value)),
+                .r = scaleToIntColor(RedT, @as(u8, @truncate(value >> 16))),
+                .g = scaleToIntColor(GreenT, @as(u8, @truncate(value >> 8))),
+                .b = scaleToIntColor(BlueT, @as(u8, @truncate(value))),
             };
         }
 
         pub fn fromU64Rgba(value: u64) Self {
             var res = Self{
-                .r = scaleToIntColor(RedT, @truncate(u16, value >> 48)),
-                .g = scaleToIntColor(GreenT, @truncate(u16, value >> 32)),
-                .b = scaleToIntColor(BlueT, @truncate(u16, value >> 16)),
+                .r = scaleToIntColor(RedT, @as(u16, @truncate(value >> 48))),
+                .g = scaleToIntColor(GreenT, @as(u16, @truncate(value >> 32))),
+                .b = scaleToIntColor(BlueT, @as(u16, @truncate(value >> 16))),
             };
             if (has_alpha_type) {
-                res.a = scaleToIntColor(AlphaT, @truncate(u16, value));
+                res.a = scaleToIntColor(AlphaT, @as(u16, @truncate(value)));
             }
             return res;
         }
 
         pub fn fromU64Rgb(value: u64) Self {
             return Self{
-                .r = scaleToIntColor(RedT, @truncate(u16, value >> 32)),
-                .g = scaleToIntColor(GreenT, @truncate(u16, value >> 16)),
-                .b = scaleToIntColor(BlueT, @truncate(u16, value)),
+                .r = scaleToIntColor(RedT, @as(u16, @truncate(value >> 32))),
+                .g = scaleToIntColor(GreenT, @as(u16, @truncate(value >> 16))),
+                .b = scaleToIntColor(BlueT, @as(u16, @truncate(value))),
             };
         }
 
@@ -327,9 +327,9 @@ fn RgbaMethods(comptime Self: type) type {
         pub fn toPremultipliedAlpha(self: Self) Self {
             const max = math.maxInt(T);
             return Self{
-                .r = @truncate(T, (@as(u32, self.r) * self.a + max / 2) / max),
-                .g = @truncate(T, (@as(u32, self.g) * self.a + max / 2) / max),
-                .b = @truncate(T, (@as(u32, self.b) * self.a + max / 2) / max),
+                .r = @as(T, @truncate((@as(u32, self.r) * self.a + max / 2) / max)),
+                .g = @as(T, @truncate((@as(u32, self.g) * self.a + max / 2) / max)),
+                .b = @as(T, @truncate((@as(u32, self.b) * self.a + max / 2) / max)),
                 .a = self.a,
             };
         }

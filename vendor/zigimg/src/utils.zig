@@ -10,7 +10,7 @@ pub const StructReadError = error{ EndOfStream, InvalidData } || io.StreamSource
 pub fn toMagicNumberNative(magic: []const u8) u32 {
     var result: u32 = 0;
     for (magic, 0..) |character, index| {
-        result |= (@as(u32, character) << @intCast(u5, (index * 8)));
+        result |= (@as(u32, character) << @as(u5, @intCast((index * 8))));
     }
     return result;
 }
@@ -18,7 +18,7 @@ pub fn toMagicNumberNative(magic: []const u8) u32 {
 pub fn toMagicNumberForeign(magic: []const u8) u32 {
     var result: u32 = 0;
     for (magic, 0..) |character, index| {
-        result |= (@as(u32, character) << @intCast(u5, (magic.len - 1 - index) * 8));
+        result |= (@as(u32, character) << @as(u5, @intCast((magic.len - 1 - index) * 8)));
     }
     return result;
 }

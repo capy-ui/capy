@@ -48,11 +48,11 @@ pub const IThumbnailExtractor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThumbnailExtractor_ExtractThumbnail(self: *const T, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) HRESULT {
-                return @ptrCast(*const IThumbnailExtractor.VTable, self.vtable).ExtractThumbnail(@ptrCast(*const IThumbnailExtractor, self), pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
+                return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).ExtractThumbnail(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IThumbnailExtractor_OnFileUpdated(self: *const T, pStg: ?*IStorage) HRESULT {
-                return @ptrCast(*const IThumbnailExtractor.VTable, self.vtable).OnFileUpdated(@ptrCast(*const IThumbnailExtractor, self), pStg);
+                return @as(*const IThumbnailExtractor.VTable, @ptrCast(self.vtable)).OnFileUpdated(@as(*const IThumbnailExtractor, @ptrCast(self)), pStg);
             }
         };
     }
@@ -83,7 +83,7 @@ pub const IDummyHICONIncluder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDummyHICONIncluder_Dummy(self: *const T, h1: ?HICON, h2: ?HDC) HRESULT {
-                return @ptrCast(*const IDummyHICONIncluder.VTable, self.vtable).Dummy(@ptrCast(*const IDummyHICONIncluder, self), h1, h2);
+                return @as(*const IDummyHICONIncluder.VTable, @ptrCast(self.vtable)).Dummy(@as(*const IDummyHICONIncluder, @ptrCast(self)), h1, h2);
             }
         };
     }

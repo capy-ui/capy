@@ -96,15 +96,15 @@ pub const ID3D11On12Device = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device_CreateWrappedResource(self: *const T, pResource12: ?*IUnknown, pFlags11: ?*const D3D11_RESOURCE_FLAGS, InState: D3D12_RESOURCE_STATES, OutState: D3D12_RESOURCE_STATES, riid: ?*const Guid, ppResource11: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D11On12Device.VTable, self.vtable).CreateWrappedResource(@ptrCast(*const ID3D11On12Device, self), pResource12, pFlags11, InState, OutState, riid, ppResource11);
+                return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).CreateWrappedResource(@as(*const ID3D11On12Device, @ptrCast(self)), pResource12, pFlags11, InState, OutState, riid, ppResource11);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device_ReleaseWrappedResources(self: *const T, ppResources: [*]?*ID3D11Resource, NumResources: u32) void {
-                return @ptrCast(*const ID3D11On12Device.VTable, self.vtable).ReleaseWrappedResources(@ptrCast(*const ID3D11On12Device, self), ppResources, NumResources);
+                return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).ReleaseWrappedResources(@as(*const ID3D11On12Device, @ptrCast(self)), ppResources, NumResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device_AcquireWrappedResources(self: *const T, ppResources: [*]?*ID3D11Resource, NumResources: u32) void {
-                return @ptrCast(*const ID3D11On12Device.VTable, self.vtable).AcquireWrappedResources(@ptrCast(*const ID3D11On12Device, self), ppResources, NumResources);
+                return @as(*const ID3D11On12Device.VTable, @ptrCast(self.vtable)).AcquireWrappedResources(@as(*const ID3D11On12Device, @ptrCast(self)), ppResources, NumResources);
             }
         };
     }
@@ -136,7 +136,7 @@ pub const ID3D11On12Device1 = extern struct {
             pub usingnamespace ID3D11On12Device.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device1_GetD3D12Device(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D11On12Device1.VTable, self.vtable).GetD3D12Device(@ptrCast(*const ID3D11On12Device1, self), riid, ppvDevice);
+                return @as(*const ID3D11On12Device1.VTable, @ptrCast(self.vtable)).GetD3D12Device(@as(*const ID3D11On12Device1, @ptrCast(self)), riid, ppvDevice);
             }
         };
     }
@@ -188,11 +188,11 @@ pub const ID3D11On12Device2 = extern struct {
             pub usingnamespace ID3D11On12Device1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device2_UnwrapUnderlyingResource(self: *const T, pResource11: ?*ID3D11Resource, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D11On12Device2.VTable, self.vtable).UnwrapUnderlyingResource(@ptrCast(*const ID3D11On12Device2, self), pResource11, pCommandQueue, riid, ppvResource12);
+                return @as(*const ID3D11On12Device2.VTable, @ptrCast(self.vtable)).UnwrapUnderlyingResource(@as(*const ID3D11On12Device2, @ptrCast(self)), pResource11, pCommandQueue, riid, ppvResource12);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D11On12Device2_ReturnUnderlyingResource(self: *const T, pResource11: ?*ID3D11Resource, NumSync: u32, pSignalValues: [*]u64, ppFences: [*]?*ID3D12Fence) HRESULT {
-                return @ptrCast(*const ID3D11On12Device2.VTable, self.vtable).ReturnUnderlyingResource(@ptrCast(*const ID3D11On12Device2, self), pResource11, NumSync, pSignalValues, ppFences);
+                return @as(*const ID3D11On12Device2.VTable, @ptrCast(self.vtable)).ReturnUnderlyingResource(@as(*const ID3D11On12Device2, @ptrCast(self)), pResource11, NumSync, pSignalValues, ppFences);
             }
         };
     }

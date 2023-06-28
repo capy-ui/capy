@@ -22,11 +22,11 @@ pub const FlatToggleSwitch = struct {
 
     // TODO: themes and custom styling
     fn draw(ctx: *backend.Canvas.DrawContext, data: usize) void {
-        const events = @ptrFromInt(*backend.EventUserData, data);
-        const self = @ptrFromInt(?*FlatToggleSwitch, events.classUserdata).?;
+        const events = @as(*backend.EventUserData, @ptrFromInt(data));
+        const self = @as(?*FlatToggleSwitch, @ptrFromInt(events.classUserdata)).?;
 
-        const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
-        const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
+        const width = @as(u32, @intCast(backend.getWidthFromPeer(events.peer)));
+        const height = @as(u32, @intCast(backend.getHeightFromPeer(events.peer)));
 
         if (self.enabled) {
             ctx.setColor(0.8, 0.8, 0.8);

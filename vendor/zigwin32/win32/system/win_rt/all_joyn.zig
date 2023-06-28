@@ -31,7 +31,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusAttachmentInterop_get_Win32Handle(self: *const T, value: ?*u64) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentInterop, self), value);
+                return @as(*const IWindowsDevicesAllJoynBusAttachmentInterop.VTable, @ptrCast(self.vtable)).get_Win32Handle(@as(*const IWindowsDevicesAllJoynBusAttachmentInterop, @ptrCast(self)), value);
             }
         };
     }
@@ -66,7 +66,7 @@ pub const IWindowsDevicesAllJoynBusAttachmentFactoryInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusAttachmentFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, enableAboutData: u8, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, self), win32handle, enableAboutData, riid, ppv);
+                return @as(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop.VTable, @ptrCast(self.vtable)).CreateFromWin32Handle(@as(*const IWindowsDevicesAllJoynBusAttachmentFactoryInterop, @ptrCast(self)), win32handle, enableAboutData, riid, ppv);
             }
         };
     }
@@ -126,15 +126,15 @@ pub const IWindowsDevicesAllJoynBusObjectInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertyGetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertyGetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
+                return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).AddPropertyGetHandler(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), context, interfaceName, callback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusObjectInterop_AddPropertySetHandler(self: *const T, context: ?*anyopaque, interfaceName: ?HSTRING, callback: isize) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).AddPropertySetHandler(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), context, interfaceName, callback);
+                return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).AddPropertySetHandler(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), context, interfaceName, callback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusObjectInterop_get_Win32Handle(self: *const T, value: ?*u64) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, self.vtable).get_Win32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectInterop, self), value);
+                return @as(*const IWindowsDevicesAllJoynBusObjectInterop.VTable, @ptrCast(self.vtable)).get_Win32Handle(@as(*const IWindowsDevicesAllJoynBusObjectInterop, @ptrCast(self)), value);
             }
         };
     }
@@ -167,7 +167,7 @@ pub const IWindowsDevicesAllJoynBusObjectFactoryInterop = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowsDevicesAllJoynBusObjectFactoryInterop_CreateFromWin32Handle(self: *const T, win32handle: u64, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop.VTable, self.vtable).CreateFromWin32Handle(@ptrCast(*const IWindowsDevicesAllJoynBusObjectFactoryInterop, self), win32handle, riid, ppv);
+                return @as(*const IWindowsDevicesAllJoynBusObjectFactoryInterop.VTable, @ptrCast(self.vtable)).CreateFromWin32Handle(@as(*const IWindowsDevicesAllJoynBusObjectFactoryInterop, @ptrCast(self)), win32handle, riid, ppv);
             }
         };
     }

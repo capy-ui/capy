@@ -93,8 +93,8 @@ pub const AndroidApp = struct {
             old.deinit();
         }
 
-        self.screen_width = @floatFromInt(f32, android.ANativeWindow_getWidth(window));
-        self.screen_height = @floatFromInt(f32, android.ANativeWindow_getHeight(window));
+        self.screen_width = @as(f32, @floatFromInt(android.ANativeWindow_getWidth(window)));
+        self.screen_height = @as(f32, @floatFromInt(android.ANativeWindow_getHeight(window)));
 
         self.egl = EGLContext.init(window, .gles2) catch |err| blk: {
             app_log.err("Failed to initialize EGL for window: {}\n", .{err});
@@ -177,7 +177,7 @@ pub const AndroidApp = struct {
     }
 
     fn processKeyEvent(self: *Self, event: *android.AInputEvent) !bool {
-        const event_type = @enumFromInt(android.AKeyEventActionType, android.AKeyEvent_getAction(event));
+        const event_type = @as(android.AKeyEventActionType, @enumFromInt(android.AKeyEvent_getAction(event)));
         std.log.scoped(.input).debug(
             \\Key Press Event: {}
             \\  Flags:       {}
@@ -223,7 +223,7 @@ pub const AndroidApp = struct {
         var oldest: *TouchPoint = undefined;
 
         if (point.index) |index| {
-            self.simple_synth.oscillators[@intCast(usize, index)].setWaveOn(true);
+            self.simple_synth.oscillators[@as(usize, @intCast(index))].setWaveOn(true);
         }
 
         for (&self.touch_points, 0..) |*opt, i| {
@@ -249,7 +249,7 @@ pub const AndroidApp = struct {
     }
 
     fn processMotionEvent(self: *Self, event: *android.AInputEvent) !bool {
-        const event_type = @enumFromInt(android.AMotionEventActionType, android.AMotionEvent_getAction(event));
+        const event_type = @as(android.AMotionEventActionType, @enumFromInt(android.AMotionEvent_getAction(event)));
 
         {
             var native_activity = NativeActivity.init(self.activity);
@@ -428,7 +428,7 @@ pub const AndroidApp = struct {
                             continue;
                         }
 
-                        const event_type = @enumFromInt(android.AInputEventType, android.AInputEvent_getType(event));
+                        const event_type = @as(android.AInputEventType, @enumFromInt(android.AInputEvent_getType(event)));
                         const handled = switch (event_type) {
                             .AINPUT_EVENT_TYPE_KEY => try self.processKeyEvent(event.?),
                             .AINPUT_EVENT_TYPE_MOTION => try self.processMotionEvent(event.?),
@@ -495,8 +495,8 @@ pub const AndroidApp = struct {
                                 \\
                             ;
 
-                            c.glShaderSource(ps, 1, @ptrCast([*c]const [*c]const u8, &ps_code), null);
-                            c.glShaderSource(fs, 1, @ptrCast([*c]const [*c]const u8, &fs_code), null);
+                            c.glShaderSource(ps, 1, @as([*c]const [*c]const u8, @ptrCast(&ps_code)), null);
+                            c.glShaderSource(fs, 1, @as([*c]const [*c]const u8, @ptrCast(&fs_code)), null);
 
                             c.glCompileShader(ps);
                             c.glCompileShader(fs);
@@ -529,12 +529,12 @@ pub const AndroidApp = struct {
                         // Get attrib locations
                         const vPosition_res = c.glGetAttribLocation(touch_program, "vPosition");
                         app_log.info("vPosition: {}", .{vPosition_res});
-                        vPosition = @intCast(c.GLuint, vPosition_res);
+                        vPosition = @as(c.GLuint, @intCast(vPosition_res));
 
                         // Bind the vertices to the buffer
                         c.glGenBuffers(1, &touch_buffer);
                         c.glBindBuffer(c.GL_ARRAY_BUFFER, touch_buffer);
-                        c.glBufferData(c.GL_ARRAY_BUFFER, @intCast(isize, vVertices[0..].len * @sizeOf(c.GLfloat)), vVertices[0..], c.GL_STATIC_DRAW);
+                        c.glBufferData(c.GL_ARRAY_BUFFER, @as(isize, @intCast(vVertices[0..].len * @sizeOf(c.GLfloat))), vVertices[0..], c.GL_STATIC_DRAW);
 
                         shaded_program = c.glCreateProgram();
                         {
@@ -565,8 +565,8 @@ pub const AndroidApp = struct {
                                 \\
                             ;
 
-                            c.glShaderSource(ps, 1, @ptrCast([*c]const [*c]const u8, &ps_code), null);
-                            c.glShaderSource(fs, 1, @ptrCast([*c]const [*c]const u8, &fs_code), null);
+                            c.glShaderSource(ps, 1, @as([*c]const [*c]const u8, @ptrCast(&ps_code)), null);
+                            c.glShaderSource(fs, 1, @as([*c]const [*c]const u8, @ptrCast(&fs_code)), null);
 
                             c.glCompileShader(ps);
                             c.glCompileShader(fs);
@@ -592,20 +592,20 @@ pub const AndroidApp = struct {
                         // Get attrib locations
                         const mesh_vPosition_res = c.glGetAttribLocation(shaded_program, "vPosition");
                         app_log.info("mesh_vPosition: {}", .{mesh_vPosition_res});
-                        mesh_vPosition = @intCast(c.GLuint, mesh_vPosition_res);
+                        mesh_vPosition = @as(c.GLuint, @intCast(mesh_vPosition_res));
                         const mesh_vNormal_res = c.glGetAttribLocation(shaded_program, "vNormal");
                         app_log.info("mesh_vNormal: {}", .{mesh_vNormal_res});
-                        mesh_vNormal = @intCast(c.GLuint, mesh_vNormal_res);
+                        mesh_vNormal = @as(c.GLuint, @intCast(mesh_vNormal_res));
 
                         // Bind the vertices to the buffer
                         c.glGenBuffers(1, &mesh_buffer);
                         c.glBindBuffer(c.GL_ARRAY_BUFFER, mesh_buffer);
-                        c.glBufferData(c.GL_ARRAY_BUFFER, @intCast(isize, mesh.len * @sizeOf(MeshVertex)), &mesh, c.GL_STATIC_DRAW);
+                        c.glBufferData(c.GL_ARRAY_BUFFER, @as(isize, @intCast(mesh.len * @sizeOf(MeshVertex))), &mesh, c.GL_STATIC_DRAW);
 
                         self.egl_init = false;
                     }
 
-                    const t = @floatFromInt(f32, loop) / 100.0;
+                    const t = @as(f32, @floatFromInt(loop)) / 100.0;
 
                     // Clear the screen
                     c.glClearColor(
@@ -622,7 +622,7 @@ pub const AndroidApp = struct {
                     c.glBindBuffer(c.GL_ARRAY_BUFFER, touch_buffer);
 
                     c.glEnableVertexAttribArray(vPosition);
-                    c.glVertexAttribPointer(vPosition, 2, c.GL_FLOAT, c.GL_FALSE, 0, @ptrFromInt(?*anyopaque, 0));
+                    c.glVertexAttribPointer(vPosition, 2, c.GL_FLOAT, c.GL_FALSE, 0, @as(?*anyopaque, @ptrFromInt(0)));
 
                     // c.glDisableVertexAttribArray(1);
 
@@ -641,7 +641,7 @@ pub const AndroidApp = struct {
                             point.intensity -= 0.05;
                             if (point.intensity <= 0.0) {
                                 if (point.index) |index| {
-                                    self.simple_synth.oscillators[@intCast(usize, index)].setWaveOn(false);
+                                    self.simple_synth.oscillators[@as(usize, @intCast(index))].setWaveOn(false);
                                 }
                                 pt.* = null;
                             }
@@ -652,10 +652,10 @@ pub const AndroidApp = struct {
                     // -- Start 3d zig logo code
                     c.glBindBuffer(c.GL_ARRAY_BUFFER, mesh_buffer);
                     c.glEnableVertexAttribArray(mesh_vPosition);
-                    c.glVertexAttribPointer(mesh_vPosition, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @ptrFromInt(?*anyopaque, @offsetOf(MeshVertex, "pos")));
+                    c.glVertexAttribPointer(mesh_vPosition, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @as(?*anyopaque, @ptrFromInt(@offsetOf(MeshVertex, "pos"))));
 
                     c.glEnableVertexAttribArray(mesh_vNormal);
-                    c.glVertexAttribPointer(mesh_vNormal, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @ptrFromInt(?*anyopaque, @offsetOf(MeshVertex, "normal")));
+                    c.glVertexAttribPointer(mesh_vNormal, 3, c.GL_FLOAT, c.GL_FALSE, @sizeOf(MeshVertex), @as(?*anyopaque, @ptrFromInt(@offsetOf(MeshVertex, "normal"))));
 
                     c.glUseProgram(shaded_program);
 
@@ -679,7 +679,7 @@ pub const AndroidApp = struct {
                     matrix[0][2] = @cos(t);
                     matrix[2][2] = -@sin(t);
 
-                    c.glUniformMatrix4fv(uTransform, 1, c.GL_FALSE, @ptrCast([*]const f32, &matrix));
+                    c.glUniformMatrix4fv(uTransform, 1, c.GL_FALSE, @as([*]const f32, @ptrCast(&matrix)));
 
                     c.glDrawArrays(c.GL_TRIANGLES, 0, mesh.len);
 
@@ -709,9 +709,9 @@ const Vector4 = extern struct {
 
     fn readFromSlice(slice: []const u8) Vector4 {
         return Vector4{
-            .x = @bitCast(f32, std.mem.readIntLittle(u32, slice[0..4])),
-            .y = @bitCast(f32, std.mem.readIntLittle(u32, slice[4..8])),
-            .z = @bitCast(f32, std.mem.readIntLittle(u32, slice[8..12])),
+            .x = @as(f32, @bitCast(std.mem.readIntLittle(u32, slice[0..4]))),
+            .y = @as(f32, @bitCast(std.mem.readIntLittle(u32, slice[4..8]))),
+            .z = @as(f32, @bitCast(std.mem.readIntLittle(u32, slice[8..12]))),
             .w = 1.0,
         };
     }
@@ -760,7 +760,7 @@ pub fn glProgramInfoLog(program: c.GLuint) void {
     var size: c.GLsizei = undefined;
     c.glGetProgramInfoLog(program, 4096, &size, &buffer);
     if (size == 0) return;
-    app_log.info("{s}", .{buffer[0..@intCast(usize, size)]});
+    app_log.info("{s}", .{buffer[0..@as(usize, @intCast(size))]});
 }
 
 pub fn glShaderInfoLog(shader: c.GLuint) void {
@@ -768,7 +768,7 @@ pub fn glShaderInfoLog(shader: c.GLuint) void {
     var size: c.GLsizei = undefined;
     c.glGetShaderInfoLog(shader, 4096, &size, &buffer);
     if (size == 0) return;
-    app_log.info("{s}", .{buffer[0..@intCast(usize, size)]});
+    app_log.info("{s}", .{buffer[0..@as(usize, @intCast(size))]});
 }
 
 pub fn glCheckError(res: i64) void {
@@ -798,10 +798,10 @@ pub fn enableDebug() void {
         c.glEnable(c.GL_DEBUG_OUTPUT_KHR);
         c.glEnable(c.GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR);
 
-        const glDebugMessageControl = @ptrCast(c.PFNGLDEBUGMESSAGECONTROLKHRPROC, c.eglGetProcAddress("glDebugMessageControl")).?;
+        const glDebugMessageControl = @as(c.PFNGLDEBUGMESSAGECONTROLKHRPROC, @ptrCast(c.eglGetProcAddress("glDebugMessageControl"))).?;
         glDebugMessageControl(c.GL_DONT_CARE, c.GL_DONT_CARE, c.GL_DEBUG_SEVERITY_NOTIFICATION_KHR, 0, null, c.GL_TRUE);
 
-        const glDebugMessageCallback = @ptrCast(c.PFNGLDEBUGMESSAGECALLBACKKHRPROC, c.eglGetProcAddress("glDebugMessageCallback")).?;
+        const glDebugMessageCallback = @as(c.PFNGLDEBUGMESSAGECALLBACKKHRPROC, @ptrCast(c.eglGetProcAddress("glDebugMessageCallback"))).?;
         glDebugMessageCallback(debugMessageCallback, null);
     } else {
         app_log.err("Debug is not supported.", .{});
@@ -820,7 +820,7 @@ pub fn debugMessageCallback(
     _ = user_param;
     const message = message: {
         if (message_c) |message_ptr| {
-            break :message if (length > 0) message_ptr[0..@intCast(usize, length)] else "";
+            break :message if (length > 0) message_ptr[0..@as(usize, @intCast(length))] else "";
         } else {
             break :message "";
         }
@@ -850,7 +850,7 @@ const Oscillator = struct {
     }
 
     fn setSampleRate(self: *@This(), sample_rate: i32) void {
-        self.phaseIncrement = (std.math.tau * self.frequency) / @floatFromInt(f64, sample_rate);
+        self.phaseIncrement = (std.math.tau * self.frequency) / @as(f64, @floatFromInt(sample_rate));
     }
 
     fn renderf32(self: *@This(), audio_data: []f32) void {
@@ -858,7 +858,7 @@ const Oscillator = struct {
 
         for (audio_data) |*frame| {
             if (@atomicLoad(bool, &self.isWaveOn, .SeqCst)) {
-                frame.* += @floatCast(f32, std.math.sin(self.phase) * self.amplitude);
+                frame.* += @as(f32, @floatCast(std.math.sin(self.phase) * self.amplitude));
                 self.phase += self.phaseIncrement;
                 if (self.phase > std.math.tau) self.phase -= std.math.tau;
             }
@@ -870,7 +870,7 @@ const Oscillator = struct {
 
         for (audio_data) |*frame| {
             if (@atomicLoad(bool, &self.isWaveOn, .SeqCst)) {
-                frame.* +|= @intFromFloat(i16, @floatCast(f32, std.math.sin(self.phase) * self.amplitude) * std.math.maxInt(i16));
+                frame.* +|= @as(i16, @intFromFloat(@as(f32, @floatCast(std.math.sin(self.phase) * self.amplitude)) * std.math.maxInt(i16)));
                 self.phase += self.phaseIncrement;
                 if (self.phase > std.math.tau) self.phase -= std.math.tau;
             }
@@ -886,18 +886,18 @@ const SimpleSynth = struct {
         for (&synth.oscillators, 0..) |*osc, index| {
             osc.* = Oscillator{
                 .frequency = audio.midiToFreq(49 + index * 3),
-                .amplitude = audio.dBToAmplitude(-@floatFromInt(f64, index) - 15),
+                .amplitude = audio.dBToAmplitude(-@as(f64, @floatFromInt(index)) - 15),
             };
         }
         return synth;
     }
 
     fn audioCallback(stream: audio.StreamLayout, user_data: *anyopaque) void {
-        var synth = @ptrCast(*SimpleSynth, @alignCast(@alignOf(SimpleSynth), user_data));
+        var synth = @as(*SimpleSynth, @ptrCast(@alignCast(@alignOf(SimpleSynth), user_data)));
         std.debug.assert(stream.buffer == .Int16);
 
         for (&synth.oscillators) |*osc| {
-            osc.setSampleRate(@intCast(i32, stream.sample_rate));
+            osc.setSampleRate(@as(i32, @intCast(stream.sample_rate)));
             osc.renderi16(stream.buffer.Int16);
         }
     }

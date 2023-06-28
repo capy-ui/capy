@@ -69,7 +69,7 @@ pub fn main() !void {
 }
 
 fn drawRounded(cnv: *anyopaque, ctx: *capy.DrawContext) !void {
-    const canvas = @ptrCast(*capy.Canvas_Impl, @alignCast(@alignOf(capy.Canvas_Impl), cnv));
+    const canvas = @as(*capy.Canvas_Impl, @ptrCast(@alignCast(@alignOf(capy.Canvas_Impl), cnv)));
 
     ctx.setColor(0.7, 0.9, 0.3);
     ctx.setLinearGradient(.{ .x0 = 80, .y0 = 0, .x1 = 100, .y1 = 100, .stops = &.{
@@ -152,7 +152,7 @@ fn BorderLayoutExample() anyerror!capy.Container_Impl {
 }
 
 fn moveButton(button_: *anyopaque) !void {
-    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
+    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), button_)));
     const parent = button.getParent().?.as(capy.Align_Impl);
 
     const alignX = &parent.x;

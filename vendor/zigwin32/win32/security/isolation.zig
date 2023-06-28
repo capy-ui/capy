@@ -40,7 +40,7 @@ pub const IIsolatedAppLauncher = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) HRESULT {
-                return @ptrCast(*const IIsolatedAppLauncher.VTable, self.vtable).Launch(@ptrCast(*const IIsolatedAppLauncher, self), appUserModelId, arguments, telemetryParameters);
+                return @as(*const IIsolatedAppLauncher.VTable, @ptrCast(self.vtable)).Launch(@as(*const IIsolatedAppLauncher, @ptrCast(self)), appUserModelId, arguments, telemetryParameters);
             }
         };
     }

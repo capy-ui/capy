@@ -31,17 +31,17 @@ export fn wbin_get_type() c.GType {
         if (comptime @import("builtin").zig_backend == .stage1) {
             const wbin_info = std.mem.zeroInit(c.GTypeInfo, .{
                 .class_size = @sizeOf(WBinClass),
-                .class_init = @ptrCast(c.GClassInitFunc, wbin_class_init),
+                .class_init = @as(c.GClassInitFunc, @ptrCast(wbin_class_init)),
                 .instance_size = @sizeOf(WBin),
-                .instance_init = @ptrCast(c.GInstanceInitFunc, wbin_init),
+                .instance_init = @as(c.GInstanceInitFunc, @ptrCast(wbin_init)),
             });
             wbin_type = c.g_type_register_static(c.gtk_bin_get_type(), "WBin", &wbin_info, 0);
         } else {
             const wbin_info = std.mem.zeroInit(c.GTypeInfo, .{
                 .class_size = @sizeOf(WBinClass),
-                .class_init = @ptrCast(c.GClassInitFunc, &wbin_class_init),
+                .class_init = @as(c.GClassInitFunc, @ptrCast(&wbin_class_init)),
                 .instance_size = @sizeOf(WBin),
-                .instance_init = @ptrCast(c.GInstanceInitFunc, &wbin_init),
+                .instance_init = @as(c.GInstanceInitFunc, @ptrCast(&wbin_init)),
             });
             wbin_type = c.g_type_register_static(c.gtk_bin_get_type(), "WBin", &wbin_info, 0);
         }
@@ -109,7 +109,7 @@ else
     };
 
 fn wbin_class_init(class: *WBinClass) callconv(.C) void {
-    const widget_class = @ptrCast(*edited_GtkWidgetClass, class);
+    const widget_class = @as(*edited_GtkWidgetClass, @ptrCast(class));
     widget_class.get_preferred_width = wbin_get_preferred_width;
     widget_class.get_preferred_height = wbin_get_preferred_height;
     widget_class.size_allocate = wbin_size_allocate;
@@ -134,13 +134,13 @@ fn wbin_get_preferred_height(widget: ?*c.GtkWidget, minimum_height: ?*c.gint, na
 }
 
 fn wbin_child_allocate(child: ?*c.GtkWidget, ptr: ?*anyopaque) callconv(.C) void {
-    const allocation = @ptrCast(?*c.GtkAllocation, @alignCast(@alignOf(c.GtkAllocation), ptr));
+    const allocation = @as(?*c.GtkAllocation, @ptrCast(@alignCast(ptr)));
     c.gtk_widget_size_allocate(child, allocation);
 }
 
 fn wbin_size_allocate(widget: ?*c.GtkWidget, allocation: ?*c.GtkAllocation) callconv(.C) void {
     c.gtk_widget_set_allocation(widget, allocation);
-    c.gtk_container_forall(@ptrCast(?*c.GtkContainer, widget), wbin_child_allocate, allocation);
+    c.gtk_container_forall(@as(?*c.GtkContainer, @ptrCast(widget)), wbin_child_allocate, allocation);
 }
 
 export fn wbin_init(wbin: *WBin, class: *WBinClass) void {
@@ -151,5 +151,5 @@ export fn wbin_init(wbin: *WBin, class: *WBinClass) void {
 }
 
 pub fn wbin_new() ?*c.GtkWidget {
-    return @ptrCast(?*c.GtkWidget, @alignCast(@alignOf(c.GtkWidget), c.g_object_new(wbin_get_type(), null)));
+    return @as(?*c.GtkWidget, @ptrCast(@alignCast(c.g_object_new(wbin_get_type(), null))));
 }

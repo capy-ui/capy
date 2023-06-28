@@ -67,11 +67,11 @@ pub const IPdfRendererNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPdfRendererNative_RenderPageToSurface(self: *const T, pdfPage: ?*IUnknown, pSurface: ?*IDXGISurface, offset: POINT, pRenderParams: ?*PDF_RENDER_PARAMS) HRESULT {
-                return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToSurface(@ptrCast(*const IPdfRendererNative, self), pdfPage, pSurface, offset, pRenderParams);
+                return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToSurface(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pSurface, offset, pRenderParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPdfRendererNative_RenderPageToDeviceContext(self: *const T, pdfPage: ?*IUnknown, pD2DDeviceContext: ?*ID2D1DeviceContext, pRenderParams: ?*PDF_RENDER_PARAMS) HRESULT {
-                return @ptrCast(*const IPdfRendererNative.VTable, self.vtable).RenderPageToDeviceContext(@ptrCast(*const IPdfRendererNative, self), pdfPage, pD2DDeviceContext, pRenderParams);
+                return @as(*const IPdfRendererNative.VTable, @ptrCast(self.vtable)).RenderPageToDeviceContext(@as(*const IPdfRendererNative, @ptrCast(self)), pdfPage, pD2DDeviceContext, pRenderParams);
             }
         };
     }

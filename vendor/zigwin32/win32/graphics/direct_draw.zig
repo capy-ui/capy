@@ -1799,83 +1799,83 @@ pub const IDirectDraw = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_Compact(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).Compact(@ptrCast(*const IDirectDraw, self));
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_CreateClipper(self: *const T, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).CreateClipper(@ptrCast(*const IDirectDraw, self), param0, param1, param2);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_CreatePalette(self: *const T, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).CreatePalette(@ptrCast(*const IDirectDraw, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_CreateSurface(self: *const T, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).CreateSurface(@ptrCast(*const IDirectDraw, self), param0, param1, param2);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_DuplicateSurface(self: *const T, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw, self), param0, param1);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_FlipToGDISurface(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).FlipToGDISurface(@ptrCast(*const IDirectDraw, self));
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetCaps(self: *const T, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDraw, self), param0, param1);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetDisplayMode(self: *const T, param0: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetFourCCCodes(self: *const T, param0: ?*u32, param1: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetFourCCCodes(@ptrCast(*const IDirectDraw, self), param0, param1);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetGDISurface(self: *const T, param0: ?*?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetGDISurface(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetMonitorFrequency(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetMonitorFrequency(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetScanLine(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetScanLine(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_GetVerticalBlankStatus(self: *const T, param0: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).GetVerticalBlankStatus(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_Initialize(self: *const T, param0: ?*Guid) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDraw, self), param0);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_RestoreDisplayMode(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).RestoreDisplayMode(@ptrCast(*const IDirectDraw, self));
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectDraw, self), param0, param1);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_SetDisplayMode(self: *const T, param0: u32, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).SetDisplayMode(@ptrCast(*const IDirectDraw, self), param0, param1, param2);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw_WaitForVerticalBlank(self: *const T, param0: u32, param1: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDraw.VTable, self.vtable).WaitForVerticalBlank(@ptrCast(*const IDirectDraw, self), param0, param1);
+                return @as(*const IDirectDraw.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -2146,87 +2146,87 @@ pub const IDirectDraw2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_Compact(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).Compact(@ptrCast(*const IDirectDraw2, self));
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_CreateClipper(self: *const T, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).CreateClipper(@ptrCast(*const IDirectDraw2, self), param0, param1, param2);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_CreatePalette(self: *const T, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).CreatePalette(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_CreateSurface(self: *const T, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).CreateSurface(@ptrCast(*const IDirectDraw2, self), param0, param1, param2);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_DuplicateSurface(self: *const T, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw2, self), param0, param1);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_FlipToGDISurface(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).FlipToGDISurface(@ptrCast(*const IDirectDraw2, self));
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetCaps(self: *const T, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDraw2, self), param0, param1);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetDisplayMode(self: *const T, param0: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetFourCCCodes(self: *const T, param0: ?*u32, param1: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetFourCCCodes(@ptrCast(*const IDirectDraw2, self), param0, param1);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetGDISurface(self: *const T, param0: ?*?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetGDISurface(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetMonitorFrequency(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetMonitorFrequency(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetScanLine(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetScanLine(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetVerticalBlankStatus(self: *const T, param0: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetVerticalBlankStatus(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_Initialize(self: *const T, param0: ?*Guid) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDraw2, self), param0);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_RestoreDisplayMode(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).RestoreDisplayMode(@ptrCast(*const IDirectDraw2, self));
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectDraw2, self), param0, param1);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_SetDisplayMode(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).SetDisplayMode(@ptrCast(*const IDirectDraw2, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_WaitForVerticalBlank(self: *const T, param0: u32, param1: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).WaitForVerticalBlank(@ptrCast(*const IDirectDraw2, self), param0, param1);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw2_GetAvailableVidMem(self: *const T, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw2.VTable, self.vtable).GetAvailableVidMem(@ptrCast(*const IDirectDraw2, self), param0, param1, param2);
+                return @as(*const IDirectDraw2.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw2, @ptrCast(self)), param0, param1, param2);
             }
         };
     }
@@ -2537,103 +2537,103 @@ pub const IDirectDraw4 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_Compact(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).Compact(@ptrCast(*const IDirectDraw4, self));
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_CreateClipper(self: *const T, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).CreateClipper(@ptrCast(*const IDirectDraw4, self), param0, param1, param2);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_CreatePalette(self: *const T, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).CreatePalette(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_CreateSurface(self: *const T, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).CreateSurface(@ptrCast(*const IDirectDraw4, self), param0, param1, param2);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_DuplicateSurface(self: *const T, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_FlipToGDISurface(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).FlipToGDISurface(@ptrCast(*const IDirectDraw4, self));
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetCaps(self: *const T, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetDisplayMode(self: *const T, param0: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetFourCCCodes(self: *const T, param0: ?*u32, param1: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetFourCCCodes(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetGDISurface(self: *const T, param0: ?*?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetGDISurface(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetMonitorFrequency(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetMonitorFrequency(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetScanLine(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetScanLine(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetVerticalBlankStatus(self: *const T, param0: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetVerticalBlankStatus(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_Initialize(self: *const T, param0: ?*Guid) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDraw4, self), param0);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_RestoreDisplayMode(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).RestoreDisplayMode(@ptrCast(*const IDirectDraw4, self));
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_SetDisplayMode(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).SetDisplayMode(@ptrCast(*const IDirectDraw4, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_WaitForVerticalBlank(self: *const T, param0: u32, param1: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).WaitForVerticalBlank(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetAvailableVidMem(self: *const T, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetAvailableVidMem(@ptrCast(*const IDirectDraw4, self), param0, param1, param2);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetSurfaceFromDC(self: *const T, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetSurfaceFromDC(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetSurfaceFromDC(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_RestoreAllSurfaces(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).RestoreAllSurfaces(@ptrCast(*const IDirectDraw4, self));
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).RestoreAllSurfaces(@as(*const IDirectDraw4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_TestCooperativeLevel(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).TestCooperativeLevel(@ptrCast(*const IDirectDraw4, self));
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirectDraw4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw4_GetDeviceIdentifier(self: *const T, param0: ?*DDDEVICEIDENTIFIER, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw4.VTable, self.vtable).GetDeviceIdentifier(@ptrCast(*const IDirectDraw4, self), param0, param1);
+                return @as(*const IDirectDraw4.VTable, @ptrCast(self.vtable)).GetDeviceIdentifier(@as(*const IDirectDraw4, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -2970,111 +2970,111 @@ pub const IDirectDraw7 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_Compact(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).Compact(@ptrCast(*const IDirectDraw7, self));
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectDraw7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_CreateClipper(self: *const T, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).CreateClipper(@ptrCast(*const IDirectDraw7, self), param0, param1, param2);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreateClipper(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_CreatePalette(self: *const T, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).CreatePalette(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreatePalette(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_CreateSurface(self: *const T, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).CreateSurface(@ptrCast(*const IDirectDraw7, self), param0, param1, param2);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_DuplicateSurface(self: *const T, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).DuplicateSurface(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).DuplicateSurface(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_EnumDisplayModes(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).EnumDisplayModes(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EnumDisplayModes(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_EnumSurfaces(self: *const T, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).EnumSurfaces(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EnumSurfaces(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_FlipToGDISurface(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).FlipToGDISurface(@ptrCast(*const IDirectDraw7, self));
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).FlipToGDISurface(@as(*const IDirectDraw7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetCaps(self: *const T, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetDisplayMode(self: *const T, param0: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetDisplayMode(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetFourCCCodes(self: *const T, param0: ?*u32, param1: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetFourCCCodes(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetFourCCCodes(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetGDISurface(self: *const T, param0: ?*?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetGDISurface(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetGDISurface(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetMonitorFrequency(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetMonitorFrequency(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetMonitorFrequency(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetScanLine(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetScanLine(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetScanLine(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetVerticalBlankStatus(self: *const T, param0: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetVerticalBlankStatus(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetVerticalBlankStatus(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_Initialize(self: *const T, param0: ?*Guid) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDraw7, self), param0);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDraw7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_RestoreDisplayMode(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).RestoreDisplayMode(@ptrCast(*const IDirectDraw7, self));
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).RestoreDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_SetCooperativeLevel(self: *const T, param0: ?HWND, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_SetDisplayMode(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).SetDisplayMode(@ptrCast(*const IDirectDraw7, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).SetDisplayMode(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_WaitForVerticalBlank(self: *const T, param0: u32, param1: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).WaitForVerticalBlank(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).WaitForVerticalBlank(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetAvailableVidMem(self: *const T, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetAvailableVidMem(@ptrCast(*const IDirectDraw7, self), param0, param1, param2);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetAvailableVidMem(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetSurfaceFromDC(self: *const T, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetSurfaceFromDC(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetSurfaceFromDC(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_RestoreAllSurfaces(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).RestoreAllSurfaces(@ptrCast(*const IDirectDraw7, self));
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).RestoreAllSurfaces(@as(*const IDirectDraw7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_TestCooperativeLevel(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).TestCooperativeLevel(@ptrCast(*const IDirectDraw7, self));
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).TestCooperativeLevel(@as(*const IDirectDraw7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_GetDeviceIdentifier(self: *const T, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).GetDeviceIdentifier(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).GetDeviceIdentifier(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_StartModeTest(self: *const T, param0: ?*SIZE, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).StartModeTest(@ptrCast(*const IDirectDraw7, self), param0, param1, param2);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).StartModeTest(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDraw7_EvaluateMode(self: *const T, param0: u32, param1: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDraw7.VTable, self.vtable).EvaluateMode(@ptrCast(*const IDirectDraw7, self), param0, param1);
+                return @as(*const IDirectDraw7.VTable, @ptrCast(self.vtable)).EvaluateMode(@as(*const IDirectDraw7, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -3149,19 +3149,19 @@ pub const IDirectDrawPalette = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawPalette_GetCaps(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawPalette.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawPalette, self), param0);
+                return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawPalette, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawPalette_GetEntries(self: *const T, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) HRESULT {
-                return @ptrCast(*const IDirectDrawPalette.VTable, self.vtable).GetEntries(@ptrCast(*const IDirectDrawPalette, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).GetEntries(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawPalette_Initialize(self: *const T, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) HRESULT {
-                return @ptrCast(*const IDirectDrawPalette.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawPalette, self), param0, param1, param2);
+                return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawPalette_SetEntries(self: *const T, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) HRESULT {
-                return @ptrCast(*const IDirectDrawPalette.VTable, self.vtable).SetEntries(@ptrCast(*const IDirectDrawPalette, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawPalette.VTable, @ptrCast(self.vtable)).SetEntries(@as(*const IDirectDrawPalette, @ptrCast(self)), param0, param1, param2, param3);
             }
         };
     }
@@ -3250,27 +3250,27 @@ pub const IDirectDrawClipper = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_GetClipList(self: *const T, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).GetClipList(@ptrCast(*const IDirectDrawClipper, self), param0, param1, param2);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).GetClipList(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_GetHWnd(self: *const T, param0: ?*?HWND) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).GetHWnd(@ptrCast(*const IDirectDrawClipper, self), param0);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).GetHWnd(@as(*const IDirectDrawClipper, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_Initialize(self: *const T, param0: ?*IDirectDraw, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawClipper, self), param0, param1);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_IsClipListChanged(self: *const T, param0: ?*BOOL) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).IsClipListChanged(@ptrCast(*const IDirectDrawClipper, self), param0);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).IsClipListChanged(@as(*const IDirectDrawClipper, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_SetClipList(self: *const T, param0: ?*RGNDATA, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).SetClipList(@ptrCast(*const IDirectDrawClipper, self), param0, param1);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).SetClipList(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawClipper_SetHWnd(self: *const T, param0: u32, param1: ?HWND) HRESULT {
-                return @ptrCast(*const IDirectDrawClipper.VTable, self.vtable).SetHWnd(@ptrCast(*const IDirectDrawClipper, self), param0, param1);
+                return @as(*const IDirectDrawClipper.VTable, @ptrCast(self.vtable)).SetHWnd(@as(*const IDirectDrawClipper, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -3673,135 +3673,135 @@ pub const IDirectDrawSurface = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_AddAttachedSurface(self: *const T, param0: ?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).AddAttachedSurface(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_AddOverlayDirtyRect(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).AddOverlayDirtyRect(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Blt(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Blt(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_BltBatch(self: *const T, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).BltBatch(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_BltFast(self: *const T, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).BltFast(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_DeleteAttachedSurface(self: *const T, param0: u32, param1: ?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Flip(self: *const T, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetAttachedSurface(self: *const T, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetAttachedSurface(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetBltStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetBltStatus(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetCaps(self: *const T, param0: ?*DDSCAPS) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetClipper(self: *const T, param0: ?*?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetClipper(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetColorKey(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetDC(self: *const T, param0: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetDC(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetFlipStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetFlipStatus(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetOverlayPosition(self: *const T, param0: ?*i32, param1: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetOverlayPosition(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetPalette(self: *const T, param0: ?*?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetPalette(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetPixelFormat(self: *const T, param0: ?*DDPIXELFORMAT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_GetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).GetSurfaceDesc(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Initialize(self: *const T, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_IsLost(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).IsLost(@ptrCast(*const IDirectDrawSurface, self));
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Lock(self: *const T, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Lock(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_ReleaseDC(self: *const T, param0: ?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Restore(@ptrCast(*const IDirectDrawSurface, self));
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_SetClipper(self: *const T, param0: ?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).SetClipper(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_SetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).SetColorKey(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_SetOverlayPosition(self: *const T, param0: i32, param1: i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).SetOverlayPosition(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_SetPalette(self: *const T, param0: ?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_Unlock(self: *const T, param0: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_UpdateOverlay(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).UpdateOverlay(@ptrCast(*const IDirectDrawSurface, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_UpdateOverlayDisplay(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).UpdateOverlayDisplay(@ptrCast(*const IDirectDrawSurface, self), param0);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface_UpdateOverlayZOrder(self: *const T, param0: u32, param1: ?*IDirectDrawSurface) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface, self), param0, param1);
+                return @as(*const IDirectDrawSurface.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -4234,147 +4234,147 @@ pub const IDirectDrawSurface2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_AddAttachedSurface(self: *const T, param0: ?*IDirectDrawSurface2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).AddAttachedSurface(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_AddOverlayDirtyRect(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).AddOverlayDirtyRect(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Blt(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Blt(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_BltBatch(self: *const T, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).BltBatch(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_BltFast(self: *const T, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).BltFast(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_DeleteAttachedSurface(self: *const T, param0: u32, param1: ?*IDirectDrawSurface2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Flip(self: *const T, param0: ?*IDirectDrawSurface2, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetAttachedSurface(self: *const T, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetAttachedSurface(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetBltStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetBltStatus(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetCaps(self: *const T, param0: ?*DDSCAPS) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetClipper(self: *const T, param0: ?*?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetClipper(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetColorKey(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetDC(self: *const T, param0: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetDC(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetFlipStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetFlipStatus(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetOverlayPosition(self: *const T, param0: ?*i32, param1: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetOverlayPosition(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetPalette(self: *const T, param0: ?*?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetPalette(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetPixelFormat(self: *const T, param0: ?*DDPIXELFORMAT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetSurfaceDesc(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Initialize(self: *const T, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_IsLost(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).IsLost(@ptrCast(*const IDirectDrawSurface2, self));
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Lock(self: *const T, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Lock(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_ReleaseDC(self: *const T, param0: ?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Restore(@ptrCast(*const IDirectDrawSurface2, self));
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_SetClipper(self: *const T, param0: ?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).SetClipper(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_SetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).SetColorKey(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_SetOverlayPosition(self: *const T, param0: i32, param1: i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).SetOverlayPosition(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_SetPalette(self: *const T, param0: ?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_Unlock(self: *const T, param0: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_UpdateOverlay(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).UpdateOverlay(@ptrCast(*const IDirectDrawSurface2, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_UpdateOverlayDisplay(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).UpdateOverlayDisplay(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_UpdateOverlayZOrder(self: *const T, param0: u32, param1: ?*IDirectDrawSurface2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface2, self), param0, param1);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_GetDDInterface(self: *const T, param0: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_PageLock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).PageLock(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface2_PageUnlock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface2.VTable, self.vtable).PageUnlock(@ptrCast(*const IDirectDrawSurface2, self), param0);
+                return @as(*const IDirectDrawSurface2.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface2, @ptrCast(self)), param0);
             }
         };
     }
@@ -4819,151 +4819,151 @@ pub const IDirectDrawSurface3 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_AddAttachedSurface(self: *const T, param0: ?*IDirectDrawSurface3) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).AddAttachedSurface(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_AddOverlayDirtyRect(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).AddOverlayDirtyRect(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Blt(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Blt(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_BltBatch(self: *const T, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).BltBatch(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_BltFast(self: *const T, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).BltFast(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_DeleteAttachedSurface(self: *const T, param0: u32, param1: ?*IDirectDrawSurface3) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Flip(self: *const T, param0: ?*IDirectDrawSurface3, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetAttachedSurface(self: *const T, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetAttachedSurface(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetBltStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetBltStatus(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetCaps(self: *const T, param0: ?*DDSCAPS) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetClipper(self: *const T, param0: ?*?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetClipper(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetColorKey(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetDC(self: *const T, param0: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetDC(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetFlipStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetFlipStatus(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetOverlayPosition(self: *const T, param0: ?*i32, param1: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetOverlayPosition(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetPalette(self: *const T, param0: ?*?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetPalette(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetPixelFormat(self: *const T, param0: ?*DDPIXELFORMAT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetSurfaceDesc(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Initialize(self: *const T, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_IsLost(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).IsLost(@ptrCast(*const IDirectDrawSurface3, self));
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Lock(self: *const T, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Lock(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_ReleaseDC(self: *const T, param0: ?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Restore(@ptrCast(*const IDirectDrawSurface3, self));
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_SetClipper(self: *const T, param0: ?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetClipper(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_SetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetColorKey(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_SetOverlayPosition(self: *const T, param0: i32, param1: i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetOverlayPosition(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_SetPalette(self: *const T, param0: ?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_Unlock(self: *const T, param0: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_UpdateOverlay(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).UpdateOverlay(@ptrCast(*const IDirectDrawSurface3, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_UpdateOverlayDisplay(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).UpdateOverlayDisplay(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_UpdateOverlayZOrder(self: *const T, param0: u32, param1: ?*IDirectDrawSurface3) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_GetDDInterface(self: *const T, param0: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_PageLock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).PageLock(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_PageUnlock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).PageUnlock(@ptrCast(*const IDirectDrawSurface3, self), param0);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface3_SetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface3.VTable, self.vtable).SetSurfaceDesc(@ptrCast(*const IDirectDrawSurface3, self), param0, param1);
+                return @as(*const IDirectDrawSurface3.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface3, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -5466,171 +5466,171 @@ pub const IDirectDrawSurface4 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_AddAttachedSurface(self: *const T, param0: ?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).AddAttachedSurface(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_AddOverlayDirtyRect(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).AddOverlayDirtyRect(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Blt(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Blt(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_BltBatch(self: *const T, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).BltBatch(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_BltFast(self: *const T, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).BltFast(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_DeleteAttachedSurface(self: *const T, param0: u32, param1: ?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Flip(self: *const T, param0: ?*IDirectDrawSurface4, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetAttachedSurface(self: *const T, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetAttachedSurface(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetBltStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetBltStatus(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetCaps(self: *const T, param0: ?*DDSCAPS2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetClipper(self: *const T, param0: ?*?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetClipper(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetColorKey(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetDC(self: *const T, param0: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetDC(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetFlipStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetFlipStatus(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetOverlayPosition(self: *const T, param0: ?*i32, param1: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetOverlayPosition(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetPalette(self: *const T, param0: ?*?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetPalette(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetPixelFormat(self: *const T, param0: ?*DDPIXELFORMAT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetSurfaceDesc(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Initialize(self: *const T, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_IsLost(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).IsLost(@ptrCast(*const IDirectDrawSurface4, self));
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Lock(self: *const T, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Lock(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_ReleaseDC(self: *const T, param0: ?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Restore(@ptrCast(*const IDirectDrawSurface4, self));
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetClipper(self: *const T, param0: ?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetClipper(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetColorKey(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetOverlayPosition(self: *const T, param0: i32, param1: i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetOverlayPosition(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetPalette(self: *const T, param0: ?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_Unlock(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_UpdateOverlay(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).UpdateOverlay(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_UpdateOverlayDisplay(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).UpdateOverlayDisplay(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_UpdateOverlayZOrder(self: *const T, param0: u32, param1: ?*IDirectDrawSurface4) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetDDInterface(self: *const T, param0: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_PageLock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).PageLock(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_PageUnlock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).PageUnlock(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC2, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetSurfaceDesc(@ptrCast(*const IDirectDrawSurface4, self), param0, param1);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirectDrawSurface4, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_FreePrivateData(self: *const T, param0: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).FreePrivateData(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_GetUniquenessValue(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).GetUniquenessValue(@ptrCast(*const IDirectDrawSurface4, self), param0);
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).GetUniquenessValue(@as(*const IDirectDrawSurface4, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface4_ChangeUniquenessValue(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface4.VTable, self.vtable).ChangeUniquenessValue(@ptrCast(*const IDirectDrawSurface4, self));
+                return @as(*const IDirectDrawSurface4.VTable, @ptrCast(self.vtable)).ChangeUniquenessValue(@as(*const IDirectDrawSurface4, @ptrCast(self)));
             }
         };
     }
@@ -6173,187 +6173,187 @@ pub const IDirectDrawSurface7 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_AddAttachedSurface(self: *const T, param0: ?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).AddAttachedSurface(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).AddAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_AddOverlayDirtyRect(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).AddOverlayDirtyRect(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).AddOverlayDirtyRect(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Blt(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Blt(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Blt(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_BltBatch(self: *const T, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).BltBatch(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).BltBatch(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_BltFast(self: *const T, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).BltFast(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).BltFast(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_DeleteAttachedSurface(self: *const T, param0: u32, param1: ?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).DeleteAttachedSurface(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).DeleteAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_EnumAttachedSurfaces(self: *const T, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).EnumAttachedSurfaces(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).EnumAttachedSurfaces(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_EnumOverlayZOrders(self: *const T, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).EnumOverlayZOrders(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).EnumOverlayZOrders(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Flip(self: *const T, param0: ?*IDirectDrawSurface7, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetAttachedSurface(self: *const T, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetAttachedSurface(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetAttachedSurface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetBltStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetBltStatus(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetBltStatus(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetCaps(self: *const T, param0: ?*DDSCAPS2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetClipper(self: *const T, param0: ?*?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetClipper(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetClipper(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetColorKey(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetColorKey(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetDC(self: *const T, param0: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetDC(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetFlipStatus(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetFlipStatus(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetFlipStatus(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetOverlayPosition(self: *const T, param0: ?*i32, param1: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetOverlayPosition(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetOverlayPosition(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetPalette(self: *const T, param0: ?*?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetPalette(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPalette(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetPixelFormat(self: *const T, param0: ?*DDPIXELFORMAT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetSurfaceDesc(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetSurfaceDesc(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Initialize(self: *const T, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Initialize(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_IsLost(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).IsLost(@ptrCast(*const IDirectDrawSurface7, self));
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).IsLost(@as(*const IDirectDrawSurface7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Lock(self: *const T, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Lock(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_ReleaseDC(self: *const T, param0: ?HDC) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Restore(@ptrCast(*const IDirectDrawSurface7, self));
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectDrawSurface7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetClipper(self: *const T, param0: ?*IDirectDrawClipper) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetClipper(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetClipper(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetColorKey(self: *const T, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetColorKey(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetColorKey(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetOverlayPosition(self: *const T, param0: i32, param1: i32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetOverlayPosition(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetOverlayPosition(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetPalette(self: *const T, param0: ?*IDirectDrawPalette) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetPalette(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPalette(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_Unlock(self: *const T, param0: ?*RECT) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).Unlock(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_UpdateOverlay(self: *const T, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).UpdateOverlay(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlay(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_UpdateOverlayDisplay(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).UpdateOverlayDisplay(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlayDisplay(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_UpdateOverlayZOrder(self: *const T, param0: u32, param1: ?*IDirectDrawSurface7) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).UpdateOverlayZOrder(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).UpdateOverlayZOrder(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetDDInterface(self: *const T, param0: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetDDInterface(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetDDInterface(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_PageLock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).PageLock(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).PageLock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_PageUnlock(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).PageUnlock(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).PageUnlock(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetSurfaceDesc(self: *const T, param0: ?*DDSURFACEDESC2, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetSurfaceDesc(@ptrCast(*const IDirectDrawSurface7, self), param0, param1);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetSurfaceDesc(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2, param3);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetPrivateData(self: *const T, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDirectDrawSurface7, self), param0, param1, param2);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_FreePrivateData(self: *const T, param0: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).FreePrivateData(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).FreePrivateData(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetUniquenessValue(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetUniquenessValue(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetUniquenessValue(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_ChangeUniquenessValue(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).ChangeUniquenessValue(@ptrCast(*const IDirectDrawSurface7, self));
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).ChangeUniquenessValue(@as(*const IDirectDrawSurface7, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetPriority(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetPriority(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetPriority(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetPriority(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_SetLOD(self: *const T, param0: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).SetLOD(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).SetLOD(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurface7_GetLOD(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawSurface7.VTable, self.vtable).GetLOD(@ptrCast(*const IDirectDrawSurface7, self), param0);
+                return @as(*const IDirectDrawSurface7.VTable, @ptrCast(self.vtable)).GetLOD(@as(*const IDirectDrawSurface7, @ptrCast(self)), param0);
             }
         };
     }
@@ -6392,11 +6392,11 @@ pub const IDirectDrawColorControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawColorControl_GetColorControls(self: *const T, param0: ?*DDCOLORCONTROL) HRESULT {
-                return @ptrCast(*const IDirectDrawColorControl.VTable, self.vtable).GetColorControls(@ptrCast(*const IDirectDrawColorControl, self), param0);
+                return @as(*const IDirectDrawColorControl.VTable, @ptrCast(self.vtable)).GetColorControls(@as(*const IDirectDrawColorControl, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawColorControl_SetColorControls(self: *const T, param0: ?*DDCOLORCONTROL) HRESULT {
-                return @ptrCast(*const IDirectDrawColorControl.VTable, self.vtable).SetColorControls(@ptrCast(*const IDirectDrawColorControl, self), param0);
+                return @as(*const IDirectDrawColorControl.VTable, @ptrCast(self.vtable)).SetColorControls(@as(*const IDirectDrawColorControl, @ptrCast(self)), param0);
             }
         };
     }
@@ -6439,11 +6439,11 @@ pub const IDirectDrawGammaControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawGammaControl_GetGammaRamp(self: *const T, param0: u32, param1: ?*DDGAMMARAMP) HRESULT {
-                return @ptrCast(*const IDirectDrawGammaControl.VTable, self.vtable).GetGammaRamp(@ptrCast(*const IDirectDrawGammaControl, self), param0, param1);
+                return @as(*const IDirectDrawGammaControl.VTable, @ptrCast(self.vtable)).GetGammaRamp(@as(*const IDirectDrawGammaControl, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawGammaControl_SetGammaRamp(self: *const T, param0: u32, param1: ?*DDGAMMARAMP) HRESULT {
-                return @ptrCast(*const IDirectDrawGammaControl.VTable, self.vtable).SetGammaRamp(@ptrCast(*const IDirectDrawGammaControl, self), param0, param1);
+                return @as(*const IDirectDrawGammaControl.VTable, @ptrCast(self.vtable)).SetGammaRamp(@as(*const IDirectDrawGammaControl, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -6627,19 +6627,19 @@ pub const IDDVideoPortContainer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDDVideoPortContainer_CreateVideoPort(self: *const T, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).CreateVideoPort(@ptrCast(*const IDDVideoPortContainer, self), param0, param1, param2, param3);
+                return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).CreateVideoPort(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDDVideoPortContainer_EnumVideoPorts(self: *const T, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) HRESULT {
-                return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).EnumVideoPorts(@ptrCast(*const IDDVideoPortContainer, self), param0, param1, param2, param3);
+                return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).EnumVideoPorts(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDDVideoPortContainer_GetVideoPortConnectInfo(self: *const T, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) HRESULT {
-                return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).GetVideoPortConnectInfo(@ptrCast(*const IDDVideoPortContainer, self), param0, pcInfo, param2);
+                return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).GetVideoPortConnectInfo(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, pcInfo, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDDVideoPortContainer_QueryVideoPortStatus(self: *const T, param0: u32, param1: ?*DDVIDEOPORTSTATUS) HRESULT {
-                return @ptrCast(*const IDDVideoPortContainer.VTable, self.vtable).QueryVideoPortStatus(@ptrCast(*const IDDVideoPortContainer, self), param0, param1);
+                return @as(*const IDDVideoPortContainer.VTable, @ptrCast(self.vtable)).QueryVideoPortStatus(@as(*const IDDVideoPortContainer, @ptrCast(self)), param0, param1);
             }
         };
     }
@@ -6822,59 +6822,59 @@ pub const IDirectDrawVideoPort = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_Flip(self: *const T, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).Flip(@ptrCast(*const IDirectDrawVideoPort, self), param0, param1);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).Flip(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetBandwidthInfo(self: *const T, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetBandwidthInfo(@ptrCast(*const IDirectDrawVideoPort, self), param0, param1, param2, param3, param4);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetBandwidthInfo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1, param2, param3, param4);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetColorControls(self: *const T, param0: ?*DDCOLORCONTROL) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetColorControls(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetColorControls(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetInputFormats(self: *const T, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetInputFormats(@ptrCast(*const IDirectDrawVideoPort, self), lpNumFormats, param1, param2);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetInputFormats(@as(*const IDirectDrawVideoPort, @ptrCast(self)), lpNumFormats, param1, param2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetOutputFormats(self: *const T, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetOutputFormats(@ptrCast(*const IDirectDrawVideoPort, self), param0, lpNumFormats, param2, param3);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetOutputFormats(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, lpNumFormats, param2, param3);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetFieldPolarity(self: *const T, param0: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetFieldPolarity(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetFieldPolarity(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetVideoLine(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetVideoLine(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetVideoLine(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_GetVideoSignalStatus(self: *const T, param0: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).GetVideoSignalStatus(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).GetVideoSignalStatus(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_SetColorControls(self: *const T, param0: ?*DDCOLORCONTROL) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).SetColorControls(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).SetColorControls(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_SetTargetSurface(self: *const T, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).SetTargetSurface(@ptrCast(*const IDirectDrawVideoPort, self), param0, param1);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).SetTargetSurface(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_StartVideo(self: *const T, param0: ?*DDVIDEOPORTINFO) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).StartVideo(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).StartVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_StopVideo(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).StopVideo(@ptrCast(*const IDirectDrawVideoPort, self));
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).StopVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_UpdateVideo(self: *const T, param0: ?*DDVIDEOPORTINFO) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).UpdateVideo(@ptrCast(*const IDirectDrawVideoPort, self), param0);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPort_WaitForSync(self: *const T, param0: u32, param1: u32, param2: u32) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPort.VTable, self.vtable).WaitForSync(@ptrCast(*const IDirectDrawVideoPort, self), param0, param1, param2);
+                return @as(*const IDirectDrawVideoPort.VTable, @ptrCast(self.vtable)).WaitForSync(@as(*const IDirectDrawVideoPort, @ptrCast(self)), param0, param1, param2);
             }
         };
     }
@@ -6915,11 +6915,11 @@ pub const IDirectDrawVideoPortNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPortNotify_AcquireNotification(self: *const T, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPortNotify.VTable, self.vtable).AcquireNotification(@ptrCast(*const IDirectDrawVideoPortNotify, self), param0, param1);
+                return @as(*const IDirectDrawVideoPortNotify.VTable, @ptrCast(self.vtable)).AcquireNotification(@as(*const IDirectDrawVideoPortNotify, @ptrCast(self)), param0, param1);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawVideoPortNotify_ReleaseNotification(self: *const T, param0: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectDrawVideoPortNotify.VTable, self.vtable).ReleaseNotification(@ptrCast(*const IDirectDrawVideoPortNotify, self), param0);
+                return @as(*const IDirectDrawVideoPortNotify.VTable, @ptrCast(self.vtable)).ReleaseNotification(@as(*const IDirectDrawVideoPortNotify, @ptrCast(self)), param0);
             }
         };
     }
@@ -7054,15 +7054,15 @@ pub const IDirectDrawKernel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawKernel_GetCaps(self: *const T, param0: ?*DDKERNELCAPS) HRESULT {
-                return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
+                return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectDrawKernel, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: ?*usize) HRESULT {
-                return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
+                return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).GetKernelHandle(@as(*const IDirectDrawKernel, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
+                return @as(*const IDirectDrawKernel.VTable, @ptrCast(self.vtable)).ReleaseKernelHandle(@as(*const IDirectDrawKernel, @ptrCast(self)));
             }
         };
     }
@@ -7099,11 +7099,11 @@ pub const IDirectDrawSurfaceKernel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: ?*usize) HRESULT {
-                return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
+                return @as(*const IDirectDrawSurfaceKernel.VTable, @ptrCast(self.vtable)).GetKernelHandle(@as(*const IDirectDrawSurfaceKernel, @ptrCast(self)), param0);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
+                return @as(*const IDirectDrawSurfaceKernel.VTable, @ptrCast(self.vtable)).ReleaseKernelHandle(@as(*const IDirectDrawSurfaceKernel, @ptrCast(self)));
             }
         };
     }

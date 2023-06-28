@@ -33,19 +33,19 @@ pub const TextField_Impl = struct {
 
     /// When the text is changed in the StringAtom
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @ptrFromInt(*TextField_Impl, userdata);
+        const self = @as(*TextField_Impl, @ptrFromInt(userdata));
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
     }
 
     fn wrapperReadOnlyChanged(newValue: bool, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.TextField, userdata);
+        const peer = @as(*?backend.TextField, @ptrFromInt(userdata));
         peer.*.?.setReadOnly(newValue);
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @ptrFromInt(*TextField_Impl, userdata);
+        const self = @as(*TextField_Impl, @ptrFromInt(userdata));
         const text = self.peer.?.getText();
 
         self._wrapperTextBlock.store(true, .Monotonic);

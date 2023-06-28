@@ -143,15 +143,15 @@ pub const IMediaBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaBuffer_SetLength(self: *const T, cbLength: u32) HRESULT {
-                return @ptrCast(*const IMediaBuffer.VTable, self.vtable).SetLength(@ptrCast(*const IMediaBuffer, self), cbLength);
+                return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IMediaBuffer, @ptrCast(self)), cbLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
+                return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IMediaBuffer, @ptrCast(self)), pcbMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
+                return @as(*const IMediaBuffer.VTable, @ptrCast(self.vtable)).GetBufferAndLength(@as(*const IMediaBuffer, @ptrCast(self)), ppBuffer, pcbLength);
             }
         };
     }
@@ -437,87 +437,87 @@ pub const IMediaObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetStreamCount(self: *const T, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMediaObject, self), pcInputStreams, pcOutputStreams);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMediaObject, @ptrCast(self)), pcInputStreams, pcOutputStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputStreamInfo(self: *const T, dwInputStreamIndex: u32, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pdwFlags);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputStreamInfo(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetOutputStreamInfo(self: *const T, dwOutputStreamIndex: u32, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pdwFlags);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputStreamInfo(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputType(self: *const T, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwTypeIndex, pmt);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, dwTypeIndex, pmt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetOutputType(self: *const T, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, dwTypeIndex, pmt);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, dwTypeIndex, pmt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_SetInputType(self: *const T, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt, dwFlags);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetInputType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pmt, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_SetOutputType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).SetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt, dwFlags);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetOutputType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pmt, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputCurrentType(self: *const T, dwInputStreamIndex: u32, pmt: ?*DMO_MEDIA_TYPE) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pmt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetOutputCurrentType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*DMO_MEDIA_TYPE) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pmt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputSizeInfo(self: *const T, dwInputStreamIndex: u32, pcbSize: ?*u32, pcbMaxLookahead: ?*u32, pcbAlignment: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputSizeInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputSizeInfo(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetOutputSizeInfo(self: *const T, dwOutputStreamIndex: u32, pcbSize: ?*u32, pcbAlignment: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputSizeInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pcbSize, pcbAlignment);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetOutputSizeInfo(@as(*const IMediaObject, @ptrCast(self)), dwOutputStreamIndex, pcbSize, pcbAlignment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, prtMaxLatency: ?*i64) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, prtMaxLatency);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputMaxLatency(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, prtMaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_SetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, rtMaxLatency: i64) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, rtMaxLatency);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).SetInputMaxLatency(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, rtMaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).Flush(@ptrCast(*const IMediaObject, self));
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMediaObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_Discontinuity(self: *const T, dwInputStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).Discontinuity(@ptrCast(*const IMediaObject, self), dwInputStreamIndex);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Discontinuity(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_AllocateStreamingResources(self: *const T) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).AllocateStreamingResources(@ptrCast(*const IMediaObject, self));
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).AllocateStreamingResources(@as(*const IMediaObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_FreeStreamingResources(self: *const T) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).FreeStreamingResources(@ptrCast(*const IMediaObject, self));
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).FreeStreamingResources(@as(*const IMediaObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_GetInputStatus(self: *const T, dwInputStreamIndex: u32, dwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwFlags);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).GetInputStatus(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_ProcessInput(self: *const T, dwInputStreamIndex: u32, pBuffer: ?*IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessInput(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMediaObject, @ptrCast(self)), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMediaObject, self), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMediaObject, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObject_Lock(self: *const T, bLock: i32) HRESULT {
-                return @ptrCast(*const IMediaObject.VTable, self.vtable).Lock(@ptrCast(*const IMediaObject, self), bLock);
+                return @as(*const IMediaObject.VTable, @ptrCast(self.vtable)).Lock(@as(*const IMediaObject, @ptrCast(self)), bLock);
             }
         };
     }
@@ -580,19 +580,19 @@ pub const IEnumDMO = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDMO_Next(self: *const T, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]?PWSTR, pcItemsFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumDMO.VTable, self.vtable).Next(@ptrCast(*const IEnumDMO, self), cItemsToFetch, pCLSID, Names, pcItemsFetched);
+                return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDMO, @ptrCast(self)), cItemsToFetch, pCLSID, Names, pcItemsFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDMO_Skip(self: *const T, cItemsToSkip: u32) HRESULT {
-                return @ptrCast(*const IEnumDMO.VTable, self.vtable).Skip(@ptrCast(*const IEnumDMO, self), cItemsToSkip);
+                return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDMO, @ptrCast(self)), cItemsToSkip);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDMO_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumDMO.VTable, self.vtable).Reset(@ptrCast(*const IEnumDMO, self));
+                return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDMO, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDMO_Clone(self: *const T, ppEnum: ?*?*IEnumDMO) HRESULT {
-                return @ptrCast(*const IEnumDMO.VTable, self.vtable).Clone(@ptrCast(*const IEnumDMO, self), ppEnum);
+                return @as(*const IEnumDMO.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDMO, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -656,15 +656,15 @@ pub const IMediaObjectInPlace = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObjectInPlace_Process(self: *const T, ulSize: u32, pData: ?*u8, refTimeStart: i64, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Process(@ptrCast(*const IMediaObjectInPlace, self), ulSize, pData, refTimeStart, dwFlags);
+                return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).Process(@as(*const IMediaObjectInPlace, @ptrCast(self)), ulSize, pData, refTimeStart, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObjectInPlace_Clone(self: *const T, ppMediaObject: ?*?*IMediaObjectInPlace) HRESULT {
-                return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Clone(@ptrCast(*const IMediaObjectInPlace, self), ppMediaObject);
+                return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMediaObjectInPlace, @ptrCast(self)), ppMediaObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMediaObjectInPlace_GetLatency(self: *const T, pLatencyTime: ?*i64) HRESULT {
-                return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).GetLatency(@ptrCast(*const IMediaObjectInPlace, self), pLatencyTime);
+                return @as(*const IMediaObjectInPlace.VTable, @ptrCast(self.vtable)).GetLatency(@as(*const IMediaObjectInPlace, @ptrCast(self)), pLatencyTime);
             }
         };
     }
@@ -718,15 +718,15 @@ pub const IDMOQualityControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOQualityControl_SetNow(self: *const T, rtNow: i64) HRESULT {
-                return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetNow(@ptrCast(*const IDMOQualityControl, self), rtNow);
+                return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).SetNow(@as(*const IDMOQualityControl, @ptrCast(self)), rtNow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOQualityControl_SetStatus(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetStatus(@ptrCast(*const IDMOQualityControl, self), dwFlags);
+                return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IDMOQualityControl, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOQualityControl_GetStatus(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).GetStatus(@ptrCast(*const IDMOQualityControl, self), pdwFlags);
+                return @as(*const IDMOQualityControl.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDMOQualityControl, @ptrCast(self)), pdwFlags);
             }
         };
     }
@@ -798,19 +798,19 @@ pub const IDMOVideoOutputOptimizations = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOVideoOutputOptimizations_QueryOperationModePreferences(self: *const T, ulOutputStreamIndex: u32, pdwRequestedCapabilities: ?*u32) HRESULT {
-                return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).QueryOperationModePreferences(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedCapabilities);
+                return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).QueryOperationModePreferences(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwRequestedCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOVideoOutputOptimizations_SetOperationMode(self: *const T, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) HRESULT {
-                return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).SetOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, dwEnabledFeatures);
+                return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).SetOperationMode(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, dwEnabledFeatures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOVideoOutputOptimizations_GetCurrentOperationMode(self: *const T, ulOutputStreamIndex: u32, pdwEnabledFeatures: ?*u32) HRESULT {
-                return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwEnabledFeatures);
+                return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).GetCurrentOperationMode(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwEnabledFeatures);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDMOVideoOutputOptimizations_GetCurrentSampleRequirements(self: *const T, ulOutputStreamIndex: u32, pdwRequestedFeatures: ?*u32) HRESULT {
-                return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentSampleRequirements(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedFeatures);
+                return @as(*const IDMOVideoOutputOptimizations.VTable, @ptrCast(self.vtable)).GetCurrentSampleRequirements(@as(*const IDMOVideoOutputOptimizations, @ptrCast(self)), ulOutputStreamIndex, pdwRequestedFeatures);
             }
         };
     }

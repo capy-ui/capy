@@ -5,7 +5,7 @@ const lasting_allocator = internal.lasting_allocator;
 
 /// Linear interpolation between floats a and b with factor t.
 fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
-    return a * (1 - @floatCast(@TypeOf(a), t)) + b * @floatCast(@TypeOf(a), t);
+    return a * (1 - @as(@TypeOf(a), @floatCast(t))) + b * @as(@TypeOf(a), @floatCast(t));
 }
 
 /// Linear interpolation between any two values a and b with factor t.
@@ -16,7 +16,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     if (comptime std.meta.trait.isNumber(T)) {
         const a_casted = blk: {
             if (comptime std.meta.trait.isIntegral(T)) {
-                break :blk @floatFromInt(f64, a);
+                break :blk @as(f64, @floatFromInt(a));
             } else {
                 break :blk a;
             }
@@ -24,7 +24,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 
         const b_casted = blk: {
             if (comptime std.meta.trait.isIntegral(T)) {
-                break :blk @floatFromInt(f64, b);
+                break :blk @as(f64, @floatFromInt(b));
             } else {
                 break :blk b;
             }
@@ -32,7 +32,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 
         const result = lerpFloat(a_casted, b_casted, t);
         if (comptime std.meta.trait.isIntegral(T)) {
-            return @intFromFloat(T, @round(result));
+            return @as(T, @intFromFloat(@round(result)));
         } else {
             return result;
         }
@@ -80,8 +80,8 @@ pub fn Animation(comptime T: type) type {
 
         /// Get the current value from the animation
         pub fn get(self: @This()) T {
-            const maxDiff = @floatFromInt(f64, self.duration);
-            const diff = @floatFromInt(f64, std.time.milliTimestamp() - self.start);
+            const maxDiff = @as(f64, @floatFromInt(self.duration));
+            const diff = @as(f64, @floatFromInt(std.time.milliTimestamp() - self.start));
             var t = diff / maxDiff;
             // Clamp t to [0, 1]
             t = std.math.clamp(t, 0.0, 1.0);
@@ -202,14 +202,14 @@ pub fn Atom(comptime T: type) type {
 
             const animate_fn = struct {
                 fn a(new_value: T, int: usize) void {
-                    const ptr = @ptrFromInt(*AnimationParameters, int);
+                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
                     ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
                 }
             }.a;
 
             const destroy_fn = struct {
                 fn a(_: T, int: usize) void {
-                    const ptr = @ptrFromInt(*AnimationParameters, int);
+                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
                     const allocator = lasting_allocator;
                     allocator.destroy(ptr);
                 }
@@ -259,7 +259,7 @@ pub fn Atom(comptime T: type) type {
             const currentValue = self.get();
             self.value = .{ .Animated = Animation(T){
                 .start = time,
-                .duration = @intCast(u32, duration),
+                .duration = @as(u32, @intCast(duration)),
                 .min = currentValue,
                 .max = target,
                 .animFn = anim,
@@ -270,13 +270,13 @@ pub fn Atom(comptime T: type) type {
             defer _animatedAtomsMutex.unlock();
 
             for (_animatedAtoms.items) |item| {
-                if (@ptrCast(*anyopaque, self) == item.userdata) {
+                if (@as(*anyopaque, @ptrCast(self)) == item.userdata) {
                     contains = true;
                     break;
                 }
             }
             if (!contains) {
-                _animatedAtoms.append(.{ .fnPtr = @ptrCast(*const fn (*anyopaque) bool, &Self.update), .userdata = self }) catch {};
+                _animatedAtoms.append(.{ .fnPtr = @as(*const fn (*anyopaque) bool, @ptrCast(&Self.update)), .userdata = self }) catch {};
             }
         }
 
@@ -480,7 +480,7 @@ pub fn Atom(comptime T: type) type {
 
             const handler = struct {
                 fn handler(data_wrapper: *Self, fn_ptr: ?*const anyopaque, wrappers: []?*anyopaque) void {
-                    const callback = @ptrCast(FunctionType, fn_ptr);
+                    const callback = @as(FunctionType, @ptrCast(fn_ptr));
                     const ArgsTuple = std.meta.Tuple(&ValueTypes);
 
                     var args: ArgsTuple = undefined;
@@ -488,7 +488,7 @@ pub fn Atom(comptime T: type) type {
                     inline while (i < AtomTypes.len) : (i += 1) {
                         const wrapper_ptr = wrappers[i];
                         const AtomType = AtomTypes[i];
-                        const wrapper = @ptrCast(*AtomType, @alignCast(@alignOf(AtomType), wrapper_ptr));
+                        const wrapper = @as(*AtomType, @ptrCast(@alignCast(wrapper_ptr)));
                         const value = wrapper.get();
                         args[i] = value;
                     }
@@ -519,7 +519,7 @@ pub fn Atom(comptime T: type) type {
                     const WrapperValueType = ValueTypes[i];
                     const changeListener = struct {
                         fn changeListener(_: WrapperValueType, userdata: usize) void {
-                            const self_ptr = @ptrFromInt(*Self, userdata);
+                            const self_ptr = @as(*Self, @ptrFromInt(userdata));
                             handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers);
                         }
                     }.changeListener;
@@ -603,7 +603,7 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
         _ = try child.addChangeListener(.{ .userdata = @intFromPtr(self), .function = struct {
             fn callback(newValue: T, userdata: usize) void {
                 _ = newValue;
-                const ptr = @ptrFromInt(*Self, userdata);
+                const ptr = @as(*Self, @ptrFromInt(userdata));
                 format(ptr);
             }
         }.callback });

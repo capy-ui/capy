@@ -52,7 +52,7 @@ pub inline fn getEventUserData(peer: PeerType) *EventUserData {
 
     const Long = jni.findClass("java/lang/Long") catch unreachable;
     const value = Long.callLongMethod(tag, "longValue", "()J", .{}) catch unreachable;
-    return @ptrFromInt(*EventUserData, @bitCast(u64, value));
+    return @as(*EventUserData, @ptrFromInt(@as(u64, @bitCast(value))));
 }
 
 fn onClick(_: ?*anyopaque, jni: *android.JNI, _: android.jobject, args: android.jobjectArray) !android.jobject {
@@ -97,7 +97,7 @@ fn getEventListener(comptime name: [:0]const u8, comptime function: anytype, dat
     const invocation_handler_factory = try android.NativeInvocationHandler.init(jni, NativeInvocationHandlerClass);
 
     // Create a NativeInvocationHandler
-    const invocation_handler = try invocation_handler_factory.createAlloc(jni, theApp.allocator, data, @ptrCast(android.NativeInvocationHandler.InvokeFn, function));
+    const invocation_handler = try invocation_handler_factory.createAlloc(jni, theApp.allocator, data, @as(android.NativeInvocationHandler.InvokeFn, @ptrCast(function)));
 
     // Make an object array with 1 item, the android.view.View$OnClickListener interface class
     const interface_array = try jni.invokeJni(.NewObjectArray, .{
@@ -194,7 +194,7 @@ pub fn Events(comptime T: type) type {
         pub fn getWidth(self: *const T) c_int {
             const data = getEventUserData(self.peer);
             if (data.overridenSize) |size| {
-                return @intCast(c_int, size.width);
+                return @as(c_int, @intCast(size.width));
             }
 
             const jni = theApp.getJni();
@@ -206,7 +206,7 @@ pub fn Events(comptime T: type) type {
         pub fn getHeight(self: *const T) c_int {
             const data = getEventUserData(self.peer);
             if (data.overridenSize) |size| {
-                return @intCast(c_int, size.height);
+                return @as(c_int, @intCast(size.height));
             }
 
             const jni = theApp.getJni();
@@ -275,7 +275,7 @@ pub const Window = struct {
         self.source_dpi = 96;
         // TODO
         const resolution = @as(f32, 96.0);
-        self.scale = resolution / @floatFromInt(f32, dpi);
+        self.scale = resolution / @as(f32, @floatFromInt(dpi));
     }
 
     pub fn show(_: *Window) void {
@@ -412,7 +412,7 @@ pub const TextField = struct {
         const EditText = jni.findClass("android/widget/EditText") catch unreachable;
         const text = EditText.callObjectMethod(self.peer, "getText", "()Landroid/text/Editable;", .{}) catch unreachable;
         const string = jni.callObjectMethod(text, "toString", "()Ljava/lang/String;", .{}) catch unreachable;
-        const length = @intCast(usize, jni.invokeJniNoException(.GetStringUTFLength, .{string}));
+        const length = @as(usize, @intCast(jni.invokeJniNoException(.GetStringUTFLength, .{string})));
         const chars = jni.invokeJniNoException(.GetStringUTFChars, .{ string, null });
         // TODO: call ReleaseStringUTFChars
         return chars[0..length];
@@ -484,10 +484,10 @@ pub const Canvas = struct {
 
         pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
-                .red = @intFromFloat(u8, std.math.clamp(r, 0, 1) * 255),
-                .green = @intFromFloat(u8, std.math.clamp(g, 0, 1) * 255),
-                .blue = @intFromFloat(u8, std.math.clamp(b, 0, 1) * 255),
-                .alpha = @intFromFloat(u8, std.math.clamp(a, 0, 1) * 255),
+                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
+                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
+                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
+                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
             };
             self.setColorByte(color);
         }
@@ -497,10 +497,10 @@ pub const Canvas = struct {
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
             self.class.callVoidMethod(self.canvas, "drawRect", "(FFFFLandroid/graphics/Paint;)V", .{
-                @floatFromInt(f32, x),
-                @floatFromInt(f32, y),
-                @floatFromInt(f32, x + @intCast(i32, w)),
-                @floatFromInt(f32, y + @intCast(i32, h)),
+                @as(f32, @floatFromInt(x)),
+                @as(f32, @floatFromInt(y)),
+                @as(f32, @floatFromInt(x + @as(i32, @intCast(w)))),
+                @as(f32, @floatFromInt(y + @as(i32, @intCast(h)))),
                 self.paint,
             }) catch unreachable;
         }
@@ -526,10 +526,10 @@ pub const Canvas = struct {
 
         pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
             self.class.callVoidMethod(self.canvas, "drawLine", "(FFFFLandroid/graphics/Paint;)V", .{
-                @floatFromInt(f32, x1),
-                @floatFromInt(f32, y1),
-                @floatFromInt(f32, x2),
-                @floatFromInt(f32, y2),
+                @as(f32, @floatFromInt(x1)),
+                @as(f32, @floatFromInt(y1)),
+                @as(f32, @floatFromInt(x2)),
+                @as(f32, @floatFromInt(y2)),
                 self.paint,
             }) catch unreachable;
         }
@@ -540,10 +540,10 @@ pub const Canvas = struct {
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
 
             self.class.callVoidMethod(self.canvas, "drawOval", "(FFFFLandroid/graphics/Paint;)V", .{
-                @floatFromInt(f32, x),
-                @floatFromInt(f32, y),
-                @floatFromInt(f32, x + @intCast(i32, w)),
-                @floatFromInt(f32, y + @intCast(i32, h)),
+                @as(f32, @floatFromInt(x)),
+                @as(f32, @floatFromInt(y)),
+                @as(f32, @floatFromInt(x + @as(i32, @intCast(w)))),
+                @as(f32, @floatFromInt(y + @as(i32, @intCast(h)))),
                 self.paint,
             }) catch unreachable;
         }
@@ -664,8 +664,8 @@ pub const Container = struct {
                 const params = View.callObjectMethod(peer, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;", .{}) catch unreachable;
 
                 const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams") catch unreachable;
-                LayoutParams.setIntField(params, "x", "I", @intCast(android.jint, x)) catch unreachable;
-                LayoutParams.setIntField(params, "y", "I", @intCast(android.jint, y)) catch unreachable;
+                LayoutParams.setIntField(params, "x", "I", @as(android.jint, @intCast(x))) catch unreachable;
+                LayoutParams.setIntField(params, "y", "I", @as(android.jint, @intCast(y))) catch unreachable;
 
                 const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout") catch unreachable;
                 AbsoluteLayout.callVoidMethod(self.peer, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", .{ peer, params }) catch unreachable;
@@ -682,8 +682,8 @@ pub const Container = struct {
                 const params = View.callObjectMethod(peer, "getLayoutParams", "()Landroid/view/ViewGroup$LayoutParams;", .{}) catch unreachable;
 
                 const LayoutParams = jni.findClass("android/widget/AbsoluteLayout$LayoutParams") catch unreachable;
-                LayoutParams.setIntField(params, "width", "I", @intCast(android.jint, w)) catch unreachable;
-                LayoutParams.setIntField(params, "height", "I", @intCast(android.jint, h)) catch unreachable;
+                LayoutParams.setIntField(params, "width", "I", @as(android.jint, @intCast(w))) catch unreachable;
+                LayoutParams.setIntField(params, "height", "I", @as(android.jint, @intCast(h))) catch unreachable;
 
                 const AbsoluteLayout = jni.findClass("android/widget/AbsoluteLayout") catch unreachable;
                 AbsoluteLayout.callVoidMethod(self.peer, "updateViewLayout", "(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V", .{ peer, params }) catch unreachable;
@@ -809,7 +809,7 @@ pub const backendExport = struct {
             const expected_value = self.uiThreadCondition.load(.Monotonic);
             const Instance = struct {
                 fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.C) c_int {
-                    const args_data = @ptrCast(*Args, @alignCast(@alignOf(Args), data.?));
+                    const args_data = @as(*Args, @ptrCast(@alignCast(data.?)));
                     defer allocator.destroy(args_data);
 
                     @call(.auto, func, args_data.*);

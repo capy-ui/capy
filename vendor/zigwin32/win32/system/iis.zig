@@ -898,7 +898,7 @@ pub const IFtpProviderConstruct = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpProviderConstruct_Construct(self: *const T, configurationEntries: ?*SAFEARRAY) HRESULT {
-                return @ptrCast(*const IFtpProviderConstruct.VTable, self.vtable).Construct(@ptrCast(*const IFtpProviderConstruct, self), configurationEntries);
+                return @as(*const IFtpProviderConstruct.VTable, @ptrCast(self.vtable)).Construct(@as(*const IFtpProviderConstruct, @ptrCast(self)), configurationEntries);
             }
         };
     }
@@ -937,7 +937,7 @@ pub const IFtpAuthenticationProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpAuthenticationProvider_AuthenticateUser(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) HRESULT {
-                return @ptrCast(*const IFtpAuthenticationProvider.VTable, self.vtable).AuthenticateUser(@ptrCast(*const IFtpAuthenticationProvider, self), pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
+                return @as(*const IFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).AuthenticateUser(@as(*const IFtpAuthenticationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszPassword, ppszCanonicalUserName, pfAuthenticated);
             }
         };
     }
@@ -984,11 +984,11 @@ pub const AsyncIFtpAuthenticationProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpAuthenticationProvider_Begin_AuthenticateUser(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszPassword: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const AsyncIFtpAuthenticationProvider.VTable, self.vtable).Begin_AuthenticateUser(@ptrCast(*const AsyncIFtpAuthenticationProvider, self), pszSessionId, pszSiteName, pszUserName, pszPassword);
+                return @as(*const AsyncIFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).Begin_AuthenticateUser(@as(*const AsyncIFtpAuthenticationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpAuthenticationProvider_Finish_AuthenticateUser(self: *const T, ppszCanonicalUserName: ?*?PWSTR, pfAuthenticated: ?*BOOL) HRESULT {
-                return @ptrCast(*const AsyncIFtpAuthenticationProvider.VTable, self.vtable).Finish_AuthenticateUser(@ptrCast(*const AsyncIFtpAuthenticationProvider, self), ppszCanonicalUserName, pfAuthenticated);
+                return @as(*const AsyncIFtpAuthenticationProvider.VTable, @ptrCast(self.vtable)).Finish_AuthenticateUser(@as(*const AsyncIFtpAuthenticationProvider, @ptrCast(self)), ppszCanonicalUserName, pfAuthenticated);
             }
         };
     }
@@ -1025,7 +1025,7 @@ pub const IFtpRoleProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpRoleProvider_IsUserInRole(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16, pfIsInRole: ?*BOOL) HRESULT {
-                return @ptrCast(*const IFtpRoleProvider.VTable, self.vtable).IsUserInRole(@ptrCast(*const IFtpRoleProvider, self), pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
+                return @as(*const IFtpRoleProvider.VTable, @ptrCast(self.vtable)).IsUserInRole(@as(*const IFtpRoleProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszRole, pfIsInRole);
             }
         };
     }
@@ -1070,11 +1070,11 @@ pub const AsyncIFtpRoleProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpRoleProvider_Begin_IsUserInRole(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pszRole: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const AsyncIFtpRoleProvider.VTable, self.vtable).Begin_IsUserInRole(@ptrCast(*const AsyncIFtpRoleProvider, self), pszSessionId, pszSiteName, pszUserName, pszRole);
+                return @as(*const AsyncIFtpRoleProvider.VTable, @ptrCast(self.vtable)).Begin_IsUserInRole(@as(*const AsyncIFtpRoleProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, pszRole);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpRoleProvider_Finish_IsUserInRole(self: *const T, pfIsInRole: ?*BOOL) HRESULT {
-                return @ptrCast(*const AsyncIFtpRoleProvider.VTable, self.vtable).Finish_IsUserInRole(@ptrCast(*const AsyncIFtpRoleProvider, self), pfIsInRole);
+                return @as(*const AsyncIFtpRoleProvider.VTable, @ptrCast(self.vtable)).Finish_IsUserInRole(@as(*const AsyncIFtpRoleProvider, @ptrCast(self)), pfIsInRole);
             }
         };
     }
@@ -1109,7 +1109,7 @@ pub const IFtpHomeDirectoryProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpHomeDirectoryProvider_GetUserHomeDirectoryData(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16, ppszHomeDirectoryData: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IFtpHomeDirectoryProvider.VTable, self.vtable).GetUserHomeDirectoryData(@ptrCast(*const IFtpHomeDirectoryProvider, self), pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
+                return @as(*const IFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).GetUserHomeDirectoryData(@as(*const IFtpHomeDirectoryProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName, ppszHomeDirectoryData);
             }
         };
     }
@@ -1152,11 +1152,11 @@ pub const AsyncIFtpHomeDirectoryProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpHomeDirectoryProvider_Begin_GetUserHomeDirectoryData(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszUserName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const AsyncIFtpHomeDirectoryProvider.VTable, self.vtable).Begin_GetUserHomeDirectoryData(@ptrCast(*const AsyncIFtpHomeDirectoryProvider, self), pszSessionId, pszSiteName, pszUserName);
+                return @as(*const AsyncIFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).Begin_GetUserHomeDirectoryData(@as(*const AsyncIFtpHomeDirectoryProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpHomeDirectoryProvider_Finish_GetUserHomeDirectoryData(self: *const T, ppszHomeDirectoryData: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const AsyncIFtpHomeDirectoryProvider.VTable, self.vtable).Finish_GetUserHomeDirectoryData(@ptrCast(*const AsyncIFtpHomeDirectoryProvider, self), ppszHomeDirectoryData);
+                return @as(*const AsyncIFtpHomeDirectoryProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserHomeDirectoryData(@as(*const AsyncIFtpHomeDirectoryProvider, @ptrCast(self)), ppszHomeDirectoryData);
             }
         };
     }
@@ -1206,7 +1206,7 @@ pub const IFtpLogProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpLogProvider_Log(self: *const T, pLoggingParameters: ?*const LOGGING_PARAMETERS) HRESULT {
-                return @ptrCast(*const IFtpLogProvider.VTable, self.vtable).Log(@ptrCast(*const IFtpLogProvider, self), pLoggingParameters);
+                return @as(*const IFtpLogProvider.VTable, @ptrCast(self.vtable)).Log(@as(*const IFtpLogProvider, @ptrCast(self)), pLoggingParameters);
             }
         };
     }
@@ -1243,11 +1243,11 @@ pub const AsyncIFtpLogProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpLogProvider_Begin_Log(self: *const T, pLoggingParameters: ?*const LOGGING_PARAMETERS) HRESULT {
-                return @ptrCast(*const AsyncIFtpLogProvider.VTable, self.vtable).Begin_Log(@ptrCast(*const AsyncIFtpLogProvider, self), pLoggingParameters);
+                return @as(*const AsyncIFtpLogProvider.VTable, @ptrCast(self.vtable)).Begin_Log(@as(*const AsyncIFtpLogProvider, @ptrCast(self)), pLoggingParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpLogProvider_Finish_Log(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIFtpLogProvider.VTable, self.vtable).Finish_Log(@ptrCast(*const AsyncIFtpLogProvider, self));
+                return @as(*const AsyncIFtpLogProvider.VTable, @ptrCast(self.vtable)).Finish_Log(@as(*const AsyncIFtpLogProvider, @ptrCast(self)));
             }
         };
     }
@@ -1295,7 +1295,7 @@ pub const IFtpAuthorizationProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpAuthorizationProvider_GetUserAccessPermission(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16, pFtpAccess: ?*FTP_ACCESS) HRESULT {
-                return @ptrCast(*const IFtpAuthorizationProvider.VTable, self.vtable).GetUserAccessPermission(@ptrCast(*const IFtpAuthorizationProvider, self), pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
+                return @as(*const IFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).GetUserAccessPermission(@as(*const IFtpAuthorizationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszVirtualPath, pszUserName, pFtpAccess);
             }
         };
     }
@@ -1340,11 +1340,11 @@ pub const AsyncIFtpAuthorizationProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpAuthorizationProvider_Begin_GetUserAccessPermission(self: *const T, pszSessionId: ?[*:0]const u16, pszSiteName: ?[*:0]const u16, pszVirtualPath: ?[*:0]const u16, pszUserName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const AsyncIFtpAuthorizationProvider.VTable, self.vtable).Begin_GetUserAccessPermission(@ptrCast(*const AsyncIFtpAuthorizationProvider, self), pszSessionId, pszSiteName, pszVirtualPath, pszUserName);
+                return @as(*const AsyncIFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).Begin_GetUserAccessPermission(@as(*const AsyncIFtpAuthorizationProvider, @ptrCast(self)), pszSessionId, pszSiteName, pszVirtualPath, pszUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpAuthorizationProvider_Finish_GetUserAccessPermission(self: *const T, pFtpAccess: ?*FTP_ACCESS) HRESULT {
-                return @ptrCast(*const AsyncIFtpAuthorizationProvider.VTable, self.vtable).Finish_GetUserAccessPermission(@ptrCast(*const AsyncIFtpAuthorizationProvider, self), pFtpAccess);
+                return @as(*const AsyncIFtpAuthorizationProvider.VTable, @ptrCast(self.vtable)).Finish_GetUserAccessPermission(@as(*const AsyncIFtpAuthorizationProvider, @ptrCast(self)), pFtpAccess);
             }
         };
     }
@@ -1402,7 +1402,7 @@ pub const IFtpPreprocessProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpPreprocessProvider_HandlePreprocess(self: *const T, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) HRESULT {
-                return @ptrCast(*const IFtpPreprocessProvider.VTable, self.vtable).HandlePreprocess(@ptrCast(*const IFtpPreprocessProvider, self), pPreProcessParameters, pFtpProcessStatus);
+                return @as(*const IFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).HandlePreprocess(@as(*const IFtpPreprocessProvider, @ptrCast(self)), pPreProcessParameters, pFtpProcessStatus);
             }
         };
     }
@@ -1441,11 +1441,11 @@ pub const AsyncIFtpPreprocessProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpPreprocessProvider_Begin_HandlePreprocess(self: *const T, pPreProcessParameters: ?*const PRE_PROCESS_PARAMETERS) HRESULT {
-                return @ptrCast(*const AsyncIFtpPreprocessProvider.VTable, self.vtable).Begin_HandlePreprocess(@ptrCast(*const AsyncIFtpPreprocessProvider, self), pPreProcessParameters);
+                return @as(*const AsyncIFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).Begin_HandlePreprocess(@as(*const AsyncIFtpPreprocessProvider, @ptrCast(self)), pPreProcessParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpPreprocessProvider_Finish_HandlePreprocess(self: *const T, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) HRESULT {
-                return @ptrCast(*const AsyncIFtpPreprocessProvider.VTable, self.vtable).Finish_HandlePreprocess(@ptrCast(*const AsyncIFtpPreprocessProvider, self), pFtpProcessStatus);
+                return @as(*const AsyncIFtpPreprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePreprocess(@as(*const AsyncIFtpPreprocessProvider, @ptrCast(self)), pFtpProcessStatus);
             }
         };
     }
@@ -1499,7 +1499,7 @@ pub const IFtpPostprocessProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFtpPostprocessProvider_HandlePostprocess(self: *const T, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) HRESULT {
-                return @ptrCast(*const IFtpPostprocessProvider.VTable, self.vtable).HandlePostprocess(@ptrCast(*const IFtpPostprocessProvider, self), pPostProcessParameters, pFtpProcessStatus);
+                return @as(*const IFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).HandlePostprocess(@as(*const IFtpPostprocessProvider, @ptrCast(self)), pPostProcessParameters, pFtpProcessStatus);
             }
         };
     }
@@ -1538,11 +1538,11 @@ pub const AsyncIFtpPostprocessProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpPostprocessProvider_Begin_HandlePostprocess(self: *const T, pPostProcessParameters: ?*const POST_PROCESS_PARAMETERS) HRESULT {
-                return @ptrCast(*const AsyncIFtpPostprocessProvider.VTable, self.vtable).Begin_HandlePostprocess(@ptrCast(*const AsyncIFtpPostprocessProvider, self), pPostProcessParameters);
+                return @as(*const AsyncIFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).Begin_HandlePostprocess(@as(*const AsyncIFtpPostprocessProvider, @ptrCast(self)), pPostProcessParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIFtpPostprocessProvider_Finish_HandlePostprocess(self: *const T, pFtpProcessStatus: ?*FTP_PROCESS_STATUS) HRESULT {
-                return @ptrCast(*const AsyncIFtpPostprocessProvider.VTable, self.vtable).Finish_HandlePostprocess(@ptrCast(*const AsyncIFtpPostprocessProvider, self), pFtpProcessStatus);
+                return @as(*const AsyncIFtpPostprocessProvider.VTable, @ptrCast(self.vtable)).Finish_HandlePostprocess(@as(*const AsyncIFtpPostprocessProvider, @ptrCast(self)), pFtpProcessStatus);
             }
         };
     }
@@ -1589,15 +1589,15 @@ pub const IADMEXT = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IADMEXT_Initialize(self: *const T) HRESULT {
-                return @ptrCast(*const IADMEXT.VTable, self.vtable).Initialize(@ptrCast(*const IADMEXT, self));
+                return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IADMEXT, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IADMEXT_EnumDcomCLSIDs(self: *const T, pclsidDcom: ?*Guid, dwEnumIndex: u32) HRESULT {
-                return @ptrCast(*const IADMEXT.VTable, self.vtable).EnumDcomCLSIDs(@ptrCast(*const IADMEXT, self), pclsidDcom, dwEnumIndex);
+                return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).EnumDcomCLSIDs(@as(*const IADMEXT, @ptrCast(self)), pclsidDcom, dwEnumIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IADMEXT_Terminate(self: *const T) HRESULT {
-                return @ptrCast(*const IADMEXT.VTable, self.vtable).Terminate(@ptrCast(*const IADMEXT, self));
+                return @as(*const IADMEXT.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IADMEXT, @ptrCast(self)));
             }
         };
     }
@@ -2126,127 +2126,127 @@ pub const IMSAdminBaseW = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_AddKey(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).AddKey(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).AddKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_DeleteKey(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).DeleteKey(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_DeleteChildKeys(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).DeleteChildKeys(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteChildKeys(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_EnumKeys(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pszMDName: *[256]u16, dwMDEnumObjectIndex: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).EnumKeys(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pszMDName, dwMDEnumObjectIndex);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pszMDName, dwMDEnumObjectIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_CopyKey(self: *const T, hMDSourceHandle: u32, pszMDSourcePath: ?[*:0]const u16, hMDDestHandle: u32, pszMDDestPath: ?[*:0]const u16, bMDOverwriteFlag: BOOL, bMDCopyFlag: BOOL) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).CopyKey(@ptrCast(*const IMSAdminBaseW, self), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, bMDOverwriteFlag, bMDCopyFlag);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CopyKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, bMDOverwriteFlag, bMDCopyFlag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_RenameKey(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pszMDNewName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).RenameKey(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pszMDNewName);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).RenameKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pszMDNewName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_SetData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).SetData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pmdrMDData);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SetData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD, pdwMDRequiredDataLen: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pmdrMDData, pdwMDRequiredDataLen);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData, pdwMDRequiredDataLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_DeleteData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDIdentifier: u32, dwMDDataType: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).DeleteData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_EnumData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pmdrMDData: ?*METADATA_RECORD, dwMDEnumDataIndex: u32, pdwMDRequiredDataLen: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).EnumData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pmdrMDData, dwMDEnumDataIndex, pdwMDRequiredDataLen);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pmdrMDData, dwMDEnumDataIndex, pdwMDRequiredDataLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetAllData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDAttributes: u32, dwMDUserType: u32, dwMDDataType: u32, pdwMDNumDataEntries: ?*u32, pdwMDDataSetNumber: ?*u32, dwMDBufferSize: u32, pbMDBuffer: ?*u8, pdwMDRequiredBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetAllData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, dwMDAttributes, dwMDUserType, dwMDDataType, pdwMDNumDataEntries, pdwMDDataSetNumber, dwMDBufferSize, pbMDBuffer, pdwMDRequiredBufferSize);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetAllData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDAttributes, dwMDUserType, dwMDDataType, pdwMDNumDataEntries, pdwMDDataSetNumber, dwMDBufferSize, pbMDBuffer, pdwMDRequiredBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_DeleteAllData(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDUserType: u32, dwMDDataType: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).DeleteAllData(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, dwMDUserType, dwMDDataType);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteAllData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDUserType, dwMDDataType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_CopyData(self: *const T, hMDSourceHandle: u32, pszMDSourcePath: ?[*:0]const u16, hMDDestHandle: u32, pszMDDestPath: ?[*:0]const u16, dwMDAttributes: u32, dwMDUserType: u32, dwMDDataType: u32, bMDCopyFlag: BOOL) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).CopyData(@ptrCast(*const IMSAdminBaseW, self), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, dwMDAttributes, dwMDUserType, dwMDDataType, bMDCopyFlag);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CopyData(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDSourceHandle, pszMDSourcePath, hMDDestHandle, pszMDDestPath, dwMDAttributes, dwMDUserType, dwMDDataType, bMDCopyFlag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetDataPaths(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDIdentifier: u32, dwMDDataType: u32, dwMDBufferSize: u32, pszBuffer: [*:0]u16, pdwMDRequiredBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetDataPaths(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetDataPaths(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDIdentifier, dwMDDataType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_OpenKey(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, dwMDAccessRequested: u32, dwMDTimeOut: u32, phMDNewHandle: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).OpenKey(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, dwMDAccessRequested, dwMDTimeOut, phMDNewHandle);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, dwMDAccessRequested, dwMDTimeOut, phMDNewHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_CloseKey(self: *const T, hMDHandle: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).CloseKey(@ptrCast(*const IMSAdminBaseW, self), hMDHandle);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).CloseKey(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_ChangePermissions(self: *const T, hMDHandle: u32, dwMDTimeOut: u32, dwMDAccessRequested: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).ChangePermissions(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, dwMDTimeOut, dwMDAccessRequested);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).ChangePermissions(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, dwMDTimeOut, dwMDAccessRequested);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_SaveData(self: *const T) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).SaveData(@ptrCast(*const IMSAdminBaseW, self));
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SaveData(@as(*const IMSAdminBaseW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetHandleInfo(self: *const T, hMDHandle: u32, pmdhiInfo: ?*METADATA_HANDLE_INFO) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetHandleInfo(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pmdhiInfo);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetHandleInfo(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pmdhiInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetSystemChangeNumber(self: *const T, pdwSystemChangeNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetSystemChangeNumber(@ptrCast(*const IMSAdminBaseW, self), pdwSystemChangeNumber);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetSystemChangeNumber(@as(*const IMSAdminBaseW, @ptrCast(self)), pdwSystemChangeNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetDataSetNumber(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pdwMDDataSetNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetDataSetNumber(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pdwMDDataSetNumber);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetDataSetNumber(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pdwMDDataSetNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_SetLastChangeTime(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pftMDLastChangeTime: ?*FILETIME, bLocalTime: BOOL) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).SetLastChangeTime(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).SetLastChangeTime(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetLastChangeTime(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, pftMDLastChangeTime: ?*FILETIME, bLocalTime: BOOL) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetLastChangeTime(@ptrCast(*const IMSAdminBaseW, self), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetLastChangeTime(@as(*const IMSAdminBaseW, @ptrCast(self)), hMDHandle, pszMDPath, pftMDLastChangeTime, bLocalTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_KeyExchangePhase1(self: *const T) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).KeyExchangePhase1(@ptrCast(*const IMSAdminBaseW, self));
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).KeyExchangePhase1(@as(*const IMSAdminBaseW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_KeyExchangePhase2(self: *const T) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).KeyExchangePhase2(@ptrCast(*const IMSAdminBaseW, self));
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).KeyExchangePhase2(@as(*const IMSAdminBaseW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_Backup(self: *const T, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).Backup(@ptrCast(*const IMSAdminBaseW, self), pszMDBackupLocation, dwMDVersion, dwMDFlags);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).Backup(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_Restore(self: *const T, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).Restore(@ptrCast(*const IMSAdminBaseW, self), pszMDBackupLocation, dwMDVersion, dwMDFlags);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).Restore(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_EnumBackups(self: *const T, pszMDBackupLocation: *[256]u16, pdwMDVersion: ?*u32, pftMDBackupTime: ?*FILETIME, dwMDEnumIndex: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).EnumBackups(@ptrCast(*const IMSAdminBaseW, self), pszMDBackupLocation, pdwMDVersion, pftMDBackupTime, dwMDEnumIndex);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).EnumBackups(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, pdwMDVersion, pftMDBackupTime, dwMDEnumIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_DeleteBackup(self: *const T, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).DeleteBackup(@ptrCast(*const IMSAdminBaseW, self), pszMDBackupLocation, dwMDVersion);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).DeleteBackup(@as(*const IMSAdminBaseW, @ptrCast(self)), pszMDBackupLocation, dwMDVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_UnmarshalInterface(self: *const T, piadmbwInterface: ?*?*IMSAdminBaseW) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).UnmarshalInterface(@ptrCast(*const IMSAdminBaseW, self), piadmbwInterface);
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMSAdminBaseW, @ptrCast(self)), piadmbwInterface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseW_GetServerGuid(self: *const T) HRESULT {
-                return @ptrCast(*const IMSAdminBaseW.VTable, self.vtable).GetServerGuid(@ptrCast(*const IMSAdminBaseW, self));
+                return @as(*const IMSAdminBaseW.VTable, @ptrCast(self.vtable)).GetServerGuid(@as(*const IMSAdminBaseW, @ptrCast(self)));
             }
         };
     }
@@ -2369,27 +2369,27 @@ pub const IMSAdminBase2W = extern struct {
             pub usingnamespace IMSAdminBaseW.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_BackupWithPasswd(self: *const T, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).BackupWithPasswd(@ptrCast(*const IMSAdminBase2W, self), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).BackupWithPasswd(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_RestoreWithPasswd(self: *const T, pszMDBackupLocation: ?[*:0]const u16, dwMDVersion: u32, dwMDFlags: u32, pszPasswd: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).RestoreWithPasswd(@ptrCast(*const IMSAdminBase2W, self), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).RestoreWithPasswd(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDBackupLocation, dwMDVersion, dwMDFlags, pszPasswd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_Export(self: *const T, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, dwMDFlags: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).Export(@ptrCast(*const IMSAdminBase2W, self), pszPasswd, pszFileName, pszSourcePath, dwMDFlags);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).Export(@as(*const IMSAdminBase2W, @ptrCast(self)), pszPasswd, pszFileName, pszSourcePath, dwMDFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_Import(self: *const T, pszPasswd: ?[*:0]const u16, pszFileName: ?[*:0]const u16, pszSourcePath: ?[*:0]const u16, pszDestPath: ?[*:0]const u16, dwMDFlags: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).Import(@ptrCast(*const IMSAdminBase2W, self), pszPasswd, pszFileName, pszSourcePath, pszDestPath, dwMDFlags);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).Import(@as(*const IMSAdminBase2W, @ptrCast(self)), pszPasswd, pszFileName, pszSourcePath, pszDestPath, dwMDFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_RestoreHistory(self: *const T, pszMDHistoryLocation: ?[*:0]const u16, dwMDMajorVersion: u32, dwMDMinorVersion: u32, dwMDFlags: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).RestoreHistory(@ptrCast(*const IMSAdminBase2W, self), pszMDHistoryLocation, dwMDMajorVersion, dwMDMinorVersion, dwMDFlags);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).RestoreHistory(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDHistoryLocation, dwMDMajorVersion, dwMDMinorVersion, dwMDFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase2W_EnumHistory(self: *const T, pszMDHistoryLocation: *[256]u16, pdwMDMajorVersion: ?*u32, pdwMDMinorVersion: ?*u32, pftMDHistoryTime: ?*FILETIME, dwMDEnumIndex: u32) HRESULT {
-                return @ptrCast(*const IMSAdminBase2W.VTable, self.vtable).EnumHistory(@ptrCast(*const IMSAdminBase2W, self), pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
+                return @as(*const IMSAdminBase2W.VTable, @ptrCast(self.vtable)).EnumHistory(@as(*const IMSAdminBase2W, @ptrCast(self)), pszMDHistoryLocation, pdwMDMajorVersion, pdwMDMinorVersion, pftMDHistoryTime, dwMDEnumIndex);
             }
         };
     }
@@ -2426,7 +2426,7 @@ pub const IMSAdminBase3W = extern struct {
             pub usingnamespace IMSAdminBase2W.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBase3W_GetChildPaths(self: *const T, hMDHandle: u32, pszMDPath: ?[*:0]const u16, cchMDBufferSize: u32, pszBuffer: ?[*:0]u16, pcchMDRequiredBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMSAdminBase3W.VTable, self.vtable).GetChildPaths(@ptrCast(*const IMSAdminBase3W, self), hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
+                return @as(*const IMSAdminBase3W.VTable, @ptrCast(self.vtable)).GetChildPaths(@as(*const IMSAdminBase3W, @ptrCast(self)), hMDHandle, pszMDPath, cchMDBufferSize, pszBuffer, pcchMDRequiredBufferSize);
             }
         };
     }
@@ -2463,7 +2463,7 @@ pub const IMSImpExpHelpW = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSImpExpHelpW_EnumeratePathsInFile(self: *const T, pszFileName: ?[*:0]const u16, pszKeyType: ?[*:0]const u16, dwMDBufferSize: u32, pszBuffer: ?[*:0]u16, pdwMDRequiredBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMSImpExpHelpW.VTable, self.vtable).EnumeratePathsInFile(@ptrCast(*const IMSImpExpHelpW, self), pszFileName, pszKeyType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
+                return @as(*const IMSImpExpHelpW.VTable, @ptrCast(self.vtable)).EnumeratePathsInFile(@as(*const IMSImpExpHelpW, @ptrCast(self)), pszFileName, pszKeyType, dwMDBufferSize, pszBuffer, pdwMDRequiredBufferSize);
             }
         };
     }
@@ -2502,11 +2502,11 @@ pub const IMSAdminBaseSinkW = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseSinkW_SinkNotify(self: *const T, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) HRESULT {
-                return @ptrCast(*const IMSAdminBaseSinkW.VTable, self.vtable).SinkNotify(@ptrCast(*const IMSAdminBaseSinkW, self), dwMDNumElements, pcoChangeList);
+                return @as(*const IMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).SinkNotify(@as(*const IMSAdminBaseSinkW, @ptrCast(self)), dwMDNumElements, pcoChangeList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSAdminBaseSinkW_ShutdownNotify(self: *const T) HRESULT {
-                return @ptrCast(*const IMSAdminBaseSinkW.VTable, self.vtable).ShutdownNotify(@ptrCast(*const IMSAdminBaseSinkW, self));
+                return @as(*const IMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).ShutdownNotify(@as(*const IMSAdminBaseSinkW, @ptrCast(self)));
             }
         };
     }
@@ -2561,19 +2561,19 @@ pub const AsyncIMSAdminBaseSinkW = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIMSAdminBaseSinkW_Begin_SinkNotify(self: *const T, dwMDNumElements: u32, pcoChangeList: [*]MD_CHANGE_OBJECT_W) HRESULT {
-                return @ptrCast(*const AsyncIMSAdminBaseSinkW.VTable, self.vtable).Begin_SinkNotify(@ptrCast(*const AsyncIMSAdminBaseSinkW, self), dwMDNumElements, pcoChangeList);
+                return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Begin_SinkNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)), dwMDNumElements, pcoChangeList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIMSAdminBaseSinkW_Finish_SinkNotify(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIMSAdminBaseSinkW.VTable, self.vtable).Finish_SinkNotify(@ptrCast(*const AsyncIMSAdminBaseSinkW, self));
+                return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Finish_SinkNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIMSAdminBaseSinkW_Begin_ShutdownNotify(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIMSAdminBaseSinkW.VTable, self.vtable).Begin_ShutdownNotify(@ptrCast(*const AsyncIMSAdminBaseSinkW, self));
+                return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Begin_ShutdownNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIMSAdminBaseSinkW_Finish_ShutdownNotify(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIMSAdminBaseSinkW.VTable, self.vtable).Finish_ShutdownNotify(@ptrCast(*const AsyncIMSAdminBaseSinkW, self));
+                return @as(*const AsyncIMSAdminBaseSinkW.VTable, @ptrCast(self.vtable)).Finish_ShutdownNotify(@as(*const AsyncIMSAdminBaseSinkW, @ptrCast(self)));
             }
         };
     }

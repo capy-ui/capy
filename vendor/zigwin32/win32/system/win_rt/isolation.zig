@@ -30,7 +30,7 @@ pub const IIsolatedEnvironmentInterop = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IIsolatedEnvironmentInterop_GetHostHwndInterop(self: *const T, containerHwnd: ?HWND, hostHwnd: ?*?HWND) HRESULT {
-                return @ptrCast(*const IIsolatedEnvironmentInterop.VTable, self.vtable).GetHostHwndInterop(@ptrCast(*const IIsolatedEnvironmentInterop, self), containerHwnd, hostHwnd);
+                return @as(*const IIsolatedEnvironmentInterop.VTable, @ptrCast(self.vtable)).GetHostHwndInterop(@as(*const IIsolatedEnvironmentInterop, @ptrCast(self)), containerHwnd, hostHwnd);
             }
         };
     }

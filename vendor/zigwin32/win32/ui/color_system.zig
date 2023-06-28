@@ -408,47 +408,47 @@ pub const IDeviceModelPlugIn = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, cNumModels: u32, iModelPosition: u32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).Initialize(@ptrCast(*const IDeviceModelPlugIn, self), bstrXml, cNumModels, iModelPosition);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), bstrXml, cNumModels, iModelPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetNumChannels(self: *const T, pNumChannels: ?*u32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetNumChannels(@ptrCast(*const IDeviceModelPlugIn, self), pNumChannels);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNumChannels(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pNumChannels);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_DeviceToColorimetricColors(self: *const T, cColors: u32, cChannels: u32, pDeviceValues: ?*const f32, pXYZColors: [*]XYZColorF) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).DeviceToColorimetricColors(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pDeviceValues, pXYZColors);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).DeviceToColorimetricColors(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pDeviceValues, pXYZColors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_ColorimetricToDeviceColors(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pDeviceValues: ?*f32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).ColorimetricToDeviceColors(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pXYZColors, pDeviceValues);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).ColorimetricToDeviceColors(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pXYZColors, pDeviceValues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_ColorimetricToDeviceColorsWithBlack(self: *const T, cColors: u32, cChannels: u32, pXYZColors: [*]const XYZColorF, pBlackInformation: [*]const BlackInformation, pDeviceValues: ?*f32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).ColorimetricToDeviceColorsWithBlack(@ptrCast(*const IDeviceModelPlugIn, self), cColors, cChannels, pXYZColors, pBlackInformation, pDeviceValues);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).ColorimetricToDeviceColorsWithBlack(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, cChannels, pXYZColors, pBlackInformation, pDeviceValues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_SetTransformDeviceModelInfo(self: *const T, iModelPosition: u32, pIDeviceModelOther: ?*IDeviceModelPlugIn) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).SetTransformDeviceModelInfo(@ptrCast(*const IDeviceModelPlugIn, self), iModelPosition, pIDeviceModelOther);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).SetTransformDeviceModelInfo(@as(*const IDeviceModelPlugIn, @ptrCast(self)), iModelPosition, pIDeviceModelOther);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetPrimarySamples(self: *const T, pPrimaryColor: ?*PrimaryXYZColors) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetPrimarySamples(@ptrCast(*const IDeviceModelPlugIn, self), pPrimaryColor);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetPrimarySamples(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pPrimaryColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetGamutBoundaryMeshSize(self: *const T, pNumVertices: ?*u32, pNumTriangles: ?*u32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetGamutBoundaryMeshSize(@ptrCast(*const IDeviceModelPlugIn, self), pNumVertices, pNumTriangles);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetGamutBoundaryMeshSize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pNumVertices, pNumTriangles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetGamutBoundaryMesh(self: *const T, cChannels: u32, cVertices: u32, cTriangles: u32, pVertices: ?*f32, pTriangles: [*]GamutShellTriangle) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetGamutBoundaryMesh(@ptrCast(*const IDeviceModelPlugIn, self), cChannels, cVertices, cTriangles, pVertices, pTriangles);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetGamutBoundaryMesh(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cChannels, cVertices, cTriangles, pVertices, pTriangles);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetNeutralAxisSize(self: *const T, pcColors: ?*u32) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetNeutralAxisSize(@ptrCast(*const IDeviceModelPlugIn, self), pcColors);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNeutralAxisSize(@as(*const IDeviceModelPlugIn, @ptrCast(self)), pcColors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDeviceModelPlugIn_GetNeutralAxis(self: *const T, cColors: u32, pXYZColors: [*]XYZColorF) HRESULT {
-                return @ptrCast(*const IDeviceModelPlugIn.VTable, self.vtable).GetNeutralAxis(@ptrCast(*const IDeviceModelPlugIn, self), cColors, pXYZColors);
+                return @as(*const IDeviceModelPlugIn.VTable, @ptrCast(self.vtable)).GetNeutralAxis(@as(*const IDeviceModelPlugIn, @ptrCast(self)), cColors, pXYZColors);
             }
         };
     }
@@ -499,11 +499,11 @@ pub const IGamutMapModelPlugIn = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGamutMapModelPlugIn_Initialize(self: *const T, bstrXml: ?BSTR, pSrcPlugIn: ?*IDeviceModelPlugIn, pDestPlugIn: ?*IDeviceModelPlugIn, pSrcGBD: ?*GamutBoundaryDescription, pDestGBD: ?*GamutBoundaryDescription) HRESULT {
-                return @ptrCast(*const IGamutMapModelPlugIn.VTable, self.vtable).Initialize(@ptrCast(*const IGamutMapModelPlugIn, self), bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
+                return @as(*const IGamutMapModelPlugIn.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IGamutMapModelPlugIn, @ptrCast(self)), bstrXml, pSrcPlugIn, pDestPlugIn, pSrcGBD, pDestGBD);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGamutMapModelPlugIn_SourceToDestinationAppearanceColors(self: *const T, cColors: u32, pInputColors: [*]const JChColorF, pOutputColors: [*]JChColorF) HRESULT {
-                return @ptrCast(*const IGamutMapModelPlugIn.VTable, self.vtable).SourceToDestinationAppearanceColors(@ptrCast(*const IGamutMapModelPlugIn, self), cColors, pInputColors, pOutputColors);
+                return @as(*const IGamutMapModelPlugIn.VTable, @ptrCast(self.vtable)).SourceToDestinationAppearanceColors(@as(*const IGamutMapModelPlugIn, @ptrCast(self)), cColors, pInputColors, pOutputColors);
             }
         };
     }

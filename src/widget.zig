@@ -65,7 +65,7 @@ pub const Widget = struct {
                 std.debug.panic("Tried to cast widget to " ++ @typeName(T) ++ " but type is {s}", .{self.class.typeName});
             }
         }
-        return @ptrCast(*T, @alignCast(@alignOf(T), self.data));
+        return @ptrCast(@alignCast(self.data));
     }
 
     /// Returns if the class of the widget corresponds to T

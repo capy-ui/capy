@@ -274,15 +274,15 @@ pub const IBackgroundCopyFile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile_GetRemoteName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetRemoteName(@ptrCast(*const IBackgroundCopyFile, self), pVal);
+                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetRemoteName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile_GetLocalName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetLocalName(@ptrCast(*const IBackgroundCopyFile, self), pVal);
+                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile_GetProgress(self: *const T, pVal: ?*BG_FILE_PROGRESS) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyFile, self), pVal);
+                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
             }
         };
     }
@@ -354,23 +354,23 @@ pub const IEnumBackgroundCopyFiles = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyFiles, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyFiles_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Skip(@ptrCast(*const IEnumBackgroundCopyFiles, self), celt);
+                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyFiles_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyFiles, self));
+                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyFiles_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyFiles) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyFiles, self), ppenum);
+                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyFiles_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyFiles.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyFiles, self), puCount);
+                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), puCount);
             }
         };
     }
@@ -467,23 +467,23 @@ pub const IBackgroundCopyError = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyError_GetError(self: *const T, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) HRESULT {
-                return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetError(@ptrCast(*const IBackgroundCopyError, self), pContext, pCode);
+                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyError, @ptrCast(self)), pContext, pCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyError_GetFile(self: *const T, pVal: ?*?*IBackgroundCopyFile) HRESULT {
-                return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetFile(@ptrCast(*const IBackgroundCopyError, self), pVal);
+                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyError, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pErrorDescription);
+                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pErrorDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetErrorContextDescription(@ptrCast(*const IBackgroundCopyError, self), LanguageId, pContextDescription);
+                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorContextDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pContextDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyError.VTable, self.vtable).GetProtocol(@ptrCast(*const IBackgroundCopyError, self), pProtocol);
+                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetProtocol(@as(*const IBackgroundCopyError, @ptrCast(self)), pProtocol);
             }
         };
     }
@@ -895,131 +895,131 @@ pub const IBackgroundCopyJob = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_AddFileSet(self: *const T, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).AddFileSet(@ptrCast(*const IBackgroundCopyJob, self), cFileCount, pFileSet);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFileSet(@as(*const IBackgroundCopyJob, @ptrCast(self)), cFileCount, pFileSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_AddFile(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).AddFile(@ptrCast(*const IBackgroundCopyJob, self), RemoteUrl, LocalName);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFile(@as(*const IBackgroundCopyJob, @ptrCast(self)), RemoteUrl, LocalName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_EnumFiles(self: *const T, pEnum: ?*?*IEnumBackgroundCopyFiles) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).EnumFiles(@ptrCast(*const IBackgroundCopyJob, self), pEnum);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).EnumFiles(@as(*const IBackgroundCopyJob, @ptrCast(self)), pEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_Suspend(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).Suspend(@ptrCast(*const IBackgroundCopyJob, self));
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IBackgroundCopyJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).Resume(@ptrCast(*const IBackgroundCopyJob, self));
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Resume(@as(*const IBackgroundCopyJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).Cancel(@ptrCast(*const IBackgroundCopyJob, self));
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IBackgroundCopyJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_Complete(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).Complete(@ptrCast(*const IBackgroundCopyJob, self));
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Complete(@as(*const IBackgroundCopyJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetId(self: *const T, pVal: ?*Guid) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetId(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetType(self: *const T, pVal: ?*BG_JOB_TYPE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetType(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetType(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetProgress(self: *const T, pVal: ?*BG_JOB_PROGRESS) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetTimes(self: *const T, pVal: ?*BG_JOB_TIMES) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetTimes(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetTimes(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetState(self: *const T, pVal: ?*BG_JOB_STATE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetState(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetState(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetError(self: *const T, ppError: ?*?*IBackgroundCopyError) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetError(@ptrCast(*const IBackgroundCopyJob, self), ppError);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyJob, @ptrCast(self)), ppError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetOwner(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetOwner(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetDisplayName(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetDisplayName(@ptrCast(*const IBackgroundCopyJob, self), Val);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetDisplayName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetDisplayName(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetDescription(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetDescription(@ptrCast(*const IBackgroundCopyJob, self), Val);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetDescription(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetDescription(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetPriority(self: *const T, Val: BG_JOB_PRIORITY) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetPriority(@ptrCast(*const IBackgroundCopyJob, self), Val);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetPriority(self: *const T, pVal: ?*BG_JOB_PRIORITY) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetPriority(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetNotifyFlags(self: *const T, Val: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNotifyFlags(@ptrCast(*const IBackgroundCopyJob, self), Val);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetNotifyFlags(self: *const T, pVal: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNotifyFlags(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetNotifyInterface(self: *const T, Val: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNotifyInterface(@ptrCast(*const IBackgroundCopyJob, self), Val);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetNotifyInterface(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNotifyInterface(@ptrCast(*const IBackgroundCopyJob, self), pVal);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetMinimumRetryDelay(self: *const T, Seconds: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetMinimumRetryDelay(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetMinimumRetryDelay(self: *const T, Seconds: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetMinimumRetryDelay(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetNoProgressTimeout(self: *const T, Seconds: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetNoProgressTimeout(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetNoProgressTimeout(self: *const T, Seconds: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetNoProgressTimeout(@ptrCast(*const IBackgroundCopyJob, self), Seconds);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetErrorCount(self: *const T, Errors: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetErrorCount(@ptrCast(*const IBackgroundCopyJob, self), Errors);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetErrorCount(@as(*const IBackgroundCopyJob, @ptrCast(self)), Errors);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_SetProxySettings(self: *const T, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).SetProxySettings(@ptrCast(*const IBackgroundCopyJob, self), ProxyUsage, ProxyList, ProxyBypassList);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), ProxyUsage, ProxyList, ProxyBypassList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_GetProxySettings(self: *const T, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).GetProxySettings(@ptrCast(*const IBackgroundCopyJob, self), pProxyUsage, pProxyList, pProxyBypassList);
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), pProxyUsage, pProxyList, pProxyBypassList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob_TakeOwnership(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob.VTable, self.vtable).TakeOwnership(@ptrCast(*const IBackgroundCopyJob, self));
+                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).TakeOwnership(@as(*const IBackgroundCopyJob, @ptrCast(self)));
             }
         };
     }
@@ -1091,23 +1091,23 @@ pub const IEnumBackgroundCopyJobs = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyJobs, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Skip(@ptrCast(*const IEnumBackgroundCopyJobs, self), celt);
+                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyJobs, self));
+                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyJobs, self), ppenum);
+                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyJobs, self), puCount);
+                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), puCount);
             }
         };
     }
@@ -1161,15 +1161,15 @@ pub const IBackgroundCopyCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobTransferred(@ptrCast(*const IBackgroundCopyCallback, self), pJob);
+                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobTransferred(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobError(@ptrCast(*const IBackgroundCopyCallback, self), pJob, pError);
+                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobError(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback.VTable, self.vtable).JobModification(@ptrCast(*const IBackgroundCopyCallback, self), pJob, dwReserved);
+                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobModification(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
             }
         };
     }
@@ -1246,27 +1246,27 @@ pub const AsyncIBackgroundCopyCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Begin_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobTransferred(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob);
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Finish_JobTransferred(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Finish_JobTransferred(@ptrCast(*const AsyncIBackgroundCopyCallback, self));
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Begin_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobError(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob, pError);
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Finish_JobError(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Finish_JobError(@ptrCast(*const AsyncIBackgroundCopyCallback, self));
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Begin_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Begin_JobModification(@ptrCast(*const AsyncIBackgroundCopyCallback, self), pJob, dwReserved);
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn AsyncIBackgroundCopyCallback_Finish_JobModification(self: *const T) HRESULT {
-                return @ptrCast(*const AsyncIBackgroundCopyCallback.VTable, self.vtable).Finish_JobModification(@ptrCast(*const AsyncIBackgroundCopyCallback, self));
+                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
             }
         };
     }
@@ -1340,19 +1340,19 @@ pub const IBackgroundCopyManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyManager_CreateJob(self: *const T, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) HRESULT {
-                return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyManager, self), DisplayName, Type, pJobId, ppJob);
+                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), DisplayName, Type, pJobId, ppJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyManager_GetJob(self: *const T, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) HRESULT {
-                return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyManager, self), jobID, ppJob);
+                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), jobID, ppJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyManager_EnumJobs(self: *const T, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) HRESULT {
-                return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyManager, self), dwFlags, ppEnum);
+                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyManager, @ptrCast(self)), dwFlags, ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyManager_GetErrorDescription(self: *const T, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyManager.VTable, self.vtable).GetErrorDescription(@ptrCast(*const IBackgroundCopyManager, self), hResult, LanguageId, pErrorDescription);
+                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyManager, @ptrCast(self)), hResult, LanguageId, pErrorDescription);
             }
         };
     }
@@ -1503,35 +1503,35 @@ pub const IBackgroundCopyJob2 = extern struct {
             pub usingnamespace IBackgroundCopyJob.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_SetNotifyCmdLine(self: *const T, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetNotifyCmdLine(@ptrCast(*const IBackgroundCopyJob2, self), Program, Parameters);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Program, Parameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_GetNotifyCmdLine(self: *const T, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetNotifyCmdLine(@ptrCast(*const IBackgroundCopyJob2, self), pProgram, pParameters);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgram, pParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_GetReplyProgress(self: *const T, pProgress: ?*BG_JOB_REPLY_PROGRESS) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyProgress(@ptrCast(*const IBackgroundCopyJob2, self), pProgress);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyProgress(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_GetReplyData(self: *const T, ppBuffer: ?*?*u8, pLength: ?*u64) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyData(@ptrCast(*const IBackgroundCopyJob2, self), ppBuffer, pLength);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyData(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ppBuffer, pLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_SetReplyFileName(self: *const T, ReplyFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetReplyFileName(@ptrCast(*const IBackgroundCopyJob2, self), ReplyFileName);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ReplyFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_GetReplyFileName(self: *const T, pReplyFileName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).GetReplyFileName(@ptrCast(*const IBackgroundCopyJob2, self), pReplyFileName);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pReplyFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_SetCredentials(self: *const T, credentials: ?*BG_AUTH_CREDENTIALS) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).SetCredentials(@ptrCast(*const IBackgroundCopyJob2, self), credentials);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), credentials);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob2_RemoveCredentials(self: *const T, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob2.VTable, self.vtable).RemoveCredentials(@ptrCast(*const IBackgroundCopyJob2, self), Target, Scheme);
+                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).RemoveCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Target, Scheme);
             }
         };
     }
@@ -1607,19 +1607,19 @@ pub const IBackgroundCopyJob3 = extern struct {
             pub usingnamespace IBackgroundCopyJob2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob3_ReplaceRemotePrefix(self: *const T, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).ReplaceRemotePrefix(@ptrCast(*const IBackgroundCopyJob3, self), OldPrefix, NewPrefix);
+                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).ReplaceRemotePrefix(@as(*const IBackgroundCopyJob3, @ptrCast(self)), OldPrefix, NewPrefix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob3_AddFileWithRanges(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).AddFileWithRanges(@ptrCast(*const IBackgroundCopyJob3, self), RemoteUrl, LocalName, RangeCount, Ranges);
+                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).AddFileWithRanges(@as(*const IBackgroundCopyJob3, @ptrCast(self)), RemoteUrl, LocalName, RangeCount, Ranges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob3_SetFileACLFlags(self: *const T, Flags: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).SetFileACLFlags(@ptrCast(*const IBackgroundCopyJob3, self), Flags);
+                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).SetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob3_GetFileACLFlags(self: *const T, Flags: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob3.VTable, self.vtable).GetFileACLFlags(@ptrCast(*const IBackgroundCopyJob3, self), Flags);
+                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).GetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
             }
         };
     }
@@ -1661,11 +1661,11 @@ pub const IBackgroundCopyFile2 = extern struct {
             pub usingnamespace IBackgroundCopyFile.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile2_GetFileRanges(self: *const T, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile2.VTable, self.vtable).GetFileRanges(@ptrCast(*const IBackgroundCopyFile2, self), RangeCount, Ranges);
+                return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBackgroundCopyFile2, @ptrCast(self)), RangeCount, Ranges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile2_SetRemoteName(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile2.VTable, self.vtable).SetRemoteName(@ptrCast(*const IBackgroundCopyFile2, self), Val);
+                return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).SetRemoteName(@as(*const IBackgroundCopyFile2, @ptrCast(self)), Val);
             }
         };
     }
@@ -1799,35 +1799,35 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_SetClientCertificateByID(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetClientCertificateByID(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), StoreLocation, StoreName, pCertHashBlob);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByID(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, pCertHashBlob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_SetClientCertificateByName(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetClientCertificateByName(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), StoreLocation, StoreName, SubjectName);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByName(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, SubjectName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_RemoveClientCertificate(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).RemoveClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self));
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).RemoveClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetClientCertificate(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_SetCustomHeaders(self: *const T, RequestHeaders: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), RequestHeaders);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), RequestHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetCustomHeaders(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pRequestHeaders);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pRequestHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_SetSecurityFlags(self: *const T, Flags: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).SetSecurityFlags(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), Flags);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions_GetSecurityFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions.VTable, self.vtable).GetSecurityFlags(@ptrCast(*const IBackgroundCopyJobHttpOptions, self), pFlags);
+                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pFlags);
             }
         };
     }
@@ -1920,31 +1920,31 @@ pub const IBitsPeerCacheRecord = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetId(self: *const T, pVal: ?*Guid) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetId(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetOriginUrl(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetOriginUrl(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetOriginUrl(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetFileSize(self: *const T, pVal: ?*u64) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileSize(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetFileModificationTime(self: *const T, pVal: ?*FILETIME) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileModificationTime(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileModificationTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetLastAccessTime(self: *const T, pVal: ?*FILETIME) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetLastAccessTime(@ptrCast(*const IBitsPeerCacheRecord, self), pVal);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetLastAccessTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_IsFileValidated(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).IsFileValidated(@ptrCast(*const IBitsPeerCacheRecord, self));
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).IsFileValidated(@as(*const IBitsPeerCacheRecord, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheRecord_GetFileRanges(self: *const T, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheRecord.VTable, self.vtable).GetFileRanges(@ptrCast(*const IBitsPeerCacheRecord, self), pRangeCount, ppRanges);
+                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pRangeCount, ppRanges);
             }
         };
     }
@@ -2016,23 +2016,23 @@ pub const IEnumBitsPeerCacheRecords = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeerCacheRecords, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeerCacheRecords_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Skip(@ptrCast(*const IEnumBitsPeerCacheRecords, self), celt);
+                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeerCacheRecords_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Reset(@ptrCast(*const IEnumBitsPeerCacheRecords, self));
+                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeerCacheRecords_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeerCacheRecords) HRESULT {
-                return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).Clone(@ptrCast(*const IEnumBitsPeerCacheRecords, self), ppenum);
+                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeerCacheRecords_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeerCacheRecords.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBitsPeerCacheRecords, self), puCount);
+                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), puCount);
             }
         };
     }
@@ -2082,15 +2082,15 @@ pub const IBitsPeer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeer_GetPeerName(self: *const T, pName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBitsPeer.VTable, self.vtable).GetPeerName(@ptrCast(*const IBitsPeer, self), pName);
+                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).GetPeerName(@as(*const IBitsPeer, @ptrCast(self)), pName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeer_IsAuthenticated(self: *const T, pAuth: ?*BOOL) HRESULT {
-                return @ptrCast(*const IBitsPeer.VTable, self.vtable).IsAuthenticated(@ptrCast(*const IBitsPeer, self), pAuth);
+                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAuthenticated(@as(*const IBitsPeer, @ptrCast(self)), pAuth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeer_IsAvailable(self: *const T, pOnline: ?*BOOL) HRESULT {
-                return @ptrCast(*const IBitsPeer.VTable, self.vtable).IsAvailable(@ptrCast(*const IBitsPeer, self), pOnline);
+                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IBitsPeer, @ptrCast(self)), pOnline);
             }
         };
     }
@@ -2162,23 +2162,23 @@ pub const IEnumBitsPeers = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Next(@ptrCast(*const IEnumBitsPeers, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeers, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeers_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Skip(@ptrCast(*const IEnumBitsPeers, self), celt);
+                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeers, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeers_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Reset(@ptrCast(*const IEnumBitsPeers, self));
+                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeers, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeers_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeers) HRESULT {
-                return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).Clone(@ptrCast(*const IEnumBitsPeers, self), ppenum);
+                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeers, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBitsPeers_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBitsPeers.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBitsPeers, self), puCount);
+                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeers, @ptrCast(self)), puCount);
             }
         };
     }
@@ -2334,59 +2334,59 @@ pub const IBitsPeerCacheAdministration = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_GetMaximumCacheSize(self: *const T, pBytes: ?*u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetMaximumCacheSize(@ptrCast(*const IBitsPeerCacheAdministration, self), pBytes);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_SetMaximumCacheSize(self: *const T, Bytes: u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetMaximumCacheSize(@ptrCast(*const IBitsPeerCacheAdministration, self), Bytes);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Bytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_GetMaximumContentAge(self: *const T, pSeconds: ?*u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetMaximumContentAge(@ptrCast(*const IBitsPeerCacheAdministration, self), pSeconds);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pSeconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_SetMaximumContentAge(self: *const T, Seconds: u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetMaximumContentAge(@ptrCast(*const IBitsPeerCacheAdministration, self), Seconds);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Seconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_GetConfigurationFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetConfigurationFlags(@ptrCast(*const IBitsPeerCacheAdministration, self), pFlags);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_SetConfigurationFlags(self: *const T, Flags: u32) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).SetConfigurationFlags(@ptrCast(*const IBitsPeerCacheAdministration, self), Flags);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_EnumRecords(self: *const T, ppEnum: ?*?*IEnumBitsPeerCacheRecords) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).EnumRecords(@ptrCast(*const IBitsPeerCacheAdministration, self), ppEnum);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_GetRecord(self: *const T, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).GetRecord(@ptrCast(*const IBitsPeerCacheAdministration, self), id, ppRecord);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id, ppRecord);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_ClearRecords(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).ClearRecords(@ptrCast(*const IBitsPeerCacheAdministration, self));
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_DeleteRecord(self: *const T, id: ?*const Guid) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DeleteRecord(@ptrCast(*const IBitsPeerCacheAdministration, self), id);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_DeleteUrl(self: *const T, url: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DeleteUrl(@ptrCast(*const IBitsPeerCacheAdministration, self), url);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteUrl(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), url);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: ?*?*IEnumBitsPeers) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).EnumPeers(@ptrCast(*const IBitsPeerCacheAdministration, self), ppEnum);
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_ClearPeers(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).ClearPeers(@ptrCast(*const IBitsPeerCacheAdministration, self));
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsPeerCacheAdministration_DiscoverPeers(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsPeerCacheAdministration.VTable, self.vtable).DiscoverPeers(@ptrCast(*const IBitsPeerCacheAdministration, self));
+                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DiscoverPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
             }
         };
     }
@@ -2466,27 +2466,27 @@ pub const IBackgroundCopyJob4 = extern struct {
             pub usingnamespace IBackgroundCopyJob3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_SetPeerCachingFlags(self: *const T, Flags: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).SetPeerCachingFlags(@ptrCast(*const IBackgroundCopyJob4, self), Flags);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_GetPeerCachingFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetPeerCachingFlags(@ptrCast(*const IBackgroundCopyJob4, self), pFlags);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_GetOwnerIntegrityLevel(self: *const T, pLevel: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetOwnerIntegrityLevel(@ptrCast(*const IBackgroundCopyJob4, self), pLevel);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerIntegrityLevel(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_GetOwnerElevationState(self: *const T, pElevated: ?*BOOL) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetOwnerElevationState(@ptrCast(*const IBackgroundCopyJob4, self), pElevated);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerElevationState(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pElevated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_SetMaximumDownloadTime(self: *const T, Timeout: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).SetMaximumDownloadTime(@ptrCast(*const IBackgroundCopyJob4, self), Timeout);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Timeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob4_GetMaximumDownloadTime(self: *const T, pTimeout: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob4.VTable, self.vtable).GetMaximumDownloadTime(@ptrCast(*const IBackgroundCopyJob4, self), pTimeout);
+                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pTimeout);
             }
         };
     }
@@ -2546,19 +2546,19 @@ pub const IBackgroundCopyFile3 = extern struct {
             pub usingnamespace IBackgroundCopyFile2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile3_GetTemporaryName(self: *const T, pFilename: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).GetTemporaryName(@ptrCast(*const IBackgroundCopyFile3, self), pFilename);
+                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetTemporaryName(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pFilename);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile3_SetValidationState(self: *const T, state: BOOL) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).SetValidationState(@ptrCast(*const IBackgroundCopyFile3, self), state);
+                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).SetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), state);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile3_GetValidationState(self: *const T, pState: ?*BOOL) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).GetValidationState(@ptrCast(*const IBackgroundCopyFile3, self), pState);
+                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile3_IsDownloadedFromPeer(self: *const T, pVal: ?*BOOL) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile3.VTable, self.vtable).IsDownloadedFromPeer(@ptrCast(*const IBackgroundCopyFile3, self), pVal);
+                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).IsDownloadedFromPeer(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pVal);
             }
         };
     }
@@ -2590,7 +2590,7 @@ pub const IBackgroundCopyCallback2 = extern struct {
             pub usingnamespace IBackgroundCopyCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback2_FileTransferred(self: *const T, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback2.VTable, self.vtable).FileTransferred(@ptrCast(*const IBackgroundCopyCallback2, self), pJob, pFile);
+                return @as(*const IBackgroundCopyCallback2.VTable, @ptrCast(self.vtable)).FileTransferred(@as(*const IBackgroundCopyCallback2, @ptrCast(self)), pJob, pFile);
             }
         };
     }
@@ -2659,23 +2659,23 @@ pub const IBitsTokenOptions = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsTokenOptions_SetHelperTokenFlags(self: *const T, UsageFlags: BG_TOKEN) HRESULT {
-                return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).SetHelperTokenFlags(@ptrCast(*const IBitsTokenOptions, self), UsageFlags);
+                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), UsageFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsTokenOptions_GetHelperTokenFlags(self: *const T, pFlags: ?*BG_TOKEN) HRESULT {
-                return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).GetHelperTokenFlags(@ptrCast(*const IBitsTokenOptions, self), pFlags);
+                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsTokenOptions_SetHelperToken(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).SetHelperToken(@ptrCast(*const IBitsTokenOptions, self));
+                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsTokenOptions_ClearHelperToken(self: *const T) HRESULT {
-                return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).ClearHelperToken(@ptrCast(*const IBitsTokenOptions, self));
+                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).ClearHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBitsTokenOptions_GetHelperTokenSid(self: *const T, pSid: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBitsTokenOptions.VTable, self.vtable).GetHelperTokenSid(@ptrCast(*const IBitsTokenOptions, self), pSid);
+                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenSid(@as(*const IBitsTokenOptions, @ptrCast(self)), pSid);
             }
         };
     }
@@ -2707,7 +2707,7 @@ pub const IBackgroundCopyFile4 = extern struct {
             pub usingnamespace IBackgroundCopyFile3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile4_GetPeerDownloadStats(self: *const T, pFromOrigin: ?*u64, pFromPeers: ?*u64) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile4.VTable, self.vtable).GetPeerDownloadStats(@ptrCast(*const IBackgroundCopyFile4, self), pFromOrigin, pFromPeers);
+                return @as(*const IBackgroundCopyFile4.VTable, @ptrCast(self.vtable)).GetPeerDownloadStats(@as(*const IBackgroundCopyFile4, @ptrCast(self)), pFromOrigin, pFromPeers);
             }
         };
     }
@@ -2803,11 +2803,11 @@ pub const IBackgroundCopyJob5 = extern struct {
             pub usingnamespace IBackgroundCopyJob4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob5_SetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob5.VTable, self.vtable).SetProperty(@ptrCast(*const IBackgroundCopyJob5, self), PropertyId, PropertyValue);
+                return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob5_GetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob5.VTable, self.vtable).GetProperty(@ptrCast(*const IBackgroundCopyJob5, self), PropertyId, PropertyValue);
+                return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
             }
         };
     }
@@ -2851,11 +2851,11 @@ pub const IBackgroundCopyFile5 = extern struct {
             pub usingnamespace IBackgroundCopyFile4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile5_SetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile5.VTable, self.vtable).SetProperty(@ptrCast(*const IBackgroundCopyFile5, self), PropertyId, PropertyValue);
+                return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile5_GetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile5.VTable, self.vtable).GetProperty(@ptrCast(*const IBackgroundCopyFile5, self), PropertyId, PropertyValue);
+                return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
             }
         };
     }
@@ -2894,7 +2894,7 @@ pub const IBackgroundCopyCallback3 = extern struct {
             pub usingnamespace IBackgroundCopyCallback2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback3_FileRangesTransferred(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback3.VTable, self.vtable).FileRangesTransferred(@ptrCast(*const IBackgroundCopyCallback3, self), job, file, rangeCount, ranges);
+                return @as(*const IBackgroundCopyCallback3.VTable, @ptrCast(self.vtable)).FileRangesTransferred(@as(*const IBackgroundCopyCallback3, @ptrCast(self)), job, file, rangeCount, ranges);
             }
         };
     }
@@ -2948,15 +2948,15 @@ pub const IBackgroundCopyFile6 = extern struct {
             pub usingnamespace IBackgroundCopyFile5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile6_UpdateDownloadPosition(self: *const T, offset: u64) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile6.VTable, self.vtable).UpdateDownloadPosition(@ptrCast(*const IBackgroundCopyFile6, self), offset);
+                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).UpdateDownloadPosition(@as(*const IBackgroundCopyFile6, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile6_RequestFileRanges(self: *const T, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile6.VTable, self.vtable).RequestFileRanges(@ptrCast(*const IBackgroundCopyFile6, self), rangeCount, ranges);
+                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).RequestFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyFile6_GetFilledFileRanges(self: *const T, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @ptrCast(*const IBackgroundCopyFile6.VTable, self.vtable).GetFilledFileRanges(@ptrCast(*const IBackgroundCopyFile6, self), rangeCount, ranges);
+                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).GetFilledFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
             }
         };
     }
@@ -2999,11 +2999,11 @@ pub const IBackgroundCopyJobHttpOptions2 = extern struct {
             pub usingnamespace IBackgroundCopyJobHttpOptions.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions2_SetHttpMethod(self: *const T, method: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions2.VTable, self.vtable).SetHttpMethod(@ptrCast(*const IBackgroundCopyJobHttpOptions2, self), method);
+                return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).SetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions2_GetHttpMethod(self: *const T, method: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions2.VTable, self.vtable).GetHttpMethod(@ptrCast(*const IBackgroundCopyJobHttpOptions2, self), method);
+                return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).GetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
             }
         };
     }
@@ -3047,7 +3047,7 @@ pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyServerCertificateValidationCallback_ValidateServerCertificate(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) HRESULT {
-                return @ptrCast(*const IBackgroundCopyServerCertificateValidationCallback.VTable, self.vtable).ValidateServerCertificate(@ptrCast(*const IBackgroundCopyServerCertificateValidationCallback, self), job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
+                return @as(*const IBackgroundCopyServerCertificateValidationCallback.VTable, @ptrCast(self.vtable)).ValidateServerCertificate(@as(*const IBackgroundCopyServerCertificateValidationCallback, @ptrCast(self)), job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
             }
         };
     }
@@ -3084,11 +3084,11 @@ pub const IBackgroundCopyJobHttpOptions3 = extern struct {
             pub usingnamespace IBackgroundCopyJobHttpOptions2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions3_SetServerCertificateValidationInterface(self: *const T, certValidationCallback: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions3.VTable, self.vtable).SetServerCertificateValidationInterface(@ptrCast(*const IBackgroundCopyJobHttpOptions3, self), certValidationCallback);
+                return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).SetServerCertificateValidationInterface(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)), certValidationCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJobHttpOptions3_MakeCustomHeadersWriteOnly(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJobHttpOptions3.VTable, self.vtable).MakeCustomHeadersWriteOnly(@ptrCast(*const IBackgroundCopyJobHttpOptions3, self));
+                return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).MakeCustomHeadersWriteOnly(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)));
             }
         };
     }
@@ -3149,19 +3149,19 @@ pub const IBITSExtensionSetup = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBITSExtensionSetup_EnableBITSUploads(self: *const T) HRESULT {
-                return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).EnableBITSUploads(@ptrCast(*const IBITSExtensionSetup, self));
+                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).EnableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBITSExtensionSetup_DisableBITSUploads(self: *const T) HRESULT {
-                return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).DisableBITSUploads(@ptrCast(*const IBITSExtensionSetup, self));
+                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).DisableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBITSExtensionSetup_GetCleanupTaskName(self: *const T, pTaskName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).GetCleanupTaskName(@ptrCast(*const IBITSExtensionSetup, self), pTaskName);
+                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTaskName(@as(*const IBITSExtensionSetup, @ptrCast(self)), pTaskName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBITSExtensionSetup_GetCleanupTask(self: *const T, riid: ?*const Guid, ppUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IBITSExtensionSetup.VTable, self.vtable).GetCleanupTask(@ptrCast(*const IBITSExtensionSetup, self), riid, ppUnk);
+                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTask(@as(*const IBITSExtensionSetup, @ptrCast(self)), riid, ppUnk);
             }
         };
     }
@@ -3193,7 +3193,7 @@ pub const IBITSExtensionSetupFactory = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBITSExtensionSetupFactory_GetObject(self: *const T, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) HRESULT {
-                return @ptrCast(*const IBITSExtensionSetupFactory.VTable, self.vtable).GetObject(@ptrCast(*const IBITSExtensionSetupFactory, self), Path, ppExtensionSetup);
+                return @as(*const IBITSExtensionSetupFactory.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IBITSExtensionSetupFactory, @ptrCast(self)), Path, ppExtensionSetup);
             }
         };
     }
@@ -3313,35 +3313,35 @@ pub const IBackgroundCopyJob1 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_CancelJob(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).CancelJob(@ptrCast(*const IBackgroundCopyJob1, self));
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).CancelJob(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyJob1, self), dwFlags, pdwProgress);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob1, @ptrCast(self)), dwFlags, pdwProgress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_GetStatus(self: *const T, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetStatus(@ptrCast(*const IBackgroundCopyJob1, self), pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_AddFiles(self: *const T, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).AddFiles(@ptrCast(*const IBackgroundCopyJob1, self), cFileCount, ppFileSet);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).AddFiles(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileCount, ppFileSet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_GetFile(self: *const T, cFileIndex: u32, pFileInfo: ?*FILESETINFO) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetFile(@ptrCast(*const IBackgroundCopyJob1, self), cFileIndex, pFileInfo);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileIndex, pFileInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_GetFileCount(self: *const T, pdwFileCount: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).GetFileCount(@ptrCast(*const IBackgroundCopyJob1, self), pdwFileCount);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwFileCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_SwitchToForeground(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyJob1, self));
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyJob1_get_JobID(self: *const T, pguidJobID: ?*Guid) HRESULT {
-                return @ptrCast(*const IBackgroundCopyJob1.VTable, self.vtable).get_JobID(@ptrCast(*const IBackgroundCopyJob1, self), pguidJobID);
+                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).get_JobID(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pguidJobID);
             }
         };
     }
@@ -3413,23 +3413,23 @@ pub const IEnumBackgroundCopyJobs1 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs1_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyJobs1, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs1_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Skip(@ptrCast(*const IEnumBackgroundCopyJobs1, self), celt);
+                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs1_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyJobs1, self));
+                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs1_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs1) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyJobs1, self), ppenum);
+                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyJobs1_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyJobs1.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyJobs1, self), puCount);
+                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), puCount);
             }
         };
     }
@@ -3644,63 +3644,63 @@ pub const IBackgroundCopyGroup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_GetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_SetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetProp(@ptrCast(*const IBackgroundCopyGroup, self), propID, pvarVal);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetProgress(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, pdwProgress);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, pdwProgress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_GetStatus(self: *const T, pdwStatus: ?*u32, pdwJobIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetStatus(@ptrCast(*const IBackgroundCopyGroup, self), pdwStatus, pdwJobIndex);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwStatus, pdwJobIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_GetJob(self: *const T, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).GetJob(@ptrCast(*const IBackgroundCopyGroup, self), jobID, ppJob);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), jobID, ppJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_SuspendGroup(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SuspendGroup(@ptrCast(*const IBackgroundCopyGroup, self));
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SuspendGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_ResumeGroup(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).ResumeGroup(@ptrCast(*const IBackgroundCopyGroup, self));
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).ResumeGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_CancelGroup(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).CancelGroup(@ptrCast(*const IBackgroundCopyGroup, self));
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CancelGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_get_Size(self: *const T, pdwSize: ?*u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).get_Size(@ptrCast(*const IBackgroundCopyGroup, self), pdwSize);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_get_GroupID(self: *const T, pguidGroupID: ?*Guid) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).get_GroupID(@ptrCast(*const IBackgroundCopyGroup, self), pguidGroupID);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_GroupID(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pguidGroupID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_CreateJob(self: *const T, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).CreateJob(@ptrCast(*const IBackgroundCopyGroup, self), guidJobID, ppJob);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), guidJobID, ppJob);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_EnumJobs(self: *const T, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).EnumJobs(@ptrCast(*const IBackgroundCopyGroup, self), dwFlags, ppEnumJobs);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, ppEnumJobs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_SwitchToForeground(self: *const T) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyGroup, self));
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: ?*const Guid, pUnk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).QueryNewJobInterface(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).QueryNewJobInterface(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyGroup_SetNotificationPointer(self: *const T, iid: ?*const Guid, pUnk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SetNotificationPointer(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
+                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetNotificationPointer(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
             }
         };
     }
@@ -3772,23 +3772,23 @@ pub const IEnumBackgroundCopyGroups = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyGroups_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Next(@ptrCast(*const IEnumBackgroundCopyGroups, self), celt, rgelt, pceltFetched);
+                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt, rgelt, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyGroups_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Skip(@ptrCast(*const IEnumBackgroundCopyGroups, self), celt);
+                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyGroups_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Reset(@ptrCast(*const IEnumBackgroundCopyGroups, self));
+                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyGroups_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyGroups) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).Clone(@ptrCast(*const IEnumBackgroundCopyGroups, self), ppenum);
+                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), ppenum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumBackgroundCopyGroups_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumBackgroundCopyGroups.VTable, self.vtable).GetCount(@ptrCast(*const IEnumBackgroundCopyGroups, self), puCount);
+                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), puCount);
             }
         };
     }
@@ -3870,15 +3870,15 @@ pub const IBackgroundCopyCallback1 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback1_OnStatus(self: *const T, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnStatus(@ptrCast(*const IBackgroundCopyCallback1, self), pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
+                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnStatus(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback1_OnProgress(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnProgress(@ptrCast(*const IBackgroundCopyCallback1, self), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
+                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyCallback1_OnProgressEx(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) HRESULT {
-                return @ptrCast(*const IBackgroundCopyCallback1.VTable, self.vtable).OnProgressEx(@ptrCast(*const IBackgroundCopyCallback1, self), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
+                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgressEx(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
             }
         };
     }
@@ -3934,15 +3934,15 @@ pub const IBackgroundCopyQMgr = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyQMgr_CreateGroup(self: *const T, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) HRESULT {
-                return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).CreateGroup(@ptrCast(*const IBackgroundCopyQMgr, self), guidGroupID, ppGroup);
+                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).CreateGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), guidGroupID, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyQMgr_GetGroup(self: *const T, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) HRESULT {
-                return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).GetGroup(@ptrCast(*const IBackgroundCopyQMgr, self), groupID, ppGroup);
+                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).GetGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), groupID, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBackgroundCopyQMgr_EnumGroups(self: *const T, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) HRESULT {
-                return @ptrCast(*const IBackgroundCopyQMgr.VTable, self.vtable).EnumGroups(@ptrCast(*const IBackgroundCopyQMgr, self), dwFlags, ppEnumGroups);
+                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).EnumGroups(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), dwFlags, ppEnumGroups);
             }
         };
     }

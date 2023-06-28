@@ -91,7 +91,7 @@ pub const Window = struct {
             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
             defer internal.scratch_allocator.free(id);
             if (devices.get(id)) |device| {
-                self.peer.resize(@intCast(c_int, device.resolution.width), @intCast(c_int, device.resolution.height));
+                self.peer.resize(@as(c_int, @intCast(device.resolution.width)), @as(c_int, @intCast(device.resolution.height)));
                 self.setSourceDpi(device.dpi);
                 return;
             } else if (!did_invalid_warning) {
@@ -105,11 +105,11 @@ pub const Window = struct {
         }
         self.size.set(.{ .width = width, .height = height });
         self.peer.setUserData(self);
-        self.peer.resize(@intCast(c_int, width), @intCast(c_int, height));
+        self.peer.resize(@as(c_int, @intCast(width)), @as(c_int, @intCast(height)));
     }
 
     fn sizeChanged(width: u32, height: u32, data: usize) void {
-        const self = @ptrFromInt(*Window, data);
+        const self = @as(*Window, @ptrFromInt(data));
         self.size.set(.{ .width = width, .height = height });
     }
 

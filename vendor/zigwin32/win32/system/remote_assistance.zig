@@ -121,23 +121,23 @@ pub const IRendezvousSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousSession_get_State(self: *const T, pSessionState: ?*RENDEZVOUS_SESSION_STATE) HRESULT {
-                return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_State(@ptrCast(*const IRendezvousSession, self), pSessionState);
+                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRendezvousSession, @ptrCast(self)), pSessionState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_RemoteUser(@ptrCast(*const IRendezvousSession, self), bstrUserName);
+                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_RemoteUser(@as(*const IRendezvousSession, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousSession_get_Flags(self: *const T, pFlags: ?*i32) HRESULT {
-                return @ptrCast(*const IRendezvousSession.VTable, self.vtable).get_Flags(@ptrCast(*const IRendezvousSession, self), pFlags);
+                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRendezvousSession, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousSession_SendContextData(self: *const T, bstrData: ?BSTR) HRESULT {
-                return @ptrCast(*const IRendezvousSession.VTable, self.vtable).SendContextData(@ptrCast(*const IRendezvousSession, self), bstrData);
+                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).SendContextData(@as(*const IRendezvousSession, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousSession_Terminate(self: *const T, hr: HRESULT, bstrAppData: ?BSTR) HRESULT {
-                return @ptrCast(*const IRendezvousSession.VTable, self.vtable).Terminate(@ptrCast(*const IRendezvousSession, self), hr, bstrAppData);
+                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRendezvousSession, @ptrCast(self)), hr, bstrAppData);
             }
         };
     }
@@ -183,7 +183,7 @@ pub const IRendezvousApplication = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRendezvousApplication_SetRendezvousSession(self: *const T, pRendezvousSession: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IRendezvousApplication.VTable, self.vtable).SetRendezvousSession(@ptrCast(*const IRendezvousApplication, self), pRendezvousSession);
+                return @as(*const IRendezvousApplication.VTable, @ptrCast(self.vtable)).SetRendezvousSession(@as(*const IRendezvousApplication, @ptrCast(self)), pRendezvousSession);
             }
         };
     }

@@ -13022,7 +13022,7 @@ pub const DUPLICATE_HANDLE_OPTIONS = enum(u32) {
         CLOSE_SOURCE: u1 = 0,
         SAME_ACCESS: u1 = 0,
     }) DUPLICATE_HANDLE_OPTIONS {
-        return @enumFromInt(DUPLICATE_HANDLE_OPTIONS, (if (o.CLOSE_SOURCE == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE) else 0) | (if (o.SAME_ACCESS == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS) else 0));
+        return @as(DUPLICATE_HANDLE_OPTIONS, @enumFromInt((if (o.CLOSE_SOURCE == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE) else 0) | (if (o.SAME_ACCESS == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS) else 0)));
     }
 };
 pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
@@ -13036,7 +13036,7 @@ pub const HANDLE_FLAGS = enum(u32) {
         INHERIT: u1 = 0,
         PROTECT_FROM_CLOSE: u1 = 0,
     }) HANDLE_FLAGS {
-        return @enumFromInt(HANDLE_FLAGS, (if (o.INHERIT == 1) @intFromEnum(HANDLE_FLAGS.INHERIT) else 0) | (if (o.PROTECT_FROM_CLOSE == 1) @intFromEnum(HANDLE_FLAGS.PROTECT_FROM_CLOSE) else 0));
+        return @as(HANDLE_FLAGS, @enumFromInt((if (o.INHERIT == 1) @intFromEnum(HANDLE_FLAGS.INHERIT) else 0) | (if (o.PROTECT_FROM_CLOSE == 1) @intFromEnum(HANDLE_FLAGS.PROTECT_FROM_CLOSE) else 0)));
     }
 };
 pub const HANDLE_FLAG_INHERIT = HANDLE_FLAGS.INHERIT;

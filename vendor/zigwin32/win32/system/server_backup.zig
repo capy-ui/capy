@@ -44,7 +44,7 @@ pub const IWsbApplicationBackupSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationBackupSupport_CheckConsistency(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) HRESULT {
-                return @ptrCast(*const IWsbApplicationBackupSupport.VTable, self.vtable).CheckConsistency(@ptrCast(*const IWsbApplicationBackupSupport, self), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
+                return @as(*const IWsbApplicationBackupSupport.VTable, @ptrCast(self.vtable)).CheckConsistency(@as(*const IWsbApplicationBackupSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
             }
         };
     }
@@ -124,19 +124,19 @@ pub const IWsbApplicationRestoreSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationRestoreSupport_PreRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) HRESULT {
-                return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).PreRestore(@ptrCast(*const IWsbApplicationRestoreSupport, self), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
+                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PreRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationRestoreSupport_PostRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) HRESULT {
-                return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).PostRestore(@ptrCast(*const IWsbApplicationRestoreSupport, self), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
+                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PostRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationRestoreSupport_OrderComponents(self: *const T, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).OrderComponents(@ptrCast(*const IWsbApplicationRestoreSupport, self), cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
+                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).OrderComponents(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationRestoreSupport_IsRollForwardSupported(self: *const T, pbRollForwardSupported: ?*u8) HRESULT {
-                return @ptrCast(*const IWsbApplicationRestoreSupport.VTable, self.vtable).IsRollForwardSupported(@ptrCast(*const IWsbApplicationRestoreSupport, self), pbRollForwardSupported);
+                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).IsRollForwardSupported(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), pbRollForwardSupported);
             }
         };
     }
@@ -174,11 +174,11 @@ pub const IWsbApplicationAsync = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationAsync_QueryStatus(self: *const T, phrResult: ?*HRESULT) HRESULT {
-                return @ptrCast(*const IWsbApplicationAsync.VTable, self.vtable).QueryStatus(@ptrCast(*const IWsbApplicationAsync, self), phrResult);
+                return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IWsbApplicationAsync, @ptrCast(self)), phrResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWsbApplicationAsync_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IWsbApplicationAsync.VTable, self.vtable).Abort(@ptrCast(*const IWsbApplicationAsync, self));
+                return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWsbApplicationAsync, @ptrCast(self)));
             }
         };
     }

@@ -189,7 +189,7 @@ pub const PCX = struct {
         self.width = @as(usize, self.header.xmax - self.header.xmin + 1);
         self.height = @as(usize, self.header.ymax - self.header.ymin + 1);
 
-        const has_dummy_byte = (@bitCast(i16, self.header.stride) - @bitCast(isize, self.width)) == 1;
+        const has_dummy_byte = (@as(i16, @bitCast(self.header.stride)) - @as(isize, @bitCast(self.width))) == 1;
         const actual_width = if (has_dummy_byte) self.width + 1 else self.width;
 
         var pixels = try color.PixelStorage.init(allocator, pixel_format, self.width * self.height);
@@ -214,16 +214,16 @@ pub const PCX = struct {
                         var i: usize = 0;
                         while (i < 8) : (i += 1) {
                             if (x < self.width) {
-                                storage.indices[y_stride + x] = @intCast(u1, (byte >> (7 - @intCast(u3, i))) & 0x01);
+                                storage.indices[y_stride + x] = @as(u1, @intCast((byte >> (7 - @as(u3, @intCast(i)))) & 0x01));
                                 x += 1;
                             }
                         }
                     },
                     .indexed4 => |storage| {
-                        storage.indices[y_stride + x] = @truncate(u4, byte >> 4);
+                        storage.indices[y_stride + x] = @as(u4, @truncate(byte >> 4));
                         x += 1;
                         if (x < self.width) {
-                            storage.indices[y_stride + x] = @truncate(u4, byte);
+                            storage.indices[y_stride + x] = @as(u4, @truncate(byte));
                             x += 1;
                         }
                     },

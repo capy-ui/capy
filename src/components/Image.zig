@@ -91,8 +91,8 @@ pub const Image_Impl = struct {
         const image = self.data.get().?;
         switch (self.scaling.get()) {
             .None => {
-                const imageX = @intCast(i32, width / 2) - @intCast(i32, image.width / 2);
-                const imageY = @intCast(i32, height / 2) - @intCast(i32, image.height / 2);
+                const imageX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(image.width / 2));
+                const imageY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(image.height / 2));
                 ctx.image(
                     imageX,
                     imageY,
@@ -103,20 +103,20 @@ pub const Image_Impl = struct {
             },
             .Fit => {
                 // The aspect ratio of the image
-                const ratio = @floatFromInt(f32, image.width) / @floatFromInt(f32, image.height);
+                const ratio = @as(f32, @floatFromInt(image.width)) / @as(f32, @floatFromInt(image.height));
                 var imageW: u32 = undefined;
                 var imageH: u32 = undefined;
 
-                if (@floatFromInt(f32, width) / ratio < @floatFromInt(f32, height)) {
+                if (@as(f32, @floatFromInt(width)) / ratio < @as(f32, @floatFromInt(height))) {
                     imageW = width;
-                    imageH = @intFromFloat(u32, @floatFromInt(f32, imageW) / ratio);
+                    imageH = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imageW)) / ratio));
                 } else {
                     imageH = height;
-                    imageW = @intFromFloat(u32, @floatFromInt(f32, imageH) * ratio);
+                    imageW = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imageH)) * ratio));
                 }
 
-                const imageX = @intCast(i32, width / 2) - @intCast(i32, imageW / 2);
-                const imageY = @intCast(i32, height / 2) - @intCast(i32, imageH / 2);
+                const imageX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(imageW / 2));
+                const imageY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(imageH / 2));
 
                 ctx.image(
                     imageX,

@@ -479,7 +479,7 @@ pub const TRACE_MESSAGE_FLAGS = enum(u32) {
         SYSTEMINFO: u1 = 0,
         TIMESTAMP: u1 = 0,
     }) TRACE_MESSAGE_FLAGS {
-        return @enumFromInt(TRACE_MESSAGE_FLAGS, (if (o.COMPONENTID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0) | (if (o.GUID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.GUID) else 0) | (if (o.SEQUENCE == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0) | (if (o.SYSTEMINFO == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0) | (if (o.TIMESTAMP == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0));
+        return @as(TRACE_MESSAGE_FLAGS, @enumFromInt((if (o.COMPONENTID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0) | (if (o.GUID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.GUID) else 0) | (if (o.SEQUENCE == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0) | (if (o.SYSTEMINFO == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0) | (if (o.TIMESTAMP == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0)));
     }
 };
 pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS.COMPONENTID;
@@ -566,7 +566,7 @@ pub const EVENT_TRACE_FLAG = enum(u32) {
         VAMAP: u1 = 0,
         VIRTUAL_ALLOC: u1 = 0,
     }) EVENT_TRACE_FLAG {
-        return @enumFromInt(EVENT_TRACE_FLAG, (if (o.ALPC == 1) @intFromEnum(EVENT_TRACE_FLAG.ALPC) else 0) | (if (o.CSWITCH == 1) @intFromEnum(EVENT_TRACE_FLAG.CSWITCH) else 0) | (if (o.DBGPRINT == 1) @intFromEnum(EVENT_TRACE_FLAG.DBGPRINT) else 0) | (if (o.DISK_FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0) | (if (o.DISK_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO) else 0) | (if (o.DISK_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0) | (if (o.DISPATCHER == 1) @intFromEnum(EVENT_TRACE_FLAG.DISPATCHER) else 0) | (if (o.DPC == 1) @intFromEnum(EVENT_TRACE_FLAG.DPC) else 0) | (if (o.DRIVER == 1) @intFromEnum(EVENT_TRACE_FLAG.DRIVER) else 0) | (if (o.FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO) else 0) | (if (o.FILE_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0) | (if (o.IMAGE_LOAD == 1) @intFromEnum(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0) | (if (o.INTERRUPT == 1) @intFromEnum(EVENT_TRACE_FLAG.INTERRUPT) else 0) | (if (o.JOB == 1) @intFromEnum(EVENT_TRACE_FLAG.JOB) else 0) | (if (o.MEMORY_HARD_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0) | (if (o.MEMORY_PAGE_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0) | (if (o.NETWORK_TCPIP == 1) @intFromEnum(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0) | (if (o.NO_SYSCONFIG == 1) @intFromEnum(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0) | (if (o.PROCESS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS) else 0) | (if (o.PROCESS_COUNTERS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0) | (if (o.PROFILE == 1) @intFromEnum(EVENT_TRACE_FLAG.PROFILE) else 0) | (if (o.REGISTRY == 1) @intFromEnum(EVENT_TRACE_FLAG.REGISTRY) else 0) | (if (o.SPLIT_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.SPLIT_IO) else 0) | (if (o.SYSTEMCALL == 1) @intFromEnum(EVENT_TRACE_FLAG.SYSTEMCALL) else 0) | (if (o.THREAD == 1) @intFromEnum(EVENT_TRACE_FLAG.THREAD) else 0) | (if (o.VAMAP == 1) @intFromEnum(EVENT_TRACE_FLAG.VAMAP) else 0) | (if (o.VIRTUAL_ALLOC == 1) @intFromEnum(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0));
+        return @as(EVENT_TRACE_FLAG, @enumFromInt((if (o.ALPC == 1) @intFromEnum(EVENT_TRACE_FLAG.ALPC) else 0) | (if (o.CSWITCH == 1) @intFromEnum(EVENT_TRACE_FLAG.CSWITCH) else 0) | (if (o.DBGPRINT == 1) @intFromEnum(EVENT_TRACE_FLAG.DBGPRINT) else 0) | (if (o.DISK_FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0) | (if (o.DISK_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO) else 0) | (if (o.DISK_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0) | (if (o.DISPATCHER == 1) @intFromEnum(EVENT_TRACE_FLAG.DISPATCHER) else 0) | (if (o.DPC == 1) @intFromEnum(EVENT_TRACE_FLAG.DPC) else 0) | (if (o.DRIVER == 1) @intFromEnum(EVENT_TRACE_FLAG.DRIVER) else 0) | (if (o.FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO) else 0) | (if (o.FILE_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0) | (if (o.IMAGE_LOAD == 1) @intFromEnum(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0) | (if (o.INTERRUPT == 1) @intFromEnum(EVENT_TRACE_FLAG.INTERRUPT) else 0) | (if (o.JOB == 1) @intFromEnum(EVENT_TRACE_FLAG.JOB) else 0) | (if (o.MEMORY_HARD_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0) | (if (o.MEMORY_PAGE_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0) | (if (o.NETWORK_TCPIP == 1) @intFromEnum(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0) | (if (o.NO_SYSCONFIG == 1) @intFromEnum(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0) | (if (o.PROCESS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS) else 0) | (if (o.PROCESS_COUNTERS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0) | (if (o.PROFILE == 1) @intFromEnum(EVENT_TRACE_FLAG.PROFILE) else 0) | (if (o.REGISTRY == 1) @intFromEnum(EVENT_TRACE_FLAG.REGISTRY) else 0) | (if (o.SPLIT_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.SPLIT_IO) else 0) | (if (o.SYSTEMCALL == 1) @intFromEnum(EVENT_TRACE_FLAG.SYSTEMCALL) else 0) | (if (o.THREAD == 1) @intFromEnum(EVENT_TRACE_FLAG.THREAD) else 0) | (if (o.VAMAP == 1) @intFromEnum(EVENT_TRACE_FLAG.VAMAP) else 0) | (if (o.VIRTUAL_ALLOC == 1) @intFromEnum(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0)));
     }
 };
 pub const EVENT_TRACE_FLAG_ALPC = EVENT_TRACE_FLAG.ALPC;
@@ -2095,51 +2095,51 @@ pub const ITraceEvent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_Clone(self: *const T, NewEvent: ?*?*ITraceEvent) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).Clone(@ptrCast(*const ITraceEvent, self), NewEvent);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).Clone(@as(*const ITraceEvent, @ptrCast(self)), NewEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_GetUserContext(self: *const T, UserContext: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetUserContext(@ptrCast(*const ITraceEvent, self), UserContext);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetUserContext(@as(*const ITraceEvent, @ptrCast(self)), UserContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_GetEventRecord(self: *const T, EventRecord: ?*?*EVENT_RECORD) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).GetEventRecord(@ptrCast(*const ITraceEvent, self), EventRecord);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).GetEventRecord(@as(*const ITraceEvent, @ptrCast(self)), EventRecord);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetPayload(self: *const T, Payload: [*:0]u8, PayloadSize: u32) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetPayload(@ptrCast(*const ITraceEvent, self), Payload, PayloadSize);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetPayload(@as(*const ITraceEvent, @ptrCast(self)), Payload, PayloadSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetEventDescriptor(self: *const T, EventDescriptor: ?*const EVENT_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetEventDescriptor(@ptrCast(*const ITraceEvent, self), EventDescriptor);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetEventDescriptor(@as(*const ITraceEvent, @ptrCast(self)), EventDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetProcessId(self: *const T, ProcessId: u32) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessId(@ptrCast(*const ITraceEvent, self), ProcessId);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessId(@as(*const ITraceEvent, @ptrCast(self)), ProcessId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetProcessorIndex(self: *const T, ProcessorIndex: u32) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProcessorIndex(@ptrCast(*const ITraceEvent, self), ProcessorIndex);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProcessorIndex(@as(*const ITraceEvent, @ptrCast(self)), ProcessorIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetThreadId(self: *const T, ThreadId: u32) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadId(@ptrCast(*const ITraceEvent, self), ThreadId);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadId(@as(*const ITraceEvent, @ptrCast(self)), ThreadId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetThreadTimes(self: *const T, KernelTime: u32, UserTime: u32) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetThreadTimes(@ptrCast(*const ITraceEvent, self), KernelTime, UserTime);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetThreadTimes(@as(*const ITraceEvent, @ptrCast(self)), KernelTime, UserTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetActivityId(self: *const T, ActivityId: ?*const Guid) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetActivityId(@ptrCast(*const ITraceEvent, self), ActivityId);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetActivityId(@as(*const ITraceEvent, @ptrCast(self)), ActivityId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetTimeStamp(self: *const T, TimeStamp: ?*LARGE_INTEGER) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetTimeStamp(@ptrCast(*const ITraceEvent, self), TimeStamp);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetTimeStamp(@as(*const ITraceEvent, @ptrCast(self)), TimeStamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEvent_SetProviderId(self: *const T, ProviderId: ?*const Guid) HRESULT {
-                return @ptrCast(*const ITraceEvent.VTable, self.vtable).SetProviderId(@ptrCast(*const ITraceEvent, self), ProviderId);
+                return @as(*const ITraceEvent.VTable, @ptrCast(self.vtable)).SetProviderId(@as(*const ITraceEvent, @ptrCast(self)), ProviderId);
             }
         };
     }
@@ -2193,15 +2193,15 @@ pub const ITraceEventCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEventCallback_OnBeginProcessTrace(self: *const T, HeaderEvent: ?*ITraceEvent, Relogger: ?*ITraceRelogger) HRESULT {
-                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnBeginProcessTrace(@ptrCast(*const ITraceEventCallback, self), HeaderEvent, Relogger);
+                return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnBeginProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), HeaderEvent, Relogger);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEventCallback_OnFinalizeProcessTrace(self: *const T, Relogger: ?*ITraceRelogger) HRESULT {
-                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnFinalizeProcessTrace(@ptrCast(*const ITraceEventCallback, self), Relogger);
+                return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnFinalizeProcessTrace(@as(*const ITraceEventCallback, @ptrCast(self)), Relogger);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceEventCallback_OnEvent(self: *const T, Event: ?*ITraceEvent, Relogger: ?*ITraceRelogger) HRESULT {
-                return @ptrCast(*const ITraceEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const ITraceEventCallback, self), Event, Relogger);
+                return @as(*const ITraceEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ITraceEventCallback, @ptrCast(self)), Event, Relogger);
             }
         };
     }
@@ -2319,39 +2319,39 @@ pub const ITraceRelogger = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_AddLogfileTraceStream(self: *const T, LogfileName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddLogfileTraceStream(@ptrCast(*const ITraceRelogger, self), LogfileName, UserContext, TraceHandle);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddLogfileTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName, UserContext, TraceHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_AddRealtimeTraceStream(self: *const T, LoggerName: ?BSTR, UserContext: ?*anyopaque, TraceHandle: ?*u64) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).AddRealtimeTraceStream(@ptrCast(*const ITraceRelogger, self), LoggerName, UserContext, TraceHandle);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).AddRealtimeTraceStream(@as(*const ITraceRelogger, @ptrCast(self)), LoggerName, UserContext, TraceHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_RegisterCallback(self: *const T, Callback: ?*ITraceEventCallback) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).RegisterCallback(@ptrCast(*const ITraceRelogger, self), Callback);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const ITraceRelogger, @ptrCast(self)), Callback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_Inject(self: *const T, Event: ?*ITraceEvent) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Inject(@ptrCast(*const ITraceRelogger, self), Event);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Inject(@as(*const ITraceRelogger, @ptrCast(self)), Event);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_CreateEventInstance(self: *const T, TraceHandle: u64, Flags: u32, Event: ?*?*ITraceEvent) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).CreateEventInstance(@ptrCast(*const ITraceRelogger, self), TraceHandle, Flags, Event);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).CreateEventInstance(@as(*const ITraceRelogger, @ptrCast(self)), TraceHandle, Flags, Event);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_ProcessTrace(self: *const T) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).ProcessTrace(@ptrCast(*const ITraceRelogger, self));
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).ProcessTrace(@as(*const ITraceRelogger, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_SetOutputFilename(self: *const T, LogfileName: ?BSTR) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetOutputFilename(@ptrCast(*const ITraceRelogger, self), LogfileName);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetOutputFilename(@as(*const ITraceRelogger, @ptrCast(self)), LogfileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_SetCompressionMode(self: *const T, CompressionMode: BOOLEAN) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).SetCompressionMode(@ptrCast(*const ITraceRelogger, self), CompressionMode);
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).SetCompressionMode(@as(*const ITraceRelogger, @ptrCast(self)), CompressionMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITraceRelogger_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const ITraceRelogger.VTable, self.vtable).Cancel(@ptrCast(*const ITraceRelogger, self));
+                return @as(*const ITraceRelogger.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ITraceRelogger, @ptrCast(self)));
             }
         };
     }

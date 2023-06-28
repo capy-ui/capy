@@ -203,11 +203,11 @@ pub const IObjectArray = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectArray_GetCount(self: *const T, pcObjects: ?*u32) HRESULT {
-                return @ptrCast(*const IObjectArray.VTable, self.vtable).GetCount(@ptrCast(*const IObjectArray, self), pcObjects);
+                return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IObjectArray, @ptrCast(self)), pcObjects);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IObjectArray.VTable, self.vtable).GetAt(@ptrCast(*const IObjectArray, self), uiIndex, riid, ppv);
+                return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IObjectArray, @ptrCast(self)), uiIndex, riid, ppv);
             }
         };
     }
@@ -265,19 +265,19 @@ pub const IObjectCollection = extern struct {
             pub usingnamespace IObjectArray.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectCollection_AddObject(self: *const T, punk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddObject(@ptrCast(*const IObjectCollection, self), punk);
+                return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddObject(@as(*const IObjectCollection, @ptrCast(self)), punk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectCollection_AddFromArray(self: *const T, poaSource: ?*IObjectArray) HRESULT {
-                return @ptrCast(*const IObjectCollection.VTable, self.vtable).AddFromArray(@ptrCast(*const IObjectCollection, self), poaSource);
+                return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddFromArray(@as(*const IObjectCollection, @ptrCast(self)), poaSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectCollection_RemoveObjectAt(self: *const T, uiIndex: u32) HRESULT {
-                return @ptrCast(*const IObjectCollection.VTable, self.vtable).RemoveObjectAt(@ptrCast(*const IObjectCollection, self), uiIndex);
+                return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).RemoveObjectAt(@as(*const IObjectCollection, @ptrCast(self)), uiIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IObjectCollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IObjectCollection.VTable, self.vtable).Clear(@ptrCast(*const IObjectCollection, self));
+                return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectCollection, @ptrCast(self)));
             }
         };
     }

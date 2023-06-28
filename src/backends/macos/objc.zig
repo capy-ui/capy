@@ -25,7 +25,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @ptrCast(FnType, c.objc_msgSend);
+        var func = @as(FnType, @ptrCast(c.objc_msgSend));
         return @call(.{}, func, .{ target, selector } ++ args);
     } else {
         const FnType = blk: {
@@ -40,7 +40,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @ptrCast(FnType, c.objc_msgSend_stret);
+        var func = @as(FnType, @ptrCast(c.objc_msgSend_stret));
         var stret: ReturnType = undefined;
         _ = @call(.{}, func, .{ &stret, target, selector } ++ args);
         return stret;

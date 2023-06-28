@@ -29,7 +29,7 @@ pub const IRandomAccessStreamFileAccessMode = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRandomAccessStreamFileAccessMode_GetMode(self: *const T, fileAccessMode: ?*u32) HRESULT {
-                return @ptrCast(*const IRandomAccessStreamFileAccessMode.VTable, self.vtable).GetMode(@ptrCast(*const IRandomAccessStreamFileAccessMode, self), fileAccessMode);
+                return @as(*const IRandomAccessStreamFileAccessMode.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IRandomAccessStreamFileAccessMode, @ptrCast(self)), fileAccessMode);
             }
         };
     }
@@ -57,7 +57,7 @@ pub const IUnbufferedFileHandleOplockCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUnbufferedFileHandleOplockCallback_OnBrokenCallback(self: *const T) HRESULT {
-                return @ptrCast(*const IUnbufferedFileHandleOplockCallback.VTable, self.vtable).OnBrokenCallback(@ptrCast(*const IUnbufferedFileHandleOplockCallback, self));
+                return @as(*const IUnbufferedFileHandleOplockCallback.VTable, @ptrCast(self.vtable)).OnBrokenCallback(@as(*const IUnbufferedFileHandleOplockCallback, @ptrCast(self)));
             }
         };
     }
@@ -97,11 +97,11 @@ pub const IUnbufferedFileHandleProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUnbufferedFileHandleProvider_OpenUnbufferedFileHandle(self: *const T, oplockBreakCallback: ?*IUnbufferedFileHandleOplockCallback, fileHandle: ?*usize) HRESULT {
-                return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).OpenUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self), oplockBreakCallback, fileHandle);
+                return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).OpenUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)), oplockBreakCallback, fileHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUnbufferedFileHandleProvider_CloseUnbufferedFileHandle(self: *const T) HRESULT {
-                return @ptrCast(*const IUnbufferedFileHandleProvider.VTable, self.vtable).CloseUnbufferedFileHandle(@ptrCast(*const IUnbufferedFileHandleProvider, self));
+                return @as(*const IUnbufferedFileHandleProvider.VTable, @ptrCast(self.vtable)).CloseUnbufferedFileHandle(@as(*const IUnbufferedFileHandleProvider, @ptrCast(self)));
             }
         };
     }
@@ -128,7 +128,7 @@ pub const HANDLE_OPTIONS = enum(u32) {
         OVERLAPPED: u1 = 0,
         WRITE_THROUGH: u1 = 0,
     }) HANDLE_OPTIONS {
-        return @enumFromInt(HANDLE_OPTIONS, (if (o.NONE == 1) @intFromEnum(HANDLE_OPTIONS.NONE) else 0) | (if (o.OPEN_REQUIRING_OPLOCK == 1) @intFromEnum(HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK) else 0) | (if (o.DELETE_ON_CLOSE == 1) @intFromEnum(HANDLE_OPTIONS.DELETE_ON_CLOSE) else 0) | (if (o.SEQUENTIAL_SCAN == 1) @intFromEnum(HANDLE_OPTIONS.SEQUENTIAL_SCAN) else 0) | (if (o.RANDOM_ACCESS == 1) @intFromEnum(HANDLE_OPTIONS.RANDOM_ACCESS) else 0) | (if (o.NO_BUFFERING == 1) @intFromEnum(HANDLE_OPTIONS.NO_BUFFERING) else 0) | (if (o.OVERLAPPED == 1) @intFromEnum(HANDLE_OPTIONS.OVERLAPPED) else 0) | (if (o.WRITE_THROUGH == 1) @intFromEnum(HANDLE_OPTIONS.WRITE_THROUGH) else 0));
+        return @as(HANDLE_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(HANDLE_OPTIONS.NONE) else 0) | (if (o.OPEN_REQUIRING_OPLOCK == 1) @intFromEnum(HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK) else 0) | (if (o.DELETE_ON_CLOSE == 1) @intFromEnum(HANDLE_OPTIONS.DELETE_ON_CLOSE) else 0) | (if (o.SEQUENTIAL_SCAN == 1) @intFromEnum(HANDLE_OPTIONS.SEQUENTIAL_SCAN) else 0) | (if (o.RANDOM_ACCESS == 1) @intFromEnum(HANDLE_OPTIONS.RANDOM_ACCESS) else 0) | (if (o.NO_BUFFERING == 1) @intFromEnum(HANDLE_OPTIONS.NO_BUFFERING) else 0) | (if (o.OVERLAPPED == 1) @intFromEnum(HANDLE_OPTIONS.OVERLAPPED) else 0) | (if (o.WRITE_THROUGH == 1) @intFromEnum(HANDLE_OPTIONS.WRITE_THROUGH) else 0)));
     }
 };
 pub const HO_NONE = HANDLE_OPTIONS.NONE;
@@ -154,7 +154,7 @@ pub const HANDLE_ACCESS_OPTIONS = enum(u32) {
         WRITE: u1 = 0,
         DELETE: u1 = 0,
     }) HANDLE_ACCESS_OPTIONS {
-        return @enumFromInt(HANDLE_ACCESS_OPTIONS, (if (o.NONE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.NONE) else 0) | (if (o.READ_ATTRIBUTES == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES) else 0) | (if (o.READ == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.DELETE) else 0));
+        return @as(HANDLE_ACCESS_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.NONE) else 0) | (if (o.READ_ATTRIBUTES == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES) else 0) | (if (o.READ == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.DELETE) else 0)));
     }
 };
 pub const HAO_NONE = HANDLE_ACCESS_OPTIONS.NONE;
@@ -175,7 +175,7 @@ pub const HANDLE_SHARING_OPTIONS = enum(u32) {
         WRITE: u1 = 0,
         DELETE: u1 = 0,
     }) HANDLE_SHARING_OPTIONS {
-        return @enumFromInt(HANDLE_SHARING_OPTIONS, (if (o.NONE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.DELETE) else 0));
+        return @as(HANDLE_SHARING_OPTIONS, @enumFromInt((if (o.NONE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.WRITE) else 0) | (if (o.DELETE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.DELETE) else 0)));
     }
 };
 pub const HSO_SHARE_NONE = HANDLE_SHARING_OPTIONS.NONE;
@@ -217,7 +217,7 @@ pub const IOplockBreakingHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOplockBreakingHandler_OplockBreaking(self: *const T) HRESULT {
-                return @ptrCast(*const IOplockBreakingHandler.VTable, self.vtable).OplockBreaking(@ptrCast(*const IOplockBreakingHandler, self));
+                return @as(*const IOplockBreakingHandler.VTable, @ptrCast(self.vtable)).OplockBreaking(@as(*const IOplockBreakingHandler, @ptrCast(self)));
             }
         };
     }
@@ -255,7 +255,7 @@ pub const IStorageItemHandleAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStorageItemHandleAccess_Create(self: *const T, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IStorageItemHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageItemHandleAccess, self), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+                return @as(*const IStorageItemHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageItemHandleAccess, @ptrCast(self)), accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
             }
         };
     }
@@ -297,7 +297,7 @@ pub const IStorageFolderHandleAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IStorageFolderHandleAccess_Create(self: *const T, fileName: ?[*:0]const u16, creationOptions: HANDLE_CREATION_OPTIONS, accessOptions: HANDLE_ACCESS_OPTIONS, sharingOptions: HANDLE_SHARING_OPTIONS, options: HANDLE_OPTIONS, oplockBreakingHandler: ?*IOplockBreakingHandler, interopHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IStorageFolderHandleAccess.VTable, self.vtable).Create(@ptrCast(*const IStorageFolderHandleAccess, self), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
+                return @as(*const IStorageFolderHandleAccess.VTable, @ptrCast(self.vtable)).Create(@as(*const IStorageFolderHandleAccess, @ptrCast(self)), fileName, creationOptions, accessOptions, sharingOptions, options, oplockBreakingHandler, interopHandle);
             }
         };
     }

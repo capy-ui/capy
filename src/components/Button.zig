@@ -23,12 +23,12 @@ pub const Button_Impl = struct {
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Button, userdata);
+        const peer = @as(*?backend.Button, @ptrFromInt(userdata));
         peer.*.?.setEnabled(newValue);
     }
 
     fn wrapperLabelChanged(newValue: [:0]const u8, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Button, userdata);
+        const peer = @as(*?backend.Button, @ptrFromInt(userdata));
         peer.*.?.setLabel(newValue);
     }
 

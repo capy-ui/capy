@@ -946,7 +946,7 @@ pub const INTERNET_CONNECTION = enum(u32) {
         CONNECTION_PROXY: u1 = 0,
         RAS_INSTALLED: u1 = 0,
     }) INTERNET_CONNECTION {
-        return @enumFromInt(INTERNET_CONNECTION, (if (o.CONNECTION_CONFIGURED == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_CONFIGURED) else 0) | (if (o.CONNECTION_LAN_ == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_LAN_) else 0) | (if (o.CONNECTION_MODEM == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_MODEM) else 0) | (if (o.CONNECTION_MODEM_BUSY == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_MODEM_BUSY) else 0) | (if (o.CONNECTION_OFFLINE_ == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_OFFLINE_) else 0) | (if (o.CONNECTION_PROXY == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_PROXY) else 0) | (if (o.RAS_INSTALLED == 1) @intFromEnum(INTERNET_CONNECTION.RAS_INSTALLED) else 0));
+        return @as(INTERNET_CONNECTION, @enumFromInt((if (o.CONNECTION_CONFIGURED == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_CONFIGURED) else 0) | (if (o.CONNECTION_LAN_ == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_LAN_) else 0) | (if (o.CONNECTION_MODEM == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_MODEM) else 0) | (if (o.CONNECTION_MODEM_BUSY == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_MODEM_BUSY) else 0) | (if (o.CONNECTION_OFFLINE_ == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_OFFLINE_) else 0) | (if (o.CONNECTION_PROXY == 1) @intFromEnum(INTERNET_CONNECTION.CONNECTION_PROXY) else 0) | (if (o.RAS_INSTALLED == 1) @intFromEnum(INTERNET_CONNECTION.RAS_INSTALLED) else 0)));
     }
 };
 pub const INTERNET_CONNECTION_CONFIGURED = INTERNET_CONNECTION.CONNECTION_CONFIGURED;
@@ -972,7 +972,7 @@ pub const HTTP_ADDREQ_FLAG = enum(u32) {
         COALESCE_WITH_SEMICOLON: u1 = 0,
         REPLACE: u1 = 0,
     }) HTTP_ADDREQ_FLAG {
-        return @enumFromInt(HTTP_ADDREQ_FLAG, (if (o.ADD == 1) @intFromEnum(HTTP_ADDREQ_FLAG.ADD) else 0) | (if (o.ADD_IF_NEW == 1) @intFromEnum(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0) | (if (o.COALESCE == 1) @intFromEnum(HTTP_ADDREQ_FLAG.COALESCE) else 0) | (if (o.COALESCE_WITH_SEMICOLON == 1) @intFromEnum(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0) | (if (o.REPLACE == 1) @intFromEnum(HTTP_ADDREQ_FLAG.REPLACE) else 0));
+        return @as(HTTP_ADDREQ_FLAG, @enumFromInt((if (o.ADD == 1) @intFromEnum(HTTP_ADDREQ_FLAG.ADD) else 0) | (if (o.ADD_IF_NEW == 1) @intFromEnum(HTTP_ADDREQ_FLAG.ADD_IF_NEW) else 0) | (if (o.COALESCE == 1) @intFromEnum(HTTP_ADDREQ_FLAG.COALESCE) else 0) | (if (o.COALESCE_WITH_SEMICOLON == 1) @intFromEnum(HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON) else 0) | (if (o.REPLACE == 1) @intFromEnum(HTTP_ADDREQ_FLAG.REPLACE) else 0)));
     }
 };
 pub const HTTP_ADDREQ_FLAG_ADD = HTTP_ADDREQ_FLAG.ADD;
@@ -999,7 +999,7 @@ pub const PROXY_AUTO_DETECT_TYPE = enum(u32) {
         HCP: u1 = 0,
         NS_A: u1 = 0,
     }) PROXY_AUTO_DETECT_TYPE {
-        return @enumFromInt(PROXY_AUTO_DETECT_TYPE, (if (o.HCP == 1) @intFromEnum(PROXY_AUTO_DETECT_TYPE.HCP) else 0) | (if (o.NS_A == 1) @intFromEnum(PROXY_AUTO_DETECT_TYPE.NS_A) else 0));
+        return @as(PROXY_AUTO_DETECT_TYPE, @enumFromInt((if (o.HCP == 1) @intFromEnum(PROXY_AUTO_DETECT_TYPE.HCP) else 0) | (if (o.NS_A == 1) @intFromEnum(PROXY_AUTO_DETECT_TYPE.NS_A) else 0)));
     }
 };
 pub const PROXY_AUTO_DETECT_TYPE_DHCP = PROXY_AUTO_DETECT_TYPE.HCP;
@@ -1690,7 +1690,7 @@ pub const IDialEventSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEventSink_OnEvent(self: *const T, dwEvent: u32, dwStatus: u32) HRESULT {
-                return @ptrCast(*const IDialEventSink.VTable, self.vtable).OnEvent(@ptrCast(*const IDialEventSink, self), dwEvent, dwStatus);
+                return @as(*const IDialEventSink.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IDialEventSink, @ptrCast(self)), dwEvent, dwStatus);
             }
         };
     }
@@ -1783,31 +1783,31 @@ pub const IDialEngine = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).Initialize(@ptrCast(*const IDialEngine, self), pwzConnectoid, pIDES);
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialEngine, @ptrCast(self)), pwzConnectoid, pIDES);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_GetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue, dwBufSize);
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue, dwBufSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_SetProperty(self: *const T, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).SetProperty(@ptrCast(*const IDialEngine, self), pwzProperty, pwzValue);
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_Dial(self: *const T) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).Dial(@ptrCast(*const IDialEngine, self));
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Dial(@as(*const IDialEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_HangUp(self: *const T) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).HangUp(@ptrCast(*const IDialEngine, self));
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).HangUp(@as(*const IDialEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_GetConnectedState(self: *const T, pdwState: ?*u32) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectedState(@ptrCast(*const IDialEngine, self), pdwState);
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectedState(@as(*const IDialEngine, @ptrCast(self)), pdwState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialEngine_GetConnectHandle(self: *const T, pdwHandle: ?*usize) HRESULT {
-                return @ptrCast(*const IDialEngine.VTable, self.vtable).GetConnectHandle(@ptrCast(*const IDialEngine, self), pdwHandle);
+                return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectHandle(@as(*const IDialEngine, @ptrCast(self)), pdwHandle);
             }
         };
     }
@@ -1848,11 +1848,11 @@ pub const IDialBranding = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialBranding_Initialize(self: *const T, pwzConnectoid: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IDialBranding.VTable, self.vtable).Initialize(@ptrCast(*const IDialBranding, self), pwzConnectoid);
+                return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialBranding, @ptrCast(self)), pwzConnectoid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDialBranding_GetBitmap(self: *const T, dwIndex: u32, phBitmap: ?*?HBITMAP) HRESULT {
-                return @ptrCast(*const IDialBranding.VTable, self.vtable).GetBitmap(@ptrCast(*const IDialBranding, self), dwIndex, phBitmap);
+                return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IDialBranding, @ptrCast(self)), dwIndex, phBitmap);
             }
         };
     }
@@ -2317,7 +2317,7 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProofOfPossessionCookieInfoManager_GetCookieInfoForUri(self: *const T, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) HRESULT {
-                return @ptrCast(*const IProofOfPossessionCookieInfoManager.VTable, self.vtable).GetCookieInfoForUri(@ptrCast(*const IProofOfPossessionCookieInfoManager, self), uri, cookieInfoCount, cookieInfo);
+                return @as(*const IProofOfPossessionCookieInfoManager.VTable, @ptrCast(self.vtable)).GetCookieInfoForUri(@as(*const IProofOfPossessionCookieInfoManager, @ptrCast(self)), uri, cookieInfoCount, cookieInfo);
             }
         };
     }
@@ -2352,7 +2352,7 @@ pub const IProofOfPossessionCookieInfoManager2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IProofOfPossessionCookieInfoManager2_GetCookieInfoWithUriForAccount(self: *const T, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) HRESULT {
-                return @ptrCast(*const IProofOfPossessionCookieInfoManager2.VTable, self.vtable).GetCookieInfoWithUriForAccount(@ptrCast(*const IProofOfPossessionCookieInfoManager2, self), webAccount, uri, cookieInfoCount, cookieInfo);
+                return @as(*const IProofOfPossessionCookieInfoManager2.VTable, @ptrCast(self.vtable)).GetCookieInfoWithUriForAccount(@as(*const IProofOfPossessionCookieInfoManager2, @ptrCast(self)), webAccount, uri, cookieInfoCount, cookieInfo);
             }
         };
     }

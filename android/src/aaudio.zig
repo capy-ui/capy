@@ -36,10 +36,10 @@ pub const AAudio = struct {
         num_frames: i32,
     ) callconv(.C) c.aaudio_data_callback_result_t {
         _ = stream;
-        const output_stream = @ptrCast(*OutputStream, @alignCast(@alignOf(OutputStream), user_data.?));
+        const output_stream = @as(*OutputStream, @ptrCast(@alignCast(@alignOf(OutputStream), user_data.?)));
         // TODO:
         // const audio_slice = @ptrCast([*]f32, @alignCast(@alignOf(f32), audio_data.?))[0..@intCast(usize, num_frames)];
-        const audio_slice = @ptrCast([*]i16, @alignCast(@alignOf(i16), audio_data.?))[0..@intCast(usize, num_frames)];
+        const audio_slice = @as([*]i16, @ptrCast(@alignCast(@alignOf(i16), audio_data.?)))[0..@as(usize, @intCast(num_frames))];
 
         for (audio_slice) |*frame| {
             frame.* = 0;
@@ -47,7 +47,7 @@ pub const AAudio = struct {
 
         var stream_layout = StreamLayout{
             .sample_rate = output_stream.config.sample_rate.?,
-            .channel_count = @intCast(usize, output_stream.config.channel_count),
+            .channel_count = @as(usize, @intCast(output_stream.config.channel_count)),
             .buffer = .{ .Int16 = audio_slice },
         };
 
@@ -64,7 +64,7 @@ pub const AAudio = struct {
         _ = stream;
         audio_log.err("AAudio Stream error! {}", .{err});
         if (err == c.AAUDIO_ERROR_DISCONNECTED) {
-            const output_stream = @ptrCast(*OutputStream, @alignCast(@alignOf(OutputStream), user_data.?));
+            const output_stream = @as(*OutputStream, @ptrCast(@alignCast(@alignOf(OutputStream), user_data.?)));
             _ = std.Thread.spawn(.{}, OutputStream.deinit, .{output_stream}) catch @panic("Error starting thread for AAudioOutputStream");
         }
     }
@@ -94,13 +94,13 @@ pub const AAudio = struct {
             .Int16 => c.AAUDIO_FORMAT_PCM_I16,
             .Float32 => c.AAUDIO_FORMAT_PCM_FLOAT,
         });
-        c.AAudioStreamBuilder_setChannelCount(stream_builder, @intCast(i32, config.channel_count));
+        c.AAudioStreamBuilder_setChannelCount(stream_builder, @as(i32, @intCast(config.channel_count)));
         c.AAudioStreamBuilder_setPerformanceMode(stream_builder, c.AAUDIO_PERFORMANCE_MODE_LOW_LATENCY);
         c.AAudioStreamBuilder_setDataCallback(stream_builder, dataCallback, output_stream);
         c.AAudioStreamBuilder_setErrorCallback(stream_builder, errorCallback, output_stream);
 
-        if (config.sample_rate) |rate| c.AAudioStreamBuilder_setSampleRate(stream_builder, @intCast(i32, rate));
-        if (config.buffer_size) |size| c.AAudioStreamBuilder_setFramesPerDataCallback(stream_builder, @intCast(i32, size));
+        if (config.sample_rate) |rate| c.AAudioStreamBuilder_setSampleRate(stream_builder, @as(i32, @intCast(rate)));
+        if (config.buffer_size) |size| c.AAudioStreamBuilder_setFramesPerDataCallback(stream_builder, @as(i32, @intCast(size)));
 
         // Open the stream
         checkResult(c.AAudioStreamBuilder_openStream(stream_builder, &output_stream.stream)) catch |e| {
@@ -109,10 +109,10 @@ pub const AAudio = struct {
         };
 
         // Save the details of the stream
-        output_stream.config.sample_rate = @intCast(u32, c.AAudioStream_getSampleRate(output_stream.stream));
-        output_stream.config.buffer_size = @intCast(usize, c.AAudioStream_getFramesPerBurst(output_stream.stream));
+        output_stream.config.sample_rate = @as(u32, @intCast(c.AAudioStream_getSampleRate(output_stream.stream)));
+        output_stream.config.buffer_size = @as(usize, @intCast(c.AAudioStream_getFramesPerBurst(output_stream.stream)));
 
-        var res = c.AAudioStream_setBufferSizeInFrames(output_stream.stream, @intCast(i32, output_stream.config.buffer_count * output_stream.config.buffer_size.?));
+        var res = c.AAudioStream_setBufferSizeInFrames(output_stream.stream, @as(i32, @intCast(output_stream.config.buffer_count * output_stream.config.buffer_size.?)));
         if (res < 0) {
             checkResult(res) catch |e| {
                 audio_log.err("Issue with setting buffer size in frames stream: {s}", .{@errorName(e)});

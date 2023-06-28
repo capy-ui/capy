@@ -7,7 +7,7 @@ var random = prng.random();
 
 pub fn animateRandomColor(button_: *anyopaque) !void {
     // This part is a workaround to ziglang/zig#12325
-    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
+    const button: *capy.Button_Impl = @ptrCast(@alignCast(button_));
 
     const root = button.getRoot().?.as(capy.Container_Impl);
     const rect = root.getChild("background-rectangle").?.as(capy.Rect_Impl);
@@ -18,7 +18,7 @@ pub fn animateRandomColor(button_: *anyopaque) !void {
 pub fn main() !void {
     try capy.init();
     var window = try capy.Window.init();
-    prng = std.rand.DefaultPrng.init(@bitCast(u64, std.time.milliTimestamp()));
+    prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
 
     window.setPreferredSize(800, 600);
     try window.set(capy.Stack(.{

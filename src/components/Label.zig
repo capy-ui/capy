@@ -24,7 +24,7 @@ pub const Label_Impl = struct {
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @ptrFromInt(*Label_Impl, userdata);
+        const self = @as(*Label_Impl, @ptrFromInt(userdata));
         self.peer.?.setText(newValue);
     }
 
@@ -49,7 +49,7 @@ pub const Label_Impl = struct {
             return peer.getPreferredSize();
         } else {
             const len = self.text.get().len;
-            return Size{ .width = @intCast(u32, 10 * len), .height = 40.0 };
+            return Size{ .width = @as(u32, @intCast(10 * len)), .height = 40.0 };
         }
     }
 

@@ -43,7 +43,7 @@ pub const SECURITY_INFO_PAGE_FLAGS = enum(u32) {
         EDIT_AUDITS: u1 = 0,
         EDIT_PROPERTIES: u1 = 0,
     }) SECURITY_INFO_PAGE_FLAGS {
-        return @enumFromInt(SECURITY_INFO_PAGE_FLAGS, (if (o.ADVANCED == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.ADVANCED) else 0) | (if (o.EDIT_AUDITS == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS) else 0) | (if (o.EDIT_PROPERTIES == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES) else 0));
+        return @as(SECURITY_INFO_PAGE_FLAGS, @enumFromInt((if (o.ADVANCED == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.ADVANCED) else 0) | (if (o.EDIT_AUDITS == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS) else 0) | (if (o.EDIT_PROPERTIES == 1) @intFromEnum(SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES) else 0)));
     }
 };
 pub const SI_ADVANCED = SECURITY_INFO_PAGE_FLAGS.ADVANCED;
@@ -82,7 +82,7 @@ pub const SI_OBJECT_INFO_FLAGS = enum(u32) {
         SCOPE_ELEVATION_REQUIRED: u1 = 0,
         VIEW_ONLY: u1 = 0,
     }) SI_OBJECT_INFO_FLAGS {
-        return @enumFromInt(SI_OBJECT_INFO_FLAGS, (if (o.AUDITS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED) else 0) | (if (o.DISABLE_DENY_ACE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE) else 0) | (if (o.EDIT_EFFECTIVE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.EDIT_EFFECTIVE) else 0) | (if (o.ENABLE_CENTRAL_POLICY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_CENTRAL_POLICY) else 0) | (if (o.ENABLE_EDIT_ATTRIBUTE_CONDITION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_EDIT_ATTRIBUTE_CONDITION) else 0) | (if (o.MAY_WRITE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.MAY_WRITE) else 0) | (if (o.NO_ADDITIONAL_PERMISSION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.NO_ADDITIONAL_PERMISSION) else 0) | (if (o.OWNER_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.OWNER_ELEVATION_REQUIRED) else 0) | (if (o.PERMS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.PERMS_ELEVATION_REQUIRED) else 0) | (if (o.RESET_DACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_DACL) else 0) | (if (o.RESET_OWNER == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_OWNER) else 0) | (if (o.RESET_SACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_SACL) else 0) | (if (o.SCOPE_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.SCOPE_ELEVATION_REQUIRED) else 0) | (if (o.VIEW_ONLY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.VIEW_ONLY) else 0));
+        return @as(SI_OBJECT_INFO_FLAGS, @enumFromInt((if (o.AUDITS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED) else 0) | (if (o.DISABLE_DENY_ACE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE) else 0) | (if (o.EDIT_EFFECTIVE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.EDIT_EFFECTIVE) else 0) | (if (o.ENABLE_CENTRAL_POLICY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_CENTRAL_POLICY) else 0) | (if (o.ENABLE_EDIT_ATTRIBUTE_CONDITION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.ENABLE_EDIT_ATTRIBUTE_CONDITION) else 0) | (if (o.MAY_WRITE == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.MAY_WRITE) else 0) | (if (o.NO_ADDITIONAL_PERMISSION == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.NO_ADDITIONAL_PERMISSION) else 0) | (if (o.OWNER_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.OWNER_ELEVATION_REQUIRED) else 0) | (if (o.PERMS_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.PERMS_ELEVATION_REQUIRED) else 0) | (if (o.RESET_DACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_DACL) else 0) | (if (o.RESET_OWNER == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_OWNER) else 0) | (if (o.RESET_SACL == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.RESET_SACL) else 0) | (if (o.SCOPE_ELEVATION_REQUIRED == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.SCOPE_ELEVATION_REQUIRED) else 0) | (if (o.VIEW_ONLY == 1) @intFromEnum(SI_OBJECT_INFO_FLAGS.VIEW_ONLY) else 0)));
     }
 };
 pub const SI_AUDITS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED;
@@ -263,31 +263,31 @@ pub const ISecurityInformation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_GetObjectInformation(self: *const T, pObjectInfo: ?*SI_OBJECT_INFO) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetObjectInformation(@ptrCast(*const ISecurityInformation, self), pObjectInfo);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetObjectInformation(@as(*const ISecurityInformation, @ptrCast(self)), pObjectInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR, fDefault: BOOL) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetSecurity(@ptrCast(*const ISecurityInformation, self), RequestedInformation, ppSecurityDescriptor, fDefault);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), RequestedInformation, ppSecurityDescriptor, fDefault);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?*SECURITY_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).SetSecurity(@ptrCast(*const ISecurityInformation, self), SecurityInformation, pSecurityDescriptor);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), SecurityInformation, pSecurityDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_GetAccessRights(self: *const T, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetAccessRights(@ptrCast(*const ISecurityInformation, self), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetAccessRights(@as(*const ISecurityInformation, @ptrCast(self)), pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_MapGeneric(self: *const T, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).MapGeneric(@ptrCast(*const ISecurityInformation, self), pguidObjectType, pAceFlags, pMask);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).MapGeneric(@as(*const ISecurityInformation, @ptrCast(self)), pguidObjectType, pAceFlags, pMask);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_GetInheritTypes(self: *const T, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).GetInheritTypes(@ptrCast(*const ISecurityInformation, self), ppInheritTypes, pcInheritTypes);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetInheritTypes(@as(*const ISecurityInformation, @ptrCast(self)), ppInheritTypes, pcInheritTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation_PropertySheetPageCallback(self: *const T, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) HRESULT {
-                return @ptrCast(*const ISecurityInformation.VTable, self.vtable).PropertySheetPageCallback(@ptrCast(*const ISecurityInformation, self), hwnd, uMsg, uPage);
+                return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).PropertySheetPageCallback(@as(*const ISecurityInformation, @ptrCast(self)), hwnd, uMsg, uPage);
             }
         };
     }
@@ -331,11 +331,11 @@ pub const ISecurityInformation2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation2_IsDaclCanonical(self: *const T, pDacl: ?*ACL) BOOL {
-                return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).IsDaclCanonical(@ptrCast(*const ISecurityInformation2, self), pDacl);
+                return @as(*const ISecurityInformation2.VTable, @ptrCast(self.vtable)).IsDaclCanonical(@as(*const ISecurityInformation2, @ptrCast(self)), pDacl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation2_LookupSids(self: *const T, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) HRESULT {
-                return @ptrCast(*const ISecurityInformation2.VTable, self.vtable).LookupSids(@ptrCast(*const ISecurityInformation2, self), cSids, rgpSids, ppdo);
+                return @as(*const ISecurityInformation2.VTable, @ptrCast(self.vtable)).LookupSids(@as(*const ISecurityInformation2, @ptrCast(self)), cSids, rgpSids, ppdo);
             }
         };
     }
@@ -391,7 +391,7 @@ pub const IEffectivePermission = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?*SECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) HRESULT {
-                return @ptrCast(*const IEffectivePermission.VTable, self.vtable).GetEffectivePermission(@ptrCast(*const IEffectivePermission, self), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
+                return @as(*const IEffectivePermission.VTable, @ptrCast(self.vtable)).GetEffectivePermission(@as(*const IEffectivePermission, @ptrCast(self)), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
             }
         };
     }
@@ -425,7 +425,7 @@ pub const ISecurityObjectTypeInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityObjectTypeInfo_GetInheritSource(self: *const T, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) HRESULT {
-                return @ptrCast(*const ISecurityObjectTypeInfo.VTable, self.vtable).GetInheritSource(@ptrCast(*const ISecurityObjectTypeInfo, self), si, pACL, ppInheritArray);
+                return @as(*const ISecurityObjectTypeInfo.VTable, @ptrCast(self.vtable)).GetInheritSource(@as(*const ISecurityObjectTypeInfo, @ptrCast(self)), si, pACL, ppInheritArray);
             }
         };
     }
@@ -467,11 +467,11 @@ pub const ISecurityInformation3 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation3_GetFullResourceName(self: *const T, ppszResourceName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).GetFullResourceName(@ptrCast(*const ISecurityInformation3, self), ppszResourceName);
+                return @as(*const ISecurityInformation3.VTable, @ptrCast(self.vtable)).GetFullResourceName(@as(*const ISecurityInformation3, @ptrCast(self)), ppszResourceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation3_OpenElevatedEditor(self: *const T, hWnd: ?HWND, uPage: SI_PAGE_TYPE) HRESULT {
-                return @ptrCast(*const ISecurityInformation3.VTable, self.vtable).OpenElevatedEditor(@ptrCast(*const ISecurityInformation3, self), hWnd, uPage);
+                return @as(*const ISecurityInformation3.VTable, @ptrCast(self.vtable)).OpenElevatedEditor(@as(*const ISecurityInformation3, @ptrCast(self)), hWnd, uPage);
             }
         };
     }
@@ -520,7 +520,7 @@ pub const ISecurityInformation4 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISecurityInformation4_GetSecondarySecurity(self: *const T, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) HRESULT {
-                return @ptrCast(*const ISecurityInformation4.VTable, self.vtable).GetSecondarySecurity(@ptrCast(*const ISecurityInformation4, self), pSecurityObjects, pSecurityObjectCount);
+                return @as(*const ISecurityInformation4.VTable, @ptrCast(self.vtable)).GetSecondarySecurity(@as(*const ISecurityInformation4, @ptrCast(self)), pSecurityObjects, pSecurityObjectCount);
             }
         };
     }
@@ -576,7 +576,7 @@ pub const IEffectivePermission2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEffectivePermission2_ComputeEffectivePermissionWithSecondarySecurity(self: *const T, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) HRESULT {
-                return @ptrCast(*const IEffectivePermission2.VTable, self.vtable).ComputeEffectivePermissionWithSecondarySecurity(@ptrCast(*const IEffectivePermission2, self), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
+                return @as(*const IEffectivePermission2.VTable, @ptrCast(self.vtable)).ComputeEffectivePermissionWithSecondarySecurity(@as(*const IEffectivePermission2, @ptrCast(self)), pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
             }
         };
     }

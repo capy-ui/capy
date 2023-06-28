@@ -6141,47 +6141,47 @@ pub const IAVIStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_Create(self: *const T, lParam1: LPARAM, lParam2: LPARAM) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).Create(@ptrCast(*const IAVIStream, self), lParam1, lParam2);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Create(@as(*const IAVIStream, @ptrCast(self)), lParam1, lParam2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_Info(self: *const T, psi: ?*AVISTREAMINFOW, lSize: i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).Info(@ptrCast(*const IAVIStream, self), psi, lSize);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Info(@as(*const IAVIStream, @ptrCast(self)), psi, lSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_FindSample(self: *const T, lPos: i32, lFlags: i32) i32 {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).FindSample(@ptrCast(*const IAVIStream, self), lPos, lFlags);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).FindSample(@as(*const IAVIStream, @ptrCast(self)), lPos, lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_ReadFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, lpcbFormat: ?*i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, lpcbFormat);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).ReadFormat(@as(*const IAVIStream, @ptrCast(self)), lPos, lpFormat, lpcbFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_SetFormat(self: *const T, lPos: i32, lpFormat: ?*anyopaque, cbFormat: i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).SetFormat(@ptrCast(*const IAVIStream, self), lPos, lpFormat, cbFormat);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IAVIStream, @ptrCast(self)), lPos, lpFormat, cbFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_Read(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, plBytes: ?*i32, plSamples: ?*i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).Read(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples, lpBuffer, cbBuffer, plBytes, plSamples);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_Write(self: *const T, lStart: i32, lSamples: i32, lpBuffer: ?*anyopaque, cbBuffer: i32, dwFlags: u32, plSampWritten: ?*i32, plBytesWritten: ?*i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).Write(@ptrCast(*const IAVIStream, self), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples, lpBuffer, cbBuffer, dwFlags, plSampWritten, plBytesWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_Delete(self: *const T, lStart: i32, lSamples: i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).Delete(@ptrCast(*const IAVIStream, self), lStart, lSamples);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).Delete(@as(*const IAVIStream, @ptrCast(self)), lStart, lSamples);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_ReadData(self: *const T, fcc: u32, lp: ?*anyopaque, lpcb: ?*i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).ReadData(@ptrCast(*const IAVIStream, self), fcc, lp, lpcb);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).ReadData(@as(*const IAVIStream, @ptrCast(self)), fcc, lp, lpcb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_WriteData(self: *const T, fcc: u32, lp: ?*anyopaque, cb: i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).WriteData(@ptrCast(*const IAVIStream, self), fcc, lp, cb);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IAVIStream, @ptrCast(self)), fcc, lp, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) HRESULT {
-                return @ptrCast(*const IAVIStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIStream, self), lpInfo, cbInfo);
+                return @as(*const IAVIStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIStream, @ptrCast(self)), lpInfo, cbInfo);
             }
         };
     }
@@ -6223,11 +6223,11 @@ pub const IAVIStreaming = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStreaming_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) HRESULT {
-                return @ptrCast(*const IAVIStreaming.VTable, self.vtable).Begin(@ptrCast(*const IAVIStreaming, self), lStart, lEnd, lRate);
+                return @as(*const IAVIStreaming.VTable, @ptrCast(self.vtable)).Begin(@as(*const IAVIStreaming, @ptrCast(self)), lStart, lEnd, lRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIStreaming_End(self: *const T) HRESULT {
-                return @ptrCast(*const IAVIStreaming.VTable, self.vtable).End(@ptrCast(*const IAVIStreaming, self));
+                return @as(*const IAVIStreaming.VTable, @ptrCast(self.vtable)).End(@as(*const IAVIStreaming, @ptrCast(self)));
             }
         };
     }
@@ -6317,23 +6317,23 @@ pub const IAVIEditStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIEditStream_Cut(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) HRESULT {
-                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Cut(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
+                return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Cut(@as(*const IAVIEditStream, @ptrCast(self)), plStart, plLength, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIEditStream_Copy(self: *const T, plStart: ?*i32, plLength: ?*i32, ppResult: ?*?*IAVIStream) HRESULT {
-                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Copy(@ptrCast(*const IAVIEditStream, self), plStart, plLength, ppResult);
+                return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Copy(@as(*const IAVIEditStream, @ptrCast(self)), plStart, plLength, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIEditStream_Paste(self: *const T, plPos: ?*i32, plLength: ?*i32, pstream: ?*IAVIStream, lStart: i32, lEnd: i32) HRESULT {
-                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Paste(@ptrCast(*const IAVIEditStream, self), plPos, plLength, pstream, lStart, lEnd);
+                return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Paste(@as(*const IAVIEditStream, @ptrCast(self)), plPos, plLength, pstream, lStart, lEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIEditStream_Clone(self: *const T, ppResult: ?*?*IAVIStream) HRESULT {
-                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).Clone(@ptrCast(*const IAVIEditStream, self), ppResult);
+                return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).Clone(@as(*const IAVIEditStream, @ptrCast(self)), ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIEditStream_SetInfo(self: *const T, lpInfo: ?*AVISTREAMINFOW, cbInfo: i32) HRESULT {
-                return @ptrCast(*const IAVIEditStream.VTable, self.vtable).SetInfo(@ptrCast(*const IAVIEditStream, self), lpInfo, cbInfo);
+                return @as(*const IAVIEditStream.VTable, @ptrCast(self.vtable)).SetInfo(@as(*const IAVIEditStream, @ptrCast(self)), lpInfo, cbInfo);
             }
         };
     }
@@ -6360,7 +6360,7 @@ pub const IAVIPersistFile = extern struct {
             pub usingnamespace IPersistFile.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIPersistFile_Reserved1(self: *const T) HRESULT {
-                return @ptrCast(*const IAVIPersistFile.VTable, self.vtable).Reserved1(@ptrCast(*const IAVIPersistFile, self));
+                return @as(*const IAVIPersistFile.VTable, @ptrCast(self.vtable)).Reserved1(@as(*const IAVIPersistFile, @ptrCast(self)));
             }
         };
     }
@@ -6472,31 +6472,31 @@ pub const IAVIFile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_Info(self: *const T, pfi: ?*AVIFILEINFOW, lSize: i32) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).Info(@ptrCast(*const IAVIFile, self), pfi, lSize);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).Info(@as(*const IAVIFile, @ptrCast(self)), pfi, lSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_GetStream(self: *const T, ppStream: ?*?*IAVIStream, fccType: u32, lParam: i32) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).GetStream(@ptrCast(*const IAVIFile, self), ppStream, fccType, lParam);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IAVIFile, @ptrCast(self)), ppStream, fccType, lParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_CreateStream(self: *const T, ppStream: ?*?*IAVIStream, psi: ?*AVISTREAMINFOW) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).CreateStream(@ptrCast(*const IAVIFile, self), ppStream, psi);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const IAVIFile, @ptrCast(self)), ppStream, psi);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_WriteData(self: *const T, ckid: u32, lpData: ?*anyopaque, cbData: i32) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).WriteData(@ptrCast(*const IAVIFile, self), ckid, lpData, cbData);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).WriteData(@as(*const IAVIFile, @ptrCast(self)), ckid, lpData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_ReadData(self: *const T, ckid: u32, lpData: ?*anyopaque, lpcbData: ?*i32) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).ReadData(@ptrCast(*const IAVIFile, self), ckid, lpData, lpcbData);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).ReadData(@as(*const IAVIFile, @ptrCast(self)), ckid, lpData, lpcbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_EndRecord(self: *const T) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).EndRecord(@ptrCast(*const IAVIFile, self));
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).EndRecord(@as(*const IAVIFile, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAVIFile_DeleteStream(self: *const T, fccType: u32, lParam: i32) HRESULT {
-                return @ptrCast(*const IAVIFile.VTable, self.vtable).DeleteStream(@ptrCast(*const IAVIFile, self), fccType, lParam);
+                return @as(*const IAVIFile.VTable, @ptrCast(self.vtable)).DeleteStream(@as(*const IAVIFile, @ptrCast(self)), fccType, lParam);
             }
         };
     }
@@ -6568,19 +6568,19 @@ pub const IGetFrame = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetFrame_GetFrame(self: *const T, lPos: i32) ?*anyopaque {
-                return @ptrCast(*const IGetFrame.VTable, self.vtable).GetFrame(@ptrCast(*const IGetFrame, self), lPos);
+                return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).GetFrame(@as(*const IGetFrame, @ptrCast(self)), lPos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetFrame_Begin(self: *const T, lStart: i32, lEnd: i32, lRate: i32) HRESULT {
-                return @ptrCast(*const IGetFrame.VTable, self.vtable).Begin(@ptrCast(*const IGetFrame, self), lStart, lEnd, lRate);
+                return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).Begin(@as(*const IGetFrame, @ptrCast(self)), lStart, lEnd, lRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetFrame_End(self: *const T) HRESULT {
-                return @ptrCast(*const IGetFrame.VTable, self.vtable).End(@ptrCast(*const IGetFrame, self));
+                return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).End(@as(*const IGetFrame, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetFrame_SetFormat(self: *const T, lpbi: ?*BITMAPINFOHEADER, lpBits: ?*anyopaque, x: i32, y: i32, dx: i32, dy: i32) HRESULT {
-                return @ptrCast(*const IGetFrame.VTable, self.vtable).SetFormat(@ptrCast(*const IGetFrame, self), lpbi, lpBits, x, y, dx, dy);
+                return @as(*const IGetFrame.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IGetFrame, @ptrCast(self)), lpbi, lpBits, x, y, dx, dy);
             }
         };
     }

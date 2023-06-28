@@ -1926,63 +1926,63 @@ pub const ICodecAPI = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_IsSupported(self: *const T, Api: ?*const Guid) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ICodecAPI, @ptrCast(self)), Api);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_IsModifiable(self: *const T, Api: ?*const Guid) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).IsModifiable(@as(*const ICodecAPI, @ptrCast(self)), Api);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_GetParameterRange(self: *const T, Api: ?*const Guid, ValueMin: ?*VARIANT, ValueMax: ?*VARIANT, SteppingDelta: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetParameterRange(@as(*const ICodecAPI, @ptrCast(self)), Api, ValueMin, ValueMax, SteppingDelta);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_GetParameterValues(self: *const T, Api: ?*const Guid, Values: [*]?*VARIANT, ValuesCount: ?*u32) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetParameterValues(@as(*const ICodecAPI, @ptrCast(self)), Api, Values, ValuesCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_GetDefaultValue(self: *const T, Api: ?*const Guid, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetDefaultValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_GetValue(self: *const T, Api: ?*const Guid, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetValue(self: *const T, Api: ?*const Guid, Value: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_RegisterForEvent(self: *const T, Api: ?*const Guid, userData: isize) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).RegisterForEvent(@as(*const ICodecAPI, @ptrCast(self)), Api, userData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_UnregisterForEvent(self: *const T, Api: ?*const Guid) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).UnregisterForEvent(@as(*const ICodecAPI, @ptrCast(self)), Api);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetAllDefaults(self: *const T) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllDefaults(@as(*const ICodecAPI, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetValueWithNotify(self: *const T, Api: ?*const Guid, Value: ?*VARIANT, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetValueWithNotify(@as(*const ICodecAPI, @ptrCast(self)), Api, Value, ChangedParam, ChangedParamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllDefaultsWithNotify(@as(*const ICodecAPI, @ptrCast(self)), ChangedParam, ChangedParamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: ?*IStream) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetAllSettings(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0000);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: ?*IStream) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllSettings(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0001);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: ?*IStream, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) HRESULT {
-                return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
+                return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllSettingsWithNotify(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
             }
         };
     }
@@ -2032,7 +2032,7 @@ pub const IDirect3D9ExOverlayExtension = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3D9ExOverlayExtension_CheckDeviceOverlayType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: ?*D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: ?*D3DOVERLAYCAPS) HRESULT {
-                return @ptrCast(*const IDirect3D9ExOverlayExtension.VTable, self.vtable).CheckDeviceOverlayType(@ptrCast(*const IDirect3D9ExOverlayExtension, self), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
+                return @as(*const IDirect3D9ExOverlayExtension.VTable, @ptrCast(self.vtable)).CheckDeviceOverlayType(@as(*const IDirect3D9ExOverlayExtension, @ptrCast(self)), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
             }
         };
     }
@@ -2096,15 +2096,15 @@ pub const IDirect3DDevice9Video = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Video_GetContentProtectionCaps(self: *const T, pCryptoType: ?*const Guid, pDecodeProfile: ?*const Guid, pCaps: ?*D3DCONTENTPROTECTIONCAPS) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, pCaps);
+                return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).GetContentProtectionCaps(@as(*const IDirect3DDevice9Video, @ptrCast(self)), pCryptoType, pDecodeProfile, pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Video_CreateAuthenticatedChannel(self: *const T, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: ?*?*IDirect3DAuthenticatedChannel9, pChannelHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const IDirect3DDevice9Video, self), ChannelType, ppAuthenticatedChannel, pChannelHandle);
+                return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).CreateAuthenticatedChannel(@as(*const IDirect3DDevice9Video, @ptrCast(self)), ChannelType, ppAuthenticatedChannel, pChannelHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDevice9Video_CreateCryptoSession(self: *const T, pCryptoType: ?*const Guid, pDecodeProfile: ?*const Guid, ppCryptoSession: ?*?*IDirect3DCryptoSession9, pCryptoHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
+                return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).CreateCryptoSession(@as(*const IDirect3DDevice9Video, @ptrCast(self)), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
             }
         };
     }
@@ -2188,23 +2188,23 @@ pub const IDirect3DAuthenticatedChannel9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DAuthenticatedChannel9_GetCertificateSize(self: *const T, pCertificateSize: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), pCertificateSize);
+                return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), pCertificateSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DAuthenticatedChannel9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: ?*u8) HRESULT {
-                return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), CertifacteSize, ppCertificate);
+                return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), CertifacteSize, ppCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DAuthenticatedChannel9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), DataSize, pData);
+                return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).NegotiateKeyExchange(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DAuthenticatedChannel9_Query(self: *const T, InputSize: u32, pInput: ?*const anyopaque, OutputSize: u32, pOutput: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Query(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, OutputSize, pOutput);
+                return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).Query(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), InputSize, pInput, OutputSize, pOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DAuthenticatedChannel9_Configure(self: *const T, InputSize: u32, pInput: ?*const anyopaque, pOutput: ?*D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) HRESULT {
-                return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Configure(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, pOutput);
+                return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).Configure(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), InputSize, pInput, pOutput);
             }
         };
     }
@@ -2338,39 +2338,39 @@ pub const IDirect3DCryptoSession9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_GetCertificateSize(self: *const T, pCertificateSize: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DCryptoSession9, self), pCertificateSize);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pCertificateSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: ?*u8) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DCryptoSession9, self), CertifacteSize, ppCertificate);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), CertifacteSize, ppCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DCryptoSession9, self), DataSize, pData);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).NegotiateKeyExchange(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_EncryptionBlt(self: *const T, pSrcSurface: ?*IDirect3DSurface9, pDstSurface: ?*IDirect3DSurface9, DstSurfaceSize: u32, pIV: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).EncryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).EncryptionBlt(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_DecryptionBlt(self: *const T, pSrcSurface: ?*IDirect3DSurface9, pDstSurface: ?*IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: ?*D3DENCRYPTED_BLOCK_INFO, pContentKey: ?*anyopaque, pIV: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).DecryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).DecryptionBlt(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_GetSurfacePitch(self: *const T, pSrcSurface: ?*IDirect3DSurface9, pSurfacePitch: ?*u32) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetSurfacePitch(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pSurfacePitch);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetSurfacePitch(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pSurfacePitch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_StartSessionKeyRefresh(self: *const T, pRandomNumber: ?*anyopaque, RandomNumberSize: u32) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self), pRandomNumber, RandomNumberSize);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).StartSessionKeyRefresh(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pRandomNumber, RandomNumberSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_FinishSessionKeyRefresh(self: *const T) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self));
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).FinishSessionKeyRefresh(@as(*const IDirect3DCryptoSession9, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DCryptoSession9_GetEncryptionBltKey(self: *const T, pReadbackKey: ?*anyopaque, KeySize: u32) HRESULT {
-                return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const IDirect3DCryptoSession9, self), pReadbackKey, KeySize);
+                return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetEncryptionBltKey(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pReadbackKey, KeySize);
             }
         };
     }
@@ -2549,7 +2549,7 @@ pub const D3D12_VIDEO_PROCESS_FILTER_FLAGS = enum(u32) {
         ANAMORPHIC_SCALING: u1 = 0,
         STEREO_ADJUSTMENT: u1 = 0,
     }) D3D12_VIDEO_PROCESS_FILTER_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_FILTER_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.NONE) else 0) | (if (o.BRIGHTNESS == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.BRIGHTNESS) else 0) | (if (o.CONTRAST == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.CONTRAST) else 0) | (if (o.HUE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.HUE) else 0) | (if (o.SATURATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.SATURATION) else 0) | (if (o.NOISE_REDUCTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.NOISE_REDUCTION) else 0) | (if (o.EDGE_ENHANCEMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.EDGE_ENHANCEMENT) else 0) | (if (o.ANAMORPHIC_SCALING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.ANAMORPHIC_SCALING) else 0) | (if (o.STEREO_ADJUSTMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.STEREO_ADJUSTMENT) else 0));
+        return @as(D3D12_VIDEO_PROCESS_FILTER_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.NONE) else 0) | (if (o.BRIGHTNESS == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.BRIGHTNESS) else 0) | (if (o.CONTRAST == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.CONTRAST) else 0) | (if (o.HUE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.HUE) else 0) | (if (o.SATURATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.SATURATION) else 0) | (if (o.NOISE_REDUCTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.NOISE_REDUCTION) else 0) | (if (o.EDGE_ENHANCEMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.EDGE_ENHANCEMENT) else 0) | (if (o.ANAMORPHIC_SCALING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.ANAMORPHIC_SCALING) else 0) | (if (o.STEREO_ADJUSTMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FILTER_FLAGS.STEREO_ADJUSTMENT) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_FILTER_FLAG_NONE = D3D12_VIDEO_PROCESS_FILTER_FLAGS.NONE;
@@ -2572,7 +2572,7 @@ pub const D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS = enum(u32) {
         BOB: u1 = 0,
         CUSTOM: u1 = 0,
     }) D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.NONE) else 0) | (if (o.BOB == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.BOB) else 0) | (if (o.CUSTOM == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.CUSTOM) else 0));
+        return @as(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.NONE) else 0) | (if (o.BOB == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.BOB) else 0) | (if (o.CUSTOM == 1) @intFromEnum(D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.CUSTOM) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_DEINTERLACE_FLAG_NONE = D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.NONE;
@@ -2651,7 +2651,7 @@ pub const ID3D12VideoDecoderHeap = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecoderHeap_GetDesc(self: *const T) D3D12_VIDEO_DECODER_HEAP_DESC {
-                return @ptrCast(*const ID3D12VideoDecoderHeap.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoDecoderHeap, self));
+                return @as(*const ID3D12VideoDecoderHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoDecoderHeap, @ptrCast(self)));
             }
         };
     }
@@ -2734,19 +2734,19 @@ pub const ID3D12VideoDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice_CheckFeatureSupport(self: *const T, FeatureVideo: D3D12_FEATURE_VIDEO, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const ID3D12VideoDevice, self), FeatureVideo, pFeatureSupportData, FeatureSupportDataSize);
+                return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D12VideoDevice, @ptrCast(self)), FeatureVideo, pFeatureSupportData, FeatureSupportDataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice_CreateVideoDecoder(self: *const T, pDesc: ?*const D3D12_VIDEO_DECODER_DESC, riid: ?*const Guid, ppVideoDecoder: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const ID3D12VideoDevice, self), pDesc, riid, ppVideoDecoder);
+                return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoder(@as(*const ID3D12VideoDevice, @ptrCast(self)), pDesc, riid, ppVideoDecoder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice_CreateVideoDecoderHeap(self: *const T, pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC, riid: ?*const Guid, ppVideoDecoderHeap: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice.VTable, self.vtable).CreateVideoDecoderHeap(@ptrCast(*const ID3D12VideoDevice, self), pVideoDecoderHeapDesc, riid, ppVideoDecoderHeap);
+                return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoderHeap(@as(*const ID3D12VideoDevice, @ptrCast(self)), pVideoDecoderHeapDesc, riid, ppVideoDecoderHeap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice_CreateVideoProcessor(self: *const T, NodeMask: u32, pOutputStreamDesc: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC, NumInputStreamDescs: u32, pInputStreamDescs: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC, riid: ?*const Guid, ppVideoProcessor: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice.VTable, self.vtable).CreateVideoProcessor(@ptrCast(*const ID3D12VideoDevice, self), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, riid, ppVideoProcessor);
+                return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const ID3D12VideoDevice, @ptrCast(self)), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, riid, ppVideoProcessor);
             }
         };
     }
@@ -2773,7 +2773,7 @@ pub const ID3D12VideoDecoder = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecoder_GetDesc(self: *const T) D3D12_VIDEO_DECODER_DESC {
-                return @ptrCast(*const ID3D12VideoDecoder.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoDecoder, self));
+                return @as(*const ID3D12VideoDecoder.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoDecoder, @ptrCast(self)));
             }
         };
     }
@@ -2799,7 +2799,7 @@ pub const D3D12_VIDEO_DECODE_SUPPORT_FLAGS = enum(u32) {
         NONE: u1 = 0,
         SUPPORTED: u1 = 0,
     }) D3D12_VIDEO_DECODE_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_DECODE_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_SUPPORT_FLAGS.SUPPORTED) else 0));
+        return @as(D3D12_VIDEO_DECODE_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_SUPPORT_FLAGS.SUPPORTED) else 0)));
     }
 };
 pub const D3D12_VIDEO_DECODE_SUPPORT_FLAG_NONE = D3D12_VIDEO_DECODE_SUPPORT_FLAGS.NONE;
@@ -2819,7 +2819,7 @@ pub const D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS = enum(u32) {
         REFERENCE_ONLY_ALLOCATIONS_REQUIRED: u1 = 0,
         ALLOW_RESOLUTION_CHANGE_ON_NON_KEY_FRAME: u1 = 0,
     }) D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.NONE) else 0) | (if (o.HEIGHT_ALIGNMENT_MULTIPLE_32_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.HEIGHT_ALIGNMENT_MULTIPLE_32_REQUIRED) else 0) | (if (o.POST_PROCESSING_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.POST_PROCESSING_SUPPORTED) else 0) | (if (o.REFERENCE_ONLY_ALLOCATIONS_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.REFERENCE_ONLY_ALLOCATIONS_REQUIRED) else 0) | (if (o.ALLOW_RESOLUTION_CHANGE_ON_NON_KEY_FRAME == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.ALLOW_RESOLUTION_CHANGE_ON_NON_KEY_FRAME) else 0));
+        return @as(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.NONE) else 0) | (if (o.HEIGHT_ALIGNMENT_MULTIPLE_32_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.HEIGHT_ALIGNMENT_MULTIPLE_32_REQUIRED) else 0) | (if (o.POST_PROCESSING_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.POST_PROCESSING_SUPPORTED) else 0) | (if (o.REFERENCE_ONLY_ALLOCATIONS_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.REFERENCE_ONLY_ALLOCATIONS_REQUIRED) else 0) | (if (o.ALLOW_RESOLUTION_CHANGE_ON_NON_KEY_FRAME == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.ALLOW_RESOLUTION_CHANGE_ON_NON_KEY_FRAME) else 0)));
     }
 };
 pub const D3D12_VIDEO_DECODE_CONFIGURATION_FLAG_NONE = D3D12_VIDEO_DECODE_CONFIGURATION_FLAGS.NONE;
@@ -2927,7 +2927,7 @@ pub const D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS = enum(u32) {
         V: u1 = 0,
         A: u1 = 0,
     }) D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.NONE) else 0) | (if (o.Y == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.Y) else 0) | (if (o.U == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.U) else 0) | (if (o.V == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.V) else 0) | (if (o.A == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.A) else 0));
+        return @as(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.NONE) else 0) | (if (o.Y == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.Y) else 0) | (if (o.U == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.U) else 0) | (if (o.V == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.V) else 0) | (if (o.A == 1) @intFromEnum(D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.A) else 0)));
     }
 };
 pub const D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAG_NONE = D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS.NONE;
@@ -2958,7 +2958,7 @@ pub const D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS = enum(u32) {
         NONE: u1 = 0,
         SUPPORTED: u1 = 0,
     }) D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS.SUPPORTED) else 0));
+        return @as(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS.SUPPORTED) else 0)));
     }
 };
 pub const D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAG_NONE = D3D12_VIDEO_DECODE_CONVERSION_SUPPORT_FLAGS.NONE;
@@ -2974,7 +2974,7 @@ pub const D3D12_VIDEO_SCALE_SUPPORT_FLAGS = enum(u32) {
         POW2_ONLY: u1 = 0,
         EVEN_DIMENSIONS_ONLY: u1 = 0,
     }) D3D12_VIDEO_SCALE_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_SCALE_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.NONE) else 0) | (if (o.POW2_ONLY == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.POW2_ONLY) else 0) | (if (o.EVEN_DIMENSIONS_ONLY == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.EVEN_DIMENSIONS_ONLY) else 0));
+        return @as(D3D12_VIDEO_SCALE_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.NONE) else 0) | (if (o.POW2_ONLY == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.POW2_ONLY) else 0) | (if (o.EVEN_DIMENSIONS_ONLY == 1) @intFromEnum(D3D12_VIDEO_SCALE_SUPPORT_FLAGS.EVEN_DIMENSIONS_ONLY) else 0)));
     }
 };
 pub const D3D12_VIDEO_SCALE_SUPPORT_FLAG_NONE = D3D12_VIDEO_SCALE_SUPPORT_FLAGS.NONE;
@@ -3108,19 +3108,19 @@ pub const ID3D12VideoProcessor = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessor_GetNodeMask(self: *const T) u32 {
-                return @ptrCast(*const ID3D12VideoProcessor.VTable, self.vtable).GetNodeMask(@ptrCast(*const ID3D12VideoProcessor, self));
+                return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessor_GetNumInputStreamDescs(self: *const T) u32 {
-                return @ptrCast(*const ID3D12VideoProcessor.VTable, self.vtable).GetNumInputStreamDescs(@ptrCast(*const ID3D12VideoProcessor, self));
+                return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetNumInputStreamDescs(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessor_GetInputStreamDescs(self: *const T, NumInputStreamDescs: u32, pInputStreamDescs: [*]D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC) HRESULT {
-                return @ptrCast(*const ID3D12VideoProcessor.VTable, self.vtable).GetInputStreamDescs(@ptrCast(*const ID3D12VideoProcessor, self), NumInputStreamDescs, pInputStreamDescs);
+                return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetInputStreamDescs(@as(*const ID3D12VideoProcessor, @ptrCast(self)), NumInputStreamDescs, pInputStreamDescs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessor_GetOutputStreamDesc(self: *const T) D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC {
-                return @ptrCast(*const ID3D12VideoProcessor.VTable, self.vtable).GetOutputStreamDesc(@ptrCast(*const ID3D12VideoProcessor, self));
+                return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetOutputStreamDesc(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
             }
         };
     }
@@ -3147,7 +3147,7 @@ pub const D3D12_VIDEO_PROCESS_FEATURE_FLAGS = enum(u32) {
         ALPHA_BLENDING: u1 = 0,
         PIXEL_ASPECT_RATIO: u1 = 0,
     }) D3D12_VIDEO_PROCESS_FEATURE_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_FEATURE_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.NONE) else 0) | (if (o.ALPHA_FILL == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ALPHA_FILL) else 0) | (if (o.LUMA_KEY == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.LUMA_KEY) else 0) | (if (o.STEREO == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.STEREO) else 0) | (if (o.ROTATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ROTATION) else 0) | (if (o.FLIP == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.FLIP) else 0) | (if (o.ALPHA_BLENDING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ALPHA_BLENDING) else 0) | (if (o.PIXEL_ASPECT_RATIO == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.PIXEL_ASPECT_RATIO) else 0));
+        return @as(D3D12_VIDEO_PROCESS_FEATURE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.NONE) else 0) | (if (o.ALPHA_FILL == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ALPHA_FILL) else 0) | (if (o.LUMA_KEY == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.LUMA_KEY) else 0) | (if (o.STEREO == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.STEREO) else 0) | (if (o.ROTATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ROTATION) else 0) | (if (o.FLIP == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.FLIP) else 0) | (if (o.ALPHA_BLENDING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.ALPHA_BLENDING) else 0) | (if (o.PIXEL_ASPECT_RATIO == 1) @intFromEnum(D3D12_VIDEO_PROCESS_FEATURE_FLAGS.PIXEL_ASPECT_RATIO) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_FEATURE_FLAG_NONE = D3D12_VIDEO_PROCESS_FEATURE_FLAGS.NONE;
@@ -3183,7 +3183,7 @@ pub const D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS = enum(u32) {
         ANAMORPHIC_SCALING: u1 = 0,
         CUSTOM: u1 = 0,
     }) D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.NONE) else 0) | (if (o.DENOISE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.DENOISE) else 0) | (if (o.DERINGING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.DERINGING) else 0) | (if (o.EDGE_ENHANCEMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.EDGE_ENHANCEMENT) else 0) | (if (o.COLOR_CORRECTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.COLOR_CORRECTION) else 0) | (if (o.FLESH_TONE_MAPPING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.FLESH_TONE_MAPPING) else 0) | (if (o.IMAGE_STABILIZATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.IMAGE_STABILIZATION) else 0) | (if (o.SUPER_RESOLUTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.SUPER_RESOLUTION) else 0) | (if (o.ANAMORPHIC_SCALING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.ANAMORPHIC_SCALING) else 0) | (if (o.CUSTOM == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.CUSTOM) else 0));
+        return @as(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.NONE) else 0) | (if (o.DENOISE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.DENOISE) else 0) | (if (o.DERINGING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.DERINGING) else 0) | (if (o.EDGE_ENHANCEMENT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.EDGE_ENHANCEMENT) else 0) | (if (o.COLOR_CORRECTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.COLOR_CORRECTION) else 0) | (if (o.FLESH_TONE_MAPPING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.FLESH_TONE_MAPPING) else 0) | (if (o.IMAGE_STABILIZATION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.IMAGE_STABILIZATION) else 0) | (if (o.SUPER_RESOLUTION == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.SUPER_RESOLUTION) else 0) | (if (o.ANAMORPHIC_SCALING == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.ANAMORPHIC_SCALING) else 0) | (if (o.CUSTOM == 1) @intFromEnum(D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.CUSTOM) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAG_NONE = D3D12_VIDEO_PROCESS_AUTO_PROCESSING_FLAGS.NONE;
@@ -3226,7 +3226,7 @@ pub const D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS = enum(u32) {
         FRAME_DISCONTINUITY: u1 = 0,
         FRAME_REPEAT: u1 = 0,
     }) D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.NONE) else 0) | (if (o.FRAME_DISCONTINUITY == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.FRAME_DISCONTINUITY) else 0) | (if (o.FRAME_REPEAT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.FRAME_REPEAT) else 0));
+        return @as(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.NONE) else 0) | (if (o.FRAME_DISCONTINUITY == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.FRAME_DISCONTINUITY) else 0) | (if (o.FRAME_REPEAT == 1) @intFromEnum(D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.FRAME_REPEAT) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAG_NONE = D3D12_VIDEO_PROCESS_INPUT_STREAM_FLAGS.NONE;
@@ -3248,7 +3248,7 @@ pub const D3D12_VIDEO_PROCESS_SUPPORT_FLAGS = enum(u32) {
         NONE: u1 = 0,
         SUPPORTED: u1 = 0,
     }) D3D12_VIDEO_PROCESS_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS.SUPPORTED) else 0));
+        return @as(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_PROCESS_SUPPORT_FLAGS.SUPPORTED) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROCESS_SUPPORT_FLAG_NONE = D3D12_VIDEO_PROCESS_SUPPORT_FLAGS.NONE;
@@ -3526,59 +3526,59 @@ pub const ID3D12VideoDecodeCommandList = extern struct {
             pub usingnamespace ID3D12CommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).Close(@ptrCast(*const ID3D12VideoDecodeCommandList, self));
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_Reset(self: *const T, pAllocator: ?*ID3D12CommandAllocator) HRESULT {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).Reset(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pAllocator);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pAllocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_ClearState(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).ClearState(@ptrCast(*const ID3D12VideoDecodeCommandList, self));
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_ResourceBarrier(self: *const T, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).ResourceBarrier(@ptrCast(*const ID3D12VideoDecodeCommandList, self), NumBarriers, pBarriers);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), NumBarriers, pBarriers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_DiscardResource(self: *const T, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).DiscardResource(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pResource, pRegion);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pResource, pRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_BeginQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).BeginQuery(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_EndQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).EndQuery(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_ResolveQueryData(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).ResolveQueryData(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_SetPredication(self: *const T, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).SetPredication(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pBuffer, AlignedBufferOffset, Operation);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).SetMarker(@ptrCast(*const ID3D12VideoDecodeCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).BeginEvent(@ptrCast(*const ID3D12VideoDecodeCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_EndEvent(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).EndEvent(@ptrCast(*const ID3D12VideoDecodeCommandList, self));
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_DecodeFrame(self: *const T, pDecoder: ?*ID3D12VideoDecoder, pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS, pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).DecodeFrame(@ptrCast(*const ID3D12VideoDecodeCommandList, self), pDecoder, pOutputArguments, pInputArguments);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).DecodeFrame(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pDecoder, pOutputArguments, pInputArguments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList_WriteBufferImmediate(self: *const T, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList.VTable, self.vtable).WriteBufferImmediate(@ptrCast(*const ID3D12VideoDecodeCommandList, self), Count, pParams, pModes);
+                return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Count, pParams, pModes);
             }
         };
     }
@@ -3779,59 +3779,59 @@ pub const ID3D12VideoProcessCommandList = extern struct {
             pub usingnamespace ID3D12CommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).Close(@ptrCast(*const ID3D12VideoProcessCommandList, self));
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_Reset(self: *const T, pAllocator: ?*ID3D12CommandAllocator) HRESULT {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).Reset(@ptrCast(*const ID3D12VideoProcessCommandList, self), pAllocator);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pAllocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_ClearState(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).ClearState(@ptrCast(*const ID3D12VideoProcessCommandList, self));
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_ResourceBarrier(self: *const T, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).ResourceBarrier(@ptrCast(*const ID3D12VideoProcessCommandList, self), NumBarriers, pBarriers);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), NumBarriers, pBarriers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_DiscardResource(self: *const T, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).DiscardResource(@ptrCast(*const ID3D12VideoProcessCommandList, self), pResource, pRegion);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pResource, pRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_BeginQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).BeginQuery(@ptrCast(*const ID3D12VideoProcessCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_EndQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).EndQuery(@ptrCast(*const ID3D12VideoProcessCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_ResolveQueryData(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).ResolveQueryData(@ptrCast(*const ID3D12VideoProcessCommandList, self), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_SetPredication(self: *const T, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).SetPredication(@ptrCast(*const ID3D12VideoProcessCommandList, self), pBuffer, AlignedBufferOffset, Operation);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).SetMarker(@ptrCast(*const ID3D12VideoProcessCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).BeginEvent(@ptrCast(*const ID3D12VideoProcessCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_EndEvent(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).EndEvent(@ptrCast(*const ID3D12VideoProcessCommandList, self));
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_ProcessFrames(self: *const T, pVideoProcessor: ?*ID3D12VideoProcessor, pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS, NumInputStreams: u32, pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).ProcessFrames(@ptrCast(*const ID3D12VideoProcessCommandList, self), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ProcessFrames(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList_WriteBufferImmediate(self: *const T, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList.VTable, self.vtable).WriteBufferImmediate(@ptrCast(*const ID3D12VideoProcessCommandList, self), Count, pParams, pModes);
+                return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Count, pParams, pModes);
             }
         };
     }
@@ -3886,7 +3886,7 @@ pub const ID3D12VideoDecodeCommandList1 = extern struct {
             pub usingnamespace ID3D12VideoDecodeCommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList1_DecodeFrame1(self: *const T, pDecoder: ?*ID3D12VideoDecoder, pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS1, pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList1.VTable, self.vtable).DecodeFrame1(@ptrCast(*const ID3D12VideoDecodeCommandList1, self), pDecoder, pOutputArguments, pInputArguments);
+                return @as(*const ID3D12VideoDecodeCommandList1.VTable, @ptrCast(self.vtable)).DecodeFrame1(@as(*const ID3D12VideoDecodeCommandList1, @ptrCast(self)), pDecoder, pOutputArguments, pInputArguments);
             }
         };
     }
@@ -3931,7 +3931,7 @@ pub const ID3D12VideoProcessCommandList1 = extern struct {
             pub usingnamespace ID3D12VideoProcessCommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList1_ProcessFrames1(self: *const T, pVideoProcessor: ?*ID3D12VideoProcessor, pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS, NumInputStreams: u32, pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS1) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList1.VTable, self.vtable).ProcessFrames1(@ptrCast(*const ID3D12VideoProcessCommandList1, self), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
+                return @as(*const ID3D12VideoProcessCommandList1.VTable, @ptrCast(self.vtable)).ProcessFrames1(@as(*const ID3D12VideoProcessCommandList1, @ptrCast(self)), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
             }
         };
     }
@@ -3955,7 +3955,7 @@ pub const D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS = enum(u32) {
         @"8X8": u1 = 0,
         @"16X16": u1 = 0,
     }) D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.NONE) else 0) | (if (o.@"8X8" == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.@"8X8") else 0) | (if (o.@"16X16" == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.@"16X16") else 0));
+        return @as(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.NONE) else 0) | (if (o.@"8X8" == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.@"8X8") else 0) | (if (o.@"16X16" == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.@"16X16") else 0)));
     }
 };
 pub const D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAG_NONE = D3D12_VIDEO_MOTION_ESTIMATOR_SEARCH_BLOCK_SIZE_FLAGS.NONE;
@@ -3975,7 +3975,7 @@ pub const D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS = enum(u32) {
         NONE: u1 = 0,
         QUARTER_PEL: u1 = 0,
     }) D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS.NONE) else 0) | (if (o.QUARTER_PEL == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS.QUARTER_PEL) else 0));
+        return @as(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS.NONE) else 0) | (if (o.QUARTER_PEL == 1) @intFromEnum(D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS.QUARTER_PEL) else 0)));
     }
 };
 pub const D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAG_NONE = D3D12_VIDEO_MOTION_ESTIMATOR_VECTOR_PRECISION_FLAGS.NONE;
@@ -4050,11 +4050,11 @@ pub const ID3D12VideoMotionEstimator = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoMotionEstimator_GetDesc(self: *const T) D3D12_VIDEO_MOTION_ESTIMATOR_DESC {
-                return @ptrCast(*const ID3D12VideoMotionEstimator.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoMotionEstimator, self));
+                return @as(*const ID3D12VideoMotionEstimator.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoMotionEstimator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoMotionEstimator_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoMotionEstimator.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoMotionEstimator, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoMotionEstimator.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoMotionEstimator, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4102,11 +4102,11 @@ pub const ID3D12VideoMotionVectorHeap = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoMotionVectorHeap_GetDesc(self: *const T) D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC {
-                return @ptrCast(*const ID3D12VideoMotionVectorHeap.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoMotionVectorHeap, self));
+                return @as(*const ID3D12VideoMotionVectorHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoMotionVectorHeap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoMotionVectorHeap_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoMotionVectorHeap.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoMotionVectorHeap, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoMotionVectorHeap.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoMotionVectorHeap, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4157,11 +4157,11 @@ pub const ID3D12VideoDevice1 = extern struct {
             pub usingnamespace ID3D12VideoDevice.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice1_CreateVideoMotionEstimator(self: *const T, pDesc: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoMotionEstimator: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice1.VTable, self.vtable).CreateVideoMotionEstimator(@ptrCast(*const ID3D12VideoDevice1, self), pDesc, pProtectedResourceSession, riid, ppVideoMotionEstimator);
+                return @as(*const ID3D12VideoDevice1.VTable, @ptrCast(self.vtable)).CreateVideoMotionEstimator(@as(*const ID3D12VideoDevice1, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoMotionEstimator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice1_CreateVideoMotionVectorHeap(self: *const T, pDesc: ?*const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoMotionVectorHeap: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice1.VTable, self.vtable).CreateVideoMotionVectorHeap(@ptrCast(*const ID3D12VideoDevice1, self), pDesc, pProtectedResourceSession, riid, ppVideoMotionVectorHeap);
+                return @as(*const ID3D12VideoDevice1.VTable, @ptrCast(self.vtable)).CreateVideoMotionVectorHeap(@as(*const ID3D12VideoDevice1, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoMotionVectorHeap);
             }
         };
     }
@@ -4413,67 +4413,67 @@ pub const ID3D12VideoEncodeCommandList = extern struct {
             pub usingnamespace ID3D12CommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_Close(self: *const T) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).Close(@ptrCast(*const ID3D12VideoEncodeCommandList, self));
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_Reset(self: *const T, pAllocator: ?*ID3D12CommandAllocator) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).Reset(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pAllocator);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pAllocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_ClearState(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).ClearState(@ptrCast(*const ID3D12VideoEncodeCommandList, self));
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_ResourceBarrier(self: *const T, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).ResourceBarrier(@ptrCast(*const ID3D12VideoEncodeCommandList, self), NumBarriers, pBarriers);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), NumBarriers, pBarriers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_DiscardResource(self: *const T, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).DiscardResource(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pResource, pRegion);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pResource, pRegion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_BeginQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).BeginQuery(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_EndQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).EndQuery(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pQueryHeap, Type, Index);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_ResolveQueryData(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).ResolveQueryData(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_SetPredication(self: *const T, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).SetPredication(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pBuffer, AlignedBufferOffset, Operation);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).SetMarker(@ptrCast(*const ID3D12VideoEncodeCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).BeginEvent(@ptrCast(*const ID3D12VideoEncodeCommandList, self), Metadata, pData, Size);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Metadata, pData, Size);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_EndEvent(self: *const T) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).EndEvent(@ptrCast(*const ID3D12VideoEncodeCommandList, self));
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_EstimateMotion(self: *const T, pMotionEstimator: ?*ID3D12VideoMotionEstimator, pOutputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_OUTPUT, pInputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_INPUT) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).EstimateMotion(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pMotionEstimator, pOutputArguments, pInputArguments);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EstimateMotion(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pMotionEstimator, pOutputArguments, pInputArguments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_ResolveMotionVectorHeap(self: *const T, pOutputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_OUTPUT, pInputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).ResolveMotionVectorHeap(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pOutputArguments, pInputArguments);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResolveMotionVectorHeap(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pOutputArguments, pInputArguments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_WriteBufferImmediate(self: *const T, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).WriteBufferImmediate(@ptrCast(*const ID3D12VideoEncodeCommandList, self), Count, pParams, pModes);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Count, pParams, pModes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList_SetProtectedResourceSession(self: *const T, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList.VTable, self.vtable).SetProtectedResourceSession(@ptrCast(*const ID3D12VideoEncodeCommandList, self), pProtectedResourceSession);
+                return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pProtectedResourceSession);
             }
         };
     }
@@ -4488,7 +4488,7 @@ pub const D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS = enum(u32) {
         NONE: u1 = 0,
         SUPPORTED: u1 = 0,
     }) D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS.SUPPORTED) else 0));
+        return @as(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS.SUPPORTED) else 0)));
     }
 };
 pub const D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAG_NONE = D3D12_VIDEO_PROTECTED_RESOURCE_SUPPORT_FLAGS.NONE;
@@ -4579,7 +4579,7 @@ pub const D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS = enum(u32) {
         READ: u1 = 0,
         WRITE: u1 = 0,
     }) D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.WRITE) else 0));
+        return @as(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.NONE) else 0) | (if (o.READ == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.WRITE) else 0)));
     }
 };
 pub const D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAG_NONE = D3D12_VIDEO_EXTENSION_COMMAND_PARAMETER_FLAGS.NONE;
@@ -4671,7 +4671,7 @@ pub const ID3D12VideoDecoder1 = extern struct {
             pub usingnamespace ID3D12VideoDecoder.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecoder1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDecoder1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoDecoder1, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoDecoder1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoDecoder1, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4702,7 +4702,7 @@ pub const ID3D12VideoDecoderHeap1 = extern struct {
             pub usingnamespace ID3D12VideoDecoderHeap.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecoderHeap1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDecoderHeap1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoDecoderHeap1, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoDecoderHeap1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoDecoderHeap1, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4733,7 +4733,7 @@ pub const ID3D12VideoProcessor1 = extern struct {
             pub usingnamespace ID3D12VideoProcessor.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessor1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoProcessor1.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoProcessor1, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoProcessor1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoProcessor1, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4773,11 +4773,11 @@ pub const ID3D12VideoExtensionCommand = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoExtensionCommand_GetDesc(self: *const T) D3D12_VIDEO_EXTENSION_COMMAND_DESC {
-                return @ptrCast(*const ID3D12VideoExtensionCommand.VTable, self.vtable).GetDesc(@ptrCast(*const ID3D12VideoExtensionCommand, self));
+                return @as(*const ID3D12VideoExtensionCommand.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoExtensionCommand, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoExtensionCommand_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoExtensionCommand.VTable, self.vtable).GetProtectedResourceSession(@ptrCast(*const ID3D12VideoExtensionCommand, self), riid, ppProtectedSession);
+                return @as(*const ID3D12VideoExtensionCommand.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoExtensionCommand, @ptrCast(self)), riid, ppProtectedSession);
             }
         };
     }
@@ -4894,23 +4894,23 @@ pub const ID3D12VideoDevice2 = extern struct {
             pub usingnamespace ID3D12VideoDevice1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice2_CreateVideoDecoder1(self: *const T, pDesc: ?*const D3D12_VIDEO_DECODER_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoDecoder: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice2.VTable, self.vtable).CreateVideoDecoder1(@ptrCast(*const ID3D12VideoDevice2, self), pDesc, pProtectedResourceSession, riid, ppVideoDecoder);
+                return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoDecoder1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoDecoder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice2_CreateVideoDecoderHeap1(self: *const T, pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoDecoderHeap: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice2.VTable, self.vtable).CreateVideoDecoderHeap1(@ptrCast(*const ID3D12VideoDevice2, self), pVideoDecoderHeapDesc, pProtectedResourceSession, riid, ppVideoDecoderHeap);
+                return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoDecoderHeap1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pVideoDecoderHeapDesc, pProtectedResourceSession, riid, ppVideoDecoderHeap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice2_CreateVideoProcessor1(self: *const T, NodeMask: u32, pOutputStreamDesc: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC, NumInputStreamDescs: u32, pInputStreamDescs: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoProcessor: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice2.VTable, self.vtable).CreateVideoProcessor1(@ptrCast(*const ID3D12VideoDevice2, self), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, pProtectedResourceSession, riid, ppVideoProcessor);
+                return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoProcessor1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, pProtectedResourceSession, riid, ppVideoProcessor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice2_CreateVideoExtensionCommand(self: *const T, pDesc: ?*const D3D12_VIDEO_EXTENSION_COMMAND_DESC, pCreationParameters: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoExtensionCommand: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice2.VTable, self.vtable).CreateVideoExtensionCommand(@ptrCast(*const ID3D12VideoDevice2, self), pDesc, pCreationParameters, CreationParametersDataSizeInBytes, pProtectedResourceSession, riid, ppVideoExtensionCommand);
+                return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoExtensionCommand(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pDesc, pCreationParameters, CreationParametersDataSizeInBytes, pProtectedResourceSession, riid, ppVideoExtensionCommand);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice2_ExecuteExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize, pOutputData: ?*anyopaque, OutputDataSizeInBytes: usize) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice2.VTable, self.vtable).ExecuteExtensionCommand(@ptrCast(*const ID3D12VideoDevice2, self), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes, pOutputData, OutputDataSizeInBytes);
+                return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes, pOutputData, OutputDataSizeInBytes);
             }
         };
     }
@@ -4971,15 +4971,15 @@ pub const ID3D12VideoDecodeCommandList2 = extern struct {
             pub usingnamespace ID3D12VideoDecodeCommandList1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList2_SetProtectedResourceSession(self: *const T, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList2.VTable, self.vtable).SetProtectedResourceSession(@ptrCast(*const ID3D12VideoDecodeCommandList2, self), pProtectedResourceSession);
+                return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pProtectedResourceSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList2_InitializeExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList2.VTable, self.vtable).InitializeExtensionCommand(@ptrCast(*const ID3D12VideoDecodeCommandList2, self), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+                return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDecodeCommandList2_ExecuteExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoDecodeCommandList2.VTable, self.vtable).ExecuteExtensionCommand(@ptrCast(*const ID3D12VideoDecodeCommandList2, self), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+                return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
             }
         };
     }
@@ -5040,15 +5040,15 @@ pub const ID3D12VideoProcessCommandList2 = extern struct {
             pub usingnamespace ID3D12VideoProcessCommandList1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList2_SetProtectedResourceSession(self: *const T, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList2.VTable, self.vtable).SetProtectedResourceSession(@ptrCast(*const ID3D12VideoProcessCommandList2, self), pProtectedResourceSession);
+                return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pProtectedResourceSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList2_InitializeExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList2.VTable, self.vtable).InitializeExtensionCommand(@ptrCast(*const ID3D12VideoProcessCommandList2, self), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+                return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoProcessCommandList2_ExecuteExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoProcessCommandList2.VTable, self.vtable).ExecuteExtensionCommand(@ptrCast(*const ID3D12VideoProcessCommandList2, self), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+                return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
             }
         };
     }
@@ -5099,11 +5099,11 @@ pub const ID3D12VideoEncodeCommandList1 = extern struct {
             pub usingnamespace ID3D12VideoEncodeCommandList.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList1_InitializeExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList1.VTable, self.vtable).InitializeExtensionCommand(@ptrCast(*const ID3D12VideoEncodeCommandList1, self), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+                return @as(*const ID3D12VideoEncodeCommandList1.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoEncodeCommandList1, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList1_ExecuteExtensionCommand(self: *const T, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList1.VTable, self.vtable).ExecuteExtensionCommand(@ptrCast(*const ID3D12VideoEncodeCommandList1, self), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+                return @as(*const ID3D12VideoEncodeCommandList1.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoEncodeCommandList1, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
             }
         };
     }
@@ -5141,7 +5141,7 @@ pub const D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS = enum(u32) {
         ENABLE_MAX_FRAME_SIZE: u1 = 0,
         ENABLE_VBV_SIZES: u1 = 0,
     }) D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.NONE) else 0) | (if (o.ENABLE_DELTA_QP == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_DELTA_QP) else 0) | (if (o.ENABLE_FRAME_ANALYSIS == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_FRAME_ANALYSIS) else 0) | (if (o.ENABLE_QP_RANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_QP_RANGE) else 0) | (if (o.ENABLE_INITIAL_QP == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_INITIAL_QP) else 0) | (if (o.ENABLE_MAX_FRAME_SIZE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_MAX_FRAME_SIZE) else 0) | (if (o.ENABLE_VBV_SIZES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_VBV_SIZES) else 0));
+        return @as(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.NONE) else 0) | (if (o.ENABLE_DELTA_QP == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_DELTA_QP) else 0) | (if (o.ENABLE_FRAME_ANALYSIS == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_FRAME_ANALYSIS) else 0) | (if (o.ENABLE_QP_RANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_QP_RANGE) else 0) | (if (o.ENABLE_INITIAL_QP == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_INITIAL_QP) else 0) | (if (o.ENABLE_MAX_FRAME_SIZE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_MAX_FRAME_SIZE) else 0) | (if (o.ENABLE_VBV_SIZES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.ENABLE_VBV_SIZES) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAG_NONE = D3D12_VIDEO_ENCODER_RATE_CONTROL_FLAGS.NONE;
@@ -5431,7 +5431,7 @@ pub const D3D12_VIDEO_ENCODER_HEAP_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) D3D12_VIDEO_ENCODER_HEAP_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_HEAP_FLAGS, (if (o.E == 1) @intFromEnum(D3D12_VIDEO_ENCODER_HEAP_FLAGS.E) else 0));
+        return @as(D3D12_VIDEO_ENCODER_HEAP_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_VIDEO_ENCODER_HEAP_FLAGS.E) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_HEAP_FLAG_NONE = D3D12_VIDEO_ENCODER_HEAP_FLAGS.E;
@@ -5473,7 +5473,7 @@ pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS = enum(u32)
         DIRECT_TEMPORAL_ENCODING_SUPPORT: u1 = 0,
         CONSTRAINED_INTRAPREDICTION_SUPPORT: u1 = 0,
     }) D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.NONE) else 0) | (if (o.CABAC_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.CABAC_ENCODING_SUPPORT) else 0) | (if (o.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT) else 0) | (if (o.BFRAME_LTR_COMBINED_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.BFRAME_LTR_COMBINED_SUPPORT) else 0) | (if (o.ADAPTIVE_8x8_TRANSFORM_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.ADAPTIVE_8x8_TRANSFORM_ENCODING_SUPPORT) else 0) | (if (o.DIRECT_SPATIAL_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.DIRECT_SPATIAL_ENCODING_SUPPORT) else 0) | (if (o.DIRECT_TEMPORAL_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.DIRECT_TEMPORAL_ENCODING_SUPPORT) else 0) | (if (o.CONSTRAINED_INTRAPREDICTION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.CONSTRAINED_INTRAPREDICTION_SUPPORT) else 0));
+        return @as(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.NONE) else 0) | (if (o.CABAC_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.CABAC_ENCODING_SUPPORT) else 0) | (if (o.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT) else 0) | (if (o.BFRAME_LTR_COMBINED_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.BFRAME_LTR_COMBINED_SUPPORT) else 0) | (if (o.ADAPTIVE_8x8_TRANSFORM_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.ADAPTIVE_8x8_TRANSFORM_ENCODING_SUPPORT) else 0) | (if (o.DIRECT_SPATIAL_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.DIRECT_SPATIAL_ENCODING_SUPPORT) else 0) | (if (o.DIRECT_TEMPORAL_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.DIRECT_TEMPORAL_ENCODING_SUPPORT) else 0) | (if (o.CONSTRAINED_INTRAPREDICTION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.CONSTRAINED_INTRAPREDICTION_SUPPORT) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAG_NONE = D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_H264_FLAGS.NONE;
@@ -5522,7 +5522,7 @@ pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FL
         @"5_DISABLE_CHROMA_BLOCK_EDGES_AND_LUMA_BOUNDARIES": u1 = 0,
         @"6_DISABLE_CHROMA_BLOCK_EDGES_AND_USE_LUMA_TWO_STAGE_DEBLOCKING": u1 = 0,
     }) D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.NONE) else 0) | (if (o.@"0_ALL_LUMA_CHROMA_SLICE_BLOCK_EDGES_ALWAYS_FILTERED" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"0_ALL_LUMA_CHROMA_SLICE_BLOCK_EDGES_ALWAYS_FILTERED") else 0) | (if (o.@"1_DISABLE_ALL_SLICE_BLOCK_EDGES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"1_DISABLE_ALL_SLICE_BLOCK_EDGES") else 0) | (if (o.@"2_DISABLE_SLICE_BOUNDARIES_BLOCKS" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"2_DISABLE_SLICE_BOUNDARIES_BLOCKS") else 0) | (if (o.@"3_USE_TWO_STAGE_DEBLOCKING" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"3_USE_TWO_STAGE_DEBLOCKING") else 0) | (if (o.@"4_DISABLE_CHROMA_BLOCK_EDGES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"4_DISABLE_CHROMA_BLOCK_EDGES") else 0) | (if (o.@"5_DISABLE_CHROMA_BLOCK_EDGES_AND_LUMA_BOUNDARIES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"5_DISABLE_CHROMA_BLOCK_EDGES_AND_LUMA_BOUNDARIES") else 0) | (if (o.@"6_DISABLE_CHROMA_BLOCK_EDGES_AND_USE_LUMA_TWO_STAGE_DEBLOCKING" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"6_DISABLE_CHROMA_BLOCK_EDGES_AND_USE_LUMA_TWO_STAGE_DEBLOCKING") else 0));
+        return @as(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.NONE) else 0) | (if (o.@"0_ALL_LUMA_CHROMA_SLICE_BLOCK_EDGES_ALWAYS_FILTERED" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"0_ALL_LUMA_CHROMA_SLICE_BLOCK_EDGES_ALWAYS_FILTERED") else 0) | (if (o.@"1_DISABLE_ALL_SLICE_BLOCK_EDGES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"1_DISABLE_ALL_SLICE_BLOCK_EDGES") else 0) | (if (o.@"2_DISABLE_SLICE_BOUNDARIES_BLOCKS" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"2_DISABLE_SLICE_BOUNDARIES_BLOCKS") else 0) | (if (o.@"3_USE_TWO_STAGE_DEBLOCKING" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"3_USE_TWO_STAGE_DEBLOCKING") else 0) | (if (o.@"4_DISABLE_CHROMA_BLOCK_EDGES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"4_DISABLE_CHROMA_BLOCK_EDGES") else 0) | (if (o.@"5_DISABLE_CHROMA_BLOCK_EDGES_AND_LUMA_BOUNDARIES" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"5_DISABLE_CHROMA_BLOCK_EDGES_AND_LUMA_BOUNDARIES") else 0) | (if (o.@"6_DISABLE_CHROMA_BLOCK_EDGES_AND_USE_LUMA_TWO_STAGE_DEBLOCKING" == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.@"6_DISABLE_CHROMA_BLOCK_EDGES_AND_USE_LUMA_TWO_STAGE_DEBLOCKING") else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAG_NONE = D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_SLICES_DEBLOCKING_MODE_FLAGS.NONE;
@@ -5563,7 +5563,7 @@ pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS = enum(u32)
         DISABLING_LOOP_FILTER_ACROSS_SLICES_SUPPORT: u1 = 0,
         P_FRAMES_IMPLEMENTED_AS_LOW_DELAY_B_FRAMES: u1 = 0,
     }) D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.NONE) else 0) | (if (o.BFRAME_LTR_COMBINED_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.BFRAME_LTR_COMBINED_SUPPORT) else 0) | (if (o.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT) else 0) | (if (o.CONSTRAINED_INTRAPREDICTION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.CONSTRAINED_INTRAPREDICTION_SUPPORT) else 0) | (if (o.SAO_FILTER_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.SAO_FILTER_SUPPORT) else 0) | (if (o.ASYMETRIC_MOTION_PARTITION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.ASYMETRIC_MOTION_PARTITION_SUPPORT) else 0) | (if (o.ASYMETRIC_MOTION_PARTITION_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.ASYMETRIC_MOTION_PARTITION_REQUIRED) else 0) | (if (o.TRANSFORM_SKIP_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.TRANSFORM_SKIP_SUPPORT) else 0) | (if (o.DISABLING_LOOP_FILTER_ACROSS_SLICES_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.DISABLING_LOOP_FILTER_ACROSS_SLICES_SUPPORT) else 0) | (if (o.P_FRAMES_IMPLEMENTED_AS_LOW_DELAY_B_FRAMES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.P_FRAMES_IMPLEMENTED_AS_LOW_DELAY_B_FRAMES) else 0));
+        return @as(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.NONE) else 0) | (if (o.BFRAME_LTR_COMBINED_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.BFRAME_LTR_COMBINED_SUPPORT) else 0) | (if (o.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.INTRA_SLICE_CONSTRAINED_ENCODING_SUPPORT) else 0) | (if (o.CONSTRAINED_INTRAPREDICTION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.CONSTRAINED_INTRAPREDICTION_SUPPORT) else 0) | (if (o.SAO_FILTER_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.SAO_FILTER_SUPPORT) else 0) | (if (o.ASYMETRIC_MOTION_PARTITION_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.ASYMETRIC_MOTION_PARTITION_SUPPORT) else 0) | (if (o.ASYMETRIC_MOTION_PARTITION_REQUIRED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.ASYMETRIC_MOTION_PARTITION_REQUIRED) else 0) | (if (o.TRANSFORM_SKIP_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.TRANSFORM_SKIP_SUPPORT) else 0) | (if (o.DISABLING_LOOP_FILTER_ACROSS_SLICES_SUPPORT == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.DISABLING_LOOP_FILTER_ACROSS_SLICES_SUPPORT) else 0) | (if (o.P_FRAMES_IMPLEMENTED_AS_LOW_DELAY_B_FRAMES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.P_FRAMES_IMPLEMENTED_AS_LOW_DELAY_B_FRAMES) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAG_NONE = D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_SUPPORT_HEVC_FLAGS.NONE;
@@ -5689,7 +5689,7 @@ pub const D3D12_VIDEO_ENCODER_SUPPORT_FLAGS = enum(u32) {
         SEQUENCE_GOP_RECONFIGURATION_AVAILABLE: u1 = 0,
         MOTION_ESTIMATION_PRECISION_MODE_LIMIT_AVAILABLE: u1 = 0,
     }) D3D12_VIDEO_ENCODER_SUPPORT_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.NONE) else 0) | (if (o.GENERAL_SUPPORT_OK == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.GENERAL_SUPPORT_OK) else 0) | (if (o.RATE_CONTROL_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RESOLUTION_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RESOLUTION_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RATE_CONTROL_VBV_SIZE_CONFIG_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_VBV_SIZE_CONFIG_AVAILABLE) else 0) | (if (o.RATE_CONTROL_FRAME_ANALYSIS_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_FRAME_ANALYSIS_AVAILABLE) else 0) | (if (o.RECONSTRUCTED_FRAMES_REQUIRE_TEXTURE_ARRAYS == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RECONSTRUCTED_FRAMES_REQUIRE_TEXTURE_ARRAYS) else 0) | (if (o.RATE_CONTROL_DELTA_QP_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_DELTA_QP_AVAILABLE) else 0) | (if (o.SUBREGION_LAYOUT_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.SUBREGION_LAYOUT_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RATE_CONTROL_ADJUSTABLE_QP_RANGE_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_ADJUSTABLE_QP_RANGE_AVAILABLE) else 0) | (if (o.RATE_CONTROL_INITIAL_QP_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_INITIAL_QP_AVAILABLE) else 0) | (if (o.RATE_CONTROL_MAX_FRAME_SIZE_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_MAX_FRAME_SIZE_AVAILABLE) else 0) | (if (o.SEQUENCE_GOP_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.SEQUENCE_GOP_RECONFIGURATION_AVAILABLE) else 0) | (if (o.MOTION_ESTIMATION_PRECISION_MODE_LIMIT_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.MOTION_ESTIMATION_PRECISION_MODE_LIMIT_AVAILABLE) else 0));
+        return @as(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.NONE) else 0) | (if (o.GENERAL_SUPPORT_OK == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.GENERAL_SUPPORT_OK) else 0) | (if (o.RATE_CONTROL_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RESOLUTION_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RESOLUTION_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RATE_CONTROL_VBV_SIZE_CONFIG_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_VBV_SIZE_CONFIG_AVAILABLE) else 0) | (if (o.RATE_CONTROL_FRAME_ANALYSIS_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_FRAME_ANALYSIS_AVAILABLE) else 0) | (if (o.RECONSTRUCTED_FRAMES_REQUIRE_TEXTURE_ARRAYS == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RECONSTRUCTED_FRAMES_REQUIRE_TEXTURE_ARRAYS) else 0) | (if (o.RATE_CONTROL_DELTA_QP_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_DELTA_QP_AVAILABLE) else 0) | (if (o.SUBREGION_LAYOUT_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.SUBREGION_LAYOUT_RECONFIGURATION_AVAILABLE) else 0) | (if (o.RATE_CONTROL_ADJUSTABLE_QP_RANGE_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_ADJUSTABLE_QP_RANGE_AVAILABLE) else 0) | (if (o.RATE_CONTROL_INITIAL_QP_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_INITIAL_QP_AVAILABLE) else 0) | (if (o.RATE_CONTROL_MAX_FRAME_SIZE_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.RATE_CONTROL_MAX_FRAME_SIZE_AVAILABLE) else 0) | (if (o.SEQUENCE_GOP_RECONFIGURATION_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.SEQUENCE_GOP_RECONFIGURATION_AVAILABLE) else 0) | (if (o.MOTION_ESTIMATION_PRECISION_MODE_LIMIT_AVAILABLE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.MOTION_ESTIMATION_PRECISION_MODE_LIMIT_AVAILABLE) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_SUPPORT_FLAG_NONE = D3D12_VIDEO_ENCODER_SUPPORT_FLAGS.NONE;
@@ -5721,7 +5721,7 @@ pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS = enum(u32) {
         ENABLE_CABAC_ENCODING: u1 = 0,
         ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES: u1 = 0,
     }) D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.NONE) else 0) | (if (o.USE_CONSTRAINED_INTRAPREDICTION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.USE_CONSTRAINED_INTRAPREDICTION) else 0) | (if (o.USE_ADAPTIVE_8x8_TRANSFORM == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.USE_ADAPTIVE_8x8_TRANSFORM) else 0) | (if (o.ENABLE_CABAC_ENCODING == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.ENABLE_CABAC_ENCODING) else 0) | (if (o.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES) else 0));
+        return @as(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.NONE) else 0) | (if (o.USE_CONSTRAINED_INTRAPREDICTION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.USE_CONSTRAINED_INTRAPREDICTION) else 0) | (if (o.USE_ADAPTIVE_8x8_TRANSFORM == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.USE_ADAPTIVE_8x8_TRANSFORM) else 0) | (if (o.ENABLE_CABAC_ENCODING == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.ENABLE_CABAC_ENCODING) else 0) | (if (o.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAG_NONE = D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_H264_FLAGS.NONE;
@@ -5765,7 +5765,7 @@ pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS = enum(u32) {
         ENABLE_TRANSFORM_SKIPPING: u1 = 0,
         USE_CONSTRAINED_INTRAPREDICTION: u1 = 0,
     }) D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.NONE) else 0) | (if (o.DISABLE_LOOP_FILTER_ACROSS_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.DISABLE_LOOP_FILTER_ACROSS_SLICES) else 0) | (if (o.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES) else 0) | (if (o.ENABLE_SAO_FILTER == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_SAO_FILTER) else 0) | (if (o.ENABLE_LONG_TERM_REFERENCES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_LONG_TERM_REFERENCES) else 0) | (if (o.USE_ASYMETRIC_MOTION_PARTITION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.USE_ASYMETRIC_MOTION_PARTITION) else 0) | (if (o.ENABLE_TRANSFORM_SKIPPING == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_TRANSFORM_SKIPPING) else 0) | (if (o.USE_CONSTRAINED_INTRAPREDICTION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.USE_CONSTRAINED_INTRAPREDICTION) else 0));
+        return @as(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.NONE) else 0) | (if (o.DISABLE_LOOP_FILTER_ACROSS_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.DISABLE_LOOP_FILTER_ACROSS_SLICES) else 0) | (if (o.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ALLOW_REQUEST_INTRA_CONSTRAINED_SLICES) else 0) | (if (o.ENABLE_SAO_FILTER == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_SAO_FILTER) else 0) | (if (o.ENABLE_LONG_TERM_REFERENCES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_LONG_TERM_REFERENCES) else 0) | (if (o.USE_ASYMETRIC_MOTION_PARTITION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.USE_ASYMETRIC_MOTION_PARTITION) else 0) | (if (o.ENABLE_TRANSFORM_SKIPPING == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.ENABLE_TRANSFORM_SKIPPING) else 0) | (if (o.USE_CONSTRAINED_INTRAPREDICTION == 1) @intFromEnum(D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.USE_CONSTRAINED_INTRAPREDICTION) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAG_NONE = D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION_HEVC_FLAGS.NONE;
@@ -5842,7 +5842,7 @@ pub const D3D12_VIDEO_ENCODER_VALIDATION_FLAGS = enum(u32) {
         RESOLUTION_NOT_SUPPORTED_IN_LIST: u1 = 0,
         GOP_STRUCTURE_NOT_SUPPORTED: u1 = 0,
     }) D3D12_VIDEO_ENCODER_VALIDATION_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.NONE) else 0) | (if (o.CODEC_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.CODEC_NOT_SUPPORTED) else 0) | (if (o.INPUT_FORMAT_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.INPUT_FORMAT_NOT_SUPPORTED) else 0) | (if (o.CODEC_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.CODEC_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.RATE_CONTROL_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RATE_CONTROL_MODE_NOT_SUPPORTED) else 0) | (if (o.RATE_CONTROL_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RATE_CONTROL_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.INTRA_REFRESH_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.INTRA_REFRESH_MODE_NOT_SUPPORTED) else 0) | (if (o.SUBREGION_LAYOUT_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.SUBREGION_LAYOUT_MODE_NOT_SUPPORTED) else 0) | (if (o.RESOLUTION_NOT_SUPPORTED_IN_LIST == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RESOLUTION_NOT_SUPPORTED_IN_LIST) else 0) | (if (o.GOP_STRUCTURE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.GOP_STRUCTURE_NOT_SUPPORTED) else 0));
+        return @as(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.NONE) else 0) | (if (o.CODEC_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.CODEC_NOT_SUPPORTED) else 0) | (if (o.INPUT_FORMAT_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.INPUT_FORMAT_NOT_SUPPORTED) else 0) | (if (o.CODEC_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.CODEC_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.RATE_CONTROL_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RATE_CONTROL_MODE_NOT_SUPPORTED) else 0) | (if (o.RATE_CONTROL_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RATE_CONTROL_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.INTRA_REFRESH_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.INTRA_REFRESH_MODE_NOT_SUPPORTED) else 0) | (if (o.SUBREGION_LAYOUT_MODE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.SUBREGION_LAYOUT_MODE_NOT_SUPPORTED) else 0) | (if (o.RESOLUTION_NOT_SUPPORTED_IN_LIST == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.RESOLUTION_NOT_SUPPORTED_IN_LIST) else 0) | (if (o.GOP_STRUCTURE_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.GOP_STRUCTURE_NOT_SUPPORTED) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_VALIDATION_FLAG_NONE = D3D12_VIDEO_ENCODER_VALIDATION_FLAGS.NONE;
@@ -5915,7 +5915,7 @@ pub const D3D12_VIDEO_ENCODER_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) D3D12_VIDEO_ENCODER_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_FLAGS, (if (o.E == 1) @intFromEnum(D3D12_VIDEO_ENCODER_FLAGS.E) else 0));
+        return @as(D3D12_VIDEO_ENCODER_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_VIDEO_ENCODER_FLAGS.E) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_FLAG_NONE = D3D12_VIDEO_ENCODER_FLAGS.E;
@@ -6002,31 +6002,31 @@ pub const ID3D12VideoEncoder = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetNodeMask(self: *const T) u32 {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetNodeMask(@ptrCast(*const ID3D12VideoEncoder, self));
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetEncoderFlags(self: *const T) D3D12_VIDEO_ENCODER_FLAGS {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetEncoderFlags(@ptrCast(*const ID3D12VideoEncoder, self));
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetEncoderFlags(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetCodec(self: *const T) D3D12_VIDEO_ENCODER_CODEC {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetCodec(@ptrCast(*const ID3D12VideoEncoder, self));
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodec(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetCodecProfile(self: *const T, dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetCodecProfile(@ptrCast(*const ID3D12VideoEncoder, self), dstProfile);
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodecProfile(@as(*const ID3D12VideoEncoder, @ptrCast(self)), dstProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetCodecConfiguration(self: *const T, dstCodecConfig: D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetCodecConfiguration(@ptrCast(*const ID3D12VideoEncoder, self), dstCodecConfig);
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodecConfiguration(@as(*const ID3D12VideoEncoder, @ptrCast(self)), dstCodecConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetInputFormat(self: *const T) DXGI_FORMAT {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetInputFormat(@ptrCast(*const ID3D12VideoEncoder, self));
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetInputFormat(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoder_GetMaxMotionEstimationPrecision(self: *const T) D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE {
-                return @ptrCast(*const ID3D12VideoEncoder.VTable, self.vtable).GetMaxMotionEstimationPrecision(@ptrCast(*const ID3D12VideoEncoder, self));
+                return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetMaxMotionEstimationPrecision(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
             }
         };
     }
@@ -6109,31 +6109,31 @@ pub const ID3D12VideoEncoderHeap = extern struct {
             pub usingnamespace ID3D12Pageable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetNodeMask(self: *const T) u32 {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetNodeMask(@ptrCast(*const ID3D12VideoEncoderHeap, self));
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetEncoderHeapFlags(self: *const T) D3D12_VIDEO_ENCODER_HEAP_FLAGS {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetEncoderHeapFlags(@ptrCast(*const ID3D12VideoEncoderHeap, self));
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetEncoderHeapFlags(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetCodec(self: *const T) D3D12_VIDEO_ENCODER_CODEC {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetCodec(@ptrCast(*const ID3D12VideoEncoderHeap, self));
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodec(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetCodecProfile(self: *const T, dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetCodecProfile(@ptrCast(*const ID3D12VideoEncoderHeap, self), dstProfile);
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodecProfile(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), dstProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetCodecLevel(self: *const T, dstLevel: D3D12_VIDEO_ENCODER_LEVEL_SETTING) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetCodecLevel(@ptrCast(*const ID3D12VideoEncoderHeap, self), dstLevel);
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodecLevel(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), dstLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetResolutionListCount(self: *const T) u32 {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetResolutionListCount(@ptrCast(*const ID3D12VideoEncoderHeap, self));
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetResolutionListCount(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncoderHeap_GetResolutionList(self: *const T, ResolutionsListCount: u32, pResolutionList: [*]D3D12_VIDEO_ENCODER_PICTURE_RESOLUTION_DESC) HRESULT {
-                return @ptrCast(*const ID3D12VideoEncoderHeap.VTable, self.vtable).GetResolutionList(@ptrCast(*const ID3D12VideoEncoderHeap, self), ResolutionsListCount, pResolutionList);
+                return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetResolutionList(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), ResolutionsListCount, pResolutionList);
             }
         };
     }
@@ -6180,11 +6180,11 @@ pub const ID3D12VideoDevice3 = extern struct {
             pub usingnamespace ID3D12VideoDevice2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice3_CreateVideoEncoder(self: *const T, pDesc: ?*const D3D12_VIDEO_ENCODER_DESC, riid: ?*const Guid, ppVideoEncoder: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice3.VTable, self.vtable).CreateVideoEncoder(@ptrCast(*const ID3D12VideoDevice3, self), pDesc, riid, ppVideoEncoder);
+                return @as(*const ID3D12VideoDevice3.VTable, @ptrCast(self.vtable)).CreateVideoEncoder(@as(*const ID3D12VideoDevice3, @ptrCast(self)), pDesc, riid, ppVideoEncoder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoDevice3_CreateVideoEncoderHeap(self: *const T, pDesc: ?*const D3D12_VIDEO_ENCODER_HEAP_DESC, riid: ?*const Guid, ppVideoEncoderHeap: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ID3D12VideoDevice3.VTable, self.vtable).CreateVideoEncoderHeap(@ptrCast(*const ID3D12VideoDevice3, self), pDesc, riid, ppVideoEncoderHeap);
+                return @as(*const ID3D12VideoDevice3.VTable, @ptrCast(self.vtable)).CreateVideoEncoderHeap(@as(*const ID3D12VideoDevice3, @ptrCast(self)), pDesc, riid, ppVideoEncoderHeap);
             }
         };
     }
@@ -6219,7 +6219,7 @@ pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS = enum(u32) 
         NONE: u1 = 0,
         REQUEST_INTRA_CONSTRAINED_SLICES: u1 = 0,
     }) D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS.NONE) else 0) | (if (o.REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS.REQUEST_INTRA_CONSTRAINED_SLICES) else 0));
+        return @as(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS.NONE) else 0) | (if (o.REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS.REQUEST_INTRA_CONSTRAINED_SLICES) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAG_NONE = D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_H264_FLAGS.NONE;
@@ -6291,7 +6291,7 @@ pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS = enum(u32) 
         NONE: u1 = 0,
         REQUEST_INTRA_CONSTRAINED_SLICES: u1 = 0,
     }) D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS.NONE) else 0) | (if (o.REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS.REQUEST_INTRA_CONSTRAINED_SLICES) else 0));
+        return @as(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS.NONE) else 0) | (if (o.REQUEST_INTRA_CONSTRAINED_SLICES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS.REQUEST_INTRA_CONSTRAINED_SLICES) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAG_NONE = D3D12_VIDEO_ENCODER_PICTURE_CONTROL_CODEC_DATA_HEVC_FLAGS.NONE;
@@ -6339,7 +6339,7 @@ pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS = enum(u32) {
         NONE: u1 = 0,
         USED_AS_REFERENCE_PICTURE: u1 = 0,
     }) D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS.NONE) else 0) | (if (o.USED_AS_REFERENCE_PICTURE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS.USED_AS_REFERENCE_PICTURE) else 0));
+        return @as(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS.NONE) else 0) | (if (o.USED_AS_REFERENCE_PICTURE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS.USED_AS_REFERENCE_PICTURE) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAG_NONE = D3D12_VIDEO_ENCODER_PICTURE_CONTROL_FLAGS.NONE;
@@ -6368,7 +6368,7 @@ pub const D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS = enum(u32) {
         REQUEST_INTRA_REFRESH: u1 = 0,
         GOP_SEQUENCE_CHANGE: u1 = 0,
     }) D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS, (if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.NONE) else 0) | (if (o.RESOLUTION_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.RESOLUTION_CHANGE) else 0) | (if (o.RATE_CONTROL_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.RATE_CONTROL_CHANGE) else 0) | (if (o.SUBREGION_LAYOUT_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.SUBREGION_LAYOUT_CHANGE) else 0) | (if (o.REQUEST_INTRA_REFRESH == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.REQUEST_INTRA_REFRESH) else 0) | (if (o.GOP_SEQUENCE_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.GOP_SEQUENCE_CHANGE) else 0));
+        return @as(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.NONE) else 0) | (if (o.RESOLUTION_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.RESOLUTION_CHANGE) else 0) | (if (o.RATE_CONTROL_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.RATE_CONTROL_CHANGE) else 0) | (if (o.SUBREGION_LAYOUT_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.SUBREGION_LAYOUT_CHANGE) else 0) | (if (o.REQUEST_INTRA_REFRESH == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.REQUEST_INTRA_REFRESH) else 0) | (if (o.GOP_SEQUENCE_CHANGE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.GOP_SEQUENCE_CHANGE) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAG_NONE = D3D12_VIDEO_ENCODER_SEQUENCE_CONTROL_FLAGS.NONE;
@@ -6445,7 +6445,7 @@ pub const D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS = enum(u32) {
         RECONFIGURATION_REQUEST_NOT_SUPPORTED: u1 = 0,
         INVALID_METADATA_BUFFER_SOURCE: u1 = 0,
     }) D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS {
-        return @enumFromInt(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS, (if (o.NO_ERROR == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.NO_ERROR) else 0) | (if (o.CODEC_PICTURE_CONTROL_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.CODEC_PICTURE_CONTROL_NOT_SUPPORTED) else 0) | (if (o.SUBREGION_LAYOUT_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.SUBREGION_LAYOUT_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.INVALID_REFERENCE_PICTURES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.INVALID_REFERENCE_PICTURES) else 0) | (if (o.RECONFIGURATION_REQUEST_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.RECONFIGURATION_REQUEST_NOT_SUPPORTED) else 0) | (if (o.INVALID_METADATA_BUFFER_SOURCE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.INVALID_METADATA_BUFFER_SOURCE) else 0));
+        return @as(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS, @enumFromInt((if (o.NO_ERROR == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.NO_ERROR) else 0) | (if (o.CODEC_PICTURE_CONTROL_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.CODEC_PICTURE_CONTROL_NOT_SUPPORTED) else 0) | (if (o.SUBREGION_LAYOUT_CONFIGURATION_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.SUBREGION_LAYOUT_CONFIGURATION_NOT_SUPPORTED) else 0) | (if (o.INVALID_REFERENCE_PICTURES == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.INVALID_REFERENCE_PICTURES) else 0) | (if (o.RECONFIGURATION_REQUEST_NOT_SUPPORTED == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.RECONFIGURATION_REQUEST_NOT_SUPPORTED) else 0) | (if (o.INVALID_METADATA_BUFFER_SOURCE == 1) @intFromEnum(D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.INVALID_METADATA_BUFFER_SOURCE) else 0)));
     }
 };
 pub const D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAG_NO_ERROR = D3D12_VIDEO_ENCODER_ENCODE_ERROR_FLAGS.NO_ERROR;
@@ -6534,11 +6534,11 @@ pub const ID3D12VideoEncodeCommandList2 = extern struct {
             pub usingnamespace ID3D12VideoEncodeCommandList1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList2_EncodeFrame(self: *const T, pEncoder: ?*ID3D12VideoEncoder, pHeap: ?*ID3D12VideoEncoderHeap, pInputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_INPUT_ARGUMENTS, pOutputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_OUTPUT_ARGUMENTS) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList2.VTable, self.vtable).EncodeFrame(@ptrCast(*const ID3D12VideoEncodeCommandList2, self), pEncoder, pHeap, pInputArguments, pOutputArguments);
+                return @as(*const ID3D12VideoEncodeCommandList2.VTable, @ptrCast(self.vtable)).EncodeFrame(@as(*const ID3D12VideoEncodeCommandList2, @ptrCast(self)), pEncoder, pHeap, pInputArguments, pOutputArguments);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ID3D12VideoEncodeCommandList2_ResolveEncoderOutputMetadata(self: *const T, pInputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_INPUT_ARGUMENTS, pOutputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_OUTPUT_ARGUMENTS) void {
-                return @ptrCast(*const ID3D12VideoEncodeCommandList2.VTable, self.vtable).ResolveEncoderOutputMetadata(@ptrCast(*const ID3D12VideoEncodeCommandList2, self), pInputArguments, pOutputArguments);
+                return @as(*const ID3D12VideoEncodeCommandList2.VTable, @ptrCast(self.vtable)).ResolveEncoderOutputMetadata(@as(*const ID3D12VideoEncodeCommandList2, @ptrCast(self)), pInputArguments, pOutputArguments);
             }
         };
     }
@@ -6872,7 +6872,7 @@ pub const IWMValidate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMValidate_SetIdentifier(self: *const T, guidValidationID: Guid) HRESULT {
-                return @ptrCast(*const IWMValidate.VTable, self.vtable).SetIdentifier(@ptrCast(*const IWMValidate, self), guidValidationID);
+                return @as(*const IWMValidate.VTable, @ptrCast(self.vtable)).SetIdentifier(@as(*const IWMValidate, @ptrCast(self)), guidValidationID);
             }
         };
     }
@@ -6909,7 +6909,7 @@ pub const IValidateBinding = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IValidateBinding_GetIdentifier(self: *const T, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: ?[*]?*u8, pcbBlobSize: ?*u32) HRESULT {
-                return @ptrCast(*const IValidateBinding.VTable, self.vtable).GetIdentifier(@ptrCast(*const IValidateBinding, self), guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
+                return @as(*const IValidateBinding.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IValidateBinding, @ptrCast(self)), guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
             }
         };
     }
@@ -6949,11 +6949,11 @@ pub const IWMVideoDecoderHurryup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoDecoderHurryup_SetHurryup(self: *const T, lHurryup: i32) HRESULT {
-                return @ptrCast(*const IWMVideoDecoderHurryup.VTable, self.vtable).SetHurryup(@ptrCast(*const IWMVideoDecoderHurryup, self), lHurryup);
+                return @as(*const IWMVideoDecoderHurryup.VTable, @ptrCast(self.vtable)).SetHurryup(@as(*const IWMVideoDecoderHurryup, @ptrCast(self)), lHurryup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoDecoderHurryup_GetHurryup(self: *const T, plHurryup: ?*i32) HRESULT {
-                return @ptrCast(*const IWMVideoDecoderHurryup.VTable, self.vtable).GetHurryup(@ptrCast(*const IWMVideoDecoderHurryup, self), plHurryup);
+                return @as(*const IWMVideoDecoderHurryup.VTable, @ptrCast(self.vtable)).GetHurryup(@as(*const IWMVideoDecoderHurryup, @ptrCast(self)), plHurryup);
             }
         };
     }
@@ -6981,7 +6981,7 @@ pub const IWMVideoForceKeyFrame = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoForceKeyFrame_SetKeyFrame(self: *const T) HRESULT {
-                return @ptrCast(*const IWMVideoForceKeyFrame.VTable, self.vtable).SetKeyFrame(@ptrCast(*const IWMVideoForceKeyFrame, self));
+                return @as(*const IWMVideoForceKeyFrame.VTable, @ptrCast(self.vtable)).SetKeyFrame(@as(*const IWMVideoForceKeyFrame, @ptrCast(self)));
             }
         };
     }
@@ -7033,11 +7033,11 @@ pub const IWMCodecStrings = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecStrings_GetName(self: *const T, pmt: ?*DMO_MEDIA_TYPE, cchLength: u32, szName: ?[*:0]u16, pcchLength: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecStrings.VTable, self.vtable).GetName(@ptrCast(*const IWMCodecStrings, self), pmt, cchLength, szName, pcchLength);
+                return @as(*const IWMCodecStrings.VTable, @ptrCast(self.vtable)).GetName(@as(*const IWMCodecStrings, @ptrCast(self)), pmt, cchLength, szName, pcchLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecStrings_GetDescription(self: *const T, pmt: ?*DMO_MEDIA_TYPE, cchLength: u32, szDescription: ?[*:0]u16, pcchLength: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecStrings.VTable, self.vtable).GetDescription(@ptrCast(*const IWMCodecStrings, self), pmt, cchLength, szDescription, pcchLength);
+                return @as(*const IWMCodecStrings.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IWMCodecStrings, @ptrCast(self)), pmt, cchLength, szDescription, pcchLength);
             }
         };
     }
@@ -7093,11 +7093,11 @@ pub const IWMCodecProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecProps_GetFormatProp(self: *const T, pmt: ?*DMO_MEDIA_TYPE, pszName: ?[*:0]const u16, pType: ?*WMT_PROP_DATATYPE, pValue: ?*u8, pdwSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecProps.VTable, self.vtable).GetFormatProp(@ptrCast(*const IWMCodecProps, self), pmt, pszName, pType, pValue, pdwSize);
+                return @as(*const IWMCodecProps.VTable, @ptrCast(self.vtable)).GetFormatProp(@as(*const IWMCodecProps, @ptrCast(self)), pmt, pszName, pType, pValue, pdwSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecProps_GetCodecProp(self: *const T, dwFormat: u32, pszName: ?[*:0]const u16, pType: ?*WMT_PROP_DATATYPE, pValue: ?*u8, pdwSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecProps.VTable, self.vtable).GetCodecProp(@ptrCast(*const IWMCodecProps, self), dwFormat, pszName, pType, pValue, pdwSize);
+                return @as(*const IWMCodecProps.VTable, @ptrCast(self.vtable)).GetCodecProp(@as(*const IWMCodecProps, @ptrCast(self)), dwFormat, pszName, pType, pValue, pdwSize);
             }
         };
     }
@@ -7157,19 +7157,19 @@ pub const IWMCodecLeakyBucket = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecLeakyBucket_SetBufferSizeBits(self: *const T, ulBufferSize: u32) HRESULT {
-                return @ptrCast(*const IWMCodecLeakyBucket.VTable, self.vtable).SetBufferSizeBits(@ptrCast(*const IWMCodecLeakyBucket, self), ulBufferSize);
+                return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).SetBufferSizeBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), ulBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecLeakyBucket_GetBufferSizeBits(self: *const T, pulBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecLeakyBucket.VTable, self.vtable).GetBufferSizeBits(@ptrCast(*const IWMCodecLeakyBucket, self), pulBufferSize);
+                return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).GetBufferSizeBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), pulBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecLeakyBucket_SetBufferFullnessBits(self: *const T, ulBufferFullness: u32) HRESULT {
-                return @ptrCast(*const IWMCodecLeakyBucket.VTable, self.vtable).SetBufferFullnessBits(@ptrCast(*const IWMCodecLeakyBucket, self), ulBufferFullness);
+                return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).SetBufferFullnessBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), ulBufferFullness);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecLeakyBucket_GetBufferFullnessBits(self: *const T, pulBufferFullness: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecLeakyBucket.VTable, self.vtable).GetBufferFullnessBits(@ptrCast(*const IWMCodecLeakyBucket, self), pulBufferFullness);
+                return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).GetBufferFullnessBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), pulBufferFullness);
             }
         };
     }
@@ -7199,7 +7199,7 @@ pub const IWMCodecOutputTimestamp = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecOutputTimestamp_GetNextOutputTime(self: *const T, prtTime: ?*i64) HRESULT {
-                return @ptrCast(*const IWMCodecOutputTimestamp.VTable, self.vtable).GetNextOutputTime(@ptrCast(*const IWMCodecOutputTimestamp, self), prtTime);
+                return @as(*const IWMCodecOutputTimestamp.VTable, @ptrCast(self.vtable)).GetNextOutputTime(@as(*const IWMCodecOutputTimestamp, @ptrCast(self)), prtTime);
             }
         };
     }
@@ -7249,15 +7249,15 @@ pub const IWMVideoDecoderReconBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoDecoderReconBuffer_GetReconstructedVideoFrameSize(self: *const T, pdwSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWMVideoDecoderReconBuffer.VTable, self.vtable).GetReconstructedVideoFrameSize(@ptrCast(*const IWMVideoDecoderReconBuffer, self), pdwSize);
+                return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).GetReconstructedVideoFrameSize(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pdwSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoDecoderReconBuffer_GetReconstructedVideoFrame(self: *const T, pBuf: ?*IMediaBuffer) HRESULT {
-                return @ptrCast(*const IWMVideoDecoderReconBuffer.VTable, self.vtable).GetReconstructedVideoFrame(@ptrCast(*const IWMVideoDecoderReconBuffer, self), pBuf);
+                return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).GetReconstructedVideoFrame(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pBuf);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMVideoDecoderReconBuffer_SetReconstructedVideoFrame(self: *const T, pBuf: ?*IMediaBuffer) HRESULT {
-                return @ptrCast(*const IWMVideoDecoderReconBuffer.VTable, self.vtable).SetReconstructedVideoFrame(@ptrCast(*const IWMVideoDecoderReconBuffer, self), pBuf);
+                return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).SetReconstructedVideoFrame(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pBuf);
             }
         };
     }
@@ -7299,11 +7299,11 @@ pub const IWMCodecPrivateData = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecPrivateData_SetPartialOutputType(self: *const T, pmt: ?*DMO_MEDIA_TYPE) HRESULT {
-                return @ptrCast(*const IWMCodecPrivateData.VTable, self.vtable).SetPartialOutputType(@ptrCast(*const IWMCodecPrivateData, self), pmt);
+                return @as(*const IWMCodecPrivateData.VTable, @ptrCast(self.vtable)).SetPartialOutputType(@as(*const IWMCodecPrivateData, @ptrCast(self)), pmt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMCodecPrivateData_GetPrivateData(self: *const T, pbData: ?*u8, pcbData: ?*u32) HRESULT {
-                return @ptrCast(*const IWMCodecPrivateData.VTable, self.vtable).GetPrivateData(@ptrCast(*const IWMCodecPrivateData, self), pbData, pcbData);
+                return @as(*const IWMCodecPrivateData.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IWMCodecPrivateData, @ptrCast(self)), pbData, pcbData);
             }
         };
     }
@@ -7333,7 +7333,7 @@ pub const IWMSampleExtensionSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMSampleExtensionSupport_SetUseSampleExtensions(self: *const T, fUseExtensions: BOOL) HRESULT {
-                return @ptrCast(*const IWMSampleExtensionSupport.VTable, self.vtable).SetUseSampleExtensions(@ptrCast(*const IWMSampleExtensionSupport, self), fUseExtensions);
+                return @as(*const IWMSampleExtensionSupport.VTable, @ptrCast(self.vtable)).SetUseSampleExtensions(@as(*const IWMSampleExtensionSupport, @ptrCast(self)), fUseExtensions);
             }
         };
     }
@@ -7373,11 +7373,11 @@ pub const IWMResamplerProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResamplerProps_SetHalfFilterLength(self: *const T, lhalfFilterLen: i32) HRESULT {
-                return @ptrCast(*const IWMResamplerProps.VTable, self.vtable).SetHalfFilterLength(@ptrCast(*const IWMResamplerProps, self), lhalfFilterLen);
+                return @as(*const IWMResamplerProps.VTable, @ptrCast(self.vtable)).SetHalfFilterLength(@as(*const IWMResamplerProps, @ptrCast(self)), lhalfFilterLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResamplerProps_SetUserChannelMtx(self: *const T, userChannelMtx: ?*f32) HRESULT {
-                return @ptrCast(*const IWMResamplerProps.VTable, self.vtable).SetUserChannelMtx(@ptrCast(*const IWMResamplerProps, self), userChannelMtx);
+                return @as(*const IWMResamplerProps.VTable, @ptrCast(self.vtable)).SetUserChannelMtx(@as(*const IWMResamplerProps, @ptrCast(self)), userChannelMtx);
             }
         };
     }
@@ -7481,23 +7481,23 @@ pub const IWMResizerProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResizerProps_SetResizerQuality(self: *const T, lquality: i32) HRESULT {
-                return @ptrCast(*const IWMResizerProps.VTable, self.vtable).SetResizerQuality(@ptrCast(*const IWMResizerProps, self), lquality);
+                return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetResizerQuality(@as(*const IWMResizerProps, @ptrCast(self)), lquality);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResizerProps_SetInterlaceMode(self: *const T, lmode: i32) HRESULT {
-                return @ptrCast(*const IWMResizerProps.VTable, self.vtable).SetInterlaceMode(@ptrCast(*const IWMResizerProps, self), lmode);
+                return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetInterlaceMode(@as(*const IWMResizerProps, @ptrCast(self)), lmode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResizerProps_SetClipRegion(self: *const T, lClipOriXSrc: i32, lClipOriYSrc: i32, lClipWidthSrc: i32, lClipHeightSrc: i32) HRESULT {
-                return @ptrCast(*const IWMResizerProps.VTable, self.vtable).SetClipRegion(@ptrCast(*const IWMResizerProps, self), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc);
+                return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetClipRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResizerProps_SetFullCropRegion(self: *const T, lClipOriXSrc: i32, lClipOriYSrc: i32, lClipWidthSrc: i32, lClipHeightSrc: i32, lClipOriXDst: i32, lClipOriYDst: i32, lClipWidthDst: i32, lClipHeightDst: i32) HRESULT {
-                return @ptrCast(*const IWMResizerProps.VTable, self.vtable).SetFullCropRegion(@ptrCast(*const IWMResizerProps, self), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
+                return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetFullCropRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMResizerProps_GetFullCropRegion(self: *const T, lClipOriXSrc: ?*i32, lClipOriYSrc: ?*i32, lClipWidthSrc: ?*i32, lClipHeightSrc: ?*i32, lClipOriXDst: ?*i32, lClipOriYDst: ?*i32, lClipWidthDst: ?*i32, lClipHeightDst: ?*i32) HRESULT {
-                return @ptrCast(*const IWMResizerProps.VTable, self.vtable).GetFullCropRegion(@ptrCast(*const IWMResizerProps, self), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
+                return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).GetFullCropRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
             }
         };
     }
@@ -7526,7 +7526,7 @@ pub const IWMColorLegalizerProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMColorLegalizerProps_SetColorLegalizerQuality(self: *const T, lquality: i32) HRESULT {
-                return @ptrCast(*const IWMColorLegalizerProps.VTable, self.vtable).SetColorLegalizerQuality(@ptrCast(*const IWMColorLegalizerProps, self), lquality);
+                return @as(*const IWMColorLegalizerProps.VTable, @ptrCast(self.vtable)).SetColorLegalizerQuality(@as(*const IWMColorLegalizerProps, @ptrCast(self)), lquality);
             }
         };
     }
@@ -7573,15 +7573,15 @@ pub const IWMInterlaceProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMInterlaceProps_SetProcessType(self: *const T, iProcessType: i32) HRESULT {
-                return @ptrCast(*const IWMInterlaceProps.VTable, self.vtable).SetProcessType(@ptrCast(*const IWMInterlaceProps, self), iProcessType);
+                return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetProcessType(@as(*const IWMInterlaceProps, @ptrCast(self)), iProcessType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMInterlaceProps_SetInitInverseTeleCinePattern(self: *const T, iInitPattern: i32) HRESULT {
-                return @ptrCast(*const IWMInterlaceProps.VTable, self.vtable).SetInitInverseTeleCinePattern(@ptrCast(*const IWMInterlaceProps, self), iInitPattern);
+                return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetInitInverseTeleCinePattern(@as(*const IWMInterlaceProps, @ptrCast(self)), iInitPattern);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMInterlaceProps_SetLastFrame(self: *const T) HRESULT {
-                return @ptrCast(*const IWMInterlaceProps.VTable, self.vtable).SetLastFrame(@ptrCast(*const IWMInterlaceProps, self));
+                return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetLastFrame(@as(*const IWMInterlaceProps, @ptrCast(self)));
             }
         };
     }
@@ -7644,19 +7644,19 @@ pub const IWMFrameInterpProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMFrameInterpProps_SetFrameRateIn(self: *const T, lFrameRate: i32, lScale: i32) HRESULT {
-                return @ptrCast(*const IWMFrameInterpProps.VTable, self.vtable).SetFrameRateIn(@ptrCast(*const IWMFrameInterpProps, self), lFrameRate, lScale);
+                return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameRateIn(@as(*const IWMFrameInterpProps, @ptrCast(self)), lFrameRate, lScale);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMFrameInterpProps_SetFrameRateOut(self: *const T, lFrameRate: i32, lScale: i32) HRESULT {
-                return @ptrCast(*const IWMFrameInterpProps.VTable, self.vtable).SetFrameRateOut(@ptrCast(*const IWMFrameInterpProps, self), lFrameRate, lScale);
+                return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameRateOut(@as(*const IWMFrameInterpProps, @ptrCast(self)), lFrameRate, lScale);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMFrameInterpProps_SetFrameInterpEnabled(self: *const T, bFIEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IWMFrameInterpProps.VTable, self.vtable).SetFrameInterpEnabled(@ptrCast(*const IWMFrameInterpProps, self), bFIEnabled);
+                return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameInterpEnabled(@as(*const IWMFrameInterpProps, @ptrCast(self)), bFIEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMFrameInterpProps_SetComplexityLevel(self: *const T, iComplexity: i32) HRESULT {
-                return @ptrCast(*const IWMFrameInterpProps.VTable, self.vtable).SetComplexityLevel(@ptrCast(*const IWMFrameInterpProps, self), iComplexity);
+                return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetComplexityLevel(@as(*const IWMFrameInterpProps, @ptrCast(self)), iComplexity);
             }
         };
     }
@@ -7706,11 +7706,11 @@ pub const IWMColorConvProps = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMColorConvProps_SetMode(self: *const T, lMode: i32) HRESULT {
-                return @ptrCast(*const IWMColorConvProps.VTable, self.vtable).SetMode(@ptrCast(*const IWMColorConvProps, self), lMode);
+                return @as(*const IWMColorConvProps.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IWMColorConvProps, @ptrCast(self)), lMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWMColorConvProps_SetFullCroppingParam(self: *const T, lSrcCropLeft: i32, lSrcCropTop: i32, lDstCropLeft: i32, lDstCropTop: i32, lCropWidth: i32, lCropHeight: i32) HRESULT {
-                return @ptrCast(*const IWMColorConvProps.VTable, self.vtable).SetFullCroppingParam(@ptrCast(*const IWMColorConvProps, self), lSrcCropLeft, lSrcCropTop, lDstCropLeft, lDstCropTop, lCropWidth, lCropHeight);
+                return @as(*const IWMColorConvProps.VTable, @ptrCast(self.vtable)).SetFullCroppingParam(@as(*const IWMColorConvProps, @ptrCast(self)), lSrcCropLeft, lSrcCropTop, lDstCropLeft, lDstCropTop, lCropWidth, lCropHeight);
             }
         };
     }
@@ -7943,35 +7943,35 @@ pub const ITocEntry = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_SetTitle(self: *const T, pwszTitle: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).SetTitle(@ptrCast(*const ITocEntry, self), pwszTitle);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const ITocEntry, @ptrCast(self)), pwszTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_GetTitle(self: *const T, pwTitleSize: ?*u16, pwszTitle: ?[*:0]u16) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).GetTitle(@ptrCast(*const ITocEntry, self), pwTitleSize, pwszTitle);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const ITocEntry, @ptrCast(self)), pwTitleSize, pwszTitle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_SetDescriptor(self: *const T, pDescriptor: ?*TOC_ENTRY_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).SetDescriptor(@ptrCast(*const ITocEntry, self), pDescriptor);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetDescriptor(@as(*const ITocEntry, @ptrCast(self)), pDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_GetDescriptor(self: *const T, pDescriptor: ?*TOC_ENTRY_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).GetDescriptor(@ptrCast(*const ITocEntry, self), pDescriptor);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetDescriptor(@as(*const ITocEntry, @ptrCast(self)), pDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_SetSubEntries(self: *const T, dwNumSubEntries: u32, pwSubEntryIndices: ?*u16) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).SetSubEntries(@ptrCast(*const ITocEntry, self), dwNumSubEntries, pwSubEntryIndices);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetSubEntries(@as(*const ITocEntry, @ptrCast(self)), dwNumSubEntries, pwSubEntryIndices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_GetSubEntries(self: *const T, pdwNumSubEntries: ?*u32, pwSubEntryIndices: ?*u16) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).GetSubEntries(@ptrCast(*const ITocEntry, self), pdwNumSubEntries, pwSubEntryIndices);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetSubEntries(@as(*const ITocEntry, @ptrCast(self)), pdwNumSubEntries, pwSubEntryIndices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_SetDescriptionData(self: *const T, dwDescriptionDataSize: u32, pbtDescriptionData: ?*u8, pguidType: ?*Guid) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).SetDescriptionData(@ptrCast(*const ITocEntry, self), dwDescriptionDataSize, pbtDescriptionData, pguidType);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetDescriptionData(@as(*const ITocEntry, @ptrCast(self)), dwDescriptionDataSize, pbtDescriptionData, pguidType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntry_GetDescriptionData(self: *const T, pdwDescriptionDataSize: ?*u32, pbtDescriptionData: ?*u8, pGuidType: ?*Guid) HRESULT {
-                return @ptrCast(*const ITocEntry.VTable, self.vtable).GetDescriptionData(@ptrCast(*const ITocEntry, self), pdwDescriptionDataSize, pbtDescriptionData, pGuidType);
+                return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetDescriptionData(@as(*const ITocEntry, @ptrCast(self)), pdwDescriptionDataSize, pbtDescriptionData, pGuidType);
             }
         };
     }
@@ -8047,23 +8047,23 @@ pub const ITocEntryList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntryList_GetEntryCount(self: *const T, pdwEntryCount: ?*u32) HRESULT {
-                return @ptrCast(*const ITocEntryList.VTable, self.vtable).GetEntryCount(@ptrCast(*const ITocEntryList, self), pdwEntryCount);
+                return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).GetEntryCount(@as(*const ITocEntryList, @ptrCast(self)), pdwEntryCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntryList_GetEntryByIndex(self: *const T, dwEntryIndex: u32, ppEntry: ?*?*ITocEntry) HRESULT {
-                return @ptrCast(*const ITocEntryList.VTable, self.vtable).GetEntryByIndex(@ptrCast(*const ITocEntryList, self), dwEntryIndex, ppEntry);
+                return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).GetEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex, ppEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntryList_AddEntry(self: *const T, pEntry: ?*ITocEntry, pdwEntryIndex: ?*u32) HRESULT {
-                return @ptrCast(*const ITocEntryList.VTable, self.vtable).AddEntry(@ptrCast(*const ITocEntryList, self), pEntry, pdwEntryIndex);
+                return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const ITocEntryList, @ptrCast(self)), pEntry, pdwEntryIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntryList_AddEntryByIndex(self: *const T, dwEntryIndex: u32, pEntry: ?*ITocEntry) HRESULT {
-                return @ptrCast(*const ITocEntryList.VTable, self.vtable).AddEntryByIndex(@ptrCast(*const ITocEntryList, self), dwEntryIndex, pEntry);
+                return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).AddEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex, pEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocEntryList_RemoveEntryByIndex(self: *const T, dwEntryIndex: u32) HRESULT {
-                return @ptrCast(*const ITocEntryList.VTable, self.vtable).RemoveEntryByIndex(@ptrCast(*const ITocEntryList, self), dwEntryIndex);
+                return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).RemoveEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex);
             }
         };
     }
@@ -8205,47 +8205,47 @@ pub const IToc = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_SetDescriptor(self: *const T, pDescriptor: ?*TOC_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).SetDescriptor(@ptrCast(*const IToc, self), pDescriptor);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetDescriptor(@as(*const IToc, @ptrCast(self)), pDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_GetDescriptor(self: *const T, pDescriptor: ?*TOC_DESCRIPTOR) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).GetDescriptor(@ptrCast(*const IToc, self), pDescriptor);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetDescriptor(@as(*const IToc, @ptrCast(self)), pDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_SetDescription(self: *const T, pwszDescription: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).SetDescription(@ptrCast(*const IToc, self), pwszDescription);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IToc, @ptrCast(self)), pwszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_GetDescription(self: *const T, pwDescriptionSize: ?*u16, pwszDescription: ?[*:0]u16) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).GetDescription(@ptrCast(*const IToc, self), pwDescriptionSize, pwszDescription);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IToc, @ptrCast(self)), pwDescriptionSize, pwszDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_SetContext(self: *const T, dwContextSize: u32, pbtContext: ?*u8) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).SetContext(@ptrCast(*const IToc, self), dwContextSize, pbtContext);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IToc, @ptrCast(self)), dwContextSize, pbtContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_GetContext(self: *const T, pdwContextSize: ?*u32, pbtContext: ?*u8) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).GetContext(@ptrCast(*const IToc, self), pdwContextSize, pbtContext);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IToc, @ptrCast(self)), pdwContextSize, pbtContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_GetEntryListCount(self: *const T, pwCount: ?*u16) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).GetEntryListCount(@ptrCast(*const IToc, self), pwCount);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetEntryListCount(@as(*const IToc, @ptrCast(self)), pwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_GetEntryListByIndex(self: *const T, wEntryListIndex: u16, ppEntryList: ?*?*ITocEntryList) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).GetEntryListByIndex(@ptrCast(*const IToc, self), wEntryListIndex, ppEntryList);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex, ppEntryList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_AddEntryList(self: *const T, pEntryList: ?*ITocEntryList, pwEntryListIndex: ?*u16) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).AddEntryList(@ptrCast(*const IToc, self), pEntryList, pwEntryListIndex);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).AddEntryList(@as(*const IToc, @ptrCast(self)), pEntryList, pwEntryListIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_AddEntryListByIndex(self: *const T, wEntryListIndex: u16, pEntryList: ?*ITocEntryList) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).AddEntryListByIndex(@ptrCast(*const IToc, self), wEntryListIndex, pEntryList);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).AddEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex, pEntryList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IToc_RemoveEntryListByIndex(self: *const T, wEntryListIndex: u16) HRESULT {
-                return @ptrCast(*const IToc.VTable, self.vtable).RemoveEntryListByIndex(@ptrCast(*const IToc, self), wEntryListIndex);
+                return @as(*const IToc.VTable, @ptrCast(self.vtable)).RemoveEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex);
             }
         };
     }
@@ -8321,23 +8321,23 @@ pub const ITocCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocCollection_GetEntryCount(self: *const T, pdwEntryCount: ?*u32) HRESULT {
-                return @ptrCast(*const ITocCollection.VTable, self.vtable).GetEntryCount(@ptrCast(*const ITocCollection, self), pdwEntryCount);
+                return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).GetEntryCount(@as(*const ITocCollection, @ptrCast(self)), pdwEntryCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocCollection_GetEntryByIndex(self: *const T, dwEntryIndex: u32, ppToc: ?*?*IToc) HRESULT {
-                return @ptrCast(*const ITocCollection.VTable, self.vtable).GetEntryByIndex(@ptrCast(*const ITocCollection, self), dwEntryIndex, ppToc);
+                return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).GetEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex, ppToc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocCollection_AddEntry(self: *const T, pToc: ?*IToc, pdwEntryIndex: ?*u32) HRESULT {
-                return @ptrCast(*const ITocCollection.VTable, self.vtable).AddEntry(@ptrCast(*const ITocCollection, self), pToc, pdwEntryIndex);
+                return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const ITocCollection, @ptrCast(self)), pToc, pdwEntryIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocCollection_AddEntryByIndex(self: *const T, dwEntryIndex: u32, pToc: ?*IToc) HRESULT {
-                return @ptrCast(*const ITocCollection.VTable, self.vtable).AddEntryByIndex(@ptrCast(*const ITocCollection, self), dwEntryIndex, pToc);
+                return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).AddEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex, pToc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocCollection_RemoveEntryByIndex(self: *const T, dwEntryIndex: u32) HRESULT {
-                return @ptrCast(*const ITocCollection.VTable, self.vtable).RemoveEntryByIndex(@ptrCast(*const ITocCollection, self), dwEntryIndex);
+                return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).RemoveEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex);
             }
         };
     }
@@ -8453,35 +8453,35 @@ pub const ITocParser = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_Init(self: *const T, pwszFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).Init(@ptrCast(*const ITocParser, self), pwszFileName);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).Init(@as(*const ITocParser, @ptrCast(self)), pwszFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_GetTocCount(self: *const T, enumTocPosType: TOC_POS_TYPE, pdwTocCount: ?*u32) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).GetTocCount(@ptrCast(*const ITocParser, self), enumTocPosType, pdwTocCount);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocCount(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, pdwTocCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_GetTocByIndex(self: *const T, enumTocPosType: TOC_POS_TYPE, dwTocIndex: u32, ppToc: ?*?*IToc) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).GetTocByIndex(@ptrCast(*const ITocParser, self), enumTocPosType, dwTocIndex, ppToc);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocByIndex(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, dwTocIndex, ppToc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_GetTocByType(self: *const T, enumTocPosType: TOC_POS_TYPE, guidTocType: Guid, ppTocs: ?*?*ITocCollection) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).GetTocByType(@ptrCast(*const ITocParser, self), enumTocPosType, guidTocType, ppTocs);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocByType(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, guidTocType, ppTocs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_AddToc(self: *const T, enumTocPosType: TOC_POS_TYPE, pToc: ?*IToc, pdwTocIndex: ?*u32) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).AddToc(@ptrCast(*const ITocParser, self), enumTocPosType, pToc, pdwTocIndex);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).AddToc(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, pToc, pdwTocIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_RemoveTocByIndex(self: *const T, enumTocPosType: TOC_POS_TYPE, dwTocIndex: u32) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).RemoveTocByIndex(@ptrCast(*const ITocParser, self), enumTocPosType, dwTocIndex);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).RemoveTocByIndex(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, dwTocIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_RemoveTocByType(self: *const T, enumTocPosType: TOC_POS_TYPE, guidTocType: Guid) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).RemoveTocByType(@ptrCast(*const ITocParser, self), enumTocPosType, guidTocType);
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).RemoveTocByType(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, guidTocType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITocParser_Commit(self: *const T) HRESULT {
-                return @ptrCast(*const ITocParser.VTable, self.vtable).Commit(@ptrCast(*const ITocParser, self));
+                return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITocParser, @ptrCast(self)));
             }
         };
     }
@@ -8647,43 +8647,43 @@ pub const IFileIo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_Initialize(self: *const T, eAccessMode: FILE_ACCESSMODE, eOpenMode: FILE_OPENMODE, pwszFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).Initialize(@ptrCast(*const IFileIo, self), eAccessMode, eOpenMode, pwszFileName);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IFileIo, @ptrCast(self)), eAccessMode, eOpenMode, pwszFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_GetLength(self: *const T, pqwLength: ?*u64) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).GetLength(@ptrCast(*const IFileIo, self), pqwLength);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IFileIo, @ptrCast(self)), pqwLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_SetLength(self: *const T, qwLength: u64) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).SetLength(@ptrCast(*const IFileIo, self), qwLength);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IFileIo, @ptrCast(self)), qwLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_GetCurrentPosition(self: *const T, pqwPosition: ?*u64) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IFileIo, self), pqwPosition);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IFileIo, @ptrCast(self)), pqwPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_SetCurrentPosition(self: *const T, qwPosition: u64) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IFileIo, self), qwPosition);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IFileIo, @ptrCast(self)), qwPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_IsEndOfStream(self: *const T, pbEndOfStream: ?*BOOL) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).IsEndOfStream(@ptrCast(*const IFileIo, self), pbEndOfStream);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).IsEndOfStream(@as(*const IFileIo, @ptrCast(self)), pbEndOfStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_Read(self: *const T, pbt: ?*u8, ul: u32, pulRead: ?*u32) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).Read(@ptrCast(*const IFileIo, self), pbt, ul, pulRead);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Read(@as(*const IFileIo, @ptrCast(self)), pbt, ul, pulRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_Write(self: *const T, pbt: ?*u8, ul: u32, pulWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).Write(@ptrCast(*const IFileIo, self), pbt, ul, pulWritten);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Write(@as(*const IFileIo, @ptrCast(self)), pbt, ul, pulWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_Seek(self: *const T, eSeekOrigin: SEEK_ORIGIN, qwSeekOffset: u64, dwSeekFlags: u32, pqwCurrentPosition: ?*u64) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).Seek(@ptrCast(*const IFileIo, self), eSeekOrigin, qwSeekOffset, dwSeekFlags, pqwCurrentPosition);
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Seek(@as(*const IFileIo, @ptrCast(self)), eSeekOrigin, qwSeekOffset, dwSeekFlags, pqwCurrentPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileIo_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IFileIo.VTable, self.vtable).Close(@ptrCast(*const IFileIo, self));
+                return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Close(@as(*const IFileIo, @ptrCast(self)));
             }
         };
     }
@@ -8732,15 +8732,15 @@ pub const IFileClient = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileClient_GetObjectDiskSize(self: *const T, pqwSize: ?*u64) HRESULT {
-                return @ptrCast(*const IFileClient.VTable, self.vtable).GetObjectDiskSize(@ptrCast(*const IFileClient, self), pqwSize);
+                return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).GetObjectDiskSize(@as(*const IFileClient, @ptrCast(self)), pqwSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileClient_Write(self: *const T, pFio: ?*IFileIo) HRESULT {
-                return @ptrCast(*const IFileClient.VTable, self.vtable).Write(@ptrCast(*const IFileClient, self), pFio);
+                return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).Write(@as(*const IFileClient, @ptrCast(self)), pFio);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IFileClient_Read(self: *const T, pFio: ?*IFileIo) HRESULT {
-                return @ptrCast(*const IFileClient.VTable, self.vtable).Read(@ptrCast(*const IFileClient, self), pFio);
+                return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).Read(@as(*const IFileClient, @ptrCast(self)), pFio);
             }
         };
     }
@@ -8789,11 +8789,11 @@ pub const IClusterDetector = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IClusterDetector_Initialize(self: *const T, wBaseEntryLevel: u16, wClusterEntryLevel: u16) HRESULT {
-                return @ptrCast(*const IClusterDetector.VTable, self.vtable).Initialize(@ptrCast(*const IClusterDetector, self), wBaseEntryLevel, wClusterEntryLevel);
+                return @as(*const IClusterDetector.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IClusterDetector, @ptrCast(self)), wBaseEntryLevel, wClusterEntryLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IClusterDetector_Detect(self: *const T, dwMaxNumClusters: u32, fMinClusterDuration: f32, fMaxClusterDuration: f32, pSrcToc: ?*IToc, ppDstToc: ?*?*IToc) HRESULT {
-                return @ptrCast(*const IClusterDetector.VTable, self.vtable).Detect(@ptrCast(*const IClusterDetector, self), dwMaxNumClusters, fMinClusterDuration, fMaxClusterDuration, pSrcToc, ppDstToc);
+                return @as(*const IClusterDetector.VTable, @ptrCast(self.vtable)).Detect(@as(*const IClusterDetector, @ptrCast(self)), dwMaxNumClusters, fMinClusterDuration, fMaxClusterDuration, pSrcToc, ppDstToc);
             }
         };
     }
@@ -11613,35 +11613,35 @@ pub const IDXVAHD_Device = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_CreateVideoSurface(self: *const T, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, Usage: u32, Type: DXVAHD_SURFACE_TYPE, NumSurfaces: u32, ppSurfaces: [*]?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).CreateVideoSurface(@ptrCast(*const IDXVAHD_Device, self), Width, Height, Format, Pool, Usage, Type, NumSurfaces, ppSurfaces, pSharedHandle);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).CreateVideoSurface(@as(*const IDXVAHD_Device, @ptrCast(self)), Width, Height, Format, Pool, Usage, Type, NumSurfaces, ppSurfaces, pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorDeviceCaps(self: *const T, pCaps: ?*DXVAHD_VPDEVCAPS) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorDeviceCaps(@ptrCast(*const IDXVAHD_Device, self), pCaps);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorDeviceCaps(@as(*const IDXVAHD_Device, @ptrCast(self)), pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorOutputFormats(self: *const T, Count: u32, pFormats: [*]D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorOutputFormats(@ptrCast(*const IDXVAHD_Device, self), Count, pFormats);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorOutputFormats(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pFormats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorInputFormats(self: *const T, Count: u32, pFormats: [*]D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorInputFormats(@ptrCast(*const IDXVAHD_Device, self), Count, pFormats);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorInputFormats(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pFormats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorCaps(self: *const T, Count: u32, pCaps: [*]DXVAHD_VPCAPS) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const IDXVAHD_Device, self), Count, pCaps);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorCustomRates(self: *const T, pVPGuid: ?*const Guid, Count: u32, pRates: [*]DXVAHD_CUSTOM_RATE_DATA) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorCustomRates(@ptrCast(*const IDXVAHD_Device, self), pVPGuid, Count, pRates);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorCustomRates(@as(*const IDXVAHD_Device, @ptrCast(self)), pVPGuid, Count, pRates);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_GetVideoProcessorFilterRange(self: *const T, Filter: DXVAHD_FILTER, pRange: ?*DXVAHD_FILTER_RANGE_DATA) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).GetVideoProcessorFilterRange(@ptrCast(*const IDXVAHD_Device, self), Filter, pRange);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorFilterRange(@as(*const IDXVAHD_Device, @ptrCast(self)), Filter, pRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_Device_CreateVideoProcessor(self: *const T, pVPGuid: ?*const Guid, ppVideoProcessor: ?*?*IDXVAHD_VideoProcessor) HRESULT {
-                return @ptrCast(*const IDXVAHD_Device.VTable, self.vtable).CreateVideoProcessor(@ptrCast(*const IDXVAHD_Device, self), pVPGuid, ppVideoProcessor);
+                return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const IDXVAHD_Device, @ptrCast(self)), pVPGuid, ppVideoProcessor);
             }
         };
     }
@@ -11745,23 +11745,23 @@ pub const IDXVAHD_VideoProcessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_VideoProcessor_SetVideoProcessBltState(self: *const T, State: DXVAHD_BLT_STATE, DataSize: u32, pData: ?*const anyopaque) HRESULT {
-                return @ptrCast(*const IDXVAHD_VideoProcessor.VTable, self.vtable).SetVideoProcessBltState(@ptrCast(*const IDXVAHD_VideoProcessor, self), State, DataSize, pData);
+                return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessBltState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), State, DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_VideoProcessor_GetVideoProcessBltState(self: *const T, State: DXVAHD_BLT_STATE, DataSize: u32, pData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXVAHD_VideoProcessor.VTable, self.vtable).GetVideoProcessBltState(@ptrCast(*const IDXVAHD_VideoProcessor, self), State, DataSize, pData);
+                return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessBltState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), State, DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_VideoProcessor_SetVideoProcessStreamState(self: *const T, StreamNumber: u32, State: DXVAHD_STREAM_STATE, DataSize: u32, pData: ?*const anyopaque) HRESULT {
-                return @ptrCast(*const IDXVAHD_VideoProcessor.VTable, self.vtable).SetVideoProcessStreamState(@ptrCast(*const IDXVAHD_VideoProcessor, self), StreamNumber, State, DataSize, pData);
+                return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessStreamState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), StreamNumber, State, DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_VideoProcessor_GetVideoProcessStreamState(self: *const T, StreamNumber: u32, State: DXVAHD_STREAM_STATE, DataSize: u32, pData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXVAHD_VideoProcessor.VTable, self.vtable).GetVideoProcessStreamState(@ptrCast(*const IDXVAHD_VideoProcessor, self), StreamNumber, State, DataSize, pData);
+                return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessStreamState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), StreamNumber, State, DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXVAHD_VideoProcessor_VideoProcessBltHD(self: *const T, pOutputSurface: ?*IDirect3DSurface9, OutputFrame: u32, StreamCount: u32, pStreams: [*]const DXVAHD_STREAM_DATA) HRESULT {
-                return @ptrCast(*const IDXVAHD_VideoProcessor.VTable, self.vtable).VideoProcessBltHD(@ptrCast(*const IDXVAHD_VideoProcessor, self), pOutputSurface, OutputFrame, StreamCount, pStreams);
+                return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).VideoProcessBltHD(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), pOutputSurface, OutputFrame, StreamCount, pStreams);
             }
         };
     }
@@ -12682,31 +12682,31 @@ pub const IDirect3DDeviceManager9 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_ResetDevice(self: *const T, pDevice: ?*IDirect3DDevice9, resetToken: u32) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).ResetDevice(@ptrCast(*const IDirect3DDeviceManager9, self), pDevice, resetToken);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).ResetDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), pDevice, resetToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_OpenDeviceHandle(self: *const T, phDevice: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).OpenDeviceHandle(@ptrCast(*const IDirect3DDeviceManager9, self), phDevice);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).OpenDeviceHandle(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), phDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_CloseDeviceHandle(self: *const T, hDevice: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).CloseDeviceHandle(@ptrCast(*const IDirect3DDeviceManager9, self), hDevice);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).CloseDeviceHandle(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_TestDevice(self: *const T, hDevice: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).TestDevice(@ptrCast(*const IDirect3DDeviceManager9, self), hDevice);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).TestDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_LockDevice(self: *const T, hDevice: ?HANDLE, ppDevice: ?*?*IDirect3DDevice9, fBlock: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).LockDevice(@ptrCast(*const IDirect3DDeviceManager9, self), hDevice, ppDevice, fBlock);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, ppDevice, fBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_UnlockDevice(self: *const T, hDevice: ?HANDLE, fSaveState: BOOL) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).UnlockDevice(@ptrCast(*const IDirect3DDeviceManager9, self), hDevice, fSaveState);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).UnlockDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, fSaveState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirect3DDeviceManager9_GetVideoService(self: *const T, hDevice: ?HANDLE, riid: ?*const Guid, ppService: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirect3DDeviceManager9.VTable, self.vtable).GetVideoService(@ptrCast(*const IDirect3DDeviceManager9, self), hDevice, riid, ppService);
+                return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).GetVideoService(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, riid, ppService);
             }
         };
     }
@@ -12752,7 +12752,7 @@ pub const IDirectXVideoAccelerationService = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoAccelerationService_CreateSurface(self: *const T, Width: u32, Height: u32, BackBuffers: u32, Format: D3DFORMAT, Pool: D3DPOOL, Usage: u32, DxvaType: DXVA2_VideoRenderTargetType, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectXVideoAccelerationService.VTable, self.vtable).CreateSurface(@ptrCast(*const IDirectXVideoAccelerationService, self), Width, Height, BackBuffers, Format, Pool, Usage, DxvaType, ppSurface, pSharedHandle);
+                return @as(*const IDirectXVideoAccelerationService.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectXVideoAccelerationService, @ptrCast(self)), Width, Height, BackBuffers, Format, Pool, Usage, DxvaType, ppSurface, pSharedHandle);
             }
         };
     }
@@ -12836,19 +12836,19 @@ pub const IDirectXVideoDecoderService = extern struct {
             pub usingnamespace IDirectXVideoAccelerationService.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoderService_GetDecoderDeviceGuids(self: *const T, pCount: ?*u32, pGuids: ?*?*Guid) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderDeviceGuids(@ptrCast(*const IDirectXVideoDecoderService, self), pCount, pGuids);
+                return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderDeviceGuids(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), pCount, pGuids);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoderService_GetDecoderRenderTargets(self: *const T, _param_Guid: ?*const Guid, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderRenderTargets(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pCount, pFormats);
+                return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderRenderTargets(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pCount, pFormats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoderService_GetDecoderConfigurations(self: *const T, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pReserved: ?*anyopaque, pCount: ?*u32, ppConfigs: ?*?*DXVA2_ConfigPictureDecode) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).GetDecoderConfigurations(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pVideoDesc, pReserved, pCount, ppConfigs);
+                return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderConfigurations(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pVideoDesc, pReserved, pCount, ppConfigs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoderService_CreateVideoDecoder(self: *const T, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pConfig: ?*const DXVA2_ConfigPictureDecode, ppDecoderRenderTargets: [*]?*IDirect3DSurface9, NumRenderTargets: u32, ppDecode: ?*?*IDirectXVideoDecoder) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoderService.VTable, self.vtable).CreateVideoDecoder(@ptrCast(*const IDirectXVideoDecoderService, self), _param_Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
+                return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).CreateVideoDecoder(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
             }
         };
     }
@@ -12996,35 +12996,35 @@ pub const IDirectXVideoProcessorService = extern struct {
             pub usingnamespace IDirectXVideoAccelerationService.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_RegisterVideoProcessorSoftwareDevice(self: *const T, pCallbacks: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).RegisterVideoProcessorSoftwareDevice(@ptrCast(*const IDirectXVideoProcessorService, self), pCallbacks);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).RegisterVideoProcessorSoftwareDevice(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), pCallbacks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetVideoProcessorDeviceGuids(self: *const T, pVideoDesc: ?*const DXVA2_VideoDesc, pCount: ?*u32, pGuids: ?*?*Guid) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorDeviceGuids(@ptrCast(*const IDirectXVideoProcessorService, self), pVideoDesc, pCount, pGuids);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorDeviceGuids(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), pVideoDesc, pCount, pGuids);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetVideoProcessorRenderTargets(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorRenderTargets(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, pCount, pFormats);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorRenderTargets(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, pCount, pFormats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetVideoProcessorSubStreamFormats(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorSubStreamFormats(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCount, pFormats);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorSubStreamFormats(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCount, pFormats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetVideoProcessorCaps(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCaps: ?*DXVA2_VideoProcessorCaps) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCaps);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetProcAmpRange(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, ProcAmpCap: u32, pRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetProcAmpRange(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, ProcAmpCap, pRange);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, ProcAmpCap, pRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_GetFilterPropertyRange(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, FilterSetting: u32, pRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).GetFilterPropertyRange(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, FilterSetting, pRange);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetFilterPropertyRange(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, FilterSetting, pRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessorService_CreateVideoProcessor(self: *const T, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, MaxNumSubStreams: u32, ppVidProcess: ?*?*IDirectXVideoProcessor) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessorService.VTable, self.vtable).CreateVideoProcessor(@ptrCast(*const IDirectXVideoProcessorService, self), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, MaxNumSubStreams, ppVidProcess);
+                return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, MaxNumSubStreams, ppVidProcess);
             }
         };
     }
@@ -13128,31 +13128,31 @@ pub const IDirectXVideoDecoder = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_GetVideoDecoderService(self: *const T, ppService: ?*?*IDirectXVideoDecoderService) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).GetVideoDecoderService(@ptrCast(*const IDirectXVideoDecoder, self), ppService);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetVideoDecoderService(@as(*const IDirectXVideoDecoder, @ptrCast(self)), ppService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_GetCreationParameters(self: *const T, pDeviceGuid: ?*Guid, pVideoDesc: ?*DXVA2_VideoDesc, pConfig: ?*DXVA2_ConfigPictureDecode, pDecoderRenderTargets: [*]?*?*IDirect3DSurface9, pNumSurfaces: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).GetCreationParameters(@ptrCast(*const IDirectXVideoDecoder, self), pDeviceGuid, pVideoDesc, pConfig, pDecoderRenderTargets, pNumSurfaces);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pDeviceGuid, pVideoDesc, pConfig, pDecoderRenderTargets, pNumSurfaces);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_GetBuffer(self: *const T, BufferType: DXVA2_BufferfType, ppBuffer: ?*?*anyopaque, pBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).GetBuffer(@ptrCast(*const IDirectXVideoDecoder, self), BufferType, ppBuffer, pBufferSize);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDirectXVideoDecoder, @ptrCast(self)), BufferType, ppBuffer, pBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_ReleaseBuffer(self: *const T, BufferType: u32) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IDirectXVideoDecoder, self), BufferType);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).ReleaseBuffer(@as(*const IDirectXVideoDecoder, @ptrCast(self)), BufferType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_BeginFrame(self: *const T, pRenderTarget: ?*IDirect3DSurface9, pvPVPData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).BeginFrame(@ptrCast(*const IDirectXVideoDecoder, self), pRenderTarget, pvPVPData);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).BeginFrame(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pRenderTarget, pvPVPData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_EndFrame(self: *const T, pHandleComplete: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).EndFrame(@ptrCast(*const IDirectXVideoDecoder, self), pHandleComplete);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).EndFrame(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pHandleComplete);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoDecoder_Execute(self: *const T, pExecuteParams: ?*const DXVA2_DecodeExecuteParams) HRESULT {
-                return @ptrCast(*const IDirectXVideoDecoder.VTable, self.vtable).Execute(@ptrCast(*const IDirectXVideoDecoder, self), pExecuteParams);
+                return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).Execute(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pExecuteParams);
             }
         };
     }
@@ -13250,27 +13250,27 @@ pub const IDirectXVideoProcessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_GetVideoProcessorService(self: *const T, ppService: ?*?*IDirectXVideoProcessorService) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).GetVideoProcessorService(@ptrCast(*const IDirectXVideoProcessor, self), ppService);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorService(@as(*const IDirectXVideoProcessor, @ptrCast(self)), ppService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_GetCreationParameters(self: *const T, pDeviceGuid: ?*Guid, pVideoDesc: ?*DXVA2_VideoDesc, pRenderTargetFormat: ?*D3DFORMAT, pMaxNumSubStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).GetCreationParameters(@ptrCast(*const IDirectXVideoProcessor, self), pDeviceGuid, pVideoDesc, pRenderTargetFormat, pMaxNumSubStreams);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pDeviceGuid, pVideoDesc, pRenderTargetFormat, pMaxNumSubStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_GetVideoProcessorCaps(self: *const T, pCaps: ?*DXVA2_VideoProcessorCaps) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const IDirectXVideoProcessor, self), pCaps);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_GetProcAmpRange(self: *const T, ProcAmpCap: u32, pRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).GetProcAmpRange(@ptrCast(*const IDirectXVideoProcessor, self), ProcAmpCap, pRange);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IDirectXVideoProcessor, @ptrCast(self)), ProcAmpCap, pRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_GetFilterPropertyRange(self: *const T, FilterSetting: u32, pRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).GetFilterPropertyRange(@ptrCast(*const IDirectXVideoProcessor, self), FilterSetting, pRange);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilterPropertyRange(@as(*const IDirectXVideoProcessor, @ptrCast(self)), FilterSetting, pRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoProcessor_VideoProcessBlt(self: *const T, pRenderTarget: ?*IDirect3DSurface9, pBltParams: ?*const DXVA2_VideoProcessBltParams, pSamples: [*]const DXVA2_VideoSample, NumSamples: u32, pHandleComplete: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDirectXVideoProcessor.VTable, self.vtable).VideoProcessBlt(@ptrCast(*const IDirectXVideoProcessor, self), pRenderTarget, pBltParams, pSamples, NumSamples, pHandleComplete);
+                return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).VideoProcessBlt(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pRenderTarget, pBltParams, pSamples, NumSamples, pHandleComplete);
             }
         };
     }
@@ -13321,11 +13321,11 @@ pub const IDirectXVideoMemoryConfiguration = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoMemoryConfiguration_GetAvailableSurfaceTypeByIndex(self: *const T, dwTypeIndex: u32, pdwType: ?*DXVA2_SurfaceType) HRESULT {
-                return @ptrCast(*const IDirectXVideoMemoryConfiguration.VTable, self.vtable).GetAvailableSurfaceTypeByIndex(@ptrCast(*const IDirectXVideoMemoryConfiguration, self), dwTypeIndex, pdwType);
+                return @as(*const IDirectXVideoMemoryConfiguration.VTable, @ptrCast(self.vtable)).GetAvailableSurfaceTypeByIndex(@as(*const IDirectXVideoMemoryConfiguration, @ptrCast(self)), dwTypeIndex, pdwType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectXVideoMemoryConfiguration_SetSurfaceType(self: *const T, dwType: DXVA2_SurfaceType) HRESULT {
-                return @ptrCast(*const IDirectXVideoMemoryConfiguration.VTable, self.vtable).SetSurfaceType(@ptrCast(*const IDirectXVideoMemoryConfiguration, self), dwType);
+                return @as(*const IDirectXVideoMemoryConfiguration.VTable, @ptrCast(self.vtable)).SetSurfaceType(@as(*const IDirectXVideoMemoryConfiguration, @ptrCast(self)), dwType);
             }
         };
     }
@@ -13372,7 +13372,7 @@ pub const OPM_HDCP_FLAGS = enum(u32) {
         NONE: u1 = 0,
         REPEATER: u1 = 0,
     }) OPM_HDCP_FLAGS {
-        return @enumFromInt(OPM_HDCP_FLAGS, (if (o.NONE == 1) @intFromEnum(OPM_HDCP_FLAGS.NONE) else 0) | (if (o.REPEATER == 1) @intFromEnum(OPM_HDCP_FLAGS.REPEATER) else 0));
+        return @as(OPM_HDCP_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(OPM_HDCP_FLAGS.NONE) else 0) | (if (o.REPEATER == 1) @intFromEnum(OPM_HDCP_FLAGS.REPEATER) else 0)));
     }
 };
 pub const OPM_HDCP_FLAG_NONE = OPM_HDCP_FLAGS.NONE;
@@ -13816,23 +13816,23 @@ pub const IOPMVideoOutput = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOPMVideoOutput_StartInitialization(self: *const T, prnRandomNumber: ?*OPM_RANDOM_NUMBER, ppbCertificate: ?*?*u8, pulCertificateLength: ?*u32) HRESULT {
-                return @ptrCast(*const IOPMVideoOutput.VTable, self.vtable).StartInitialization(@ptrCast(*const IOPMVideoOutput, self), prnRandomNumber, ppbCertificate, pulCertificateLength);
+                return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).StartInitialization(@as(*const IOPMVideoOutput, @ptrCast(self)), prnRandomNumber, ppbCertificate, pulCertificateLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOPMVideoOutput_FinishInitialization(self: *const T, pParameters: ?*const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS) HRESULT {
-                return @ptrCast(*const IOPMVideoOutput.VTable, self.vtable).FinishInitialization(@ptrCast(*const IOPMVideoOutput, self), pParameters);
+                return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).FinishInitialization(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOPMVideoOutput_GetInformation(self: *const T, pParameters: ?*const OPM_GET_INFO_PARAMETERS, pRequestedInformation: ?*OPM_REQUESTED_INFORMATION) HRESULT {
-                return @ptrCast(*const IOPMVideoOutput.VTable, self.vtable).GetInformation(@ptrCast(*const IOPMVideoOutput, self), pParameters, pRequestedInformation);
+                return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).GetInformation(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, pRequestedInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOPMVideoOutput_COPPCompatibleGetInformation(self: *const T, pParameters: ?*const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS, pRequestedInformation: ?*OPM_REQUESTED_INFORMATION) HRESULT {
-                return @ptrCast(*const IOPMVideoOutput.VTable, self.vtable).COPPCompatibleGetInformation(@ptrCast(*const IOPMVideoOutput, self), pParameters, pRequestedInformation);
+                return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).COPPCompatibleGetInformation(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, pRequestedInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IOPMVideoOutput_Configure(self: *const T, pParameters: ?*const OPM_CONFIGURE_PARAMETERS, ulAdditionalParametersSize: u32, pbAdditionalParameters: ?*const u8) HRESULT {
-                return @ptrCast(*const IOPMVideoOutput.VTable, self.vtable).Configure(@ptrCast(*const IOPMVideoOutput, self), pParameters, ulAdditionalParametersSize, pbAdditionalParameters);
+                return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).Configure(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, ulAdditionalParametersSize, pbAdditionalParameters);
             }
         };
     }
@@ -14258,123 +14258,123 @@ pub const IMFAttributes = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetItem(self: *const T, guidKey: ?*const Guid, pValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetItem(@ptrCast(*const IMFAttributes, self), guidKey, pValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetItemType(self: *const T, guidKey: ?*const Guid, pType: ?*MF_ATTRIBUTE_TYPE) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetItemType(@ptrCast(*const IMFAttributes, self), guidKey, pType);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_CompareItem(self: *const T, guidKey: ?*const Guid, Value: ?*const PROPVARIANT, pbResult: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).CompareItem(@ptrCast(*const IMFAttributes, self), guidKey, Value, pbResult);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).CompareItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, Value, pbResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_Compare(self: *const T, pTheirs: ?*IMFAttributes, MatchType: MF_ATTRIBUTES_MATCH_TYPE, pbResult: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).Compare(@ptrCast(*const IMFAttributes, self), pTheirs, MatchType, pbResult);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).Compare(@as(*const IMFAttributes, @ptrCast(self)), pTheirs, MatchType, pbResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetUINT32(self: *const T, guidKey: ?*const Guid, punValue: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetUINT32(@ptrCast(*const IMFAttributes, self), guidKey, punValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUINT32(@as(*const IMFAttributes, @ptrCast(self)), guidKey, punValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetUINT64(self: *const T, guidKey: ?*const Guid, punValue: ?*u64) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetUINT64(@ptrCast(*const IMFAttributes, self), guidKey, punValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUINT64(@as(*const IMFAttributes, @ptrCast(self)), guidKey, punValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetDouble(self: *const T, guidKey: ?*const Guid, pfValue: ?*f64) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetDouble(@ptrCast(*const IMFAttributes, self), guidKey, pfValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetDouble(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pfValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetGUID(self: *const T, guidKey: ?*const Guid, pguidValue: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetGUID(@ptrCast(*const IMFAttributes, self), guidKey, pguidValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetGUID(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pguidValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetStringLength(self: *const T, guidKey: ?*const Guid, pcchLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetStringLength(@ptrCast(*const IMFAttributes, self), guidKey, pcchLength);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pcchLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetString(self: *const T, guidKey: ?*const Guid, pwszValue: [*:0]u16, cchBufSize: u32, pcchLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetString(@ptrCast(*const IMFAttributes, self), guidKey, pwszValue, cchBufSize, pcchLength);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pwszValue, cchBufSize, pcchLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetAllocatedString(self: *const T, guidKey: ?*const Guid, ppwszValue: ?*?PWSTR, pcchLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetAllocatedString(@ptrCast(*const IMFAttributes, self), guidKey, ppwszValue, pcchLength);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetAllocatedString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, ppwszValue, pcchLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetBlobSize(self: *const T, guidKey: ?*const Guid, pcbBlobSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetBlobSize(@ptrCast(*const IMFAttributes, self), guidKey, pcbBlobSize);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetBlobSize(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pcbBlobSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetBlob(self: *const T, guidKey: ?*const Guid, pBuf: [*:0]u8, cbBufSize: u32, pcbBlobSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetBlob(@ptrCast(*const IMFAttributes, self), guidKey, pBuf, cbBufSize, pcbBlobSize);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pBuf, cbBufSize, pcbBlobSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetAllocatedBlob(self: *const T, guidKey: ?*const Guid, ppBuf: [*]?*u8, pcbSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetAllocatedBlob(@ptrCast(*const IMFAttributes, self), guidKey, ppBuf, pcbSize);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetAllocatedBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, ppBuf, pcbSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetUnknown(self: *const T, guidKey: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetUnknown(@ptrCast(*const IMFAttributes, self), guidKey, riid, ppv);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUnknown(@as(*const IMFAttributes, @ptrCast(self)), guidKey, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetItem(self: *const T, guidKey: ?*const Guid, Value: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetItem(@ptrCast(*const IMFAttributes, self), guidKey, Value);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, Value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_DeleteItem(self: *const T, guidKey: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).DeleteItem(@ptrCast(*const IMFAttributes, self), guidKey);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_DeleteAllItems(self: *const T) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).DeleteAllItems(@ptrCast(*const IMFAttributes, self));
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).DeleteAllItems(@as(*const IMFAttributes, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetUINT32(self: *const T, guidKey: ?*const Guid, unValue: u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetUINT32(@ptrCast(*const IMFAttributes, self), guidKey, unValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUINT32(@as(*const IMFAttributes, @ptrCast(self)), guidKey, unValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetUINT64(self: *const T, guidKey: ?*const Guid, unValue: u64) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetUINT64(@ptrCast(*const IMFAttributes, self), guidKey, unValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUINT64(@as(*const IMFAttributes, @ptrCast(self)), guidKey, unValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetDouble(self: *const T, guidKey: ?*const Guid, fValue: f64) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetDouble(@ptrCast(*const IMFAttributes, self), guidKey, fValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetDouble(@as(*const IMFAttributes, @ptrCast(self)), guidKey, fValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetGUID(self: *const T, guidKey: ?*const Guid, guidValue: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetGUID(@ptrCast(*const IMFAttributes, self), guidKey, guidValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetGUID(@as(*const IMFAttributes, @ptrCast(self)), guidKey, guidValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetString(self: *const T, guidKey: ?*const Guid, wszValue: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetString(@ptrCast(*const IMFAttributes, self), guidKey, wszValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, wszValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetBlob(self: *const T, guidKey: ?*const Guid, pBuf: [*:0]const u8, cbBufSize: u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetBlob(@ptrCast(*const IMFAttributes, self), guidKey, pBuf, cbBufSize);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pBuf, cbBufSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_SetUnknown(self: *const T, guidKey: ?*const Guid, pUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).SetUnknown(@ptrCast(*const IMFAttributes, self), guidKey, pUnknown);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUnknown(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_LockStore(self: *const T) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).LockStore(@ptrCast(*const IMFAttributes, self));
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).LockStore(@as(*const IMFAttributes, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_UnlockStore(self: *const T) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).UnlockStore(@ptrCast(*const IMFAttributes, self));
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).UnlockStore(@as(*const IMFAttributes, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetCount(self: *const T, pcItems: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetCount(@ptrCast(*const IMFAttributes, self), pcItems);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IMFAttributes, @ptrCast(self)), pcItems);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_GetItemByIndex(self: *const T, unIndex: u32, pguidKey: ?*Guid, pValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).GetItemByIndex(@ptrCast(*const IMFAttributes, self), unIndex, pguidKey, pValue);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItemByIndex(@as(*const IMFAttributes, @ptrCast(self)), unIndex, pguidKey, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAttributes_CopyAllItems(self: *const T, pDest: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFAttributes.VTable, self.vtable).CopyAllItems(@ptrCast(*const IMFAttributes, self), pDest);
+                return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).CopyAllItems(@as(*const IMFAttributes, @ptrCast(self)), pDest);
             }
         };
     }
@@ -14453,23 +14453,23 @@ pub const IMFMediaBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaBuffer_Lock(self: *const T, ppbBuffer: ?*?*u8, pcbMaxLength: ?*u32, pcbCurrentLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaBuffer.VTable, self.vtable).Lock(@ptrCast(*const IMFMediaBuffer, self), ppbBuffer, pcbMaxLength, pcbCurrentLength);
+                return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IMFMediaBuffer, @ptrCast(self)), ppbBuffer, pcbMaxLength, pcbCurrentLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaBuffer_Unlock(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IMFMediaBuffer, self));
+                return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IMFMediaBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaBuffer_GetCurrentLength(self: *const T, pcbCurrentLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaBuffer.VTable, self.vtable).GetCurrentLength(@ptrCast(*const IMFMediaBuffer, self), pcbCurrentLength);
+                return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).GetCurrentLength(@as(*const IMFMediaBuffer, @ptrCast(self)), pcbCurrentLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaBuffer_SetCurrentLength(self: *const T, cbCurrentLength: u32) HRESULT {
-                return @ptrCast(*const IMFMediaBuffer.VTable, self.vtable).SetCurrentLength(@ptrCast(*const IMFMediaBuffer, self), cbCurrentLength);
+                return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).SetCurrentLength(@as(*const IMFMediaBuffer, @ptrCast(self)), cbCurrentLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMFMediaBuffer, self), pcbMaxLength);
+                return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IMFMediaBuffer, @ptrCast(self)), pcbMaxLength);
             }
         };
     }
@@ -14629,59 +14629,59 @@ pub const IMFSample = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetSampleFlags(self: *const T, pdwSampleFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetSampleFlags(@ptrCast(*const IMFSample, self), pdwSampleFlags);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleFlags(@as(*const IMFSample, @ptrCast(self)), pdwSampleFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_SetSampleFlags(self: *const T, dwSampleFlags: u32) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).SetSampleFlags(@ptrCast(*const IMFSample, self), dwSampleFlags);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleFlags(@as(*const IMFSample, @ptrCast(self)), dwSampleFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetSampleTime(self: *const T, phnsSampleTime: ?*i64) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetSampleTime(@ptrCast(*const IMFSample, self), phnsSampleTime);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleTime(@as(*const IMFSample, @ptrCast(self)), phnsSampleTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_SetSampleTime(self: *const T, hnsSampleTime: i64) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).SetSampleTime(@ptrCast(*const IMFSample, self), hnsSampleTime);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleTime(@as(*const IMFSample, @ptrCast(self)), hnsSampleTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetSampleDuration(self: *const T, phnsSampleDuration: ?*i64) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetSampleDuration(@ptrCast(*const IMFSample, self), phnsSampleDuration);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleDuration(@as(*const IMFSample, @ptrCast(self)), phnsSampleDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_SetSampleDuration(self: *const T, hnsSampleDuration: i64) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).SetSampleDuration(@ptrCast(*const IMFSample, self), hnsSampleDuration);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleDuration(@as(*const IMFSample, @ptrCast(self)), hnsSampleDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetBufferCount(self: *const T, pdwBufferCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetBufferCount(@ptrCast(*const IMFSample, self), pdwBufferCount);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetBufferCount(@as(*const IMFSample, @ptrCast(self)), pdwBufferCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetBufferByIndex(self: *const T, dwIndex: u32, ppBuffer: ?*?*IMFMediaBuffer) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetBufferByIndex(@ptrCast(*const IMFSample, self), dwIndex, ppBuffer);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetBufferByIndex(@as(*const IMFSample, @ptrCast(self)), dwIndex, ppBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_ConvertToContiguousBuffer(self: *const T, ppBuffer: ?*?*IMFMediaBuffer) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).ConvertToContiguousBuffer(@ptrCast(*const IMFSample, self), ppBuffer);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).ConvertToContiguousBuffer(@as(*const IMFSample, @ptrCast(self)), ppBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_AddBuffer(self: *const T, pBuffer: ?*IMFMediaBuffer) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).AddBuffer(@ptrCast(*const IMFSample, self), pBuffer);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).AddBuffer(@as(*const IMFSample, @ptrCast(self)), pBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_RemoveBufferByIndex(self: *const T, dwIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).RemoveBufferByIndex(@ptrCast(*const IMFSample, self), dwIndex);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).RemoveBufferByIndex(@as(*const IMFSample, @ptrCast(self)), dwIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_RemoveAllBuffers(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).RemoveAllBuffers(@ptrCast(*const IMFSample, self));
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).RemoveAllBuffers(@as(*const IMFSample, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_GetTotalLength(self: *const T, pcbTotalLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).GetTotalLength(@ptrCast(*const IMFSample, self), pcbTotalLength);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetTotalLength(@as(*const IMFSample, @ptrCast(self)), pcbTotalLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSample_CopyToBuffer(self: *const T, pBuffer: ?*IMFMediaBuffer) HRESULT {
-                return @ptrCast(*const IMFSample.VTable, self.vtable).CopyToBuffer(@ptrCast(*const IMFSample, self), pBuffer);
+                return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).CopyToBuffer(@as(*const IMFSample, @ptrCast(self)), pBuffer);
             }
         };
     }
@@ -14781,31 +14781,31 @@ pub const IMF2DBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_Lock2D(self: *const T, ppbScanline0: ?*?*u8, plPitch: ?*i32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).Lock2D(@ptrCast(*const IMF2DBuffer, self), ppbScanline0, plPitch);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).Lock2D(@as(*const IMF2DBuffer, @ptrCast(self)), ppbScanline0, plPitch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_Unlock2D(self: *const T) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).Unlock2D(@ptrCast(*const IMF2DBuffer, self));
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).Unlock2D(@as(*const IMF2DBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_GetScanline0AndPitch(self: *const T, pbScanline0: ?*?*u8, plPitch: ?*i32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).GetScanline0AndPitch(@ptrCast(*const IMF2DBuffer, self), pbScanline0, plPitch);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).GetScanline0AndPitch(@as(*const IMF2DBuffer, @ptrCast(self)), pbScanline0, plPitch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_IsContiguousFormat(self: *const T, pfIsContiguous: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).IsContiguousFormat(@ptrCast(*const IMF2DBuffer, self), pfIsContiguous);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).IsContiguousFormat(@as(*const IMF2DBuffer, @ptrCast(self)), pfIsContiguous);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_GetContiguousLength(self: *const T, pcbLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).GetContiguousLength(@ptrCast(*const IMF2DBuffer, self), pcbLength);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).GetContiguousLength(@as(*const IMF2DBuffer, @ptrCast(self)), pcbLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_ContiguousCopyTo(self: *const T, pbDestBuffer: ?*u8, cbDestBuffer: u32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).ContiguousCopyTo(@ptrCast(*const IMF2DBuffer, self), pbDestBuffer, cbDestBuffer);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).ContiguousCopyTo(@as(*const IMF2DBuffer, @ptrCast(self)), pbDestBuffer, cbDestBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer_ContiguousCopyFrom(self: *const T, pbSrcBuffer: ?*const u8, cbSrcBuffer: u32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer.VTable, self.vtable).ContiguousCopyFrom(@ptrCast(*const IMF2DBuffer, self), pbSrcBuffer, cbSrcBuffer);
+                return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).ContiguousCopyFrom(@as(*const IMF2DBuffer, @ptrCast(self)), pbSrcBuffer, cbSrcBuffer);
             }
         };
     }
@@ -14866,11 +14866,11 @@ pub const IMF2DBuffer2 = extern struct {
             pub usingnamespace IMF2DBuffer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer2_Lock2DSize(self: *const T, lockFlags: MF2DBuffer_LockFlags, ppbScanline0: ?*?*u8, plPitch: ?*i32, ppbBufferStart: ?*?*u8, pcbBufferLength: ?*u32) HRESULT {
-                return @ptrCast(*const IMF2DBuffer2.VTable, self.vtable).Lock2DSize(@ptrCast(*const IMF2DBuffer2, self), lockFlags, ppbScanline0, plPitch, ppbBufferStart, pcbBufferLength);
+                return @as(*const IMF2DBuffer2.VTable, @ptrCast(self.vtable)).Lock2DSize(@as(*const IMF2DBuffer2, @ptrCast(self)), lockFlags, ppbScanline0, plPitch, ppbBufferStart, pcbBufferLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMF2DBuffer2_Copy2DTo(self: *const T, pDestBuffer: ?*IMF2DBuffer2) HRESULT {
-                return @ptrCast(*const IMF2DBuffer2.VTable, self.vtable).Copy2DTo(@ptrCast(*const IMF2DBuffer2, self), pDestBuffer);
+                return @as(*const IMF2DBuffer2.VTable, @ptrCast(self.vtable)).Copy2DTo(@as(*const IMF2DBuffer2, @ptrCast(self)), pDestBuffer);
             }
         };
     }
@@ -14938,19 +14938,19 @@ pub const IMFDXGIBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIBuffer_GetResource(self: *const T, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFDXGIBuffer.VTable, self.vtable).GetResource(@ptrCast(*const IMFDXGIBuffer, self), riid, ppvObject);
+                return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetResource(@as(*const IMFDXGIBuffer, @ptrCast(self)), riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIBuffer_GetSubresourceIndex(self: *const T, puSubresource: ?*u32) HRESULT {
-                return @ptrCast(*const IMFDXGIBuffer.VTable, self.vtable).GetSubresourceIndex(@ptrCast(*const IMFDXGIBuffer, self), puSubresource);
+                return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetSubresourceIndex(@as(*const IMFDXGIBuffer, @ptrCast(self)), puSubresource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIBuffer_GetUnknown(self: *const T, guid: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFDXGIBuffer.VTable, self.vtable).GetUnknown(@ptrCast(*const IMFDXGIBuffer, self), guid, riid, ppvObject);
+                return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetUnknown(@as(*const IMFDXGIBuffer, @ptrCast(self)), guid, riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIBuffer_SetUnknown(self: *const T, guid: ?*const Guid, pUnkData: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFDXGIBuffer.VTable, self.vtable).SetUnknown(@ptrCast(*const IMFDXGIBuffer, self), guid, pUnkData);
+                return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).SetUnknown(@as(*const IMFDXGIBuffer, @ptrCast(self)), guid, pUnkData);
             }
         };
     }
@@ -15026,23 +15026,23 @@ pub const IMFMediaType = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaType_GetMajorType(self: *const T, pguidMajorType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFMediaType.VTable, self.vtable).GetMajorType(@ptrCast(*const IMFMediaType, self), pguidMajorType);
+                return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).GetMajorType(@as(*const IMFMediaType, @ptrCast(self)), pguidMajorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaType_IsCompressedFormat(self: *const T, pfCompressed: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaType.VTable, self.vtable).IsCompressedFormat(@ptrCast(*const IMFMediaType, self), pfCompressed);
+                return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).IsCompressedFormat(@as(*const IMFMediaType, @ptrCast(self)), pfCompressed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaType_IsEqual(self: *const T, pIMediaType: ?*IMFMediaType, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaType.VTable, self.vtable).IsEqual(@ptrCast(*const IMFMediaType, self), pIMediaType, pdwFlags);
+                return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IMFMediaType, @ptrCast(self)), pIMediaType, pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaType_GetRepresentation(self: *const T, guidRepresentation: Guid, ppvRepresentation: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFMediaType.VTable, self.vtable).GetRepresentation(@ptrCast(*const IMFMediaType, self), guidRepresentation, ppvRepresentation);
+                return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).GetRepresentation(@as(*const IMFMediaType, @ptrCast(self)), guidRepresentation, ppvRepresentation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaType_FreeRepresentation(self: *const T, guidRepresentation: Guid, pvRepresentation: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFMediaType.VTable, self.vtable).FreeRepresentation(@ptrCast(*const IMFMediaType, self), guidRepresentation, pvRepresentation);
+                return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).FreeRepresentation(@as(*const IMFMediaType, @ptrCast(self)), guidRepresentation, pvRepresentation);
             }
         };
     }
@@ -15070,7 +15070,7 @@ pub const IMFAudioMediaType = extern struct {
             pub usingnamespace IMFMediaType.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioMediaType_GetAudioFormat(self: *const T) ?*WAVEFORMATEX {
-                return @ptrCast(*const IMFAudioMediaType.VTable, self.vtable).GetAudioFormat(@ptrCast(*const IMFAudioMediaType, self));
+                return @as(*const IMFAudioMediaType.VTable, @ptrCast(self.vtable)).GetAudioFormat(@as(*const IMFAudioMediaType, @ptrCast(self)));
             }
         };
     }
@@ -15435,11 +15435,11 @@ pub const IMFVideoMediaType = extern struct {
             pub usingnamespace IMFMediaType.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMediaType_GetVideoFormat(self: *const T) ?*MFVIDEOFORMAT {
-                return @ptrCast(*const IMFVideoMediaType.VTable, self.vtable).GetVideoFormat(@ptrCast(*const IMFVideoMediaType, self));
+                return @as(*const IMFVideoMediaType.VTable, @ptrCast(self.vtable)).GetVideoFormat(@as(*const IMFVideoMediaType, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMediaType_GetVideoRepresentation(self: *const T, guidRepresentation: Guid, ppvRepresentation: ?*?*anyopaque, lStride: i32) HRESULT {
-                return @ptrCast(*const IMFVideoMediaType.VTable, self.vtable).GetVideoRepresentation(@ptrCast(*const IMFVideoMediaType, self), guidRepresentation, ppvRepresentation, lStride);
+                return @as(*const IMFVideoMediaType.VTable, @ptrCast(self.vtable)).GetVideoRepresentation(@as(*const IMFVideoMediaType, @ptrCast(self)), guidRepresentation, ppvRepresentation, lStride);
             }
         };
     }
@@ -15505,23 +15505,23 @@ pub const IMFAsyncResult = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncResult_GetState(self: *const T, ppunkState: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFAsyncResult.VTable, self.vtable).GetState(@ptrCast(*const IMFAsyncResult, self), ppunkState);
+                return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFAsyncResult, @ptrCast(self)), ppunkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncResult_GetStatus(self: *const T) HRESULT {
-                return @ptrCast(*const IMFAsyncResult.VTable, self.vtable).GetStatus(@ptrCast(*const IMFAsyncResult, self));
+                return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMFAsyncResult, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncResult_SetStatus(self: *const T, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IMFAsyncResult.VTable, self.vtable).SetStatus(@ptrCast(*const IMFAsyncResult, self), hrStatus);
+                return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IMFAsyncResult, @ptrCast(self)), hrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncResult_GetObject(self: *const T, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFAsyncResult.VTable, self.vtable).GetObject(@ptrCast(*const IMFAsyncResult, self), ppObject);
+                return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFAsyncResult, @ptrCast(self)), ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncResult_GetStateNoAddRef(self: *const T) ?*IUnknown {
-                return @ptrCast(*const IMFAsyncResult.VTable, self.vtable).GetStateNoAddRef(@ptrCast(*const IMFAsyncResult, self));
+                return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetStateNoAddRef(@as(*const IMFAsyncResult, @ptrCast(self)));
             }
         };
     }
@@ -15563,11 +15563,11 @@ pub const IMFAsyncCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncCallback_GetParameters(self: *const T, pdwFlags: ?*u32, pdwQueue: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAsyncCallback.VTable, self.vtable).GetParameters(@ptrCast(*const IMFAsyncCallback, self), pdwFlags, pdwQueue);
+                return @as(*const IMFAsyncCallback.VTable, @ptrCast(self.vtable)).GetParameters(@as(*const IMFAsyncCallback, @ptrCast(self)), pdwFlags, pdwQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncCallback_Invoke(self: *const T, pAsyncResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFAsyncCallback.VTable, self.vtable).Invoke(@ptrCast(*const IMFAsyncCallback, self), pAsyncResult);
+                return @as(*const IMFAsyncCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IMFAsyncCallback, @ptrCast(self)), pAsyncResult);
             }
         };
     }
@@ -15603,11 +15603,11 @@ pub const IMFAsyncCallbackLogging = extern struct {
             pub usingnamespace IMFAsyncCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncCallbackLogging_GetObjectPointer(self: *const T) ?*anyopaque {
-                return @ptrCast(*const IMFAsyncCallbackLogging.VTable, self.vtable).GetObjectPointer(@ptrCast(*const IMFAsyncCallbackLogging, self));
+                return @as(*const IMFAsyncCallbackLogging.VTable, @ptrCast(self.vtable)).GetObjectPointer(@as(*const IMFAsyncCallbackLogging, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAsyncCallbackLogging_GetObjectTag(self: *const T) u32 {
-                return @ptrCast(*const IMFAsyncCallbackLogging.VTable, self.vtable).GetObjectTag(@ptrCast(*const IMFAsyncCallbackLogging, self));
+                return @as(*const IMFAsyncCallbackLogging.VTable, @ptrCast(self.vtable)).GetObjectTag(@as(*const IMFAsyncCallbackLogging, @ptrCast(self)));
             }
         };
     }
@@ -15910,19 +15910,19 @@ pub const IMFMediaEvent = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEvent_GetType(self: *const T, pmet: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEvent.VTable, self.vtable).GetType(@ptrCast(*const IMFMediaEvent, self), pmet);
+                return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFMediaEvent, @ptrCast(self)), pmet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEvent_GetExtendedType(self: *const T, pguidExtendedType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFMediaEvent.VTable, self.vtable).GetExtendedType(@ptrCast(*const IMFMediaEvent, self), pguidExtendedType);
+                return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetExtendedType(@as(*const IMFMediaEvent, @ptrCast(self)), pguidExtendedType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEvent_GetStatus(self: *const T, phrStatus: ?*HRESULT) HRESULT {
-                return @ptrCast(*const IMFMediaEvent.VTable, self.vtable).GetStatus(@ptrCast(*const IMFMediaEvent, self), phrStatus);
+                return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMFMediaEvent, @ptrCast(self)), phrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEvent_GetValue(self: *const T, pvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEvent.VTable, self.vtable).GetValue(@ptrCast(*const IMFMediaEvent, self), pvValue);
+                return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IMFMediaEvent, @ptrCast(self)), pvValue);
             }
         };
     }
@@ -15994,19 +15994,19 @@ pub const IMFMediaEventGenerator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventGenerator_GetEvent(self: *const T, dwFlags: MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS, ppEvent: ?*?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFMediaEventGenerator.VTable, self.vtable).GetEvent(@ptrCast(*const IMFMediaEventGenerator, self), dwFlags, ppEvent);
+                return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), dwFlags, ppEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventGenerator_BeginGetEvent(self: *const T, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEventGenerator.VTable, self.vtable).BeginGetEvent(@ptrCast(*const IMFMediaEventGenerator, self), pCallback, punkState);
+                return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).BeginGetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventGenerator_EndGetEvent(self: *const T, pResult: ?*IMFAsyncResult, ppEvent: ?*?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFMediaEventGenerator.VTable, self.vtable).EndGetEvent(@ptrCast(*const IMFMediaEventGenerator, self), pResult, ppEvent);
+                return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).EndGetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), pResult, ppEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventGenerator_QueueEvent(self: *const T, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pvValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEventGenerator.VTable, self.vtable).QueueEvent(@ptrCast(*const IMFMediaEventGenerator, self), met, guidExtendedType, hrStatus, pvValue);
+                return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).QueueEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), met, guidExtendedType, hrStatus, pvValue);
             }
         };
     }
@@ -16038,7 +16038,7 @@ pub const IMFRemoteAsyncCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRemoteAsyncCallback_Invoke(self: *const T, hr: HRESULT, pRemoteResult: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFRemoteAsyncCallback.VTable, self.vtable).Invoke(@ptrCast(*const IMFRemoteAsyncCallback, self), hr, pRemoteResult);
+                return @as(*const IMFRemoteAsyncCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IMFRemoteAsyncCallback, @ptrCast(self)), hr, pRemoteResult);
             }
         };
     }
@@ -16245,63 +16245,63 @@ pub const IMFByteStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_GetCapabilities(self: *const T, pdwCapabilities: ?*u32) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).GetCapabilities(@ptrCast(*const IMFByteStream, self), pdwCapabilities);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IMFByteStream, @ptrCast(self)), pdwCapabilities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_GetLength(self: *const T, pqwLength: ?*u64) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).GetLength(@ptrCast(*const IMFByteStream, self), pqwLength);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFByteStream, @ptrCast(self)), pqwLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_SetLength(self: *const T, qwLength: u64) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).SetLength(@ptrCast(*const IMFByteStream, self), qwLength);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IMFByteStream, @ptrCast(self)), qwLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_GetCurrentPosition(self: *const T, pqwPosition: ?*u64) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IMFByteStream, self), pqwPosition);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IMFByteStream, @ptrCast(self)), pqwPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_SetCurrentPosition(self: *const T, qwPosition: u64) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IMFByteStream, self), qwPosition);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IMFByteStream, @ptrCast(self)), qwPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_IsEndOfStream(self: *const T, pfEndOfStream: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).IsEndOfStream(@ptrCast(*const IMFByteStream, self), pfEndOfStream);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).IsEndOfStream(@as(*const IMFByteStream, @ptrCast(self)), pfEndOfStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_Read(self: *const T, pb: [*:0]u8, cb: u32, pcbRead: ?*u32) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).Read(@ptrCast(*const IMFByteStream, self), pb, cb, pcbRead);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pcbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_BeginRead(self: *const T, pb: ?*u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).BeginRead(@ptrCast(*const IMFByteStream, self), pb, cb, pCallback, punkState);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).BeginRead(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_EndRead(self: *const T, pResult: ?*IMFAsyncResult, pcbRead: ?*u32) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).EndRead(@ptrCast(*const IMFByteStream, self), pResult, pcbRead);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).EndRead(@as(*const IMFByteStream, @ptrCast(self)), pResult, pcbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_Write(self: *const T, pb: [*:0]const u8, cb: u32, pcbWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).Write(@ptrCast(*const IMFByteStream, self), pb, cb, pcbWritten);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pcbWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_BeginWrite(self: *const T, pb: ?*const u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).BeginWrite(@ptrCast(*const IMFByteStream, self), pb, cb, pCallback, punkState);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).BeginWrite(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_EndWrite(self: *const T, pResult: ?*IMFAsyncResult, pcbWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).EndWrite(@ptrCast(*const IMFByteStream, self), pResult, pcbWritten);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).EndWrite(@as(*const IMFByteStream, @ptrCast(self)), pResult, pcbWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_Seek(self: *const T, SeekOrigin: MFBYTESTREAM_SEEK_ORIGIN, llSeekOffset: i64, dwSeekFlags: u32, pqwCurrentPosition: ?*u64) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).Seek(@ptrCast(*const IMFByteStream, self), SeekOrigin, llSeekOffset, dwSeekFlags, pqwCurrentPosition);
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const IMFByteStream, @ptrCast(self)), SeekOrigin, llSeekOffset, dwSeekFlags, pqwCurrentPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).Flush(@ptrCast(*const IMFByteStream, self));
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFByteStream, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStream_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFByteStream.VTable, self.vtable).Close(@ptrCast(*const IMFByteStream, self));
+                return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFByteStream, @ptrCast(self)));
             }
         };
     }
@@ -16337,7 +16337,7 @@ pub const IMFByteStreamProxyClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamProxyClassFactory_CreateByteStreamProxy(self: *const T, pByteStream: ?*IMFByteStream, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFByteStreamProxyClassFactory.VTable, self.vtable).CreateByteStreamProxy(@ptrCast(*const IMFByteStreamProxyClassFactory, self), pByteStream, pAttributes, riid, ppvObject);
+                return @as(*const IMFByteStreamProxyClassFactory.VTable, @ptrCast(self.vtable)).CreateByteStreamProxy(@as(*const IMFByteStreamProxyClassFactory, @ptrCast(self)), pByteStream, pAttributes, riid, ppvObject);
             }
         };
     }
@@ -16420,15 +16420,15 @@ pub const IMFSampleOutputStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleOutputStream_BeginWriteSample(self: *const T, pSample: ?*IMFSample, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSampleOutputStream.VTable, self.vtable).BeginWriteSample(@ptrCast(*const IMFSampleOutputStream, self), pSample, pCallback, punkState);
+                return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).BeginWriteSample(@as(*const IMFSampleOutputStream, @ptrCast(self)), pSample, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleOutputStream_EndWriteSample(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFSampleOutputStream.VTable, self.vtable).EndWriteSample(@ptrCast(*const IMFSampleOutputStream, self), pResult);
+                return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).EndWriteSample(@as(*const IMFSampleOutputStream, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleOutputStream_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSampleOutputStream.VTable, self.vtable).Close(@ptrCast(*const IMFSampleOutputStream, self));
+                return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFSampleOutputStream, @ptrCast(self)));
             }
         };
     }
@@ -16512,27 +16512,27 @@ pub const IMFCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_GetElementCount(self: *const T, pcElements: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).GetElementCount(@ptrCast(*const IMFCollection, self), pcElements);
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).GetElementCount(@as(*const IMFCollection, @ptrCast(self)), pcElements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_GetElement(self: *const T, dwElementIndex: u32, ppUnkElement: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).GetElement(@ptrCast(*const IMFCollection, self), dwElementIndex, ppUnkElement);
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IMFCollection, @ptrCast(self)), dwElementIndex, ppUnkElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_AddElement(self: *const T, pUnkElement: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).AddElement(@ptrCast(*const IMFCollection, self), pUnkElement);
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).AddElement(@as(*const IMFCollection, @ptrCast(self)), pUnkElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_RemoveElement(self: *const T, dwElementIndex: u32, ppUnkElement: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).RemoveElement(@ptrCast(*const IMFCollection, self), dwElementIndex, ppUnkElement);
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).RemoveElement(@as(*const IMFCollection, @ptrCast(self)), dwElementIndex, ppUnkElement);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_InsertElementAt(self: *const T, dwIndex: u32, pUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).InsertElementAt(@ptrCast(*const IMFCollection, self), dwIndex, pUnknown);
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).InsertElementAt(@as(*const IMFCollection, @ptrCast(self)), dwIndex, pUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCollection_RemoveAllElements(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCollection.VTable, self.vtable).RemoveAllElements(@ptrCast(*const IMFCollection, self));
+                return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).RemoveAllElements(@as(*const IMFCollection, @ptrCast(self)));
             }
         };
     }
@@ -16638,31 +16638,31 @@ pub const IMFMediaEventQueue = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_GetEvent(self: *const T, dwFlags: u32, ppEvent: ?*?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).GetEvent(@ptrCast(*const IMFMediaEventQueue, self), dwFlags, ppEvent);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), dwFlags, ppEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_BeginGetEvent(self: *const T, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).BeginGetEvent(@ptrCast(*const IMFMediaEventQueue, self), pCallback, punkState);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).BeginGetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_EndGetEvent(self: *const T, pResult: ?*IMFAsyncResult, ppEvent: ?*?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).EndGetEvent(@ptrCast(*const IMFMediaEventQueue, self), pResult, ppEvent);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).EndGetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pResult, ppEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_QueueEvent(self: *const T, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).QueueEvent(@ptrCast(*const IMFMediaEventQueue, self), pEvent);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_QueueEventParamVar(self: *const T, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pvValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).QueueEventParamVar(@ptrCast(*const IMFMediaEventQueue, self), met, guidExtendedType, hrStatus, pvValue);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEventParamVar(@as(*const IMFMediaEventQueue, @ptrCast(self)), met, guidExtendedType, hrStatus, pvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_QueueEventParamUnk(self: *const T, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pUnk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).QueueEventParamUnk(@ptrCast(*const IMFMediaEventQueue, self), met, guidExtendedType, hrStatus, pUnk);
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEventParamUnk(@as(*const IMFMediaEventQueue, @ptrCast(self)), met, guidExtendedType, hrStatus, pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEventQueue_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEventQueue.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaEventQueue, self));
+                return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaEventQueue, @ptrCast(self)));
             }
         };
     }
@@ -16710,15 +16710,15 @@ pub const IMFActivate = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFActivate_ActivateObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFActivate.VTable, self.vtable).ActivateObject(@ptrCast(*const IMFActivate, self), riid, ppv);
+                return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).ActivateObject(@as(*const IMFActivate, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFActivate_ShutdownObject(self: *const T) HRESULT {
-                return @ptrCast(*const IMFActivate.VTable, self.vtable).ShutdownObject(@ptrCast(*const IMFActivate, self));
+                return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).ShutdownObject(@as(*const IMFActivate, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFActivate_DetachObject(self: *const T) HRESULT {
-                return @ptrCast(*const IMFActivate.VTable, self.vtable).DetachObject(@ptrCast(*const IMFActivate, self));
+                return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).DetachObject(@as(*const IMFActivate, @ptrCast(self)));
             }
         };
     }
@@ -16822,27 +16822,27 @@ pub const IMFPluginControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_GetPreferredClsid(self: *const T, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).GetPreferredClsid(@ptrCast(*const IMFPluginControl, self), pluginType, selector, clsid);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetPreferredClsid(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, selector, clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_GetPreferredClsidByIndex(self: *const T, pluginType: u32, index: u32, selector: ?*?PWSTR, clsid: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).GetPreferredClsidByIndex(@ptrCast(*const IMFPluginControl, self), pluginType, index, selector, clsid);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetPreferredClsidByIndex(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, index, selector, clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_SetPreferredClsid(self: *const T, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).SetPreferredClsid(@ptrCast(*const IMFPluginControl, self), pluginType, selector, clsid);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).SetPreferredClsid(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, selector, clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_IsDisabled(self: *const T, pluginType: u32, clsid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).IsDisabled(@ptrCast(*const IMFPluginControl, self), pluginType, clsid);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).IsDisabled(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_GetDisabledByIndex(self: *const T, pluginType: u32, index: u32, clsid: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).GetDisabledByIndex(@ptrCast(*const IMFPluginControl, self), pluginType, index, clsid);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetDisabledByIndex(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, index, clsid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl_SetDisabled(self: *const T, pluginType: u32, clsid: ?*const Guid, disabled: BOOL) HRESULT {
-                return @ptrCast(*const IMFPluginControl.VTable, self.vtable).SetDisabled(@ptrCast(*const IMFPluginControl, self), pluginType, clsid, disabled);
+                return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).SetDisabled(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, clsid, disabled);
             }
         };
     }
@@ -16883,7 +16883,7 @@ pub const IMFPluginControl2 = extern struct {
             pub usingnamespace IMFPluginControl.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPluginControl2_SetPolicy(self: *const T, policy: MF_PLUGIN_CONTROL_POLICY) HRESULT {
-                return @ptrCast(*const IMFPluginControl2.VTable, self.vtable).SetPolicy(@ptrCast(*const IMFPluginControl2, self), policy);
+                return @as(*const IMFPluginControl2.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IMFPluginControl2, @ptrCast(self)), policy);
             }
         };
     }
@@ -16987,31 +16987,31 @@ pub const IMFDXGIDeviceManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_CloseDeviceHandle(self: *const T, hDevice: ?HANDLE) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).CloseDeviceHandle(@ptrCast(*const IMFDXGIDeviceManager, self), hDevice);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).CloseDeviceHandle(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_GetVideoService(self: *const T, hDevice: ?HANDLE, riid: ?*const Guid, ppService: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).GetVideoService(@ptrCast(*const IMFDXGIDeviceManager, self), hDevice, riid, ppService);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).GetVideoService(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, riid, ppService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_LockDevice(self: *const T, hDevice: ?HANDLE, riid: ?*const Guid, ppUnkDevice: ?*?*anyopaque, fBlock: BOOL) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).LockDevice(@ptrCast(*const IMFDXGIDeviceManager, self), hDevice, riid, ppUnkDevice, fBlock);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, riid, ppUnkDevice, fBlock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_OpenDeviceHandle(self: *const T, phDevice: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).OpenDeviceHandle(@ptrCast(*const IMFDXGIDeviceManager, self), phDevice);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).OpenDeviceHandle(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), phDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_ResetDevice(self: *const T, pUnkDevice: ?*IUnknown, resetToken: u32) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).ResetDevice(@ptrCast(*const IMFDXGIDeviceManager, self), pUnkDevice, resetToken);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).ResetDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), pUnkDevice, resetToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_TestDevice(self: *const T, hDevice: ?HANDLE) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).TestDevice(@ptrCast(*const IMFDXGIDeviceManager, self), hDevice);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).TestDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManager_UnlockDevice(self: *const T, hDevice: ?HANDLE, fSaveState: BOOL) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManager.VTable, self.vtable).UnlockDevice(@ptrCast(*const IMFDXGIDeviceManager, self), hDevice, fSaveState);
+                return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).UnlockDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, fSaveState);
             }
         };
     }
@@ -17062,11 +17062,11 @@ pub const IMFMuxStreamAttributesManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamAttributesManager_GetStreamCount(self: *const T, pdwMuxStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMuxStreamAttributesManager.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFMuxStreamAttributesManager, self), pdwMuxStreamCount);
+                return @as(*const IMFMuxStreamAttributesManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamAttributesManager, @ptrCast(self)), pdwMuxStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamAttributesManager_GetAttributes(self: *const T, dwMuxStreamIndex: u32, ppStreamAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFMuxStreamAttributesManager.VTable, self.vtable).GetAttributes(@ptrCast(*const IMFMuxStreamAttributesManager, self), dwMuxStreamIndex, ppStreamAttributes);
+                return @as(*const IMFMuxStreamAttributesManager.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IMFMuxStreamAttributesManager, @ptrCast(self)), dwMuxStreamIndex, ppStreamAttributes);
             }
         };
     }
@@ -17150,27 +17150,27 @@ pub const IMFMuxStreamMediaTypeManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_GetStreamCount(self: *const T, pdwMuxStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), pdwMuxStreamCount);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), pdwMuxStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_GetMediaType(self: *const T, dwMuxStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).GetMediaType(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), dwMuxStreamIndex, ppMediaType);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), dwMuxStreamIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_GetStreamConfigurationCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).GetStreamConfigurationCount(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), pdwCount);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamConfigurationCount(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_AddStreamConfiguration(self: *const T, ullStreamMask: u64) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).AddStreamConfiguration(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), ullStreamMask);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).AddStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ullStreamMask);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_RemoveStreamConfiguration(self: *const T, ullStreamMask: u64) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).RemoveStreamConfiguration(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), ullStreamMask);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).RemoveStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ullStreamMask);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamMediaTypeManager_GetStreamConfiguration(self: *const T, ulIndex: u32, pullStreamMask: ?*u64) HRESULT {
-                return @ptrCast(*const IMFMuxStreamMediaTypeManager.VTable, self.vtable).GetStreamConfiguration(@ptrCast(*const IMFMuxStreamMediaTypeManager, self), ulIndex, pullStreamMask);
+                return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ulIndex, pullStreamMask);
             }
         };
     }
@@ -17220,15 +17220,15 @@ pub const IMFMuxStreamSampleManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamSampleManager_GetStreamCount(self: *const T, pdwMuxStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMuxStreamSampleManager.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFMuxStreamSampleManager, self), pdwMuxStreamCount);
+                return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)), pdwMuxStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamSampleManager_GetSample(self: *const T, dwMuxStreamIndex: u32, ppSample: ?*?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFMuxStreamSampleManager.VTable, self.vtable).GetSample(@ptrCast(*const IMFMuxStreamSampleManager, self), dwMuxStreamIndex, ppSample);
+                return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetSample(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)), dwMuxStreamIndex, ppSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMuxStreamSampleManager_GetStreamConfiguration(self: *const T) u64 {
-                return @ptrCast(*const IMFMuxStreamSampleManager.VTable, self.vtable).GetStreamConfiguration(@ptrCast(*const IMFMuxStreamSampleManager, self));
+                return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetStreamConfiguration(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)));
             }
         };
     }
@@ -17257,7 +17257,7 @@ pub const IMFSecureBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSecureBuffer_GetIdentifier(self: *const T, pGuidIdentifier: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFSecureBuffer.VTable, self.vtable).GetIdentifier(@ptrCast(*const IMFSecureBuffer, self), pGuidIdentifier);
+                return @as(*const IMFSecureBuffer.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IMFSecureBuffer, @ptrCast(self)), pGuidIdentifier);
             }
         };
     }
@@ -17713,95 +17713,95 @@ pub const IMFTransform = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetStreamLimits(self: *const T, pdwInputMinimum: ?*u32, pdwInputMaximum: ?*u32, pdwOutputMinimum: ?*u32, pdwOutputMaximum: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetStreamLimits(@ptrCast(*const IMFTransform, self), pdwInputMinimum, pdwInputMaximum, pdwOutputMinimum, pdwOutputMaximum);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamLimits(@as(*const IMFTransform, @ptrCast(self)), pdwInputMinimum, pdwInputMaximum, pdwOutputMinimum, pdwOutputMaximum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetStreamCount(self: *const T, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFTransform, self), pcInputStreams, pcOutputStreams);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFTransform, @ptrCast(self)), pcInputStreams, pcOutputStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetStreamIDs(self: *const T, dwInputIDArraySize: u32, pdwInputIDs: [*]u32, dwOutputIDArraySize: u32, pdwOutputIDs: [*]u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetStreamIDs(@ptrCast(*const IMFTransform, self), dwInputIDArraySize, pdwInputIDs, dwOutputIDArraySize, pdwOutputIDs);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamIDs(@as(*const IMFTransform, @ptrCast(self)), dwInputIDArraySize, pdwInputIDs, dwOutputIDArraySize, pdwOutputIDs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetInputStreamInfo(self: *const T, dwInputStreamID: u32, pStreamInfo: ?*MFT_INPUT_STREAM_INFO) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMFTransform, self), dwInputStreamID, pStreamInfo);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStreamInfo(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pStreamInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetOutputStreamInfo(self: *const T, dwOutputStreamID: u32, pStreamInfo: ?*MFT_OUTPUT_STREAM_INFO) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMFTransform, self), dwOutputStreamID, pStreamInfo);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamInfo(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pStreamInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetAttributes(self: *const T, pAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetAttributes(@ptrCast(*const IMFTransform, self), pAttributes);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IMFTransform, @ptrCast(self)), pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetInputStreamAttributes(self: *const T, dwInputStreamID: u32, pAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetInputStreamAttributes(@ptrCast(*const IMFTransform, self), dwInputStreamID, pAttributes);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStreamAttributes(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetOutputStreamAttributes(self: *const T, dwOutputStreamID: u32, pAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetOutputStreamAttributes(@ptrCast(*const IMFTransform, self), dwOutputStreamID, pAttributes);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamAttributes(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_DeleteInputStream(self: *const T, dwStreamID: u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).DeleteInputStream(@ptrCast(*const IMFTransform, self), dwStreamID);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).DeleteInputStream(@as(*const IMFTransform, @ptrCast(self)), dwStreamID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_AddInputStreams(self: *const T, cStreams: u32, adwStreamIDs: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).AddInputStreams(@ptrCast(*const IMFTransform, self), cStreams, adwStreamIDs);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).AddInputStreams(@as(*const IMFTransform, @ptrCast(self)), cStreams, adwStreamIDs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetInputAvailableType(self: *const T, dwInputStreamID: u32, dwTypeIndex: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetInputAvailableType(@ptrCast(*const IMFTransform, self), dwInputStreamID, dwTypeIndex, ppType);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputAvailableType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, dwTypeIndex, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetOutputAvailableType(self: *const T, dwOutputStreamID: u32, dwTypeIndex: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetOutputAvailableType(@ptrCast(*const IMFTransform, self), dwOutputStreamID, dwTypeIndex, ppType);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputAvailableType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, dwTypeIndex, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_SetInputType(self: *const T, dwInputStreamID: u32, pType: ?*IMFMediaType, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).SetInputType(@ptrCast(*const IMFTransform, self), dwInputStreamID, pType, dwFlags);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetInputType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pType, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_SetOutputType(self: *const T, dwOutputStreamID: u32, pType: ?*IMFMediaType, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).SetOutputType(@ptrCast(*const IMFTransform, self), dwOutputStreamID, pType, dwFlags);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetOutputType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pType, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetInputCurrentType(self: *const T, dwInputStreamID: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMFTransform, self), dwInputStreamID, ppType);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetOutputCurrentType(self: *const T, dwOutputStreamID: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMFTransform, self), dwOutputStreamID, ppType);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetInputStatus(self: *const T, dwInputStreamID: u32, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMFTransform, self), dwInputStreamID, pdwFlags);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStatus(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_GetOutputStatus(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).GetOutputStatus(@ptrCast(*const IMFTransform, self), pdwFlags);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStatus(@as(*const IMFTransform, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_SetOutputBounds(self: *const T, hnsLowerBound: i64, hnsUpperBound: i64) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).SetOutputBounds(@ptrCast(*const IMFTransform, self), hnsLowerBound, hnsUpperBound);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetOutputBounds(@as(*const IMFTransform, @ptrCast(self)), hnsLowerBound, hnsUpperBound);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_ProcessEvent(self: *const T, dwInputStreamID: u32, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).ProcessEvent(@ptrCast(*const IMFTransform, self), dwInputStreamID, pEvent);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessEvent(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_ProcessMessage(self: *const T, eMessage: MFT_MESSAGE_TYPE, ulParam: usize) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).ProcessMessage(@ptrCast(*const IMFTransform, self), eMessage, ulParam);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFTransform, @ptrCast(self)), eMessage, ulParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_ProcessInput(self: *const T, dwInputStreamID: u32, pSample: ?*IMFSample, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).ProcessInput(@ptrCast(*const IMFTransform, self), dwInputStreamID, pSample, dwFlags);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pSample, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTransform_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputSamples: [*]MFT_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTransform.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMFTransform, self), dwFlags, cOutputBufferCount, pOutputSamples, pdwStatus);
+                return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMFTransform, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputSamples, pdwStatus);
             }
         };
     }
@@ -17991,43 +17991,43 @@ pub const IMFMediaSession = extern struct {
             pub usingnamespace IMFMediaEventGenerator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_SetTopology(self: *const T, dwSetTopologyFlags: u32, pTopology: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).SetTopology(@ptrCast(*const IMFMediaSession, self), dwSetTopologyFlags, pTopology);
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).SetTopology(@as(*const IMFMediaSession, @ptrCast(self)), dwSetTopologyFlags, pTopology);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_ClearTopologies(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).ClearTopologies(@ptrCast(*const IMFMediaSession, self));
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).ClearTopologies(@as(*const IMFMediaSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_Start(self: *const T, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).Start(@ptrCast(*const IMFMediaSession, self), pguidTimeFormat, pvarStartPosition);
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFMediaSession, @ptrCast(self)), pguidTimeFormat, pvarStartPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).Pause(@ptrCast(*const IMFMediaSession, self));
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).Stop(@ptrCast(*const IMFMediaSession, self));
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFMediaSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).Close(@ptrCast(*const IMFMediaSession, self));
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFMediaSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaSession, self));
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_GetClock(self: *const T, ppClock: ?*?*IMFClock) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).GetClock(@ptrCast(*const IMFMediaSession, self), ppClock);
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetClock(@as(*const IMFMediaSession, @ptrCast(self)), ppClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_GetSessionCapabilities(self: *const T, pdwCaps: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).GetSessionCapabilities(@ptrCast(*const IMFMediaSession, self), pdwCaps);
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetSessionCapabilities(@as(*const IMFMediaSession, @ptrCast(self)), pdwCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSession_GetFullTopology(self: *const T, dwGetFullTopologyFlags: u32, TopoId: u64, ppFullTopology: ?*?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFMediaSession.VTable, self.vtable).GetFullTopology(@ptrCast(*const IMFMediaSession, self), dwGetFullTopologyFlags, TopoId, ppFullTopology);
+                return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetFullTopology(@as(*const IMFMediaSession, @ptrCast(self)), dwGetFullTopologyFlags, TopoId, ppFullTopology);
             }
         };
     }
@@ -18069,7 +18069,7 @@ pub const MF_RESOLUTION_FLAGS = enum(u32) {
         READ: u1 = 0,
         WRITE: u1 = 0,
     }) MF_RESOLUTION_FLAGS {
-        return @enumFromInt(MF_RESOLUTION_FLAGS, (if (o.MEDIASOURCE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.MEDIASOURCE) else 0) | (if (o.BYTESTREAM == 1) @intFromEnum(MF_RESOLUTION_FLAGS.BYTESTREAM) else 0) | (if (o.CONTENT_DOES_NOT_HAVE_TO_MATCH_EXTENSION_OR_MIME_TYPE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.CONTENT_DOES_NOT_HAVE_TO_MATCH_EXTENSION_OR_MIME_TYPE) else 0) | (if (o.KEEP_BYTE_STREAM_ALIVE_ON_FAIL == 1) @intFromEnum(MF_RESOLUTION_FLAGS.KEEP_BYTE_STREAM_ALIVE_ON_FAIL) else 0) | (if (o.DISABLE_LOCAL_PLUGINS == 1) @intFromEnum(MF_RESOLUTION_FLAGS.DISABLE_LOCAL_PLUGINS) else 0) | (if (o.PLUGIN_CONTROL_POLICY_APPROVED_ONLY == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_APPROVED_ONLY) else 0) | (if (o.PLUGIN_CONTROL_POLICY_WEB_ONLY == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_WEB_ONLY) else 0) | (if (o.PLUGIN_CONTROL_POLICY_WEB_ONLY_EDGEMODE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_WEB_ONLY_EDGEMODE) else 0) | (if (o.ENABLE_STORE_PLUGINS == 1) @intFromEnum(MF_RESOLUTION_FLAGS.ENABLE_STORE_PLUGINS) else 0) | (if (o.READ == 1) @intFromEnum(MF_RESOLUTION_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.WRITE) else 0));
+        return @as(MF_RESOLUTION_FLAGS, @enumFromInt((if (o.MEDIASOURCE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.MEDIASOURCE) else 0) | (if (o.BYTESTREAM == 1) @intFromEnum(MF_RESOLUTION_FLAGS.BYTESTREAM) else 0) | (if (o.CONTENT_DOES_NOT_HAVE_TO_MATCH_EXTENSION_OR_MIME_TYPE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.CONTENT_DOES_NOT_HAVE_TO_MATCH_EXTENSION_OR_MIME_TYPE) else 0) | (if (o.KEEP_BYTE_STREAM_ALIVE_ON_FAIL == 1) @intFromEnum(MF_RESOLUTION_FLAGS.KEEP_BYTE_STREAM_ALIVE_ON_FAIL) else 0) | (if (o.DISABLE_LOCAL_PLUGINS == 1) @intFromEnum(MF_RESOLUTION_FLAGS.DISABLE_LOCAL_PLUGINS) else 0) | (if (o.PLUGIN_CONTROL_POLICY_APPROVED_ONLY == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_APPROVED_ONLY) else 0) | (if (o.PLUGIN_CONTROL_POLICY_WEB_ONLY == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_WEB_ONLY) else 0) | (if (o.PLUGIN_CONTROL_POLICY_WEB_ONLY_EDGEMODE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.PLUGIN_CONTROL_POLICY_WEB_ONLY_EDGEMODE) else 0) | (if (o.ENABLE_STORE_PLUGINS == 1) @intFromEnum(MF_RESOLUTION_FLAGS.ENABLE_STORE_PLUGINS) else 0) | (if (o.READ == 1) @intFromEnum(MF_RESOLUTION_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(MF_RESOLUTION_FLAGS.WRITE) else 0)));
     }
 };
 pub const MF_RESOLUTION_MEDIASOURCE = MF_RESOLUTION_FLAGS.MEDIASOURCE;
@@ -18239,31 +18239,31 @@ pub const IMFSourceResolver = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_CreateObjectFromURL(self: *const T, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).CreateObjectFromURL(@ptrCast(*const IMFSourceResolver, self), pwszURL, dwFlags, pProps, pObjectType, ppObject);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pwszURL, dwFlags, pProps, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_CreateObjectFromByteStream(self: *const T, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).CreateObjectFromByteStream(@ptrCast(*const IMFSourceResolver, self), pByteStream, pwszURL, dwFlags, pProps, pObjectType, ppObject);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_BeginCreateObjectFromURL(self: *const T, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).BeginCreateObjectFromURL(@ptrCast(*const IMFSourceResolver, self), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).BeginCreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_EndCreateObjectFromURL(self: *const T, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).EndCreateObjectFromURL(@ptrCast(*const IMFSourceResolver, self), pResult, pObjectType, ppObject);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).EndCreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pResult, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_BeginCreateObjectFromByteStream(self: *const T, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).BeginCreateObjectFromByteStream(@ptrCast(*const IMFSourceResolver, self), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).BeginCreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_EndCreateObjectFromByteStream(self: *const T, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).EndCreateObjectFromByteStream(@ptrCast(*const IMFSourceResolver, self), pResult, pObjectType, ppObject);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).EndCreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pResult, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceResolver_CancelObjectCreation(self: *const T, pIUnknownCancelCookie: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceResolver.VTable, self.vtable).CancelObjectCreation(@ptrCast(*const IMFSourceResolver, self), pIUnknownCancelCookie);
+                return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFSourceResolver, @ptrCast(self)), pIUnknownCancelCookie);
             }
         };
     }
@@ -18360,27 +18360,27 @@ pub const IMFMediaSource = extern struct {
             pub usingnamespace IMFMediaEventGenerator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).GetCharacteristics(@ptrCast(*const IMFMediaSource, self), pdwCharacteristics);
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFMediaSource, @ptrCast(self)), pdwCharacteristics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_CreatePresentationDescriptor(self: *const T, ppPresentationDescriptor: ?*?*IMFPresentationDescriptor) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).CreatePresentationDescriptor(@ptrCast(*const IMFMediaSource, self), ppPresentationDescriptor);
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).CreatePresentationDescriptor(@as(*const IMFMediaSource, @ptrCast(self)), ppPresentationDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_Start(self: *const T, pPresentationDescriptor: ?*IMFPresentationDescriptor, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).Start(@ptrCast(*const IMFMediaSource, self), pPresentationDescriptor, pguidTimeFormat, pvarStartPosition);
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFMediaSource, @ptrCast(self)), pPresentationDescriptor, pguidTimeFormat, pvarStartPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).Stop(@ptrCast(*const IMFMediaSource, self));
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFMediaSource, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).Pause(@ptrCast(*const IMFMediaSource, self));
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaSource, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSource.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaSource, self));
+                return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSource, @ptrCast(self)));
             }
         };
     }
@@ -18432,15 +18432,15 @@ pub const IMFMediaSourceEx = extern struct {
             pub usingnamespace IMFMediaSource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceEx_GetSourceAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFMediaSourceEx.VTable, self.vtable).GetSourceAttributes(@ptrCast(*const IMFMediaSourceEx, self), ppAttributes);
+                return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).GetSourceAttributes(@as(*const IMFMediaSourceEx, @ptrCast(self)), ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceEx_GetStreamAttributes(self: *const T, dwStreamIdentifier: u32, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFMediaSourceEx.VTable, self.vtable).GetStreamAttributes(@ptrCast(*const IMFMediaSourceEx, self), dwStreamIdentifier, ppAttributes);
+                return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).GetStreamAttributes(@as(*const IMFMediaSourceEx, @ptrCast(self)), dwStreamIdentifier, ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceEx_SetD3DManager(self: *const T, pManager: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaSourceEx.VTable, self.vtable).SetD3DManager(@ptrCast(*const IMFMediaSourceEx, self), pManager);
+                return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).SetD3DManager(@as(*const IMFMediaSourceEx, @ptrCast(self)), pManager);
             }
         };
     }
@@ -18480,11 +18480,11 @@ pub const IMFClockConsumer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockConsumer_SetPresentationClock(self: *const T, pPresentationClock: ?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFClockConsumer.VTable, self.vtable).SetPresentationClock(@ptrCast(*const IMFClockConsumer, self), pPresentationClock);
+                return @as(*const IMFClockConsumer.VTable, @ptrCast(self.vtable)).SetPresentationClock(@as(*const IMFClockConsumer, @ptrCast(self)), pPresentationClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockConsumer_GetPresentationClock(self: *const T, ppPresentationClock: ?*?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFClockConsumer.VTable, self.vtable).GetPresentationClock(@ptrCast(*const IMFClockConsumer, self), ppPresentationClock);
+                return @as(*const IMFClockConsumer.VTable, @ptrCast(self.vtable)).GetPresentationClock(@as(*const IMFClockConsumer, @ptrCast(self)), ppPresentationClock);
             }
         };
     }
@@ -18534,15 +18534,15 @@ pub const IMFMediaStream = extern struct {
             pub usingnamespace IMFMediaEventGenerator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStream_GetMediaSource(self: *const T, ppMediaSource: ?*?*IMFMediaSource) HRESULT {
-                return @ptrCast(*const IMFMediaStream.VTable, self.vtable).GetMediaSource(@ptrCast(*const IMFMediaStream, self), ppMediaSource);
+                return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).GetMediaSource(@as(*const IMFMediaStream, @ptrCast(self)), ppMediaSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStream_GetStreamDescriptor(self: *const T, ppStreamDescriptor: ?*?*IMFStreamDescriptor) HRESULT {
-                return @ptrCast(*const IMFMediaStream.VTable, self.vtable).GetStreamDescriptor(@ptrCast(*const IMFMediaStream, self), ppStreamDescriptor);
+                return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).GetStreamDescriptor(@as(*const IMFMediaStream, @ptrCast(self)), ppStreamDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStream_RequestSample(self: *const T, pToken: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaStream.VTable, self.vtable).RequestSample(@ptrCast(*const IMFMediaStream, self), pToken);
+                return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).RequestSample(@as(*const IMFMediaStream, @ptrCast(self)), pToken);
             }
         };
     }
@@ -18658,39 +18658,39 @@ pub const IMFMediaSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_GetCharacteristics(self: *const T, pdwCharacteristics: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).GetCharacteristics(@ptrCast(*const IMFMediaSink, self), pdwCharacteristics);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFMediaSink, @ptrCast(self)), pdwCharacteristics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_AddStreamSink(self: *const T, dwStreamSinkIdentifier: u32, pMediaType: ?*IMFMediaType, ppStreamSink: ?*?*IMFStreamSink) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).AddStreamSink(@ptrCast(*const IMFMediaSink, self), dwStreamSinkIdentifier, pMediaType, ppStreamSink);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).AddStreamSink(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier, pMediaType, ppStreamSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_RemoveStreamSink(self: *const T, dwStreamSinkIdentifier: u32) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).RemoveStreamSink(@ptrCast(*const IMFMediaSink, self), dwStreamSinkIdentifier);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).RemoveStreamSink(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_GetStreamSinkCount(self: *const T, pcStreamSinkCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).GetStreamSinkCount(@ptrCast(*const IMFMediaSink, self), pcStreamSinkCount);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkCount(@as(*const IMFMediaSink, @ptrCast(self)), pcStreamSinkCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_GetStreamSinkByIndex(self: *const T, dwIndex: u32, ppStreamSink: ?*?*IMFStreamSink) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).GetStreamSinkByIndex(@ptrCast(*const IMFMediaSink, self), dwIndex, ppStreamSink);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkByIndex(@as(*const IMFMediaSink, @ptrCast(self)), dwIndex, ppStreamSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_GetStreamSinkById(self: *const T, dwStreamSinkIdentifier: u32, ppStreamSink: ?*?*IMFStreamSink) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).GetStreamSinkById(@ptrCast(*const IMFMediaSink, self), dwStreamSinkIdentifier, ppStreamSink);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkById(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier, ppStreamSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_SetPresentationClock(self: *const T, pPresentationClock: ?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).SetPresentationClock(@ptrCast(*const IMFMediaSink, self), pPresentationClock);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).SetPresentationClock(@as(*const IMFMediaSink, @ptrCast(self)), pPresentationClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_GetPresentationClock(self: *const T, ppPresentationClock: ?*?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).GetPresentationClock(@ptrCast(*const IMFMediaSink, self), ppPresentationClock);
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetPresentationClock(@as(*const IMFMediaSink, @ptrCast(self)), ppPresentationClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSink_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSink.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaSink, self));
+                return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSink, @ptrCast(self)));
             }
         };
     }
@@ -18783,27 +18783,27 @@ pub const IMFStreamSink = extern struct {
             pub usingnamespace IMFMediaEventGenerator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_GetMediaSink(self: *const T, ppMediaSink: ?*?*IMFMediaSink) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).GetMediaSink(@ptrCast(*const IMFStreamSink, self), ppMediaSink);
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetMediaSink(@as(*const IMFStreamSink, @ptrCast(self)), ppMediaSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_GetIdentifier(self: *const T, pdwIdentifier: ?*u32) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).GetIdentifier(@ptrCast(*const IMFStreamSink, self), pdwIdentifier);
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IMFStreamSink, @ptrCast(self)), pdwIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_GetMediaTypeHandler(self: *const T, ppHandler: ?*?*IMFMediaTypeHandler) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).GetMediaTypeHandler(@ptrCast(*const IMFStreamSink, self), ppHandler);
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetMediaTypeHandler(@as(*const IMFStreamSink, @ptrCast(self)), ppHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_ProcessSample(self: *const T, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).ProcessSample(@ptrCast(*const IMFStreamSink, self), pSample);
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).ProcessSample(@as(*const IMFStreamSink, @ptrCast(self)), pSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_PlaceMarker(self: *const T, eMarkerType: MFSTREAMSINK_MARKER_TYPE, pvarMarkerValue: ?*const PROPVARIANT, pvarContextValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).PlaceMarker(@ptrCast(*const IMFStreamSink, self), eMarkerType, pvarMarkerValue, pvarContextValue);
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).PlaceMarker(@as(*const IMFStreamSink, @ptrCast(self)), eMarkerType, pvarMarkerValue, pvarContextValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamSink_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMFStreamSink.VTable, self.vtable).Flush(@ptrCast(*const IMFStreamSink, self));
+                return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFStreamSink, @ptrCast(self)));
             }
         };
     }
@@ -18863,19 +18863,19 @@ pub const IMFVideoSampleAllocator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocator_SetDirectXManager(self: *const T, pManager: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocator.VTable, self.vtable).SetDirectXManager(@ptrCast(*const IMFVideoSampleAllocator, self), pManager);
+                return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).SetDirectXManager(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), pManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocator_UninitializeSampleAllocator(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocator.VTable, self.vtable).UninitializeSampleAllocator(@ptrCast(*const IMFVideoSampleAllocator, self));
+                return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).UninitializeSampleAllocator(@as(*const IMFVideoSampleAllocator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocator_InitializeSampleAllocator(self: *const T, cRequestedFrames: u32, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocator.VTable, self.vtable).InitializeSampleAllocator(@ptrCast(*const IMFVideoSampleAllocator, self), cRequestedFrames, pMediaType);
+                return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).InitializeSampleAllocator(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), cRequestedFrames, pMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocator_AllocateSample(self: *const T, ppSample: ?*?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocator.VTable, self.vtable).AllocateSample(@ptrCast(*const IMFVideoSampleAllocator, self), ppSample);
+                return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).AllocateSample(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), ppSample);
             }
         };
     }
@@ -18903,7 +18903,7 @@ pub const IMFVideoSampleAllocatorNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocatorNotify_NotifyRelease(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocatorNotify.VTable, self.vtable).NotifyRelease(@ptrCast(*const IMFVideoSampleAllocatorNotify, self));
+                return @as(*const IMFVideoSampleAllocatorNotify.VTable, @ptrCast(self.vtable)).NotifyRelease(@as(*const IMFVideoSampleAllocatorNotify, @ptrCast(self)));
             }
         };
     }
@@ -18933,7 +18933,7 @@ pub const IMFVideoSampleAllocatorNotifyEx = extern struct {
             pub usingnamespace IMFVideoSampleAllocatorNotify.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocatorNotifyEx_NotifyPrune(self: *const T, __MIDL__IMFVideoSampleAllocatorNotifyEx0000: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocatorNotifyEx.VTable, self.vtable).NotifyPrune(@ptrCast(*const IMFVideoSampleAllocatorNotifyEx, self), __MIDL__IMFVideoSampleAllocatorNotifyEx0000);
+                return @as(*const IMFVideoSampleAllocatorNotifyEx.VTable, @ptrCast(self.vtable)).NotifyPrune(@as(*const IMFVideoSampleAllocatorNotifyEx, @ptrCast(self)), __MIDL__IMFVideoSampleAllocatorNotifyEx0000);
             }
         };
     }
@@ -18973,11 +18973,11 @@ pub const IMFVideoSampleAllocatorCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocatorCallback_SetCallback(self: *const T, pNotify: ?*IMFVideoSampleAllocatorNotify) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocatorCallback.VTable, self.vtable).SetCallback(@ptrCast(*const IMFVideoSampleAllocatorCallback, self), pNotify);
+                return @as(*const IMFVideoSampleAllocatorCallback.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IMFVideoSampleAllocatorCallback, @ptrCast(self)), pNotify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocatorCallback_GetFreeSampleCount(self: *const T, plSamples: ?*i32) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocatorCallback.VTable, self.vtable).GetFreeSampleCount(@ptrCast(*const IMFVideoSampleAllocatorCallback, self), plSamples);
+                return @as(*const IMFVideoSampleAllocatorCallback.VTable, @ptrCast(self.vtable)).GetFreeSampleCount(@as(*const IMFVideoSampleAllocatorCallback, @ptrCast(self)), plSamples);
             }
         };
     }
@@ -19013,7 +19013,7 @@ pub const IMFVideoSampleAllocatorEx = extern struct {
             pub usingnamespace IMFVideoSampleAllocator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoSampleAllocatorEx_InitializeSampleAllocatorEx(self: *const T, cInitialSamples: u32, cMaximumSamples: u32, pAttributes: ?*IMFAttributes, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFVideoSampleAllocatorEx.VTable, self.vtable).InitializeSampleAllocatorEx(@ptrCast(*const IMFVideoSampleAllocatorEx, self), cInitialSamples, cMaximumSamples, pAttributes, pMediaType);
+                return @as(*const IMFVideoSampleAllocatorEx.VTable, @ptrCast(self.vtable)).InitializeSampleAllocatorEx(@as(*const IMFVideoSampleAllocatorEx, @ptrCast(self)), cInitialSamples, cMaximumSamples, pAttributes, pMediaType);
             }
         };
     }
@@ -19043,7 +19043,7 @@ pub const IMFDXGIDeviceManagerSource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDXGIDeviceManagerSource_GetManager(self: *const T, ppManager: ?*?*IMFDXGIDeviceManager) HRESULT {
-                return @ptrCast(*const IMFDXGIDeviceManagerSource.VTable, self.vtable).GetManager(@ptrCast(*const IMFDXGIDeviceManagerSource, self), ppManager);
+                return @as(*const IMFDXGIDeviceManagerSource.VTable, @ptrCast(self.vtable)).GetManager(@as(*const IMFDXGIDeviceManagerSource, @ptrCast(self)), ppManager);
             }
         };
     }
@@ -19139,27 +19139,27 @@ pub const IMFVideoProcessorControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetBorderColor(self: *const T, pBorderColor: ?*MFARGB) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetBorderColor(@ptrCast(*const IMFVideoProcessorControl, self), pBorderColor);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pBorderColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetSourceRectangle(self: *const T, pSrcRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetSourceRectangle(@ptrCast(*const IMFVideoProcessorControl, self), pSrcRect);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetSourceRectangle(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pSrcRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetDestinationRectangle(self: *const T, pDstRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetDestinationRectangle(@ptrCast(*const IMFVideoProcessorControl, self), pDstRect);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetDestinationRectangle(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pDstRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetMirror(self: *const T, eMirror: MF_VIDEO_PROCESSOR_MIRROR) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetMirror(@ptrCast(*const IMFVideoProcessorControl, self), eMirror);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetMirror(@as(*const IMFVideoProcessorControl, @ptrCast(self)), eMirror);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetRotation(self: *const T, eRotation: MF_VIDEO_PROCESSOR_ROTATION) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetRotation(@ptrCast(*const IMFVideoProcessorControl, self), eRotation);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFVideoProcessorControl, @ptrCast(self)), eRotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl_SetConstrictionSize(self: *const T, pConstrictionSize: ?*SIZE) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl.VTable, self.vtable).SetConstrictionSize(@ptrCast(*const IMFVideoProcessorControl, self), pConstrictionSize);
+                return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetConstrictionSize(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pConstrictionSize);
             }
         };
     }
@@ -19209,15 +19209,15 @@ pub const IMFVideoProcessorControl2 = extern struct {
             pub usingnamespace IMFVideoProcessorControl.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl2_SetRotationOverride(self: *const T, uiRotation: u32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl2.VTable, self.vtable).SetRotationOverride(@ptrCast(*const IMFVideoProcessorControl2, self), uiRotation);
+                return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).SetRotationOverride(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), uiRotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl2_EnableHardwareEffects(self: *const T, fEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl2.VTable, self.vtable).EnableHardwareEffects(@ptrCast(*const IMFVideoProcessorControl2, self), fEnabled);
+                return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).EnableHardwareEffects(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), fEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl2_GetSupportedHardwareEffects(self: *const T, puiSupport: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl2.VTable, self.vtable).GetSupportedHardwareEffects(@ptrCast(*const IMFVideoProcessorControl2, self), puiSupport);
+                return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).GetSupportedHardwareEffects(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), puiSupport);
             }
         };
     }
@@ -19306,19 +19306,19 @@ pub const IMFVideoProcessorControl3 = extern struct {
             pub usingnamespace IMFVideoProcessorControl2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl3_GetNaturalOutputType(self: *const T, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl3.VTable, self.vtable).GetNaturalOutputType(@ptrCast(*const IMFVideoProcessorControl3, self), ppType);
+                return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).GetNaturalOutputType(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl3_EnableSphericalVideoProcessing(self: *const T, fEnable: BOOL, eFormat: MFVideoSphericalFormat, eProjectionMode: MFVideoSphericalProjectionMode) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl3.VTable, self.vtable).EnableSphericalVideoProcessing(@ptrCast(*const IMFVideoProcessorControl3, self), fEnable, eFormat, eProjectionMode);
+                return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).EnableSphericalVideoProcessing(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), fEnable, eFormat, eProjectionMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl3_SetSphericalVideoProperties(self: *const T, X: f32, Y: f32, Z: f32, W: f32, fieldOfView: f32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl3.VTable, self.vtable).SetSphericalVideoProperties(@ptrCast(*const IMFVideoProcessorControl3, self), X, Y, Z, W, fieldOfView);
+                return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).SetSphericalVideoProperties(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), X, Y, Z, W, fieldOfView);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessorControl3_SetOutputDevice(self: *const T, pOutputDevice: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFVideoProcessorControl3.VTable, self.vtable).SetOutputDevice(@ptrCast(*const IMFVideoProcessorControl3, self), pOutputDevice);
+                return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).SetOutputDevice(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), pOutputDevice);
             }
         };
     }
@@ -19347,7 +19347,7 @@ pub const IMFVideoRendererEffectControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoRendererEffectControl_OnAppServiceConnectionEstablished(self: *const T, pAppServiceConnection: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFVideoRendererEffectControl.VTable, self.vtable).OnAppServiceConnectionEstablished(@ptrCast(*const IMFVideoRendererEffectControl, self), pAppServiceConnection);
+                return @as(*const IMFVideoRendererEffectControl.VTable, @ptrCast(self.vtable)).OnAppServiceConnectionEstablished(@as(*const IMFVideoRendererEffectControl, @ptrCast(self)), pAppServiceConnection);
             }
         };
     }
@@ -19469,43 +19469,43 @@ pub const IMFTopology = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetTopologyID(self: *const T, pID: ?*u64) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetTopologyID(@ptrCast(*const IMFTopology, self), pID);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetTopologyID(@as(*const IMFTopology, @ptrCast(self)), pID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_AddNode(self: *const T, pNode: ?*IMFTopologyNode) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).AddNode(@ptrCast(*const IMFTopology, self), pNode);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).AddNode(@as(*const IMFTopology, @ptrCast(self)), pNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_RemoveNode(self: *const T, pNode: ?*IMFTopologyNode) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).RemoveNode(@ptrCast(*const IMFTopology, self), pNode);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).RemoveNode(@as(*const IMFTopology, @ptrCast(self)), pNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetNodeCount(self: *const T, pwNodes: ?*u16) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetNodeCount(@ptrCast(*const IMFTopology, self), pwNodes);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNodeCount(@as(*const IMFTopology, @ptrCast(self)), pwNodes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetNode(self: *const T, wIndex: u16, ppNode: ?*?*IMFTopologyNode) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetNode(@ptrCast(*const IMFTopology, self), wIndex, ppNode);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNode(@as(*const IMFTopology, @ptrCast(self)), wIndex, ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).Clear(@ptrCast(*const IMFTopology, self));
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFTopology, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_CloneFrom(self: *const T, pTopology: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).CloneFrom(@ptrCast(*const IMFTopology, self), pTopology);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).CloneFrom(@as(*const IMFTopology, @ptrCast(self)), pTopology);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetNodeByID(self: *const T, qwTopoNodeID: u64, ppNode: ?*?*IMFTopologyNode) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetNodeByID(@ptrCast(*const IMFTopology, self), qwTopoNodeID, ppNode);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNodeByID(@as(*const IMFTopology, @ptrCast(self)), qwTopoNodeID, ppNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetSourceNodeCollection(self: *const T, ppCollection: ?*?*IMFCollection) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetSourceNodeCollection(@ptrCast(*const IMFTopology, self), ppCollection);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetSourceNodeCollection(@as(*const IMFTopology, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopology_GetOutputNodeCollection(self: *const T, ppCollection: ?*?*IMFCollection) HRESULT {
-                return @ptrCast(*const IMFTopology.VTable, self.vtable).GetOutputNodeCollection(@ptrCast(*const IMFTopology, self), ppCollection);
+                return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetOutputNodeCollection(@as(*const IMFTopology, @ptrCast(self)), ppCollection);
             }
         };
     }
@@ -19736,67 +19736,67 @@ pub const IMFTopologyNode = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_SetObject(self: *const T, pObject: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).SetObject(@ptrCast(*const IMFTopologyNode, self), pObject);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetObject(@as(*const IMFTopologyNode, @ptrCast(self)), pObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetObject(self: *const T, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetObject(@ptrCast(*const IMFTopologyNode, self), ppObject);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFTopologyNode, @ptrCast(self)), ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetNodeType(self: *const T, pType: ?*MF_TOPOLOGY_TYPE) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetNodeType(@ptrCast(*const IMFTopologyNode, self), pType);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetNodeType(@as(*const IMFTopologyNode, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetTopoNodeID(self: *const T, pID: ?*u64) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetTopoNodeID(@ptrCast(*const IMFTopologyNode, self), pID);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetTopoNodeID(@as(*const IMFTopologyNode, @ptrCast(self)), pID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_SetTopoNodeID(self: *const T, ullTopoID: u64) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).SetTopoNodeID(@ptrCast(*const IMFTopologyNode, self), ullTopoID);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetTopoNodeID(@as(*const IMFTopologyNode, @ptrCast(self)), ullTopoID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetInputCount(self: *const T, pcInputs: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetInputCount(@ptrCast(*const IMFTopologyNode, self), pcInputs);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMFTopologyNode, @ptrCast(self)), pcInputs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetOutputCount(self: *const T, pcOutputs: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetOutputCount(@ptrCast(*const IMFTopologyNode, self), pcOutputs);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMFTopologyNode, @ptrCast(self)), pcOutputs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_ConnectOutput(self: *const T, dwOutputIndex: u32, pDownstreamNode: ?*IMFTopologyNode, dwInputIndexOnDownstreamNode: u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).ConnectOutput(@ptrCast(*const IMFTopologyNode, self), dwOutputIndex, pDownstreamNode, dwInputIndexOnDownstreamNode);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).ConnectOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, pDownstreamNode, dwInputIndexOnDownstreamNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_DisconnectOutput(self: *const T, dwOutputIndex: u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).DisconnectOutput(@ptrCast(*const IMFTopologyNode, self), dwOutputIndex);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).DisconnectOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetInput(self: *const T, dwInputIndex: u32, ppUpstreamNode: ?*?*IMFTopologyNode, pdwOutputIndexOnUpstreamNode: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetInput(@ptrCast(*const IMFTopologyNode, self), dwInputIndex, ppUpstreamNode, pdwOutputIndexOnUpstreamNode);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInput(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, ppUpstreamNode, pdwOutputIndexOnUpstreamNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetOutput(self: *const T, dwOutputIndex: u32, ppDownstreamNode: ?*?*IMFTopologyNode, pdwInputIndexOnDownstreamNode: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetOutput(@ptrCast(*const IMFTopologyNode, self), dwOutputIndex, ppDownstreamNode, pdwInputIndexOnDownstreamNode);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, ppDownstreamNode, pdwInputIndexOnDownstreamNode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_SetOutputPrefType(self: *const T, dwOutputIndex: u32, pType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).SetOutputPrefType(@ptrCast(*const IMFTopologyNode, self), dwOutputIndex, pType);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetOutputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetOutputPrefType(self: *const T, dwOutputIndex: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetOutputPrefType(@ptrCast(*const IMFTopologyNode, self), dwOutputIndex, ppType);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_SetInputPrefType(self: *const T, dwInputIndex: u32, pType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).SetInputPrefType(@ptrCast(*const IMFTopologyNode, self), dwInputIndex, pType);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetInputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_GetInputPrefType(self: *const T, dwInputIndex: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).GetInputPrefType(@ptrCast(*const IMFTopologyNode, self), dwInputIndex, ppType);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNode_CloneFrom(self: *const T, pNode: ?*IMFTopologyNode) HRESULT {
-                return @ptrCast(*const IMFTopologyNode.VTable, self.vtable).CloneFrom(@ptrCast(*const IMFTopologyNode, self), pNode);
+                return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).CloneFrom(@as(*const IMFTopologyNode, @ptrCast(self)), pNode);
             }
         };
     }
@@ -19848,7 +19848,7 @@ pub const IMFGetService = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFGetService_GetService(self: *const T, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFGetService.VTable, self.vtable).GetService(@ptrCast(*const IMFGetService, self), guidService, riid, ppvObject);
+                return @as(*const IMFGetService.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFGetService, @ptrCast(self)), guidService, riid, ppvObject);
             }
         };
     }
@@ -19958,23 +19958,23 @@ pub const IMFClock = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClock_GetClockCharacteristics(self: *const T, pdwCharacteristics: ?*u32) HRESULT {
-                return @ptrCast(*const IMFClock.VTable, self.vtable).GetClockCharacteristics(@ptrCast(*const IMFClock, self), pdwCharacteristics);
+                return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetClockCharacteristics(@as(*const IMFClock, @ptrCast(self)), pdwCharacteristics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClock_GetCorrelatedTime(self: *const T, dwReserved: u32, pllClockTime: ?*i64, phnsSystemTime: ?*i64) HRESULT {
-                return @ptrCast(*const IMFClock.VTable, self.vtable).GetCorrelatedTime(@ptrCast(*const IMFClock, self), dwReserved, pllClockTime, phnsSystemTime);
+                return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetCorrelatedTime(@as(*const IMFClock, @ptrCast(self)), dwReserved, pllClockTime, phnsSystemTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClock_GetContinuityKey(self: *const T, pdwContinuityKey: ?*u32) HRESULT {
-                return @ptrCast(*const IMFClock.VTable, self.vtable).GetContinuityKey(@ptrCast(*const IMFClock, self), pdwContinuityKey);
+                return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetContinuityKey(@as(*const IMFClock, @ptrCast(self)), pdwContinuityKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClock_GetState(self: *const T, dwReserved: u32, peClockState: ?*MFCLOCK_STATE) HRESULT {
-                return @ptrCast(*const IMFClock.VTable, self.vtable).GetState(@ptrCast(*const IMFClock, self), dwReserved, peClockState);
+                return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFClock, @ptrCast(self)), dwReserved, peClockState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClock_GetProperties(self: *const T, pClockProperties: ?*MFCLOCK_PROPERTIES) HRESULT {
-                return @ptrCast(*const IMFClock.VTable, self.vtable).GetProperties(@ptrCast(*const IMFClock, self), pClockProperties);
+                return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IMFClock, @ptrCast(self)), pClockProperties);
             }
         };
     }
@@ -20070,35 +20070,35 @@ pub const IMFPresentationClock = extern struct {
             pub usingnamespace IMFClock.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_SetTimeSource(self: *const T, pTimeSource: ?*IMFPresentationTimeSource) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).SetTimeSource(@ptrCast(*const IMFPresentationClock, self), pTimeSource);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).SetTimeSource(@as(*const IMFPresentationClock, @ptrCast(self)), pTimeSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_GetTimeSource(self: *const T, ppTimeSource: ?*?*IMFPresentationTimeSource) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).GetTimeSource(@ptrCast(*const IMFPresentationClock, self), ppTimeSource);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).GetTimeSource(@as(*const IMFPresentationClock, @ptrCast(self)), ppTimeSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_GetTime(self: *const T, phnsClockTime: ?*i64) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).GetTime(@ptrCast(*const IMFPresentationClock, self), phnsClockTime);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IMFPresentationClock, @ptrCast(self)), phnsClockTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_AddClockStateSink(self: *const T, pStateSink: ?*IMFClockStateSink) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).AddClockStateSink(@ptrCast(*const IMFPresentationClock, self), pStateSink);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).AddClockStateSink(@as(*const IMFPresentationClock, @ptrCast(self)), pStateSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_RemoveClockStateSink(self: *const T, pStateSink: ?*IMFClockStateSink) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).RemoveClockStateSink(@ptrCast(*const IMFPresentationClock, self), pStateSink);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).RemoveClockStateSink(@as(*const IMFPresentationClock, @ptrCast(self)), pStateSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_Start(self: *const T, llClockStartOffset: i64) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).Start(@ptrCast(*const IMFPresentationClock, self), llClockStartOffset);
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFPresentationClock, @ptrCast(self)), llClockStartOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).Stop(@ptrCast(*const IMFPresentationClock, self));
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFPresentationClock, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationClock_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPresentationClock.VTable, self.vtable).Pause(@ptrCast(*const IMFPresentationClock, self));
+                return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFPresentationClock, @ptrCast(self)));
             }
         };
     }
@@ -20128,7 +20128,7 @@ pub const IMFPresentationTimeSource = extern struct {
             pub usingnamespace IMFClock.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationTimeSource_GetUnderlyingClock(self: *const T, ppClock: ?*?*IMFClock) HRESULT {
-                return @ptrCast(*const IMFPresentationTimeSource.VTable, self.vtable).GetUnderlyingClock(@ptrCast(*const IMFPresentationTimeSource, self), ppClock);
+                return @as(*const IMFPresentationTimeSource.VTable, @ptrCast(self.vtable)).GetUnderlyingClock(@as(*const IMFPresentationTimeSource, @ptrCast(self)), ppClock);
             }
         };
     }
@@ -20202,23 +20202,23 @@ pub const IMFClockStateSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockStateSink_OnClockStart(self: *const T, hnsSystemTime: i64, llClockStartOffset: i64) HRESULT {
-                return @ptrCast(*const IMFClockStateSink.VTable, self.vtable).OnClockStart(@ptrCast(*const IMFClockStateSink, self), hnsSystemTime, llClockStartOffset);
+                return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockStart(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime, llClockStartOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockStateSink_OnClockStop(self: *const T, hnsSystemTime: i64) HRESULT {
-                return @ptrCast(*const IMFClockStateSink.VTable, self.vtable).OnClockStop(@ptrCast(*const IMFClockStateSink, self), hnsSystemTime);
+                return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockStop(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockStateSink_OnClockPause(self: *const T, hnsSystemTime: i64) HRESULT {
-                return @ptrCast(*const IMFClockStateSink.VTable, self.vtable).OnClockPause(@ptrCast(*const IMFClockStateSink, self), hnsSystemTime);
+                return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockPause(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockStateSink_OnClockRestart(self: *const T, hnsSystemTime: i64) HRESULT {
-                return @ptrCast(*const IMFClockStateSink.VTable, self.vtable).OnClockRestart(@ptrCast(*const IMFClockStateSink, self), hnsSystemTime);
+                return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockRestart(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFClockStateSink_OnClockSetRate(self: *const T, hnsSystemTime: i64, flRate: f32) HRESULT {
-                return @ptrCast(*const IMFClockStateSink.VTable, self.vtable).OnClockSetRate(@ptrCast(*const IMFClockStateSink, self), hnsSystemTime, flRate);
+                return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockSetRate(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime, flRate);
             }
         };
     }
@@ -20292,23 +20292,23 @@ pub const IMFPresentationDescriptor = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationDescriptor_GetStreamDescriptorCount(self: *const T, pdwDescriptorCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFPresentationDescriptor.VTable, self.vtable).GetStreamDescriptorCount(@ptrCast(*const IMFPresentationDescriptor, self), pdwDescriptorCount);
+                return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).GetStreamDescriptorCount(@as(*const IMFPresentationDescriptor, @ptrCast(self)), pdwDescriptorCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationDescriptor_GetStreamDescriptorByIndex(self: *const T, dwIndex: u32, pfSelected: ?*BOOL, ppDescriptor: ?*?*IMFStreamDescriptor) HRESULT {
-                return @ptrCast(*const IMFPresentationDescriptor.VTable, self.vtable).GetStreamDescriptorByIndex(@ptrCast(*const IMFPresentationDescriptor, self), dwIndex, pfSelected, ppDescriptor);
+                return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).GetStreamDescriptorByIndex(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwIndex, pfSelected, ppDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationDescriptor_SelectStream(self: *const T, dwDescriptorIndex: u32) HRESULT {
-                return @ptrCast(*const IMFPresentationDescriptor.VTable, self.vtable).SelectStream(@ptrCast(*const IMFPresentationDescriptor, self), dwDescriptorIndex);
+                return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).SelectStream(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwDescriptorIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationDescriptor_DeselectStream(self: *const T, dwDescriptorIndex: u32) HRESULT {
-                return @ptrCast(*const IMFPresentationDescriptor.VTable, self.vtable).DeselectStream(@ptrCast(*const IMFPresentationDescriptor, self), dwDescriptorIndex);
+                return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).DeselectStream(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwDescriptorIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPresentationDescriptor_Clone(self: *const T, ppPresentationDescriptor: ?*?*IMFPresentationDescriptor) HRESULT {
-                return @ptrCast(*const IMFPresentationDescriptor.VTable, self.vtable).Clone(@ptrCast(*const IMFPresentationDescriptor, self), ppPresentationDescriptor);
+                return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFPresentationDescriptor, @ptrCast(self)), ppPresentationDescriptor);
             }
         };
     }
@@ -20348,11 +20348,11 @@ pub const IMFStreamDescriptor = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamDescriptor_GetStreamIdentifier(self: *const T, pdwStreamIdentifier: ?*u32) HRESULT {
-                return @ptrCast(*const IMFStreamDescriptor.VTable, self.vtable).GetStreamIdentifier(@ptrCast(*const IMFStreamDescriptor, self), pdwStreamIdentifier);
+                return @as(*const IMFStreamDescriptor.VTable, @ptrCast(self.vtable)).GetStreamIdentifier(@as(*const IMFStreamDescriptor, @ptrCast(self)), pdwStreamIdentifier);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamDescriptor_GetMediaTypeHandler(self: *const T, ppMediaTypeHandler: ?*?*IMFMediaTypeHandler) HRESULT {
-                return @ptrCast(*const IMFStreamDescriptor.VTable, self.vtable).GetMediaTypeHandler(@ptrCast(*const IMFStreamDescriptor, self), ppMediaTypeHandler);
+                return @as(*const IMFStreamDescriptor.VTable, @ptrCast(self.vtable)).GetMediaTypeHandler(@as(*const IMFStreamDescriptor, @ptrCast(self)), ppMediaTypeHandler);
             }
         };
     }
@@ -20436,27 +20436,27 @@ pub const IMFMediaTypeHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_IsMediaTypeSupported(self: *const T, pMediaType: ?*IMFMediaType, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).IsMediaTypeSupported(@ptrCast(*const IMFMediaTypeHandler, self), pMediaType, ppMediaType);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).IsMediaTypeSupported(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pMediaType, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_GetMediaTypeCount(self: *const T, pdwTypeCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).GetMediaTypeCount(@ptrCast(*const IMFMediaTypeHandler, self), pdwTypeCount);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMediaTypeCount(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pdwTypeCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_GetMediaTypeByIndex(self: *const T, dwIndex: u32, ppType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).GetMediaTypeByIndex(@ptrCast(*const IMFMediaTypeHandler, self), dwIndex, ppType);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMediaTypeByIndex(@as(*const IMFMediaTypeHandler, @ptrCast(self)), dwIndex, ppType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_SetCurrentMediaType(self: *const T, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).SetCurrentMediaType(@ptrCast(*const IMFMediaTypeHandler, self), pMediaType);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).SetCurrentMediaType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_GetCurrentMediaType(self: *const T, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).GetCurrentMediaType(@ptrCast(*const IMFMediaTypeHandler, self), ppMediaType);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTypeHandler_GetMajorType(self: *const T, pguidMajorType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFMediaTypeHandler.VTable, self.vtable).GetMajorType(@ptrCast(*const IMFMediaTypeHandler, self), pguidMajorType);
+                return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMajorType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pguidMajorType);
             }
         };
     }
@@ -20509,11 +20509,11 @@ pub const IMFTimer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimer_SetTimer(self: *const T, dwFlags: u32, llClockTime: i64, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown, ppunkKey: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTimer.VTable, self.vtable).SetTimer(@ptrCast(*const IMFTimer, self), dwFlags, llClockTime, pCallback, punkState, ppunkKey);
+                return @as(*const IMFTimer.VTable, @ptrCast(self.vtable)).SetTimer(@as(*const IMFTimer, @ptrCast(self)), dwFlags, llClockTime, pCallback, punkState, ppunkKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimer_CancelTimer(self: *const T, punkKey: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTimer.VTable, self.vtable).CancelTimer(@ptrCast(*const IMFTimer, self), punkKey);
+                return @as(*const IMFTimer.VTable, @ptrCast(self.vtable)).CancelTimer(@as(*const IMFTimer, @ptrCast(self)), punkKey);
             }
         };
     }
@@ -20568,11 +20568,11 @@ pub const IMFShutdown = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFShutdown_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFShutdown.VTable, self.vtable).Shutdown(@ptrCast(*const IMFShutdown, self));
+                return @as(*const IMFShutdown.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFShutdown, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFShutdown_GetShutdownStatus(self: *const T, pStatus: ?*MFSHUTDOWN_STATUS) HRESULT {
-                return @ptrCast(*const IMFShutdown.VTable, self.vtable).GetShutdownStatus(@ptrCast(*const IMFShutdown, self), pStatus);
+                return @as(*const IMFShutdown.VTable, @ptrCast(self.vtable)).GetShutdownStatus(@as(*const IMFShutdown, @ptrCast(self)), pStatus);
             }
         };
     }
@@ -20606,7 +20606,7 @@ pub const IMFTopoLoader = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopoLoader_Load(self: *const T, pInputTopo: ?*IMFTopology, ppOutputTopo: ?*?*IMFTopology, pCurrentTopo: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFTopoLoader.VTable, self.vtable).Load(@ptrCast(*const IMFTopoLoader, self), pInputTopo, ppOutputTopo, pCurrentTopo);
+                return @as(*const IMFTopoLoader.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFTopoLoader, @ptrCast(self)), pInputTopo, ppOutputTopo, pCurrentTopo);
             }
         };
     }
@@ -20652,11 +20652,11 @@ pub const IMFContentProtectionManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentProtectionManager_BeginEnableContent(self: *const T, pEnablerActivate: ?*IMFActivate, pTopo: ?*IMFTopology, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFContentProtectionManager.VTable, self.vtable).BeginEnableContent(@ptrCast(*const IMFContentProtectionManager, self), pEnablerActivate, pTopo, pCallback, punkState);
+                return @as(*const IMFContentProtectionManager.VTable, @ptrCast(self.vtable)).BeginEnableContent(@as(*const IMFContentProtectionManager, @ptrCast(self)), pEnablerActivate, pTopo, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentProtectionManager_EndEnableContent(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFContentProtectionManager.VTable, self.vtable).EndEnableContent(@ptrCast(*const IMFContentProtectionManager, self), pResult);
+                return @as(*const IMFContentProtectionManager.VTable, @ptrCast(self.vtable)).EndEnableContent(@as(*const IMFContentProtectionManager, @ptrCast(self)), pResult);
             }
         };
     }
@@ -20755,31 +20755,31 @@ pub const IMFContentEnabler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_GetEnableType(self: *const T, pType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).GetEnableType(@ptrCast(*const IMFContentEnabler, self), pType);
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableType(@as(*const IMFContentEnabler, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_GetEnableURL(self: *const T, ppwszURL: [*]?PWSTR, pcchURL: ?*u32, pTrustStatus: ?*MF_URL_TRUST_STATUS) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).GetEnableURL(@ptrCast(*const IMFContentEnabler, self), ppwszURL, pcchURL, pTrustStatus);
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableURL(@as(*const IMFContentEnabler, @ptrCast(self)), ppwszURL, pcchURL, pTrustStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_GetEnableData(self: *const T, ppbData: [*]?*u8, pcbData: ?*u32) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).GetEnableData(@ptrCast(*const IMFContentEnabler, self), ppbData, pcbData);
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableData(@as(*const IMFContentEnabler, @ptrCast(self)), ppbData, pcbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_IsAutomaticSupported(self: *const T, pfAutomatic: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).IsAutomaticSupported(@ptrCast(*const IMFContentEnabler, self), pfAutomatic);
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).IsAutomaticSupported(@as(*const IMFContentEnabler, @ptrCast(self)), pfAutomatic);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_AutomaticEnable(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).AutomaticEnable(@ptrCast(*const IMFContentEnabler, self));
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).AutomaticEnable(@as(*const IMFContentEnabler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_MonitorEnable(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).MonitorEnable(@ptrCast(*const IMFContentEnabler, self));
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).MonitorEnable(@as(*const IMFContentEnabler, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentEnabler_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentEnabler.VTable, self.vtable).Cancel(@ptrCast(*const IMFContentEnabler, self));
+                return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IMFContentEnabler, @ptrCast(self)));
             }
         };
     }
@@ -20897,31 +20897,31 @@ pub const IMFMetadata = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_SetLanguage(self: *const T, pwszRFC1766: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).SetLanguage(@ptrCast(*const IMFMetadata, self), pwszRFC1766);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IMFMetadata, @ptrCast(self)), pwszRFC1766);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_GetLanguage(self: *const T, ppwszRFC1766: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).GetLanguage(@ptrCast(*const IMFMetadata, self), ppwszRFC1766);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IMFMetadata, @ptrCast(self)), ppwszRFC1766);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_GetAllLanguages(self: *const T, ppvLanguages: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).GetAllLanguages(@ptrCast(*const IMFMetadata, self), ppvLanguages);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetAllLanguages(@as(*const IMFMetadata, @ptrCast(self)), ppvLanguages);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_SetProperty(self: *const T, pwszName: ?[*:0]const u16, ppvValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).SetProperty(@ptrCast(*const IMFMetadata, self), pwszName, ppvValue);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName, ppvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_GetProperty(self: *const T, pwszName: ?[*:0]const u16, ppvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).GetProperty(@ptrCast(*const IMFMetadata, self), pwszName, ppvValue);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName, ppvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_DeleteProperty(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).DeleteProperty(@ptrCast(*const IMFMetadata, self), pwszName);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadata_GetAllPropertyNames(self: *const T, ppvNames: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMetadata.VTable, self.vtable).GetAllPropertyNames(@ptrCast(*const IMFMetadata, self), ppvNames);
+                return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetAllPropertyNames(@as(*const IMFMetadata, @ptrCast(self)), ppvNames);
             }
         };
     }
@@ -20957,7 +20957,7 @@ pub const IMFMetadataProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMetadataProvider_GetMFMetadata(self: *const T, pPresentationDescriptor: ?*IMFPresentationDescriptor, dwStreamIdentifier: u32, dwFlags: u32, ppMFMetadata: ?*?*IMFMetadata) HRESULT {
-                return @ptrCast(*const IMFMetadataProvider.VTable, self.vtable).GetMFMetadata(@ptrCast(*const IMFMetadataProvider, self), pPresentationDescriptor, dwStreamIdentifier, dwFlags, ppMFMetadata);
+                return @as(*const IMFMetadataProvider.VTable, @ptrCast(self.vtable)).GetMFMetadata(@as(*const IMFMetadataProvider, @ptrCast(self)), pPresentationDescriptor, dwStreamIdentifier, dwFlags, ppMFMetadata);
             }
         };
     }
@@ -21026,15 +21026,15 @@ pub const IMFRateSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRateSupport_GetSlowestRate(self: *const T, eDirection: MFRATE_DIRECTION, fThin: BOOL, pflRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFRateSupport.VTable, self.vtable).GetSlowestRate(@ptrCast(*const IMFRateSupport, self), eDirection, fThin, pflRate);
+                return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).GetSlowestRate(@as(*const IMFRateSupport, @ptrCast(self)), eDirection, fThin, pflRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRateSupport_GetFastestRate(self: *const T, eDirection: MFRATE_DIRECTION, fThin: BOOL, pflRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFRateSupport.VTable, self.vtable).GetFastestRate(@ptrCast(*const IMFRateSupport, self), eDirection, fThin, pflRate);
+                return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).GetFastestRate(@as(*const IMFRateSupport, @ptrCast(self)), eDirection, fThin, pflRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRateSupport_IsRateSupported(self: *const T, fThin: BOOL, flRate: f32, pflNearestSupportedRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFRateSupport.VTable, self.vtable).IsRateSupported(@ptrCast(*const IMFRateSupport, self), fThin, flRate, pflNearestSupportedRate);
+                return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).IsRateSupported(@as(*const IMFRateSupport, @ptrCast(self)), fThin, flRate, pflNearestSupportedRate);
             }
         };
     }
@@ -21078,11 +21078,11 @@ pub const IMFRateControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRateControl_SetRate(self: *const T, fThin: BOOL, flRate: f32) HRESULT {
-                return @ptrCast(*const IMFRateControl.VTable, self.vtable).SetRate(@ptrCast(*const IMFRateControl, self), fThin, flRate);
+                return @as(*const IMFRateControl.VTable, @ptrCast(self.vtable)).SetRate(@as(*const IMFRateControl, @ptrCast(self)), fThin, flRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRateControl_GetRate(self: *const T, pfThin: ?*BOOL, pflRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFRateControl.VTable, self.vtable).GetRate(@ptrCast(*const IMFRateControl, self), pfThin, pflRate);
+                return @as(*const IMFRateControl.VTable, @ptrCast(self.vtable)).GetRate(@as(*const IMFRateControl, @ptrCast(self)), pfThin, pflRate);
             }
         };
     }
@@ -21154,19 +21154,19 @@ pub const IMFTimecodeTranslate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimecodeTranslate_BeginConvertTimecodeToHNS(self: *const T, pPropVarTimecode: ?*const PROPVARIANT, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTimecodeTranslate.VTable, self.vtable).BeginConvertTimecodeToHNS(@ptrCast(*const IMFTimecodeTranslate, self), pPropVarTimecode, pCallback, punkState);
+                return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).BeginConvertTimecodeToHNS(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pPropVarTimecode, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimecodeTranslate_EndConvertTimecodeToHNS(self: *const T, pResult: ?*IMFAsyncResult, phnsTime: ?*i64) HRESULT {
-                return @ptrCast(*const IMFTimecodeTranslate.VTable, self.vtable).EndConvertTimecodeToHNS(@ptrCast(*const IMFTimecodeTranslate, self), pResult, phnsTime);
+                return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).EndConvertTimecodeToHNS(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pResult, phnsTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimecodeTranslate_BeginConvertHNSToTimecode(self: *const T, hnsTime: i64, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTimecodeTranslate.VTable, self.vtable).BeginConvertHNSToTimecode(@ptrCast(*const IMFTimecodeTranslate, self), hnsTime, pCallback, punkState);
+                return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).BeginConvertHNSToTimecode(@as(*const IMFTimecodeTranslate, @ptrCast(self)), hnsTime, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimecodeTranslate_EndConvertHNSToTimecode(self: *const T, pResult: ?*IMFAsyncResult, pPropVarTimecode: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFTimecodeTranslate.VTable, self.vtable).EndConvertHNSToTimecode(@ptrCast(*const IMFTimecodeTranslate, self), pResult, pPropVarTimecode);
+                return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).EndConvertHNSToTimecode(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pResult, pPropVarTimecode);
             }
         };
     }
@@ -21202,7 +21202,7 @@ pub const IMFSeekInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSeekInfo_GetNearestKeyFrames(self: *const T, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT, pvarPreviousKeyFrame: ?*PROPVARIANT, pvarNextKeyFrame: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFSeekInfo.VTable, self.vtable).GetNearestKeyFrames(@ptrCast(*const IMFSeekInfo, self), pguidTimeFormat, pvarStartPosition, pvarPreviousKeyFrame, pvarNextKeyFrame);
+                return @as(*const IMFSeekInfo.VTable, @ptrCast(self.vtable)).GetNearestKeyFrames(@as(*const IMFSeekInfo, @ptrCast(self)), pguidTimeFormat, pvarStartPosition, pvarPreviousKeyFrame, pvarNextKeyFrame);
             }
         };
     }
@@ -21262,19 +21262,19 @@ pub const IMFSimpleAudioVolume = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSimpleAudioVolume_SetMasterVolume(self: *const T, fLevel: f32) HRESULT {
-                return @ptrCast(*const IMFSimpleAudioVolume.VTable, self.vtable).SetMasterVolume(@ptrCast(*const IMFSimpleAudioVolume, self), fLevel);
+                return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMasterVolume(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), fLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSimpleAudioVolume_GetMasterVolume(self: *const T, pfLevel: ?*f32) HRESULT {
-                return @ptrCast(*const IMFSimpleAudioVolume.VTable, self.vtable).GetMasterVolume(@ptrCast(*const IMFSimpleAudioVolume, self), pfLevel);
+                return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMasterVolume(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), pfLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSimpleAudioVolume_SetMute(self: *const T, bMute: BOOL) HRESULT {
-                return @ptrCast(*const IMFSimpleAudioVolume.VTable, self.vtable).SetMute(@ptrCast(*const IMFSimpleAudioVolume, self), bMute);
+                return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), bMute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSimpleAudioVolume_GetMute(self: *const T, pbMute: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSimpleAudioVolume.VTable, self.vtable).GetMute(@ptrCast(*const IMFSimpleAudioVolume, self), pbMute);
+                return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), pbMute);
             }
         };
     }
@@ -21352,23 +21352,23 @@ pub const IMFAudioStreamVolume = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioStreamVolume_GetChannelCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFAudioStreamVolume.VTable, self.vtable).GetChannelCount(@ptrCast(*const IMFAudioStreamVolume, self), pdwCount);
+                return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IMFAudioStreamVolume, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioStreamVolume_SetChannelVolume(self: *const T, dwIndex: u32, fLevel: f32) HRESULT {
-                return @ptrCast(*const IMFAudioStreamVolume.VTable, self.vtable).SetChannelVolume(@ptrCast(*const IMFAudioStreamVolume, self), dwIndex, fLevel);
+                return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetChannelVolume(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwIndex, fLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioStreamVolume_GetChannelVolume(self: *const T, dwIndex: u32, pfLevel: ?*f32) HRESULT {
-                return @ptrCast(*const IMFAudioStreamVolume.VTable, self.vtable).GetChannelVolume(@ptrCast(*const IMFAudioStreamVolume, self), dwIndex, pfLevel);
+                return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelVolume(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwIndex, pfLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioStreamVolume_SetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]const f32) HRESULT {
-                return @ptrCast(*const IMFAudioStreamVolume.VTable, self.vtable).SetAllVolumes(@ptrCast(*const IMFAudioStreamVolume, self), dwCount, pfVolumes);
+                return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetAllVolumes(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioStreamVolume_GetAllVolumes(self: *const T, dwCount: u32, pfVolumes: [*]f32) HRESULT {
-                return @ptrCast(*const IMFAudioStreamVolume.VTable, self.vtable).GetAllVolumes(@ptrCast(*const IMFAudioStreamVolume, self), dwCount, pfVolumes);
+                return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
             }
         };
     }
@@ -21448,27 +21448,27 @@ pub const IMFAudioPolicy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_SetGroupingParam(self: *const T, rguidClass: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).SetGroupingParam(@ptrCast(*const IMFAudioPolicy, self), rguidClass);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetGroupingParam(@as(*const IMFAudioPolicy, @ptrCast(self)), rguidClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_GetGroupingParam(self: *const T, pguidClass: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).GetGroupingParam(@ptrCast(*const IMFAudioPolicy, self), pguidClass);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetGroupingParam(@as(*const IMFAudioPolicy, @ptrCast(self)), pguidClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_SetDisplayName(self: *const T, pszName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).SetDisplayName(@ptrCast(*const IMFAudioPolicy, self), pszName);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IMFAudioPolicy, @ptrCast(self)), pszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_GetDisplayName(self: *const T, pszName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).GetDisplayName(@ptrCast(*const IMFAudioPolicy, self), pszName);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IMFAudioPolicy, @ptrCast(self)), pszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_SetIconPath(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).SetIconPath(@ptrCast(*const IMFAudioPolicy, self), pszPath);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetIconPath(@as(*const IMFAudioPolicy, @ptrCast(self)), pszPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFAudioPolicy_GetIconPath(self: *const T, pszPath: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFAudioPolicy.VTable, self.vtable).GetIconPath(@ptrCast(*const IMFAudioPolicy, self), pszPath);
+                return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetIconPath(@as(*const IMFAudioPolicy, @ptrCast(self)), pszPath);
             }
         };
     }
@@ -21528,15 +21528,15 @@ pub const IMFSampleGrabberSinkCallback = extern struct {
             pub usingnamespace IMFClockStateSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleGrabberSinkCallback_OnSetPresentationClock(self: *const T, pPresentationClock: ?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFSampleGrabberSinkCallback.VTable, self.vtable).OnSetPresentationClock(@ptrCast(*const IMFSampleGrabberSinkCallback, self), pPresentationClock);
+                return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnSetPresentationClock(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)), pPresentationClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleGrabberSinkCallback_OnProcessSample(self: *const T, guidMajorMediaType: ?*const Guid, dwSampleFlags: u32, llSampleTime: i64, llSampleDuration: i64, pSampleBuffer: ?*const u8, dwSampleSize: u32) HRESULT {
-                return @ptrCast(*const IMFSampleGrabberSinkCallback.VTable, self.vtable).OnProcessSample(@ptrCast(*const IMFSampleGrabberSinkCallback, self), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize);
+                return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnProcessSample(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleGrabberSinkCallback_OnShutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSampleGrabberSinkCallback.VTable, self.vtable).OnShutdown(@ptrCast(*const IMFSampleGrabberSinkCallback, self));
+                return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnShutdown(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)));
             }
         };
     }
@@ -21580,7 +21580,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern struct {
             pub usingnamespace IMFSampleGrabberSinkCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleGrabberSinkCallback2_OnProcessSampleEx(self: *const T, guidMajorMediaType: ?*const Guid, dwSampleFlags: u32, llSampleTime: i64, llSampleDuration: i64, pSampleBuffer: ?*const u8, dwSampleSize: u32, pAttributes: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSampleGrabberSinkCallback2.VTable, self.vtable).OnProcessSampleEx(@ptrCast(*const IMFSampleGrabberSinkCallback2, self), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize, pAttributes);
+                return @as(*const IMFSampleGrabberSinkCallback2.VTable, @ptrCast(self.vtable)).OnProcessSampleEx(@as(*const IMFSampleGrabberSinkCallback2, @ptrCast(self)), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize, pAttributes);
             }
         };
     }
@@ -21750,51 +21750,51 @@ pub const IMFWorkQueueServices = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_BeginRegisterTopologyWorkQueuesWithMMCSS(self: *const T, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).BeginRegisterTopologyWorkQueuesWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pCallback, pState);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginRegisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_EndRegisterTopologyWorkQueuesWithMMCSS(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).EndRegisterTopologyWorkQueuesWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pResult);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndRegisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_BeginUnregisterTopologyWorkQueuesWithMMCSS(self: *const T, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).BeginUnregisterTopologyWorkQueuesWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pCallback, pState);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginUnregisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_EndUnregisterTopologyWorkQueuesWithMMCSS(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).EndUnregisterTopologyWorkQueuesWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pResult);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndUnregisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_GetTopologyWorkQueueMMCSSClass(self: *const T, dwTopologyWorkQueueId: u32, pwszClass: [*:0]u16, pcchClass: ?*u32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).GetTopologyWorkQueueMMCSSClass(@ptrCast(*const IMFWorkQueueServices, self), dwTopologyWorkQueueId, pwszClass, pcchClass);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSClass(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwTopologyWorkQueueId, pwszClass, pcchClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_GetTopologyWorkQueueMMCSSTaskId(self: *const T, dwTopologyWorkQueueId: u32, pdwTaskId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).GetTopologyWorkQueueMMCSSTaskId(@ptrCast(*const IMFWorkQueueServices, self), dwTopologyWorkQueueId, pdwTaskId);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSTaskId(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwTopologyWorkQueueId, pdwTaskId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_BeginRegisterPlatformWorkQueueWithMMCSS(self: *const T, dwPlatformWorkQueue: u32, wszClass: ?[*:0]const u16, dwTaskId: u32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).BeginRegisterPlatformWorkQueueWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), dwPlatformWorkQueue, wszClass, dwTaskId, pCallback, pState);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginRegisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueue, wszClass, dwTaskId, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_EndRegisterPlatformWorkQueueWithMMCSS(self: *const T, pResult: ?*IMFAsyncResult, pdwTaskId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).EndRegisterPlatformWorkQueueWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pResult, pdwTaskId);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndRegisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult, pdwTaskId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_BeginUnregisterPlatformWorkQueueWithMMCSS(self: *const T, dwPlatformWorkQueue: u32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).BeginUnregisterPlatformWorkQueueWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), dwPlatformWorkQueue, pCallback, pState);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginUnregisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueue, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_EndUnregisterPlatformWorkQueueWithMMCSS(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).EndUnregisterPlatformWorkQueueWithMMCSS(@ptrCast(*const IMFWorkQueueServices, self), pResult);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndUnregisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_GetPlaftormWorkQueueMMCSSClass(self: *const T, dwPlatformWorkQueueId: u32, pwszClass: [*:0]u16, pcchClass: ?*u32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).GetPlaftormWorkQueueMMCSSClass(@ptrCast(*const IMFWorkQueueServices, self), dwPlatformWorkQueueId, pwszClass, pcchClass);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetPlaftormWorkQueueMMCSSClass(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueueId, pwszClass, pcchClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServices_GetPlatformWorkQueueMMCSSTaskId(self: *const T, dwPlatformWorkQueueId: u32, pdwTaskId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServices.VTable, self.vtable).GetPlatformWorkQueueMMCSSTaskId(@ptrCast(*const IMFWorkQueueServices, self), dwPlatformWorkQueueId, pdwTaskId);
+                return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetPlatformWorkQueueMMCSSTaskId(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueueId, pdwTaskId);
             }
         };
     }
@@ -21858,15 +21858,15 @@ pub const IMFWorkQueueServicesEx = extern struct {
             pub usingnamespace IMFWorkQueueServices.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServicesEx_GetTopologyWorkQueueMMCSSPriority(self: *const T, dwTopologyWorkQueueId: u32, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServicesEx.VTable, self.vtable).GetTopologyWorkQueueMMCSSPriority(@ptrCast(*const IMFWorkQueueServicesEx, self), dwTopologyWorkQueueId, plPriority);
+                return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSPriority(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwTopologyWorkQueueId, plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServicesEx_BeginRegisterPlatformWorkQueueWithMMCSSEx(self: *const T, dwPlatformWorkQueue: u32, wszClass: ?[*:0]const u16, dwTaskId: u32, lPriority: i32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServicesEx.VTable, self.vtable).BeginRegisterPlatformWorkQueueWithMMCSSEx(@ptrCast(*const IMFWorkQueueServicesEx, self), dwPlatformWorkQueue, wszClass, dwTaskId, lPriority, pCallback, pState);
+                return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).BeginRegisterPlatformWorkQueueWithMMCSSEx(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwPlatformWorkQueue, wszClass, dwTaskId, lPriority, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFWorkQueueServicesEx_GetPlatformWorkQueueMMCSSPriority(self: *const T, dwPlatformWorkQueueId: u32, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMFWorkQueueServicesEx.VTable, self.vtable).GetPlatformWorkQueueMMCSSPriority(@ptrCast(*const IMFWorkQueueServicesEx, self), dwPlatformWorkQueueId, plPriority);
+                return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).GetPlatformWorkQueueMMCSSPriority(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwPlatformWorkQueueId, plPriority);
             }
         };
     }
@@ -21993,27 +21993,27 @@ pub const IMFQualityManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_NotifyTopology(self: *const T, pTopology: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).NotifyTopology(@ptrCast(*const IMFQualityManager, self), pTopology);
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyTopology(@as(*const IMFQualityManager, @ptrCast(self)), pTopology);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_NotifyPresentationClock(self: *const T, pClock: ?*IMFPresentationClock) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).NotifyPresentationClock(@ptrCast(*const IMFQualityManager, self), pClock);
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyPresentationClock(@as(*const IMFQualityManager, @ptrCast(self)), pClock);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_NotifyProcessInput(self: *const T, pNode: ?*IMFTopologyNode, lInputIndex: i32, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).NotifyProcessInput(@ptrCast(*const IMFQualityManager, self), pNode, lInputIndex, pSample);
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyProcessInput(@as(*const IMFQualityManager, @ptrCast(self)), pNode, lInputIndex, pSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_NotifyProcessOutput(self: *const T, pNode: ?*IMFTopologyNode, lOutputIndex: i32, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).NotifyProcessOutput(@ptrCast(*const IMFQualityManager, self), pNode, lOutputIndex, pSample);
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyProcessOutput(@as(*const IMFQualityManager, @ptrCast(self)), pNode, lOutputIndex, pSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_NotifyQualityEvent(self: *const T, pObject: ?*IUnknown, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).NotifyQualityEvent(@ptrCast(*const IMFQualityManager, self), pObject, pEvent);
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyQualityEvent(@as(*const IMFQualityManager, @ptrCast(self)), pObject, pEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityManager_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFQualityManager.VTable, self.vtable).Shutdown(@ptrCast(*const IMFQualityManager, self));
+                return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFQualityManager, @ptrCast(self)));
             }
         };
     }
@@ -22083,23 +22083,23 @@ pub const IMFQualityAdvise = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise_SetDropMode(self: *const T, eDropMode: MF_QUALITY_DROP_MODE) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise.VTable, self.vtable).SetDropMode(@ptrCast(*const IMFQualityAdvise, self), eDropMode);
+                return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).SetDropMode(@as(*const IMFQualityAdvise, @ptrCast(self)), eDropMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise_SetQualityLevel(self: *const T, eQualityLevel: MF_QUALITY_LEVEL) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise.VTable, self.vtable).SetQualityLevel(@ptrCast(*const IMFQualityAdvise, self), eQualityLevel);
+                return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).SetQualityLevel(@as(*const IMFQualityAdvise, @ptrCast(self)), eQualityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise_GetDropMode(self: *const T, peDropMode: ?*MF_QUALITY_DROP_MODE) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise.VTable, self.vtable).GetDropMode(@ptrCast(*const IMFQualityAdvise, self), peDropMode);
+                return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).GetDropMode(@as(*const IMFQualityAdvise, @ptrCast(self)), peDropMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise_GetQualityLevel(self: *const T, peQualityLevel: ?*MF_QUALITY_LEVEL) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise.VTable, self.vtable).GetQualityLevel(@ptrCast(*const IMFQualityAdvise, self), peQualityLevel);
+                return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).GetQualityLevel(@as(*const IMFQualityAdvise, @ptrCast(self)), peQualityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise_DropTime(self: *const T, hnsAmountToDrop: i64) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise.VTable, self.vtable).DropTime(@ptrCast(*const IMFQualityAdvise, self), hnsAmountToDrop);
+                return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).DropTime(@as(*const IMFQualityAdvise, @ptrCast(self)), hnsAmountToDrop);
             }
         };
     }
@@ -22131,7 +22131,7 @@ pub const IMFQualityAdvise2 = extern struct {
             pub usingnamespace IMFQualityAdvise.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdvise2_NotifyQualityEvent(self: *const T, pEvent: ?*IMFMediaEvent, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFQualityAdvise2.VTable, self.vtable).NotifyQualityEvent(@ptrCast(*const IMFQualityAdvise2, self), pEvent, pdwFlags);
+                return @as(*const IMFQualityAdvise2.VTable, @ptrCast(self.vtable)).NotifyQualityEvent(@as(*const IMFQualityAdvise2, @ptrCast(self)), pEvent, pdwFlags);
             }
         };
     }
@@ -22171,11 +22171,11 @@ pub const IMFQualityAdviseLimits = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdviseLimits_GetMaximumDropMode(self: *const T, peDropMode: ?*MF_QUALITY_DROP_MODE) HRESULT {
-                return @ptrCast(*const IMFQualityAdviseLimits.VTable, self.vtable).GetMaximumDropMode(@ptrCast(*const IMFQualityAdviseLimits, self), peDropMode);
+                return @as(*const IMFQualityAdviseLimits.VTable, @ptrCast(self.vtable)).GetMaximumDropMode(@as(*const IMFQualityAdviseLimits, @ptrCast(self)), peDropMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFQualityAdviseLimits_GetMinimumQualityLevel(self: *const T, peQualityLevel: ?*MF_QUALITY_LEVEL) HRESULT {
-                return @ptrCast(*const IMFQualityAdviseLimits.VTable, self.vtable).GetMinimumQualityLevel(@ptrCast(*const IMFQualityAdviseLimits, self), peQualityLevel);
+                return @as(*const IMFQualityAdviseLimits.VTable, @ptrCast(self.vtable)).GetMinimumQualityLevel(@as(*const IMFQualityAdviseLimits, @ptrCast(self)), peQualityLevel);
             }
         };
     }
@@ -22225,15 +22225,15 @@ pub const IMFRealTimeClient = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClient_RegisterThreads(self: *const T, dwTaskIndex: u32, wszClass: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFRealTimeClient.VTable, self.vtable).RegisterThreads(@ptrCast(*const IMFRealTimeClient, self), dwTaskIndex, wszClass);
+                return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).RegisterThreads(@as(*const IMFRealTimeClient, @ptrCast(self)), dwTaskIndex, wszClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClient_UnregisterThreads(self: *const T) HRESULT {
-                return @ptrCast(*const IMFRealTimeClient.VTable, self.vtable).UnregisterThreads(@ptrCast(*const IMFRealTimeClient, self));
+                return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).UnregisterThreads(@as(*const IMFRealTimeClient, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClient_SetWorkQueue(self: *const T, dwWorkQueueId: u32) HRESULT {
-                return @ptrCast(*const IMFRealTimeClient.VTable, self.vtable).SetWorkQueue(@ptrCast(*const IMFRealTimeClient, self), dwWorkQueueId);
+                return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).SetWorkQueue(@as(*const IMFRealTimeClient, @ptrCast(self)), dwWorkQueueId);
             }
         };
     }
@@ -22287,15 +22287,15 @@ pub const IMFRealTimeClientEx = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClientEx_RegisterThreadsEx(self: *const T, pdwTaskIndex: ?*u32, wszClassName: ?[*:0]const u16, lBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMFRealTimeClientEx.VTable, self.vtable).RegisterThreadsEx(@ptrCast(*const IMFRealTimeClientEx, self), pdwTaskIndex, wszClassName, lBasePriority);
+                return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).RegisterThreadsEx(@as(*const IMFRealTimeClientEx, @ptrCast(self)), pdwTaskIndex, wszClassName, lBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClientEx_UnregisterThreads(self: *const T) HRESULT {
-                return @ptrCast(*const IMFRealTimeClientEx.VTable, self.vtable).UnregisterThreads(@ptrCast(*const IMFRealTimeClientEx, self));
+                return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).UnregisterThreads(@as(*const IMFRealTimeClientEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRealTimeClientEx_SetWorkQueueEx(self: *const T, dwMultithreadedWorkQueueId: u32, lWorkItemBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMFRealTimeClientEx.VTable, self.vtable).SetWorkQueueEx(@ptrCast(*const IMFRealTimeClientEx, self), dwMultithreadedWorkQueueId, lWorkItemBasePriority);
+                return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).SetWorkQueueEx(@as(*const IMFRealTimeClientEx, @ptrCast(self)), dwMultithreadedWorkQueueId, lWorkItemBasePriority);
             }
         };
     }
@@ -22382,23 +22382,23 @@ pub const IMFSequencerSource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSequencerSource_AppendTopology(self: *const T, pTopology: ?*IMFTopology, dwFlags: u32, pdwId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).AppendTopology(@ptrCast(*const IMFSequencerSource, self), pTopology, dwFlags, pdwId);
+                return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).AppendTopology(@as(*const IMFSequencerSource, @ptrCast(self)), pTopology, dwFlags, pdwId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSequencerSource_DeleteTopology(self: *const T, dwId: u32) HRESULT {
-                return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).DeleteTopology(@ptrCast(*const IMFSequencerSource, self), dwId);
+                return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).DeleteTopology(@as(*const IMFSequencerSource, @ptrCast(self)), dwId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSequencerSource_GetPresentationContext(self: *const T, pPD: ?*IMFPresentationDescriptor, pId: ?*u32, ppTopology: ?*?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).GetPresentationContext(@ptrCast(*const IMFSequencerSource, self), pPD, pId, ppTopology);
+                return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).GetPresentationContext(@as(*const IMFSequencerSource, @ptrCast(self)), pPD, pId, ppTopology);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSequencerSource_UpdateTopology(self: *const T, dwId: u32, pTopology: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).UpdateTopology(@ptrCast(*const IMFSequencerSource, self), dwId, pTopology);
+                return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).UpdateTopology(@as(*const IMFSequencerSource, @ptrCast(self)), dwId, pTopology);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSequencerSource_UpdateTopologyFlags(self: *const T, dwId: u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFSequencerSource.VTable, self.vtable).UpdateTopologyFlags(@ptrCast(*const IMFSequencerSource, self), dwId, dwFlags);
+                return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).UpdateTopologyFlags(@as(*const IMFSequencerSource, @ptrCast(self)), dwId, dwFlags);
             }
         };
     }
@@ -22430,7 +22430,7 @@ pub const IMFMediaSourceTopologyProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceTopologyProvider_GetMediaSourceTopology(self: *const T, pPresentationDescriptor: ?*IMFPresentationDescriptor, ppTopology: ?*?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFMediaSourceTopologyProvider.VTable, self.vtable).GetMediaSourceTopology(@ptrCast(*const IMFMediaSourceTopologyProvider, self), pPresentationDescriptor, ppTopology);
+                return @as(*const IMFMediaSourceTopologyProvider.VTable, @ptrCast(self.vtable)).GetMediaSourceTopology(@as(*const IMFMediaSourceTopologyProvider, @ptrCast(self)), pPresentationDescriptor, ppTopology);
             }
         };
     }
@@ -22460,7 +22460,7 @@ pub const IMFMediaSourcePresentationProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourcePresentationProvider_ForceEndOfPresentation(self: *const T, pPresentationDescriptor: ?*IMFPresentationDescriptor) HRESULT {
-                return @ptrCast(*const IMFMediaSourcePresentationProvider.VTable, self.vtable).ForceEndOfPresentation(@ptrCast(*const IMFMediaSourcePresentationProvider, self), pPresentationDescriptor);
+                return @as(*const IMFMediaSourcePresentationProvider.VTable, @ptrCast(self.vtable)).ForceEndOfPresentation(@as(*const IMFMediaSourcePresentationProvider, @ptrCast(self)), pPresentationDescriptor);
             }
         };
     }
@@ -22505,7 +22505,7 @@ pub const IMFTopologyNodeAttributeEditor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyNodeAttributeEditor_UpdateNodeAttributes(self: *const T, TopoId: u64, cUpdates: u32, pUpdates: [*]MFTOPONODE_ATTRIBUTE_UPDATE) HRESULT {
-                return @ptrCast(*const IMFTopologyNodeAttributeEditor.VTable, self.vtable).UpdateNodeAttributes(@ptrCast(*const IMFTopologyNodeAttributeEditor, self), TopoId, cUpdates, pUpdates);
+                return @as(*const IMFTopologyNodeAttributeEditor.VTable, @ptrCast(self.vtable)).UpdateNodeAttributes(@as(*const IMFTopologyNodeAttributeEditor, @ptrCast(self)), TopoId, cUpdates, pUpdates);
             }
         };
     }
@@ -22569,15 +22569,15 @@ pub const IMFByteStreamBuffering = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamBuffering_SetBufferingParams(self: *const T, pParams: ?*MFBYTESTREAM_BUFFERING_PARAMS) HRESULT {
-                return @ptrCast(*const IMFByteStreamBuffering.VTable, self.vtable).SetBufferingParams(@ptrCast(*const IMFByteStreamBuffering, self), pParams);
+                return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).SetBufferingParams(@as(*const IMFByteStreamBuffering, @ptrCast(self)), pParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamBuffering_EnableBuffering(self: *const T, fEnable: BOOL) HRESULT {
-                return @ptrCast(*const IMFByteStreamBuffering.VTable, self.vtable).EnableBuffering(@ptrCast(*const IMFByteStreamBuffering, self), fEnable);
+                return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).EnableBuffering(@as(*const IMFByteStreamBuffering, @ptrCast(self)), fEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamBuffering_StopBuffering(self: *const T) HRESULT {
-                return @ptrCast(*const IMFByteStreamBuffering.VTable, self.vtable).StopBuffering(@ptrCast(*const IMFByteStreamBuffering, self));
+                return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).StopBuffering(@as(*const IMFByteStreamBuffering, @ptrCast(self)));
             }
         };
     }
@@ -22605,7 +22605,7 @@ pub const IMFByteStreamCacheControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamCacheControl_StopBackgroundTransfer(self: *const T) HRESULT {
-                return @ptrCast(*const IMFByteStreamCacheControl.VTable, self.vtable).StopBackgroundTransfer(@ptrCast(*const IMFByteStreamCacheControl, self));
+                return @as(*const IMFByteStreamCacheControl.VTable, @ptrCast(self.vtable)).StopBackgroundTransfer(@as(*const IMFByteStreamCacheControl, @ptrCast(self)));
             }
         };
     }
@@ -22659,15 +22659,15 @@ pub const IMFByteStreamTimeSeek = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamTimeSeek_IsTimeSeekSupported(self: *const T, pfTimeSeekIsSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFByteStreamTimeSeek.VTable, self.vtable).IsTimeSeekSupported(@ptrCast(*const IMFByteStreamTimeSeek, self), pfTimeSeekIsSupported);
+                return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).IsTimeSeekSupported(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), pfTimeSeekIsSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamTimeSeek_TimeSeek(self: *const T, qwTimePosition: u64) HRESULT {
-                return @ptrCast(*const IMFByteStreamTimeSeek.VTable, self.vtable).TimeSeek(@ptrCast(*const IMFByteStreamTimeSeek, self), qwTimePosition);
+                return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).TimeSeek(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), qwTimePosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamTimeSeek_GetTimeSeekResult(self: *const T, pqwStartTime: ?*u64, pqwStopTime: ?*u64, pqwDuration: ?*u64) HRESULT {
-                return @ptrCast(*const IMFByteStreamTimeSeek.VTable, self.vtable).GetTimeSeekResult(@ptrCast(*const IMFByteStreamTimeSeek, self), pqwStartTime, pqwStopTime, pqwDuration);
+                return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).GetTimeSeekResult(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), pqwStartTime, pqwStopTime, pqwDuration);
             }
         };
     }
@@ -22724,15 +22724,15 @@ pub const IMFByteStreamCacheControl2 = extern struct {
             pub usingnamespace IMFByteStreamCacheControl.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamCacheControl2_GetByteRanges(self: *const T, pcRanges: ?*u32, ppRanges: [*]?*MF_BYTE_STREAM_CACHE_RANGE) HRESULT {
-                return @ptrCast(*const IMFByteStreamCacheControl2.VTable, self.vtable).GetByteRanges(@ptrCast(*const IMFByteStreamCacheControl2, self), pcRanges, ppRanges);
+                return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).GetByteRanges(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), pcRanges, ppRanges);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamCacheControl2_SetCacheLimit(self: *const T, qwBytes: u64) HRESULT {
-                return @ptrCast(*const IMFByteStreamCacheControl2.VTable, self.vtable).SetCacheLimit(@ptrCast(*const IMFByteStreamCacheControl2, self), qwBytes);
+                return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).SetCacheLimit(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), qwBytes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamCacheControl2_IsBackgroundTransferActive(self: *const T, pfActive: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFByteStreamCacheControl2.VTable, self.vtable).IsBackgroundTransferActive(@ptrCast(*const IMFByteStreamCacheControl2, self), pfActive);
+                return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).IsBackgroundTransferActive(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), pfActive);
             }
         };
     }
@@ -22822,23 +22822,23 @@ pub const IMFNetCredential = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredential_SetUser(self: *const T, pbData: ?*u8, cbData: u32, fDataIsEncrypted: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredential.VTable, self.vtable).SetUser(@ptrCast(*const IMFNetCredential, self), pbData, cbData, fDataIsEncrypted);
+                return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).SetUser(@as(*const IMFNetCredential, @ptrCast(self)), pbData, cbData, fDataIsEncrypted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredential_SetPassword(self: *const T, pbData: ?*u8, cbData: u32, fDataIsEncrypted: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredential.VTable, self.vtable).SetPassword(@ptrCast(*const IMFNetCredential, self), pbData, cbData, fDataIsEncrypted);
+                return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IMFNetCredential, @ptrCast(self)), pbData, cbData, fDataIsEncrypted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredential_GetUser(self: *const T, pbData: ?[*:0]u8, pcbData: ?*u32, fEncryptData: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredential.VTable, self.vtable).GetUser(@ptrCast(*const IMFNetCredential, self), pbData, pcbData, fEncryptData);
+                return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).GetUser(@as(*const IMFNetCredential, @ptrCast(self)), pbData, pcbData, fEncryptData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredential_GetPassword(self: *const T, pbData: ?[*:0]u8, pcbData: ?*u32, fEncryptData: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredential.VTable, self.vtable).GetPassword(@ptrCast(*const IMFNetCredential, self), pbData, pcbData, fEncryptData);
+                return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).GetPassword(@as(*const IMFNetCredential, @ptrCast(self)), pbData, pcbData, fEncryptData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredential_LoggedOnUser(self: *const T, pfLoggedOnUser: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredential.VTable, self.vtable).LoggedOnUser(@ptrCast(*const IMFNetCredential, self), pfLoggedOnUser);
+                return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).LoggedOnUser(@as(*const IMFNetCredential, @ptrCast(self)), pfLoggedOnUser);
             }
         };
     }
@@ -22907,15 +22907,15 @@ pub const IMFNetCredentialManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialManager_BeginGetCredentials(self: *const T, pParam: ?*MFNetCredentialManagerGetParam, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFNetCredentialManager.VTable, self.vtable).BeginGetCredentials(@ptrCast(*const IMFNetCredentialManager, self), pParam, pCallback, pState);
+                return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).BeginGetCredentials(@as(*const IMFNetCredentialManager, @ptrCast(self)), pParam, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialManager_EndGetCredentials(self: *const T, pResult: ?*IMFAsyncResult, ppCred: ?*?*IMFNetCredential) HRESULT {
-                return @ptrCast(*const IMFNetCredentialManager.VTable, self.vtable).EndGetCredentials(@ptrCast(*const IMFNetCredentialManager, self), pResult, ppCred);
+                return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).EndGetCredentials(@as(*const IMFNetCredentialManager, @ptrCast(self)), pResult, ppCred);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialManager_SetGood(self: *const T, pCred: ?*IMFNetCredential, fGood: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredentialManager.VTable, self.vtable).SetGood(@ptrCast(*const IMFNetCredentialManager, self), pCred, fGood);
+                return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).SetGood(@as(*const IMFNetCredentialManager, @ptrCast(self)), pCred, fGood);
             }
         };
     }
@@ -23002,15 +23002,15 @@ pub const IMFNetCredentialCache = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialCache_GetCredential(self: *const T, pszUrl: ?[*:0]const u16, pszRealm: ?[*:0]const u16, dwAuthenticationFlags: u32, ppCred: ?*?*IMFNetCredential, pdwRequirementsFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFNetCredentialCache.VTable, self.vtable).GetCredential(@ptrCast(*const IMFNetCredentialCache, self), pszUrl, pszRealm, dwAuthenticationFlags, ppCred, pdwRequirementsFlags);
+                return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).GetCredential(@as(*const IMFNetCredentialCache, @ptrCast(self)), pszUrl, pszRealm, dwAuthenticationFlags, ppCred, pdwRequirementsFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialCache_SetGood(self: *const T, pCred: ?*IMFNetCredential, fGood: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCredentialCache.VTable, self.vtable).SetGood(@ptrCast(*const IMFNetCredentialCache, self), pCred, fGood);
+                return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).SetGood(@as(*const IMFNetCredentialCache, @ptrCast(self)), pCred, fGood);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCredentialCache_SetUserOptions(self: *const T, pCred: ?*IMFNetCredential, dwOptionsFlags: u32) HRESULT {
-                return @ptrCast(*const IMFNetCredentialCache.VTable, self.vtable).SetUserOptions(@ptrCast(*const IMFNetCredentialCache, self), pCred, dwOptionsFlags);
+                return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).SetUserOptions(@as(*const IMFNetCredentialCache, @ptrCast(self)), pCred, dwOptionsFlags);
             }
         };
     }
@@ -23104,23 +23104,23 @@ pub const IMFSSLCertificateManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSSLCertificateManager_GetClientCertificate(self: *const T, pszURL: ?[*:0]const u16, ppbData: ?*?*u8, pcbData: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSSLCertificateManager.VTable, self.vtable).GetClientCertificate(@ptrCast(*const IMFSSLCertificateManager, self), pszURL, ppbData, pcbData);
+                return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, ppbData, pcbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSSLCertificateManager_BeginGetClientCertificate(self: *const T, pszURL: ?[*:0]const u16, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSSLCertificateManager.VTable, self.vtable).BeginGetClientCertificate(@ptrCast(*const IMFSSLCertificateManager, self), pszURL, pCallback, pState);
+                return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).BeginGetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSSLCertificateManager_EndGetClientCertificate(self: *const T, pResult: ?*IMFAsyncResult, ppbData: ?*?*u8, pcbData: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSSLCertificateManager.VTable, self.vtable).EndGetClientCertificate(@ptrCast(*const IMFSSLCertificateManager, self), pResult, ppbData, pcbData);
+                return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).EndGetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pResult, ppbData, pcbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSSLCertificateManager_GetCertificatePolicy(self: *const T, pszURL: ?[*:0]const u16, pfOverrideAutomaticCheck: ?*BOOL, pfClientCertificateAvailable: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSSLCertificateManager.VTable, self.vtable).GetCertificatePolicy(@ptrCast(*const IMFSSLCertificateManager, self), pszURL, pfOverrideAutomaticCheck, pfClientCertificateAvailable);
+                return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).GetCertificatePolicy(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pfOverrideAutomaticCheck, pfClientCertificateAvailable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSSLCertificateManager_OnServerCertificate(self: *const T, pszURL: ?[*:0]const u16, pbData: ?*u8, cbData: u32, pfIsGood: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSSLCertificateManager.VTable, self.vtable).OnServerCertificate(@ptrCast(*const IMFSSLCertificateManager, self), pszURL, pbData, cbData, pfIsGood);
+                return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).OnServerCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pbData, cbData, pfIsGood);
             }
         };
     }
@@ -23162,11 +23162,11 @@ pub const IMFNetResourceFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetResourceFilter_OnRedirect(self: *const T, pszUrl: ?[*:0]const u16, pvbCancel: ?*i16) HRESULT {
-                return @ptrCast(*const IMFNetResourceFilter.VTable, self.vtable).OnRedirect(@ptrCast(*const IMFNetResourceFilter, self), pszUrl, pvbCancel);
+                return @as(*const IMFNetResourceFilter.VTable, @ptrCast(self.vtable)).OnRedirect(@as(*const IMFNetResourceFilter, @ptrCast(self)), pszUrl, pvbCancel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetResourceFilter_OnSendingRequest(self: *const T, pszUrl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFNetResourceFilter.VTable, self.vtable).OnSendingRequest(@ptrCast(*const IMFNetResourceFilter, self), pszUrl);
+                return @as(*const IMFNetResourceFilter.VTable, @ptrCast(self.vtable)).OnSendingRequest(@as(*const IMFNetResourceFilter, @ptrCast(self)), pszUrl);
             }
         };
     }
@@ -23196,7 +23196,7 @@ pub const IMFSourceOpenMonitor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceOpenMonitor_OnSourceEvent(self: *const T, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFSourceOpenMonitor.VTable, self.vtable).OnSourceEvent(@ptrCast(*const IMFSourceOpenMonitor, self), pEvent);
+                return @as(*const IMFSourceOpenMonitor.VTable, @ptrCast(self.vtable)).OnSourceEvent(@as(*const IMFSourceOpenMonitor, @ptrCast(self)), pEvent);
             }
         };
     }
@@ -23270,23 +23270,23 @@ pub const IMFNetProxyLocator = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocator_FindFirstProxy(self: *const T, pszHost: ?[*:0]const u16, pszUrl: ?[*:0]const u16, fReserved: BOOL) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocator.VTable, self.vtable).FindFirstProxy(@ptrCast(*const IMFNetProxyLocator, self), pszHost, pszUrl, fReserved);
+                return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).FindFirstProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)), pszHost, pszUrl, fReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocator_FindNextProxy(self: *const T) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocator.VTable, self.vtable).FindNextProxy(@ptrCast(*const IMFNetProxyLocator, self));
+                return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).FindNextProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocator_RegisterProxyResult(self: *const T, hrOp: HRESULT) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocator.VTable, self.vtable).RegisterProxyResult(@ptrCast(*const IMFNetProxyLocator, self), hrOp);
+                return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).RegisterProxyResult(@as(*const IMFNetProxyLocator, @ptrCast(self)), hrOp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocator_GetCurrentProxy(self: *const T, pszStr: ?[*:0]u16, pcchStr: ?*u32) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocator.VTable, self.vtable).GetCurrentProxy(@ptrCast(*const IMFNetProxyLocator, self), pszStr, pcchStr);
+                return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).GetCurrentProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)), pszStr, pcchStr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocator_Clone(self: *const T, ppProxyLocator: ?*?*IMFNetProxyLocator) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocator.VTable, self.vtable).Clone(@ptrCast(*const IMFNetProxyLocator, self), ppProxyLocator);
+                return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFNetProxyLocator, @ptrCast(self)), ppProxyLocator);
             }
         };
     }
@@ -23318,7 +23318,7 @@ pub const IMFNetProxyLocatorFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetProxyLocatorFactory_CreateProxyLocator(self: *const T, pszProtocol: ?[*:0]const u16, ppProxyLocator: ?*?*IMFNetProxyLocator) HRESULT {
-                return @ptrCast(*const IMFNetProxyLocatorFactory.VTable, self.vtable).CreateProxyLocator(@ptrCast(*const IMFNetProxyLocatorFactory, self), pszProtocol, ppProxyLocator);
+                return @as(*const IMFNetProxyLocatorFactory.VTable, @ptrCast(self.vtable)).CreateProxyLocator(@as(*const IMFNetProxyLocatorFactory, @ptrCast(self)), pszProtocol, ppProxyLocator);
             }
         };
     }
@@ -23380,19 +23380,19 @@ pub const IMFSaveJob = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSaveJob_BeginSave(self: *const T, pStream: ?*IMFByteStream, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSaveJob.VTable, self.vtable).BeginSave(@ptrCast(*const IMFSaveJob, self), pStream, pCallback, pState);
+                return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).BeginSave(@as(*const IMFSaveJob, @ptrCast(self)), pStream, pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSaveJob_EndSave(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFSaveJob.VTable, self.vtable).EndSave(@ptrCast(*const IMFSaveJob, self), pResult);
+                return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).EndSave(@as(*const IMFSaveJob, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSaveJob_CancelSave(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSaveJob.VTable, self.vtable).CancelSave(@ptrCast(*const IMFSaveJob, self));
+                return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).CancelSave(@as(*const IMFSaveJob, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSaveJob_GetProgress(self: *const T, pdwPercentComplete: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSaveJob.VTable, self.vtable).GetProgress(@ptrCast(*const IMFSaveJob, self), pdwPercentComplete);
+                return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IMFSaveJob, @ptrCast(self)), pdwPercentComplete);
             }
         };
     }
@@ -23455,15 +23455,15 @@ pub const IMFNetSchemeHandlerConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetSchemeHandlerConfig_GetNumberOfSupportedProtocols(self: *const T, pcProtocols: ?*u32) HRESULT {
-                return @ptrCast(*const IMFNetSchemeHandlerConfig.VTable, self.vtable).GetNumberOfSupportedProtocols(@ptrCast(*const IMFNetSchemeHandlerConfig, self), pcProtocols);
+                return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).GetNumberOfSupportedProtocols(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)), pcProtocols);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetSchemeHandlerConfig_GetSupportedProtocolType(self: *const T, nProtocolIndex: u32, pnProtocolType: ?*MFNETSOURCE_PROTOCOL_TYPE) HRESULT {
-                return @ptrCast(*const IMFNetSchemeHandlerConfig.VTable, self.vtable).GetSupportedProtocolType(@ptrCast(*const IMFNetSchemeHandlerConfig, self), nProtocolIndex, pnProtocolType);
+                return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).GetSupportedProtocolType(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)), nProtocolIndex, pnProtocolType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetSchemeHandlerConfig_ResetProtocolRolloverSettings(self: *const T) HRESULT {
-                return @ptrCast(*const IMFNetSchemeHandlerConfig.VTable, self.vtable).ResetProtocolRolloverSettings(@ptrCast(*const IMFNetSchemeHandlerConfig, self));
+                return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).ResetProtocolRolloverSettings(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)));
             }
         };
     }
@@ -23617,15 +23617,15 @@ pub const IMFSchemeHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSchemeHandler_BeginCreateObject(self: *const T, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSchemeHandler.VTable, self.vtable).BeginCreateObject(@ptrCast(*const IMFSchemeHandler, self), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+                return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFSchemeHandler, @ptrCast(self)), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSchemeHandler_EndCreateObject(self: *const T, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSchemeHandler.VTable, self.vtable).EndCreateObject(@ptrCast(*const IMFSchemeHandler, self), pResult, pObjectType, ppObject);
+                return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFSchemeHandler, @ptrCast(self)), pResult, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSchemeHandler_CancelObjectCreation(self: *const T, pIUnknownCancelCookie: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSchemeHandler.VTable, self.vtable).CancelObjectCreation(@ptrCast(*const IMFSchemeHandler, self), pIUnknownCancelCookie);
+                return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFSchemeHandler, @ptrCast(self)), pIUnknownCancelCookie);
             }
         };
     }
@@ -23701,19 +23701,19 @@ pub const IMFByteStreamHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamHandler_BeginCreateObject(self: *const T, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFByteStreamHandler.VTable, self.vtable).BeginCreateObject(@ptrCast(*const IMFByteStreamHandler, self), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+                return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFByteStreamHandler, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamHandler_EndCreateObject(self: *const T, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFByteStreamHandler.VTable, self.vtable).EndCreateObject(@ptrCast(*const IMFByteStreamHandler, self), pResult, pObjectType, ppObject);
+                return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFByteStreamHandler, @ptrCast(self)), pResult, pObjectType, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamHandler_CancelObjectCreation(self: *const T, pIUnknownCancelCookie: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFByteStreamHandler.VTable, self.vtable).CancelObjectCreation(@ptrCast(*const IMFByteStreamHandler, self), pIUnknownCancelCookie);
+                return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFByteStreamHandler, @ptrCast(self)), pIUnknownCancelCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFByteStreamHandler_GetMaxNumberOfBytesRequiredForResolution(self: *const T, pqwBytes: ?*u64) HRESULT {
-                return @ptrCast(*const IMFByteStreamHandler.VTable, self.vtable).GetMaxNumberOfBytesRequiredForResolution(@ptrCast(*const IMFByteStreamHandler, self), pqwBytes);
+                return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).GetMaxNumberOfBytesRequiredForResolution(@as(*const IMFByteStreamHandler, @ptrCast(self)), pqwBytes);
             }
         };
     }
@@ -23747,7 +23747,7 @@ pub const IMFTrustedInput = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTrustedInput_GetInputTrustAuthority(self: *const T, dwStreamID: u32, riid: ?*const Guid, ppunkObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTrustedInput.VTable, self.vtable).GetInputTrustAuthority(@ptrCast(*const IMFTrustedInput, self), dwStreamID, riid, ppunkObject);
+                return @as(*const IMFTrustedInput.VTable, @ptrCast(self.vtable)).GetInputTrustAuthority(@as(*const IMFTrustedInput, @ptrCast(self)), dwStreamID, riid, ppunkObject);
             }
         };
     }
@@ -23869,27 +23869,27 @@ pub const IMFInputTrustAuthority = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_GetDecrypter(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).GetDecrypter(@ptrCast(*const IMFInputTrustAuthority, self), riid, ppv);
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).GetDecrypter(@as(*const IMFInputTrustAuthority, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_RequestAccess(self: *const T, Action: MFPOLICYMANAGER_ACTION, ppContentEnablerActivate: ?*?*IMFActivate) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).RequestAccess(@ptrCast(*const IMFInputTrustAuthority, self), Action, ppContentEnablerActivate);
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).RequestAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), Action, ppContentEnablerActivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_GetPolicy(self: *const T, Action: MFPOLICYMANAGER_ACTION, ppPolicy: ?*?*IMFOutputPolicy) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).GetPolicy(@ptrCast(*const IMFInputTrustAuthority, self), Action, ppPolicy);
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IMFInputTrustAuthority, @ptrCast(self)), Action, ppPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_BindAccess(self: *const T, pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).BindAccess(@ptrCast(*const IMFInputTrustAuthority, self), pParam);
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).BindAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), pParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_UpdateAccess(self: *const T, pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).UpdateAccess(@ptrCast(*const IMFInputTrustAuthority, self), pParam);
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).UpdateAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), pParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFInputTrustAuthority_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMFInputTrustAuthority.VTable, self.vtable).Reset(@ptrCast(*const IMFInputTrustAuthority, self));
+                return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFInputTrustAuthority, @ptrCast(self)));
             }
         };
     }
@@ -23941,15 +23941,15 @@ pub const IMFTrustedOutput = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTrustedOutput_GetOutputTrustAuthorityCount(self: *const T, pcOutputTrustAuthorities: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTrustedOutput.VTable, self.vtable).GetOutputTrustAuthorityCount(@ptrCast(*const IMFTrustedOutput, self), pcOutputTrustAuthorities);
+                return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).GetOutputTrustAuthorityCount(@as(*const IMFTrustedOutput, @ptrCast(self)), pcOutputTrustAuthorities);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTrustedOutput_GetOutputTrustAuthorityByIndex(self: *const T, dwIndex: u32, ppauthority: ?*?*IMFOutputTrustAuthority) HRESULT {
-                return @ptrCast(*const IMFTrustedOutput.VTable, self.vtable).GetOutputTrustAuthorityByIndex(@ptrCast(*const IMFTrustedOutput, self), dwIndex, ppauthority);
+                return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).GetOutputTrustAuthorityByIndex(@as(*const IMFTrustedOutput, @ptrCast(self)), dwIndex, ppauthority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTrustedOutput_IsFinal(self: *const T, pfIsFinal: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTrustedOutput.VTable, self.vtable).IsFinal(@ptrCast(*const IMFTrustedOutput, self), pfIsFinal);
+                return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).IsFinal(@as(*const IMFTrustedOutput, @ptrCast(self)), pfIsFinal);
             }
         };
     }
@@ -23995,11 +23995,11 @@ pub const IMFOutputTrustAuthority = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputTrustAuthority_GetAction(self: *const T, pAction: ?*MFPOLICYMANAGER_ACTION) HRESULT {
-                return @ptrCast(*const IMFOutputTrustAuthority.VTable, self.vtable).GetAction(@ptrCast(*const IMFOutputTrustAuthority, self), pAction);
+                return @as(*const IMFOutputTrustAuthority.VTable, @ptrCast(self.vtable)).GetAction(@as(*const IMFOutputTrustAuthority, @ptrCast(self)), pAction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputTrustAuthority_SetPolicy(self: *const T, ppPolicy: ?[*]?*IMFOutputPolicy, nPolicy: u32, ppbTicket: ?*?*u8, pcbTicket: ?*u32) HRESULT {
-                return @ptrCast(*const IMFOutputTrustAuthority.VTable, self.vtable).SetPolicy(@ptrCast(*const IMFOutputTrustAuthority, self), ppPolicy, nPolicy, ppbTicket, pcbTicket);
+                return @as(*const IMFOutputTrustAuthority.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IMFOutputTrustAuthority, @ptrCast(self)), ppPolicy, nPolicy, ppbTicket, pcbTicket);
             }
         };
     }
@@ -24057,15 +24057,15 @@ pub const IMFOutputPolicy = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputPolicy_GenerateRequiredSchemas(self: *const T, dwAttributes: u32, guidOutputSubType: Guid, rgGuidProtectionSchemasSupported: ?*Guid, cProtectionSchemasSupported: u32, ppRequiredProtectionSchemas: ?*?*IMFCollection) HRESULT {
-                return @ptrCast(*const IMFOutputPolicy.VTable, self.vtable).GenerateRequiredSchemas(@ptrCast(*const IMFOutputPolicy, self), dwAttributes, guidOutputSubType, rgGuidProtectionSchemasSupported, cProtectionSchemasSupported, ppRequiredProtectionSchemas);
+                return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GenerateRequiredSchemas(@as(*const IMFOutputPolicy, @ptrCast(self)), dwAttributes, guidOutputSubType, rgGuidProtectionSchemasSupported, cProtectionSchemasSupported, ppRequiredProtectionSchemas);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputPolicy_GetOriginatorID(self: *const T, pguidOriginatorID: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFOutputPolicy.VTable, self.vtable).GetOriginatorID(@ptrCast(*const IMFOutputPolicy, self), pguidOriginatorID);
+                return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GetOriginatorID(@as(*const IMFOutputPolicy, @ptrCast(self)), pguidOriginatorID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputPolicy_GetMinimumGRLVersion(self: *const T, pdwMinimumGRLVersion: ?*u32) HRESULT {
-                return @ptrCast(*const IMFOutputPolicy.VTable, self.vtable).GetMinimumGRLVersion(@ptrCast(*const IMFOutputPolicy, self), pdwMinimumGRLVersion);
+                return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GetMinimumGRLVersion(@as(*const IMFOutputPolicy, @ptrCast(self)), pdwMinimumGRLVersion);
             }
         };
     }
@@ -24115,15 +24115,15 @@ pub const IMFOutputSchema = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputSchema_GetSchemaType(self: *const T, pguidSchemaType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFOutputSchema.VTable, self.vtable).GetSchemaType(@ptrCast(*const IMFOutputSchema, self), pguidSchemaType);
+                return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetSchemaType(@as(*const IMFOutputSchema, @ptrCast(self)), pguidSchemaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputSchema_GetConfigurationData(self: *const T, pdwVal: ?*u32) HRESULT {
-                return @ptrCast(*const IMFOutputSchema.VTable, self.vtable).GetConfigurationData(@ptrCast(*const IMFOutputSchema, self), pdwVal);
+                return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetConfigurationData(@as(*const IMFOutputSchema, @ptrCast(self)), pdwVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFOutputSchema_GetOriginatorID(self: *const T, pguidOriginatorID: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFOutputSchema.VTable, self.vtable).GetOriginatorID(@ptrCast(*const IMFOutputSchema, self), pguidOriginatorID);
+                return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetOriginatorID(@as(*const IMFOutputSchema, @ptrCast(self)), pguidOriginatorID);
             }
         };
     }
@@ -24210,11 +24210,11 @@ pub const IMFSecureChannel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSecureChannel_GetCertificate(self: *const T, ppCert: ?*?*u8, pcbCert: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSecureChannel.VTable, self.vtable).GetCertificate(@ptrCast(*const IMFSecureChannel, self), ppCert, pcbCert);
+                return @as(*const IMFSecureChannel.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IMFSecureChannel, @ptrCast(self)), ppCert, pcbCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSecureChannel_SetupSession(self: *const T, pbEncryptedSessionKey: ?*u8, cbSessionKey: u32) HRESULT {
-                return @ptrCast(*const IMFSecureChannel.VTable, self.vtable).SetupSession(@ptrCast(*const IMFSecureChannel, self), pbEncryptedSessionKey, cbSessionKey);
+                return @as(*const IMFSecureChannel.VTable, @ptrCast(self.vtable)).SetupSession(@as(*const IMFSecureChannel, @ptrCast(self)), pbEncryptedSessionKey, cbSessionKey);
             }
         };
     }
@@ -24317,23 +24317,23 @@ pub const IMFSampleProtection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleProtection_GetInputProtectionVersion(self: *const T, pdwVersion: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSampleProtection.VTable, self.vtable).GetInputProtectionVersion(@ptrCast(*const IMFSampleProtection, self), pdwVersion);
+                return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetInputProtectionVersion(@as(*const IMFSampleProtection, @ptrCast(self)), pdwVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleProtection_GetOutputProtectionVersion(self: *const T, pdwVersion: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSampleProtection.VTable, self.vtable).GetOutputProtectionVersion(@ptrCast(*const IMFSampleProtection, self), pdwVersion);
+                return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetOutputProtectionVersion(@as(*const IMFSampleProtection, @ptrCast(self)), pdwVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleProtection_GetProtectionCertificate(self: *const T, dwVersion: u32, ppCert: ?*?*u8, pcbCert: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSampleProtection.VTable, self.vtable).GetProtectionCertificate(@ptrCast(*const IMFSampleProtection, self), dwVersion, ppCert, pcbCert);
+                return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetProtectionCertificate(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, ppCert, pcbCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleProtection_InitOutputProtection(self: *const T, dwVersion: u32, dwOutputId: u32, pbCert: ?*u8, cbCert: u32, ppbSeed: ?*?*u8, pcbSeed: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSampleProtection.VTable, self.vtable).InitOutputProtection(@ptrCast(*const IMFSampleProtection, self), dwVersion, dwOutputId, pbCert, cbCert, ppbSeed, pcbSeed);
+                return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).InitOutputProtection(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, dwOutputId, pbCert, cbCert, ppbSeed, pcbSeed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleProtection_InitInputProtection(self: *const T, dwVersion: u32, dwInputId: u32, pbSeed: ?*u8, cbSeed: u32) HRESULT {
-                return @ptrCast(*const IMFSampleProtection.VTable, self.vtable).InitInputProtection(@ptrCast(*const IMFSampleProtection, self), dwVersion, dwInputId, pbSeed, cbSeed);
+                return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).InitInputProtection(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, dwInputId, pbSeed, cbSeed);
             }
         };
     }
@@ -24363,7 +24363,7 @@ pub const IMFMediaSinkPreroll = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSinkPreroll_NotifyPreroll(self: *const T, hnsUpcomingStartTime: i64) HRESULT {
-                return @ptrCast(*const IMFMediaSinkPreroll.VTable, self.vtable).NotifyPreroll(@ptrCast(*const IMFMediaSinkPreroll, self), hnsUpcomingStartTime);
+                return @as(*const IMFMediaSinkPreroll.VTable, @ptrCast(self.vtable)).NotifyPreroll(@as(*const IMFMediaSinkPreroll, @ptrCast(self)), hnsUpcomingStartTime);
             }
         };
     }
@@ -24405,11 +24405,11 @@ pub const IMFFinalizableMediaSink = extern struct {
             pub usingnamespace IMFMediaSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFFinalizableMediaSink_BeginFinalize(self: *const T, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFFinalizableMediaSink.VTable, self.vtable).BeginFinalize(@ptrCast(*const IMFFinalizableMediaSink, self), pCallback, punkState);
+                return @as(*const IMFFinalizableMediaSink.VTable, @ptrCast(self.vtable)).BeginFinalize(@as(*const IMFFinalizableMediaSink, @ptrCast(self)), pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFFinalizableMediaSink_EndFinalize(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFFinalizableMediaSink.VTable, self.vtable).EndFinalize(@ptrCast(*const IMFFinalizableMediaSink, self), pResult);
+                return @as(*const IMFFinalizableMediaSink.VTable, @ptrCast(self.vtable)).EndFinalize(@as(*const IMFFinalizableMediaSink, @ptrCast(self)), pResult);
             }
         };
     }
@@ -24441,7 +24441,7 @@ pub const IMFStreamingSinkConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFStreamingSinkConfig_StartStreaming(self: *const T, fSeekOffsetIsByteOffset: BOOL, qwSeekOffset: u64) HRESULT {
-                return @ptrCast(*const IMFStreamingSinkConfig.VTable, self.vtable).StartStreaming(@ptrCast(*const IMFStreamingSinkConfig, self), fSeekOffsetIsByteOffset, qwSeekOffset);
+                return @as(*const IMFStreamingSinkConfig.VTable, @ptrCast(self.vtable)).StartStreaming(@as(*const IMFStreamingSinkConfig, @ptrCast(self)), fSeekOffsetIsByteOffset, qwSeekOffset);
             }
         };
     }
@@ -24485,11 +24485,11 @@ pub const IMFRemoteProxy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRemoteProxy_GetRemoteObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFRemoteProxy.VTable, self.vtable).GetRemoteObject(@ptrCast(*const IMFRemoteProxy, self), riid, ppv);
+                return @as(*const IMFRemoteProxy.VTable, @ptrCast(self.vtable)).GetRemoteObject(@as(*const IMFRemoteProxy, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRemoteProxy_GetRemoteHost(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFRemoteProxy.VTable, self.vtable).GetRemoteHost(@ptrCast(*const IMFRemoteProxy, self), riid, ppv);
+                return @as(*const IMFRemoteProxy.VTable, @ptrCast(self.vtable)).GetRemoteHost(@as(*const IMFRemoteProxy, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -24533,11 +24533,11 @@ pub const IMFObjectReferenceStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFObjectReferenceStream_SaveReference(self: *const T, riid: ?*const Guid, pUnk: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFObjectReferenceStream.VTable, self.vtable).SaveReference(@ptrCast(*const IMFObjectReferenceStream, self), riid, pUnk);
+                return @as(*const IMFObjectReferenceStream.VTable, @ptrCast(self.vtable)).SaveReference(@as(*const IMFObjectReferenceStream, @ptrCast(self)), riid, pUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFObjectReferenceStream_LoadReference(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFObjectReferenceStream.VTable, self.vtable).LoadReference(@ptrCast(*const IMFObjectReferenceStream, self), riid, ppv);
+                return @as(*const IMFObjectReferenceStream.VTable, @ptrCast(self.vtable)).LoadReference(@as(*const IMFObjectReferenceStream, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -24589,15 +24589,15 @@ pub const IMFPMPHost = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHost_LockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPHost.VTable, self.vtable).LockProcess(@ptrCast(*const IMFPMPHost, self));
+                return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPHost, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHost_UnlockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPHost.VTable, self.vtable).UnlockProcess(@ptrCast(*const IMFPMPHost, self));
+                return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPHost, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHost_CreateObjectByCLSID(self: *const T, clsid: ?*const Guid, pStream: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFPMPHost.VTable, self.vtable).CreateObjectByCLSID(@ptrCast(*const IMFPMPHost, self), clsid, pStream, riid, ppv);
+                return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).CreateObjectByCLSID(@as(*const IMFPMPHost, @ptrCast(self)), clsid, pStream, riid, ppv);
             }
         };
     }
@@ -24627,7 +24627,7 @@ pub const IMFPMPClient = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPClient_SetPMPHost(self: *const T, pPMPHost: ?*IMFPMPHost) HRESULT {
-                return @ptrCast(*const IMFPMPClient.VTable, self.vtable).SetPMPHost(@ptrCast(*const IMFPMPClient, self), pPMPHost);
+                return @as(*const IMFPMPClient.VTable, @ptrCast(self.vtable)).SetPMPHost(@as(*const IMFPMPClient, @ptrCast(self)), pPMPHost);
             }
         };
     }
@@ -24677,15 +24677,15 @@ pub const IMFPMPServer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPServer_LockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPServer.VTable, self.vtable).LockProcess(@ptrCast(*const IMFPMPServer, self));
+                return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPServer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPServer_UnlockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPServer.VTable, self.vtable).UnlockProcess(@ptrCast(*const IMFPMPServer, self));
+                return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPServer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPServer_CreateObjectByCLSID(self: *const T, clsid: ?*const Guid, riid: ?*const Guid, ppObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFPMPServer.VTable, self.vtable).CreateObjectByCLSID(@ptrCast(*const IMFPMPServer, self), clsid, riid, ppObject);
+                return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).CreateObjectByCLSID(@as(*const IMFPMPServer, @ptrCast(self)), clsid, riid, ppObject);
             }
         };
     }
@@ -24715,7 +24715,7 @@ pub const IMFRemoteDesktopPlugin = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRemoteDesktopPlugin_UpdateTopology(self: *const T, pTopology: ?*IMFTopology) HRESULT {
-                return @ptrCast(*const IMFRemoteDesktopPlugin.VTable, self.vtable).UpdateTopology(@ptrCast(*const IMFRemoteDesktopPlugin, self), pTopology);
+                return @as(*const IMFRemoteDesktopPlugin.VTable, @ptrCast(self.vtable)).UpdateTopology(@as(*const IMFRemoteDesktopPlugin, @ptrCast(self)), pTopology);
             }
         };
     }
@@ -24775,19 +24775,19 @@ pub const IMFSAMIStyle = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSAMIStyle_GetStyleCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSAMIStyle.VTable, self.vtable).GetStyleCount(@ptrCast(*const IMFSAMIStyle, self), pdwCount);
+                return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetStyleCount(@as(*const IMFSAMIStyle, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSAMIStyle_GetStyles(self: *const T, pPropVarStyleArray: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFSAMIStyle.VTable, self.vtable).GetStyles(@ptrCast(*const IMFSAMIStyle, self), pPropVarStyleArray);
+                return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetStyles(@as(*const IMFSAMIStyle, @ptrCast(self)), pPropVarStyleArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSAMIStyle_SetSelectedStyle(self: *const T, pwszStyle: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFSAMIStyle.VTable, self.vtable).SetSelectedStyle(@ptrCast(*const IMFSAMIStyle, self), pwszStyle);
+                return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).SetSelectedStyle(@as(*const IMFSAMIStyle, @ptrCast(self)), pwszStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSAMIStyle_GetSelectedStyle(self: *const T, ppwszStyle: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFSAMIStyle.VTable, self.vtable).GetSelectedStyle(@ptrCast(*const IMFSAMIStyle, self), ppwszStyle);
+                return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetSelectedStyle(@as(*const IMFSAMIStyle, @ptrCast(self)), ppwszStyle);
             }
         };
     }
@@ -24867,27 +24867,27 @@ pub const IMFTranscodeProfile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_SetAudioAttributes(self: *const T, pAttrs: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetAudioAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetAudioAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_GetAudioAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetAudioAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetAudioAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_SetVideoAttributes(self: *const T, pAttrs: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetVideoAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetVideoAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_GetVideoAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetVideoAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetVideoAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_SetContainerAttributes(self: *const T, pAttrs: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).SetContainerAttributes(@ptrCast(*const IMFTranscodeProfile, self), pAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetContainerAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeProfile_GetContainerAttributes(self: *const T, ppAttrs: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFTranscodeProfile.VTable, self.vtable).GetContainerAttributes(@ptrCast(*const IMFTranscodeProfile, self), ppAttrs);
+                return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetContainerAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
             }
         };
     }
@@ -24975,19 +24975,19 @@ pub const IMFTranscodeSinkInfoProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeSinkInfoProvider_SetOutputFile(self: *const T, pwszFileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFTranscodeSinkInfoProvider.VTable, self.vtable).SetOutputFile(@ptrCast(*const IMFTranscodeSinkInfoProvider, self), pwszFileName);
+                return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetOutputFile(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pwszFileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeSinkInfoProvider_SetOutputByteStream(self: *const T, pByteStreamActivate: ?*IMFActivate) HRESULT {
-                return @ptrCast(*const IMFTranscodeSinkInfoProvider.VTable, self.vtable).SetOutputByteStream(@ptrCast(*const IMFTranscodeSinkInfoProvider, self), pByteStreamActivate);
+                return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pByteStreamActivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeSinkInfoProvider_SetProfile(self: *const T, pProfile: ?*IMFTranscodeProfile) HRESULT {
-                return @ptrCast(*const IMFTranscodeSinkInfoProvider.VTable, self.vtable).SetProfile(@ptrCast(*const IMFTranscodeSinkInfoProvider, self), pProfile);
+                return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetProfile(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTranscodeSinkInfoProvider_GetSinkInfo(self: *const T, pSinkInfo: ?*MF_TRANSCODE_SINK_INFO) HRESULT {
-                return @ptrCast(*const IMFTranscodeSinkInfoProvider.VTable, self.vtable).GetSinkInfo(@ptrCast(*const IMFTranscodeSinkInfoProvider, self), pSinkInfo);
+                return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).GetSinkInfo(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pSinkInfo);
             }
         };
     }
@@ -25017,7 +25017,7 @@ pub const IMFFieldOfUseMFTUnlock = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFFieldOfUseMFTUnlock_Unlock(self: *const T, pUnkMFT: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFFieldOfUseMFTUnlock.VTable, self.vtable).Unlock(@ptrCast(*const IMFFieldOfUseMFTUnlock, self), pUnkMFT);
+                return @as(*const IMFFieldOfUseMFTUnlock.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IMFFieldOfUseMFTUnlock, @ptrCast(self)), pUnkMFT);
             }
         };
     }
@@ -25060,7 +25060,7 @@ pub const IMFLocalMFTRegistration = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFLocalMFTRegistration_RegisterMFTs(self: *const T, pMFTs: [*]MFT_REGISTRATION_INFO, cMFTs: u32) HRESULT {
-                return @ptrCast(*const IMFLocalMFTRegistration.VTable, self.vtable).RegisterMFTs(@ptrCast(*const IMFLocalMFTRegistration, self), pMFTs, cMFTs);
+                return @as(*const IMFLocalMFTRegistration.VTable, @ptrCast(self.vtable)).RegisterMFTs(@as(*const IMFLocalMFTRegistration, @ptrCast(self)), pMFTs, cMFTs);
             }
         };
     }
@@ -25109,15 +25109,15 @@ pub const IMFCapturePhotoConfirmation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoConfirmation_SetPhotoConfirmationCallback(self: *const T, pNotificationCallback: ?*IMFAsyncCallback) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoConfirmation.VTable, self.vtable).SetPhotoConfirmationCallback(@ptrCast(*const IMFCapturePhotoConfirmation, self), pNotificationCallback);
+                return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).SetPhotoConfirmationCallback(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), pNotificationCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoConfirmation_SetPixelFormat(self: *const T, subtype: Guid) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoConfirmation.VTable, self.vtable).SetPixelFormat(@ptrCast(*const IMFCapturePhotoConfirmation, self), subtype);
+                return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).SetPixelFormat(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), subtype);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoConfirmation_GetPixelFormat(self: *const T, subtype: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoConfirmation.VTable, self.vtable).GetPixelFormat(@ptrCast(*const IMFCapturePhotoConfirmation, self), subtype);
+                return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), subtype);
             }
         };
     }
@@ -25169,15 +25169,15 @@ pub const IMFPMPHostApp = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHostApp_LockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPHostApp.VTable, self.vtable).LockProcess(@ptrCast(*const IMFPMPHostApp, self));
+                return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPHostApp, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHostApp_UnlockProcess(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMPHostApp.VTable, self.vtable).UnlockProcess(@ptrCast(*const IMFPMPHostApp, self));
+                return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPHostApp, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPHostApp_ActivateClassById(self: *const T, id: ?[*:0]const u16, pStream: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFPMPHostApp.VTable, self.vtable).ActivateClassById(@ptrCast(*const IMFPMPHostApp, self), id, pStream, riid, ppv);
+                return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).ActivateClassById(@as(*const IMFPMPHostApp, @ptrCast(self)), id, pStream, riid, ppv);
             }
         };
     }
@@ -25207,7 +25207,7 @@ pub const IMFPMPClientApp = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMPClientApp_SetPMPHost(self: *const T, pPMPHost: ?*IMFPMPHostApp) HRESULT {
-                return @ptrCast(*const IMFPMPClientApp.VTable, self.vtable).SetPMPHost(@ptrCast(*const IMFPMPClientApp, self), pPMPHost);
+                return @as(*const IMFPMPClientApp.VTable, @ptrCast(self.vtable)).SetPMPHost(@as(*const IMFPMPClientApp, @ptrCast(self)), pPMPHost);
             }
         };
     }
@@ -25237,7 +25237,7 @@ pub const IMFMediaStreamSourceSampleRequest = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStreamSourceSampleRequest_SetSample(self: *const T, value: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFMediaStreamSourceSampleRequest.VTable, self.vtable).SetSample(@ptrCast(*const IMFMediaStreamSourceSampleRequest, self), value);
+                return @as(*const IMFMediaStreamSourceSampleRequest.VTable, @ptrCast(self.vtable)).SetSample(@as(*const IMFMediaStreamSourceSampleRequest, @ptrCast(self)), value);
             }
         };
     }
@@ -25269,7 +25269,7 @@ pub const IMFTrackedSample = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTrackedSample_SetAllocator(self: *const T, pSampleAllocator: ?*IMFAsyncCallback, pUnkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFTrackedSample.VTable, self.vtable).SetAllocator(@ptrCast(*const IMFTrackedSample, self), pSampleAllocator, pUnkState);
+                return @as(*const IMFTrackedSample.VTable, @ptrCast(self.vtable)).SetAllocator(@as(*const IMFTrackedSample, @ptrCast(self)), pSampleAllocator, pUnkState);
             }
         };
     }
@@ -25321,11 +25321,11 @@ pub const IMFProtectedEnvironmentAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFProtectedEnvironmentAccess_Call(self: *const T, inputLength: u32, input: ?*const u8, outputLength: u32, output: ?*u8) HRESULT {
-                return @ptrCast(*const IMFProtectedEnvironmentAccess.VTable, self.vtable).Call(@ptrCast(*const IMFProtectedEnvironmentAccess, self), inputLength, input, outputLength, output);
+                return @as(*const IMFProtectedEnvironmentAccess.VTable, @ptrCast(self.vtable)).Call(@as(*const IMFProtectedEnvironmentAccess, @ptrCast(self)), inputLength, input, outputLength, output);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFProtectedEnvironmentAccess_ReadGRL(self: *const T, outputLength: ?*u32, output: ?*?*u8) HRESULT {
-                return @ptrCast(*const IMFProtectedEnvironmentAccess.VTable, self.vtable).ReadGRL(@ptrCast(*const IMFProtectedEnvironmentAccess, self), outputLength, output);
+                return @as(*const IMFProtectedEnvironmentAccess.VTable, @ptrCast(self.vtable)).ReadGRL(@as(*const IMFProtectedEnvironmentAccess, @ptrCast(self)), outputLength, output);
             }
         };
     }
@@ -25357,7 +25357,7 @@ pub const IMFSignedLibrary = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSignedLibrary_GetProcedureAddress(self: *const T, name: ?[*:0]const u8, address: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFSignedLibrary.VTable, self.vtable).GetProcedureAddress(@ptrCast(*const IMFSignedLibrary, self), name, address);
+                return @as(*const IMFSignedLibrary.VTable, @ptrCast(self.vtable)).GetProcedureAddress(@as(*const IMFSignedLibrary, @ptrCast(self)), name, address);
             }
         };
     }
@@ -25409,11 +25409,11 @@ pub const IMFSystemId = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSystemId_GetData(self: *const T, size: ?*u32, data: ?*?*u8) HRESULT {
-                return @ptrCast(*const IMFSystemId.VTable, self.vtable).GetData(@ptrCast(*const IMFSystemId, self), size, data);
+                return @as(*const IMFSystemId.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFSystemId, @ptrCast(self)), size, data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSystemId_Setup(self: *const T, stage: u32, cbIn: u32, pbIn: ?*const u8, pcbOut: ?*u32, ppbOut: ?*?*u8) HRESULT {
-                return @ptrCast(*const IMFSystemId.VTable, self.vtable).Setup(@ptrCast(*const IMFSystemId, self), stage, cbIn, pbIn, pcbOut, ppbOut);
+                return @as(*const IMFSystemId.VTable, @ptrCast(self.vtable)).Setup(@as(*const IMFSystemId, @ptrCast(self)), stage, cbIn, pbIn, pcbOut, ppbOut);
             }
         };
     }
@@ -25491,11 +25491,11 @@ pub const IMFContentProtectionDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentProtectionDevice_InvokeFunction(self: *const T, FunctionId: u32, InputBufferByteCount: u32, InputBuffer: ?*const u8, OutputBufferByteCount: ?*u32, OutputBuffer: ?*u8) HRESULT {
-                return @ptrCast(*const IMFContentProtectionDevice.VTable, self.vtable).InvokeFunction(@ptrCast(*const IMFContentProtectionDevice, self), FunctionId, InputBufferByteCount, InputBuffer, OutputBufferByteCount, OutputBuffer);
+                return @as(*const IMFContentProtectionDevice.VTable, @ptrCast(self.vtable)).InvokeFunction(@as(*const IMFContentProtectionDevice, @ptrCast(self)), FunctionId, InputBufferByteCount, InputBuffer, OutputBufferByteCount, OutputBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentProtectionDevice_GetPrivateDataByteCount(self: *const T, PrivateInputByteCount: ?*u32, PrivateOutputByteCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFContentProtectionDevice.VTable, self.vtable).GetPrivateDataByteCount(@ptrCast(*const IMFContentProtectionDevice, self), PrivateInputByteCount, PrivateOutputByteCount);
+                return @as(*const IMFContentProtectionDevice.VTable, @ptrCast(self.vtable)).GetPrivateDataByteCount(@as(*const IMFContentProtectionDevice, @ptrCast(self)), PrivateInputByteCount, PrivateOutputByteCount);
             }
         };
     }
@@ -25529,7 +25529,7 @@ pub const IMFContentDecryptorContext = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptorContext_InitializeHardwareKey(self: *const T, InputPrivateDataByteCount: u32, InputPrivateData: ?[*]const u8, OutputPrivateData: ?*u64) HRESULT {
-                return @ptrCast(*const IMFContentDecryptorContext.VTable, self.vtable).InitializeHardwareKey(@ptrCast(*const IMFContentDecryptorContext, self), InputPrivateDataByteCount, InputPrivateData, OutputPrivateData);
+                return @as(*const IMFContentDecryptorContext.VTable, @ptrCast(self.vtable)).InitializeHardwareKey(@as(*const IMFContentDecryptorContext, @ptrCast(self)), InputPrivateDataByteCount, InputPrivateData, OutputPrivateData);
             }
         };
     }
@@ -25637,15 +25637,15 @@ pub const IMFNetCrossOriginSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCrossOriginSupport_GetCrossOriginPolicy(self: *const T, pPolicy: ?*MF_CROSS_ORIGIN_POLICY) HRESULT {
-                return @ptrCast(*const IMFNetCrossOriginSupport.VTable, self.vtable).GetCrossOriginPolicy(@ptrCast(*const IMFNetCrossOriginSupport, self), pPolicy);
+                return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).GetCrossOriginPolicy(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), pPolicy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCrossOriginSupport_GetSourceOrigin(self: *const T, wszSourceOrigin: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFNetCrossOriginSupport.VTable, self.vtable).GetSourceOrigin(@ptrCast(*const IMFNetCrossOriginSupport, self), wszSourceOrigin);
+                return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).GetSourceOrigin(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), wszSourceOrigin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFNetCrossOriginSupport_IsSameOrigin(self: *const T, wszURL: ?[*:0]const u16, pfIsSameOrigin: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFNetCrossOriginSupport.VTable, self.vtable).IsSameOrigin(@ptrCast(*const IMFNetCrossOriginSupport, self), wszURL, pfIsSameOrigin);
+                return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).IsSameOrigin(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), wszURL, pfIsSameOrigin);
             }
         };
     }
@@ -25849,67 +25849,67 @@ pub const IMFHttpDownloadRequest = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_AddHeader(self: *const T, szHeader: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).AddHeader(@ptrCast(*const IMFHttpDownloadRequest, self), szHeader);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).AddHeader(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), szHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_BeginSendRequest(self: *const T, pbPayload: ?[*:0]const u8, cbPayload: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).BeginSendRequest(@ptrCast(*const IMFHttpDownloadRequest, self), pbPayload, cbPayload, pCallback, punkState);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginSendRequest(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pbPayload, cbPayload, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_EndSendRequest(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).EndSendRequest(@ptrCast(*const IMFHttpDownloadRequest, self), pResult);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndSendRequest(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_BeginReceiveResponse(self: *const T, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).BeginReceiveResponse(@ptrCast(*const IMFHttpDownloadRequest, self), pCallback, punkState);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginReceiveResponse(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_EndReceiveResponse(self: *const T, pResult: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).EndReceiveResponse(@ptrCast(*const IMFHttpDownloadRequest, self), pResult);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndReceiveResponse(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_BeginReadPayload(self: *const T, pb: [*:0]u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).BeginReadPayload(@ptrCast(*const IMFHttpDownloadRequest, self), pb, cb, pCallback, punkState);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginReadPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pb, cb, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_EndReadPayload(self: *const T, pResult: ?*IMFAsyncResult, pqwOffset: ?*u64, pcbRead: ?*u32) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).EndReadPayload(@ptrCast(*const IMFHttpDownloadRequest, self), pResult, pqwOffset, pcbRead);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndReadPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult, pqwOffset, pcbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_QueryHeader(self: *const T, szHeaderName: ?[*:0]const u16, dwIndex: u32, ppszHeaderValue: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).QueryHeader(@ptrCast(*const IMFHttpDownloadRequest, self), szHeaderName, dwIndex, ppszHeaderValue);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).QueryHeader(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), szHeaderName, dwIndex, ppszHeaderValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetURL(self: *const T, ppszURL: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetURL(@ptrCast(*const IMFHttpDownloadRequest, self), ppszURL);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), ppszURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_HasNullSourceOrigin(self: *const T, pfNullSourceOrigin: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).HasNullSourceOrigin(@ptrCast(*const IMFHttpDownloadRequest, self), pfNullSourceOrigin);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).HasNullSourceOrigin(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pfNullSourceOrigin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetTimeSeekResult(self: *const T, pqwStartTime: ?*u64, pqwStopTime: ?*u64, pqwDuration: ?*u64) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetTimeSeekResult(@ptrCast(*const IMFHttpDownloadRequest, self), pqwStartTime, pqwStopTime, pqwDuration);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetTimeSeekResult(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwStartTime, pqwStopTime, pqwDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetHttpStatus(self: *const T, pdwHttpStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetHttpStatus(@ptrCast(*const IMFHttpDownloadRequest, self), pdwHttpStatus);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetHttpStatus(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pdwHttpStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetAtEndOfPayload(self: *const T, pfAtEndOfPayload: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetAtEndOfPayload(@ptrCast(*const IMFHttpDownloadRequest, self), pfAtEndOfPayload);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetAtEndOfPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pfAtEndOfPayload);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetTotalLength(self: *const T, pqwTotalLength: ?*u64) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetTotalLength(@ptrCast(*const IMFHttpDownloadRequest, self), pqwTotalLength);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetTotalLength(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwTotalLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_GetRangeEndOffset(self: *const T, pqwRangeEnd: ?*u64) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).GetRangeEndOffset(@ptrCast(*const IMFHttpDownloadRequest, self), pqwRangeEnd);
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetRangeEndOffset(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwRangeEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadRequest_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadRequest.VTable, self.vtable).Close(@ptrCast(*const IMFHttpDownloadRequest, self));
+                return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFHttpDownloadRequest, @ptrCast(self)));
             }
         };
     }
@@ -25969,15 +25969,15 @@ pub const IMFHttpDownloadSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadSession_SetServer(self: *const T, szServerName: ?[*:0]const u16, nPort: u32) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadSession.VTable, self.vtable).SetServer(@ptrCast(*const IMFHttpDownloadSession, self), szServerName, nPort);
+                return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).SetServer(@as(*const IMFHttpDownloadSession, @ptrCast(self)), szServerName, nPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadSession_CreateRequest(self: *const T, szObjectName: ?[*:0]const u16, fBypassProxyCache: BOOL, fSecure: BOOL, szVerb: ?[*:0]const u16, szReferrer: ?[*:0]const u16, ppRequest: ?*?*IMFHttpDownloadRequest) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadSession.VTable, self.vtable).CreateRequest(@ptrCast(*const IMFHttpDownloadSession, self), szObjectName, fBypassProxyCache, fSecure, szVerb, szReferrer, ppRequest);
+                return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IMFHttpDownloadSession, @ptrCast(self)), szObjectName, fBypassProxyCache, fSecure, szVerb, szReferrer, ppRequest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadSession_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadSession.VTable, self.vtable).Close(@ptrCast(*const IMFHttpDownloadSession, self));
+                return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFHttpDownloadSession, @ptrCast(self)));
             }
         };
     }
@@ -26009,7 +26009,7 @@ pub const IMFHttpDownloadSessionProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHttpDownloadSessionProvider_CreateHttpDownloadSession(self: *const T, wszScheme: ?[*:0]const u16, ppDownloadSession: ?*?*IMFHttpDownloadSession) HRESULT {
-                return @ptrCast(*const IMFHttpDownloadSessionProvider.VTable, self.vtable).CreateHttpDownloadSession(@ptrCast(*const IMFHttpDownloadSessionProvider, self), wszScheme, ppDownloadSession);
+                return @as(*const IMFHttpDownloadSessionProvider.VTable, @ptrCast(self.vtable)).CreateHttpDownloadSession(@as(*const IMFHttpDownloadSessionProvider, @ptrCast(self)), wszScheme, ppDownloadSession);
             }
         };
     }
@@ -26046,7 +26046,7 @@ pub const IMFMediaSource2 = extern struct {
             pub usingnamespace IMFMediaSourceEx.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSource2_SetMediaType(self: *const T, dwStreamID: u32, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFMediaSource2.VTable, self.vtable).SetMediaType(@ptrCast(*const IMFMediaSource2, self), dwStreamID, pMediaType);
+                return @as(*const IMFMediaSource2.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const IMFMediaSource2, @ptrCast(self)), dwStreamID, pMediaType);
             }
         };
     }
@@ -26085,11 +26085,11 @@ pub const IMFMediaStream2 = extern struct {
             pub usingnamespace IMFMediaStream.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStream2_SetStreamState(self: *const T, value: MF_STREAM_STATE) HRESULT {
-                return @ptrCast(*const IMFMediaStream2.VTable, self.vtable).SetStreamState(@ptrCast(*const IMFMediaStream2, self), value);
+                return @as(*const IMFMediaStream2.VTable, @ptrCast(self.vtable)).SetStreamState(@as(*const IMFMediaStream2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaStream2_GetStreamState(self: *const T, value: ?*MF_STREAM_STATE) HRESULT {
-                return @ptrCast(*const IMFMediaStream2.VTable, self.vtable).GetStreamState(@ptrCast(*const IMFMediaStream2, self), value);
+                return @as(*const IMFMediaStream2.VTable, @ptrCast(self.vtable)).GetStreamState(@as(*const IMFMediaStream2, @ptrCast(self)), value);
             }
         };
     }
@@ -26238,39 +26238,39 @@ pub const IMFSensorDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetDeviceId(self: *const T, pDeviceId: ?*u64) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetDeviceId(@ptrCast(*const IMFSensorDevice, self), pDeviceId);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const IMFSensorDevice, @ptrCast(self)), pDeviceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetDeviceType(self: *const T, pType: ?*MFSensorDeviceType) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetDeviceType(@ptrCast(*const IMFSensorDevice, self), pType);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceType(@as(*const IMFSensorDevice, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetFlags(self: *const T, pFlags: ?*u64) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetFlags(@ptrCast(*const IMFSensorDevice, self), pFlags);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFSensorDevice, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetSymbolicLink(self: *const T, SymbolicLink: [*:0]u16, cchSymbolicLink: i32, pcchWritten: ?*i32) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetSymbolicLink(@ptrCast(*const IMFSensorDevice, self), SymbolicLink, cchSymbolicLink, pcchWritten);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorDevice, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetDeviceAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetDeviceAttributes(@ptrCast(*const IMFSensorDevice, self), ppAttributes);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceAttributes(@as(*const IMFSensorDevice, @ptrCast(self)), ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetStreamAttributesCount(self: *const T, eType: MFSensorStreamType, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetStreamAttributesCount(@ptrCast(*const IMFSensorDevice, self), eType, pdwCount);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetStreamAttributesCount(@as(*const IMFSensorDevice, @ptrCast(self)), eType, pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetStreamAttributes(self: *const T, eType: MFSensorStreamType, dwIndex: u32, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetStreamAttributes(@ptrCast(*const IMFSensorDevice, self), eType, dwIndex, ppAttributes);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetStreamAttributes(@as(*const IMFSensorDevice, @ptrCast(self)), eType, dwIndex, ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_SetSensorDeviceMode(self: *const T, eMode: MFSensorDeviceMode) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).SetSensorDeviceMode(@ptrCast(*const IMFSensorDevice, self), eMode);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).SetSensorDeviceMode(@as(*const IMFSensorDevice, @ptrCast(self)), eMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorDevice_GetSensorDeviceMode(self: *const T, peMode: ?*MFSensorDeviceMode) HRESULT {
-                return @ptrCast(*const IMFSensorDevice.VTable, self.vtable).GetSensorDeviceMode(@ptrCast(*const IMFSensorDevice, self), peMode);
+                return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetSensorDeviceMode(@as(*const IMFSensorDevice, @ptrCast(self)), peMode);
             }
         };
     }
@@ -26376,35 +26376,35 @@ pub const IMFSensorGroup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetSymbolicLink(self: *const T, SymbolicLink: [*:0]u16, cchSymbolicLink: i32, pcchWritten: ?*i32) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetSymbolicLink(@ptrCast(*const IMFSensorGroup, self), SymbolicLink, cchSymbolicLink, pcchWritten);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorGroup, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetFlags(self: *const T, pFlags: ?*u64) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetFlags(@ptrCast(*const IMFSensorGroup, self), pFlags);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFSensorGroup, @ptrCast(self)), pFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetSensorGroupAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetSensorGroupAttributes(@ptrCast(*const IMFSensorGroup, self), ppAttributes);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorGroupAttributes(@as(*const IMFSensorGroup, @ptrCast(self)), ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetSensorDeviceCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetSensorDeviceCount(@ptrCast(*const IMFSensorGroup, self), pdwCount);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorDeviceCount(@as(*const IMFSensorGroup, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetSensorDevice(self: *const T, dwIndex: u32, ppDevice: ?*?*IMFSensorDevice) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetSensorDevice(@ptrCast(*const IMFSensorGroup, self), dwIndex, ppDevice);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorDevice(@as(*const IMFSensorGroup, @ptrCast(self)), dwIndex, ppDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_SetDefaultSensorDeviceIndex(self: *const T, dwIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).SetDefaultSensorDeviceIndex(@ptrCast(*const IMFSensorGroup, self), dwIndex);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).SetDefaultSensorDeviceIndex(@as(*const IMFSensorGroup, @ptrCast(self)), dwIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_GetDefaultSensorDeviceIndex(self: *const T, pdwIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).GetDefaultSensorDeviceIndex(@ptrCast(*const IMFSensorGroup, self), pdwIndex);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetDefaultSensorDeviceIndex(@as(*const IMFSensorGroup, @ptrCast(self)), pdwIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorGroup_CreateMediaSource(self: *const T, ppSource: ?*?*IMFMediaSource) HRESULT {
-                return @ptrCast(*const IMFSensorGroup.VTable, self.vtable).CreateMediaSource(@ptrCast(*const IMFSensorGroup, self), ppSource);
+                return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).CreateMediaSource(@as(*const IMFSensorGroup, @ptrCast(self)), ppSource);
             }
         };
     }
@@ -26456,15 +26456,15 @@ pub const IMFSensorStream = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorStream_GetMediaTypeCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorStream.VTable, self.vtable).GetMediaTypeCount(@ptrCast(*const IMFSensorStream, self), pdwCount);
+                return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).GetMediaTypeCount(@as(*const IMFSensorStream, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorStream_GetMediaType(self: *const T, dwIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFSensorStream.VTable, self.vtable).GetMediaType(@ptrCast(*const IMFSensorStream, self), dwIndex, ppMediaType);
+                return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFSensorStream, @ptrCast(self)), dwIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorStream_CloneSensorStream(self: *const T, ppStream: ?*?*IMFSensorStream) HRESULT {
-                return @ptrCast(*const IMFSensorStream.VTable, self.vtable).CloneSensorStream(@ptrCast(*const IMFSensorStream, self), ppStream);
+                return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).CloneSensorStream(@as(*const IMFSensorStream, @ptrCast(self)), ppStream);
             }
         };
     }
@@ -26548,23 +26548,23 @@ pub const IMFSensorTransformFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorTransformFactory_GetFactoryAttributes(self: *const T, ppAttributes: ?*?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).GetFactoryAttributes(@ptrCast(*const IMFSensorTransformFactory, self), ppAttributes);
+                return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetFactoryAttributes(@as(*const IMFSensorTransformFactory, @ptrCast(self)), ppAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorTransformFactory_InitializeFactory(self: *const T, dwMaxTransformCount: u32, pSensorDevices: ?*IMFCollection, pAttributes: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).InitializeFactory(@ptrCast(*const IMFSensorTransformFactory, self), dwMaxTransformCount, pSensorDevices, pAttributes);
+                return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).InitializeFactory(@as(*const IMFSensorTransformFactory, @ptrCast(self)), dwMaxTransformCount, pSensorDevices, pAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorTransformFactory_GetTransformCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).GetTransformCount(@ptrCast(*const IMFSensorTransformFactory, self), pdwCount);
+                return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetTransformCount(@as(*const IMFSensorTransformFactory, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorTransformFactory_GetTransformInformation(self: *const T, TransformIndex: u32, pguidTransformId: ?*Guid, ppAttributes: ?*?*IMFAttributes, ppStreamInformation: ?*?*IMFCollection) HRESULT {
-                return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).GetTransformInformation(@ptrCast(*const IMFSensorTransformFactory, self), TransformIndex, pguidTransformId, ppAttributes, ppStreamInformation);
+                return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetTransformInformation(@as(*const IMFSensorTransformFactory, @ptrCast(self)), TransformIndex, pguidTransformId, ppAttributes, ppStreamInformation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorTransformFactory_CreateTransform(self: *const T, guidSensorTransformID: ?*const Guid, pAttributes: ?*IMFAttributes, ppDeviceMFT: ?*?*IMFDeviceTransform) HRESULT {
-                return @ptrCast(*const IMFSensorTransformFactory.VTable, self.vtable).CreateTransform(@ptrCast(*const IMFSensorTransformFactory, self), guidSensorTransformID, pAttributes, ppDeviceMFT);
+                return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).CreateTransform(@as(*const IMFSensorTransformFactory, @ptrCast(self)), guidSensorTransformID, pAttributes, ppDeviceMFT);
             }
         };
     }
@@ -26636,19 +26636,19 @@ pub const IMFSensorProfile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfile_GetProfileId(self: *const T, pId: ?*SENSORPROFILEID) HRESULT {
-                return @ptrCast(*const IMFSensorProfile.VTable, self.vtable).GetProfileId(@ptrCast(*const IMFSensorProfile, self), pId);
+                return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).GetProfileId(@as(*const IMFSensorProfile, @ptrCast(self)), pId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfile_AddProfileFilter(self: *const T, StreamId: u32, wzFilterSetString: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFSensorProfile.VTable, self.vtable).AddProfileFilter(@ptrCast(*const IMFSensorProfile, self), StreamId, wzFilterSetString);
+                return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).AddProfileFilter(@as(*const IMFSensorProfile, @ptrCast(self)), StreamId, wzFilterSetString);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfile_IsMediaTypeSupported(self: *const T, StreamId: u32, pMediaType: ?*IMFMediaType, pfSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSensorProfile.VTable, self.vtable).IsMediaTypeSupported(@ptrCast(*const IMFSensorProfile, self), StreamId, pMediaType, pfSupported);
+                return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).IsMediaTypeSupported(@as(*const IMFSensorProfile, @ptrCast(self)), StreamId, pMediaType, pfSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfile_AddBlockedControl(self: *const T, wzBlockedControl: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFSensorProfile.VTable, self.vtable).AddBlockedControl(@ptrCast(*const IMFSensorProfile, self), wzBlockedControl);
+                return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).AddBlockedControl(@as(*const IMFSensorProfile, @ptrCast(self)), wzBlockedControl);
             }
         };
     }
@@ -26730,27 +26730,27 @@ pub const IMFSensorProfileCollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_GetProfileCount(self: *const T) u32 {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).GetProfileCount(@ptrCast(*const IMFSensorProfileCollection, self));
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).GetProfileCount(@as(*const IMFSensorProfileCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_GetProfile(self: *const T, Index: u32, ppProfile: ?*?*IMFSensorProfile) HRESULT {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).GetProfile(@ptrCast(*const IMFSensorProfileCollection, self), Index, ppProfile);
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), Index, ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_AddProfile(self: *const T, pProfile: ?*IMFSensorProfile) HRESULT {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).AddProfile(@ptrCast(*const IMFSensorProfileCollection, self), pProfile);
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).AddProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), pProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_FindProfile(self: *const T, ProfileId: ?*SENSORPROFILEID, ppProfile: ?*?*IMFSensorProfile) HRESULT {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).FindProfile(@ptrCast(*const IMFSensorProfileCollection, self), ProfileId, ppProfile);
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).FindProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), ProfileId, ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_RemoveProfileByIndex(self: *const T, Index: u32) void {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).RemoveProfileByIndex(@ptrCast(*const IMFSensorProfileCollection, self), Index);
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).RemoveProfileByIndex(@as(*const IMFSensorProfileCollection, @ptrCast(self)), Index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProfileCollection_RemoveProfile(self: *const T, ProfileId: ?*SENSORPROFILEID) void {
-                return @ptrCast(*const IMFSensorProfileCollection.VTable, self.vtable).RemoveProfile(@ptrCast(*const IMFSensorProfileCollection, self), ProfileId);
+                return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).RemoveProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), ProfileId);
             }
         };
     }
@@ -26810,19 +26810,19 @@ pub const IMFSensorProcessActivity = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProcessActivity_GetProcessId(self: *const T, pPID: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorProcessActivity.VTable, self.vtable).GetProcessId(@ptrCast(*const IMFSensorProcessActivity, self), pPID);
+                return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetProcessId(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pPID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProcessActivity_GetStreamingState(self: *const T, pfStreaming: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSensorProcessActivity.VTable, self.vtable).GetStreamingState(@ptrCast(*const IMFSensorProcessActivity, self), pfStreaming);
+                return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetStreamingState(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pfStreaming);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProcessActivity_GetStreamingMode(self: *const T, pMode: ?*MFSensorDeviceMode) HRESULT {
-                return @ptrCast(*const IMFSensorProcessActivity.VTable, self.vtable).GetStreamingMode(@ptrCast(*const IMFSensorProcessActivity, self), pMode);
+                return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetStreamingMode(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorProcessActivity_GetReportTime(self: *const T, pft: ?*FILETIME) HRESULT {
-                return @ptrCast(*const IMFSensorProcessActivity.VTable, self.vtable).GetReportTime(@ptrCast(*const IMFSensorProcessActivity, self), pft);
+                return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetReportTime(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pft);
             }
         };
     }
@@ -26892,19 +26892,19 @@ pub const IMFSensorActivityReport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityReport_GetFriendlyName(self: *const T, FriendlyName: [*:0]u16, cchFriendlyName: u32, pcchWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorActivityReport.VTable, self.vtable).GetFriendlyName(@ptrCast(*const IMFSensorActivityReport, self), FriendlyName, cchFriendlyName, pcchWritten);
+                return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IMFSensorActivityReport, @ptrCast(self)), FriendlyName, cchFriendlyName, pcchWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityReport_GetSymbolicLink(self: *const T, SymbolicLink: [*:0]u16, cchSymbolicLink: u32, pcchWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorActivityReport.VTable, self.vtable).GetSymbolicLink(@ptrCast(*const IMFSensorActivityReport, self), SymbolicLink, cchSymbolicLink, pcchWritten);
+                return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorActivityReport, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityReport_GetProcessCount(self: *const T, pcCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorActivityReport.VTable, self.vtable).GetProcessCount(@ptrCast(*const IMFSensorActivityReport, self), pcCount);
+                return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetProcessCount(@as(*const IMFSensorActivityReport, @ptrCast(self)), pcCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityReport_GetProcessActivity(self: *const T, Index: u32, ppProcessActivity: ?*?*IMFSensorProcessActivity) HRESULT {
-                return @ptrCast(*const IMFSensorActivityReport.VTable, self.vtable).GetProcessActivity(@ptrCast(*const IMFSensorActivityReport, self), Index, ppProcessActivity);
+                return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetProcessActivity(@as(*const IMFSensorActivityReport, @ptrCast(self)), Index, ppProcessActivity);
             }
         };
     }
@@ -26958,15 +26958,15 @@ pub const IMFSensorActivitiesReport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivitiesReport_GetCount(self: *const T, pcCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSensorActivitiesReport.VTable, self.vtable).GetCount(@ptrCast(*const IMFSensorActivitiesReport, self), pcCount);
+                return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), pcCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivitiesReport_GetActivityReport(self: *const T, Index: u32, sensorActivityReport: ?*?*IMFSensorActivityReport) HRESULT {
-                return @ptrCast(*const IMFSensorActivitiesReport.VTable, self.vtable).GetActivityReport(@ptrCast(*const IMFSensorActivitiesReport, self), Index, sensorActivityReport);
+                return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetActivityReport(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), Index, sensorActivityReport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivitiesReport_GetActivityReportByDeviceName(self: *const T, SymbolicName: ?[*:0]const u16, sensorActivityReport: ?*?*IMFSensorActivityReport) HRESULT {
-                return @ptrCast(*const IMFSensorActivitiesReport.VTable, self.vtable).GetActivityReportByDeviceName(@ptrCast(*const IMFSensorActivitiesReport, self), SymbolicName, sensorActivityReport);
+                return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetActivityReportByDeviceName(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), SymbolicName, sensorActivityReport);
             }
         };
     }
@@ -26996,7 +26996,7 @@ pub const IMFSensorActivitiesReportCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivitiesReportCallback_OnActivitiesReport(self: *const T, sensorActivitiesReport: ?*IMFSensorActivitiesReport) HRESULT {
-                return @ptrCast(*const IMFSensorActivitiesReportCallback.VTable, self.vtable).OnActivitiesReport(@ptrCast(*const IMFSensorActivitiesReportCallback, self), sensorActivitiesReport);
+                return @as(*const IMFSensorActivitiesReportCallback.VTable, @ptrCast(self.vtable)).OnActivitiesReport(@as(*const IMFSensorActivitiesReportCallback, @ptrCast(self)), sensorActivitiesReport);
             }
         };
     }
@@ -27032,11 +27032,11 @@ pub const IMFSensorActivityMonitor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityMonitor_Start(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSensorActivityMonitor.VTable, self.vtable).Start(@ptrCast(*const IMFSensorActivityMonitor, self));
+                return @as(*const IMFSensorActivityMonitor.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFSensorActivityMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSensorActivityMonitor_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSensorActivityMonitor.VTable, self.vtable).Stop(@ptrCast(*const IMFSensorActivityMonitor, self));
+                return @as(*const IMFSensorActivityMonitor.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFSensorActivityMonitor, @ptrCast(self)));
             }
         };
     }
@@ -27125,15 +27125,15 @@ pub const IMFExtendedCameraIntrinsicModel = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicModel_GetModel(self: *const T, pIntrinsicModel: ?*MFExtendedCameraIntrinsic_IntrinsicModel) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicModel.VTable, self.vtable).GetModel(@ptrCast(*const IMFExtendedCameraIntrinsicModel, self), pIntrinsicModel);
+                return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).GetModel(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pIntrinsicModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicModel_SetModel(self: *const T, pIntrinsicModel: ?*const MFExtendedCameraIntrinsic_IntrinsicModel) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicModel.VTable, self.vtable).SetModel(@ptrCast(*const IMFExtendedCameraIntrinsicModel, self), pIntrinsicModel);
+                return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).SetModel(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pIntrinsicModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicModel_GetDistortionModelType(self: *const T, pDistortionModelType: ?*MFCameraIntrinsic_DistortionModelType) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicModel.VTable, self.vtable).GetDistortionModelType(@ptrCast(*const IMFExtendedCameraIntrinsicModel, self), pDistortionModelType);
+                return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).GetDistortionModelType(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pDistortionModelType);
             }
         };
     }
@@ -27172,11 +27172,11 @@ pub const IMFExtendedCameraIntrinsicsDistortionModel6KT = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicsDistortionModel6KT_GetDistortionModel(self: *const T, pDistortionModel: ?*MFCameraIntrinsic_DistortionModel6KT) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, self.vtable).GetDistortionModel(@ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, self), pDistortionModel);
+                return @as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, @ptrCast(self.vtable)).GetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, @ptrCast(self)), pDistortionModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicsDistortionModel6KT_SetDistortionModel(self: *const T, pDistortionModel: ?*const MFCameraIntrinsic_DistortionModel6KT) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, self.vtable).SetDistortionModel(@ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, self), pDistortionModel);
+                return @as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, @ptrCast(self.vtable)).SetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, @ptrCast(self)), pDistortionModel);
             }
         };
     }
@@ -27215,11 +27215,11 @@ pub const IMFExtendedCameraIntrinsicsDistortionModelArcTan = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicsDistortionModelArcTan_GetDistortionModel(self: *const T, pDistortionModel: ?*MFCameraIntrinsic_DistortionModelArcTan) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, self.vtable).GetDistortionModel(@ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, self), pDistortionModel);
+                return @as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, @ptrCast(self.vtable)).GetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, @ptrCast(self)), pDistortionModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsicsDistortionModelArcTan_SetDistortionModel(self: *const T, pDistortionModel: ?*const MFCameraIntrinsic_DistortionModelArcTan) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, self.vtable).SetDistortionModel(@ptrCast(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, self), pDistortionModel);
+                return @as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, @ptrCast(self.vtable)).SetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, @ptrCast(self)), pDistortionModel);
             }
         };
     }
@@ -27308,27 +27308,27 @@ pub const IMFExtendedCameraIntrinsics = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_InitializeFromBuffer(self: *const T, pbBuffer: ?*u8, dwBufferSize: u32) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).InitializeFromBuffer(@ptrCast(*const IMFExtendedCameraIntrinsics, self), pbBuffer, dwBufferSize);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).InitializeFromBuffer(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pbBuffer, dwBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_GetBufferSize(self: *const T, pdwBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).GetBufferSize(@ptrCast(*const IMFExtendedCameraIntrinsics, self), pdwBufferSize);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pdwBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_SerializeToBuffer(self: *const T, pbBuffer: ?*u8, pdwBufferSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).SerializeToBuffer(@ptrCast(*const IMFExtendedCameraIntrinsics, self), pbBuffer, pdwBufferSize);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).SerializeToBuffer(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pbBuffer, pdwBufferSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_GetIntrinsicModelCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).GetIntrinsicModelCount(@ptrCast(*const IMFExtendedCameraIntrinsics, self), pdwCount);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetIntrinsicModelCount(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pdwCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_GetIntrinsicModelByIndex(self: *const T, dwIndex: u32, ppIntrinsicModel: ?*?*IMFExtendedCameraIntrinsicModel) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).GetIntrinsicModelByIndex(@ptrCast(*const IMFExtendedCameraIntrinsics, self), dwIndex, ppIntrinsicModel);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetIntrinsicModelByIndex(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), dwIndex, ppIntrinsicModel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraIntrinsics_AddIntrinsicModel(self: *const T, pIntrinsicModel: ?*IMFExtendedCameraIntrinsicModel) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraIntrinsics.VTable, self.vtable).AddIntrinsicModel(@ptrCast(*const IMFExtendedCameraIntrinsics, self), pIntrinsicModel);
+                return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).AddIntrinsicModel(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pIntrinsicModel);
             }
         };
     }
@@ -27401,27 +27401,27 @@ pub const IMFExtendedCameraControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_GetCapabilities(self: *const T) u64 {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).GetCapabilities(@ptrCast(*const IMFExtendedCameraControl, self));
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_SetFlags(self: *const T, ulFlags: u64) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).SetFlags(@ptrCast(*const IMFExtendedCameraControl, self), ulFlags);
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFExtendedCameraControl, @ptrCast(self)), ulFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_GetFlags(self: *const T) u64 {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).GetFlags(@ptrCast(*const IMFExtendedCameraControl, self));
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_LockPayload(self: *const T, ppPayload: ?*?*u8, pulPayload: ?*u32) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).LockPayload(@ptrCast(*const IMFExtendedCameraControl, self), ppPayload, pulPayload);
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).LockPayload(@as(*const IMFExtendedCameraControl, @ptrCast(self)), ppPayload, pulPayload);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_UnlockPayload(self: *const T) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).UnlockPayload(@ptrCast(*const IMFExtendedCameraControl, self));
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).UnlockPayload(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraControl_CommitSettings(self: *const T) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraControl.VTable, self.vtable).CommitSettings(@ptrCast(*const IMFExtendedCameraControl, self));
+                return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).CommitSettings(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
             }
         };
     }
@@ -27454,7 +27454,7 @@ pub const IMFExtendedCameraController = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedCameraController_GetExtendedCameraControl(self: *const T, dwStreamIndex: u32, ulPropertyId: u32, ppControl: ?*?*IMFExtendedCameraControl) HRESULT {
-                return @ptrCast(*const IMFExtendedCameraController.VTable, self.vtable).GetExtendedCameraControl(@ptrCast(*const IMFExtendedCameraController, self), dwStreamIndex, ulPropertyId, ppControl);
+                return @as(*const IMFExtendedCameraController.VTable, @ptrCast(self.vtable)).GetExtendedCameraControl(@as(*const IMFExtendedCameraController, @ptrCast(self)), dwStreamIndex, ulPropertyId, ppControl);
             }
         };
     }
@@ -27484,7 +27484,7 @@ pub const IMFRelativePanelReport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRelativePanelReport_GetRelativePanel(self: *const T, panel: ?*u32) HRESULT {
-                return @ptrCast(*const IMFRelativePanelReport.VTable, self.vtable).GetRelativePanel(@ptrCast(*const IMFRelativePanelReport, self), panel);
+                return @as(*const IMFRelativePanelReport.VTable, @ptrCast(self.vtable)).GetRelativePanel(@as(*const IMFRelativePanelReport, @ptrCast(self)), panel);
             }
         };
     }
@@ -27538,15 +27538,15 @@ pub const IMFRelativePanelWatcher = extern struct {
             pub usingnamespace IMFShutdown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRelativePanelWatcher_BeginGetReport(self: *const T, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFRelativePanelWatcher.VTable, self.vtable).BeginGetReport(@ptrCast(*const IMFRelativePanelWatcher, self), pCallback, pState);
+                return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).BeginGetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), pCallback, pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRelativePanelWatcher_EndGetReport(self: *const T, pResult: ?*IMFAsyncResult, ppRelativePanelReport: ?*?*IMFRelativePanelReport) HRESULT {
-                return @ptrCast(*const IMFRelativePanelWatcher.VTable, self.vtable).EndGetReport(@ptrCast(*const IMFRelativePanelWatcher, self), pResult, ppRelativePanelReport);
+                return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).EndGetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), pResult, ppRelativePanelReport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFRelativePanelWatcher_GetReport(self: *const T, ppRelativePanelReport: ?*?*IMFRelativePanelReport) HRESULT {
-                return @ptrCast(*const IMFRelativePanelWatcher.VTable, self.vtable).GetReport(@ptrCast(*const IMFRelativePanelWatcher, self), ppRelativePanelReport);
+                return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).GetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), ppRelativePanelReport);
             }
         };
     }
@@ -27584,7 +27584,7 @@ pub const IMFCameraOcclusionStateReport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraOcclusionStateReport_GetOcclusionState(self: *const T, occlusionState: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCameraOcclusionStateReport.VTable, self.vtable).GetOcclusionState(@ptrCast(*const IMFCameraOcclusionStateReport, self), occlusionState);
+                return @as(*const IMFCameraOcclusionStateReport.VTable, @ptrCast(self.vtable)).GetOcclusionState(@as(*const IMFCameraOcclusionStateReport, @ptrCast(self)), occlusionState);
             }
         };
     }
@@ -27613,7 +27613,7 @@ pub const IMFCameraOcclusionStateReportCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraOcclusionStateReportCallback_OnOcclusionStateReport(self: *const T, occlusionStateReport: ?*IMFCameraOcclusionStateReport) HRESULT {
-                return @ptrCast(*const IMFCameraOcclusionStateReportCallback.VTable, self.vtable).OnOcclusionStateReport(@ptrCast(*const IMFCameraOcclusionStateReportCallback, self), occlusionStateReport);
+                return @as(*const IMFCameraOcclusionStateReportCallback.VTable, @ptrCast(self.vtable)).OnOcclusionStateReport(@as(*const IMFCameraOcclusionStateReportCallback, @ptrCast(self)), occlusionStateReport);
             }
         };
     }
@@ -27656,15 +27656,15 @@ pub const IMFCameraOcclusionStateMonitor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraOcclusionStateMonitor_Start(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCameraOcclusionStateMonitor.VTable, self.vtable).Start(@ptrCast(*const IMFCameraOcclusionStateMonitor, self));
+                return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraOcclusionStateMonitor_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCameraOcclusionStateMonitor.VTable, self.vtable).Stop(@ptrCast(*const IMFCameraOcclusionStateMonitor, self));
+                return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraOcclusionStateMonitor_GetSupportedStates(self: *const T) u32 {
-                return @ptrCast(*const IMFCameraOcclusionStateMonitor.VTable, self.vtable).GetSupportedStates(@ptrCast(*const IMFCameraOcclusionStateMonitor, self));
+                return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).GetSupportedStates(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
             }
         };
     }
@@ -27704,7 +27704,7 @@ pub const IMFVideoCaptureSampleAllocator = extern struct {
             pub usingnamespace IMFVideoSampleAllocator.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoCaptureSampleAllocator_InitializeCaptureSampleAllocator(self: *const T, cbSampleSize: u32, cbCaptureMetadataSize: u32, cbAlignment: u32, cMinimumSamples: u32, pAttributes: ?*IMFAttributes, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFVideoCaptureSampleAllocator.VTable, self.vtable).InitializeCaptureSampleAllocator(@ptrCast(*const IMFVideoCaptureSampleAllocator, self), cbSampleSize, cbCaptureMetadataSize, cbAlignment, cMinimumSamples, pAttributes, pMediaType);
+                return @as(*const IMFVideoCaptureSampleAllocator.VTable, @ptrCast(self.vtable)).InitializeCaptureSampleAllocator(@as(*const IMFVideoCaptureSampleAllocator, @ptrCast(self)), cbSampleSize, cbCaptureMetadataSize, cbAlignment, cMinimumSamples, pAttributes, pMediaType);
             }
         };
     }
@@ -27759,11 +27759,11 @@ pub const IMFSampleAllocatorControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleAllocatorControl_SetDefaultAllocator(self: *const T, dwOutputStreamID: u32, pAllocator: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSampleAllocatorControl.VTable, self.vtable).SetDefaultAllocator(@ptrCast(*const IMFSampleAllocatorControl, self), dwOutputStreamID, pAllocator);
+                return @as(*const IMFSampleAllocatorControl.VTable, @ptrCast(self.vtable)).SetDefaultAllocator(@as(*const IMFSampleAllocatorControl, @ptrCast(self)), dwOutputStreamID, pAllocator);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSampleAllocatorControl_GetAllocatorUsage(self: *const T, dwOutputStreamID: u32, pdwInputStreamID: ?*u32, peUsage: ?*MFSampleAllocatorUsage) HRESULT {
-                return @ptrCast(*const IMFSampleAllocatorControl.VTable, self.vtable).GetAllocatorUsage(@ptrCast(*const IMFSampleAllocatorControl, self), dwOutputStreamID, pdwInputStreamID, peUsage);
+                return @as(*const IMFSampleAllocatorControl.VTable, @ptrCast(self.vtable)).GetAllocatorUsage(@as(*const IMFSampleAllocatorControl, @ptrCast(self)), dwOutputStreamID, pdwInputStreamID, peUsage);
             }
         };
     }
@@ -27861,31 +27861,31 @@ pub const IMFASFContentInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_GetHeaderSize(self: *const T, pIStartOfContent: ?*IMFMediaBuffer, cbHeaderSize: ?*u64) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).GetHeaderSize(@ptrCast(*const IMFASFContentInfo, self), pIStartOfContent, cbHeaderSize);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetHeaderSize(@as(*const IMFASFContentInfo, @ptrCast(self)), pIStartOfContent, cbHeaderSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_ParseHeader(self: *const T, pIHeaderBuffer: ?*IMFMediaBuffer, cbOffsetWithinHeader: u64) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).ParseHeader(@ptrCast(*const IMFASFContentInfo, self), pIHeaderBuffer, cbOffsetWithinHeader);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).ParseHeader(@as(*const IMFASFContentInfo, @ptrCast(self)), pIHeaderBuffer, cbOffsetWithinHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_GenerateHeader(self: *const T, pIHeader: ?*IMFMediaBuffer, pcbHeader: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).GenerateHeader(@ptrCast(*const IMFASFContentInfo, self), pIHeader, pcbHeader);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GenerateHeader(@as(*const IMFASFContentInfo, @ptrCast(self)), pIHeader, pcbHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_GetProfile(self: *const T, ppIProfile: ?*?*IMFASFProfile) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).GetProfile(@ptrCast(*const IMFASFContentInfo, self), ppIProfile);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IMFASFContentInfo, @ptrCast(self)), ppIProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_SetProfile(self: *const T, pIProfile: ?*IMFASFProfile) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).SetProfile(@ptrCast(*const IMFASFContentInfo, self), pIProfile);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).SetProfile(@as(*const IMFASFContentInfo, @ptrCast(self)), pIProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_GeneratePresentationDescriptor(self: *const T, ppIPresentationDescriptor: ?*?*IMFPresentationDescriptor) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).GeneratePresentationDescriptor(@ptrCast(*const IMFASFContentInfo, self), ppIPresentationDescriptor);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GeneratePresentationDescriptor(@as(*const IMFASFContentInfo, @ptrCast(self)), ppIPresentationDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFContentInfo_GetEncodingConfigurationPropertyStore(self: *const T, wStreamNumber: u16, ppIStore: ?*?*IPropertyStore) HRESULT {
-                return @ptrCast(*const IMFASFContentInfo.VTable, self.vtable).GetEncodingConfigurationPropertyStore(@ptrCast(*const IMFASFContentInfo, self), wStreamNumber, ppIStore);
+                return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetEncodingConfigurationPropertyStore(@as(*const IMFASFContentInfo, @ptrCast(self)), wStreamNumber, ppIStore);
             }
         };
     }
@@ -28073,67 +28073,67 @@ pub const IMFASFProfile = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetStreamCount(self: *const T, pcStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFASFProfile, self), pcStreams);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFProfile, @ptrCast(self)), pcStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetStream(self: *const T, dwStreamIndex: u32, pwStreamNumber: ?*u16, ppIStream: ?*?*IMFASFStreamConfig) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetStream(@ptrCast(*const IMFASFProfile, self), dwStreamIndex, pwStreamNumber, ppIStream);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IMFASFProfile, @ptrCast(self)), dwStreamIndex, pwStreamNumber, ppIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetStreamByNumber(self: *const T, wStreamNumber: u16, ppIStream: ?*?*IMFASFStreamConfig) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetStreamByNumber(@ptrCast(*const IMFASFProfile, self), wStreamNumber, ppIStream);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamByNumber(@as(*const IMFASFProfile, @ptrCast(self)), wStreamNumber, ppIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_SetStream(self: *const T, pIStream: ?*IMFASFStreamConfig) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).SetStream(@ptrCast(*const IMFASFProfile, self), pIStream);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).SetStream(@as(*const IMFASFProfile, @ptrCast(self)), pIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_RemoveStream(self: *const T, wStreamNumber: u16) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).RemoveStream(@ptrCast(*const IMFASFProfile, self), wStreamNumber);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IMFASFProfile, @ptrCast(self)), wStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_CreateStream(self: *const T, pIMediaType: ?*IMFMediaType, ppIStream: ?*?*IMFASFStreamConfig) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).CreateStream(@ptrCast(*const IMFASFProfile, self), pIMediaType, ppIStream);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const IMFASFProfile, @ptrCast(self)), pIMediaType, ppIStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetMutualExclusionCount(self: *const T, pcMutexs: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetMutualExclusionCount(@ptrCast(*const IMFASFProfile, self), pcMutexs);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusionCount(@as(*const IMFASFProfile, @ptrCast(self)), pcMutexs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetMutualExclusion(self: *const T, dwMutexIndex: u32, ppIMutex: ?*?*IMFASFMutualExclusion) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetMutualExclusion(@ptrCast(*const IMFASFProfile, self), dwMutexIndex, ppIMutex);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), dwMutexIndex, ppIMutex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_AddMutualExclusion(self: *const T, pIMutex: ?*IMFASFMutualExclusion) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).AddMutualExclusion(@ptrCast(*const IMFASFProfile, self), pIMutex);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).AddMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), pIMutex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_RemoveMutualExclusion(self: *const T, dwMutexIndex: u32) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).RemoveMutualExclusion(@ptrCast(*const IMFASFProfile, self), dwMutexIndex);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), dwMutexIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_CreateMutualExclusion(self: *const T, ppIMutex: ?*?*IMFASFMutualExclusion) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).CreateMutualExclusion(@ptrCast(*const IMFASFProfile, self), ppIMutex);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), ppIMutex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_GetStreamPrioritization(self: *const T, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).GetStreamPrioritization(@ptrCast(*const IMFASFProfile, self), ppIStreamPrioritization);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), ppIStreamPrioritization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_AddStreamPrioritization(self: *const T, pIStreamPrioritization: ?*IMFASFStreamPrioritization) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).AddStreamPrioritization(@ptrCast(*const IMFASFProfile, self), pIStreamPrioritization);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).AddStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), pIStreamPrioritization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_RemoveStreamPrioritization(self: *const T) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).RemoveStreamPrioritization(@ptrCast(*const IMFASFProfile, self));
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_CreateStreamPrioritization(self: *const T, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).CreateStreamPrioritization(@ptrCast(*const IMFASFProfile, self), ppIStreamPrioritization);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), ppIStreamPrioritization);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFProfile_Clone(self: *const T, ppIProfile: ?*?*IMFASFProfile) HRESULT {
-                return @ptrCast(*const IMFASFProfile.VTable, self.vtable).Clone(@ptrCast(*const IMFASFProfile, self), ppIProfile);
+                return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFProfile, @ptrCast(self)), ppIProfile);
             }
         };
     }
@@ -28263,43 +28263,43 @@ pub const IMFASFStreamConfig = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_GetStreamType(self: *const T, pguidStreamType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).GetStreamType(@ptrCast(*const IMFASFStreamConfig, self), pguidStreamType);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamType(@as(*const IMFASFStreamConfig, @ptrCast(self)), pguidStreamType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_GetStreamNumber(self: *const T) u16 {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).GetStreamNumber(@ptrCast(*const IMFASFStreamConfig, self));
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamNumber(@as(*const IMFASFStreamConfig, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_SetStreamNumber(self: *const T, wStreamNum: u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).SetStreamNumber(@ptrCast(*const IMFASFStreamConfig, self), wStreamNum);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).SetStreamNumber(@as(*const IMFASFStreamConfig, @ptrCast(self)), wStreamNum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_GetMediaType(self: *const T, ppIMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).GetMediaType(@ptrCast(*const IMFASFStreamConfig, self), ppIMediaType);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFASFStreamConfig, @ptrCast(self)), ppIMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_SetMediaType(self: *const T, pIMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).SetMediaType(@ptrCast(*const IMFASFStreamConfig, self), pIMediaType);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const IMFASFStreamConfig, @ptrCast(self)), pIMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_GetPayloadExtensionCount(self: *const T, pcPayloadExtensions: ?*u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).GetPayloadExtensionCount(@ptrCast(*const IMFASFStreamConfig, self), pcPayloadExtensions);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetPayloadExtensionCount(@as(*const IMFASFStreamConfig, @ptrCast(self)), pcPayloadExtensions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_GetPayloadExtension(self: *const T, wPayloadExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: ?*u8, pcbExtensionSystemInfo: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).GetPayloadExtension(@ptrCast(*const IMFASFStreamConfig, self), wPayloadExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetPayloadExtension(@as(*const IMFASFStreamConfig, @ptrCast(self)), wPayloadExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_AddPayloadExtension(self: *const T, guidExtensionSystemID: Guid, cbExtensionDataSize: u16, pbExtensionSystemInfo: [*:0]u8, cbExtensionSystemInfo: u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).AddPayloadExtension(@ptrCast(*const IMFASFStreamConfig, self), guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).AddPayloadExtension(@as(*const IMFASFStreamConfig, @ptrCast(self)), guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_RemoveAllPayloadExtensions(self: *const T) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).RemoveAllPayloadExtensions(@ptrCast(*const IMFASFStreamConfig, self));
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).RemoveAllPayloadExtensions(@as(*const IMFASFStreamConfig, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamConfig_Clone(self: *const T, ppIStreamConfig: ?*?*IMFASFStreamConfig) HRESULT {
-                return @ptrCast(*const IMFASFStreamConfig.VTable, self.vtable).Clone(@ptrCast(*const IMFASFStreamConfig, self), ppIStreamConfig);
+                return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFStreamConfig, @ptrCast(self)), ppIStreamConfig);
             }
         };
     }
@@ -28417,39 +28417,39 @@ pub const IMFASFMutualExclusion = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_GetType(self: *const T, pguidType: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).GetType(@ptrCast(*const IMFASFMutualExclusion, self), pguidType);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pguidType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_SetType(self: *const T, guidType: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).SetType(@ptrCast(*const IMFASFMutualExclusion, self), guidType);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFASFMutualExclusion, @ptrCast(self)), guidType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_GetRecordCount(self: *const T, pdwRecordCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).GetRecordCount(@ptrCast(*const IMFASFMutualExclusion, self), pdwRecordCount);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pdwRecordCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_GetStreamsForRecord(self: *const T, dwRecordNumber: u32, pwStreamNumArray: ?*u16, pcStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).GetStreamsForRecord(@ptrCast(*const IMFASFMutualExclusion, self), dwRecordNumber, pwStreamNumArray, pcStreams);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetStreamsForRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, pwStreamNumArray, pcStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_AddStreamForRecord(self: *const T, dwRecordNumber: u32, wStreamNumber: u16) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).AddStreamForRecord(@ptrCast(*const IMFASFMutualExclusion, self), dwRecordNumber, wStreamNumber);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).AddStreamForRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, wStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_RemoveStreamFromRecord(self: *const T, dwRecordNumber: u32, wStreamNumber: u16) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).RemoveStreamFromRecord(@ptrCast(*const IMFASFMutualExclusion, self), dwRecordNumber, wStreamNumber);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).RemoveStreamFromRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, wStreamNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_RemoveRecord(self: *const T, dwRecordNumber: u32) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).RemoveRecord(@ptrCast(*const IMFASFMutualExclusion, self), dwRecordNumber);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).RemoveRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_AddRecord(self: *const T, pdwRecordNumber: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).AddRecord(@ptrCast(*const IMFASFMutualExclusion, self), pdwRecordNumber);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).AddRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pdwRecordNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMutualExclusion_Clone(self: *const T, ppIMutex: ?*?*IMFASFMutualExclusion) HRESULT {
-                return @ptrCast(*const IMFASFMutualExclusion.VTable, self.vtable).Clone(@ptrCast(*const IMFASFMutualExclusion, self), ppIMutex);
+                return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFMutualExclusion, @ptrCast(self)), ppIMutex);
             }
         };
     }
@@ -28525,23 +28525,23 @@ pub const IMFASFStreamPrioritization = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamPrioritization_GetStreamCount(self: *const T, pdwStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamPrioritization.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFASFStreamPrioritization, self), pdwStreamCount);
+                return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), pdwStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamPrioritization_GetStream(self: *const T, dwStreamIndex: u32, pwStreamNumber: ?*u16, pwStreamFlags: ?*u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamPrioritization.VTable, self.vtable).GetStream(@ptrCast(*const IMFASFStreamPrioritization, self), dwStreamIndex, pwStreamNumber, pwStreamFlags);
+                return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), dwStreamIndex, pwStreamNumber, pwStreamFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamPrioritization_AddStream(self: *const T, wStreamNumber: u16, wStreamFlags: u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamPrioritization.VTable, self.vtable).AddStream(@ptrCast(*const IMFASFStreamPrioritization, self), wStreamNumber, wStreamFlags);
+                return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), wStreamNumber, wStreamFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamPrioritization_RemoveStream(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamPrioritization.VTable, self.vtable).RemoveStream(@ptrCast(*const IMFASFStreamPrioritization, self), dwStreamIndex);
+                return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamPrioritization_Clone(self: *const T, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) HRESULT {
-                return @ptrCast(*const IMFASFStreamPrioritization.VTable, self.vtable).Clone(@ptrCast(*const IMFASFStreamPrioritization, self), ppIStreamPrioritization);
+                return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), ppIStreamPrioritization);
             }
         };
     }
@@ -28736,55 +28736,55 @@ pub const IMFASFIndexer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_SetFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).SetFlags(@ptrCast(*const IMFASFIndexer, self), dwFlags);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFIndexer, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetFlags(@ptrCast(*const IMFASFIndexer, self), pdwFlags);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFIndexer, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_Initialize(self: *const T, pIContentInfo: ?*IMFASFContentInfo) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).Initialize(@ptrCast(*const IMFASFIndexer, self), pIContentInfo);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetIndexPosition(self: *const T, pIContentInfo: ?*IMFASFContentInfo, pcbIndexOffset: ?*u64) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetIndexPosition(@ptrCast(*const IMFASFIndexer, self), pIContentInfo, pcbIndexOffset);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexPosition(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo, pcbIndexOffset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_SetIndexByteStreams(self: *const T, ppIByteStreams: ?*?*IMFByteStream, cByteStreams: u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).SetIndexByteStreams(@ptrCast(*const IMFASFIndexer, self), ppIByteStreams, cByteStreams);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetIndexByteStreams(@as(*const IMFASFIndexer, @ptrCast(self)), ppIByteStreams, cByteStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetIndexByteStreamCount(self: *const T, pcByteStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetIndexByteStreamCount(@ptrCast(*const IMFASFIndexer, self), pcByteStreams);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexByteStreamCount(@as(*const IMFASFIndexer, @ptrCast(self)), pcByteStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetIndexStatus(self: *const T, pIndexIdentifier: ?*ASF_INDEX_IDENTIFIER, pfIsIndexed: ?*BOOL, pbIndexDescriptor: ?*u8, pcbIndexDescriptor: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetIndexStatus(@ptrCast(*const IMFASFIndexer, self), pIndexIdentifier, pfIsIndexed, pbIndexDescriptor, pcbIndexDescriptor);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexStatus(@as(*const IMFASFIndexer, @ptrCast(self)), pIndexIdentifier, pfIsIndexed, pbIndexDescriptor, pcbIndexDescriptor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_SetIndexStatus(self: *const T, pbIndexDescriptor: ?*u8, cbIndexDescriptor: u32, fGenerateIndex: BOOL) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).SetIndexStatus(@ptrCast(*const IMFASFIndexer, self), pbIndexDescriptor, cbIndexDescriptor, fGenerateIndex);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetIndexStatus(@as(*const IMFASFIndexer, @ptrCast(self)), pbIndexDescriptor, cbIndexDescriptor, fGenerateIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetSeekPositionForValue(self: *const T, pvarValue: ?*const PROPVARIANT, pIndexIdentifier: ?*ASF_INDEX_IDENTIFIER, pcbOffsetWithinData: ?*u64, phnsApproxTime: ?*i64, pdwPayloadNumberOfStreamWithinPacket: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetSeekPositionForValue(@ptrCast(*const IMFASFIndexer, self), pvarValue, pIndexIdentifier, pcbOffsetWithinData, phnsApproxTime, pdwPayloadNumberOfStreamWithinPacket);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetSeekPositionForValue(@as(*const IMFASFIndexer, @ptrCast(self)), pvarValue, pIndexIdentifier, pcbOffsetWithinData, phnsApproxTime, pdwPayloadNumberOfStreamWithinPacket);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GenerateIndexEntries(self: *const T, pIASFPacketSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GenerateIndexEntries(@ptrCast(*const IMFASFIndexer, self), pIASFPacketSample);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GenerateIndexEntries(@as(*const IMFASFIndexer, @ptrCast(self)), pIASFPacketSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_CommitIndex(self: *const T, pIContentInfo: ?*IMFASFContentInfo) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).CommitIndex(@ptrCast(*const IMFASFIndexer, self), pIContentInfo);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).CommitIndex(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetIndexWriteSpace(self: *const T, pcbIndexWriteSpace: ?*u64) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetIndexWriteSpace(@ptrCast(*const IMFASFIndexer, self), pcbIndexWriteSpace);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexWriteSpace(@as(*const IMFASFIndexer, @ptrCast(self)), pcbIndexWriteSpace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFIndexer_GetCompletedIndex(self: *const T, pIIndexBuffer: ?*IMFMediaBuffer, cbOffsetWithinIndex: u64) HRESULT {
-                return @ptrCast(*const IMFASFIndexer.VTable, self.vtable).GetCompletedIndex(@ptrCast(*const IMFASFIndexer, self), pIIndexBuffer, cbOffsetWithinIndex);
+                return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetCompletedIndex(@as(*const IMFASFIndexer, @ptrCast(self)), pIIndexBuffer, cbOffsetWithinIndex);
             }
         };
     }
@@ -28904,39 +28904,39 @@ pub const IMFASFSplitter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_Initialize(self: *const T, pIContentInfo: ?*IMFASFContentInfo) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).Initialize(@ptrCast(*const IMFASFSplitter, self), pIContentInfo);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFSplitter, @ptrCast(self)), pIContentInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_SetFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).SetFlags(@ptrCast(*const IMFASFSplitter, self), dwFlags);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFSplitter, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).GetFlags(@ptrCast(*const IMFASFSplitter, self), pdwFlags);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFSplitter, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_SelectStreams(self: *const T, pwStreamNumbers: ?*u16, wNumStreams: u16) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).SelectStreams(@ptrCast(*const IMFASFSplitter, self), pwStreamNumbers, wNumStreams);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).SelectStreams(@as(*const IMFASFSplitter, @ptrCast(self)), pwStreamNumbers, wNumStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_GetSelectedStreams(self: *const T, pwStreamNumbers: ?*u16, pwNumStreams: ?*u16) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).GetSelectedStreams(@ptrCast(*const IMFASFSplitter, self), pwStreamNumbers, pwNumStreams);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetSelectedStreams(@as(*const IMFASFSplitter, @ptrCast(self)), pwStreamNumbers, pwNumStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_ParseData(self: *const T, pIBuffer: ?*IMFMediaBuffer, cbBufferOffset: u32, cbLength: u32) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).ParseData(@ptrCast(*const IMFASFSplitter, self), pIBuffer, cbBufferOffset, cbLength);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).ParseData(@as(*const IMFASFSplitter, @ptrCast(self)), pIBuffer, cbBufferOffset, cbLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_GetNextSample(self: *const T, pdwStatusFlags: ?*ASF_STATUSFLAGS, pwStreamNumber: ?*u16, ppISample: ?*?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).GetNextSample(@ptrCast(*const IMFASFSplitter, self), pdwStatusFlags, pwStreamNumber, ppISample);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetNextSample(@as(*const IMFASFSplitter, @ptrCast(self)), pdwStatusFlags, pwStreamNumber, ppISample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).Flush(@ptrCast(*const IMFASFSplitter, self));
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFASFSplitter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFSplitter_GetLastSendTime(self: *const T, pdwLastSendTime: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFSplitter.VTable, self.vtable).GetLastSendTime(@ptrCast(*const IMFASFSplitter, self), pdwLastSendTime);
+                return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetLastSendTime(@as(*const IMFASFSplitter, @ptrCast(self)), pdwLastSendTime);
             }
         };
     }
@@ -29076,39 +29076,39 @@ pub const IMFASFMultiplexer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_Initialize(self: *const T, pIContentInfo: ?*IMFASFContentInfo) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).Initialize(@ptrCast(*const IMFASFMultiplexer, self), pIContentInfo);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFMultiplexer, @ptrCast(self)), pIContentInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_SetFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).SetFlags(@ptrCast(*const IMFASFMultiplexer, self), dwFlags);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFMultiplexer, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).GetFlags(@ptrCast(*const IMFASFMultiplexer, self), pdwFlags);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFMultiplexer, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_ProcessSample(self: *const T, wStreamNumber: u16, pISample: ?*IMFSample, hnsTimestampAdjust: i64) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).ProcessSample(@ptrCast(*const IMFASFMultiplexer, self), wStreamNumber, pISample, hnsTimestampAdjust);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).ProcessSample(@as(*const IMFASFMultiplexer, @ptrCast(self)), wStreamNumber, pISample, hnsTimestampAdjust);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_GetNextPacket(self: *const T, pdwStatusFlags: ?*u32, ppIPacket: ?*?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).GetNextPacket(@ptrCast(*const IMFASFMultiplexer, self), pdwStatusFlags, ppIPacket);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetNextPacket(@as(*const IMFASFMultiplexer, @ptrCast(self)), pdwStatusFlags, ppIPacket);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).Flush(@ptrCast(*const IMFASFMultiplexer, self));
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFASFMultiplexer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_End(self: *const T, pIContentInfo: ?*IMFASFContentInfo) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).End(@ptrCast(*const IMFASFMultiplexer, self), pIContentInfo);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).End(@as(*const IMFASFMultiplexer, @ptrCast(self)), pIContentInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_GetStatistics(self: *const T, wStreamNumber: u16, pMuxStats: ?*ASF_MUX_STATISTICS) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).GetStatistics(@ptrCast(*const IMFASFMultiplexer, self), wStreamNumber, pMuxStats);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFASFMultiplexer, @ptrCast(self)), wStreamNumber, pMuxStats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFMultiplexer_SetSyncTolerance(self: *const T, msSyncTolerance: u32) HRESULT {
-                return @ptrCast(*const IMFASFMultiplexer.VTable, self.vtable).SetSyncTolerance(@ptrCast(*const IMFASFMultiplexer, self), msSyncTolerance);
+                return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).SetSyncTolerance(@as(*const IMFASFMultiplexer, @ptrCast(self)), msSyncTolerance);
             }
         };
     }
@@ -29312,59 +29312,59 @@ pub const IMFASFStreamSelector = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetStreamCount(self: *const T, pcStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMFASFStreamSelector, self), pcStreams);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputCount(self: *const T, pcOutputs: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputCount(@ptrCast(*const IMFASFStreamSelector, self), pcOutputs);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcOutputs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputStreamCount(self: *const T, dwOutputNum: u32, pcStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputStreamCount(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, pcStreams);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputStreamCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pcStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputStreamNumbers(self: *const T, dwOutputNum: u32, rgwStreamNumbers: ?*u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputStreamNumbers(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, rgwStreamNumbers);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputStreamNumbers(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, rgwStreamNumbers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputFromStream(self: *const T, wStreamNum: u16, pdwOutput: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputFromStream(@ptrCast(*const IMFASFStreamSelector, self), wStreamNum, pdwOutput);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputFromStream(@as(*const IMFASFStreamSelector, @ptrCast(self)), wStreamNum, pdwOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputOverride(self: *const T, dwOutputNum: u32, pSelection: ?*ASF_SELECTION_STATUS) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputOverride(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, pSelection);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputOverride(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pSelection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_SetOutputOverride(self: *const T, dwOutputNum: u32, Selection: ASF_SELECTION_STATUS) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).SetOutputOverride(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, Selection);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetOutputOverride(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, Selection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputMutexCount(self: *const T, dwOutputNum: u32, pcMutexes: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputMutexCount(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, pcMutexes);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputMutexCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pcMutexes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetOutputMutex(self: *const T, dwOutputNum: u32, dwMutexNum: u32, ppMutex: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetOutputMutex(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, dwMutexNum, ppMutex);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputMutex(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, dwMutexNum, ppMutex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_SetOutputMutexSelection(self: *const T, dwOutputNum: u32, dwMutexNum: u32, wSelectedRecord: u16) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).SetOutputMutexSelection(@ptrCast(*const IMFASFStreamSelector, self), dwOutputNum, dwMutexNum, wSelectedRecord);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetOutputMutexSelection(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, dwMutexNum, wSelectedRecord);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetBandwidthStepCount(self: *const T, pcStepCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetBandwidthStepCount(@ptrCast(*const IMFASFStreamSelector, self), pcStepCount);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetBandwidthStepCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcStepCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_GetBandwidthStep(self: *const T, dwStepNum: u32, pdwBitrate: ?*u32, rgwStreamNumbers: ?*u16, rgSelections: ?*ASF_SELECTION_STATUS) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).GetBandwidthStep(@ptrCast(*const IMFASFStreamSelector, self), dwStepNum, pdwBitrate, rgwStreamNumbers, rgSelections);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetBandwidthStep(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwStepNum, pdwBitrate, rgwStreamNumbers, rgSelections);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_BitrateToStepNumber(self: *const T, dwBitrate: u32, pdwStepNum: ?*u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).BitrateToStepNumber(@ptrCast(*const IMFASFStreamSelector, self), dwBitrate, pdwStepNum);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).BitrateToStepNumber(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwBitrate, pdwStepNum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFASFStreamSelector_SetStreamSelectorFlags(self: *const T, dwStreamSelectorFlags: u32) HRESULT {
-                return @ptrCast(*const IMFASFStreamSelector.VTable, self.vtable).SetStreamSelectorFlags(@ptrCast(*const IMFASFStreamSelector, self), dwStreamSelectorFlags);
+                return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetStreamSelectorFlags(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwStreamSelectorFlags);
             }
         };
     }
@@ -29427,11 +29427,11 @@ pub const IMFDRMNetHelper = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDRMNetHelper_ProcessLicenseRequest(self: *const T, pLicenseRequest: [*:0]u8, cbLicenseRequest: u32, ppLicenseResponse: [*]?*u8, pcbLicenseResponse: ?*u32, pbstrKID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFDRMNetHelper.VTable, self.vtable).ProcessLicenseRequest(@ptrCast(*const IMFDRMNetHelper, self), pLicenseRequest, cbLicenseRequest, ppLicenseResponse, pcbLicenseResponse, pbstrKID);
+                return @as(*const IMFDRMNetHelper.VTable, @ptrCast(self.vtable)).ProcessLicenseRequest(@as(*const IMFDRMNetHelper, @ptrCast(self)), pLicenseRequest, cbLicenseRequest, ppLicenseResponse, pcbLicenseResponse, pbstrKID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDRMNetHelper_GetChainedLicenseResponse(self: *const T, ppLicenseResponse: [*]?*u8, pcbLicenseResponse: ?*u32) HRESULT {
-                return @ptrCast(*const IMFDRMNetHelper.VTable, self.vtable).GetChainedLicenseResponse(@ptrCast(*const IMFDRMNetHelper, self), ppLicenseResponse, pcbLicenseResponse);
+                return @as(*const IMFDRMNetHelper.VTable, @ptrCast(self.vtable)).GetChainedLicenseResponse(@as(*const IMFDRMNetHelper, @ptrCast(self)), ppLicenseResponse, pcbLicenseResponse);
             }
         };
     }
@@ -29542,7 +29542,7 @@ pub const IMFCaptureEngineOnEventCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngineOnEventCallback_OnEvent(self: *const T, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFCaptureEngineOnEventCallback.VTable, self.vtable).OnEvent(@ptrCast(*const IMFCaptureEngineOnEventCallback, self), pEvent);
+                return @as(*const IMFCaptureEngineOnEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IMFCaptureEngineOnEventCallback, @ptrCast(self)), pEvent);
             }
         };
     }
@@ -29572,7 +29572,7 @@ pub const IMFCaptureEngineOnSampleCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngineOnSampleCallback_OnSample(self: *const T, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFCaptureEngineOnSampleCallback.VTable, self.vtable).OnSample(@ptrCast(*const IMFCaptureEngineOnSampleCallback, self), pSample);
+                return @as(*const IMFCaptureEngineOnSampleCallback.VTable, @ptrCast(self.vtable)).OnSample(@as(*const IMFCaptureEngineOnSampleCallback, @ptrCast(self)), pSample);
             }
         };
     }
@@ -29652,23 +29652,23 @@ pub const IMFCaptureSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink_GetOutputMediaType(self: *const T, dwSinkStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).GetOutputMediaType(@ptrCast(*const IMFCaptureSink, self), dwSinkStreamIndex, ppMediaType);
+                return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).GetOutputMediaType(@as(*const IMFCaptureSink, @ptrCast(self)), dwSinkStreamIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink_GetService(self: *const T, dwSinkStreamIndex: u32, rguidService: ?*const Guid, riid: ?*const Guid, ppUnknown: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).GetService(@ptrCast(*const IMFCaptureSink, self), dwSinkStreamIndex, rguidService, riid, ppUnknown);
+                return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFCaptureSink, @ptrCast(self)), dwSinkStreamIndex, rguidService, riid, ppUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink_AddStream(self: *const T, dwSourceStreamIndex: u32, pMediaType: ?*IMFMediaType, pAttributes: ?*IMFAttributes, pdwSinkStreamIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).AddStream(@ptrCast(*const IMFCaptureSink, self), dwSourceStreamIndex, pMediaType, pAttributes, pdwSinkStreamIndex);
+                return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFCaptureSink, @ptrCast(self)), dwSourceStreamIndex, pMediaType, pAttributes, pdwSinkStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink_Prepare(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).Prepare(@ptrCast(*const IMFCaptureSink, self));
+                return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IMFCaptureSink, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink_RemoveAllStreams(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureSink.VTable, self.vtable).RemoveAllStreams(@ptrCast(*const IMFCaptureSink, self));
+                return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).RemoveAllStreams(@as(*const IMFCaptureSink, @ptrCast(self)));
             }
         };
     }
@@ -29756,27 +29756,27 @@ pub const IMFCaptureRecordSink = extern struct {
             pub usingnamespace IMFCaptureSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_SetOutputByteStream(self: *const T, pByteStream: ?*IMFByteStream, guidContainerType: ?*const Guid) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).SetOutputByteStream(@ptrCast(*const IMFCaptureRecordSink, self), pByteStream, guidContainerType);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFCaptureRecordSink, @ptrCast(self)), pByteStream, guidContainerType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_SetOutputFileName(self: *const T, fileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).SetOutputFileName(@ptrCast(*const IMFCaptureRecordSink, self), fileName);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetOutputFileName(@as(*const IMFCaptureRecordSink, @ptrCast(self)), fileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_SetSampleCallback(self: *const T, dwStreamSinkIndex: u32, pCallback: ?*IMFCaptureEngineOnSampleCallback) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).SetSampleCallback(@ptrCast(*const IMFCaptureRecordSink, self), dwStreamSinkIndex, pCallback);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamSinkIndex, pCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_SetCustomSink(self: *const T, pMediaSink: ?*IMFMediaSink) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).SetCustomSink(@ptrCast(*const IMFCaptureRecordSink, self), pMediaSink);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetCustomSink(@as(*const IMFCaptureRecordSink, @ptrCast(self)), pMediaSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_GetRotation(self: *const T, dwStreamIndex: u32, pdwRotationValue: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).GetRotation(@ptrCast(*const IMFCaptureRecordSink, self), dwStreamIndex, pdwRotationValue);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamIndex, pdwRotationValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureRecordSink_SetRotation(self: *const T, dwStreamIndex: u32, dwRotationValue: u32) HRESULT {
-                return @ptrCast(*const IMFCaptureRecordSink.VTable, self.vtable).SetRotation(@ptrCast(*const IMFCaptureRecordSink, self), dwStreamIndex, dwRotationValue);
+                return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamIndex, dwRotationValue);
             }
         };
     }
@@ -29896,39 +29896,39 @@ pub const IMFCapturePreviewSink = extern struct {
             pub usingnamespace IMFCaptureSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetRenderHandle(self: *const T, handle: ?HANDLE) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetRenderHandle(@ptrCast(*const IMFCapturePreviewSink, self), handle);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRenderHandle(@as(*const IMFCapturePreviewSink, @ptrCast(self)), handle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetRenderSurface(self: *const T, pSurface: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetRenderSurface(@ptrCast(*const IMFCapturePreviewSink, self), pSurface);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRenderSurface(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_UpdateVideo(self: *const T, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const u32) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).UpdateVideo(@ptrCast(*const IMFCapturePreviewSink, self), pSrc, pDst, pBorderClr);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pSrc, pDst, pBorderClr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetSampleCallback(self: *const T, dwStreamSinkIndex: u32, pCallback: ?*IMFCaptureEngineOnSampleCallback) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetSampleCallback(@ptrCast(*const IMFCapturePreviewSink, self), dwStreamSinkIndex, pCallback);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamSinkIndex, pCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_GetMirrorState(self: *const T, pfMirrorState: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).GetMirrorState(@ptrCast(*const IMFCapturePreviewSink, self), pfMirrorState);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).GetMirrorState(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pfMirrorState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetMirrorState(self: *const T, fMirrorState: BOOL) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetMirrorState(@ptrCast(*const IMFCapturePreviewSink, self), fMirrorState);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetMirrorState(@as(*const IMFCapturePreviewSink, @ptrCast(self)), fMirrorState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_GetRotation(self: *const T, dwStreamIndex: u32, pdwRotationValue: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).GetRotation(@ptrCast(*const IMFCapturePreviewSink, self), dwStreamIndex, pdwRotationValue);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamIndex, pdwRotationValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetRotation(self: *const T, dwStreamIndex: u32, dwRotationValue: u32) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetRotation(@ptrCast(*const IMFCapturePreviewSink, self), dwStreamIndex, dwRotationValue);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamIndex, dwRotationValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePreviewSink_SetCustomSink(self: *const T, pMediaSink: ?*IMFMediaSink) HRESULT {
-                return @ptrCast(*const IMFCapturePreviewSink.VTable, self.vtable).SetCustomSink(@ptrCast(*const IMFCapturePreviewSink, self), pMediaSink);
+                return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetCustomSink(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pMediaSink);
             }
         };
     }
@@ -29978,15 +29978,15 @@ pub const IMFCapturePhotoSink = extern struct {
             pub usingnamespace IMFCaptureSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoSink_SetOutputFileName(self: *const T, fileName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoSink.VTable, self.vtable).SetOutputFileName(@ptrCast(*const IMFCapturePhotoSink, self), fileName);
+                return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetOutputFileName(@as(*const IMFCapturePhotoSink, @ptrCast(self)), fileName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoSink_SetSampleCallback(self: *const T, pCallback: ?*IMFCaptureEngineOnSampleCallback) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoSink.VTable, self.vtable).SetSampleCallback(@ptrCast(*const IMFCapturePhotoSink, self), pCallback);
+                return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCapturePhotoSink, @ptrCast(self)), pCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCapturePhotoSink_SetOutputByteStream(self: *const T, pByteStream: ?*IMFByteStream) HRESULT {
-                return @ptrCast(*const IMFCapturePhotoSink.VTable, self.vtable).SetOutputByteStream(@ptrCast(*const IMFCapturePhotoSink, self), pByteStream);
+                return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFCapturePhotoSink, @ptrCast(self)), pByteStream);
             }
         };
     }
@@ -30174,59 +30174,59 @@ pub const IMFCaptureSource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetCaptureDeviceSource(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppMediaSource: ?*?*IMFMediaSource) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetCaptureDeviceSource(@ptrCast(*const IMFCaptureSource, self), mfCaptureEngineDeviceType, ppMediaSource);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCaptureDeviceSource(@as(*const IMFCaptureSource, @ptrCast(self)), mfCaptureEngineDeviceType, ppMediaSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetCaptureDeviceActivate(self: *const T, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppActivate: ?*?*IMFActivate) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetCaptureDeviceActivate(@ptrCast(*const IMFCaptureSource, self), mfCaptureEngineDeviceType, ppActivate);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCaptureDeviceActivate(@as(*const IMFCaptureSource, @ptrCast(self)), mfCaptureEngineDeviceType, ppActivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetService(self: *const T, rguidService: ?*const Guid, riid: ?*const Guid, ppUnknown: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetService(@ptrCast(*const IMFCaptureSource, self), rguidService, riid, ppUnknown);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFCaptureSource, @ptrCast(self)), rguidService, riid, ppUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_AddEffect(self: *const T, dwSourceStreamIndex: u32, pUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).AddEffect(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, pUnknown);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).AddEffect(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_RemoveEffect(self: *const T, dwSourceStreamIndex: u32, pUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).RemoveEffect(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, pUnknown);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).RemoveEffect(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_RemoveAllEffects(self: *const T, dwSourceStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).RemoveAllEffects(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetAvailableDeviceMediaType(self: *const T, dwSourceStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetAvailableDeviceMediaType(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, dwMediaTypeIndex, ppMediaType);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetAvailableDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, dwMediaTypeIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_SetCurrentDeviceMediaType(self: *const T, dwSourceStreamIndex: u32, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).SetCurrentDeviceMediaType(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, pMediaType);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).SetCurrentDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetCurrentDeviceMediaType(self: *const T, dwSourceStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetCurrentDeviceMediaType(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, ppMediaType);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCurrentDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetDeviceStreamCount(self: *const T, pdwStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetDeviceStreamCount(@ptrCast(*const IMFCaptureSource, self), pdwStreamCount);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetDeviceStreamCount(@as(*const IMFCaptureSource, @ptrCast(self)), pdwStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetDeviceStreamCategory(self: *const T, dwSourceStreamIndex: u32, pStreamCategory: ?*MF_CAPTURE_ENGINE_STREAM_CATEGORY) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetDeviceStreamCategory(@ptrCast(*const IMFCaptureSource, self), dwSourceStreamIndex, pStreamCategory);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetDeviceStreamCategory(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pStreamCategory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetMirrorState(self: *const T, dwStreamIndex: u32, pfMirrorState: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetMirrorState(@ptrCast(*const IMFCaptureSource, self), dwStreamIndex, pfMirrorState);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetMirrorState(@as(*const IMFCaptureSource, @ptrCast(self)), dwStreamIndex, pfMirrorState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_SetMirrorState(self: *const T, dwStreamIndex: u32, fMirrorState: BOOL) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).SetMirrorState(@ptrCast(*const IMFCaptureSource, self), dwStreamIndex, fMirrorState);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).SetMirrorState(@as(*const IMFCaptureSource, @ptrCast(self)), dwStreamIndex, fMirrorState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSource_GetStreamIndexFromFriendlyName(self: *const T, uifriendlyName: u32, pdwActualStreamIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IMFCaptureSource.VTable, self.vtable).GetStreamIndexFromFriendlyName(@ptrCast(*const IMFCaptureSource, self), uifriendlyName, pdwActualStreamIndex);
+                return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetStreamIndexFromFriendlyName(@as(*const IMFCaptureSource, @ptrCast(self)), uifriendlyName, pdwActualStreamIndex);
             }
         };
     }
@@ -30328,35 +30328,35 @@ pub const IMFCaptureEngine = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_Initialize(self: *const T, pEventCallback: ?*IMFCaptureEngineOnEventCallback, pAttributes: ?*IMFAttributes, pAudioSource: ?*IUnknown, pVideoSource: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).Initialize(@ptrCast(*const IMFCaptureEngine, self), pEventCallback, pAttributes, pAudioSource, pVideoSource);
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFCaptureEngine, @ptrCast(self)), pEventCallback, pAttributes, pAudioSource, pVideoSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_StartPreview(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).StartPreview(@ptrCast(*const IMFCaptureEngine, self));
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StartPreview(@as(*const IMFCaptureEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_StopPreview(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).StopPreview(@ptrCast(*const IMFCaptureEngine, self));
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StopPreview(@as(*const IMFCaptureEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_StartRecord(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).StartRecord(@ptrCast(*const IMFCaptureEngine, self));
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StartRecord(@as(*const IMFCaptureEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_StopRecord(self: *const T, bFinalize: BOOL, bFlushUnprocessedSamples: BOOL) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).StopRecord(@ptrCast(*const IMFCaptureEngine, self), bFinalize, bFlushUnprocessedSamples);
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StopRecord(@as(*const IMFCaptureEngine, @ptrCast(self)), bFinalize, bFlushUnprocessedSamples);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_TakePhoto(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).TakePhoto(@ptrCast(*const IMFCaptureEngine, self));
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).TakePhoto(@as(*const IMFCaptureEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_GetSink(self: *const T, mfCaptureEngineSinkType: MF_CAPTURE_ENGINE_SINK_TYPE, ppSink: ?*?*IMFCaptureSink) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).GetSink(@ptrCast(*const IMFCaptureEngine, self), mfCaptureEngineSinkType, ppSink);
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).GetSink(@as(*const IMFCaptureEngine, @ptrCast(self)), mfCaptureEngineSinkType, ppSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngine_GetSource(self: *const T, ppSource: ?*?*IMFCaptureSource) HRESULT {
-                return @ptrCast(*const IMFCaptureEngine.VTable, self.vtable).GetSource(@ptrCast(*const IMFCaptureEngine, self), ppSource);
+                return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IMFCaptureEngine, @ptrCast(self)), ppSource);
             }
         };
     }
@@ -30390,7 +30390,7 @@ pub const IMFCaptureEngineClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngineClassFactory_CreateInstance(self: *const T, clsid: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFCaptureEngineClassFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IMFCaptureEngineClassFactory, self), clsid, riid, ppvObject);
+                return @as(*const IMFCaptureEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFCaptureEngineClassFactory, @ptrCast(self)), clsid, riid, ppvObject);
             }
         };
     }
@@ -30420,7 +30420,7 @@ pub const IMFCaptureEngineOnSampleCallback2 = extern struct {
             pub usingnamespace IMFCaptureEngineOnSampleCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureEngineOnSampleCallback2_OnSynchronizedEvent(self: *const T, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFCaptureEngineOnSampleCallback2.VTable, self.vtable).OnSynchronizedEvent(@ptrCast(*const IMFCaptureEngineOnSampleCallback2, self), pEvent);
+                return @as(*const IMFCaptureEngineOnSampleCallback2.VTable, @ptrCast(self.vtable)).OnSynchronizedEvent(@as(*const IMFCaptureEngineOnSampleCallback2, @ptrCast(self)), pEvent);
             }
         };
     }
@@ -30454,7 +30454,7 @@ pub const IMFCaptureSink2 = extern struct {
             pub usingnamespace IMFCaptureSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCaptureSink2_SetOutputMediaType(self: *const T, dwStreamIndex: u32, pMediaType: ?*IMFMediaType, pEncodingAttributes: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFCaptureSink2.VTable, self.vtable).SetOutputMediaType(@ptrCast(*const IMFCaptureSink2, self), dwStreamIndex, pMediaType, pEncodingAttributes);
+                return @as(*const IMFCaptureSink2.VTable, @ptrCast(self.vtable)).SetOutputMediaType(@as(*const IMFCaptureSink2, @ptrCast(self)), dwStreamIndex, pMediaType, pEncodingAttributes);
             }
         };
     }
@@ -30513,19 +30513,19 @@ pub const IMFD3D12SynchronizationObjectCommands = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObjectCommands_EnqueueResourceReady(self: *const T, pProducerCommandQueue: ?*ID3D12CommandQueue) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObjectCommands.VTable, self.vtable).EnqueueResourceReady(@ptrCast(*const IMFD3D12SynchronizationObjectCommands, self), pProducerCommandQueue);
+                return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceReady(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pProducerCommandQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObjectCommands_EnqueueResourceReadyWait(self: *const T, pConsumerCommandQueue: ?*ID3D12CommandQueue) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObjectCommands.VTable, self.vtable).EnqueueResourceReadyWait(@ptrCast(*const IMFD3D12SynchronizationObjectCommands, self), pConsumerCommandQueue);
+                return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceReadyWait(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pConsumerCommandQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObjectCommands_SignalEventOnResourceReady(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObjectCommands.VTable, self.vtable).SignalEventOnResourceReady(@ptrCast(*const IMFD3D12SynchronizationObjectCommands, self), hEvent);
+                return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).SignalEventOnResourceReady(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), hEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObjectCommands_EnqueueResourceRelease(self: *const T, pConsumerCommandQueue: ?*ID3D12CommandQueue) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObjectCommands.VTable, self.vtable).EnqueueResourceRelease(@ptrCast(*const IMFD3D12SynchronizationObjectCommands, self), pConsumerCommandQueue);
+                return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceRelease(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pConsumerCommandQueue);
             }
         };
     }
@@ -30562,11 +30562,11 @@ pub const IMFD3D12SynchronizationObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObject_SignalEventOnFinalResourceRelease(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObject.VTable, self.vtable).SignalEventOnFinalResourceRelease(@ptrCast(*const IMFD3D12SynchronizationObject, self), hEvent);
+                return @as(*const IMFD3D12SynchronizationObject.VTable, @ptrCast(self.vtable)).SignalEventOnFinalResourceRelease(@as(*const IMFD3D12SynchronizationObject, @ptrCast(self)), hEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFD3D12SynchronizationObject_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMFD3D12SynchronizationObject.VTable, self.vtable).Reset(@ptrCast(*const IMFD3D12SynchronizationObject, self));
+                return @as(*const IMFD3D12SynchronizationObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFD3D12SynchronizationObject, @ptrCast(self)));
             }
         };
     }
@@ -30944,19 +30944,19 @@ pub const IMFMediaError = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaError_GetErrorCode(self: *const T) u16 {
-                return @ptrCast(*const IMFMediaError.VTable, self.vtable).GetErrorCode(@ptrCast(*const IMFMediaError, self));
+                return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IMFMediaError, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaError_GetExtendedErrorCode(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaError.VTable, self.vtable).GetExtendedErrorCode(@ptrCast(*const IMFMediaError, self));
+                return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).GetExtendedErrorCode(@as(*const IMFMediaError, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaError_SetErrorCode(self: *const T, @"error": MF_MEDIA_ENGINE_ERR) HRESULT {
-                return @ptrCast(*const IMFMediaError.VTable, self.vtable).SetErrorCode(@ptrCast(*const IMFMediaError, self), @"error");
+                return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).SetErrorCode(@as(*const IMFMediaError, @ptrCast(self)), @"error");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaError_SetExtendedErrorCode(self: *const T, @"error": HRESULT) HRESULT {
-                return @ptrCast(*const IMFMediaError.VTable, self.vtable).SetExtendedErrorCode(@ptrCast(*const IMFMediaError, self), @"error");
+                return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).SetExtendedErrorCode(@as(*const IMFMediaError, @ptrCast(self)), @"error");
             }
         };
     }
@@ -31038,27 +31038,27 @@ pub const IMFMediaTimeRange = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_GetLength(self: *const T) u32 {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).GetLength(@ptrCast(*const IMFMediaTimeRange, self));
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFMediaTimeRange, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_GetStart(self: *const T, index: u32, pStart: ?*f64) HRESULT {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).GetStart(@ptrCast(*const IMFMediaTimeRange, self), index, pStart);
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetStart(@as(*const IMFMediaTimeRange, @ptrCast(self)), index, pStart);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_GetEnd(self: *const T, index: u32, pEnd: ?*f64) HRESULT {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).GetEnd(@ptrCast(*const IMFMediaTimeRange, self), index, pEnd);
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetEnd(@as(*const IMFMediaTimeRange, @ptrCast(self)), index, pEnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_ContainsTime(self: *const T, time: f64) BOOL {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).ContainsTime(@ptrCast(*const IMFMediaTimeRange, self), time);
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).ContainsTime(@as(*const IMFMediaTimeRange, @ptrCast(self)), time);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_AddRange(self: *const T, startTime: f64, endTime: f64) HRESULT {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).AddRange(@ptrCast(*const IMFMediaTimeRange, self), startTime, endTime);
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IMFMediaTimeRange, @ptrCast(self)), startTime, endTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaTimeRange_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaTimeRange.VTable, self.vtable).Clear(@ptrCast(*const IMFMediaTimeRange, self));
+                return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFMediaTimeRange, @ptrCast(self)));
             }
         };
     }
@@ -31173,7 +31173,7 @@ pub const IMFMediaEngineNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineNotify_EventNotify(self: *const T, event: u32, param1: usize, param2: u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineNotify.VTable, self.vtable).EventNotify(@ptrCast(*const IMFMediaEngineNotify, self), event, param1, param2);
+                return @as(*const IMFMediaEngineNotify.VTable, @ptrCast(self.vtable)).EventNotify(@as(*const IMFMediaEngineNotify, @ptrCast(self)), event, param1, param2);
             }
         };
     }
@@ -31259,27 +31259,27 @@ pub const IMFMediaEngineSrcElements = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_GetLength(self: *const T) u32 {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).GetLength(@ptrCast(*const IMFMediaEngineSrcElements, self));
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_GetURL(self: *const T, index: u32, pURL: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).GetURL(@ptrCast(*const IMFMediaEngineSrcElements, self), index, pURL);
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_GetType(self: *const T, index: u32, pType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).GetType(@ptrCast(*const IMFMediaEngineSrcElements, self), index, pType);
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_GetMedia(self: *const T, index: u32, pMedia: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).GetMedia(@ptrCast(*const IMFMediaEngineSrcElements, self), index, pMedia);
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetMedia(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pMedia);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_AddElement(self: *const T, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).AddElement(@ptrCast(*const IMFMediaEngineSrcElements, self), pURL, pType, pMedia);
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).AddElement(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), pURL, pType, pMedia);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElements_RemoveAllElements(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElements.VTable, self.vtable).RemoveAllElements(@ptrCast(*const IMFMediaEngineSrcElements, self));
+                return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).RemoveAllElements(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)));
             }
         };
     }
@@ -31735,171 +31735,171 @@ pub const IMFMediaEngine = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetError(self: *const T, ppError: ?*?*IMFMediaError) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetError(@ptrCast(*const IMFMediaEngine, self), ppError);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetError(@as(*const IMFMediaEngine, @ptrCast(self)), ppError);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetErrorCode(self: *const T, @"error": MF_MEDIA_ENGINE_ERR) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetErrorCode(@ptrCast(*const IMFMediaEngine, self), @"error");
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetErrorCode(@as(*const IMFMediaEngine, @ptrCast(self)), @"error");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetSourceElements(self: *const T, pSrcElements: ?*IMFMediaEngineSrcElements) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetSourceElements(@ptrCast(*const IMFMediaEngine, self), pSrcElements);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetSourceElements(@as(*const IMFMediaEngine, @ptrCast(self)), pSrcElements);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetSource(self: *const T, pUrl: ?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetSource(@ptrCast(*const IMFMediaEngine, self), pUrl);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetSource(@as(*const IMFMediaEngine, @ptrCast(self)), pUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetCurrentSource(self: *const T, ppUrl: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetCurrentSource(@ptrCast(*const IMFMediaEngine, self), ppUrl);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetCurrentSource(@as(*const IMFMediaEngine, @ptrCast(self)), ppUrl);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetNetworkState(self: *const T) u16 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetNetworkState(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetNetworkState(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetPreload(self: *const T) MF_MEDIA_ENGINE_PRELOAD {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetPreload(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPreload(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetPreload(self: *const T, Preload: MF_MEDIA_ENGINE_PRELOAD) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetPreload(@ptrCast(*const IMFMediaEngine, self), Preload);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetPreload(@as(*const IMFMediaEngine, @ptrCast(self)), Preload);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetBuffered(self: *const T, ppBuffered: ?*?*IMFMediaTimeRange) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetBuffered(@ptrCast(*const IMFMediaEngine, self), ppBuffered);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetBuffered(@as(*const IMFMediaEngine, @ptrCast(self)), ppBuffered);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_Load(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).Load(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_CanPlayType(self: *const T, type_: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).CanPlayType(@ptrCast(*const IMFMediaEngine, self), type_, pAnswer);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngine, @ptrCast(self)), type_, pAnswer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetReadyState(self: *const T) u16 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetReadyState(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_IsSeeking(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).IsSeeking(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsSeeking(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetCurrentTime(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetCurrentTime(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetCurrentTime(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetCurrentTime(self: *const T, seekTime: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetCurrentTime(@ptrCast(*const IMFMediaEngine, self), seekTime);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetCurrentTime(@as(*const IMFMediaEngine, @ptrCast(self)), seekTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetStartTime(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetStartTime(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetStartTime(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetDuration(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetDuration(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_IsPaused(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).IsPaused(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsPaused(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetDefaultPlaybackRate(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetDefaultPlaybackRate(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetDefaultPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetDefaultPlaybackRate(self: *const T, Rate: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetDefaultPlaybackRate(@ptrCast(*const IMFMediaEngine, self), Rate);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetDefaultPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)), Rate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetPlaybackRate(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetPlaybackRate(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetPlaybackRate(self: *const T, Rate: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetPlaybackRate(@ptrCast(*const IMFMediaEngine, self), Rate);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)), Rate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetPlayed(self: *const T, ppPlayed: ?*?*IMFMediaTimeRange) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetPlayed(@ptrCast(*const IMFMediaEngine, self), ppPlayed);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPlayed(@as(*const IMFMediaEngine, @ptrCast(self)), ppPlayed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetSeekable(self: *const T, ppSeekable: ?*?*IMFMediaTimeRange) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetSeekable(@ptrCast(*const IMFMediaEngine, self), ppSeekable);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetSeekable(@as(*const IMFMediaEngine, @ptrCast(self)), ppSeekable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_IsEnded(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).IsEnded(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsEnded(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetAutoPlay(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetAutoPlay(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetAutoPlay(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetAutoPlay(self: *const T, AutoPlay: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetAutoPlay(@ptrCast(*const IMFMediaEngine, self), AutoPlay);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetAutoPlay(@as(*const IMFMediaEngine, @ptrCast(self)), AutoPlay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetLoop(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetLoop(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetLoop(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetLoop(self: *const T, Loop: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetLoop(@ptrCast(*const IMFMediaEngine, self), Loop);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetLoop(@as(*const IMFMediaEngine, @ptrCast(self)), Loop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_Play(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).Play(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Play(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).Pause(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetMuted(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetMuted(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetMuted(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetMuted(self: *const T, Muted: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetMuted(@ptrCast(*const IMFMediaEngine, self), Muted);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetMuted(@as(*const IMFMediaEngine, @ptrCast(self)), Muted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetVolume(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetVolume(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_SetVolume(self: *const T, Volume: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).SetVolume(@ptrCast(*const IMFMediaEngine, self), Volume);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IMFMediaEngine, @ptrCast(self)), Volume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_HasVideo(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).HasVideo(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).HasVideo(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_HasAudio(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).HasAudio(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).HasAudio(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetNativeVideoSize(self: *const T, cx: ?*u32, cy: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetNativeVideoSize(@ptrCast(*const IMFMediaEngine, self), cx, cy);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFMediaEngine, @ptrCast(self)), cx, cy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_GetVideoAspectRatio(self: *const T, cx: ?*u32, cy: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).GetVideoAspectRatio(@ptrCast(*const IMFMediaEngine, self), cx, cy);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetVideoAspectRatio(@as(*const IMFMediaEngine, @ptrCast(self)), cx, cy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaEngine, self));
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaEngine, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_TransferVideoFrame(self: *const T, pDstSurf: ?*IUnknown, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).TransferVideoFrame(@ptrCast(*const IMFMediaEngine, self), pDstSurf, pSrc, pDst, pBorderClr);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).TransferVideoFrame(@as(*const IMFMediaEngine, @ptrCast(self)), pDstSurf, pSrc, pDst, pBorderClr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngine_OnVideoStreamTick(self: *const T, pPts: ?*i64) HRESULT {
-                return @ptrCast(*const IMFMediaEngine.VTable, self.vtable).OnVideoStreamTick(@ptrCast(*const IMFMediaEngine, self), pPts);
+                return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).OnVideoStreamTick(@as(*const IMFMediaEngine, @ptrCast(self)), pPts);
             }
         };
     }
@@ -32338,151 +32338,151 @@ pub const IMFMediaEngineEx = extern struct {
             pub usingnamespace IMFMediaEngine.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetSourceFromByteStream(self: *const T, pByteStream: ?*IMFByteStream, pURL: ?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetSourceFromByteStream(@ptrCast(*const IMFMediaEngineEx, self), pByteStream, pURL);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetSourceFromByteStream(@as(*const IMFMediaEngineEx, @ptrCast(self)), pByteStream, pURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetStatistics(self: *const T, StatisticID: MF_MEDIA_ENGINE_STATISTIC, pStatistic: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetStatistics(@ptrCast(*const IMFMediaEngineEx, self), StatisticID, pStatistic);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFMediaEngineEx, @ptrCast(self)), StatisticID, pStatistic);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_UpdateVideoStream(self: *const T, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).UpdateVideoStream(@ptrCast(*const IMFMediaEngineEx, self), pSrc, pDst, pBorderClr);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).UpdateVideoStream(@as(*const IMFMediaEngineEx, @ptrCast(self)), pSrc, pDst, pBorderClr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetBalance(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetBalance(@ptrCast(*const IMFMediaEngineEx, self));
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetBalance(@as(*const IMFMediaEngineEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetBalance(self: *const T, balance: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetBalance(@ptrCast(*const IMFMediaEngineEx, self), balance);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetBalance(@as(*const IMFMediaEngineEx, @ptrCast(self)), balance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_IsPlaybackRateSupported(self: *const T, rate: f64) BOOL {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).IsPlaybackRateSupported(@ptrCast(*const IMFMediaEngineEx, self), rate);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsPlaybackRateSupported(@as(*const IMFMediaEngineEx, @ptrCast(self)), rate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_FrameStep(self: *const T, Forward: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).FrameStep(@ptrCast(*const IMFMediaEngineEx, self), Forward);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).FrameStep(@as(*const IMFMediaEngineEx, @ptrCast(self)), Forward);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetResourceCharacteristics(self: *const T, pCharacteristics: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetResourceCharacteristics(@ptrCast(*const IMFMediaEngineEx, self), pCharacteristics);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetResourceCharacteristics(@as(*const IMFMediaEngineEx, @ptrCast(self)), pCharacteristics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetPresentationAttribute(self: *const T, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetPresentationAttribute(@ptrCast(*const IMFMediaEngineEx, self), guidMFAttribute, pvValue);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFMediaEngineEx, @ptrCast(self)), guidMFAttribute, pvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetNumberOfStreams(self: *const T, pdwStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetNumberOfStreams(@ptrCast(*const IMFMediaEngineEx, self), pdwStreamCount);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IMFMediaEngineEx, @ptrCast(self)), pdwStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetStreamAttribute(self: *const T, dwStreamIndex: u32, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetStreamAttribute(@ptrCast(*const IMFMediaEngineEx, self), dwStreamIndex, guidMFAttribute, pvValue);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStreamAttribute(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, guidMFAttribute, pvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetStreamSelection(self: *const T, dwStreamIndex: u32, pEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetStreamSelection(@ptrCast(*const IMFMediaEngineEx, self), dwStreamIndex, pEnabled);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, pEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetStreamSelection(self: *const T, dwStreamIndex: u32, Enabled: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetStreamSelection(@ptrCast(*const IMFMediaEngineEx, self), dwStreamIndex, Enabled);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, Enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_ApplyStreamSelections(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).ApplyStreamSelections(@ptrCast(*const IMFMediaEngineEx, self));
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).ApplyStreamSelections(@as(*const IMFMediaEngineEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_IsProtected(self: *const T, pProtected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).IsProtected(@ptrCast(*const IMFMediaEngineEx, self), pProtected);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsProtected(@as(*const IMFMediaEngineEx, @ptrCast(self)), pProtected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_InsertVideoEffect(self: *const T, pEffect: ?*IUnknown, fOptional: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).InsertVideoEffect(@ptrCast(*const IMFMediaEngineEx, self), pEffect, fOptional);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).InsertVideoEffect(@as(*const IMFMediaEngineEx, @ptrCast(self)), pEffect, fOptional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_InsertAudioEffect(self: *const T, pEffect: ?*IUnknown, fOptional: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).InsertAudioEffect(@ptrCast(*const IMFMediaEngineEx, self), pEffect, fOptional);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).InsertAudioEffect(@as(*const IMFMediaEngineEx, @ptrCast(self)), pEffect, fOptional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_RemoveAllEffects(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).RemoveAllEffects(@ptrCast(*const IMFMediaEngineEx, self));
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFMediaEngineEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetTimelineMarkerTimer(self: *const T, timeToFire: f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetTimelineMarkerTimer(@ptrCast(*const IMFMediaEngineEx, self), timeToFire);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), timeToFire);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetTimelineMarkerTimer(self: *const T, pTimeToFire: ?*f64) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetTimelineMarkerTimer(@ptrCast(*const IMFMediaEngineEx, self), pTimeToFire);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), pTimeToFire);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_CancelTimelineMarkerTimer(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).CancelTimelineMarkerTimer(@ptrCast(*const IMFMediaEngineEx, self));
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).CancelTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_IsStereo3D(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).IsStereo3D(@ptrCast(*const IMFMediaEngineEx, self));
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsStereo3D(@as(*const IMFMediaEngineEx, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetStereo3DFramePackingMode(self: *const T, packMode: ?*MF_MEDIA_ENGINE_S3D_PACKING_MODE) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetStereo3DFramePackingMode(@ptrCast(*const IMFMediaEngineEx, self), packMode);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStereo3DFramePackingMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), packMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetStereo3DFramePackingMode(self: *const T, packMode: MF_MEDIA_ENGINE_S3D_PACKING_MODE) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetStereo3DFramePackingMode(@ptrCast(*const IMFMediaEngineEx, self), packMode);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStereo3DFramePackingMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), packMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetStereo3DRenderMode(self: *const T, outputType: ?*MF3DVideoOutputType) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetStereo3DRenderMode(@ptrCast(*const IMFMediaEngineEx, self), outputType);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStereo3DRenderMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), outputType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetStereo3DRenderMode(self: *const T, outputType: MF3DVideoOutputType) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetStereo3DRenderMode(@ptrCast(*const IMFMediaEngineEx, self), outputType);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStereo3DRenderMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), outputType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_EnableWindowlessSwapchainMode(self: *const T, fEnable: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).EnableWindowlessSwapchainMode(@ptrCast(*const IMFMediaEngineEx, self), fEnable);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableWindowlessSwapchainMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetVideoSwapchainHandle(self: *const T, phSwapchain: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetVideoSwapchainHandle(@ptrCast(*const IMFMediaEngineEx, self), phSwapchain);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetVideoSwapchainHandle(@as(*const IMFMediaEngineEx, @ptrCast(self)), phSwapchain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_EnableHorizontalMirrorMode(self: *const T, fEnable: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).EnableHorizontalMirrorMode(@ptrCast(*const IMFMediaEngineEx, self), fEnable);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableHorizontalMirrorMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetAudioStreamCategory(self: *const T, pCategory: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetAudioStreamCategory(@ptrCast(*const IMFMediaEngineEx, self), pCategory);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetAudioStreamCategory(@as(*const IMFMediaEngineEx, @ptrCast(self)), pCategory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetAudioStreamCategory(self: *const T, category: u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetAudioStreamCategory(@ptrCast(*const IMFMediaEngineEx, self), category);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetAudioStreamCategory(@as(*const IMFMediaEngineEx, @ptrCast(self)), category);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetAudioEndpointRole(self: *const T, pRole: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetAudioEndpointRole(@ptrCast(*const IMFMediaEngineEx, self), pRole);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetAudioEndpointRole(@as(*const IMFMediaEngineEx, @ptrCast(self)), pRole);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetAudioEndpointRole(self: *const T, role: u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetAudioEndpointRole(@ptrCast(*const IMFMediaEngineEx, self), role);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetAudioEndpointRole(@as(*const IMFMediaEngineEx, @ptrCast(self)), role);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_GetRealTimeMode(self: *const T, pfEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).GetRealTimeMode(@ptrCast(*const IMFMediaEngineEx, self), pfEnabled);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetRealTimeMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), pfEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetRealTimeMode(self: *const T, fEnable: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetRealTimeMode(@ptrCast(*const IMFMediaEngineEx, self), fEnable);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetRealTimeMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_SetCurrentTimeEx(self: *const T, seekTime: f64, seekMode: MF_MEDIA_ENGINE_SEEK_MODE) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).SetCurrentTimeEx(@ptrCast(*const IMFMediaEngineEx, self), seekTime, seekMode);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetCurrentTimeEx(@as(*const IMFMediaEngineEx, @ptrCast(self)), seekTime, seekMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEx_EnableTimeUpdateTimer(self: *const T, fEnableTimer: BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEx.VTable, self.vtable).EnableTimeUpdateTimer(@ptrCast(*const IMFMediaEngineEx, self), fEnableTimer);
+                return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableTimeUpdateTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnableTimer);
             }
         };
     }
@@ -32521,11 +32521,11 @@ pub const IMFMediaEngineAudioEndpointId = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineAudioEndpointId_SetAudioEndpointId(self: *const T, pszEndpointId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFMediaEngineAudioEndpointId.VTable, self.vtable).SetAudioEndpointId(@ptrCast(*const IMFMediaEngineAudioEndpointId, self), pszEndpointId);
+                return @as(*const IMFMediaEngineAudioEndpointId.VTable, @ptrCast(self.vtable)).SetAudioEndpointId(@as(*const IMFMediaEngineAudioEndpointId, @ptrCast(self)), pszEndpointId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineAudioEndpointId_GetAudioEndpointId(self: *const T, ppszEndpointId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineAudioEndpointId.VTable, self.vtable).GetAudioEndpointId(@ptrCast(*const IMFMediaEngineAudioEndpointId, self), ppszEndpointId);
+                return @as(*const IMFMediaEngineAudioEndpointId.VTable, @ptrCast(self.vtable)).GetAudioEndpointId(@as(*const IMFMediaEngineAudioEndpointId, @ptrCast(self)), ppszEndpointId);
             }
         };
     }
@@ -32608,19 +32608,19 @@ pub const IMFMediaEngineExtension = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineExtension_CanPlayType(self: *const T, AudioOnly: BOOL, MimeType: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) HRESULT {
-                return @ptrCast(*const IMFMediaEngineExtension.VTable, self.vtable).CanPlayType(@ptrCast(*const IMFMediaEngineExtension, self), AudioOnly, MimeType, pAnswer);
+                return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngineExtension, @ptrCast(self)), AudioOnly, MimeType, pAnswer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineExtension_BeginCreateObject(self: *const T, bstrURL: ?BSTR, pByteStream: ?*IMFByteStream, type_: MF_OBJECT_TYPE, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEngineExtension.VTable, self.vtable).BeginCreateObject(@ptrCast(*const IMFMediaEngineExtension, self), bstrURL, pByteStream, type_, ppIUnknownCancelCookie, pCallback, punkState);
+                return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), bstrURL, pByteStream, type_, ppIUnknownCancelCookie, pCallback, punkState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineExtension_CancelObjectCreation(self: *const T, pIUnknownCancelCookie: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEngineExtension.VTable, self.vtable).CancelObjectCreation(@ptrCast(*const IMFMediaEngineExtension, self), pIUnknownCancelCookie);
+                return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFMediaEngineExtension, @ptrCast(self)), pIUnknownCancelCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineExtension_EndCreateObject(self: *const T, pResult: ?*IMFAsyncResult, ppObject: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEngineExtension.VTable, self.vtable).EndCreateObject(@ptrCast(*const IMFMediaEngineExtension, self), pResult, ppObject);
+                return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), pResult, ppObject);
             }
         };
     }
@@ -32721,27 +32721,27 @@ pub const IMFMediaEngineProtectedContent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_ShareResources(self: *const T, pUnkDeviceContext: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).ShareResources(@ptrCast(*const IMFMediaEngineProtectedContent, self), pUnkDeviceContext);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).ShareResources(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pUnkDeviceContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_GetRequiredProtections(self: *const T, pFrameProtectionFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).GetRequiredProtections(@ptrCast(*const IMFMediaEngineProtectedContent, self), pFrameProtectionFlags);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).GetRequiredProtections(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pFrameProtectionFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_SetOPMWindow(self: *const T, hwnd: ?HWND) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).SetOPMWindow(@ptrCast(*const IMFMediaEngineProtectedContent, self), hwnd);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetOPMWindow(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), hwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_TransferVideoFrame(self: *const T, pDstSurf: ?*IUnknown, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB, pFrameProtectionFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).TransferVideoFrame(@ptrCast(*const IMFMediaEngineProtectedContent, self), pDstSurf, pSrc, pDst, pBorderClr, pFrameProtectionFlags);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).TransferVideoFrame(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pDstSurf, pSrc, pDst, pBorderClr, pFrameProtectionFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_SetContentProtectionManager(self: *const T, pCPM: ?*IMFContentProtectionManager) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).SetContentProtectionManager(@ptrCast(*const IMFMediaEngineProtectedContent, self), pCPM);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetContentProtectionManager(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pCPM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineProtectedContent_SetApplicationCertificate(self: *const T, pbBlob: ?*const u8, cbBlob: u32) HRESULT {
-                return @ptrCast(*const IMFMediaEngineProtectedContent.VTable, self.vtable).SetApplicationCertificate(@ptrCast(*const IMFMediaEngineProtectedContent, self), pbBlob, cbBlob);
+                return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetApplicationCertificate(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pbBlob, cbBlob);
             }
         };
     }
@@ -32774,7 +32774,7 @@ pub const IAudioSourceProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAudioSourceProvider_ProvideInput(self: *const T, dwSampleCount: u32, pdwChannelCount: ?*u32, pInterleavedAudioData: ?*f32) HRESULT {
-                return @ptrCast(*const IAudioSourceProvider.VTable, self.vtable).ProvideInput(@ptrCast(*const IAudioSourceProvider, self), dwSampleCount, pdwChannelCount, pInterleavedAudioData);
+                return @as(*const IAudioSourceProvider.VTable, @ptrCast(self.vtable)).ProvideInput(@as(*const IAudioSourceProvider, @ptrCast(self)), dwSampleCount, pdwChannelCount, pInterleavedAudioData);
             }
         };
     }
@@ -32821,15 +32821,15 @@ pub const IMFMediaEngineWebSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineWebSupport_ShouldDelayTheLoadEvent(self: *const T) BOOL {
-                return @ptrCast(*const IMFMediaEngineWebSupport.VTable, self.vtable).ShouldDelayTheLoadEvent(@ptrCast(*const IMFMediaEngineWebSupport, self));
+                return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).ShouldDelayTheLoadEvent(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineWebSupport_ConnectWebAudio(self: *const T, dwSampleRate: u32, ppSourceProvider: ?*?*IAudioSourceProvider) HRESULT {
-                return @ptrCast(*const IMFMediaEngineWebSupport.VTable, self.vtable).ConnectWebAudio(@ptrCast(*const IMFMediaEngineWebSupport, self), dwSampleRate, ppSourceProvider);
+                return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).ConnectWebAudio(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)), dwSampleRate, ppSourceProvider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineWebSupport_DisconnectWebAudio(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaEngineWebSupport.VTable, self.vtable).DisconnectWebAudio(@ptrCast(*const IMFMediaEngineWebSupport, self));
+                return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).DisconnectWebAudio(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)));
             }
         };
     }
@@ -32889,15 +32889,15 @@ pub const IMFMediaSourceExtensionNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtensionNotify_OnSourceOpen(self: *const T) void {
-                return @ptrCast(*const IMFMediaSourceExtensionNotify.VTable, self.vtable).OnSourceOpen(@ptrCast(*const IMFMediaSourceExtensionNotify, self));
+                return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceOpen(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtensionNotify_OnSourceEnded(self: *const T) void {
-                return @ptrCast(*const IMFMediaSourceExtensionNotify.VTable, self.vtable).OnSourceEnded(@ptrCast(*const IMFMediaSourceExtensionNotify, self));
+                return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceEnded(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtensionNotify_OnSourceClose(self: *const T) void {
-                return @ptrCast(*const IMFMediaSourceExtensionNotify.VTable, self.vtable).OnSourceClose(@ptrCast(*const IMFMediaSourceExtensionNotify, self));
+                return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceClose(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
             }
         };
     }
@@ -32933,11 +32933,11 @@ pub const IMFBufferListNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFBufferListNotify_OnAddSourceBuffer(self: *const T) void {
-                return @ptrCast(*const IMFBufferListNotify.VTable, self.vtable).OnAddSourceBuffer(@ptrCast(*const IMFBufferListNotify, self));
+                return @as(*const IMFBufferListNotify.VTable, @ptrCast(self.vtable)).OnAddSourceBuffer(@as(*const IMFBufferListNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFBufferListNotify_OnRemoveSourceBuffer(self: *const T) void {
-                return @ptrCast(*const IMFBufferListNotify.VTable, self.vtable).OnRemoveSourceBuffer(@ptrCast(*const IMFBufferListNotify, self));
+                return @as(*const IMFBufferListNotify.VTable, @ptrCast(self.vtable)).OnRemoveSourceBuffer(@as(*const IMFBufferListNotify, @ptrCast(self)));
             }
         };
     }
@@ -32999,23 +32999,23 @@ pub const IMFSourceBufferNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferNotify_OnUpdateStart(self: *const T) void {
-                return @ptrCast(*const IMFSourceBufferNotify.VTable, self.vtable).OnUpdateStart(@ptrCast(*const IMFSourceBufferNotify, self));
+                return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdateStart(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferNotify_OnAbort(self: *const T) void {
-                return @ptrCast(*const IMFSourceBufferNotify.VTable, self.vtable).OnAbort(@ptrCast(*const IMFSourceBufferNotify, self));
+                return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnAbort(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferNotify_OnError(self: *const T, hr: HRESULT) void {
-                return @ptrCast(*const IMFSourceBufferNotify.VTable, self.vtable).OnError(@ptrCast(*const IMFSourceBufferNotify, self), hr);
+                return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnError(@as(*const IMFSourceBufferNotify, @ptrCast(self)), hr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferNotify_OnUpdate(self: *const T) void {
-                return @ptrCast(*const IMFSourceBufferNotify.VTable, self.vtable).OnUpdate(@ptrCast(*const IMFSourceBufferNotify, self));
+                return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdate(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferNotify_OnUpdateEnd(self: *const T) void {
-                return @ptrCast(*const IMFSourceBufferNotify.VTable, self.vtable).OnUpdateEnd(@ptrCast(*const IMFSourceBufferNotify, self));
+                return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdateEnd(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
             }
         };
     }
@@ -33153,51 +33153,51 @@ pub const IMFSourceBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_GetUpdating(self: *const T) BOOL {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).GetUpdating(@ptrCast(*const IMFSourceBuffer, self));
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetUpdating(@as(*const IMFSourceBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_GetBuffered(self: *const T, ppBuffered: ?*?*IMFMediaTimeRange) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).GetBuffered(@ptrCast(*const IMFSourceBuffer, self), ppBuffered);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetBuffered(@as(*const IMFSourceBuffer, @ptrCast(self)), ppBuffered);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_GetTimeStampOffset(self: *const T) f64 {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).GetTimeStampOffset(@ptrCast(*const IMFSourceBuffer, self));
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetTimeStampOffset(@as(*const IMFSourceBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_SetTimeStampOffset(self: *const T, offset: f64) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).SetTimeStampOffset(@ptrCast(*const IMFSourceBuffer, self), offset);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetTimeStampOffset(@as(*const IMFSourceBuffer, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_GetAppendWindowStart(self: *const T) f64 {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).GetAppendWindowStart(@ptrCast(*const IMFSourceBuffer, self));
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetAppendWindowStart(@as(*const IMFSourceBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_SetAppendWindowStart(self: *const T, time: f64) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).SetAppendWindowStart(@ptrCast(*const IMFSourceBuffer, self), time);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetAppendWindowStart(@as(*const IMFSourceBuffer, @ptrCast(self)), time);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_GetAppendWindowEnd(self: *const T) f64 {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).GetAppendWindowEnd(@ptrCast(*const IMFSourceBuffer, self));
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetAppendWindowEnd(@as(*const IMFSourceBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_SetAppendWindowEnd(self: *const T, time: f64) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).SetAppendWindowEnd(@ptrCast(*const IMFSourceBuffer, self), time);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetAppendWindowEnd(@as(*const IMFSourceBuffer, @ptrCast(self)), time);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_Append(self: *const T, pData: ?*const u8, len: u32) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).Append(@ptrCast(*const IMFSourceBuffer, self), pData, len);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Append(@as(*const IMFSourceBuffer, @ptrCast(self)), pData, len);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_AppendByteStream(self: *const T, pStream: ?*IMFByteStream, pMaxLen: ?*u64) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).AppendByteStream(@ptrCast(*const IMFSourceBuffer, self), pStream, pMaxLen);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).AppendByteStream(@as(*const IMFSourceBuffer, @ptrCast(self)), pStream, pMaxLen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).Abort(@ptrCast(*const IMFSourceBuffer, self));
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMFSourceBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBuffer_Remove(self: *const T, start: f64, end: f64) HRESULT {
-                return @ptrCast(*const IMFSourceBuffer.VTable, self.vtable).Remove(@ptrCast(*const IMFSourceBuffer, self), start, end);
+                return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFSourceBuffer, @ptrCast(self)), start, end);
             }
         };
     }
@@ -33241,11 +33241,11 @@ pub const IMFSourceBufferAppendMode = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferAppendMode_GetAppendMode(self: *const T) MF_MSE_APPEND_MODE {
-                return @ptrCast(*const IMFSourceBufferAppendMode.VTable, self.vtable).GetAppendMode(@ptrCast(*const IMFSourceBufferAppendMode, self));
+                return @as(*const IMFSourceBufferAppendMode.VTable, @ptrCast(self.vtable)).GetAppendMode(@as(*const IMFSourceBufferAppendMode, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferAppendMode_SetAppendMode(self: *const T, mode: MF_MSE_APPEND_MODE) HRESULT {
-                return @ptrCast(*const IMFSourceBufferAppendMode.VTable, self.vtable).SetAppendMode(@ptrCast(*const IMFSourceBufferAppendMode, self), mode);
+                return @as(*const IMFSourceBufferAppendMode.VTable, @ptrCast(self.vtable)).SetAppendMode(@as(*const IMFSourceBufferAppendMode, @ptrCast(self)), mode);
             }
         };
     }
@@ -33283,11 +33283,11 @@ pub const IMFSourceBufferList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferList_GetLength(self: *const T) u32 {
-                return @ptrCast(*const IMFSourceBufferList.VTable, self.vtable).GetLength(@ptrCast(*const IMFSourceBufferList, self));
+                return @as(*const IMFSourceBufferList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFSourceBufferList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceBufferList_GetSourceBuffer(self: *const T, index: u32) ?*IMFSourceBuffer {
-                return @ptrCast(*const IMFSourceBufferList.VTable, self.vtable).GetSourceBuffer(@ptrCast(*const IMFSourceBufferList, self), index);
+                return @as(*const IMFSourceBufferList.VTable, @ptrCast(self.vtable)).GetSourceBuffer(@as(*const IMFSourceBufferList, @ptrCast(self)), index);
             }
         };
     }
@@ -33423,43 +33423,43 @@ pub const IMFMediaSourceExtension = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_GetSourceBuffers(self: *const T) ?*IMFSourceBufferList {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).GetSourceBuffers(@ptrCast(*const IMFMediaSourceExtension, self));
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetSourceBuffers(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_GetActiveSourceBuffers(self: *const T) ?*IMFSourceBufferList {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).GetActiveSourceBuffers(@ptrCast(*const IMFMediaSourceExtension, self));
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetActiveSourceBuffers(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_GetReadyState(self: *const T) MF_MSE_READY {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).GetReadyState(@ptrCast(*const IMFMediaSourceExtension, self));
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_GetDuration(self: *const T) f64 {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).GetDuration(@ptrCast(*const IMFMediaSourceExtension, self));
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_SetDuration(self: *const T, duration: f64) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).SetDuration(@ptrCast(*const IMFMediaSourceExtension, self), duration);
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetDuration(@as(*const IMFMediaSourceExtension, @ptrCast(self)), duration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_AddSourceBuffer(self: *const T, type_: ?BSTR, pNotify: ?*IMFSourceBufferNotify, ppSourceBuffer: ?*?*IMFSourceBuffer) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).AddSourceBuffer(@ptrCast(*const IMFMediaSourceExtension, self), type_, pNotify, ppSourceBuffer);
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).AddSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), type_, pNotify, ppSourceBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_RemoveSourceBuffer(self: *const T, pSourceBuffer: ?*IMFSourceBuffer) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).RemoveSourceBuffer(@ptrCast(*const IMFMediaSourceExtension, self), pSourceBuffer);
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).RemoveSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), pSourceBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_SetEndOfStream(self: *const T, @"error": MF_MSE_ERROR) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).SetEndOfStream(@ptrCast(*const IMFMediaSourceExtension, self), @"error");
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetEndOfStream(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"error");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_IsTypeSupported(self: *const T, type_: ?BSTR) BOOL {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).IsTypeSupported(@ptrCast(*const IMFMediaSourceExtension, self), type_);
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaSourceExtension, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtension_GetSourceBuffer(self: *const T, dwStreamIndex: u32) ?*IMFSourceBuffer {
-                return @ptrCast(*const IMFMediaSourceExtension.VTable, self.vtable).GetSourceBuffer(@ptrCast(*const IMFMediaSourceExtension, self), dwStreamIndex);
+                return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), dwStreamIndex);
             }
         };
     }
@@ -33498,11 +33498,11 @@ pub const IMFMediaSourceExtensionLiveSeekableRange = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtensionLiveSeekableRange_SetLiveSeekableRange(self: *const T, start: f64, end: f64) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, self.vtable).SetLiveSeekableRange(@ptrCast(*const IMFMediaSourceExtensionLiveSeekableRange, self), start, end);
+                return @as(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, @ptrCast(self.vtable)).SetLiveSeekableRange(@as(*const IMFMediaSourceExtensionLiveSeekableRange, @ptrCast(self)), start, end);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSourceExtensionLiveSeekableRange_ClearLiveSeekableRange(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, self.vtable).ClearLiveSeekableRange(@ptrCast(*const IMFMediaSourceExtensionLiveSeekableRange, self));
+                return @as(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, @ptrCast(self.vtable)).ClearLiveSeekableRange(@as(*const IMFMediaSourceExtensionLiveSeekableRange, @ptrCast(self)));
             }
         };
     }
@@ -33545,11 +33545,11 @@ pub const IMFMediaEngineEME = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEME_get_Keys(self: *const T, keys: ?*?*IMFMediaKeys) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEME.VTable, self.vtable).get_Keys(@ptrCast(*const IMFMediaEngineEME, self), keys);
+                return @as(*const IMFMediaEngineEME.VTable, @ptrCast(self.vtable)).get_Keys(@as(*const IMFMediaEngineEME, @ptrCast(self)), keys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEME_SetMediaKeys(self: *const T, keys: ?*IMFMediaKeys) HRESULT {
-                return @ptrCast(*const IMFMediaEngineEME.VTable, self.vtable).SetMediaKeys(@ptrCast(*const IMFMediaEngineEME, self), keys);
+                return @as(*const IMFMediaEngineEME.VTable, @ptrCast(self.vtable)).SetMediaKeys(@as(*const IMFMediaEngineEME, @ptrCast(self)), keys);
             }
         };
     }
@@ -33597,11 +33597,11 @@ pub const IMFMediaEngineSrcElementsEx = extern struct {
             pub usingnamespace IMFMediaEngineSrcElements.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElementsEx_AddElementEx(self: *const T, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR, keySystem: ?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElementsEx.VTable, self.vtable).AddElementEx(@ptrCast(*const IMFMediaEngineSrcElementsEx, self), pURL, pType, pMedia, keySystem);
+                return @as(*const IMFMediaEngineSrcElementsEx.VTable, @ptrCast(self.vtable)).AddElementEx(@as(*const IMFMediaEngineSrcElementsEx, @ptrCast(self)), pURL, pType, pMedia, keySystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSrcElementsEx_GetKeySystem(self: *const T, index: u32, pType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSrcElementsEx.VTable, self.vtable).GetKeySystem(@ptrCast(*const IMFMediaEngineSrcElementsEx, self), index, pType);
+                return @as(*const IMFMediaEngineSrcElementsEx.VTable, @ptrCast(self.vtable)).GetKeySystem(@as(*const IMFMediaEngineSrcElementsEx, @ptrCast(self)), index, pType);
             }
         };
     }
@@ -33635,7 +33635,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineNeedKeyNotify_NeedKey(self: *const T, initData: ?*const u8, cb: u32) void {
-                return @ptrCast(*const IMFMediaEngineNeedKeyNotify.VTable, self.vtable).NeedKey(@ptrCast(*const IMFMediaEngineNeedKeyNotify, self), initData, cb);
+                return @as(*const IMFMediaEngineNeedKeyNotify.VTable, @ptrCast(self.vtable)).NeedKey(@as(*const IMFMediaEngineNeedKeyNotify, @ptrCast(self)), initData, cb);
             }
         };
     }
@@ -33712,19 +33712,19 @@ pub const IMFMediaKeys = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys_CreateSession(self: *const T, mimeType: ?BSTR, initData: ?*const u8, cb: u32, customData: ?*const u8, cbCustomData: u32, notify: ?*IMFMediaKeySessionNotify, ppSession: ?*?*IMFMediaKeySession) HRESULT {
-                return @ptrCast(*const IMFMediaKeys.VTable, self.vtable).CreateSession(@ptrCast(*const IMFMediaKeys, self), mimeType, initData, cb, customData, cbCustomData, notify, ppSession);
+                return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IMFMediaKeys, @ptrCast(self)), mimeType, initData, cb, customData, cbCustomData, notify, ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys_get_KeySystem(self: *const T, keySystem: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaKeys.VTable, self.vtable).get_KeySystem(@ptrCast(*const IMFMediaKeys, self), keySystem);
+                return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeys, @ptrCast(self)), keySystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaKeys.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaKeys, self));
+                return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaKeys, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys_GetSuspendNotify(self: *const T, notify: ?*?*IMFCdmSuspendNotify) HRESULT {
-                return @ptrCast(*const IMFMediaKeys.VTable, self.vtable).GetSuspendNotify(@ptrCast(*const IMFMediaKeys, self), notify);
+                return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).GetSuspendNotify(@as(*const IMFMediaKeys, @ptrCast(self)), notify);
             }
         };
     }
@@ -33819,23 +33819,23 @@ pub const IMFMediaKeySession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession_GetError(self: *const T, code: ?*u16, systemCode: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession.VTable, self.vtable).GetError(@ptrCast(*const IMFMediaKeySession, self), code, systemCode);
+                return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).GetError(@as(*const IMFMediaKeySession, @ptrCast(self)), code, systemCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession_get_KeySystem(self: *const T, keySystem: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession.VTable, self.vtable).get_KeySystem(@ptrCast(*const IMFMediaKeySession, self), keySystem);
+                return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeySession, @ptrCast(self)), keySystem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession_get_SessionId(self: *const T, sessionId: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession.VTable, self.vtable).get_SessionId(@ptrCast(*const IMFMediaKeySession, self), sessionId);
+                return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).get_SessionId(@as(*const IMFMediaKeySession, @ptrCast(self)), sessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession_Update(self: *const T, key: ?*const u8, cb: u32) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession.VTable, self.vtable).Update(@ptrCast(*const IMFMediaKeySession, self), key, cb);
+                return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).Update(@as(*const IMFMediaKeySession, @ptrCast(self)), key, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession.VTable, self.vtable).Close(@ptrCast(*const IMFMediaKeySession, self));
+                return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFMediaKeySession, @ptrCast(self)));
             }
         };
     }
@@ -33891,15 +33891,15 @@ pub const IMFMediaKeySessionNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySessionNotify_KeyMessage(self: *const T, destinationURL: ?BSTR, message: ?*const u8, cb: u32) void {
-                return @ptrCast(*const IMFMediaKeySessionNotify.VTable, self.vtable).KeyMessage(@ptrCast(*const IMFMediaKeySessionNotify, self), destinationURL, message, cb);
+                return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyMessage(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)), destinationURL, message, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySessionNotify_KeyAdded(self: *const T) void {
-                return @ptrCast(*const IMFMediaKeySessionNotify.VTable, self.vtable).KeyAdded(@ptrCast(*const IMFMediaKeySessionNotify, self));
+                return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyAdded(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySessionNotify_KeyError(self: *const T, code: u16, systemCode: u32) void {
-                return @ptrCast(*const IMFMediaKeySessionNotify.VTable, self.vtable).KeyError(@ptrCast(*const IMFMediaKeySessionNotify, self), code, systemCode);
+                return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyError(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)), code, systemCode);
             }
         };
     }
@@ -33935,11 +33935,11 @@ pub const IMFCdmSuspendNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCdmSuspendNotify_Begin(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCdmSuspendNotify.VTable, self.vtable).Begin(@ptrCast(*const IMFCdmSuspendNotify, self));
+                return @as(*const IMFCdmSuspendNotify.VTable, @ptrCast(self.vtable)).Begin(@as(*const IMFCdmSuspendNotify, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCdmSuspendNotify_End(self: *const T) HRESULT {
-                return @ptrCast(*const IMFCdmSuspendNotify.VTable, self.vtable).End(@ptrCast(*const IMFCdmSuspendNotify, self));
+                return @as(*const IMFCdmSuspendNotify.VTable, @ptrCast(self.vtable)).End(@as(*const IMFCdmSuspendNotify, @ptrCast(self)));
             }
         };
     }
@@ -33989,11 +33989,11 @@ pub const IMFHDCPStatus = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHDCPStatus_Query(self: *const T, pStatus: ?*MF_HDCP_STATUS, pfStatus: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFHDCPStatus.VTable, self.vtable).Query(@ptrCast(*const IMFHDCPStatus, self), pStatus, pfStatus);
+                return @as(*const IMFHDCPStatus.VTable, @ptrCast(self.vtable)).Query(@as(*const IMFHDCPStatus, @ptrCast(self)), pStatus, pfStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFHDCPStatus_Set(self: *const T, status: MF_HDCP_STATUS) HRESULT {
-                return @ptrCast(*const IMFHDCPStatus.VTable, self.vtable).Set(@ptrCast(*const IMFHDCPStatus, self), status);
+                return @as(*const IMFHDCPStatus.VTable, @ptrCast(self.vtable)).Set(@as(*const IMFHDCPStatus, @ptrCast(self)), status);
             }
         };
     }
@@ -34040,7 +34040,7 @@ pub const IMFMediaEngineOPMInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineOPMInfo_GetOPMInfo(self: *const T, pStatus: ?*MF_MEDIA_ENGINE_OPM_STATUS, pConstricted: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineOPMInfo.VTable, self.vtable).GetOPMInfo(@ptrCast(*const IMFMediaEngineOPMInfo, self), pStatus, pConstricted);
+                return @as(*const IMFMediaEngineOPMInfo.VTable, @ptrCast(self.vtable)).GetOPMInfo(@as(*const IMFMediaEngineOPMInfo, @ptrCast(self)), pStatus, pConstricted);
             }
         };
     }
@@ -34118,15 +34118,15 @@ pub const IMFMediaEngineClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory_CreateInstance(self: *const T, dwFlags: u32, pAttr: ?*IMFAttributes, ppPlayer: ?*?*IMFMediaEngine) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IMFMediaEngineClassFactory, self), dwFlags, pAttr, ppPlayer);
+                return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppPlayer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory_CreateTimeRange(self: *const T, ppTimeRange: ?*?*IMFMediaTimeRange) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory.VTable, self.vtable).CreateTimeRange(@ptrCast(*const IMFMediaEngineClassFactory, self), ppTimeRange);
+                return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateTimeRange(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), ppTimeRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory_CreateError(self: *const T, ppError: ?*?*IMFMediaError) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory.VTable, self.vtable).CreateError(@ptrCast(*const IMFMediaEngineClassFactory, self), ppError);
+                return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateError(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), ppError);
             }
         };
     }
@@ -34188,15 +34188,15 @@ pub const IMFMediaEngineClassFactoryEx = extern struct {
             pub usingnamespace IMFMediaEngineClassFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactoryEx_CreateMediaSourceExtension(self: *const T, dwFlags: u32, pAttr: ?*IMFAttributes, ppMSE: ?*?*IMFMediaSourceExtension) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).CreateMediaSourceExtension(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), dwFlags, pAttr, ppMSE);
+                return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).CreateMediaSourceExtension(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), dwFlags, pAttr, ppMSE);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactoryEx_CreateMediaKeys(self: *const T, keySystem: ?BSTR, cdmStorePath: ?BSTR, ppKeys: ?*?*IMFMediaKeys) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).CreateMediaKeys(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), keySystem, cdmStorePath, ppKeys);
+                return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).CreateMediaKeys(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), keySystem, cdmStorePath, ppKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactoryEx_IsTypeSupported(self: *const T, type_: ?BSTR, keySystem: ?BSTR, isSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactoryEx.VTable, self.vtable).IsTypeSupported(@ptrCast(*const IMFMediaEngineClassFactoryEx, self), type_, keySystem, isSupported);
+                return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), type_, keySystem, isSupported);
             }
         };
     }
@@ -34232,7 +34232,7 @@ pub const IMFMediaEngineClassFactory2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory2_CreateMediaKeys2(self: *const T, keySystem: ?BSTR, defaultCdmStorePath: ?BSTR, inprivateCdmStorePath: ?BSTR, ppKeys: ?*?*IMFMediaKeys) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory2.VTable, self.vtable).CreateMediaKeys2(@ptrCast(*const IMFMediaEngineClassFactory2, self), keySystem, defaultCdmStorePath, inprivateCdmStorePath, ppKeys);
+                return @as(*const IMFMediaEngineClassFactory2.VTable, @ptrCast(self.vtable)).CreateMediaKeys2(@as(*const IMFMediaEngineClassFactory2, @ptrCast(self)), keySystem, defaultCdmStorePath, inprivateCdmStorePath, ppKeys);
             }
         };
     }
@@ -34265,7 +34265,7 @@ pub const IMFExtendedDRMTypeSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFExtendedDRMTypeSupport_IsTypeSupportedEx(self: *const T, type_: ?BSTR, keySystem: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) HRESULT {
-                return @ptrCast(*const IMFExtendedDRMTypeSupport.VTable, self.vtable).IsTypeSupportedEx(@ptrCast(*const IMFExtendedDRMTypeSupport, self), type_, keySystem, pAnswer);
+                return @as(*const IMFExtendedDRMTypeSupport.VTable, @ptrCast(self.vtable)).IsTypeSupportedEx(@as(*const IMFExtendedDRMTypeSupport, @ptrCast(self)), type_, keySystem, pAnswer);
             }
         };
     }
@@ -34323,15 +34323,15 @@ pub const IMFMediaEngineSupportsSourceTransfer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSupportsSourceTransfer_ShouldTransferSource(self: *const T, pfShouldTransfer: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSupportsSourceTransfer.VTable, self.vtable).ShouldTransferSource(@ptrCast(*const IMFMediaEngineSupportsSourceTransfer, self), pfShouldTransfer);
+                return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).ShouldTransferSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), pfShouldTransfer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSupportsSourceTransfer_DetachMediaSource(self: *const T, ppByteStream: ?*?*IMFByteStream, ppMediaSource: ?*?*IMFMediaSource, ppMSE: ?*?*IMFMediaSourceExtension) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSupportsSourceTransfer.VTable, self.vtable).DetachMediaSource(@ptrCast(*const IMFMediaEngineSupportsSourceTransfer, self), ppByteStream, ppMediaSource, ppMSE);
+                return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).DetachMediaSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), ppByteStream, ppMediaSource, ppMSE);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineSupportsSourceTransfer_AttachMediaSource(self: *const T, pByteStream: ?*IMFByteStream, pMediaSource: ?*IMFMediaSource, pMSE: ?*IMFMediaSourceExtension) HRESULT {
-                return @ptrCast(*const IMFMediaEngineSupportsSourceTransfer.VTable, self.vtable).AttachMediaSource(@ptrCast(*const IMFMediaEngineSupportsSourceTransfer, self), pByteStream, pMediaSource, pMSE);
+                return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).AttachMediaSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), pByteStream, pMediaSource, pMSE);
             }
         };
     }
@@ -34360,7 +34360,7 @@ pub const IMFMediaEngineTransferSource = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineTransferSource_TransferSourceToMediaEngine(self: *const T, destination: ?*IMFMediaEngine) HRESULT {
-                return @ptrCast(*const IMFMediaEngineTransferSource.VTable, self.vtable).TransferSourceToMediaEngine(@ptrCast(*const IMFMediaEngineTransferSource, self), destination);
+                return @as(*const IMFMediaEngineTransferSource.VTable, @ptrCast(self.vtable)).TransferSourceToMediaEngine(@as(*const IMFMediaEngineTransferSource, @ptrCast(self)), destination);
             }
         };
     }
@@ -34724,59 +34724,59 @@ pub const IMFTimedText = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_RegisterNotifications(self: *const T, notify: ?*IMFTimedTextNotify) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).RegisterNotifications(@ptrCast(*const IMFTimedText, self), notify);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).RegisterNotifications(@as(*const IMFTimedText, @ptrCast(self)), notify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_SelectTrack(self: *const T, trackId: u32, selected: BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).SelectTrack(@ptrCast(*const IMFTimedText, self), trackId, selected);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SelectTrack(@as(*const IMFTimedText, @ptrCast(self)), trackId, selected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_AddDataSource(self: *const T, byteStream: ?*IMFByteStream, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, isDefault: BOOL, trackId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).AddDataSource(@ptrCast(*const IMFTimedText, self), byteStream, label, language, kind, isDefault, trackId);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddDataSource(@as(*const IMFTimedText, @ptrCast(self)), byteStream, label, language, kind, isDefault, trackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_AddDataSourceFromUrl(self: *const T, url: ?[*:0]const u16, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, isDefault: BOOL, trackId: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).AddDataSourceFromUrl(@ptrCast(*const IMFTimedText, self), url, label, language, kind, isDefault, trackId);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddDataSourceFromUrl(@as(*const IMFTimedText, @ptrCast(self)), url, label, language, kind, isDefault, trackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_AddTrack(self: *const T, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, track: ?*?*IMFTimedTextTrack) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).AddTrack(@ptrCast(*const IMFTimedText, self), label, language, kind, track);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddTrack(@as(*const IMFTimedText, @ptrCast(self)), label, language, kind, track);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_RemoveTrack(self: *const T, track: ?*IMFTimedTextTrack) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).RemoveTrack(@ptrCast(*const IMFTimedText, self), track);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).RemoveTrack(@as(*const IMFTimedText, @ptrCast(self)), track);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_GetCueTimeOffset(self: *const T, offset: ?*f64) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).GetCueTimeOffset(@ptrCast(*const IMFTimedText, self), offset);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetCueTimeOffset(@as(*const IMFTimedText, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_SetCueTimeOffset(self: *const T, offset: f64) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).SetCueTimeOffset(@ptrCast(*const IMFTimedText, self), offset);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SetCueTimeOffset(@as(*const IMFTimedText, @ptrCast(self)), offset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_GetTracks(self: *const T, tracks: ?*?*IMFTimedTextTrackList) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).GetTracks(@ptrCast(*const IMFTimedText, self), tracks);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetTracks(@as(*const IMFTimedText, @ptrCast(self)), tracks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_GetActiveTracks(self: *const T, activeTracks: ?*?*IMFTimedTextTrackList) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).GetActiveTracks(@ptrCast(*const IMFTimedText, self), activeTracks);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetActiveTracks(@as(*const IMFTimedText, @ptrCast(self)), activeTracks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_GetTextTracks(self: *const T, textTracks: ?*?*IMFTimedTextTrackList) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).GetTextTracks(@ptrCast(*const IMFTimedText, self), textTracks);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetTextTracks(@as(*const IMFTimedText, @ptrCast(self)), textTracks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_GetMetadataTracks(self: *const T, metadataTracks: ?*?*IMFTimedTextTrackList) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).GetMetadataTracks(@ptrCast(*const IMFTimedText, self), metadataTracks);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetMetadataTracks(@as(*const IMFTimedText, @ptrCast(self)), metadataTracks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_SetInBandEnabled(self: *const T, enabled: BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).SetInBandEnabled(@ptrCast(*const IMFTimedText, self), enabled);
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SetInBandEnabled(@as(*const IMFTimedText, @ptrCast(self)), enabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedText_IsInBandEnabled(self: *const T) BOOL {
-                return @ptrCast(*const IMFTimedText.VTable, self.vtable).IsInBandEnabled(@ptrCast(*const IMFTimedText, self));
+                return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).IsInBandEnabled(@as(*const IMFTimedText, @ptrCast(self)));
             }
         };
     }
@@ -34874,31 +34874,31 @@ pub const IMFTimedTextNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_TrackAdded(self: *const T, trackId: u32) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).TrackAdded(@ptrCast(*const IMFTimedTextNotify, self), trackId);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackAdded(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_TrackRemoved(self: *const T, trackId: u32) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).TrackRemoved(@ptrCast(*const IMFTimedTextNotify, self), trackId);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackRemoved(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_TrackSelected(self: *const T, trackId: u32, selected: BOOL) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).TrackSelected(@ptrCast(*const IMFTimedTextNotify, self), trackId, selected);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackSelected(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId, selected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_TrackReadyStateChanged(self: *const T, trackId: u32) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).TrackReadyStateChanged(@ptrCast(*const IMFTimedTextNotify, self), trackId);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackReadyStateChanged(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_Error(self: *const T, errorCode: MF_TIMED_TEXT_ERROR_CODE, extendedErrorCode: HRESULT, sourceTrackId: u32) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).Error(@ptrCast(*const IMFTimedTextNotify, self), errorCode, extendedErrorCode, sourceTrackId);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Error(@as(*const IMFTimedTextNotify, @ptrCast(self)), errorCode, extendedErrorCode, sourceTrackId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_Cue(self: *const T, cueEvent: MF_TIMED_TEXT_CUE_EVENT, currentTime: f64, cue: ?*IMFTimedTextCue) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).Cue(@ptrCast(*const IMFTimedTextNotify, self), cueEvent, currentTime, cue);
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Cue(@as(*const IMFTimedTextNotify, @ptrCast(self)), cueEvent, currentTime, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextNotify_Reset(self: *const T) void {
-                return @ptrCast(*const IMFTimedTextNotify.VTable, self.vtable).Reset(@ptrCast(*const IMFTimedTextNotify, self));
+                return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFTimedTextNotify, @ptrCast(self)));
             }
         };
     }
@@ -35034,55 +35034,55 @@ pub const IMFTimedTextTrack = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetId(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetId(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetId(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetLabel(self: *const T, label: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetLabel(@ptrCast(*const IMFTimedTextTrack, self), label);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetLabel(@as(*const IMFTimedTextTrack, @ptrCast(self)), label);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_SetLabel(self: *const T, label: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).SetLabel(@ptrCast(*const IMFTimedTextTrack, self), label);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).SetLabel(@as(*const IMFTimedTextTrack, @ptrCast(self)), label);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetLanguage(@ptrCast(*const IMFTimedTextTrack, self), language);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IMFTimedTextTrack, @ptrCast(self)), language);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetTrackKind(self: *const T) MF_TIMED_TEXT_TRACK_KIND {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetTrackKind(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetTrackKind(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_IsInBand(self: *const T) BOOL {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).IsInBand(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).IsInBand(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetInBandMetadataTrackDispatchType(self: *const T, dispatchType: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetInBandMetadataTrackDispatchType(@ptrCast(*const IMFTimedTextTrack, self), dispatchType);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetInBandMetadataTrackDispatchType(@as(*const IMFTimedTextTrack, @ptrCast(self)), dispatchType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_IsActive(self: *const T) BOOL {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).IsActive(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).IsActive(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetErrorCode(self: *const T) MF_TIMED_TEXT_ERROR_CODE {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetErrorCode(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetExtendedErrorCode(self: *const T) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetExtendedErrorCode(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetExtendedErrorCode(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetDataFormat(self: *const T, format: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetDataFormat(@ptrCast(*const IMFTimedTextTrack, self), format);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetDataFormat(@as(*const IMFTimedTextTrack, @ptrCast(self)), format);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetReadyState(self: *const T) MF_TIMED_TEXT_TRACK_READY_STATE {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetReadyState(@ptrCast(*const IMFTimedTextTrack, self));
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFTimedTextTrack, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrack_GetCueList(self: *const T, cues: ?*?*IMFTimedTextCueList) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrack.VTable, self.vtable).GetCueList(@ptrCast(*const IMFTimedTextTrack, self), cues);
+                return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetCueList(@as(*const IMFTimedTextTrack, @ptrCast(self)), cues);
             }
         };
     }
@@ -35134,15 +35134,15 @@ pub const IMFTimedTextTrackList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrackList_GetLength(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextTrackList.VTable, self.vtable).GetLength(@ptrCast(*const IMFTimedTextTrackList, self));
+                return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFTimedTextTrackList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrackList_GetTrack(self: *const T, index: u32, track: ?*?*IMFTimedTextTrack) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrackList.VTable, self.vtable).GetTrack(@ptrCast(*const IMFTimedTextTrackList, self), index, track);
+                return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetTrack(@as(*const IMFTimedTextTrackList, @ptrCast(self)), index, track);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextTrackList_GetTrackById(self: *const T, trackId: u32, track: ?*?*IMFTimedTextTrack) HRESULT {
-                return @ptrCast(*const IMFTimedTextTrackList.VTable, self.vtable).GetTrackById(@ptrCast(*const IMFTimedTextTrackList, self), trackId, track);
+                return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetTrackById(@as(*const IMFTimedTextTrackList, @ptrCast(self)), trackId, track);
             }
         };
     }
@@ -35262,47 +35262,47 @@ pub const IMFTimedTextCue = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetId(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetId(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetId(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetOriginalId(self: *const T, originalId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetOriginalId(@ptrCast(*const IMFTimedTextCue, self), originalId);
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetOriginalId(@as(*const IMFTimedTextCue, @ptrCast(self)), originalId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetCueKind(self: *const T) MF_TIMED_TEXT_TRACK_KIND {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetCueKind(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetCueKind(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetStartTime(self: *const T) f64 {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetStartTime(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetStartTime(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetDuration(self: *const T) f64 {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetDuration(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetTrackId(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetTrackId(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetTrackId(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetData(self: *const T, data: ?*?*IMFTimedTextBinary) HRESULT {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetData(@ptrCast(*const IMFTimedTextCue, self), data);
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFTimedTextCue, @ptrCast(self)), data);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetRegion(self: *const T, region: ?*?*IMFTimedTextRegion) HRESULT {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetRegion(@ptrCast(*const IMFTimedTextCue, self), region);
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetRegion(@as(*const IMFTimedTextCue, @ptrCast(self)), region);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetStyle(self: *const T, style: ?*?*IMFTimedTextStyle) HRESULT {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetStyle(@ptrCast(*const IMFTimedTextCue, self), style);
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IMFTimedTextCue, @ptrCast(self)), style);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetLineCount(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetLineCount(@ptrCast(*const IMFTimedTextCue, self));
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetLineCount(@as(*const IMFTimedTextCue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCue_GetLine(self: *const T, index: u32, line: ?*?*IMFTimedTextFormattedText) HRESULT {
-                return @ptrCast(*const IMFTimedTextCue.VTable, self.vtable).GetLine(@ptrCast(*const IMFTimedTextCue, self), index, line);
+                return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetLine(@as(*const IMFTimedTextCue, @ptrCast(self)), index, line);
             }
         };
     }
@@ -35356,15 +35356,15 @@ pub const IMFTimedTextFormattedText = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextFormattedText_GetText(self: *const T, text: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetText(@ptrCast(*const IMFTimedTextFormattedText, self), text);
+                return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetText(@as(*const IMFTimedTextFormattedText, @ptrCast(self)), text);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextFormattedText_GetSubformattingCount(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetSubformattingCount(@ptrCast(*const IMFTimedTextFormattedText, self));
+                return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetSubformattingCount(@as(*const IMFTimedTextFormattedText, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextFormattedText_GetSubformatting(self: *const T, index: u32, firstChar: ?*u32, charLength: ?*u32, style: ?*?*IMFTimedTextStyle) HRESULT {
-                return @ptrCast(*const IMFTimedTextFormattedText.VTable, self.vtable).GetSubformatting(@ptrCast(*const IMFTimedTextFormattedText, self), index, firstChar, charLength, style);
+                return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetSubformatting(@as(*const IMFTimedTextFormattedText, @ptrCast(self)), index, firstChar, charLength, style);
             }
         };
     }
@@ -35520,55 +35520,55 @@ pub const IMFTimedTextStyle = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetName(@ptrCast(*const IMFTimedTextStyle, self), name);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetName(@as(*const IMFTimedTextStyle, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_IsExternal(self: *const T) BOOL {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).IsExternal(@ptrCast(*const IMFTimedTextStyle, self));
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).IsExternal(@as(*const IMFTimedTextStyle, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetFontFamily(self: *const T, fontFamily: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetFontFamily(@ptrCast(*const IMFTimedTextStyle, self), fontFamily);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontFamily);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetFontSize(self: *const T, fontSize: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetFontSize(@ptrCast(*const IMFTimedTextStyle, self), fontSize, unitType);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontSize, unitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetColor(self: *const T, color: ?*MFARGB) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetColor(@ptrCast(*const IMFTimedTextStyle, self), color);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IMFTimedTextStyle, @ptrCast(self)), color);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetBackgroundColor(self: *const T, bgColor: ?*MFARGB) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetBackgroundColor(@ptrCast(*const IMFTimedTextStyle, self), bgColor);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFTimedTextStyle, @ptrCast(self)), bgColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetShowBackgroundAlways(self: *const T, showBackgroundAlways: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetShowBackgroundAlways(@ptrCast(*const IMFTimedTextStyle, self), showBackgroundAlways);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetShowBackgroundAlways(@as(*const IMFTimedTextStyle, @ptrCast(self)), showBackgroundAlways);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetFontStyle(self: *const T, fontStyle: ?*MF_TIMED_TEXT_FONT_STYLE) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetFontStyle(@ptrCast(*const IMFTimedTextStyle, self), fontStyle);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontStyle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetBold(self: *const T, bold: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetBold(@ptrCast(*const IMFTimedTextStyle, self), bold);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetBold(@as(*const IMFTimedTextStyle, @ptrCast(self)), bold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetRightToLeft(self: *const T, rightToLeft: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetRightToLeft(@ptrCast(*const IMFTimedTextStyle, self), rightToLeft);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetRightToLeft(@as(*const IMFTimedTextStyle, @ptrCast(self)), rightToLeft);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetTextAlignment(self: *const T, textAlign: ?*MF_TIMED_TEXT_ALIGNMENT) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetTextAlignment(@ptrCast(*const IMFTimedTextStyle, self), textAlign);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextAlignment(@as(*const IMFTimedTextStyle, @ptrCast(self)), textAlign);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetTextDecoration(self: *const T, textDecoration: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetTextDecoration(@ptrCast(*const IMFTimedTextStyle, self), textDecoration);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextDecoration(@as(*const IMFTimedTextStyle, @ptrCast(self)), textDecoration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle_GetTextOutline(self: *const T, color: ?*MFARGB, thickness: ?*f64, blurRadius: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle.VTable, self.vtable).GetTextOutline(@ptrCast(*const IMFTimedTextStyle, self), color, thickness, blurRadius, unitType);
+                return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextOutline(@as(*const IMFTimedTextStyle, @ptrCast(self)), color, thickness, blurRadius, unitType);
             }
         };
     }
@@ -35726,51 +35726,51 @@ pub const IMFTimedTextRegion = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetName(@ptrCast(*const IMFTimedTextRegion, self), name);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetName(@as(*const IMFTimedTextRegion, @ptrCast(self)), name);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetPosition(self: *const T, pX: ?*f64, pY: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetPosition(@ptrCast(*const IMFTimedTextRegion, self), pX, pY, unitType);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IMFTimedTextRegion, @ptrCast(self)), pX, pY, unitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetExtent(self: *const T, pWidth: ?*f64, pHeight: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetExtent(@ptrCast(*const IMFTimedTextRegion, self), pWidth, pHeight, unitType);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IMFTimedTextRegion, @ptrCast(self)), pWidth, pHeight, unitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetBackgroundColor(self: *const T, bgColor: ?*MFARGB) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetBackgroundColor(@ptrCast(*const IMFTimedTextRegion, self), bgColor);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFTimedTextRegion, @ptrCast(self)), bgColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetWritingMode(self: *const T, writingMode: ?*MF_TIMED_TEXT_WRITING_MODE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetWritingMode(@ptrCast(*const IMFTimedTextRegion, self), writingMode);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetWritingMode(@as(*const IMFTimedTextRegion, @ptrCast(self)), writingMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetDisplayAlignment(self: *const T, displayAlign: ?*MF_TIMED_TEXT_DISPLAY_ALIGNMENT) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetDisplayAlignment(@ptrCast(*const IMFTimedTextRegion, self), displayAlign);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetDisplayAlignment(@as(*const IMFTimedTextRegion, @ptrCast(self)), displayAlign);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetLineHeight(self: *const T, pLineHeight: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetLineHeight(@ptrCast(*const IMFTimedTextRegion, self), pLineHeight, unitType);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetLineHeight(@as(*const IMFTimedTextRegion, @ptrCast(self)), pLineHeight, unitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetClipOverflow(self: *const T, clipOverflow: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetClipOverflow(@ptrCast(*const IMFTimedTextRegion, self), clipOverflow);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetClipOverflow(@as(*const IMFTimedTextRegion, @ptrCast(self)), clipOverflow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetPadding(self: *const T, before: ?*f64, start: ?*f64, after: ?*f64, end: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetPadding(@ptrCast(*const IMFTimedTextRegion, self), before, start, after, end, unitType);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetPadding(@as(*const IMFTimedTextRegion, @ptrCast(self)), before, start, after, end, unitType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetWrap(self: *const T, wrap: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetWrap(@ptrCast(*const IMFTimedTextRegion, self), wrap);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetWrap(@as(*const IMFTimedTextRegion, @ptrCast(self)), wrap);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetZIndex(self: *const T, zIndex: ?*i32) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetZIndex(@ptrCast(*const IMFTimedTextRegion, self), zIndex);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetZIndex(@as(*const IMFTimedTextRegion, @ptrCast(self)), zIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRegion_GetScrollMode(self: *const T, scrollMode: ?*MF_TIMED_TEXT_SCROLL_MODE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRegion.VTable, self.vtable).GetScrollMode(@ptrCast(*const IMFTimedTextRegion, self), scrollMode);
+                return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetScrollMode(@as(*const IMFTimedTextRegion, @ptrCast(self)), scrollMode);
             }
         };
     }
@@ -35802,7 +35802,7 @@ pub const IMFTimedTextBinary = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextBinary_GetData(self: *const T, data: ?*const ?*u8, length: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTimedTextBinary.VTable, self.vtable).GetData(@ptrCast(*const IMFTimedTextBinary, self), data, length);
+                return @as(*const IMFTimedTextBinary.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFTimedTextBinary, @ptrCast(self)), data, length);
             }
         };
     }
@@ -35911,31 +35911,31 @@ pub const IMFTimedTextCueList = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_GetLength(self: *const T) u32 {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).GetLength(@ptrCast(*const IMFTimedTextCueList, self));
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFTimedTextCueList, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_GetCueByIndex(self: *const T, index: u32, cue: ?*?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).GetCueByIndex(@ptrCast(*const IMFTimedTextCueList, self), index, cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueByIndex(@as(*const IMFTimedTextCueList, @ptrCast(self)), index, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_GetCueById(self: *const T, id: u32, cue: ?*?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).GetCueById(@ptrCast(*const IMFTimedTextCueList, self), id, cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueById(@as(*const IMFTimedTextCueList, @ptrCast(self)), id, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_GetCueByOriginalId(self: *const T, originalId: ?[*:0]const u16, cue: ?*?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).GetCueByOriginalId(@ptrCast(*const IMFTimedTextCueList, self), originalId, cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueByOriginalId(@as(*const IMFTimedTextCueList, @ptrCast(self)), originalId, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_AddTextCue(self: *const T, start: f64, duration: f64, text: ?[*:0]const u16, cue: ?*?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).AddTextCue(@ptrCast(*const IMFTimedTextCueList, self), start, duration, text, cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).AddTextCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), start, duration, text, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_AddDataCue(self: *const T, start: f64, duration: f64, data: ?*const u8, dataSize: u32, cue: ?*?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).AddDataCue(@ptrCast(*const IMFTimedTextCueList, self), start, duration, data, dataSize, cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).AddDataCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), start, duration, data, dataSize, cue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextCueList_RemoveCue(self: *const T, cue: ?*IMFTimedTextCue) HRESULT {
-                return @ptrCast(*const IMFTimedTextCueList.VTable, self.vtable).RemoveCue(@ptrCast(*const IMFTimedTextCueList, self), cue);
+                return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).RemoveCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), cue);
             }
         };
     }
@@ -35994,19 +35994,19 @@ pub const IMFTimedTextRuby = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRuby_GetRubyText(self: *const T, rubyText: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFTimedTextRuby.VTable, self.vtable).GetRubyText(@ptrCast(*const IMFTimedTextRuby, self), rubyText);
+                return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyText(@as(*const IMFTimedTextRuby, @ptrCast(self)), rubyText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRuby_GetRubyPosition(self: *const T, value: ?*MF_TIMED_TEXT_RUBY_POSITION) HRESULT {
-                return @ptrCast(*const IMFTimedTextRuby.VTable, self.vtable).GetRubyPosition(@ptrCast(*const IMFTimedTextRuby, self), value);
+                return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyPosition(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRuby_GetRubyAlign(self: *const T, value: ?*MF_TIMED_TEXT_RUBY_ALIGN) HRESULT {
-                return @ptrCast(*const IMFTimedTextRuby.VTable, self.vtable).GetRubyAlign(@ptrCast(*const IMFTimedTextRuby, self), value);
+                return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyAlign(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextRuby_GetRubyReserve(self: *const T, value: ?*MF_TIMED_TEXT_RUBY_RESERVE) HRESULT {
-                return @ptrCast(*const IMFTimedTextRuby.VTable, self.vtable).GetRubyReserve(@ptrCast(*const IMFTimedTextRuby, self), value);
+                return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyReserve(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
             }
         };
     }
@@ -36055,15 +36055,15 @@ pub const IMFTimedTextBouten = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextBouten_GetBoutenType(self: *const T, value: ?*MF_TIMED_TEXT_BOUTEN_TYPE) HRESULT {
-                return @ptrCast(*const IMFTimedTextBouten.VTable, self.vtable).GetBoutenType(@ptrCast(*const IMFTimedTextBouten, self), value);
+                return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenType(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextBouten_GetBoutenColor(self: *const T, value: ?*MFARGB) HRESULT {
-                return @ptrCast(*const IMFTimedTextBouten.VTable, self.vtable).GetBoutenColor(@ptrCast(*const IMFTimedTextBouten, self), value);
+                return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenColor(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextBouten_GetBoutenPosition(self: *const T, value: ?*MF_TIMED_TEXT_BOUTEN_POSITION) HRESULT {
-                return @ptrCast(*const IMFTimedTextBouten.VTable, self.vtable).GetBoutenPosition(@ptrCast(*const IMFTimedTextBouten, self), value);
+                return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenPosition(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
             }
         };
     }
@@ -36122,19 +36122,19 @@ pub const IMFTimedTextStyle2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle2_GetRuby(self: *const T, ruby: ?*?*IMFTimedTextRuby) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle2.VTable, self.vtable).GetRuby(@ptrCast(*const IMFTimedTextStyle2, self), ruby);
+                return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetRuby(@as(*const IMFTimedTextStyle2, @ptrCast(self)), ruby);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle2_GetBouten(self: *const T, bouten: ?*?*IMFTimedTextBouten) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle2.VTable, self.vtable).GetBouten(@ptrCast(*const IMFTimedTextStyle2, self), bouten);
+                return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetBouten(@as(*const IMFTimedTextStyle2, @ptrCast(self)), bouten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle2_IsTextCombined(self: *const T, value: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle2.VTable, self.vtable).IsTextCombined(@ptrCast(*const IMFTimedTextStyle2, self), value);
+                return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).IsTextCombined(@as(*const IMFTimedTextStyle2, @ptrCast(self)), value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTimedTextStyle2_GetFontAngleInDegrees(self: *const T, value: ?*f64) HRESULT {
-                return @ptrCast(*const IMFTimedTextStyle2.VTable, self.vtable).GetFontAngleInDegrees(@ptrCast(*const IMFTimedTextStyle2, self), value);
+                return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetFontAngleInDegrees(@as(*const IMFTimedTextStyle2, @ptrCast(self)), value);
             }
         };
     }
@@ -36186,11 +36186,11 @@ pub const IMFMediaEngineEMENotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEMENotify_Encrypted(self: *const T, pbInitData: ?*const u8, cb: u32, bstrInitDataType: ?BSTR) void {
-                return @ptrCast(*const IMFMediaEngineEMENotify.VTable, self.vtable).Encrypted(@ptrCast(*const IMFMediaEngineEMENotify, self), pbInitData, cb, bstrInitDataType);
+                return @as(*const IMFMediaEngineEMENotify.VTable, @ptrCast(self.vtable)).Encrypted(@as(*const IMFMediaEngineEMENotify, @ptrCast(self)), pbInitData, cb, bstrInitDataType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineEMENotify_WaitingForKey(self: *const T) void {
-                return @ptrCast(*const IMFMediaEngineEMENotify.VTable, self.vtable).WaitingForKey(@ptrCast(*const IMFMediaEngineEMENotify, self));
+                return @as(*const IMFMediaEngineEMENotify.VTable, @ptrCast(self.vtable)).WaitingForKey(@as(*const IMFMediaEngineEMENotify, @ptrCast(self)));
             }
         };
     }
@@ -36244,11 +36244,11 @@ pub const IMFMediaKeySessionNotify2 = extern struct {
             pub usingnamespace IMFMediaKeySessionNotify.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySessionNotify2_KeyMessage2(self: *const T, eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE, destinationURL: ?BSTR, pbMessage: ?*const u8, cbMessage: u32) void {
-                return @ptrCast(*const IMFMediaKeySessionNotify2.VTable, self.vtable).KeyMessage2(@ptrCast(*const IMFMediaKeySessionNotify2, self), eMessageType, destinationURL, pbMessage, cbMessage);
+                return @as(*const IMFMediaKeySessionNotify2.VTable, @ptrCast(self.vtable)).KeyMessage2(@as(*const IMFMediaKeySessionNotify2, @ptrCast(self)), eMessageType, destinationURL, pbMessage, cbMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySessionNotify2_KeyStatusChange(self: *const T) void {
-                return @ptrCast(*const IMFMediaKeySessionNotify2.VTable, self.vtable).KeyStatusChange(@ptrCast(*const IMFMediaKeySessionNotify2, self));
+                return @as(*const IMFMediaKeySessionNotify2.VTable, @ptrCast(self.vtable)).KeyStatusChange(@as(*const IMFMediaKeySessionNotify2, @ptrCast(self)));
             }
         };
     }
@@ -36305,15 +36305,15 @@ pub const IMFMediaKeySystemAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySystemAccess_CreateMediaKeys(self: *const T, pCdmCustomConfig: ?*IPropertyStore, ppKeys: ?*?*IMFMediaKeys2) HRESULT {
-                return @ptrCast(*const IMFMediaKeySystemAccess.VTable, self.vtable).CreateMediaKeys(@ptrCast(*const IMFMediaKeySystemAccess, self), pCdmCustomConfig, ppKeys);
+                return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).CreateMediaKeys(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), pCdmCustomConfig, ppKeys);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySystemAccess_get_SupportedConfiguration(self: *const T, ppSupportedConfiguration: ?*?*IPropertyStore) HRESULT {
-                return @ptrCast(*const IMFMediaKeySystemAccess.VTable, self.vtable).get_SupportedConfiguration(@ptrCast(*const IMFMediaKeySystemAccess, self), ppSupportedConfiguration);
+                return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).get_SupportedConfiguration(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), ppSupportedConfiguration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySystemAccess_get_KeySystem(self: *const T, pKeySystem: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMFMediaKeySystemAccess.VTable, self.vtable).get_KeySystem(@ptrCast(*const IMFMediaKeySystemAccess, self), pKeySystem);
+                return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), pKeySystem);
             }
         };
     }
@@ -36348,7 +36348,7 @@ pub const IMFMediaEngineClassFactory3 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory3_CreateMediaKeySystemAccess(self: *const T, keySystem: ?BSTR, ppSupportedConfigurationsArray: [*]?*IPropertyStore, uSize: u32, ppKeyAccess: ?*?*IMFMediaKeySystemAccess) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory3.VTable, self.vtable).CreateMediaKeySystemAccess(@ptrCast(*const IMFMediaEngineClassFactory3, self), keySystem, ppSupportedConfigurationsArray, uSize, ppKeyAccess);
+                return @as(*const IMFMediaEngineClassFactory3.VTable, @ptrCast(self.vtable)).CreateMediaKeySystemAccess(@as(*const IMFMediaEngineClassFactory3, @ptrCast(self)), keySystem, ppSupportedConfigurationsArray, uSize, ppKeyAccess);
             }
         };
     }
@@ -36407,15 +36407,15 @@ pub const IMFMediaKeys2 = extern struct {
             pub usingnamespace IMFMediaKeys.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys2_CreateSession2(self: *const T, eSessionType: MF_MEDIAKEYSESSION_TYPE, pMFMediaKeySessionNotify2: ?*IMFMediaKeySessionNotify2, ppSession: ?*?*IMFMediaKeySession2) HRESULT {
-                return @ptrCast(*const IMFMediaKeys2.VTable, self.vtable).CreateSession2(@ptrCast(*const IMFMediaKeys2, self), eSessionType, pMFMediaKeySessionNotify2, ppSession);
+                return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).CreateSession2(@as(*const IMFMediaKeys2, @ptrCast(self)), eSessionType, pMFMediaKeySessionNotify2, ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys2_SetServerCertificate(self: *const T, pbServerCertificate: ?*const u8, cb: u32) HRESULT {
-                return @ptrCast(*const IMFMediaKeys2.VTable, self.vtable).SetServerCertificate(@ptrCast(*const IMFMediaKeys2, self), pbServerCertificate, cb);
+                return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).SetServerCertificate(@as(*const IMFMediaKeys2, @ptrCast(self)), pbServerCertificate, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeys2_GetDOMException(self: *const T, systemCode: HRESULT, code: ?*HRESULT) HRESULT {
-                return @ptrCast(*const IMFMediaKeys2.VTable, self.vtable).GetDOMException(@ptrCast(*const IMFMediaKeys2, self), systemCode, code);
+                return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).GetDOMException(@as(*const IMFMediaKeys2, @ptrCast(self)), systemCode, code);
             }
         };
     }
@@ -36506,27 +36506,27 @@ pub const IMFMediaKeySession2 = extern struct {
             pub usingnamespace IMFMediaKeySession.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_get_KeyStatuses(self: *const T, pKeyStatusesArray: ?*?*MFMediaKeyStatus, puSize: ?*u32) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).get_KeyStatuses(@ptrCast(*const IMFMediaKeySession2, self), pKeyStatusesArray, puSize);
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).get_KeyStatuses(@as(*const IMFMediaKeySession2, @ptrCast(self)), pKeyStatusesArray, puSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_Load(self: *const T, bstrSessionId: ?BSTR, pfLoaded: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).Load(@ptrCast(*const IMFMediaKeySession2, self), bstrSessionId, pfLoaded);
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFMediaKeySession2, @ptrCast(self)), bstrSessionId, pfLoaded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_GenerateRequest(self: *const T, initDataType: ?BSTR, pbInitData: ?*const u8, cb: u32) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).GenerateRequest(@ptrCast(*const IMFMediaKeySession2, self), initDataType, pbInitData, cb);
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).GenerateRequest(@as(*const IMFMediaKeySession2, @ptrCast(self)), initDataType, pbInitData, cb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_get_Expiration(self: *const T, dblExpiration: ?*f64) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).get_Expiration(@ptrCast(*const IMFMediaKeySession2, self), dblExpiration);
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).get_Expiration(@as(*const IMFMediaKeySession2, @ptrCast(self)), dblExpiration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_Remove(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).Remove(@ptrCast(*const IMFMediaKeySession2, self));
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFMediaKeySession2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaKeySession2_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFMediaKeySession2.VTable, self.vtable).Shutdown(@ptrCast(*const IMFMediaKeySession2, self));
+                return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaKeySession2, @ptrCast(self)));
             }
         };
     }
@@ -36559,7 +36559,7 @@ pub const IMFMediaEngineClassFactory4 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaEngineClassFactory4_CreateContentDecryptionModuleFactory(self: *const T, keySystem: ?[*:0]const u16, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFMediaEngineClassFactory4.VTable, self.vtable).CreateContentDecryptionModuleFactory(@ptrCast(*const IMFMediaEngineClassFactory4, self), keySystem, riid, ppvObject);
+                return @as(*const IMFMediaEngineClassFactory4.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModuleFactory(@as(*const IMFMediaEngineClassFactory4, @ptrCast(self)), keySystem, riid, ppvObject);
             }
         };
     }
@@ -36591,7 +36591,7 @@ pub const IMFDLNASinkInit = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDLNASinkInit_Initialize(self: *const T, pByteStream: ?*IMFByteStream, fPal: BOOL) HRESULT {
-                return @ptrCast(*const IMFDLNASinkInit.VTable, self.vtable).Initialize(@ptrCast(*const IMFDLNASinkInit, self), pByteStream, fPal);
+                return @as(*const IMFDLNASinkInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFDLNASinkInit, @ptrCast(self)), pByteStream, fPal);
             }
         };
     }
@@ -36664,11 +36664,11 @@ pub const IMFReadWriteClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFReadWriteClassFactory_CreateInstanceFromURL(self: *const T, clsid: ?*const Guid, pwszURL: ?[*:0]const u16, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFReadWriteClassFactory.VTable, self.vtable).CreateInstanceFromURL(@ptrCast(*const IMFReadWriteClassFactory, self), clsid, pwszURL, pAttributes, riid, ppvObject);
+                return @as(*const IMFReadWriteClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromURL(@as(*const IMFReadWriteClassFactory, @ptrCast(self)), clsid, pwszURL, pAttributes, riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFReadWriteClassFactory_CreateInstanceFromObject(self: *const T, clsid: ?*const Guid, punkObject: ?*IUnknown, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFReadWriteClassFactory.VTable, self.vtable).CreateInstanceFromObject(@ptrCast(*const IMFReadWriteClassFactory, self), clsid, punkObject, pAttributes, riid, ppvObject);
+                return @as(*const IMFReadWriteClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromObject(@as(*const IMFReadWriteClassFactory, @ptrCast(self)), clsid, punkObject, pAttributes, riid, ppvObject);
             }
         };
     }
@@ -36866,43 +36866,43 @@ pub const IMFSourceReader = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_GetStreamSelection(self: *const T, dwStreamIndex: u32, pfSelected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).GetStreamSelection(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, pfSelected);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, pfSelected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_SetStreamSelection(self: *const T, dwStreamIndex: u32, fSelected: BOOL) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).SetStreamSelection(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, fSelected);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, fSelected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_GetNativeMediaType(self: *const T, dwStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).GetNativeMediaType(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, dwMediaTypeIndex, ppMediaType);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetNativeMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, dwMediaTypeIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_GetCurrentMediaType(self: *const T, dwStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).GetCurrentMediaType(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, ppMediaType);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, ppMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_SetCurrentMediaType(self: *const T, dwStreamIndex: u32, pdwReserved: ?*u32, pMediaType: ?*IMFMediaType) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).SetCurrentMediaType(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, pdwReserved, pMediaType);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetCurrentMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, pdwReserved, pMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_SetCurrentPosition(self: *const T, guidTimeFormat: ?*const Guid, varPosition: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IMFSourceReader, self), guidTimeFormat, varPosition);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IMFSourceReader, @ptrCast(self)), guidTimeFormat, varPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_ReadSample(self: *const T, dwStreamIndex: u32, dwControlFlags: u32, pdwActualStreamIndex: ?*u32, pdwStreamFlags: ?*u32, pllTimestamp: ?*i64, ppSample: ?*?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).ReadSample(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, dwControlFlags, pdwActualStreamIndex, pdwStreamFlags, pllTimestamp, ppSample);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).ReadSample(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, dwControlFlags, pdwActualStreamIndex, pdwStreamFlags, pllTimestamp, ppSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_Flush(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).Flush(@ptrCast(*const IMFSourceReader, self), dwStreamIndex);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_GetServiceForStream(self: *const T, dwStreamIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).GetServiceForStream(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, guidService, riid, ppvObject);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetServiceForStream(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, guidService, riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReader_GetPresentationAttribute(self: *const T, dwStreamIndex: u32, guidAttribute: ?*const Guid, pvarAttribute: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFSourceReader.VTable, self.vtable).GetPresentationAttribute(@ptrCast(*const IMFSourceReader, self), dwStreamIndex, guidAttribute, pvarAttribute);
+                return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, guidAttribute, pvarAttribute);
             }
         };
     }
@@ -36974,19 +36974,19 @@ pub const IMFSourceReaderEx = extern struct {
             pub usingnamespace IMFSourceReader.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderEx_SetNativeMediaType(self: *const T, dwStreamIndex: u32, pMediaType: ?*IMFMediaType, pdwStreamFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSourceReaderEx.VTable, self.vtable).SetNativeMediaType(@ptrCast(*const IMFSourceReaderEx, self), dwStreamIndex, pMediaType, pdwStreamFlags);
+                return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).SetNativeMediaType(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, pMediaType, pdwStreamFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderEx_AddTransformForStream(self: *const T, dwStreamIndex: u32, pTransformOrActivate: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSourceReaderEx.VTable, self.vtable).AddTransformForStream(@ptrCast(*const IMFSourceReaderEx, self), dwStreamIndex, pTransformOrActivate);
+                return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).AddTransformForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, pTransformOrActivate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderEx_RemoveAllTransformsForStream(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSourceReaderEx.VTable, self.vtable).RemoveAllTransformsForStream(@ptrCast(*const IMFSourceReaderEx, self), dwStreamIndex);
+                return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).RemoveAllTransformsForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderEx_GetTransformForStream(self: *const T, dwStreamIndex: u32, dwTransformIndex: u32, pGuidCategory: ?*Guid, ppTransform: ?*?*IMFTransform) HRESULT {
-                return @ptrCast(*const IMFSourceReaderEx.VTable, self.vtable).GetTransformForStream(@ptrCast(*const IMFSourceReaderEx, self), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
+                return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).GetTransformForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
             }
         };
     }
@@ -37046,15 +37046,15 @@ pub const IMFSourceReaderCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderCallback_OnReadSample(self: *const T, hrStatus: HRESULT, dwStreamIndex: u32, dwStreamFlags: u32, llTimestamp: i64, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFSourceReaderCallback.VTable, self.vtable).OnReadSample(@ptrCast(*const IMFSourceReaderCallback, self), hrStatus, dwStreamIndex, dwStreamFlags, llTimestamp, pSample);
+                return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnReadSample(@as(*const IMFSourceReaderCallback, @ptrCast(self)), hrStatus, dwStreamIndex, dwStreamFlags, llTimestamp, pSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderCallback_OnFlush(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSourceReaderCallback.VTable, self.vtable).OnFlush(@ptrCast(*const IMFSourceReaderCallback, self), dwStreamIndex);
+                return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnFlush(@as(*const IMFSourceReaderCallback, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderCallback_OnEvent(self: *const T, dwStreamIndex: u32, pEvent: ?*IMFMediaEvent) HRESULT {
-                return @ptrCast(*const IMFSourceReaderCallback.VTable, self.vtable).OnEvent(@ptrCast(*const IMFSourceReaderCallback, self), dwStreamIndex, pEvent);
+                return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IMFSourceReaderCallback, @ptrCast(self)), dwStreamIndex, pEvent);
             }
         };
     }
@@ -37093,11 +37093,11 @@ pub const IMFSourceReaderCallback2 = extern struct {
             pub usingnamespace IMFSourceReaderCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderCallback2_OnTransformChange(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSourceReaderCallback2.VTable, self.vtable).OnTransformChange(@ptrCast(*const IMFSourceReaderCallback2, self));
+                return @as(*const IMFSourceReaderCallback2.VTable, @ptrCast(self.vtable)).OnTransformChange(@as(*const IMFSourceReaderCallback2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSourceReaderCallback2_OnStreamError(self: *const T, dwStreamIndex: u32, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IMFSourceReaderCallback2.VTable, self.vtable).OnStreamError(@ptrCast(*const IMFSourceReaderCallback2, self), dwStreamIndex, hrStatus);
+                return @as(*const IMFSourceReaderCallback2.VTable, @ptrCast(self.vtable)).OnStreamError(@as(*const IMFSourceReaderCallback2, @ptrCast(self)), dwStreamIndex, hrStatus);
             }
         };
     }
@@ -37271,47 +37271,47 @@ pub const IMFSinkWriter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_AddStream(self: *const T, pTargetMediaType: ?*IMFMediaType, pdwStreamIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).AddStream(@ptrCast(*const IMFSinkWriter, self), pTargetMediaType, pdwStreamIndex);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFSinkWriter, @ptrCast(self)), pTargetMediaType, pdwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_SetInputMediaType(self: *const T, dwStreamIndex: u32, pInputMediaType: ?*IMFMediaType, pEncodingParameters: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).SetInputMediaType(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, pInputMediaType, pEncodingParameters);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).SetInputMediaType(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pInputMediaType, pEncodingParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_BeginWriting(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).BeginWriting(@ptrCast(*const IMFSinkWriter, self));
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).BeginWriting(@as(*const IMFSinkWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_WriteSample(self: *const T, dwStreamIndex: u32, pSample: ?*IMFSample) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).WriteSample(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, pSample);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).WriteSample(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pSample);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_SendStreamTick(self: *const T, dwStreamIndex: u32, llTimestamp: i64) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).SendStreamTick(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, llTimestamp);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).SendStreamTick(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, llTimestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_PlaceMarker(self: *const T, dwStreamIndex: u32, pvContext: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).PlaceMarker(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, pvContext);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).PlaceMarker(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pvContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_NotifyEndOfSegment(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).NotifyEndOfSegment(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).NotifyEndOfSegment(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_Flush(self: *const T, dwStreamIndex: u32) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).Flush(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_Finalize(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).Finalize(@ptrCast(*const IMFSinkWriter, self));
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).Finalize(@as(*const IMFSinkWriter, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_GetServiceForStream(self: *const T, dwStreamIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).GetServiceForStream(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, guidService, riid, ppvObject);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).GetServiceForStream(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, guidService, riid, ppvObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriter_GetStatistics(self: *const T, dwStreamIndex: u32, pStats: ?*MF_SINK_WRITER_STATISTICS) HRESULT {
-                return @ptrCast(*const IMFSinkWriter.VTable, self.vtable).GetStatistics(@ptrCast(*const IMFSinkWriter, self), dwStreamIndex, pStats);
+                return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pStats);
             }
         };
     }
@@ -37347,7 +37347,7 @@ pub const IMFSinkWriterEx = extern struct {
             pub usingnamespace IMFSinkWriter.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterEx_GetTransformForStream(self: *const T, dwStreamIndex: u32, dwTransformIndex: u32, pGuidCategory: ?*Guid, ppTransform: ?*?*IMFTransform) HRESULT {
-                return @ptrCast(*const IMFSinkWriterEx.VTable, self.vtable).GetTransformForStream(@ptrCast(*const IMFSinkWriterEx, self), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
+                return @as(*const IMFSinkWriterEx.VTable, @ptrCast(self.vtable)).GetTransformForStream(@as(*const IMFSinkWriterEx, @ptrCast(self)), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
             }
         };
     }
@@ -37393,11 +37393,11 @@ pub const IMFSinkWriterEncoderConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterEncoderConfig_SetTargetMediaType(self: *const T, dwStreamIndex: u32, pTargetMediaType: ?*IMFMediaType, pEncodingParameters: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSinkWriterEncoderConfig.VTable, self.vtable).SetTargetMediaType(@ptrCast(*const IMFSinkWriterEncoderConfig, self), dwStreamIndex, pTargetMediaType, pEncodingParameters);
+                return @as(*const IMFSinkWriterEncoderConfig.VTable, @ptrCast(self.vtable)).SetTargetMediaType(@as(*const IMFSinkWriterEncoderConfig, @ptrCast(self)), dwStreamIndex, pTargetMediaType, pEncodingParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterEncoderConfig_PlaceEncodingParameters(self: *const T, dwStreamIndex: u32, pEncodingParameters: ?*IMFAttributes) HRESULT {
-                return @ptrCast(*const IMFSinkWriterEncoderConfig.VTable, self.vtable).PlaceEncodingParameters(@ptrCast(*const IMFSinkWriterEncoderConfig, self), dwStreamIndex, pEncodingParameters);
+                return @as(*const IMFSinkWriterEncoderConfig.VTable, @ptrCast(self.vtable)).PlaceEncodingParameters(@as(*const IMFSinkWriterEncoderConfig, @ptrCast(self)), dwStreamIndex, pEncodingParameters);
             }
         };
     }
@@ -37439,11 +37439,11 @@ pub const IMFSinkWriterCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterCallback_OnFinalize(self: *const T, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IMFSinkWriterCallback.VTable, self.vtable).OnFinalize(@ptrCast(*const IMFSinkWriterCallback, self), hrStatus);
+                return @as(*const IMFSinkWriterCallback.VTable, @ptrCast(self.vtable)).OnFinalize(@as(*const IMFSinkWriterCallback, @ptrCast(self)), hrStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterCallback_OnMarker(self: *const T, dwStreamIndex: u32, pvContext: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IMFSinkWriterCallback.VTable, self.vtable).OnMarker(@ptrCast(*const IMFSinkWriterCallback, self), dwStreamIndex, pvContext);
+                return @as(*const IMFSinkWriterCallback.VTable, @ptrCast(self.vtable)).OnMarker(@as(*const IMFSinkWriterCallback, @ptrCast(self)), dwStreamIndex, pvContext);
             }
         };
     }
@@ -37482,11 +37482,11 @@ pub const IMFSinkWriterCallback2 = extern struct {
             pub usingnamespace IMFSinkWriterCallback.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterCallback2_OnTransformChange(self: *const T) HRESULT {
-                return @ptrCast(*const IMFSinkWriterCallback2.VTable, self.vtable).OnTransformChange(@ptrCast(*const IMFSinkWriterCallback2, self));
+                return @as(*const IMFSinkWriterCallback2.VTable, @ptrCast(self.vtable)).OnTransformChange(@as(*const IMFSinkWriterCallback2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSinkWriterCallback2_OnStreamError(self: *const T, dwStreamIndex: u32, hrStatus: HRESULT) HRESULT {
-                return @ptrCast(*const IMFSinkWriterCallback2.VTable, self.vtable).OnStreamError(@ptrCast(*const IMFSinkWriterCallback2, self), dwStreamIndex, hrStatus);
+                return @as(*const IMFSinkWriterCallback2.VTable, @ptrCast(self.vtable)).OnStreamError(@as(*const IMFSinkWriterCallback2, @ptrCast(self)), dwStreamIndex, hrStatus);
             }
         };
     }
@@ -37526,7 +37526,7 @@ pub const IMFVideoPositionMapper = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoPositionMapper_MapOutputCoordinateToInputStream(self: *const T, xOut: f32, yOut: f32, dwOutputStreamIndex: u32, dwInputStreamIndex: u32, pxIn: ?*f32, pyIn: ?*f32) HRESULT {
-                return @ptrCast(*const IMFVideoPositionMapper.VTable, self.vtable).MapOutputCoordinateToInputStream(@ptrCast(*const IMFVideoPositionMapper, self), xOut, yOut, dwOutputStreamIndex, dwInputStreamIndex, pxIn, pyIn);
+                return @as(*const IMFVideoPositionMapper.VTable, @ptrCast(self.vtable)).MapOutputCoordinateToInputStream(@as(*const IMFVideoPositionMapper, @ptrCast(self)), xOut, yOut, dwOutputStreamIndex, dwInputStreamIndex, pxIn, pyIn);
             }
         };
     }
@@ -37556,7 +37556,7 @@ pub const IMFVideoDeviceID = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDeviceID_GetDeviceID(self: *const T, pDeviceID: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFVideoDeviceID.VTable, self.vtable).GetDeviceID(@ptrCast(*const IMFVideoDeviceID, self), pDeviceID);
+                return @as(*const IMFVideoDeviceID.VTable, @ptrCast(self.vtable)).GetDeviceID(@as(*const IMFVideoDeviceID, @ptrCast(self)), pDeviceID);
             }
         };
     }
@@ -37784,67 +37784,67 @@ pub const IMFVideoDisplayControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetNativeVideoSize(self: *const T, pszVideo: ?*SIZE, pszARVideo: ?*SIZE) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetNativeVideoSize(@ptrCast(*const IMFVideoDisplayControl, self), pszVideo, pszARVideo);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pszVideo, pszARVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetIdealVideoSize(self: *const T, pszMin: ?*SIZE, pszMax: ?*SIZE) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetIdealVideoSize(@ptrCast(*const IMFVideoDisplayControl, self), pszMin, pszMax);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetIdealVideoSize(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pszMin, pszMax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetVideoPosition(self: *const T, pnrcSource: ?*const MFVideoNormalizedRect, prcDest: ?*const RECT) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetVideoPosition(@ptrCast(*const IMFVideoDisplayControl, self), pnrcSource, prcDest);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetVideoPosition(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pnrcSource, prcDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetVideoPosition(self: *const T, pnrcSource: ?*MFVideoNormalizedRect, prcDest: ?*RECT) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetVideoPosition(@ptrCast(*const IMFVideoDisplayControl, self), pnrcSource, prcDest);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetVideoPosition(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pnrcSource, prcDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetAspectRatioMode(self: *const T, dwAspectRatioMode: u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetAspectRatioMode(@ptrCast(*const IMFVideoDisplayControl, self), dwAspectRatioMode);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetAspectRatioMode(@as(*const IMFVideoDisplayControl, @ptrCast(self)), dwAspectRatioMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetAspectRatioMode(self: *const T, pdwAspectRatioMode: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetAspectRatioMode(@ptrCast(*const IMFVideoDisplayControl, self), pdwAspectRatioMode);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetAspectRatioMode(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pdwAspectRatioMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetVideoWindow(self: *const T, hwndVideo: ?HWND) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetVideoWindow(@ptrCast(*const IMFVideoDisplayControl, self), hwndVideo);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetVideoWindow(@as(*const IMFVideoDisplayControl, @ptrCast(self)), hwndVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetVideoWindow(self: *const T, phwndVideo: ?*?HWND) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetVideoWindow(@ptrCast(*const IMFVideoDisplayControl, self), phwndVideo);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetVideoWindow(@as(*const IMFVideoDisplayControl, @ptrCast(self)), phwndVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_RepaintVideo(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).RepaintVideo(@ptrCast(*const IMFVideoDisplayControl, self));
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).RepaintVideo(@as(*const IMFVideoDisplayControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetCurrentImage(self: *const T, pBih: ?*BITMAPINFOHEADER, pDib: [*]?*u8, pcbDib: ?*u32, pTimeStamp: ?*i64) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetCurrentImage(@ptrCast(*const IMFVideoDisplayControl, self), pBih, pDib, pcbDib, pTimeStamp);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetCurrentImage(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pBih, pDib, pcbDib, pTimeStamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetBorderColor(self: *const T, Clr: u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetBorderColor(@ptrCast(*const IMFVideoDisplayControl, self), Clr);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFVideoDisplayControl, @ptrCast(self)), Clr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetBorderColor(self: *const T, pClr: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetBorderColor(@ptrCast(*const IMFVideoDisplayControl, self), pClr);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetBorderColor(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pClr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetRenderingPrefs(self: *const T, dwRenderFlags: u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetRenderingPrefs(@ptrCast(*const IMFVideoDisplayControl, self), dwRenderFlags);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetRenderingPrefs(@as(*const IMFVideoDisplayControl, @ptrCast(self)), dwRenderFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetRenderingPrefs(self: *const T, pdwRenderFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetRenderingPrefs(@ptrCast(*const IMFVideoDisplayControl, self), pdwRenderFlags);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetRenderingPrefs(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pdwRenderFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_SetFullscreen(self: *const T, fFullscreen: BOOL) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).SetFullscreen(@ptrCast(*const IMFVideoDisplayControl, self), fFullscreen);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetFullscreen(@as(*const IMFVideoDisplayControl, @ptrCast(self)), fFullscreen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoDisplayControl_GetFullscreen(self: *const T, pfFullscreen: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFVideoDisplayControl.VTable, self.vtable).GetFullscreen(@ptrCast(*const IMFVideoDisplayControl, self), pfFullscreen);
+                return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetFullscreen(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pfFullscreen);
             }
         };
     }
@@ -37905,11 +37905,11 @@ pub const IMFVideoPresenter = extern struct {
             pub usingnamespace IMFClockStateSink.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoPresenter_ProcessMessage(self: *const T, eMessage: MFVP_MESSAGE_TYPE, ulParam: usize) HRESULT {
-                return @ptrCast(*const IMFVideoPresenter.VTable, self.vtable).ProcessMessage(@ptrCast(*const IMFVideoPresenter, self), eMessage, ulParam);
+                return @as(*const IMFVideoPresenter.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFVideoPresenter, @ptrCast(self)), eMessage, ulParam);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoPresenter_GetCurrentMediaType(self: *const T, ppMediaType: ?*?*IMFVideoMediaType) HRESULT {
-                return @ptrCast(*const IMFVideoPresenter.VTable, self.vtable).GetCurrentMediaType(@ptrCast(*const IMFVideoPresenter, self), ppMediaType);
+                return @as(*const IMFVideoPresenter.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFVideoPresenter, @ptrCast(self)), ppMediaType);
             }
         };
     }
@@ -37961,15 +37961,15 @@ pub const IMFDesiredSample = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDesiredSample_GetDesiredSampleTimeAndDuration(self: *const T, phnsSampleTime: ?*i64, phnsSampleDuration: ?*i64) HRESULT {
-                return @ptrCast(*const IMFDesiredSample.VTable, self.vtable).GetDesiredSampleTimeAndDuration(@ptrCast(*const IMFDesiredSample, self), phnsSampleTime, phnsSampleDuration);
+                return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).GetDesiredSampleTimeAndDuration(@as(*const IMFDesiredSample, @ptrCast(self)), phnsSampleTime, phnsSampleDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDesiredSample_SetDesiredSampleTimeAndDuration(self: *const T, hnsSampleTime: i64, hnsSampleDuration: i64) void {
-                return @ptrCast(*const IMFDesiredSample.VTable, self.vtable).SetDesiredSampleTimeAndDuration(@ptrCast(*const IMFDesiredSample, self), hnsSampleTime, hnsSampleDuration);
+                return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).SetDesiredSampleTimeAndDuration(@as(*const IMFDesiredSample, @ptrCast(self)), hnsSampleTime, hnsSampleDuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFDesiredSample_Clear(self: *const T) void {
-                return @ptrCast(*const IMFDesiredSample.VTable, self.vtable).Clear(@ptrCast(*const IMFDesiredSample, self));
+                return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFDesiredSample, @ptrCast(self)));
             }
         };
     }
@@ -38037,19 +38037,19 @@ pub const IMFVideoMixerControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl_SetStreamZOrder(self: *const T, dwStreamID: u32, dwZ: u32) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl.VTable, self.vtable).SetStreamZOrder(@ptrCast(*const IMFVideoMixerControl, self), dwStreamID, dwZ);
+                return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).SetStreamZOrder(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, dwZ);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl_GetStreamZOrder(self: *const T, dwStreamID: u32, pdwZ: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl.VTable, self.vtable).GetStreamZOrder(@ptrCast(*const IMFVideoMixerControl, self), dwStreamID, pdwZ);
+                return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).GetStreamZOrder(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pdwZ);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl_SetStreamOutputRect(self: *const T, dwStreamID: u32, pnrcOutput: ?*const MFVideoNormalizedRect) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl.VTable, self.vtable).SetStreamOutputRect(@ptrCast(*const IMFVideoMixerControl, self), dwStreamID, pnrcOutput);
+                return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).SetStreamOutputRect(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pnrcOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl_GetStreamOutputRect(self: *const T, dwStreamID: u32, pnrcOutput: ?*MFVideoNormalizedRect) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl.VTable, self.vtable).GetStreamOutputRect(@ptrCast(*const IMFVideoMixerControl, self), dwStreamID, pnrcOutput);
+                return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).GetStreamOutputRect(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pnrcOutput);
             }
         };
     }
@@ -38104,11 +38104,11 @@ pub const IMFVideoMixerControl2 = extern struct {
             pub usingnamespace IMFVideoMixerControl.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl2_SetMixingPrefs(self: *const T, dwMixFlags: u32) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl2.VTable, self.vtable).SetMixingPrefs(@ptrCast(*const IMFVideoMixerControl2, self), dwMixFlags);
+                return @as(*const IMFVideoMixerControl2.VTable, @ptrCast(self.vtable)).SetMixingPrefs(@as(*const IMFVideoMixerControl2, @ptrCast(self)), dwMixFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerControl2_GetMixingPrefs(self: *const T, pdwMixFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoMixerControl2.VTable, self.vtable).GetMixingPrefs(@ptrCast(*const IMFVideoMixerControl2, self), pdwMixFlags);
+                return @as(*const IMFVideoMixerControl2.VTable, @ptrCast(self.vtable)).GetMixingPrefs(@as(*const IMFVideoMixerControl2, @ptrCast(self)), pdwMixFlags);
             }
         };
     }
@@ -38140,7 +38140,7 @@ pub const IMFVideoRenderer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoRenderer_InitializeRenderer(self: *const T, pVideoMixer: ?*IMFTransform, pVideoPresenter: ?*IMFVideoPresenter) HRESULT {
-                return @ptrCast(*const IMFVideoRenderer.VTable, self.vtable).InitializeRenderer(@ptrCast(*const IMFVideoRenderer, self), pVideoMixer, pVideoPresenter);
+                return @as(*const IMFVideoRenderer.VTable, @ptrCast(self.vtable)).InitializeRenderer(@as(*const IMFVideoRenderer, @ptrCast(self)), pVideoMixer, pVideoPresenter);
             }
         };
     }
@@ -38180,11 +38180,11 @@ pub const IEVRFilterConfig = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRFilterConfig_SetNumberOfStreams(self: *const T, dwMaxStreams: u32) HRESULT {
-                return @ptrCast(*const IEVRFilterConfig.VTable, self.vtable).SetNumberOfStreams(@ptrCast(*const IEVRFilterConfig, self), dwMaxStreams);
+                return @as(*const IEVRFilterConfig.VTable, @ptrCast(self.vtable)).SetNumberOfStreams(@as(*const IEVRFilterConfig, @ptrCast(self)), dwMaxStreams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRFilterConfig_GetNumberOfStreams(self: *const T, pdwMaxStreams: ?*u32) HRESULT {
-                return @ptrCast(*const IEVRFilterConfig.VTable, self.vtable).GetNumberOfStreams(@ptrCast(*const IEVRFilterConfig, self), pdwMaxStreams);
+                return @as(*const IEVRFilterConfig.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IEVRFilterConfig, @ptrCast(self)), pdwMaxStreams);
             }
         };
     }
@@ -38231,11 +38231,11 @@ pub const IEVRFilterConfigEx = extern struct {
             pub usingnamespace IEVRFilterConfig.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRFilterConfigEx_SetConfigPrefs(self: *const T, dwConfigFlags: u32) HRESULT {
-                return @ptrCast(*const IEVRFilterConfigEx.VTable, self.vtable).SetConfigPrefs(@ptrCast(*const IEVRFilterConfigEx, self), dwConfigFlags);
+                return @as(*const IEVRFilterConfigEx.VTable, @ptrCast(self.vtable)).SetConfigPrefs(@as(*const IEVRFilterConfigEx, @ptrCast(self)), dwConfigFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRFilterConfigEx_GetConfigPrefs(self: *const T, pdwConfigFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IEVRFilterConfigEx.VTable, self.vtable).GetConfigPrefs(@ptrCast(*const IEVRFilterConfigEx, self), pdwConfigFlags);
+                return @as(*const IEVRFilterConfigEx.VTable, @ptrCast(self.vtable)).GetConfigPrefs(@as(*const IEVRFilterConfigEx, @ptrCast(self)), pdwConfigFlags);
             }
         };
     }
@@ -38290,7 +38290,7 @@ pub const IMFTopologyServiceLookup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyServiceLookup_LookupService(self: *const T, Type: MF_SERVICE_LOOKUP_TYPE, dwIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObjects: [*]?*anyopaque, pnObjects: ?*u32) HRESULT {
-                return @ptrCast(*const IMFTopologyServiceLookup.VTable, self.vtable).LookupService(@ptrCast(*const IMFTopologyServiceLookup, self), Type, dwIndex, guidService, riid, ppvObjects, pnObjects);
+                return @as(*const IMFTopologyServiceLookup.VTable, @ptrCast(self.vtable)).LookupService(@as(*const IMFTopologyServiceLookup, @ptrCast(self)), Type, dwIndex, guidService, riid, ppvObjects, pnObjects);
             }
         };
     }
@@ -38328,11 +38328,11 @@ pub const IMFTopologyServiceLookupClient = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyServiceLookupClient_InitServicePointers(self: *const T, pLookup: ?*IMFTopologyServiceLookup) HRESULT {
-                return @ptrCast(*const IMFTopologyServiceLookupClient.VTable, self.vtable).InitServicePointers(@ptrCast(*const IMFTopologyServiceLookupClient, self), pLookup);
+                return @as(*const IMFTopologyServiceLookupClient.VTable, @ptrCast(self.vtable)).InitServicePointers(@as(*const IMFTopologyServiceLookupClient, @ptrCast(self)), pLookup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFTopologyServiceLookupClient_ReleaseServicePointers(self: *const T) HRESULT {
-                return @ptrCast(*const IMFTopologyServiceLookupClient.VTable, self.vtable).ReleaseServicePointers(@ptrCast(*const IMFTopologyServiceLookupClient, self));
+                return @as(*const IMFTopologyServiceLookupClient.VTable, @ptrCast(self.vtable)).ReleaseServicePointers(@as(*const IMFTopologyServiceLookupClient, @ptrCast(self)));
             }
         };
     }
@@ -38392,19 +38392,19 @@ pub const IEVRTrustedVideoPlugin = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRTrustedVideoPlugin_IsInTrustedVideoMode(self: *const T, pYes: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEVRTrustedVideoPlugin.VTable, self.vtable).IsInTrustedVideoMode(@ptrCast(*const IEVRTrustedVideoPlugin, self), pYes);
+                return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).IsInTrustedVideoMode(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), pYes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRTrustedVideoPlugin_CanConstrict(self: *const T, pYes: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEVRTrustedVideoPlugin.VTable, self.vtable).CanConstrict(@ptrCast(*const IEVRTrustedVideoPlugin, self), pYes);
+                return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).CanConstrict(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), pYes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRTrustedVideoPlugin_SetConstriction(self: *const T, dwKPix: u32) HRESULT {
-                return @ptrCast(*const IEVRTrustedVideoPlugin.VTable, self.vtable).SetConstriction(@ptrCast(*const IEVRTrustedVideoPlugin, self), dwKPix);
+                return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).SetConstriction(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), dwKPix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRTrustedVideoPlugin_DisableImageExport(self: *const T, bDisable: BOOL) HRESULT {
-                return @ptrCast(*const IEVRTrustedVideoPlugin.VTable, self.vtable).DisableImageExport(@ptrCast(*const IEVRTrustedVideoPlugin, self), bDisable);
+                return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).DisableImageExport(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), bDisable);
             }
         };
     }
@@ -38846,147 +38846,147 @@ pub const IMFPMediaPlayer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_Play(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).Play(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Play(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).Pause(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).Stop(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_FrameStep(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).FrameStep(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).FrameStep(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetPosition(self: *const T, guidPositionType: ?*const Guid, pvPositionValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetPosition(@ptrCast(*const IMFPMediaPlayer, self), guidPositionType, pvPositionValue);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvPositionValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetPosition(self: *const T, guidPositionType: ?*const Guid, pvPositionValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetPosition(@ptrCast(*const IMFPMediaPlayer, self), guidPositionType, pvPositionValue);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvPositionValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetDuration(self: *const T, guidPositionType: ?*const Guid, pvDurationValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetDuration(@ptrCast(*const IMFPMediaPlayer, self), guidPositionType, pvDurationValue);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvDurationValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetRate(self: *const T, flRate: f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetRate(@ptrCast(*const IMFPMediaPlayer, self), flRate);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetRate(@as(*const IMFPMediaPlayer, @ptrCast(self)), flRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetRate(self: *const T, pflRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetRate(@ptrCast(*const IMFPMediaPlayer, self), pflRate);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetRate(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetSupportedRates(self: *const T, fForwardDirection: BOOL, pflSlowestRate: ?*f32, pflFastestRate: ?*f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetSupportedRates(@ptrCast(*const IMFPMediaPlayer, self), fForwardDirection, pflSlowestRate, pflFastestRate);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetSupportedRates(@as(*const IMFPMediaPlayer, @ptrCast(self)), fForwardDirection, pflSlowestRate, pflFastestRate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetState(self: *const T, peState: ?*MFP_MEDIAPLAYER_STATE) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetState(@ptrCast(*const IMFPMediaPlayer, self), peState);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFPMediaPlayer, @ptrCast(self)), peState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_CreateMediaItemFromURL(self: *const T, pwszURL: ?[*:0]const u16, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).CreateMediaItemFromURL(@ptrCast(*const IMFPMediaPlayer, self), pwszURL, fSync, dwUserData, ppMediaItem);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).CreateMediaItemFromURL(@as(*const IMFPMediaPlayer, @ptrCast(self)), pwszURL, fSync, dwUserData, ppMediaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_CreateMediaItemFromObject(self: *const T, pIUnknownObj: ?*IUnknown, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).CreateMediaItemFromObject(@ptrCast(*const IMFPMediaPlayer, self), pIUnknownObj, fSync, dwUserData, ppMediaItem);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).CreateMediaItemFromObject(@as(*const IMFPMediaPlayer, @ptrCast(self)), pIUnknownObj, fSync, dwUserData, ppMediaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetMediaItem(self: *const T, pIMFPMediaItem: ?*IMFPMediaItem) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetMediaItem(@ptrCast(*const IMFPMediaPlayer, self), pIMFPMediaItem);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)), pIMFPMediaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_ClearMediaItem(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).ClearMediaItem(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).ClearMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetMediaItem(self: *const T, ppIMFPMediaItem: ?*?*IMFPMediaItem) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetMediaItem(@ptrCast(*const IMFPMediaPlayer, self), ppIMFPMediaItem);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)), ppIMFPMediaItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetVolume(self: *const T, pflVolume: ?*f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetVolume(@ptrCast(*const IMFPMediaPlayer, self), pflVolume);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetVolume(self: *const T, flVolume: f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetVolume(@ptrCast(*const IMFPMediaPlayer, self), flVolume);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IMFPMediaPlayer, @ptrCast(self)), flVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetBalance(self: *const T, pflBalance: ?*f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetBalance(@ptrCast(*const IMFPMediaPlayer, self), pflBalance);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetBalance(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflBalance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetBalance(self: *const T, flBalance: f32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetBalance(@ptrCast(*const IMFPMediaPlayer, self), flBalance);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetBalance(@as(*const IMFPMediaPlayer, @ptrCast(self)), flBalance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetMute(self: *const T, pfMute: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetMute(@ptrCast(*const IMFPMediaPlayer, self), pfMute);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IMFPMediaPlayer, @ptrCast(self)), pfMute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetMute(self: *const T, fMute: BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetMute(@ptrCast(*const IMFPMediaPlayer, self), fMute);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IMFPMediaPlayer, @ptrCast(self)), fMute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetNativeVideoSize(self: *const T, pszVideo: ?*SIZE, pszARVideo: ?*SIZE) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetNativeVideoSize(@ptrCast(*const IMFPMediaPlayer, self), pszVideo, pszARVideo);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFPMediaPlayer, @ptrCast(self)), pszVideo, pszARVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetIdealVideoSize(self: *const T, pszMin: ?*SIZE, pszMax: ?*SIZE) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetIdealVideoSize(@ptrCast(*const IMFPMediaPlayer, self), pszMin, pszMax);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetIdealVideoSize(@as(*const IMFPMediaPlayer, @ptrCast(self)), pszMin, pszMax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetVideoSourceRect(self: *const T, pnrcSource: ?*const MFVideoNormalizedRect) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetVideoSourceRect(@ptrCast(*const IMFPMediaPlayer, self), pnrcSource);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetVideoSourceRect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pnrcSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetVideoSourceRect(self: *const T, pnrcSource: ?*MFVideoNormalizedRect) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetVideoSourceRect(@ptrCast(*const IMFPMediaPlayer, self), pnrcSource);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVideoSourceRect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pnrcSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetAspectRatioMode(self: *const T, dwAspectRatioMode: u32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetAspectRatioMode(@ptrCast(*const IMFPMediaPlayer, self), dwAspectRatioMode);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetAspectRatioMode(@as(*const IMFPMediaPlayer, @ptrCast(self)), dwAspectRatioMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetAspectRatioMode(self: *const T, pdwAspectRatioMode: ?*u32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetAspectRatioMode(@ptrCast(*const IMFPMediaPlayer, self), pdwAspectRatioMode);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetAspectRatioMode(@as(*const IMFPMediaPlayer, @ptrCast(self)), pdwAspectRatioMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetVideoWindow(self: *const T, phwndVideo: ?*?HWND) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetVideoWindow(@ptrCast(*const IMFPMediaPlayer, self), phwndVideo);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVideoWindow(@as(*const IMFPMediaPlayer, @ptrCast(self)), phwndVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_UpdateVideo(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).UpdateVideo(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_SetBorderColor(self: *const T, Clr: u32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).SetBorderColor(@ptrCast(*const IMFPMediaPlayer, self), Clr);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFPMediaPlayer, @ptrCast(self)), Clr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_GetBorderColor(self: *const T, pClr: ?*u32) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).GetBorderColor(@ptrCast(*const IMFPMediaPlayer, self), pClr);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetBorderColor(@as(*const IMFPMediaPlayer, @ptrCast(self)), pClr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_InsertEffect(self: *const T, pEffect: ?*IUnknown, fOptional: BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).InsertEffect(@ptrCast(*const IMFPMediaPlayer, self), pEffect, fOptional);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).InsertEffect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pEffect, fOptional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_RemoveEffect(self: *const T, pEffect: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).RemoveEffect(@ptrCast(*const IMFPMediaPlayer, self), pEffect);
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).RemoveEffect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pEffect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_RemoveAllEffects(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).RemoveAllEffects(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayer_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFPMediaPlayer.VTable, self.vtable).Shutdown(@ptrCast(*const IMFPMediaPlayer, self));
+                return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFPMediaPlayer, @ptrCast(self)));
             }
         };
     }
@@ -39226,79 +39226,79 @@ pub const IMFPMediaItem = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetMediaPlayer(self: *const T, ppMediaPlayer: ?*?*IMFPMediaPlayer) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetMediaPlayer(@ptrCast(*const IMFPMediaItem, self), ppMediaPlayer);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetMediaPlayer(@as(*const IMFPMediaItem, @ptrCast(self)), ppMediaPlayer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetURL(self: *const T, ppwszURL: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetURL(@ptrCast(*const IMFPMediaItem, self), ppwszURL);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFPMediaItem, @ptrCast(self)), ppwszURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetObject(self: *const T, ppIUnknown: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetObject(@ptrCast(*const IMFPMediaItem, self), ppIUnknown);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFPMediaItem, @ptrCast(self)), ppIUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetUserData(self: *const T, pdwUserData: ?*usize) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetUserData(@ptrCast(*const IMFPMediaItem, self), pdwUserData);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetUserData(@as(*const IMFPMediaItem, @ptrCast(self)), pdwUserData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_SetUserData(self: *const T, dwUserData: usize) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).SetUserData(@ptrCast(*const IMFPMediaItem, self), dwUserData);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetUserData(@as(*const IMFPMediaItem, @ptrCast(self)), dwUserData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetStartStopPosition(self: *const T, pguidStartPositionType: ?*Guid, pvStartValue: ?*PROPVARIANT, pguidStopPositionType: ?*Guid, pvStopValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetStartStopPosition(@ptrCast(*const IMFPMediaItem, self), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStartStopPosition(@as(*const IMFPMediaItem, @ptrCast(self)), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_SetStartStopPosition(self: *const T, pguidStartPositionType: ?*const Guid, pvStartValue: ?*const PROPVARIANT, pguidStopPositionType: ?*const Guid, pvStopValue: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).SetStartStopPosition(@ptrCast(*const IMFPMediaItem, self), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStartStopPosition(@as(*const IMFPMediaItem, @ptrCast(self)), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_HasVideo(self: *const T, pfHasVideo: ?*BOOL, pfSelected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).HasVideo(@ptrCast(*const IMFPMediaItem, self), pfHasVideo, pfSelected);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).HasVideo(@as(*const IMFPMediaItem, @ptrCast(self)), pfHasVideo, pfSelected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_HasAudio(self: *const T, pfHasAudio: ?*BOOL, pfSelected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).HasAudio(@ptrCast(*const IMFPMediaItem, self), pfHasAudio, pfSelected);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).HasAudio(@as(*const IMFPMediaItem, @ptrCast(self)), pfHasAudio, pfSelected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_IsProtected(self: *const T, pfProtected: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).IsProtected(@ptrCast(*const IMFPMediaItem, self), pfProtected);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).IsProtected(@as(*const IMFPMediaItem, @ptrCast(self)), pfProtected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetDuration(self: *const T, guidPositionType: ?*const Guid, pvDurationValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetDuration(@ptrCast(*const IMFPMediaItem, self), guidPositionType, pvDurationValue);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFPMediaItem, @ptrCast(self)), guidPositionType, pvDurationValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetNumberOfStreams(self: *const T, pdwStreamCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetNumberOfStreams(@ptrCast(*const IMFPMediaItem, self), pdwStreamCount);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IMFPMediaItem, @ptrCast(self)), pdwStreamCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetStreamSelection(self: *const T, dwStreamIndex: u32, pfEnabled: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetStreamSelection(@ptrCast(*const IMFPMediaItem, self), dwStreamIndex, pfEnabled);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, pfEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_SetStreamSelection(self: *const T, dwStreamIndex: u32, fEnabled: BOOL) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).SetStreamSelection(@ptrCast(*const IMFPMediaItem, self), dwStreamIndex, fEnabled);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, fEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetStreamAttribute(self: *const T, dwStreamIndex: u32, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetStreamAttribute(@ptrCast(*const IMFPMediaItem, self), dwStreamIndex, guidMFAttribute, pvValue);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStreamAttribute(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, guidMFAttribute, pvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetPresentationAttribute(self: *const T, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetPresentationAttribute(@ptrCast(*const IMFPMediaItem, self), guidMFAttribute, pvValue);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFPMediaItem, @ptrCast(self)), guidMFAttribute, pvValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetCharacteristics(self: *const T, pCharacteristics: ?*u32) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetCharacteristics(@ptrCast(*const IMFPMediaItem, self), pCharacteristics);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFPMediaItem, @ptrCast(self)), pCharacteristics);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_SetStreamSink(self: *const T, dwStreamIndex: u32, pMediaSink: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).SetStreamSink(@ptrCast(*const IMFPMediaItem, self), dwStreamIndex, pMediaSink);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStreamSink(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, pMediaSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaItem_GetMetadata(self: *const T, ppMetadataStore: ?*?*IPropertyStore) HRESULT {
-                return @ptrCast(*const IMFPMediaItem.VTable, self.vtable).GetMetadata(@ptrCast(*const IMFPMediaItem, self), ppMetadataStore);
+                return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetMetadata(@as(*const IMFPMediaItem, @ptrCast(self)), ppMetadataStore);
             }
         };
     }
@@ -39442,7 +39442,7 @@ pub const IMFPMediaPlayerCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFPMediaPlayerCallback_OnMediaPlayerEvent(self: *const T, pEventHeader: ?*MFP_EVENT_HEADER) void {
-                return @ptrCast(*const IMFPMediaPlayerCallback.VTable, self.vtable).OnMediaPlayerEvent(@ptrCast(*const IMFPMediaPlayerCallback, self), pEventHeader);
+                return @as(*const IMFPMediaPlayerCallback.VTable, @ptrCast(self.vtable)).OnMediaPlayerEvent(@as(*const IMFPMediaPlayerCallback, @ptrCast(self)), pEventHeader);
             }
         };
     }
@@ -39502,7 +39502,7 @@ pub const IMFSharingEngineClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSharingEngineClassFactory_CreateInstance(self: *const T, dwFlags: u32, pAttr: ?*IMFAttributes, ppEngine: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFSharingEngineClassFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IMFSharingEngineClassFactory, self), dwFlags, pAttr, ppEngine);
+                return @as(*const IMFSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFSharingEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppEngine);
             }
         };
     }
@@ -39532,7 +39532,7 @@ pub const IMFMediaSharingEngine = extern struct {
             pub usingnamespace IMFMediaEngine.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSharingEngine_GetDevice(self: *const T, pDevice: ?*DEVICE_INFO) HRESULT {
-                return @ptrCast(*const IMFMediaSharingEngine.VTable, self.vtable).GetDevice(@ptrCast(*const IMFMediaSharingEngine, self), pDevice);
+                return @as(*const IMFMediaSharingEngine.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IMFMediaSharingEngine, @ptrCast(self)), pDevice);
             }
         };
     }
@@ -39566,7 +39566,7 @@ pub const IMFMediaSharingEngineClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFMediaSharingEngineClassFactory_CreateInstance(self: *const T, dwFlags: u32, pAttr: ?*IMFAttributes, ppEngine: ?*?*IMFMediaSharingEngine) HRESULT {
-                return @ptrCast(*const IMFMediaSharingEngineClassFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IMFMediaSharingEngineClassFactory, self), dwFlags, pAttr, ppEngine);
+                return @as(*const IMFMediaSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFMediaSharingEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppEngine);
             }
         };
     }
@@ -39614,15 +39614,15 @@ pub const IMFImageSharingEngine = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFImageSharingEngine_SetSource(self: *const T, pStream: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IMFImageSharingEngine.VTable, self.vtable).SetSource(@ptrCast(*const IMFImageSharingEngine, self), pStream);
+                return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).SetSource(@as(*const IMFImageSharingEngine, @ptrCast(self)), pStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFImageSharingEngine_GetDevice(self: *const T, pDevice: ?*DEVICE_INFO) HRESULT {
-                return @ptrCast(*const IMFImageSharingEngine.VTable, self.vtable).GetDevice(@ptrCast(*const IMFImageSharingEngine, self), pDevice);
+                return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IMFImageSharingEngine, @ptrCast(self)), pDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFImageSharingEngine_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFImageSharingEngine.VTable, self.vtable).Shutdown(@ptrCast(*const IMFImageSharingEngine, self));
+                return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFImageSharingEngine, @ptrCast(self)));
             }
         };
     }
@@ -39654,7 +39654,7 @@ pub const IMFImageSharingEngineClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFImageSharingEngineClassFactory_CreateInstanceFromUDN(self: *const T, pUniqueDeviceName: ?BSTR, ppEngine: ?*?*IMFImageSharingEngine) HRESULT {
-                return @ptrCast(*const IMFImageSharingEngineClassFactory.VTable, self.vtable).CreateInstanceFromUDN(@ptrCast(*const IMFImageSharingEngineClassFactory, self), pUniqueDeviceName, ppEngine);
+                return @as(*const IMFImageSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromUDN(@as(*const IMFImageSharingEngineClassFactory, @ptrCast(self)), pUniqueDeviceName, ppEngine);
             }
         };
     }
@@ -39705,11 +39705,11 @@ pub const IPlayToControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlayToControl_Connect(self: *const T, pFactory: ?*IMFSharingEngineClassFactory) HRESULT {
-                return @ptrCast(*const IPlayToControl.VTable, self.vtable).Connect(@ptrCast(*const IPlayToControl, self), pFactory);
+                return @as(*const IPlayToControl.VTable, @ptrCast(self.vtable)).Connect(@as(*const IPlayToControl, @ptrCast(self)), pFactory);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlayToControl_Disconnect(self: *const T) HRESULT {
-                return @ptrCast(*const IPlayToControl.VTable, self.vtable).Disconnect(@ptrCast(*const IPlayToControl, self));
+                return @as(*const IPlayToControl.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IPlayToControl, @ptrCast(self)));
             }
         };
     }
@@ -39739,7 +39739,7 @@ pub const IPlayToControlWithCapabilities = extern struct {
             pub usingnamespace IPlayToControl.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlayToControlWithCapabilities_GetCapabilities(self: *const T, pCapabilities: ?*PLAYTO_SOURCE_CREATEFLAGS) HRESULT {
-                return @ptrCast(*const IPlayToControlWithCapabilities.VTable, self.vtable).GetCapabilities(@ptrCast(*const IPlayToControlWithCapabilities, self), pCapabilities);
+                return @as(*const IPlayToControlWithCapabilities.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IPlayToControlWithCapabilities, @ptrCast(self)), pCapabilities);
             }
         };
     }
@@ -39773,7 +39773,7 @@ pub const IPlayToSourceClassFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPlayToSourceClassFactory_CreateInstance(self: *const T, dwFlags: u32, pControl: ?*IPlayToControl, ppSource: ?*?*IInspectable) HRESULT {
-                return @ptrCast(*const IPlayToSourceClassFactory.VTable, self.vtable).CreateInstance(@ptrCast(*const IPlayToSourceClassFactory, self), dwFlags, pControl, ppSource);
+                return @as(*const IPlayToSourceClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IPlayToSourceClassFactory, @ptrCast(self)), dwFlags, pControl, ppSource);
             }
         };
     }
@@ -39813,11 +39813,11 @@ pub const IEVRVideoStreamControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRVideoStreamControl_SetStreamActiveState(self: *const T, fActive: BOOL) HRESULT {
-                return @ptrCast(*const IEVRVideoStreamControl.VTable, self.vtable).SetStreamActiveState(@ptrCast(*const IEVRVideoStreamControl, self), fActive);
+                return @as(*const IEVRVideoStreamControl.VTable, @ptrCast(self.vtable)).SetStreamActiveState(@as(*const IEVRVideoStreamControl, @ptrCast(self)), fActive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEVRVideoStreamControl_GetStreamActiveState(self: *const T, lpfActive: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEVRVideoStreamControl.VTable, self.vtable).GetStreamActiveState(@ptrCast(*const IEVRVideoStreamControl, self), lpfActive);
+                return @as(*const IEVRVideoStreamControl.VTable, @ptrCast(self.vtable)).GetStreamActiveState(@as(*const IEVRVideoStreamControl, @ptrCast(self)), lpfActive);
             }
         };
     }
@@ -39973,51 +39973,51 @@ pub const IMFVideoProcessor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetAvailableVideoProcessorModes(self: *const T, lpdwNumProcessingModes: ?*u32, ppVideoProcessingModes: ?[*]?*Guid) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetAvailableVideoProcessorModes(@ptrCast(*const IMFVideoProcessor, self), lpdwNumProcessingModes, ppVideoProcessingModes);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetAvailableVideoProcessorModes(@as(*const IMFVideoProcessor, @ptrCast(self)), lpdwNumProcessingModes, ppVideoProcessingModes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetVideoProcessorCaps(self: *const T, lpVideoProcessorMode: ?*Guid, lpVideoProcessorCaps: ?*DXVA2_VideoProcessorCaps) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetVideoProcessorCaps(@ptrCast(*const IMFVideoProcessor, self), lpVideoProcessorMode, lpVideoProcessorCaps);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IMFVideoProcessor, @ptrCast(self)), lpVideoProcessorMode, lpVideoProcessorCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetVideoProcessorMode(self: *const T, lpMode: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetVideoProcessorMode(@ptrCast(*const IMFVideoProcessor, self), lpMode);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorMode(@as(*const IMFVideoProcessor, @ptrCast(self)), lpMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_SetVideoProcessorMode(self: *const T, lpMode: ?*Guid) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).SetVideoProcessorMode(@ptrCast(*const IMFVideoProcessor, self), lpMode);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessorMode(@as(*const IMFVideoProcessor, @ptrCast(self)), lpMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetProcAmpRange(self: *const T, dwProperty: u32, pPropRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetProcAmpRange(@ptrCast(*const IMFVideoProcessor, self), dwProperty, pPropRange);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pPropRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetProcAmpValues(self: *const T, dwFlags: u32, Values: ?*DXVA2_ProcAmpValues) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetProcAmpValues(@ptrCast(*const IMFVideoProcessor, self), dwFlags, Values);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpValues(@as(*const IMFVideoProcessor, @ptrCast(self)), dwFlags, Values);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_SetProcAmpValues(self: *const T, dwFlags: u32, pValues: ?*DXVA2_ProcAmpValues) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).SetProcAmpValues(@ptrCast(*const IMFVideoProcessor, self), dwFlags, pValues);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetProcAmpValues(@as(*const IMFVideoProcessor, @ptrCast(self)), dwFlags, pValues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetFilteringRange(self: *const T, dwProperty: u32, pPropRange: ?*DXVA2_ValueRange) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetFilteringRange(@ptrCast(*const IMFVideoProcessor, self), dwProperty, pPropRange);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilteringRange(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pPropRange);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetFilteringValue(self: *const T, dwProperty: u32, pValue: ?*DXVA2_Fixed32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetFilteringValue(@ptrCast(*const IMFVideoProcessor, self), dwProperty, pValue);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilteringValue(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_SetFilteringValue(self: *const T, dwProperty: u32, pValue: ?*DXVA2_Fixed32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).SetFilteringValue(@ptrCast(*const IMFVideoProcessor, self), dwProperty, pValue);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetFilteringValue(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_GetBackgroundColor(self: *const T, lpClrBkg: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).GetBackgroundColor(@ptrCast(*const IMFVideoProcessor, self), lpClrBkg);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFVideoProcessor, @ptrCast(self)), lpClrBkg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoProcessor_SetBackgroundColor(self: *const T, ClrBkg: u32) HRESULT {
-                return @ptrCast(*const IMFVideoProcessor.VTable, self.vtable).SetBackgroundColor(@ptrCast(*const IMFVideoProcessor, self), ClrBkg);
+                return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IMFVideoProcessor, @ptrCast(self)), ClrBkg);
             }
         };
     }
@@ -40110,19 +40110,19 @@ pub const IMFVideoMixerBitmap = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerBitmap_SetAlphaBitmap(self: *const T, pBmpParms: ?*const MFVideoAlphaBitmap) HRESULT {
-                return @ptrCast(*const IMFVideoMixerBitmap.VTable, self.vtable).SetAlphaBitmap(@ptrCast(*const IMFVideoMixerBitmap, self), pBmpParms);
+                return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).SetAlphaBitmap(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerBitmap_ClearAlphaBitmap(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVideoMixerBitmap.VTable, self.vtable).ClearAlphaBitmap(@ptrCast(*const IMFVideoMixerBitmap, self));
+                return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).ClearAlphaBitmap(@as(*const IMFVideoMixerBitmap, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerBitmap_UpdateAlphaBitmapParameters(self: *const T, pBmpParms: ?*const MFVideoAlphaBitmapParams) HRESULT {
-                return @ptrCast(*const IMFVideoMixerBitmap.VTable, self.vtable).UpdateAlphaBitmapParameters(@ptrCast(*const IMFVideoMixerBitmap, self), pBmpParms);
+                return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).UpdateAlphaBitmapParameters(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVideoMixerBitmap_GetAlphaBitmapParameters(self: *const T, pBmpParms: ?*MFVideoAlphaBitmapParams) HRESULT {
-                return @ptrCast(*const IMFVideoMixerBitmap.VTable, self.vtable).GetAlphaBitmapParameters(@ptrCast(*const IMFVideoMixerBitmap, self), pBmpParms);
+                return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).GetAlphaBitmapParameters(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
             }
         };
     }
@@ -40152,7 +40152,7 @@ pub const IAdvancedMediaCaptureInitializationSettings = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAdvancedMediaCaptureInitializationSettings_SetDirectxDeviceManager(self: *const T, value: ?*IMFDXGIDeviceManager) HRESULT {
-                return @ptrCast(*const IAdvancedMediaCaptureInitializationSettings.VTable, self.vtable).SetDirectxDeviceManager(@ptrCast(*const IAdvancedMediaCaptureInitializationSettings, self), value);
+                return @as(*const IAdvancedMediaCaptureInitializationSettings.VTable, @ptrCast(self.vtable)).SetDirectxDeviceManager(@as(*const IAdvancedMediaCaptureInitializationSettings, @ptrCast(self)), value);
             }
         };
     }
@@ -40182,7 +40182,7 @@ pub const IAdvancedMediaCaptureSettings = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAdvancedMediaCaptureSettings_GetDirectxDeviceManager(self: *const T, value: ?*?*IMFDXGIDeviceManager) HRESULT {
-                return @ptrCast(*const IAdvancedMediaCaptureSettings.VTable, self.vtable).GetDirectxDeviceManager(@ptrCast(*const IAdvancedMediaCaptureSettings, self), value);
+                return @as(*const IAdvancedMediaCaptureSettings.VTable, @ptrCast(self.vtable)).GetDirectxDeviceManager(@as(*const IAdvancedMediaCaptureSettings, @ptrCast(self)), value);
             }
         };
     }
@@ -40212,7 +40212,7 @@ pub const IAdvancedMediaCapture = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAdvancedMediaCapture_GetAdvancedMediaCaptureSettings(self: *const T, value: ?*?*IAdvancedMediaCaptureSettings) HRESULT {
-                return @ptrCast(*const IAdvancedMediaCapture.VTable, self.vtable).GetAdvancedMediaCaptureSettings(@ptrCast(*const IAdvancedMediaCapture, self), value);
+                return @as(*const IAdvancedMediaCapture.VTable, @ptrCast(self.vtable)).GetAdvancedMediaCaptureSettings(@as(*const IAdvancedMediaCapture, @ptrCast(self)), value);
             }
         };
     }
@@ -40282,23 +40282,23 @@ pub const IMFSpatialAudioObjectBuffer = extern struct {
             pub usingnamespace IMFMediaBuffer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioObjectBuffer_SetID(self: *const T, u32ID: u32) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioObjectBuffer.VTable, self.vtable).SetID(@ptrCast(*const IMFSpatialAudioObjectBuffer, self), u32ID);
+                return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetID(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), u32ID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioObjectBuffer_GetID(self: *const T, pu32ID: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioObjectBuffer.VTable, self.vtable).GetID(@ptrCast(*const IMFSpatialAudioObjectBuffer, self), pu32ID);
+                return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetID(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), pu32ID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioObjectBuffer_SetType(self: *const T, type_: AudioObjectType) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioObjectBuffer.VTable, self.vtable).SetType(@ptrCast(*const IMFSpatialAudioObjectBuffer, self), type_);
+                return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), type_);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioObjectBuffer_GetType(self: *const T, pType: ?*AudioObjectType) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioObjectBuffer.VTable, self.vtable).GetType(@ptrCast(*const IMFSpatialAudioObjectBuffer, self), pType);
+                return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioObjectBuffer_GetMetadataItems(self: *const T, ppMetadataItems: ?*?*ISpatialAudioMetadataItems) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioObjectBuffer.VTable, self.vtable).GetMetadataItems(@ptrCast(*const IMFSpatialAudioObjectBuffer, self), ppMetadataItems);
+                return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetMetadataItems(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), ppMetadataItems);
             }
         };
     }
@@ -40350,15 +40350,15 @@ pub const IMFSpatialAudioSample = extern struct {
             pub usingnamespace IMFSample.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioSample_GetObjectCount(self: *const T, pdwObjectCount: ?*u32) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioSample.VTable, self.vtable).GetObjectCount(@ptrCast(*const IMFSpatialAudioSample, self), pdwObjectCount);
+                return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).GetObjectCount(@as(*const IMFSpatialAudioSample, @ptrCast(self)), pdwObjectCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioSample_AddSpatialAudioObject(self: *const T, pAudioObjBuffer: ?*IMFSpatialAudioObjectBuffer) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioSample.VTable, self.vtable).AddSpatialAudioObject(@ptrCast(*const IMFSpatialAudioSample, self), pAudioObjBuffer);
+                return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).AddSpatialAudioObject(@as(*const IMFSpatialAudioSample, @ptrCast(self)), pAudioObjBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFSpatialAudioSample_GetSpatialAudioObjectByIndex(self: *const T, dwIndex: u32, ppAudioObjBuffer: ?*?*IMFSpatialAudioObjectBuffer) HRESULT {
-                return @ptrCast(*const IMFSpatialAudioSample.VTable, self.vtable).GetSpatialAudioObjectByIndex(@ptrCast(*const IMFSpatialAudioSample, self), dwIndex, ppAudioObjBuffer);
+                return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).GetSpatialAudioObjectByIndex(@as(*const IMFSpatialAudioSample, @ptrCast(self)), dwIndex, ppAudioObjBuffer);
             }
         };
     }
@@ -40464,35 +40464,35 @@ pub const IMFContentDecryptionModuleSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_GetSessionId(self: *const T, sessionId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).GetSessionId(@ptrCast(*const IMFContentDecryptionModuleSession, self), sessionId);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetSessionId(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), sessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_GetExpiration(self: *const T, expiration: ?*f64) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).GetExpiration(@ptrCast(*const IMFContentDecryptionModuleSession, self), expiration);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetExpiration(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), expiration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_GetKeyStatuses(self: *const T, keyStatuses: [*]?*MFMediaKeyStatus, numKeyStatuses: ?*u32) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).GetKeyStatuses(@ptrCast(*const IMFContentDecryptionModuleSession, self), keyStatuses, numKeyStatuses);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetKeyStatuses(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), keyStatuses, numKeyStatuses);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_Load(self: *const T, sessionId: ?[*:0]const u16, loaded: ?*BOOL) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).Load(@ptrCast(*const IMFContentDecryptionModuleSession, self), sessionId, loaded);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), sessionId, loaded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_GenerateRequest(self: *const T, initDataType: ?[*:0]const u16, initData: [*:0]const u8, initDataSize: u32) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).GenerateRequest(@ptrCast(*const IMFContentDecryptionModuleSession, self), initDataType, initData, initDataSize);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GenerateRequest(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), initDataType, initData, initDataSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_Update(self: *const T, response: [*:0]const u8, responseSize: u32) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).Update(@ptrCast(*const IMFContentDecryptionModuleSession, self), response, responseSize);
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Update(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), response, responseSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).Close(@ptrCast(*const IMFContentDecryptionModuleSession, self));
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSession_Remove(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSession.VTable, self.vtable).Remove(@ptrCast(*const IMFContentDecryptionModuleSession, self));
+                return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)));
             }
         };
     }
@@ -40536,11 +40536,11 @@ pub const IMFContentDecryptionModuleSessionCallbacks = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSessionCallbacks_KeyMessage(self: *const T, messageType: MF_MEDIAKEYSESSION_MESSAGETYPE, message: [*:0]const u8, messageSize: u32, destinationURL: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSessionCallbacks.VTable, self.vtable).KeyMessage(@ptrCast(*const IMFContentDecryptionModuleSessionCallbacks, self), messageType, message, messageSize, destinationURL);
+                return @as(*const IMFContentDecryptionModuleSessionCallbacks.VTable, @ptrCast(self.vtable)).KeyMessage(@as(*const IMFContentDecryptionModuleSessionCallbacks, @ptrCast(self)), messageType, message, messageSize, destinationURL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleSessionCallbacks_KeyStatusChanged(self: *const T) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleSessionCallbacks.VTable, self.vtable).KeyStatusChanged(@ptrCast(*const IMFContentDecryptionModuleSessionCallbacks, self));
+                return @as(*const IMFContentDecryptionModuleSessionCallbacks.VTable, @ptrCast(self.vtable)).KeyStatusChanged(@as(*const IMFContentDecryptionModuleSessionCallbacks, @ptrCast(self)));
             }
         };
     }
@@ -40644,31 +40644,31 @@ pub const IMFContentDecryptionModule = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_SetContentEnabler(self: *const T, contentEnabler: ?*IMFContentEnabler, result: ?*IMFAsyncResult) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).SetContentEnabler(@ptrCast(*const IMFContentDecryptionModule, self), contentEnabler, result);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetContentEnabler(@as(*const IMFContentDecryptionModule, @ptrCast(self)), contentEnabler, result);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_GetSuspendNotify(self: *const T, notify: ?*?*IMFCdmSuspendNotify) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).GetSuspendNotify(@ptrCast(*const IMFContentDecryptionModule, self), notify);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).GetSuspendNotify(@as(*const IMFContentDecryptionModule, @ptrCast(self)), notify);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_SetPMPHostApp(self: *const T, pmpHostApp: ?*IMFPMPHostApp) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).SetPMPHostApp(@ptrCast(*const IMFContentDecryptionModule, self), pmpHostApp);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetPMPHostApp(@as(*const IMFContentDecryptionModule, @ptrCast(self)), pmpHostApp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_CreateSession(self: *const T, sessionType: MF_MEDIAKEYSESSION_TYPE, callbacks: ?*IMFContentDecryptionModuleSessionCallbacks, session: ?*?*IMFContentDecryptionModuleSession) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).CreateSession(@ptrCast(*const IMFContentDecryptionModule, self), sessionType, callbacks, session);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IMFContentDecryptionModule, @ptrCast(self)), sessionType, callbacks, session);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_SetServerCertificate(self: *const T, certificate: [*:0]const u8, certificateSize: u32) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).SetServerCertificate(@ptrCast(*const IMFContentDecryptionModule, self), certificate, certificateSize);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetServerCertificate(@as(*const IMFContentDecryptionModule, @ptrCast(self)), certificate, certificateSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_CreateTrustedInput(self: *const T, contentInitData: [*:0]const u8, contentInitDataSize: u32, trustedInput: ?*?*IMFTrustedInput) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).CreateTrustedInput(@ptrCast(*const IMFContentDecryptionModule, self), contentInitData, contentInitDataSize, trustedInput);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).CreateTrustedInput(@as(*const IMFContentDecryptionModule, @ptrCast(self)), contentInitData, contentInitDataSize, trustedInput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModule_GetProtectionSystemIds(self: *const T, systemIds: [*]?*Guid, count: ?*u32) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModule.VTable, self.vtable).GetProtectionSystemIds(@ptrCast(*const IMFContentDecryptionModule, self), systemIds, count);
+                return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).GetProtectionSystemIds(@as(*const IMFContentDecryptionModule, @ptrCast(self)), systemIds, count);
             }
         };
     }
@@ -40720,15 +40720,15 @@ pub const IMFContentDecryptionModuleAccess = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleAccess_CreateContentDecryptionModule(self: *const T, contentDecryptionModuleProperties: ?*IPropertyStore, contentDecryptionModule: ?*?*IMFContentDecryptionModule) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleAccess.VTable, self.vtable).CreateContentDecryptionModule(@ptrCast(*const IMFContentDecryptionModuleAccess, self), contentDecryptionModuleProperties, contentDecryptionModule);
+                return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModule(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), contentDecryptionModuleProperties, contentDecryptionModule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleAccess_GetConfiguration(self: *const T, configuration: ?*?*IPropertyStore) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleAccess.VTable, self.vtable).GetConfiguration(@ptrCast(*const IMFContentDecryptionModuleAccess, self), configuration);
+                return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), configuration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleAccess_GetKeySystem(self: *const T, keySystem: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleAccess.VTable, self.vtable).GetKeySystem(@ptrCast(*const IMFContentDecryptionModuleAccess, self), keySystem);
+                return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).GetKeySystem(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), keySystem);
             }
         };
     }
@@ -40776,11 +40776,11 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleFactory_IsTypeSupported(self: *const T, keySystem: ?[*:0]const u16, contentType: ?[*:0]const u16) BOOL {
-                return @ptrCast(*const IMFContentDecryptionModuleFactory.VTable, self.vtable).IsTypeSupported(@ptrCast(*const IMFContentDecryptionModuleFactory, self), keySystem, contentType);
+                return @as(*const IMFContentDecryptionModuleFactory.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFContentDecryptionModuleFactory, @ptrCast(self)), keySystem, contentType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFContentDecryptionModuleFactory_CreateContentDecryptionModuleAccess(self: *const T, keySystem: ?[*:0]const u16, configurations: [*]?*IPropertyStore, numConfigurations: u32, contentDecryptionModuleAccess: ?*?*IMFContentDecryptionModuleAccess) HRESULT {
-                return @ptrCast(*const IMFContentDecryptionModuleFactory.VTable, self.vtable).CreateContentDecryptionModuleAccess(@ptrCast(*const IMFContentDecryptionModuleFactory, self), keySystem, configurations, numConfigurations, contentDecryptionModuleAccess);
+                return @as(*const IMFContentDecryptionModuleFactory.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModuleAccess(@as(*const IMFContentDecryptionModuleFactory, @ptrCast(self)), keySystem, configurations, numConfigurations, contentDecryptionModuleAccess);
             }
         };
     }
@@ -40836,11 +40836,11 @@ pub const IMFCameraSyncObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraSyncObject_WaitOnSignal(self: *const T, timeOutInMs: u32) HRESULT {
-                return @ptrCast(*const IMFCameraSyncObject.VTable, self.vtable).WaitOnSignal(@ptrCast(*const IMFCameraSyncObject, self), timeOutInMs);
+                return @as(*const IMFCameraSyncObject.VTable, @ptrCast(self.vtable)).WaitOnSignal(@as(*const IMFCameraSyncObject, @ptrCast(self)), timeOutInMs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFCameraSyncObject_Shutdown(self: *const T) void {
-                return @ptrCast(*const IMFCameraSyncObject.VTable, self.vtable).Shutdown(@ptrCast(*const IMFCameraSyncObject, self));
+                return @as(*const IMFCameraSyncObject.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFCameraSyncObject, @ptrCast(self)));
             }
         };
     }
@@ -41017,47 +41017,47 @@ pub const IMFVirtualCamera = extern struct {
             pub usingnamespace IMFAttributes.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_AddDeviceSourceInfo(self: *const T, DeviceSourceInfo: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).AddDeviceSourceInfo(@ptrCast(*const IMFVirtualCamera, self), DeviceSourceInfo);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddDeviceSourceInfo(@as(*const IMFVirtualCamera, @ptrCast(self)), DeviceSourceInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_AddProperty(self: *const T, pKey: ?*const DEVPROPKEY, Type: u32, pbData: ?*const u8, cbData: u32) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).AddProperty(@ptrCast(*const IMFVirtualCamera, self), pKey, Type, pbData, cbData);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddProperty(@as(*const IMFVirtualCamera, @ptrCast(self)), pKey, Type, pbData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_AddRegistryEntry(self: *const T, EntryName: ?[*:0]const u16, SubkeyPath: ?[*:0]const u16, dwRegType: u32, pbData: ?*const u8, cbData: u32) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).AddRegistryEntry(@ptrCast(*const IMFVirtualCamera, self), EntryName, SubkeyPath, dwRegType, pbData, cbData);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddRegistryEntry(@as(*const IMFVirtualCamera, @ptrCast(self)), EntryName, SubkeyPath, dwRegType, pbData, cbData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_Start(self: *const T, pCallback: ?*IMFAsyncCallback) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).Start(@ptrCast(*const IMFVirtualCamera, self), pCallback);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFVirtualCamera, @ptrCast(self)), pCallback);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).Stop(@ptrCast(*const IMFVirtualCamera, self));
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFVirtualCamera, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_Remove(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).Remove(@ptrCast(*const IMFVirtualCamera, self));
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFVirtualCamera, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_GetMediaSource(self: *const T, ppMediaSource: ?*?*IMFMediaSource) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).GetMediaSource(@ptrCast(*const IMFVirtualCamera, self), ppMediaSource);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).GetMediaSource(@as(*const IMFVirtualCamera, @ptrCast(self)), ppMediaSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_SendCameraProperty(self: *const T, propertySet: ?*const Guid, propertyId: u32, propertyFlags: u32, propertyPayload: ?*anyopaque, propertyPayloadLength: u32, data: ?*anyopaque, dataLength: u32, dataWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).SendCameraProperty(@ptrCast(*const IMFVirtualCamera, self), propertySet, propertyId, propertyFlags, propertyPayload, propertyPayloadLength, data, dataLength, dataWritten);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).SendCameraProperty(@as(*const IMFVirtualCamera, @ptrCast(self)), propertySet, propertyId, propertyFlags, propertyPayload, propertyPayloadLength, data, dataLength, dataWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_CreateSyncEvent(self: *const T, kseventSet: ?*const Guid, kseventId: u32, kseventFlags: u32, eventHandle: ?HANDLE, cameraSyncObject: ?*?*IMFCameraSyncObject) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).CreateSyncEvent(@ptrCast(*const IMFVirtualCamera, self), kseventSet, kseventId, kseventFlags, eventHandle, cameraSyncObject);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).CreateSyncEvent(@as(*const IMFVirtualCamera, @ptrCast(self)), kseventSet, kseventId, kseventFlags, eventHandle, cameraSyncObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_CreateSyncSemaphore(self: *const T, kseventSet: ?*const Guid, kseventId: u32, kseventFlags: u32, semaphoreHandle: ?HANDLE, semaphoreAdjustment: i32, cameraSyncObject: ?*?*IMFCameraSyncObject) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).CreateSyncSemaphore(@ptrCast(*const IMFVirtualCamera, self), kseventSet, kseventId, kseventFlags, semaphoreHandle, semaphoreAdjustment, cameraSyncObject);
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).CreateSyncSemaphore(@as(*const IMFVirtualCamera, @ptrCast(self)), kseventSet, kseventId, kseventFlags, semaphoreHandle, semaphoreAdjustment, cameraSyncObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMFVirtualCamera_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IMFVirtualCamera.VTable, self.vtable).Shutdown(@ptrCast(*const IMFVirtualCamera, self));
+                return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFVirtualCamera, @ptrCast(self)));
             }
         };
     }

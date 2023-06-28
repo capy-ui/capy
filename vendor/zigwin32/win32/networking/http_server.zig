@@ -116,7 +116,7 @@ pub const HTTP_INITIALIZE = enum(u32) {
         CONFIG: u1 = 0,
         SERVER: u1 = 0,
     }) HTTP_INITIALIZE {
-        return @enumFromInt(HTTP_INITIALIZE, (if (o.CONFIG == 1) @intFromEnum(HTTP_INITIALIZE.CONFIG) else 0) | (if (o.SERVER == 1) @intFromEnum(HTTP_INITIALIZE.SERVER) else 0));
+        return @as(HTTP_INITIALIZE, @enumFromInt((if (o.CONFIG == 1) @intFromEnum(HTTP_INITIALIZE.CONFIG) else 0) | (if (o.SERVER == 1) @intFromEnum(HTTP_INITIALIZE.SERVER) else 0)));
     }
 };
 pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;

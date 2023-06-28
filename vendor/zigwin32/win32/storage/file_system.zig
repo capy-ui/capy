@@ -286,7 +286,7 @@ pub const FIND_FIRST_EX_FLAGS = enum(u32) {
         LARGE_FETCH: u1 = 0,
         ON_DISK_ENTRIES_ONLY: u1 = 0,
     }) FIND_FIRST_EX_FLAGS {
-        return @enumFromInt(FIND_FIRST_EX_FLAGS, (if (o.CASE_SENSITIVE == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.CASE_SENSITIVE) else 0) | (if (o.LARGE_FETCH == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.LARGE_FETCH) else 0) | (if (o.ON_DISK_ENTRIES_ONLY == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY) else 0));
+        return @as(FIND_FIRST_EX_FLAGS, @enumFromInt((if (o.CASE_SENSITIVE == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.CASE_SENSITIVE) else 0) | (if (o.LARGE_FETCH == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.LARGE_FETCH) else 0) | (if (o.ON_DISK_ENTRIES_ONLY == 1) @intFromEnum(FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY) else 0)));
     }
 };
 pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
@@ -307,7 +307,7 @@ pub const DEFINE_DOS_DEVICE_FLAGS = enum(u32) {
         NO_BROADCAST_SYSTEM: u1 = 0,
         LUID_BROADCAST_DRIVE: u1 = 0,
     }) DEFINE_DOS_DEVICE_FLAGS {
-        return @enumFromInt(DEFINE_DOS_DEVICE_FLAGS, (if (o.RAW_TARGET_PATH == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH) else 0) | (if (o.REMOVE_DEFINITION == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION) else 0) | (if (o.EXACT_MATCH_ON_REMOVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE) else 0) | (if (o.NO_BROADCAST_SYSTEM == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM) else 0) | (if (o.LUID_BROADCAST_DRIVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE) else 0));
+        return @as(DEFINE_DOS_DEVICE_FLAGS, @enumFromInt((if (o.RAW_TARGET_PATH == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH) else 0) | (if (o.REMOVE_DEFINITION == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION) else 0) | (if (o.EXACT_MATCH_ON_REMOVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE) else 0) | (if (o.NO_BROADCAST_SYSTEM == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM) else 0) | (if (o.LUID_BROADCAST_DRIVE == 1) @intFromEnum(DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE) else 0)));
     }
 };
 pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
@@ -400,7 +400,7 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = enum(u32) {
         SECURITY_DELEGATION: u1 = 0,
         SECURITY_VALID_SQOS_FLAGS: u1 = 0,
     }) FILE_FLAGS_AND_ATTRIBUTES {
-        return @enumFromInt(FILE_FLAGS_AND_ATTRIBUTES, (if (o.FILE_ATTRIBUTE_READONLY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY) else 0) | (if (o.FILE_ATTRIBUTE_HIDDEN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN) else 0) | (if (o.FILE_ATTRIBUTE_SYSTEM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM) else 0) | (if (o.FILE_ATTRIBUTE_DIRECTORY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY) else 0) | (if (o.FILE_ATTRIBUTE_ARCHIVE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE) else 0) | (if (o.FILE_ATTRIBUTE_DEVICE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE) else 0) | (if (o.FILE_ATTRIBUTE_NORMAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL) else 0) | (if (o.FILE_ATTRIBUTE_TEMPORARY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY) else 0) | (if (o.FILE_ATTRIBUTE_SPARSE_FILE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE) else 0) | (if (o.FILE_ATTRIBUTE_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT) else 0) | (if (o.FILE_ATTRIBUTE_COMPRESSED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED) else 0) | (if (o.FILE_ATTRIBUTE_OFFLINE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE) else 0) | (if (o.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED) else 0) | (if (o.FILE_ATTRIBUTE_ENCRYPTED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED) else 0) | (if (o.FILE_ATTRIBUTE_INTEGRITY_STREAM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM) else 0) | (if (o.FILE_ATTRIBUTE_VIRTUAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL) else 0) | (if (o.FILE_ATTRIBUTE_NO_SCRUB_DATA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA) else 0) | (if (o.FILE_ATTRIBUTE_EA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0) | (if (o.FILE_ATTRIBUTE_PINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0) | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0) | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0) | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0) | (if (o.FILE_FLAG_OVERLAPPED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0) | (if (o.FILE_FLAG_NO_BUFFERING == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING) else 0) | (if (o.FILE_FLAG_RANDOM_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS) else 0) | (if (o.FILE_FLAG_SEQUENTIAL_SCAN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN) else 0) | (if (o.FILE_FLAG_DELETE_ON_CLOSE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE) else 0) | (if (o.FILE_FLAG_BACKUP_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS) else 0) | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0) | (if (o.FILE_FLAG_SESSION_AWARE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0) | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0) | (if (o.PIPE_ACCESS_DUPLEX == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.PIPE_ACCESS_DUPLEX) else 0) | (if (o.SECURITY_ANONYMOUS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0) | (if (o.SECURITY_DELEGATION == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0) | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0));
+        return @as(FILE_FLAGS_AND_ATTRIBUTES, @enumFromInt((if (o.FILE_ATTRIBUTE_READONLY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY) else 0) | (if (o.FILE_ATTRIBUTE_HIDDEN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN) else 0) | (if (o.FILE_ATTRIBUTE_SYSTEM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM) else 0) | (if (o.FILE_ATTRIBUTE_DIRECTORY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY) else 0) | (if (o.FILE_ATTRIBUTE_ARCHIVE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE) else 0) | (if (o.FILE_ATTRIBUTE_DEVICE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE) else 0) | (if (o.FILE_ATTRIBUTE_NORMAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL) else 0) | (if (o.FILE_ATTRIBUTE_TEMPORARY == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY) else 0) | (if (o.FILE_ATTRIBUTE_SPARSE_FILE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE) else 0) | (if (o.FILE_ATTRIBUTE_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT) else 0) | (if (o.FILE_ATTRIBUTE_COMPRESSED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED) else 0) | (if (o.FILE_ATTRIBUTE_OFFLINE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE) else 0) | (if (o.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED) else 0) | (if (o.FILE_ATTRIBUTE_ENCRYPTED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED) else 0) | (if (o.FILE_ATTRIBUTE_INTEGRITY_STREAM == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM) else 0) | (if (o.FILE_ATTRIBUTE_VIRTUAL == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL) else 0) | (if (o.FILE_ATTRIBUTE_NO_SCRUB_DATA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA) else 0) | (if (o.FILE_ATTRIBUTE_EA == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0) | (if (o.FILE_ATTRIBUTE_PINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0) | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0) | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0) | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0) | (if (o.FILE_FLAG_OVERLAPPED == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0) | (if (o.FILE_FLAG_NO_BUFFERING == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING) else 0) | (if (o.FILE_FLAG_RANDOM_ACCESS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS) else 0) | (if (o.FILE_FLAG_SEQUENTIAL_SCAN == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN) else 0) | (if (o.FILE_FLAG_DELETE_ON_CLOSE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE) else 0) | (if (o.FILE_FLAG_BACKUP_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS) else 0) | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0) | (if (o.FILE_FLAG_SESSION_AWARE == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0) | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0) | (if (o.PIPE_ACCESS_DUPLEX == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.PIPE_ACCESS_DUPLEX) else 0) | (if (o.SECURITY_ANONYMOUS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0) | (if (o.SECURITY_DELEGATION == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0) | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @intFromEnum(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0)));
     }
 };
 pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
@@ -497,7 +497,7 @@ pub const FILE_ACCESS_FLAGS = enum(u32) {
         FILE_GENERIC_WRITE: u1 = 0,
         FILE_GENERIC_EXECUTE: u1 = 0,
     }) FILE_ACCESS_FLAGS {
-        return @enumFromInt(FILE_ACCESS_FLAGS, (if (o.FILE_READ_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0) | (if (o.FILE_WRITE_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0) | (if (o.FILE_APPEND_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0) | (if (o.FILE_READ_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0) | (if (o.FILE_WRITE_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0) | (if (o.FILE_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0) | (if (o.FILE_DELETE_CHILD == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0) | (if (o.FILE_READ_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0) | (if (o.FILE_WRITE_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(FILE_ACCESS_FLAGS.READ_CONTROL) else 0) | (if (o.SYNCHRONIZE == 1) @intFromEnum(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0) | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0) | (if (o.STANDARD_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0) | (if (o.SPECIFIC_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0) | (if (o.FILE_ALL_ACCESS == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0) | (if (o.FILE_GENERIC_READ == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_READ) else 0) | (if (o.FILE_GENERIC_WRITE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE) else 0) | (if (o.FILE_GENERIC_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE) else 0));
+        return @as(FILE_ACCESS_FLAGS, @enumFromInt((if (o.FILE_READ_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0) | (if (o.FILE_WRITE_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0) | (if (o.FILE_APPEND_DATA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0) | (if (o.FILE_READ_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0) | (if (o.FILE_WRITE_EA == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0) | (if (o.FILE_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0) | (if (o.FILE_DELETE_CHILD == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0) | (if (o.FILE_READ_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0) | (if (o.FILE_WRITE_ATTRIBUTES == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0) | (if (o.READ_CONTROL == 1) @intFromEnum(FILE_ACCESS_FLAGS.READ_CONTROL) else 0) | (if (o.SYNCHRONIZE == 1) @intFromEnum(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0) | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0) | (if (o.STANDARD_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0) | (if (o.SPECIFIC_RIGHTS_ALL == 1) @intFromEnum(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0) | (if (o.FILE_ALL_ACCESS == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0) | (if (o.FILE_GENERIC_READ == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_READ) else 0) | (if (o.FILE_GENERIC_WRITE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE) else 0) | (if (o.FILE_GENERIC_EXECUTE == 1) @intFromEnum(FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE) else 0)));
     }
 };
 pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
@@ -537,7 +537,7 @@ pub const GET_FILE_VERSION_INFO_FLAGS = enum(u32) {
         NEUTRAL: u1 = 0,
         PREFETCHED: u1 = 0,
     }) GET_FILE_VERSION_INFO_FLAGS {
-        return @enumFromInt(GET_FILE_VERSION_INFO_FLAGS, (if (o.LOCALISED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.LOCALISED) else 0) | (if (o.NEUTRAL == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.NEUTRAL) else 0) | (if (o.PREFETCHED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.PREFETCHED) else 0));
+        return @as(GET_FILE_VERSION_INFO_FLAGS, @enumFromInt((if (o.LOCALISED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.LOCALISED) else 0) | (if (o.NEUTRAL == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.NEUTRAL) else 0) | (if (o.PREFETCHED == 1) @intFromEnum(GET_FILE_VERSION_INFO_FLAGS.PREFETCHED) else 0)));
     }
 };
 pub const FILE_VER_GET_LOCALISED = GET_FILE_VERSION_INFO_FLAGS.LOCALISED;
@@ -559,7 +559,7 @@ pub const VER_FIND_FILE_STATUS = enum(u32) {
         FILEINUSE: u1 = 0,
         BUFFTOOSMALL: u1 = 0,
     }) VER_FIND_FILE_STATUS {
-        return @enumFromInt(VER_FIND_FILE_STATUS, (if (o.CURNEDEST == 1) @intFromEnum(VER_FIND_FILE_STATUS.CURNEDEST) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_FIND_FILE_STATUS.FILEINUSE) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_FIND_FILE_STATUS.BUFFTOOSMALL) else 0));
+        return @as(VER_FIND_FILE_STATUS, @enumFromInt((if (o.CURNEDEST == 1) @intFromEnum(VER_FIND_FILE_STATUS.CURNEDEST) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_FIND_FILE_STATUS.FILEINUSE) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_FIND_FILE_STATUS.BUFFTOOSMALL) else 0)));
     }
 };
 pub const VFF_CURNEDEST = VER_FIND_FILE_STATUS.CURNEDEST;
@@ -619,7 +619,7 @@ pub const VER_INSTALL_FILE_STATUS = enum(u32) {
         CANNOTLOADLZ32: u1 = 0,
         CANNOTLOADCABINET: u1 = 0,
     }) VER_INSTALL_FILE_STATUS {
-        return @enumFromInt(VER_INSTALL_FILE_STATUS, (if (o.TEMPFILE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.TEMPFILE) else 0) | (if (o.MISMATCH == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.MISMATCH) else 0) | (if (o.SRCOLD == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SRCOLD) else 0) | (if (o.DIFFLANG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFLANG) else 0) | (if (o.DIFFCODEPG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFCODEPG) else 0) | (if (o.DIFFTYPE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFTYPE) else 0) | (if (o.WRITEPROT == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.WRITEPROT) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.FILEINUSE) else 0) | (if (o.OUTOFSPACE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFSPACE) else 0) | (if (o.ACCESSVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.ACCESSVIOLATION) else 0) | (if (o.SHARINGVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SHARINGVIOLATION) else 0) | (if (o.CANNOTCREATE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTCREATE) else 0) | (if (o.CANNOTDELETE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETE) else 0) | (if (o.CANNOTRENAME == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTRENAME) else 0) | (if (o.CANNOTDELETECUR == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETECUR) else 0) | (if (o.OUTOFMEMORY == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFMEMORY) else 0) | (if (o.CANNOTREADSRC == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADSRC) else 0) | (if (o.CANNOTREADDST == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADDST) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.BUFFTOOSMALL) else 0) | (if (o.CANNOTLOADLZ32 == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADLZ32) else 0) | (if (o.CANNOTLOADCABINET == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADCABINET) else 0));
+        return @as(VER_INSTALL_FILE_STATUS, @enumFromInt((if (o.TEMPFILE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.TEMPFILE) else 0) | (if (o.MISMATCH == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.MISMATCH) else 0) | (if (o.SRCOLD == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SRCOLD) else 0) | (if (o.DIFFLANG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFLANG) else 0) | (if (o.DIFFCODEPG == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFCODEPG) else 0) | (if (o.DIFFTYPE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.DIFFTYPE) else 0) | (if (o.WRITEPROT == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.WRITEPROT) else 0) | (if (o.FILEINUSE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.FILEINUSE) else 0) | (if (o.OUTOFSPACE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFSPACE) else 0) | (if (o.ACCESSVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.ACCESSVIOLATION) else 0) | (if (o.SHARINGVIOLATION == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.SHARINGVIOLATION) else 0) | (if (o.CANNOTCREATE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTCREATE) else 0) | (if (o.CANNOTDELETE == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETE) else 0) | (if (o.CANNOTRENAME == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTRENAME) else 0) | (if (o.CANNOTDELETECUR == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTDELETECUR) else 0) | (if (o.OUTOFMEMORY == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.OUTOFMEMORY) else 0) | (if (o.CANNOTREADSRC == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADSRC) else 0) | (if (o.CANNOTREADDST == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTREADDST) else 0) | (if (o.BUFFTOOSMALL == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.BUFFTOOSMALL) else 0) | (if (o.CANNOTLOADLZ32 == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADLZ32) else 0) | (if (o.CANNOTLOADCABINET == 1) @intFromEnum(VER_INSTALL_FILE_STATUS.CANNOTLOADCABINET) else 0)));
     }
 };
 pub const VIF_TEMPFILE = VER_INSTALL_FILE_STATUS.TEMPFILE;
@@ -660,7 +660,7 @@ pub const VS_FIXEDFILEINFO_FILE_FLAGS = enum(u32) {
         INFOINFERRED: u1 = 0,
         SPECIALBUILD: u1 = 0,
     }) VS_FIXEDFILEINFO_FILE_FLAGS {
-        return @enumFromInt(VS_FIXEDFILEINFO_FILE_FLAGS, (if (o.DEBUG == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG) else 0) | (if (o.PRERELEASE == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRERELEASE) else 0) | (if (o.PATCHED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PATCHED) else 0) | (if (o.PRIVATEBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRIVATEBUILD) else 0) | (if (o.INFOINFERRED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.INFOINFERRED) else 0) | (if (o.SPECIALBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.SPECIALBUILD) else 0));
+        return @as(VS_FIXEDFILEINFO_FILE_FLAGS, @enumFromInt((if (o.DEBUG == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG) else 0) | (if (o.PRERELEASE == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRERELEASE) else 0) | (if (o.PATCHED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PATCHED) else 0) | (if (o.PRIVATEBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.PRIVATEBUILD) else 0) | (if (o.INFOINFERRED == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.INFOINFERRED) else 0) | (if (o.SPECIALBUILD == 1) @intFromEnum(VS_FIXEDFILEINFO_FILE_FLAGS.SPECIALBUILD) else 0)));
     }
 };
 pub const VS_FF_DEBUG = VS_FIXEDFILEINFO_FILE_FLAGS.DEBUG;
@@ -782,7 +782,7 @@ pub const FILE_SHARE_MODE = enum(u32) {
         READ: u1 = 0,
         WRITE: u1 = 0,
     }) FILE_SHARE_MODE {
-        return @enumFromInt(FILE_SHARE_MODE, (if (o.NONE == 1) @intFromEnum(FILE_SHARE_MODE.NONE) else 0) | (if (o.DELETE == 1) @intFromEnum(FILE_SHARE_MODE.DELETE) else 0) | (if (o.READ == 1) @intFromEnum(FILE_SHARE_MODE.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_SHARE_MODE.WRITE) else 0));
+        return @as(FILE_SHARE_MODE, @enumFromInt((if (o.NONE == 1) @intFromEnum(FILE_SHARE_MODE.NONE) else 0) | (if (o.DELETE == 1) @intFromEnum(FILE_SHARE_MODE.DELETE) else 0) | (if (o.READ == 1) @intFromEnum(FILE_SHARE_MODE.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_SHARE_MODE.WRITE) else 0)));
     }
 };
 pub const FILE_SHARE_NONE = FILE_SHARE_MODE.NONE;
@@ -808,7 +808,7 @@ pub const SHARE_TYPE = enum(u32) {
         TEMPORARY: u1 = 0,
         MASK: u1 = 0,
     }) SHARE_TYPE {
-        return @enumFromInt(SHARE_TYPE, (if (o.DISKTREE == 1) @intFromEnum(SHARE_TYPE.DISKTREE) else 0) | (if (o.PRINTQ == 1) @intFromEnum(SHARE_TYPE.PRINTQ) else 0) | (if (o.DEVICE == 1) @intFromEnum(SHARE_TYPE.DEVICE) else 0) | (if (o.IPC == 1) @intFromEnum(SHARE_TYPE.IPC) else 0) | (if (o.SPECIAL == 1) @intFromEnum(SHARE_TYPE.SPECIAL) else 0) | (if (o.TEMPORARY == 1) @intFromEnum(SHARE_TYPE.TEMPORARY) else 0) | (if (o.MASK == 1) @intFromEnum(SHARE_TYPE.MASK) else 0));
+        return @as(SHARE_TYPE, @enumFromInt((if (o.DISKTREE == 1) @intFromEnum(SHARE_TYPE.DISKTREE) else 0) | (if (o.PRINTQ == 1) @intFromEnum(SHARE_TYPE.PRINTQ) else 0) | (if (o.DEVICE == 1) @intFromEnum(SHARE_TYPE.DEVICE) else 0) | (if (o.IPC == 1) @intFromEnum(SHARE_TYPE.IPC) else 0) | (if (o.SPECIAL == 1) @intFromEnum(SHARE_TYPE.SPECIAL) else 0) | (if (o.TEMPORARY == 1) @intFromEnum(SHARE_TYPE.TEMPORARY) else 0) | (if (o.MASK == 1) @intFromEnum(SHARE_TYPE.MASK) else 0)));
     }
 };
 pub const STYPE_DISKTREE = SHARE_TYPE.DISKTREE;
@@ -831,7 +831,7 @@ pub const CLFS_FLAG = enum(u32) {
         NO_FLAGS: u1 = 0,
         USE_RESERVATION: u1 = 0,
     }) CLFS_FLAG {
-        return @enumFromInt(CLFS_FLAG, (if (o.FORCE_APPEND == 1) @intFromEnum(CLFS_FLAG.FORCE_APPEND) else 0) | (if (o.FORCE_FLUSH == 1) @intFromEnum(CLFS_FLAG.FORCE_FLUSH) else 0) | (if (o.NO_FLAGS == 1) @intFromEnum(CLFS_FLAG.NO_FLAGS) else 0) | (if (o.USE_RESERVATION == 1) @intFromEnum(CLFS_FLAG.USE_RESERVATION) else 0));
+        return @as(CLFS_FLAG, @enumFromInt((if (o.FORCE_APPEND == 1) @intFromEnum(CLFS_FLAG.FORCE_APPEND) else 0) | (if (o.FORCE_FLUSH == 1) @intFromEnum(CLFS_FLAG.FORCE_FLUSH) else 0) | (if (o.NO_FLAGS == 1) @intFromEnum(CLFS_FLAG.NO_FLAGS) else 0) | (if (o.USE_RESERVATION == 1) @intFromEnum(CLFS_FLAG.USE_RESERVATION) else 0)));
     }
 };
 pub const CLFS_FLAG_FORCE_APPEND = CLFS_FLAG.FORCE_APPEND;
@@ -864,7 +864,7 @@ pub const MOVE_FILE_FLAGS = enum(u32) {
         WRITE_THROUGH: u1 = 0,
         FAIL_IF_NOT_TRACKABLE: u1 = 0,
     }) MOVE_FILE_FLAGS {
-        return @enumFromInt(MOVE_FILE_FLAGS, (if (o.COPY_ALLOWED == 1) @intFromEnum(MOVE_FILE_FLAGS.COPY_ALLOWED) else 0) | (if (o.CREATE_HARDLINK == 1) @intFromEnum(MOVE_FILE_FLAGS.CREATE_HARDLINK) else 0) | (if (o.DELAY_UNTIL_REBOOT == 1) @intFromEnum(MOVE_FILE_FLAGS.DELAY_UNTIL_REBOOT) else 0) | (if (o.REPLACE_EXISTING == 1) @intFromEnum(MOVE_FILE_FLAGS.REPLACE_EXISTING) else 0) | (if (o.WRITE_THROUGH == 1) @intFromEnum(MOVE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.FAIL_IF_NOT_TRACKABLE == 1) @intFromEnum(MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE) else 0));
+        return @as(MOVE_FILE_FLAGS, @enumFromInt((if (o.COPY_ALLOWED == 1) @intFromEnum(MOVE_FILE_FLAGS.COPY_ALLOWED) else 0) | (if (o.CREATE_HARDLINK == 1) @intFromEnum(MOVE_FILE_FLAGS.CREATE_HARDLINK) else 0) | (if (o.DELAY_UNTIL_REBOOT == 1) @intFromEnum(MOVE_FILE_FLAGS.DELAY_UNTIL_REBOOT) else 0) | (if (o.REPLACE_EXISTING == 1) @intFromEnum(MOVE_FILE_FLAGS.REPLACE_EXISTING) else 0) | (if (o.WRITE_THROUGH == 1) @intFromEnum(MOVE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.FAIL_IF_NOT_TRACKABLE == 1) @intFromEnum(MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE) else 0)));
     }
 };
 pub const MOVEFILE_COPY_ALLOWED = MOVE_FILE_FLAGS.COPY_ALLOWED;
@@ -916,7 +916,7 @@ pub const LZOPENFILE_STYLE = enum(u32) {
         WRITE: u1 = 0,
         VERIFY: u1 = 0,
     }) LZOPENFILE_STYLE {
-        return @enumFromInt(LZOPENFILE_STYLE, (if (o.CANCEL == 1) @intFromEnum(LZOPENFILE_STYLE.CANCEL) else 0) | (if (o.CREATE == 1) @intFromEnum(LZOPENFILE_STYLE.CREATE) else 0) | (if (o.DELETE == 1) @intFromEnum(LZOPENFILE_STYLE.DELETE) else 0) | (if (o.EXIST == 1) @intFromEnum(LZOPENFILE_STYLE.EXIST) else 0) | (if (o.PARSE == 1) @intFromEnum(LZOPENFILE_STYLE.PARSE) else 0) | (if (o.PROMPT == 1) @intFromEnum(LZOPENFILE_STYLE.PROMPT) else 0) | (if (o.READ == 1) @intFromEnum(LZOPENFILE_STYLE.READ) else 0) | (if (o.READWRITE == 1) @intFromEnum(LZOPENFILE_STYLE.READWRITE) else 0) | (if (o.REOPEN == 1) @intFromEnum(LZOPENFILE_STYLE.REOPEN) else 0) | (if (o.SHARE_DENY_NONE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_NONE) else 0) | (if (o.SHARE_DENY_READ == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_READ) else 0) | (if (o.SHARE_DENY_WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0) | (if (o.SHARE_EXCLUSIVE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0) | (if (o.WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.WRITE) else 0) | (if (o.VERIFY == 1) @intFromEnum(LZOPENFILE_STYLE.VERIFY) else 0));
+        return @as(LZOPENFILE_STYLE, @enumFromInt((if (o.CANCEL == 1) @intFromEnum(LZOPENFILE_STYLE.CANCEL) else 0) | (if (o.CREATE == 1) @intFromEnum(LZOPENFILE_STYLE.CREATE) else 0) | (if (o.DELETE == 1) @intFromEnum(LZOPENFILE_STYLE.DELETE) else 0) | (if (o.EXIST == 1) @intFromEnum(LZOPENFILE_STYLE.EXIST) else 0) | (if (o.PARSE == 1) @intFromEnum(LZOPENFILE_STYLE.PARSE) else 0) | (if (o.PROMPT == 1) @intFromEnum(LZOPENFILE_STYLE.PROMPT) else 0) | (if (o.READ == 1) @intFromEnum(LZOPENFILE_STYLE.READ) else 0) | (if (o.READWRITE == 1) @intFromEnum(LZOPENFILE_STYLE.READWRITE) else 0) | (if (o.REOPEN == 1) @intFromEnum(LZOPENFILE_STYLE.REOPEN) else 0) | (if (o.SHARE_DENY_NONE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_NONE) else 0) | (if (o.SHARE_DENY_READ == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_READ) else 0) | (if (o.SHARE_DENY_WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0) | (if (o.SHARE_EXCLUSIVE == 1) @intFromEnum(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0) | (if (o.WRITE == 1) @intFromEnum(LZOPENFILE_STYLE.WRITE) else 0) | (if (o.VERIFY == 1) @intFromEnum(LZOPENFILE_STYLE.VERIFY) else 0)));
     }
 };
 pub const OF_CANCEL = LZOPENFILE_STYLE.CANCEL;
@@ -956,7 +956,7 @@ pub const FILE_NOTIFY_CHANGE = enum(u32) {
         CREATION: u1 = 0,
         SECURITY: u1 = 0,
     }) FILE_NOTIFY_CHANGE {
-        return @enumFromInt(FILE_NOTIFY_CHANGE, (if (o.FILE_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.FILE_NAME) else 0) | (if (o.DIR_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.DIR_NAME) else 0) | (if (o.ATTRIBUTES == 1) @intFromEnum(FILE_NOTIFY_CHANGE.ATTRIBUTES) else 0) | (if (o.SIZE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SIZE) else 0) | (if (o.LAST_WRITE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_WRITE) else 0) | (if (o.LAST_ACCESS == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_ACCESS) else 0) | (if (o.CREATION == 1) @intFromEnum(FILE_NOTIFY_CHANGE.CREATION) else 0) | (if (o.SECURITY == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SECURITY) else 0));
+        return @as(FILE_NOTIFY_CHANGE, @enumFromInt((if (o.FILE_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.FILE_NAME) else 0) | (if (o.DIR_NAME == 1) @intFromEnum(FILE_NOTIFY_CHANGE.DIR_NAME) else 0) | (if (o.ATTRIBUTES == 1) @intFromEnum(FILE_NOTIFY_CHANGE.ATTRIBUTES) else 0) | (if (o.SIZE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SIZE) else 0) | (if (o.LAST_WRITE == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_WRITE) else 0) | (if (o.LAST_ACCESS == 1) @intFromEnum(FILE_NOTIFY_CHANGE.LAST_ACCESS) else 0) | (if (o.CREATION == 1) @intFromEnum(FILE_NOTIFY_CHANGE.CREATION) else 0) | (if (o.SECURITY == 1) @intFromEnum(FILE_NOTIFY_CHANGE.SECURITY) else 0)));
     }
 };
 pub const FILE_NOTIFY_CHANGE_FILE_NAME = FILE_NOTIFY_CHANGE.FILE_NAME;
@@ -1003,7 +1003,7 @@ pub const REPLACE_FILE_FLAGS = enum(u32) {
         IGNORE_MERGE_ERRORS: u1 = 0,
         IGNORE_ACL_ERRORS: u1 = 0,
     }) REPLACE_FILE_FLAGS {
-        return @enumFromInt(REPLACE_FILE_FLAGS, (if (o.WRITE_THROUGH == 1) @intFromEnum(REPLACE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.IGNORE_MERGE_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS) else 0) | (if (o.IGNORE_ACL_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS) else 0));
+        return @as(REPLACE_FILE_FLAGS, @enumFromInt((if (o.WRITE_THROUGH == 1) @intFromEnum(REPLACE_FILE_FLAGS.WRITE_THROUGH) else 0) | (if (o.IGNORE_MERGE_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS) else 0) | (if (o.IGNORE_ACL_ERRORS == 1) @intFromEnum(REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS) else 0)));
     }
 };
 pub const REPLACEFILE_WRITE_THROUGH = REPLACE_FILE_FLAGS.WRITE_THROUGH;
@@ -1088,7 +1088,7 @@ pub const LOCK_FILE_FLAGS = enum(u32) {
         EXCLUSIVE_LOCK: u1 = 0,
         FAIL_IMMEDIATELY: u1 = 0,
     }) LOCK_FILE_FLAGS {
-        return @enumFromInt(LOCK_FILE_FLAGS, (if (o.EXCLUSIVE_LOCK == 1) @intFromEnum(LOCK_FILE_FLAGS.EXCLUSIVE_LOCK) else 0) | (if (o.FAIL_IMMEDIATELY == 1) @intFromEnum(LOCK_FILE_FLAGS.FAIL_IMMEDIATELY) else 0));
+        return @as(LOCK_FILE_FLAGS, @enumFromInt((if (o.EXCLUSIVE_LOCK == 1) @intFromEnum(LOCK_FILE_FLAGS.EXCLUSIVE_LOCK) else 0) | (if (o.FAIL_IMMEDIATELY == 1) @intFromEnum(LOCK_FILE_FLAGS.FAIL_IMMEDIATELY) else 0)));
     }
 };
 pub const LOCKFILE_EXCLUSIVE_LOCK = LOCK_FILE_FLAGS.EXCLUSIVE_LOCK;
@@ -1222,7 +1222,7 @@ pub const FILE_INFO_FLAGS_PERMISSIONS = enum(u32) {
         WRITE: u1 = 0,
         CREATE: u1 = 0,
     }) FILE_INFO_FLAGS_PERMISSIONS {
-        return @enumFromInt(FILE_INFO_FLAGS_PERMISSIONS, (if (o.READ == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.WRITE) else 0) | (if (o.CREATE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.CREATE) else 0));
+        return @as(FILE_INFO_FLAGS_PERMISSIONS, @enumFromInt((if (o.READ == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.WRITE) else 0) | (if (o.CREATE == 1) @intFromEnum(FILE_INFO_FLAGS_PERMISSIONS.CREATE) else 0)));
     }
 };
 pub const PERM_FILE_READ = FILE_INFO_FLAGS_PERMISSIONS.READ;
@@ -1237,7 +1237,7 @@ pub const SYMBOLIC_LINK_FLAGS = enum(u32) {
         DIRECTORY: u1 = 0,
         ALLOW_UNPRIVILEGED_CREATE: u1 = 0,
     }) SYMBOLIC_LINK_FLAGS {
-        return @enumFromInt(SYMBOLIC_LINK_FLAGS, (if (o.DIRECTORY == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.DIRECTORY) else 0) | (if (o.ALLOW_UNPRIVILEGED_CREATE == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE) else 0));
+        return @as(SYMBOLIC_LINK_FLAGS, @enumFromInt((if (o.DIRECTORY == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.DIRECTORY) else 0) | (if (o.ALLOW_UNPRIVILEGED_CREATE == 1) @intFromEnum(SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE) else 0)));
     }
 };
 pub const SYMBOLIC_LINK_FLAG_DIRECTORY = SYMBOLIC_LINK_FLAGS.DIRECTORY;
@@ -3178,63 +3178,63 @@ pub const IDiskQuotaUser = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetID(self: *const T, pulID: ?*u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetID(@ptrCast(*const IDiskQuotaUser, self), pulID);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetID(@as(*const IDiskQuotaUser, @ptrCast(self)), pulID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetName(self: *const T, pszAccountContainer: ?PWSTR, cchAccountContainer: u32, pszLogonName: ?PWSTR, cchLogonName: u32, pszDisplayName: ?PWSTR, cchDisplayName: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetName(@ptrCast(*const IDiskQuotaUser, self), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetName(@as(*const IDiskQuotaUser, @ptrCast(self)), pszAccountContainer, cchAccountContainer, pszLogonName, cchLogonName, pszDisplayName, cchDisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetSidLength(self: *const T, pdwLength: ?*u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSidLength(@ptrCast(*const IDiskQuotaUser, self), pdwLength);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSidLength(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetSid(self: *const T, pbSidBuffer: ?*u8, cbSidBuffer: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetSid(@ptrCast(*const IDiskQuotaUser, self), pbSidBuffer, cbSidBuffer);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetSid(@as(*const IDiskQuotaUser, @ptrCast(self)), pbSidBuffer, cbSidBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaThreshold(self: *const T, pllThreshold: ?*i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), pllThreshold);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), pllThreshold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaThresholdText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaThresholdText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaLimit(self: *const T, pllLimit: ?*i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), pllLimit);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), pllLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaLimitText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaLimitText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaUsed(self: *const T, pllUsed: ?*i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsed(@ptrCast(*const IDiskQuotaUser, self), pllUsed);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsed(@as(*const IDiskQuotaUser, @ptrCast(self)), pllUsed);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaUsedText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaUsedText(@ptrCast(*const IDiskQuotaUser, self), pszText, cchText);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaUsedText(@as(*const IDiskQuotaUser, @ptrCast(self)), pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetQuotaInformation(self: *const T, pbQuotaInfo: ?*anyopaque, cbQuotaInfo: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetQuotaInformation(@ptrCast(*const IDiskQuotaUser, self), pbQuotaInfo, cbQuotaInfo);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetQuotaInformation(@as(*const IDiskQuotaUser, @ptrCast(self)), pbQuotaInfo, cbQuotaInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_SetQuotaThreshold(self: *const T, llThreshold: i64, fWriteThrough: BOOL) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaThreshold(@ptrCast(*const IDiskQuotaUser, self), llThreshold, fWriteThrough);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaThreshold(@as(*const IDiskQuotaUser, @ptrCast(self)), llThreshold, fWriteThrough);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_SetQuotaLimit(self: *const T, llLimit: i64, fWriteThrough: BOOL) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).SetQuotaLimit(@ptrCast(*const IDiskQuotaUser, self), llLimit, fWriteThrough);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).SetQuotaLimit(@as(*const IDiskQuotaUser, @ptrCast(self)), llLimit, fWriteThrough);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_Invalidate(self: *const T) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).Invalidate(@ptrCast(*const IDiskQuotaUser, self));
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IDiskQuotaUser, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUser_GetAccountStatus(self: *const T, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaUser.VTable, self.vtable).GetAccountStatus(@ptrCast(*const IDiskQuotaUser, self), pdwStatus);
+                return @as(*const IDiskQuotaUser.VTable, @ptrCast(self.vtable)).GetAccountStatus(@as(*const IDiskQuotaUser, @ptrCast(self)), pdwStatus);
             }
         };
     }
@@ -3296,19 +3296,19 @@ pub const IEnumDiskQuotaUsers = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDiskQuotaUsers_Next(self: *const T, cUsers: u32, rgUsers: ?*?*IDiskQuotaUser, pcUsersFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Next(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers, rgUsers, pcUsersFetched);
+                return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers, rgUsers, pcUsersFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDiskQuotaUsers_Skip(self: *const T, cUsers: u32) HRESULT {
-                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Skip(@ptrCast(*const IEnumDiskQuotaUsers, self), cUsers);
+                return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), cUsers);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDiskQuotaUsers_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiskQuotaUsers, self));
+                return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumDiskQuotaUsers_Clone(self: *const T, ppEnum: ?*?*IEnumDiskQuotaUsers) HRESULT {
-                return @ptrCast(*const IEnumDiskQuotaUsers.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiskQuotaUsers, self), ppEnum);
+                return @as(*const IEnumDiskQuotaUsers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiskQuotaUsers, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -3364,19 +3364,19 @@ pub const IDiskQuotaUserBatch = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUserBatch_Add(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Add(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
+                return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Add(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUserBatch_Remove(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).Remove(@ptrCast(*const IDiskQuotaUserBatch, self), pUser);
+                return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).Remove(@as(*const IDiskQuotaUserBatch, @ptrCast(self)), pUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUserBatch_RemoveAll(self: *const T) HRESULT {
-                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).RemoveAll(@ptrCast(*const IDiskQuotaUserBatch, self));
+                return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaUserBatch_FlushToDisk(self: *const T) HRESULT {
-                return @ptrCast(*const IDiskQuotaUserBatch.VTable, self.vtable).FlushToDisk(@ptrCast(*const IDiskQuotaUserBatch, self));
+                return @as(*const IDiskQuotaUserBatch.VTable, @ptrCast(self.vtable)).FlushToDisk(@as(*const IDiskQuotaUserBatch, @ptrCast(self)));
             }
         };
     }
@@ -3628,87 +3628,87 @@ pub const IDiskQuotaControl = extern struct {
             pub usingnamespace IConnectionPointContainer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_Initialize(self: *const T, pszPath: ?[*:0]const u16, bReadWrite: BOOL) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).Initialize(@ptrCast(*const IDiskQuotaControl, self), pszPath, bReadWrite);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDiskQuotaControl, @ptrCast(self)), pszPath, bReadWrite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_SetQuotaState(self: *const T, dwState: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaState(@ptrCast(*const IDiskQuotaControl, self), dwState);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), dwState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetQuotaState(self: *const T, pdwState: ?*u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaState(@ptrCast(*const IDiskQuotaControl, self), pdwState);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaState(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_SetQuotaLogFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), dwFlags);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetQuotaLogFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetQuotaLogFlags(@ptrCast(*const IDiskQuotaControl, self), pdwFlags);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetQuotaLogFlags(@as(*const IDiskQuotaControl, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_SetDefaultQuotaThreshold(self: *const T, llThreshold: i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), llThreshold);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), llThreshold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetDefaultQuotaThreshold(self: *const T, pllThreshold: ?*i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThreshold(@ptrCast(*const IDiskQuotaControl, self), pllThreshold);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThreshold(@as(*const IDiskQuotaControl, @ptrCast(self)), pllThreshold);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetDefaultQuotaThresholdText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaThresholdText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaThresholdText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_SetDefaultQuotaLimit(self: *const T, llLimit: i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).SetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), llLimit);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).SetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), llLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetDefaultQuotaLimit(self: *const T, pllLimit: ?*i64) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimit(@ptrCast(*const IDiskQuotaControl, self), pllLimit);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimit(@as(*const IDiskQuotaControl, @ptrCast(self)), pllLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GetDefaultQuotaLimitText(self: *const T, pszText: ?PWSTR, cchText: u32) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GetDefaultQuotaLimitText(@ptrCast(*const IDiskQuotaControl, self), pszText, cchText);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GetDefaultQuotaLimitText(@as(*const IDiskQuotaControl, @ptrCast(self)), pszText, cchText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_AddUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_AddUserName(self: *const T, pszLogonName: ?[*:0]const u16, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).AddUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, fNameResolution, ppUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).AddUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, fNameResolution, ppUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_DeleteUser(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).DeleteUser(@ptrCast(*const IDiskQuotaControl, self), pUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).DeleteUser(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_FindUserSid(self: *const T, pUserSid: ?PSID, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppUser: ?*?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserSid(@ptrCast(*const IDiskQuotaControl, self), pUserSid, fNameResolution, ppUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserSid(@as(*const IDiskQuotaControl, @ptrCast(self)), pUserSid, fNameResolution, ppUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_FindUserName(self: *const T, pszLogonName: ?[*:0]const u16, ppUser: ?*?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).FindUserName(@ptrCast(*const IDiskQuotaControl, self), pszLogonName, ppUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).FindUserName(@as(*const IDiskQuotaControl, @ptrCast(self)), pszLogonName, ppUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_CreateEnumUsers(self: *const T, rgpUserSids: ?*?PSID, cpSids: u32, fNameResolution: DISKQUOTA_USERNAME_RESOLVE, ppEnum: ?*?*IEnumDiskQuotaUsers) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateEnumUsers(@ptrCast(*const IDiskQuotaControl, self), rgpUserSids, cpSids, fNameResolution, ppEnum);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateEnumUsers(@as(*const IDiskQuotaControl, @ptrCast(self)), rgpUserSids, cpSids, fNameResolution, ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_CreateUserBatch(self: *const T, ppBatch: ?*?*IDiskQuotaUserBatch) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).CreateUserBatch(@ptrCast(*const IDiskQuotaControl, self), ppBatch);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).CreateUserBatch(@as(*const IDiskQuotaControl, @ptrCast(self)), ppBatch);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_InvalidateSidNameCache(self: *const T) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).InvalidateSidNameCache(@ptrCast(*const IDiskQuotaControl, self));
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).InvalidateSidNameCache(@as(*const IDiskQuotaControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_GiveUserNameResolutionPriority(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).GiveUserNameResolutionPriority(@ptrCast(*const IDiskQuotaControl, self), pUser);
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).GiveUserNameResolutionPriority(@as(*const IDiskQuotaControl, @ptrCast(self)), pUser);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaControl_ShutdownNameResolution(self: *const T) HRESULT {
-                return @ptrCast(*const IDiskQuotaControl.VTable, self.vtable).ShutdownNameResolution(@ptrCast(*const IDiskQuotaControl, self));
+                return @as(*const IDiskQuotaControl.VTable, @ptrCast(self.vtable)).ShutdownNameResolution(@as(*const IDiskQuotaControl, @ptrCast(self)));
             }
         };
     }
@@ -3738,7 +3738,7 @@ pub const IDiskQuotaEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDiskQuotaEvents_OnUserNameChanged(self: *const T, pUser: ?*IDiskQuotaUser) HRESULT {
-                return @ptrCast(*const IDiskQuotaEvents.VTable, self.vtable).OnUserNameChanged(@ptrCast(*const IDiskQuotaEvents, self), pUser);
+                return @as(*const IDiskQuotaEvents.VTable, @ptrCast(self.vtable)).OnUserNameChanged(@as(*const IDiskQuotaEvents, @ptrCast(self)), pUser);
             }
         };
     }

@@ -41,11 +41,11 @@ pub const MapViewer_Impl = struct {
 
         /// 'lon' and 'lat' are in degrees
         pub fn fromLonLat(zoom: u5, lon: f32, lat: f32) TilePosition {
-            const n = std.math.pow(f32, 2, @floatFromInt(f32, zoom));
+            const n = std.math.pow(f32, 2, @as(f32, @floatFromInt(zoom)));
             const x = n * ((lon + 180) / 360);
             const lat_rad = deg2rad(lat);
             const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
-            return TilePosition{ .zoom = zoom, .x = @intFromFloat(i32, x), .y = @intFromFloat(i32, y) };
+            return TilePosition{ .zoom = zoom, .x = @as(i32, @intFromFloat(x)), .y = @as(i32, @intFromFloat(y)) };
         }
     };
 
@@ -85,7 +85,7 @@ pub const MapViewer_Impl = struct {
     }
 
     pub fn centerTo(self: *MapViewer_Impl, lon: f32, lat: f32) void {
-        const n = std.math.pow(f32, 2, @floatFromInt(f32, self.camZoom));
+        const n = std.math.pow(f32, 2, @as(f32, @floatFromInt(self.camZoom)));
         const x = n * ((lon + 180) / 360);
         const lat_rad = deg2rad(lat);
         const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
@@ -161,12 +161,12 @@ pub const MapViewer_Impl = struct {
         const height = self.getHeight();
         ctx.clear(0, 0, width, height);
 
-        const camX = @intFromFloat(i32, self.centerX) - @intCast(i32, width / 2);
-        const camY = @intFromFloat(i32, self.centerY) - @intCast(i32, height / 2);
+        const camX = @as(i32, @intFromFloat(self.centerX)) - @as(i32, @intCast(width / 2));
+        const camY = @as(i32, @intFromFloat(self.centerY)) - @as(i32, @intCast(height / 2));
         var x: i32 = @divFloor(camX, 256);
-        while (x < @divFloor(camX + @intCast(i32, width) + 255, 256)) : (x += 1) {
+        while (x < @divFloor(camX + @as(i32, @intCast(width)) + 255, 256)) : (x += 1) {
             var y: i32 = @divFloor(camY, 256);
-            while (y < @divFloor(camY + @intCast(i32, height) + 255, 256)) : (y += 1) {
+            while (y < @divFloor(camY + @as(i32, @intCast(height)) + 255, 256)) : (y += 1) {
                 self.drawTile(ctx, TilePosition{ .x = x, .y = y, .zoom = self.camZoom }, camX, camY);
             }
         }
@@ -196,8 +196,8 @@ pub const MapViewer_Impl = struct {
     fn mouseMoved(self: *MapViewer_Impl, x: i32, y: i32) !void {
         if (self.isDragging) {
             // TODO: smooth move
-            self.centerX -= @floatFromInt(f32, x - self.lastMouseX);
-            self.centerY -= @floatFromInt(f32, y - self.lastMouseY);
+            self.centerX -= @as(f32, @floatFromInt(x - self.lastMouseX));
+            self.centerY -= @as(f32, @floatFromInt(y - self.lastMouseY));
 
             self.lastMouseX = x;
             self.lastMouseY = y;
@@ -208,11 +208,11 @@ pub const MapViewer_Impl = struct {
     fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
         _ = dx;
         if (dy > 0 and self.camZoom > 0) {
-            self.camZoom -|= 2 * @intFromFloat(u5, dy);
+            self.camZoom -|= 2 * @as(u5, @intFromFloat(dy));
             self.centerX /= 4 * dy;
             self.centerY /= 4 * dy;
         } else if (dy < 0 and self.camZoom < 18) {
-            self.camZoom +|= 2 * @intFromFloat(u5, -dy);
+            self.camZoom +|= 2 * @as(u5, @intFromFloat(-dy));
             self.centerX *= 4 * -dy;
             self.centerY *= 4 * -dy;
         }
@@ -272,7 +272,7 @@ pub fn main() !void {
 }
 
 fn onGo(self_ptr: *anyopaque) !void {
-    const self = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), self_ptr)); // due to ZIG BUG
+    const self = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), self_ptr))); // due to ZIG BUG
     const root = self.getRoot().?.as(capy.Container_Impl);
     const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
     const input = root.getChildAs(capy.TextField_Impl, "location-input").?;

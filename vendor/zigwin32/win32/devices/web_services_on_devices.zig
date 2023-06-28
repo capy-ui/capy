@@ -123,11 +123,11 @@ pub const IWSDAddress = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAddress_Serialize(self: *const T, pszBuffer: [*:0]u16, cchLength: u32, fSafe: BOOL) HRESULT {
-                return @ptrCast(*const IWSDAddress.VTable, self.vtable).Serialize(@ptrCast(*const IWSDAddress, self), pszBuffer, cchLength, fSafe);
+                return @as(*const IWSDAddress.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IWSDAddress, @ptrCast(self)), pszBuffer, cchLength, fSafe);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAddress_Deserialize(self: *const T, pszBuffer: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDAddress.VTable, self.vtable).Deserialize(@ptrCast(*const IWSDAddress, self), pszBuffer);
+                return @as(*const IWSDAddress.VTable, @ptrCast(self.vtable)).Deserialize(@as(*const IWSDAddress, @ptrCast(self)), pszBuffer);
             }
         };
     }
@@ -199,23 +199,23 @@ pub const IWSDTransportAddress = extern struct {
             pub usingnamespace IWSDAddress.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDTransportAddress_GetPort(self: *const T, pwPort: ?*u16) HRESULT {
-                return @ptrCast(*const IWSDTransportAddress.VTable, self.vtable).GetPort(@ptrCast(*const IWSDTransportAddress, self), pwPort);
+                return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetPort(@as(*const IWSDTransportAddress, @ptrCast(self)), pwPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDTransportAddress_SetPort(self: *const T, wPort: u16) HRESULT {
-                return @ptrCast(*const IWSDTransportAddress.VTable, self.vtable).SetPort(@ptrCast(*const IWSDTransportAddress, self), wPort);
+                return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).SetPort(@as(*const IWSDTransportAddress, @ptrCast(self)), wPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDTransportAddress_GetTransportAddress(self: *const T, ppszAddress: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDTransportAddress.VTable, self.vtable).GetTransportAddress(@ptrCast(*const IWSDTransportAddress, self), ppszAddress);
+                return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetTransportAddress(@as(*const IWSDTransportAddress, @ptrCast(self)), ppszAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDTransportAddress_GetTransportAddressEx(self: *const T, fSafe: BOOL, ppszAddress: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDTransportAddress.VTable, self.vtable).GetTransportAddressEx(@ptrCast(*const IWSDTransportAddress, self), fSafe, ppszAddress);
+                return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).GetTransportAddressEx(@as(*const IWSDTransportAddress, @ptrCast(self)), fSafe, ppszAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDTransportAddress_SetTransportAddress(self: *const T, pszAddress: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDTransportAddress.VTable, self.vtable).SetTransportAddress(@ptrCast(*const IWSDTransportAddress, self), pszAddress);
+                return @as(*const IWSDTransportAddress.VTable, @ptrCast(self.vtable)).SetTransportAddress(@as(*const IWSDTransportAddress, @ptrCast(self)), pszAddress);
             }
         };
     }
@@ -285,23 +285,23 @@ pub const IWSDMessageParameters = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMessageParameters_GetLocalAddress(self: *const T, ppAddress: ?*?*IWSDAddress) HRESULT {
-                return @ptrCast(*const IWSDMessageParameters.VTable, self.vtable).GetLocalAddress(@ptrCast(*const IWSDMessageParameters, self), ppAddress);
+                return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetLocalAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), ppAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMessageParameters_SetLocalAddress(self: *const T, pAddress: ?*IWSDAddress) HRESULT {
-                return @ptrCast(*const IWSDMessageParameters.VTable, self.vtable).SetLocalAddress(@ptrCast(*const IWSDMessageParameters, self), pAddress);
+                return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).SetLocalAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), pAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMessageParameters_GetRemoteAddress(self: *const T, ppAddress: ?*?*IWSDAddress) HRESULT {
-                return @ptrCast(*const IWSDMessageParameters.VTable, self.vtable).GetRemoteAddress(@ptrCast(*const IWSDMessageParameters, self), ppAddress);
+                return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetRemoteAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), ppAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMessageParameters_SetRemoteAddress(self: *const T, pAddress: ?*IWSDAddress) HRESULT {
-                return @ptrCast(*const IWSDMessageParameters.VTable, self.vtable).SetRemoteAddress(@ptrCast(*const IWSDMessageParameters, self), pAddress);
+                return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).SetRemoteAddress(@as(*const IWSDMessageParameters, @ptrCast(self)), pAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMessageParameters_GetLowerParameters(self: *const T, ppTxParams: ?*?*IWSDMessageParameters) HRESULT {
-                return @ptrCast(*const IWSDMessageParameters.VTable, self.vtable).GetLowerParameters(@ptrCast(*const IWSDMessageParameters, self), ppTxParams);
+                return @as(*const IWSDMessageParameters.VTable, @ptrCast(self.vtable)).GetLowerParameters(@as(*const IWSDMessageParameters, @ptrCast(self)), ppTxParams);
             }
         };
     }
@@ -349,11 +349,11 @@ pub const IWSDUdpMessageParameters = extern struct {
             pub usingnamespace IWSDMessageParameters.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpMessageParameters_SetRetransmitParams(self: *const T, pParams: ?*const WSDUdpRetransmitParams) HRESULT {
-                return @ptrCast(*const IWSDUdpMessageParameters.VTable, self.vtable).SetRetransmitParams(@ptrCast(*const IWSDUdpMessageParameters, self), pParams);
+                return @as(*const IWSDUdpMessageParameters.VTable, @ptrCast(self.vtable)).SetRetransmitParams(@as(*const IWSDUdpMessageParameters, @ptrCast(self)), pParams);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpMessageParameters_GetRetransmitParams(self: *const T, pParams: ?*WSDUdpRetransmitParams) HRESULT {
-                return @ptrCast(*const IWSDUdpMessageParameters.VTable, self.vtable).GetRetransmitParams(@ptrCast(*const IWSDUdpMessageParameters, self), pParams);
+                return @as(*const IWSDUdpMessageParameters.VTable, @ptrCast(self.vtable)).GetRetransmitParams(@as(*const IWSDUdpMessageParameters, @ptrCast(self)), pParams);
             }
         };
     }
@@ -478,43 +478,43 @@ pub const IWSDUdpAddress = extern struct {
             pub usingnamespace IWSDTransportAddress.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_SetSockaddr(self: *const T, pSockAddr: ?*const SOCKADDR_STORAGE) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).SetSockaddr(@ptrCast(*const IWSDUdpAddress, self), pSockAddr);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetSockaddr(@as(*const IWSDUdpAddress, @ptrCast(self)), pSockAddr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_GetSockaddr(self: *const T, pSockAddr: ?*SOCKADDR_STORAGE) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).GetSockaddr(@ptrCast(*const IWSDUdpAddress, self), pSockAddr);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetSockaddr(@as(*const IWSDUdpAddress, @ptrCast(self)), pSockAddr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_SetExclusive(self: *const T, fExclusive: BOOL) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).SetExclusive(@ptrCast(*const IWSDUdpAddress, self), fExclusive);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetExclusive(@as(*const IWSDUdpAddress, @ptrCast(self)), fExclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_GetExclusive(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).GetExclusive(@ptrCast(*const IWSDUdpAddress, self));
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetExclusive(@as(*const IWSDUdpAddress, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_SetMessageType(self: *const T, messageType: WSDUdpMessageType) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).SetMessageType(@ptrCast(*const IWSDUdpAddress, self), messageType);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetMessageType(@as(*const IWSDUdpAddress, @ptrCast(self)), messageType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_GetMessageType(self: *const T, pMessageType: ?*WSDUdpMessageType) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).GetMessageType(@ptrCast(*const IWSDUdpAddress, self), pMessageType);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetMessageType(@as(*const IWSDUdpAddress, @ptrCast(self)), pMessageType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_SetTTL(self: *const T, dwTTL: u32) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).SetTTL(@ptrCast(*const IWSDUdpAddress, self), dwTTL);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetTTL(@as(*const IWSDUdpAddress, @ptrCast(self)), dwTTL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_GetTTL(self: *const T, pdwTTL: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).GetTTL(@ptrCast(*const IWSDUdpAddress, self), pdwTTL);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetTTL(@as(*const IWSDUdpAddress, @ptrCast(self)), pdwTTL);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_SetAlias(self: *const T, pAlias: ?*const Guid) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).SetAlias(@ptrCast(*const IWSDUdpAddress, self), pAlias);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).SetAlias(@as(*const IWSDUdpAddress, @ptrCast(self)), pAlias);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDUdpAddress_GetAlias(self: *const T, pAlias: ?*Guid) HRESULT {
-                return @ptrCast(*const IWSDUdpAddress.VTable, self.vtable).GetAlias(@ptrCast(*const IWSDUdpAddress, self), pAlias);
+                return @as(*const IWSDUdpAddress.VTable, @ptrCast(self.vtable)).GetAlias(@as(*const IWSDUdpAddress, @ptrCast(self)), pAlias);
             }
         };
     }
@@ -622,39 +622,39 @@ pub const IWSDHttpMessageParameters = extern struct {
             pub usingnamespace IWSDMessageParameters.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_SetInboundHttpHeaders(self: *const T, pszHeaders: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).SetInboundHttpHeaders(@ptrCast(*const IWSDHttpMessageParameters, self), pszHeaders);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetInboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_GetInboundHttpHeaders(self: *const T, ppszHeaders: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).GetInboundHttpHeaders(@ptrCast(*const IWSDHttpMessageParameters, self), ppszHeaders);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetInboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_SetOutboundHttpHeaders(self: *const T, pszHeaders: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).SetOutboundHttpHeaders(@ptrCast(*const IWSDHttpMessageParameters, self), pszHeaders);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetOutboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_GetOutboundHttpHeaders(self: *const T, ppszHeaders: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).GetOutboundHttpHeaders(@ptrCast(*const IWSDHttpMessageParameters, self), ppszHeaders);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetOutboundHttpHeaders(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_SetID(self: *const T, pszId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).SetID(@ptrCast(*const IWSDHttpMessageParameters, self), pszId);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetID(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pszId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_GetID(self: *const T, ppszId: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).GetID(@ptrCast(*const IWSDHttpMessageParameters, self), ppszId);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetID(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppszId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_SetContext(self: *const T, pContext: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).SetContext(@ptrCast(*const IWSDHttpMessageParameters, self), pContext);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), pContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_GetContext(self: *const T, ppContext: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).GetContext(@ptrCast(*const IWSDHttpMessageParameters, self), ppContext);
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IWSDHttpMessageParameters, @ptrCast(self)), ppContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpMessageParameters_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDHttpMessageParameters.VTable, self.vtable).Clear(@ptrCast(*const IWSDHttpMessageParameters, self));
+                return @as(*const IWSDHttpMessageParameters.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWSDHttpMessageParameters, @ptrCast(self)));
             }
         };
     }
@@ -712,19 +712,19 @@ pub const IWSDHttpAddress = extern struct {
             pub usingnamespace IWSDTransportAddress.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAddress_GetSecure(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDHttpAddress.VTable, self.vtable).GetSecure(@ptrCast(*const IWSDHttpAddress, self));
+                return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).GetSecure(@as(*const IWSDHttpAddress, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAddress_SetSecure(self: *const T, fSecure: BOOL) HRESULT {
-                return @ptrCast(*const IWSDHttpAddress.VTable, self.vtable).SetSecure(@ptrCast(*const IWSDHttpAddress, self), fSecure);
+                return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).SetSecure(@as(*const IWSDHttpAddress, @ptrCast(self)), fSecure);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAddress_GetPath(self: *const T, ppszPath: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDHttpAddress.VTable, self.vtable).GetPath(@ptrCast(*const IWSDHttpAddress, self), ppszPath);
+                return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IWSDHttpAddress, @ptrCast(self)), ppszPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAddress_SetPath(self: *const T, pszPath: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDHttpAddress.VTable, self.vtable).SetPath(@ptrCast(*const IWSDHttpAddress, self), pszPath);
+                return @as(*const IWSDHttpAddress.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IWSDHttpAddress, @ptrCast(self)), pszPath);
             }
         };
     }
@@ -764,11 +764,11 @@ pub const IWSDSSLClientCertificate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSSLClientCertificate_GetClientCertificate(self: *const T, ppCertContext: ?*?*CERT_CONTEXT) HRESULT {
-                return @ptrCast(*const IWSDSSLClientCertificate.VTable, self.vtable).GetClientCertificate(@ptrCast(*const IWSDSSLClientCertificate, self), ppCertContext);
+                return @as(*const IWSDSSLClientCertificate.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IWSDSSLClientCertificate, @ptrCast(self)), ppCertContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSSLClientCertificate_GetMappedAccessToken(self: *const T, phToken: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IWSDSSLClientCertificate.VTable, self.vtable).GetMappedAccessToken(@ptrCast(*const IWSDSSLClientCertificate, self), phToken);
+                return @as(*const IWSDSSLClientCertificate.VTable, @ptrCast(self.vtable)).GetMappedAccessToken(@as(*const IWSDSSLClientCertificate, @ptrCast(self)), phToken);
             }
         };
     }
@@ -808,11 +808,11 @@ pub const IWSDHttpAuthParameters = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAuthParameters_GetClientAccessToken(self: *const T, phToken: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IWSDHttpAuthParameters.VTable, self.vtable).GetClientAccessToken(@ptrCast(*const IWSDHttpAuthParameters, self), phToken);
+                return @as(*const IWSDHttpAuthParameters.VTable, @ptrCast(self.vtable)).GetClientAccessToken(@as(*const IWSDHttpAuthParameters, @ptrCast(self)), phToken);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDHttpAuthParameters_GetAuthType(self: *const T, pAuthType: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDHttpAuthParameters.VTable, self.vtable).GetAuthType(@ptrCast(*const IWSDHttpAuthParameters, self), pAuthType);
+                return @as(*const IWSDHttpAuthParameters.VTable, @ptrCast(self.vtable)).GetAuthType(@as(*const IWSDHttpAuthParameters, @ptrCast(self)), pAuthType);
             }
         };
     }
@@ -894,23 +894,23 @@ pub const IWSDSignatureProperty = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSignatureProperty_IsMessageSigned(self: *const T, pbSigned: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWSDSignatureProperty.VTable, self.vtable).IsMessageSigned(@ptrCast(*const IWSDSignatureProperty, self), pbSigned);
+                return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).IsMessageSigned(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSigned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSignatureProperty_IsMessageSignatureTrusted(self: *const T, pbSignatureTrusted: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWSDSignatureProperty.VTable, self.vtable).IsMessageSignatureTrusted(@ptrCast(*const IWSDSignatureProperty, self), pbSignatureTrusted);
+                return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).IsMessageSignatureTrusted(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignatureTrusted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSignatureProperty_GetKeyInfo(self: *const T, pbKeyInfo: ?*u8, pdwKeyInfoSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDSignatureProperty.VTable, self.vtable).GetKeyInfo(@ptrCast(*const IWSDSignatureProperty, self), pbKeyInfo, pdwKeyInfoSize);
+                return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetKeyInfo(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbKeyInfo, pdwKeyInfoSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSignatureProperty_GetSignature(self: *const T, pbSignature: ?*u8, pdwSignatureSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDSignatureProperty.VTable, self.vtable).GetSignature(@ptrCast(*const IWSDSignatureProperty, self), pbSignature, pdwSignatureSize);
+                return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignature, pdwSignatureSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDSignatureProperty_GetSignedInfoHash(self: *const T, pbSignedInfoHash: ?*u8, pdwHashSize: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDSignatureProperty.VTable, self.vtable).GetSignedInfoHash(@ptrCast(*const IWSDSignatureProperty, self), pbSignedInfoHash, pdwHashSize);
+                return @as(*const IWSDSignatureProperty.VTable, @ptrCast(self.vtable)).GetSignedInfoHash(@as(*const IWSDSignatureProperty, @ptrCast(self)), pbSignedInfoHash, pdwHashSize);
             }
         };
     }
@@ -976,15 +976,15 @@ pub const IWSDOutboundAttachment = extern struct {
             pub usingnamespace IWSDAttachment.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDOutboundAttachment_Write(self: *const T, pBuffer: [*:0]const u8, dwBytesToWrite: u32, pdwNumberOfBytesWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Write(@ptrCast(*const IWSDOutboundAttachment, self), pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
+                return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Write(@as(*const IWSDOutboundAttachment, @ptrCast(self)), pBuffer, dwBytesToWrite, pdwNumberOfBytesWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDOutboundAttachment_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDOutboundAttachment, self));
+                return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Close(@as(*const IWSDOutboundAttachment, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDOutboundAttachment_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDOutboundAttachment.VTable, self.vtable).Abort(@ptrCast(*const IWSDOutboundAttachment, self));
+                return @as(*const IWSDOutboundAttachment.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWSDOutboundAttachment, @ptrCast(self)));
             }
         };
     }
@@ -1026,11 +1026,11 @@ pub const IWSDInboundAttachment = extern struct {
             pub usingnamespace IWSDAttachment.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDInboundAttachment_Read(self: *const T, pBuffer: [*:0]u8, dwBytesToRead: u32, pdwNumberOfBytesRead: ?*u32) HRESULT {
-                return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Read(@ptrCast(*const IWSDInboundAttachment, self), pBuffer, dwBytesToRead, pdwNumberOfBytesRead);
+                return @as(*const IWSDInboundAttachment.VTable, @ptrCast(self.vtable)).Read(@as(*const IWSDInboundAttachment, @ptrCast(self)), pBuffer, dwBytesToRead, pdwNumberOfBytesRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDInboundAttachment_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDInboundAttachment.VTable, self.vtable).Close(@ptrCast(*const IWSDInboundAttachment, self));
+                return @as(*const IWSDInboundAttachment.VTable, @ptrCast(self.vtable)).Close(@as(*const IWSDInboundAttachment, @ptrCast(self)));
             }
         };
     }
@@ -1229,19 +1229,19 @@ pub const IWSDXMLContext = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDXMLContext_AddNamespace(self: *const T, pszUri: ?[*:0]const u16, pszSuggestedPrefix: ?[*:0]const u16, ppNamespace: ?*?*WSDXML_NAMESPACE) HRESULT {
-                return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszSuggestedPrefix, ppNamespace);
+                return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).AddNamespace(@as(*const IWSDXMLContext, @ptrCast(self)), pszUri, pszSuggestedPrefix, ppNamespace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDXMLContext_AddNameToNamespace(self: *const T, pszUri: ?[*:0]const u16, pszName: ?[*:0]const u16, ppName: ?*?*WSDXML_NAME) HRESULT {
-                return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).AddNameToNamespace(@ptrCast(*const IWSDXMLContext, self), pszUri, pszName, ppName);
+                return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).AddNameToNamespace(@as(*const IWSDXMLContext, @ptrCast(self)), pszUri, pszName, ppName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDXMLContext_SetNamespaces(self: *const T, pNamespaces: [*]const ?*const WSDXML_NAMESPACE, wNamespacesCount: u16, bLayerNumber: u8) HRESULT {
-                return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetNamespaces(@ptrCast(*const IWSDXMLContext, self), pNamespaces, wNamespacesCount, bLayerNumber);
+                return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).SetNamespaces(@as(*const IWSDXMLContext, @ptrCast(self)), pNamespaces, wNamespacesCount, bLayerNumber);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDXMLContext_SetTypes(self: *const T, pTypes: [*]const ?*const WSDXML_TYPE, dwTypesCount: u32, bLayerNumber: u8) HRESULT {
-                return @ptrCast(*const IWSDXMLContext.VTable, self.vtable).SetTypes(@ptrCast(*const IWSDXMLContext, self), pTypes, dwTypesCount, bLayerNumber);
+                return @as(*const IWSDXMLContext.VTable, @ptrCast(self.vtable)).SetTypes(@as(*const IWSDXMLContext, @ptrCast(self)), pTypes, dwTypesCount, bLayerNumber);
             }
         };
     }
@@ -1765,31 +1765,31 @@ pub const IWSDiscoveryProvider = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_SetAddressFamily(self: *const T, dwAddressFamily: u32) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryProvider, self), dwAddressFamily);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IWSDiscoveryProvider, @ptrCast(self)), dwAddressFamily);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_Attach(self: *const T, pSink: ?*IWSDiscoveryProviderNotify) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Attach(@ptrCast(*const IWSDiscoveryProvider, self), pSink);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).Attach(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_Detach(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).Detach(@ptrCast(*const IWSDiscoveryProvider, self));
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).Detach(@as(*const IWSDiscoveryProvider, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_SearchById(self: *const T, pszId: ?[*:0]const u16, pszTag: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchById(@ptrCast(*const IWSDiscoveryProvider, self), pszId, pszTag);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchById(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pszId, pszTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_SearchByAddress(self: *const T, pszAddress: ?[*:0]const u16, pszTag: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByAddress(@ptrCast(*const IWSDiscoveryProvider, self), pszAddress, pszTag);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchByAddress(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pszAddress, pszTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_SearchByType(self: *const T, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pszMatchBy: ?[*:0]const u16, pszTag: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).SearchByType(@ptrCast(*const IWSDiscoveryProvider, self), pTypesList, pScopesList, pszMatchBy, pszTag);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).SearchByType(@as(*const IWSDiscoveryProvider, @ptrCast(self)), pTypesList, pScopesList, pszMatchBy, pszTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProvider_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProvider.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryProvider, self), ppContext);
+                return @as(*const IWSDiscoveryProvider.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryProvider, @ptrCast(self)), ppContext);
             }
         };
     }
@@ -1851,19 +1851,19 @@ pub const IWSDiscoveryProviderNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProviderNotify_Add(self: *const T, pService: ?*IWSDiscoveredService) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Add(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
+                return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).Add(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProviderNotify_Remove(self: *const T, pService: ?*IWSDiscoveredService) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).Remove(@ptrCast(*const IWSDiscoveryProviderNotify, self), pService);
+                return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).Remove(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProviderNotify_SearchFailed(self: *const T, hr: HRESULT, pszTag: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchFailed(@ptrCast(*const IWSDiscoveryProviderNotify, self), hr, pszTag);
+                return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).SearchFailed(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), hr, pszTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryProviderNotify_SearchComplete(self: *const T, pszTag: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDiscoveryProviderNotify.VTable, self.vtable).SearchComplete(@ptrCast(*const IWSDiscoveryProviderNotify, self), pszTag);
+                return @as(*const IWSDiscoveryProviderNotify.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IWSDiscoveryProviderNotify, @ptrCast(self)), pszTag);
             }
         };
     }
@@ -1995,47 +1995,47 @@ pub const IWSDiscoveredService = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetEndpointReference(self: *const T, ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetEndpointReference(@ptrCast(*const IWSDiscoveredService, self), ppEndpointReference);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetEndpointReference(@as(*const IWSDiscoveredService, @ptrCast(self)), ppEndpointReference);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetTypes(self: *const T, ppTypesList: ?*?*WSD_NAME_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetTypes(@ptrCast(*const IWSDiscoveredService, self), ppTypesList);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetTypes(@as(*const IWSDiscoveredService, @ptrCast(self)), ppTypesList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetScopes(self: *const T, ppScopesList: ?*?*WSD_URI_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetScopes(@ptrCast(*const IWSDiscoveredService, self), ppScopesList);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetScopes(@as(*const IWSDiscoveredService, @ptrCast(self)), ppScopesList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetXAddrs(self: *const T, ppXAddrsList: ?*?*WSD_URI_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetXAddrs(@ptrCast(*const IWSDiscoveredService, self), ppXAddrsList);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetXAddrs(@as(*const IWSDiscoveredService, @ptrCast(self)), ppXAddrsList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetMetadataVersion(self: *const T, pullMetadataVersion: ?*u64) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetMetadataVersion(@ptrCast(*const IWSDiscoveredService, self), pullMetadataVersion);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetMetadataVersion(@as(*const IWSDiscoveredService, @ptrCast(self)), pullMetadataVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetExtendedDiscoXML(self: *const T, ppHeaderAny: ?*?*WSDXML_ELEMENT, ppBodyAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetExtendedDiscoXML(@ptrCast(*const IWSDiscoveredService, self), ppHeaderAny, ppBodyAny);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetExtendedDiscoXML(@as(*const IWSDiscoveredService, @ptrCast(self)), ppHeaderAny, ppBodyAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetProbeResolveTag(self: *const T, ppszTag: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetProbeResolveTag(@ptrCast(*const IWSDiscoveredService, self), ppszTag);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetProbeResolveTag(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszTag);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetRemoteTransportAddress(self: *const T, ppszRemoteTransportAddress: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetRemoteTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszRemoteTransportAddress);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetRemoteTransportAddress(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszRemoteTransportAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetLocalTransportAddress(self: *const T, ppszLocalTransportAddress: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalTransportAddress(@ptrCast(*const IWSDiscoveredService, self), ppszLocalTransportAddress);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetLocalTransportAddress(@as(*const IWSDiscoveredService, @ptrCast(self)), ppszLocalTransportAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetLocalInterfaceGUID(self: *const T, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetLocalInterfaceGUID(@ptrCast(*const IWSDiscoveredService, self), pGuid);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetLocalInterfaceGUID(@as(*const IWSDiscoveredService, @ptrCast(self)), pGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveredService_GetInstanceId(self: *const T, pullInstanceId: ?*u64) HRESULT {
-                return @ptrCast(*const IWSDiscoveredService.VTable, self.vtable).GetInstanceId(@ptrCast(*const IWSDiscoveredService, self), pullInstanceId);
+                return @as(*const IWSDiscoveredService.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IWSDiscoveredService, @ptrCast(self)), pullInstanceId);
             }
         };
     }
@@ -2323,55 +2323,55 @@ pub const IWSDiscoveryPublisher = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_SetAddressFamily(self: *const T, dwAddressFamily: u32) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).SetAddressFamily(@ptrCast(*const IWSDiscoveryPublisher, self), dwAddressFamily);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), dwAddressFamily);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_RegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).RegisterNotificationSink(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_UnRegisterNotificationSink(self: *const T, pSink: ?*IWSDiscoveryPublisherNotify) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterNotificationSink(@ptrCast(*const IWSDiscoveryPublisher, self), pSink);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnRegisterNotificationSink(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_Publish(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).Publish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).Publish(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_UnPublish(self: *const T, pszId: ?[*:0]const u16, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pAny: ?*const WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnPublish(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullInstanceId, ullMessageNumber, pszSessionId, pAny);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnPublish(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullInstanceId, ullMessageNumber, pszSessionId, pAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_MatchProbe(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbe(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchProbe(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_MatchResolve(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolve(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchResolve(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_PublishEx(self: *const T, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).PublishEx(@ptrCast(*const IWSDiscoveryPublisher, self), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).PublishEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_MatchProbeEx(self: *const T, pProbeMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchProbeEx(@ptrCast(*const IWSDiscoveryPublisher, self), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchProbeEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pProbeMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_MatchResolveEx(self: *const T, pResolveMessage: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters, pszId: ?[*:0]const u16, ullMetadataVersion: u64, ullInstanceId: u64, ullMessageNumber: u64, pszSessionId: ?[*:0]const u16, pTypesList: ?*const WSD_NAME_LIST, pScopesList: ?*const WSD_URI_LIST, pXAddrsList: ?*const WSD_URI_LIST, pHeaderAny: ?*const WSDXML_ELEMENT, pReferenceParameterAny: ?*const WSDXML_ELEMENT, pPolicyAny: ?*const WSDXML_ELEMENT, pEndpointReferenceAny: ?*const WSDXML_ELEMENT, pAny: ?*const WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).MatchResolveEx(@ptrCast(*const IWSDiscoveryPublisher, self), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).MatchResolveEx(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pResolveMessage, pMessageParameters, pszId, ullMetadataVersion, ullInstanceId, ullMessageNumber, pszSessionId, pTypesList, pScopesList, pXAddrsList, pHeaderAny, pReferenceParameterAny, pPolicyAny, pEndpointReferenceAny, pAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_RegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).RegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).RegisterScopeMatchingRule(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pScopeMatchingRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_UnRegisterScopeMatchingRule(self: *const T, pScopeMatchingRule: ?*IWSDScopeMatchingRule) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).UnRegisterScopeMatchingRule(@ptrCast(*const IWSDiscoveryPublisher, self), pScopeMatchingRule);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).UnRegisterScopeMatchingRule(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), pScopeMatchingRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisher_GetXMLContext(self: *const T, ppContext: ?*?*IWSDXMLContext) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisher.VTable, self.vtable).GetXMLContext(@ptrCast(*const IWSDiscoveryPublisher, self), ppContext);
+                return @as(*const IWSDiscoveryPublisher.VTable, @ptrCast(self.vtable)).GetXMLContext(@as(*const IWSDiscoveryPublisher, @ptrCast(self)), ppContext);
             }
         };
     }
@@ -2415,11 +2415,11 @@ pub const IWSDiscoveryPublisherNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisherNotify_ProbeHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ProbeHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
+                return @as(*const IWSDiscoveryPublisherNotify.VTable, @ptrCast(self.vtable)).ProbeHandler(@as(*const IWSDiscoveryPublisherNotify, @ptrCast(self)), pSoap, pMessageParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDiscoveryPublisherNotify_ResolveHandler(self: *const T, pSoap: ?*const WSD_SOAP_MESSAGE, pMessageParameters: ?*IWSDMessageParameters) HRESULT {
-                return @ptrCast(*const IWSDiscoveryPublisherNotify.VTable, self.vtable).ResolveHandler(@ptrCast(*const IWSDiscoveryPublisherNotify, self), pSoap, pMessageParameters);
+                return @as(*const IWSDiscoveryPublisherNotify.VTable, @ptrCast(self.vtable)).ResolveHandler(@as(*const IWSDiscoveryPublisherNotify, @ptrCast(self)), pSoap, pMessageParameters);
             }
         };
     }
@@ -2463,11 +2463,11 @@ pub const IWSDScopeMatchingRule = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDScopeMatchingRule_GetScopeRule(self: *const T, ppszScopeMatchingRule: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).GetScopeRule(@ptrCast(*const IWSDScopeMatchingRule, self), ppszScopeMatchingRule);
+                return @as(*const IWSDScopeMatchingRule.VTable, @ptrCast(self.vtable)).GetScopeRule(@as(*const IWSDScopeMatchingRule, @ptrCast(self)), ppszScopeMatchingRule);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDScopeMatchingRule_MatchScopes(self: *const T, pszScope1: ?[*:0]const u16, pszScope2: ?[*:0]const u16, pfMatch: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWSDScopeMatchingRule.VTable, self.vtable).MatchScopes(@ptrCast(*const IWSDScopeMatchingRule, self), pszScope1, pszScope2, pfMatch);
+                return @as(*const IWSDScopeMatchingRule.VTable, @ptrCast(self.vtable)).MatchScopes(@as(*const IWSDScopeMatchingRule, @ptrCast(self)), pszScope1, pszScope2, pfMatch);
             }
         };
     }
@@ -2571,31 +2571,31 @@ pub const IWSDEndpointProxy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_SendOneWayRequest(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendOneWayRequest(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendOneWayRequest(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_SendTwoWayRequest(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendTwoWayRequest(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation, pResponseContext);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendTwoWayRequest(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation, pResponseContext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_SendTwoWayRequestAsync(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendTwoWayRequestAsync(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation, pAsyncState, pCallback, pResult);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).SendTwoWayRequestAsync(@as(*const IWSDEndpointProxy, @ptrCast(self)), pBody, pOperation, pAsyncState, pCallback, pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_AbortAsyncOperation(self: *const T, pAsyncResult: ?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).AbortAsyncOperation(@ptrCast(*const IWSDEndpointProxy, self), pAsyncResult);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).AbortAsyncOperation(@as(*const IWSDEndpointProxy, @ptrCast(self)), pAsyncResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_ProcessFault(self: *const T, pFault: ?*const WSD_SOAP_FAULT) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).ProcessFault(@ptrCast(*const IWSDEndpointProxy, self), pFault);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).ProcessFault(@as(*const IWSDEndpointProxy, @ptrCast(self)), pFault);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_GetErrorInfo(self: *const T, ppszErrorInfo: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).GetErrorInfo(@ptrCast(*const IWSDEndpointProxy, self), ppszErrorInfo);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).GetErrorInfo(@as(*const IWSDEndpointProxy, @ptrCast(self)), ppszErrorInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEndpointProxy_GetFaultInfo(self: *const T, ppFault: ?*?*WSD_SOAP_FAULT) HRESULT {
-                return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).GetFaultInfo(@ptrCast(*const IWSDEndpointProxy, self), ppFault);
+                return @as(*const IWSDEndpointProxy.VTable, @ptrCast(self.vtable)).GetFaultInfo(@as(*const IWSDEndpointProxy, @ptrCast(self)), ppFault);
             }
         };
     }
@@ -2625,7 +2625,7 @@ pub const IWSDMetadataExchange = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDMetadataExchange_GetMetadata(self: *const T, MetadataOut: ?*?*WSD_METADATA_SECTION_LIST) HRESULT {
-                return @ptrCast(*const IWSDMetadataExchange.VTable, self.vtable).GetMetadata(@ptrCast(*const IWSDMetadataExchange, self), MetadataOut);
+                return @as(*const IWSDMetadataExchange.VTable, @ptrCast(self.vtable)).GetMetadata(@as(*const IWSDMetadataExchange, @ptrCast(self)), MetadataOut);
             }
         };
     }
@@ -2723,31 +2723,31 @@ pub const IWSDServiceProxy = extern struct {
             pub usingnamespace IWSDMetadataExchange.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_BeginGetMetadata(self: *const T, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).BeginGetMetadata(@ptrCast(*const IWSDServiceProxy, self), ppResult);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).BeginGetMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_EndGetMetadata(self: *const T, pResult: ?*IWSDAsyncResult, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).EndGetMetadata(@ptrCast(*const IWSDServiceProxy, self), pResult, ppMetadata);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).EndGetMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), pResult, ppMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_GetServiceMetadata(self: *const T, ppServiceMetadata: ?*?*WSD_SERVICE_METADATA) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).GetServiceMetadata(@ptrCast(*const IWSDServiceProxy, self), ppServiceMetadata);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).GetServiceMetadata(@as(*const IWSDServiceProxy, @ptrCast(self)), ppServiceMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_SubscribeToOperation(self: *const T, pOperation: ?*const WSD_OPERATION, pUnknown: ?*IUnknown, pAny: ?*const WSDXML_ELEMENT, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).SubscribeToOperation(@ptrCast(*const IWSDServiceProxy, self), pOperation, pUnknown, pAny, ppAny);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).SubscribeToOperation(@as(*const IWSDServiceProxy, @ptrCast(self)), pOperation, pUnknown, pAny, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_UnsubscribeToOperation(self: *const T, pOperation: ?*const WSD_OPERATION) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).UnsubscribeToOperation(@ptrCast(*const IWSDServiceProxy, self), pOperation);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).UnsubscribeToOperation(@as(*const IWSDServiceProxy, @ptrCast(self)), pOperation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_SetEventingStatusCallback(self: *const T, pStatus: ?*IWSDEventingStatus) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).SetEventingStatusCallback(@ptrCast(*const IWSDServiceProxy, self), pStatus);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).SetEventingStatusCallback(@as(*const IWSDServiceProxy, @ptrCast(self)), pStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxy_GetEndpointProxy(self: *const T, ppProxy: ?*?*IWSDEndpointProxy) HRESULT {
-                return @ptrCast(*const IWSDServiceProxy.VTable, self.vtable).GetEndpointProxy(@ptrCast(*const IWSDServiceProxy, self), ppProxy);
+                return @as(*const IWSDServiceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDServiceProxy, @ptrCast(self)), ppProxy);
             }
         };
     }
@@ -2995,51 +2995,51 @@ pub const IWSDServiceProxyEventing = extern struct {
             pub usingnamespace IWSDServiceProxy.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_SubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).SubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pUnknown, pExpires, pAny, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).SubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pUnknown, pExpires, pAny, ppExpires, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_BeginSubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pUnknown: ?*IUnknown, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginSubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pUnknown, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginSubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pUnknown, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_EndSubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndSubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndSubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_UnsubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).UnsubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).UnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_BeginUnsubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginUnsubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginUnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_EndUnsubscribeToMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndUnsubscribeToMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndUnsubscribeToMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_RenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).RenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pExpires, pAny, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).RenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pExpires, pAny, ppExpires, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_BeginRenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pExpires: ?*const WSD_EVENTING_EXPIRES, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginRenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginRenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pExpires, pAny, pAsyncState, pAsyncCallback, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_EndRenewMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndRenewMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndRenewMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_GetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).GetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).GetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, ppExpires, ppAny);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_BeginGetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pAny: ?*const WSDXML_ELEMENT, pAsyncState: ?*IUnknown, pAsyncCallback: ?*IWSDAsyncCallback, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).BeginGetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).BeginGetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pAny, pAsyncState, pAsyncCallback, ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceProxyEventing_EndGetStatusForMultipleOperations(self: *const T, pOperations: [*]const WSD_OPERATION, dwOperationCount: u32, pResult: ?*IWSDAsyncResult, ppExpires: ?*?*WSD_EVENTING_EXPIRES, ppAny: ?*?*WSDXML_ELEMENT) HRESULT {
-                return @ptrCast(*const IWSDServiceProxyEventing.VTable, self.vtable).EndGetStatusForMultipleOperations(@ptrCast(*const IWSDServiceProxyEventing, self), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
+                return @as(*const IWSDServiceProxyEventing.VTable, @ptrCast(self.vtable)).EndGetStatusForMultipleOperations(@as(*const IWSDServiceProxyEventing, @ptrCast(self)), pOperations, dwOperationCount, pResult, ppExpires, ppAny);
             }
         };
     }
@@ -3171,43 +3171,43 @@ pub const IWSDDeviceProxy = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_Init(self: *const T, pszDeviceId: ?[*:0]const u16, pDeviceAddress: ?*IWSDAddress, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, pSponsor: ?*IWSDDeviceProxy) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).Init(@ptrCast(*const IWSDDeviceProxy, self), pszDeviceId, pDeviceAddress, pszLocalId, pContext, pSponsor);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).Init(@as(*const IWSDDeviceProxy, @ptrCast(self)), pszDeviceId, pDeviceAddress, pszLocalId, pContext, pSponsor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_BeginGetMetadata(self: *const T, ppResult: ?*?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).BeginGetMetadata(@ptrCast(*const IWSDDeviceProxy, self), ppResult);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).BeginGetMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_EndGetMetadata(self: *const T, pResult: ?*IWSDAsyncResult) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).EndGetMetadata(@ptrCast(*const IWSDDeviceProxy, self), pResult);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).EndGetMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), pResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetHostMetadata(self: *const T, ppHostMetadata: ?*?*WSD_HOST_METADATA) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetHostMetadata(@ptrCast(*const IWSDDeviceProxy, self), ppHostMetadata);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetHostMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppHostMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetThisModelMetadata(self: *const T, ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetThisModelMetadata(@ptrCast(*const IWSDDeviceProxy, self), ppManufacturerMetadata);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetThisModelMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppManufacturerMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetThisDeviceMetadata(self: *const T, ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetThisDeviceMetadata(@ptrCast(*const IWSDDeviceProxy, self), ppThisDeviceMetadata);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetThisDeviceMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppThisDeviceMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetAllMetadata(self: *const T, ppMetadata: ?*?*WSD_METADATA_SECTION_LIST) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetAllMetadata(@ptrCast(*const IWSDDeviceProxy, self), ppMetadata);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetAllMetadata(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetServiceProxyById(self: *const T, pszServiceId: ?[*:0]const u16, ppServiceProxy: ?*?*IWSDServiceProxy) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetServiceProxyById(@ptrCast(*const IWSDDeviceProxy, self), pszServiceId, ppServiceProxy);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetServiceProxyById(@as(*const IWSDDeviceProxy, @ptrCast(self)), pszServiceId, ppServiceProxy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetServiceProxyByType(self: *const T, pType: ?*const WSDXML_NAME, ppServiceProxy: ?*?*IWSDServiceProxy) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetServiceProxyByType(@ptrCast(*const IWSDDeviceProxy, self), pType, ppServiceProxy);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetServiceProxyByType(@as(*const IWSDDeviceProxy, @ptrCast(self)), pType, ppServiceProxy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceProxy_GetEndpointProxy(self: *const T, ppProxy: ?*?*IWSDEndpointProxy) HRESULT {
-                return @ptrCast(*const IWSDDeviceProxy.VTable, self.vtable).GetEndpointProxy(@ptrCast(*const IWSDDeviceProxy, self), ppProxy);
+                return @as(*const IWSDDeviceProxy.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDDeviceProxy, @ptrCast(self)), ppProxy);
             }
         };
     }
@@ -3295,31 +3295,31 @@ pub const IWSDAsyncResult = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_SetCallback(self: *const T, pCallback: ?*IWSDAsyncCallback, pAsyncState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).SetCallback(@ptrCast(*const IWSDAsyncResult, self), pCallback, pAsyncState);
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IWSDAsyncResult, @ptrCast(self)), pCallback, pAsyncState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_SetWaitHandle(self: *const T, hWaitHandle: ?HANDLE) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).SetWaitHandle(@ptrCast(*const IWSDAsyncResult, self), hWaitHandle);
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).SetWaitHandle(@as(*const IWSDAsyncResult, @ptrCast(self)), hWaitHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_HasCompleted(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).HasCompleted(@ptrCast(*const IWSDAsyncResult, self));
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).HasCompleted(@as(*const IWSDAsyncResult, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_GetAsyncState(self: *const T, ppAsyncState: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).GetAsyncState(@ptrCast(*const IWSDAsyncResult, self), ppAsyncState);
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetAsyncState(@as(*const IWSDAsyncResult, @ptrCast(self)), ppAsyncState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_Abort(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).Abort(@ptrCast(*const IWSDAsyncResult, self));
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWSDAsyncResult, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_GetEvent(self: *const T, pEvent: ?*WSD_EVENT) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).GetEvent(@ptrCast(*const IWSDAsyncResult, self), pEvent);
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IWSDAsyncResult, @ptrCast(self)), pEvent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncResult_GetEndpointProxy(self: *const T, ppEndpoint: ?*?*IWSDEndpointProxy) HRESULT {
-                return @ptrCast(*const IWSDAsyncResult.VTable, self.vtable).GetEndpointProxy(@ptrCast(*const IWSDAsyncResult, self), ppEndpoint);
+                return @as(*const IWSDAsyncResult.VTable, @ptrCast(self.vtable)).GetEndpointProxy(@as(*const IWSDAsyncResult, @ptrCast(self)), ppEndpoint);
             }
         };
     }
@@ -3351,7 +3351,7 @@ pub const IWSDAsyncCallback = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDAsyncCallback_AsyncOperationComplete(self: *const T, pAsyncResult: ?*IWSDAsyncResult, pAsyncState: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDAsyncCallback.VTable, self.vtable).AsyncOperationComplete(@ptrCast(*const IWSDAsyncCallback, self), pAsyncResult, pAsyncState);
+                return @as(*const IWSDAsyncCallback.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IWSDAsyncCallback, @ptrCast(self)), pAsyncResult, pAsyncState);
             }
         };
     }
@@ -3403,15 +3403,15 @@ pub const IWSDEventingStatus = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEventingStatus_SubscriptionRenewed(self: *const T, pszSubscriptionAction: ?[*:0]const u16) void {
-                return @ptrCast(*const IWSDEventingStatus.VTable, self.vtable).SubscriptionRenewed(@ptrCast(*const IWSDEventingStatus, self), pszSubscriptionAction);
+                return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionRenewed(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEventingStatus_SubscriptionRenewalFailed(self: *const T, pszSubscriptionAction: ?[*:0]const u16, hr: HRESULT) void {
-                return @ptrCast(*const IWSDEventingStatus.VTable, self.vtable).SubscriptionRenewalFailed(@ptrCast(*const IWSDEventingStatus, self), pszSubscriptionAction, hr);
+                return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionRenewalFailed(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction, hr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDEventingStatus_SubscriptionEnded(self: *const T, pszSubscriptionAction: ?[*:0]const u16) void {
-                return @ptrCast(*const IWSDEventingStatus.VTable, self.vtable).SubscriptionEnded(@ptrCast(*const IWSDEventingStatus, self), pszSubscriptionAction);
+                return @as(*const IWSDEventingStatus.VTable, @ptrCast(self.vtable)).SubscriptionEnded(@as(*const IWSDEventingStatus, @ptrCast(self)), pszSubscriptionAction);
             }
         };
     }
@@ -3581,51 +3581,51 @@ pub const IWSDDeviceHost = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_Init(self: *const T, pszLocalId: ?[*:0]const u16, pContext: ?*IWSDXMLContext, ppHostAddresses: ?[*]?*IWSDAddress, dwHostAddressCount: u32) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Init(@ptrCast(*const IWSDDeviceHost, self), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Init(@as(*const IWSDDeviceHost, @ptrCast(self)), pszLocalId, pContext, ppHostAddresses, dwHostAddressCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_Start(self: *const T, ullInstanceId: u64, pScopeList: ?*const WSD_URI_LIST, pNotificationSink: ?*IWSDDeviceHostNotify) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Start(@ptrCast(*const IWSDDeviceHost, self), ullInstanceId, pScopeList, pNotificationSink);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Start(@as(*const IWSDDeviceHost, @ptrCast(self)), ullInstanceId, pScopeList, pNotificationSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Stop(@ptrCast(*const IWSDDeviceHost, self));
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWSDDeviceHost, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_Terminate(self: *const T) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).Terminate(@ptrCast(*const IWSDDeviceHost, self));
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IWSDDeviceHost, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_RegisterPortType(self: *const T, pPortType: ?*const WSD_PORT_TYPE) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterPortType(@ptrCast(*const IWSDDeviceHost, self), pPortType);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RegisterPortType(@as(*const IWSDDeviceHost, @ptrCast(self)), pPortType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_SetMetadata(self: *const T, pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA, pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA, pHostMetadata: ?*const WSD_HOST_METADATA, pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetMetadata(@ptrCast(*const IWSDDeviceHost, self), pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SetMetadata(@as(*const IWSDDeviceHost, @ptrCast(self)), pThisModelMetadata, pThisDeviceMetadata, pHostMetadata, pCustomMetadata);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_RegisterService(self: *const T, pszServiceId: ?[*:0]const u16, pService: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RegisterService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pService);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RegisterService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_RetireService(self: *const T, pszServiceId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RetireService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RetireService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_AddDynamicService(self: *const T, pszServiceId: ?[*:0]const u16, pszEndpointAddress: ?[*:0]const u16, pPortType: ?*const WSD_PORT_TYPE, pPortName: ?*const WSDXML_NAME, pAny: ?*const WSDXML_ELEMENT, pService: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).AddDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).AddDynamicService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pszEndpointAddress, pPortType, pPortName, pAny, pService);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_RemoveDynamicService(self: *const T, pszServiceId: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).RemoveDynamicService(@ptrCast(*const IWSDDeviceHost, self), pszServiceId);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).RemoveDynamicService(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_SetServiceDiscoverable(self: *const T, pszServiceId: ?[*:0]const u16, fDiscoverable: BOOL) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetServiceDiscoverable(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, fDiscoverable);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SetServiceDiscoverable(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, fDiscoverable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHost_SignalEvent(self: *const T, pszServiceId: ?[*:0]const u16, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) HRESULT {
-                return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SignalEvent(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pBody, pOperation);
+                return @as(*const IWSDDeviceHost.VTable, @ptrCast(self.vtable)).SignalEvent(@as(*const IWSDDeviceHost, @ptrCast(self)), pszServiceId, pBody, pOperation);
             }
         };
     }
@@ -3657,7 +3657,7 @@ pub const IWSDDeviceHostNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDDeviceHostNotify_GetService(self: *const T, pszServiceId: ?[*:0]const u16, ppService: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IWSDDeviceHostNotify.VTable, self.vtable).GetService(@ptrCast(*const IWSDDeviceHostNotify, self), pszServiceId, ppService);
+                return @as(*const IWSDDeviceHostNotify.VTable, @ptrCast(self.vtable)).GetService(@as(*const IWSDDeviceHostNotify, @ptrCast(self)), pszServiceId, ppService);
             }
         };
     }
@@ -3705,11 +3705,11 @@ pub const IWSDServiceMessaging = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceMessaging_SendResponse(self: *const T, pBody: ?*anyopaque, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) HRESULT {
-                return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).SendResponse(@ptrCast(*const IWSDServiceMessaging, self), pBody, pOperation, pMessageParameters);
+                return @as(*const IWSDServiceMessaging.VTable, @ptrCast(self.vtable)).SendResponse(@as(*const IWSDServiceMessaging, @ptrCast(self)), pBody, pOperation, pMessageParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSDServiceMessaging_FaultRequest(self: *const T, pRequestHeader: ?*WSD_SOAP_HEADER, pMessageParameters: ?*IWSDMessageParameters, pFault: ?*WSD_SOAP_FAULT) HRESULT {
-                return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).FaultRequest(@ptrCast(*const IWSDServiceMessaging, self), pRequestHeader, pMessageParameters, pFault);
+                return @as(*const IWSDServiceMessaging.VTable, @ptrCast(self.vtable)).FaultRequest(@as(*const IWSDServiceMessaging, @ptrCast(self)), pRequestHeader, pMessageParameters, pFault);
             }
         };
     }

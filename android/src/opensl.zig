@@ -54,21 +54,21 @@ pub const OpenSL = struct {
             try checkResult(output_stream.player.*.*.GetInterface.?(
                 output_stream.player,
                 c.SL_IID_PLAY,
-                @ptrCast(*anyopaque, &output_stream.play_itf),
+                @as(*anyopaque, @ptrCast(&output_stream.play_itf)),
             ));
 
             // Get buffer queue interface
             try checkResult(output_stream.player.*.*.GetInterface.?(
                 output_stream.player,
                 c.SL_IID_ANDROIDSIMPLEBUFFERQUEUE,
-                @ptrCast(*anyopaque, &output_stream.buffer_queue_itf),
+                @as(*anyopaque, @ptrCast(&output_stream.buffer_queue_itf)),
             ));
 
             // Register callback
             try checkResult(output_stream.buffer_queue_itf.*.*.RegisterCallback.?(
                 output_stream.buffer_queue_itf,
                 bufferQueueCallback,
-                @ptrCast(*anyopaque, output_stream),
+                @as(*anyopaque, @ptrCast(output_stream)),
             ));
 
             // Enqueue a few buffers to get the ball rollng
@@ -77,7 +77,7 @@ pub const OpenSL = struct {
                 try checkResult(output_stream.buffer_queue_itf.*.*.Enqueue.?(
                     output_stream.buffer_queue_itf,
                     &output_stream.buffer[output_stream.buffer_index],
-                    @intCast(u32, output_stream.config.buffer_size.? * (output_stream.pcm.containerSize / 8)),
+                    @as(u32, @intCast(output_stream.config.buffer_size.? * (output_stream.pcm.containerSize / 8))),
                 ));
                 output_stream.buffer_index += output_stream.config.buffer_size.?;
             }
@@ -92,7 +92,7 @@ pub const OpenSL = struct {
     };
 
     pub fn bufferQueueCallback(queue_itf: c.SLAndroidSimpleBufferQueueItf, user_data: ?*anyopaque) callconv(.C) void {
-        var output_stream = @ptrCast(*OutputStream, @alignCast(@alignOf(OutputStream), user_data));
+        var output_stream = @as(*OutputStream, @ptrCast(@alignCast(@alignOf(OutputStream), user_data)));
 
         // Lock the mutex to prevent race conditions
         output_stream.mutex.lock();
@@ -114,8 +114,8 @@ pub const OpenSL = struct {
 
         checkResult(queue_itf.*.*.Enqueue.?(
             queue_itf,
-            @ptrCast(*anyopaque, buffer.ptr),
-            @intCast(c.SLuint32, (output_stream.pcm.containerSize / 8) * buffer.len),
+            @as(*anyopaque, @ptrCast(buffer.ptr)),
+            @as(c.SLuint32, @intCast((output_stream.pcm.containerSize / 8) * buffer.len)),
         )) catch |e| {
             audio_log.err("Error enqueueing buffer! {s}", .{@errorName(e)});
         };
@@ -137,7 +137,7 @@ pub const OpenSL = struct {
             errdefer engine_object.*.*.Destroy.?(engine_object);
 
             // Get engine interface
-            try checkResult(engine_object.*.*.GetInterface.?(engine_object, c.SL_IID_ENGINE, @ptrCast(*anyopaque, &engine)));
+            try checkResult(engine_object.*.*.GetInterface.?(engine_object, c.SL_IID_ENGINE, @as(*anyopaque, @ptrCast(&engine))));
             try printEngineInterfaces();
             try printEngineExtensions();
 
@@ -147,7 +147,7 @@ pub const OpenSL = struct {
             errdefer output_mix.*.*.Destroy.?(output_mix);
 
             // Get OutputMix interface
-            try checkResult(output_mix.*.*.GetInterface.?(output_mix, c.SL_IID_OUTPUTMIX, @ptrCast(*anyopaque, &output_mix_itf)));
+            try checkResult(output_mix.*.*.GetInterface.?(output_mix, c.SL_IID_OUTPUTMIX, @as(*anyopaque, @ptrCast(&output_mix_itf))));
         }
     }
 
@@ -201,11 +201,11 @@ pub const OpenSL = struct {
             // Setup the format of the content in the buffer queue
             .buffer_queue = .{
                 .locatorType = c.SL_DATALOCATOR_BUFFERQUEUE,
-                .numBuffers = @intCast(u32, config.buffer_count),
+                .numBuffers = @as(u32, @intCast(config.buffer_count)),
             },
             .pcm = .{
                 .formatType = c.SL_DATAFORMAT_PCM,
-                .numChannels = @intCast(u32, config.channel_count),
+                .numChannels = @as(u32, @intCast(config.channel_count)),
                 .samplesPerSec = config.sample_rate.? * 1000, // OpenSL ES uses milliHz instead of Hz, for some reason
                 .bitsPerSample = switch (config.sample_format) {
                     .Uint8 => c.SL_PCMSAMPLEFORMAT_FIXED_8,
@@ -224,8 +224,8 @@ pub const OpenSL = struct {
 
             // Configure audio source
             .audio_source = .{
-                .pFormat = @ptrCast(*anyopaque, &output_stream.pcm),
-                .pLocator = @ptrCast(*anyopaque, &output_stream.buffer_queue),
+                .pFormat = @as(*anyopaque, @ptrCast(&output_stream.pcm)),
+                .pLocator = @as(*anyopaque, @ptrCast(&output_stream.buffer_queue)),
             },
             .locator_outputmix = .{
                 .locatorType = c.SL_DATALOCATOR_OUTPUTMIX,
@@ -233,7 +233,7 @@ pub const OpenSL = struct {
             },
             // Configure audio output
             .audio_sink = .{
-                .pLocator = @ptrCast(*anyopaque, &output_stream.locator_outputmix),
+                .pLocator = @as(*anyopaque, @ptrCast(&output_stream.locator_outputmix)),
                 .pFormat = null,
             },
 
@@ -350,7 +350,7 @@ pub const OpenSL = struct {
                 var extension_ptr: [4096]u8 = undefined;
                 var extension_size: c.SLint16 = 4096;
                 try checkResult(engine.*.*.QuerySupportedExtension.?(engine, i, &extension_ptr, &extension_size));
-                var extension_name = extension_ptr[0..@intCast(usize, extension_size)];
+                var extension_name = extension_ptr[0..@as(usize, @intCast(extension_size))];
                 audio_log.info("OpenSL engine extension {}: {s}", .{ i, extension_name });
             }
         }

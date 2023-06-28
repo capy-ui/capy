@@ -228,7 +228,7 @@ pub const REG_SAM_FLAGS = enum(u32) {
         WRITE: u1 = 0,
         ALL_ACCESS: u1 = 0,
     }) REG_SAM_FLAGS {
-        return @enumFromInt(REG_SAM_FLAGS, (if (o.QUERY_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.QUERY_VALUE) else 0) | (if (o.SET_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.SET_VALUE) else 0) | (if (o.CREATE_SUB_KEY == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0) | (if (o.ENUMERATE_SUB_KEYS == 1) @intFromEnum(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0) | (if (o.NOTIFY == 1) @intFromEnum(REG_SAM_FLAGS.NOTIFY) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_LINK) else 0) | (if (o.WOW64_32KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_32KEY) else 0) | (if (o.WOW64_64KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_64KEY) else 0) | (if (o.WOW64_RES == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_RES) else 0) | (if (o.READ == 1) @intFromEnum(REG_SAM_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(REG_SAM_FLAGS.WRITE) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(REG_SAM_FLAGS.ALL_ACCESS) else 0));
+        return @as(REG_SAM_FLAGS, @enumFromInt((if (o.QUERY_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.QUERY_VALUE) else 0) | (if (o.SET_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.SET_VALUE) else 0) | (if (o.CREATE_SUB_KEY == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0) | (if (o.ENUMERATE_SUB_KEYS == 1) @intFromEnum(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0) | (if (o.NOTIFY == 1) @intFromEnum(REG_SAM_FLAGS.NOTIFY) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_LINK) else 0) | (if (o.WOW64_32KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_32KEY) else 0) | (if (o.WOW64_64KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_64KEY) else 0) | (if (o.WOW64_RES == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_RES) else 0) | (if (o.READ == 1) @intFromEnum(REG_SAM_FLAGS.READ) else 0) | (if (o.WRITE == 1) @intFromEnum(REG_SAM_FLAGS.WRITE) else 0) | (if (o.ALL_ACCESS == 1) @intFromEnum(REG_SAM_FLAGS.ALL_ACCESS) else 0)));
     }
 };
 pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
@@ -262,7 +262,7 @@ pub const REG_OPEN_CREATE_OPTIONS = enum(u32) {
         OPEN_LINK: u1 = 0,
         DONT_VIRTUALIZE: u1 = 0,
     }) REG_OPEN_CREATE_OPTIONS {
-        return @enumFromInt(REG_OPEN_CREATE_OPTIONS, (if (o.RESERVED == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0) | (if (o.VOLATILE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0) | (if (o.BACKUP_RESTORE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0) | (if (o.OPEN_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0) | (if (o.DONT_VIRTUALIZE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0));
+        return @as(REG_OPEN_CREATE_OPTIONS, @enumFromInt((if (o.RESERVED == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0) | (if (o.VOLATILE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0) | (if (o.CREATE_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0) | (if (o.BACKUP_RESTORE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0) | (if (o.OPEN_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0) | (if (o.DONT_VIRTUALIZE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0)));
     }
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
@@ -304,7 +304,7 @@ pub const REG_NOTIFY_FILTER = enum(u32) {
         CHANGE_SECURITY: u1 = 0,
         THREAD_AGNOSTIC: u1 = 0,
     }) REG_NOTIFY_FILTER {
-        return @enumFromInt(REG_NOTIFY_FILTER, (if (o.CHANGE_NAME == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_NAME) else 0) | (if (o.CHANGE_ATTRIBUTES == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0) | (if (o.CHANGE_LAST_SET == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0) | (if (o.CHANGE_SECURITY == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0) | (if (o.THREAD_AGNOSTIC == 1) @intFromEnum(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0));
+        return @as(REG_NOTIFY_FILTER, @enumFromInt((if (o.CHANGE_NAME == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_NAME) else 0) | (if (o.CHANGE_ATTRIBUTES == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0) | (if (o.CHANGE_LAST_SET == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0) | (if (o.CHANGE_SECURITY == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0) | (if (o.THREAD_AGNOSTIC == 1) @intFromEnum(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0)));
     }
 };
 pub const REG_NOTIFY_CHANGE_NAME = REG_NOTIFY_FILTER.CHANGE_NAME;
@@ -337,7 +337,7 @@ pub const RRF_RT = enum(u32) {
         REG_QWORD: u1 = 0,
         REG_SZ: u1 = 0,
     }) RRF_RT {
-        return @enumFromInt(RRF_RT, (if (o.ANY == 1) @intFromEnum(RRF_RT.ANY) else 0) | (if (o.DWORD == 1) @intFromEnum(RRF_RT.DWORD) else 0) | (if (o.QWORD == 1) @intFromEnum(RRF_RT.QWORD) else 0) | (if (o.REG_BINARY == 1) @intFromEnum(RRF_RT.REG_BINARY) else 0) | (if (o.REG_DWORD == 1) @intFromEnum(RRF_RT.REG_DWORD) else 0) | (if (o.REG_EXPAND_SZ == 1) @intFromEnum(RRF_RT.REG_EXPAND_SZ) else 0) | (if (o.REG_MULTI_SZ == 1) @intFromEnum(RRF_RT.REG_MULTI_SZ) else 0) | (if (o.REG_NONE == 1) @intFromEnum(RRF_RT.REG_NONE) else 0) | (if (o.REG_QWORD == 1) @intFromEnum(RRF_RT.REG_QWORD) else 0) | (if (o.REG_SZ == 1) @intFromEnum(RRF_RT.REG_SZ) else 0));
+        return @as(RRF_RT, @enumFromInt((if (o.ANY == 1) @intFromEnum(RRF_RT.ANY) else 0) | (if (o.DWORD == 1) @intFromEnum(RRF_RT.DWORD) else 0) | (if (o.QWORD == 1) @intFromEnum(RRF_RT.QWORD) else 0) | (if (o.REG_BINARY == 1) @intFromEnum(RRF_RT.REG_BINARY) else 0) | (if (o.REG_DWORD == 1) @intFromEnum(RRF_RT.REG_DWORD) else 0) | (if (o.REG_EXPAND_SZ == 1) @intFromEnum(RRF_RT.REG_EXPAND_SZ) else 0) | (if (o.REG_MULTI_SZ == 1) @intFromEnum(RRF_RT.REG_MULTI_SZ) else 0) | (if (o.REG_NONE == 1) @intFromEnum(RRF_RT.REG_NONE) else 0) | (if (o.REG_QWORD == 1) @intFromEnum(RRF_RT.REG_QWORD) else 0) | (if (o.REG_SZ == 1) @intFromEnum(RRF_RT.REG_SZ) else 0)));
     }
 };
 pub const RRF_RT_ANY = RRF_RT.ANY;

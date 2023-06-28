@@ -31,7 +31,7 @@ pub const ISoftwareBitmapNative = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftwareBitmapNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISoftwareBitmapNative.VTable, self.vtable).GetData(@ptrCast(*const ISoftwareBitmapNative, self), riid, ppv);
+                return @as(*const ISoftwareBitmapNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISoftwareBitmapNative, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -90,11 +90,11 @@ pub const ISoftwareBitmapNativeFactory = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftwareBitmapNativeFactory_CreateFromWICBitmap(self: *const T, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISoftwareBitmapNativeFactory.VTable, self.vtable).CreateFromWICBitmap(@ptrCast(*const ISoftwareBitmapNativeFactory, self), data, forceReadOnly, riid, ppv);
+                return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromWICBitmap(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftwareBitmapNativeFactory_CreateFromMF2DBuffer2(self: *const T, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ISoftwareBitmapNativeFactory.VTable, self.vtable).CreateFromMF2DBuffer2(@ptrCast(*const ISoftwareBitmapNativeFactory, self), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
+                return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMF2DBuffer2(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
             }
         };
     }

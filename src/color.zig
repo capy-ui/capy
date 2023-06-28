@@ -65,19 +65,19 @@ pub const Color = packed struct {
     }
 
     fn lerpByte(a: u8, b: u8, t: f64) u8 {
-        return @intFromFloat(u8, @floatFromInt(f64, a) * (1 - t) + @floatFromInt(f64, b) * t);
+        return @as(u8, @intFromFloat(@as(f64, @floatFromInt(a)) * (1 - t) + @as(f64, @floatFromInt(b)) * t));
     }
 
     pub fn toLinear(component: u8) u8 {
-        var float = @floatFromInt(f32, component);
+        var float = @as(f32, @floatFromInt(component));
         float = std.math.pow(f32, float / 255, 1.0 / 2.2) * 255;
-        return @intFromFloat(u8, float);
+        return @as(u8, @intFromFloat(float));
     }
 
     pub fn toSRGB(component: u8) u8 {
-        var float = @floatFromInt(f32, component);
+        var float = @as(f32, @floatFromInt(component));
         float = std.math.pow(f32, float / 255, 2.2) * 255;
-        return @intFromFloat(u8, float);
+        return @as(u8, @intFromFloat(float));
     }
 
     // TODO: interpolate between colors in linear RGB space

@@ -30,7 +30,7 @@ export fn ANativeActivity_onCreate(activity: *android.ANativeActivity, savedStat
         if (len <= 0) {
             sdk_version = 0;
         } else {
-            const str = sdk_ver_str[0..@intCast(usize, len)];
+            const str = sdk_ver_str[0..@as(usize, @intCast(len))];
             sdk_version = std.fmt.parseInt(c_int, str, 10) catch 0;
         }
     }
@@ -229,7 +229,7 @@ fn makeNativeActivityGlue(comptime App: type) android.ANativeActivityCallbacks {
         fn invoke(activity: *android.ANativeActivity, comptime func: []const u8, args: anytype) void {
             if (@hasDecl(App, func)) {
                 if (activity.instance) |instance| {
-                    const result = @call(.auto, @field(App, func), .{@ptrCast(*App, @alignCast(@alignOf(App), instance))} ++ args);
+                    const result = @call(.auto, @field(App, func), .{@as(*App, @ptrCast(@alignCast(@alignOf(App), instance)))} ++ args);
                     switch (@typeInfo(@TypeOf(result))) {
                         .ErrorUnion => result catch |err| app_log.err("{s} returned error {s}", .{ func, @errorName(err) }),
                         .Void => {},
@@ -247,7 +247,7 @@ fn makeNativeActivityGlue(comptime App: type) android.ANativeActivityCallbacks {
             outSize.* = 0;
             if (@hasDecl(App, "onSaveInstanceState")) {
                 if (activity.instance) |instance| {
-                    const optional_slice = @ptrCast(*App, @alignCast(@alignOf(App), instance)).onSaveInstanceState(std.heap.c_allocator);
+                    const optional_slice = @as(*App, @ptrCast(@alignCast(@alignOf(App), instance))).onSaveInstanceState(std.heap.c_allocator);
                     if (optional_slice) |slice| {
                         outSize.* = slice.len;
                         return slice.ptr;
@@ -261,7 +261,7 @@ fn makeNativeActivityGlue(comptime App: type) android.ANativeActivityCallbacks {
 
         fn onDestroy(activity: *android.ANativeActivity) callconv(.C) void {
             if (activity.instance) |instance| {
-                const app = @ptrCast(*App, @alignCast(@alignOf(App), instance));
+                const app = @as(*App, @ptrCast(@alignCast(@alignOf(App), instance)));
                 app.deinit();
                 std.heap.c_allocator.destroy(app);
             }

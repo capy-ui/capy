@@ -69,14 +69,14 @@ comptime {
 
 // TODO: is this in the standard lib somewhere?
 fn hexVal(c: u8) u4 {
-    if (c <= '9') return @intCast(u4, c - '0');
-    if (c >= 'a') return @intCast(u4, c + 10 - 'a');
-    return @intCast(u4, c + 10 - 'A');
+    if (c <= '9') return @as(u4, @intCast(c - '0'));
+    if (c >= 'a') return @as(u4, @intCast(c + 10 - 'a'));
+    return @as(u4, @intCast(c + 10 - 'A'));
 }
 
 // TODO: is this in the standard lib somewhere?
 fn decodeHexByte(hex: [2]u8) u8 {
-    return @intCast(u8, hexVal(hex[0])) << 4 | hexVal(hex[1]);
+    return @as(u8, @intCast(hexVal(hex[0]))) << 4 | hexVal(hex[1]);
 }
 
 test "Guid" {
@@ -127,7 +127,7 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
                     const UnsignedT = @Type(std.builtin.Type{ .Int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
-                    return @bitCast(SwitchType, @as(UnsignedT, value));
+                    return @as(SwitchType, @bitCast(@as(UnsignedT, value)));
                 }
             }
             return value;
@@ -136,8 +136,8 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             .One, .Many, .C => {
                 switch (@typeInfo(@TypeOf(value))) {
                     .ComptimeInt, .Int => {
-                        const usize_value = if (value >= 0) value else @bitCast(usize, @as(isize, value));
-                        return @ptrFromInt(ReturnType, usize_value);
+                        const usize_value = if (value >= 0) value else @as(usize, @bitCast(@as(isize, value)));
+                        return @as(ReturnType, @ptrFromInt(usize_value));
                     },
                     else => @compileError(value_type_error),
                 }
@@ -149,15 +149,15 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             else => target_type_error,
         },
         .Enum => |_| switch (@typeInfo(@TypeOf(value))) {
-            .Int => return @enumFromInt(ReturnType, value),
+            .Int => return @as(ReturnType, @enumFromInt(value)),
             else => target_type_error,
         },
         else => @compileError(target_type_error),
     }
 }
 test "typedConst" {
-    try testing.expectEqual(@bitCast(usize, @as(isize, -1)), @intFromPtr(typedConst(?*opaque {}, -1)));
-    try testing.expectEqual(@bitCast(usize, @as(isize, -12)), @intFromPtr(typedConst(?*opaque {}, -12)));
+    try testing.expectEqual(@as(usize, @bitCast(@as(isize, -1))), @intFromPtr(typedConst(?*opaque {}, -1)));
+    try testing.expectEqual(@as(usize, @bitCast(@as(isize, -12))), @intFromPtr(typedConst(?*opaque {}, -12)));
     try testing.expectEqual(@as(u32, 0xffffffff), typedConst(u32, 0xffffffff));
-    try testing.expectEqual(@bitCast(i32, @as(u32, 0x80000000)), typedConst(i32, 0x80000000));
+    try testing.expectEqual(@as(i32, @bitCast(@as(u32, 0x80000000))), typedConst(i32, 0x80000000));
 }

@@ -28,7 +28,7 @@ pub const ILearningModelOperatorProviderNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILearningModelOperatorProviderNative_GetRegistry(self: *const T, ppOperatorRegistry: ?*?*IMLOperatorRegistry) HRESULT {
-                return @ptrCast(*const ILearningModelOperatorProviderNative.VTable, self.vtable).GetRegistry(@ptrCast(*const ILearningModelOperatorProviderNative, self), ppOperatorRegistry);
+                return @as(*const ILearningModelOperatorProviderNative.VTable, @ptrCast(self.vtable)).GetRegistry(@as(*const ILearningModelOperatorProviderNative, @ptrCast(self)), ppOperatorRegistry);
             }
         };
     }
@@ -69,11 +69,11 @@ pub const ITensorNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITensorNative_GetBuffer(self: *const T, value: [*]?*u8, capacity: ?*u32) HRESULT {
-                return @ptrCast(*const ITensorNative.VTable, self.vtable).GetBuffer(@ptrCast(*const ITensorNative, self), value, capacity);
+                return @as(*const ITensorNative.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ITensorNative, @ptrCast(self)), value, capacity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITensorNative_GetD3D12Resource(self: *const T, result: ?*?*ID3D12Resource) HRESULT {
-                return @ptrCast(*const ITensorNative.VTable, self.vtable).GetD3D12Resource(@ptrCast(*const ITensorNative, self), result);
+                return @as(*const ITensorNative.VTable, @ptrCast(self.vtable)).GetD3D12Resource(@as(*const ITensorNative, @ptrCast(self)), result);
             }
         };
     }
@@ -108,7 +108,7 @@ pub const ITensorStaticsNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITensorStaticsNative_CreateFromD3D12Resource(self: *const T, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ITensorStaticsNative.VTable, self.vtable).CreateFromD3D12Resource(@ptrCast(*const ITensorStaticsNative, self), value, shape, shapeCount, result);
+                return @as(*const ITensorStaticsNative.VTable, @ptrCast(self.vtable)).CreateFromD3D12Resource(@as(*const ITensorStaticsNative, @ptrCast(self)), value, shape, shapeCount, result);
             }
         };
     }
@@ -139,7 +139,7 @@ pub const ILearningModelDeviceFactoryNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILearningModelDeviceFactoryNative_CreateFromD3D12CommandQueue(self: *const T, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ILearningModelDeviceFactoryNative.VTable, self.vtable).CreateFromD3D12CommandQueue(@ptrCast(*const ILearningModelDeviceFactoryNative, self), value, result);
+                return @as(*const ILearningModelDeviceFactoryNative.VTable, @ptrCast(self.vtable)).CreateFromD3D12CommandQueue(@as(*const ILearningModelDeviceFactoryNative, @ptrCast(self)), value, result);
             }
         };
     }
@@ -168,7 +168,7 @@ pub const ILearningModelSessionOptionsNative = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ILearningModelSessionOptionsNative_SetIntraOpNumThreadsOverride(self: *const T, intraOpNumThreads: u32) HRESULT {
-                return @ptrCast(*const ILearningModelSessionOptionsNative.VTable, self.vtable).SetIntraOpNumThreadsOverride(@ptrCast(*const ILearningModelSessionOptionsNative, self), intraOpNumThreads);
+                return @as(*const ILearningModelSessionOptionsNative.VTable, @ptrCast(self.vtable)).SetIntraOpNumThreadsOverride(@as(*const ILearningModelSessionOptionsNative, @ptrCast(self)), intraOpNumThreads);
             }
         };
     }

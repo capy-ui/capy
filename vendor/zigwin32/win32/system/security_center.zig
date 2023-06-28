@@ -154,31 +154,31 @@ pub const IWscProduct = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_ProductName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductName(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductName(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_ProductState(self: *const T, pVal: ?*WSC_SECURITY_PRODUCT_STATE) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductState(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductState(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_SignatureStatus(self: *const T, pVal: ?*WSC_SECURITY_SIGNATURE_STATUS) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_SignatureStatus(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_SignatureStatus(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_RemediationPath(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_RemediationPath(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_RemediationPath(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_ProductStateTimestamp(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductStateTimestamp(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductStateTimestamp(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_ProductGuid(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductGuid(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductGuid(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct_get_ProductIsDefault(self: *const T, pVal: ?*BOOL) HRESULT {
-                return @ptrCast(*const IWscProduct.VTable, self.vtable).get_ProductIsDefault(@ptrCast(*const IWscProduct, self), pVal);
+                return @as(*const IWscProduct.VTable, @ptrCast(self.vtable)).get_ProductIsDefault(@as(*const IWscProduct, @ptrCast(self)), pVal);
             }
         };
     }
@@ -275,27 +275,27 @@ pub const IWscProduct2 = extern struct {
             pub usingnamespace IWscProduct.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_AntivirusScanSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusScanSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusScanSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_AntivirusSettingsSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusSettingsSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusSettingsSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_AntivirusProtectionUpdateSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_AntivirusProtectionUpdateSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_AntivirusProtectionUpdateSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_FirewallDomainProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallDomainProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallDomainProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_FirewallPrivateProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallPrivateProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPrivateProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct2_get_FirewallPublicProfileSubstatus(self: *const T, peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS) HRESULT {
-                return @ptrCast(*const IWscProduct2.VTable, self.vtable).get_FirewallPublicProfileSubstatus(@ptrCast(*const IWscProduct2, self), peStatus);
+                return @as(*const IWscProduct2.VTable, @ptrCast(self.vtable)).get_FirewallPublicProfileSubstatus(@as(*const IWscProduct2, @ptrCast(self)), peStatus);
             }
         };
     }
@@ -327,7 +327,7 @@ pub const IWscProduct3 = extern struct {
             pub usingnamespace IWscProduct2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWscProduct3_get_AntivirusDaysUntilExpired(self: *const T, pdwDays: ?*u32) HRESULT {
-                return @ptrCast(*const IWscProduct3.VTable, self.vtable).get_AntivirusDaysUntilExpired(@ptrCast(*const IWscProduct3, self), pdwDays);
+                return @as(*const IWscProduct3.VTable, @ptrCast(self.vtable)).get_AntivirusDaysUntilExpired(@as(*const IWscProduct3, @ptrCast(self)), pdwDays);
             }
         };
     }
@@ -385,15 +385,15 @@ pub const IWSCProductList = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSCProductList_Initialize(self: *const T, provider: WSC_SECURITY_PROVIDER) HRESULT {
-                return @ptrCast(*const IWSCProductList.VTable, self.vtable).Initialize(@ptrCast(*const IWSCProductList, self), provider);
+                return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWSCProductList, @ptrCast(self)), provider);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSCProductList_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Count(@ptrCast(*const IWSCProductList, self), pVal);
+                return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IWSCProductList, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSCProductList_get_Item(self: *const T, index: u32, pVal: ?*?*IWscProduct) HRESULT {
-                return @ptrCast(*const IWSCProductList.VTable, self.vtable).get_Item(@ptrCast(*const IWSCProductList, self), index, pVal);
+                return @as(*const IWSCProductList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IWSCProductList, @ptrCast(self)), index, pVal);
             }
         };
     }
@@ -424,7 +424,7 @@ pub const IWSCDefaultProduct = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWSCDefaultProduct_SetDefaultProduct(self: *const T, eType: SECURITY_PRODUCT_TYPE, pGuid: ?BSTR) HRESULT {
-                return @ptrCast(*const IWSCDefaultProduct.VTable, self.vtable).SetDefaultProduct(@ptrCast(*const IWSCDefaultProduct, self), eType, pGuid);
+                return @as(*const IWSCDefaultProduct.VTable, @ptrCast(self.vtable)).SetDefaultProduct(@as(*const IWSCDefaultProduct, @ptrCast(self)), eType, pGuid);
             }
         };
     }

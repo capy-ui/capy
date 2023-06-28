@@ -28,7 +28,7 @@ pub const List_Impl = struct {
     }
 
     fn modelSizeChanged(newSize: usize, userdata: usize) void {
-        const self = @ptrFromInt(*List_Impl, userdata);
+        const self = @as(*List_Impl, @ptrFromInt(userdata));
         const container = self.child.as(containers.Container_Impl);
 
         // TODO: cache widgets!
@@ -70,7 +70,7 @@ pub inline fn ColumnList(config: containers.GridConfig, model: anytype) anyerror
         .userdata = model,
         .getComponent = struct {
             fn getComponent(self: *anyopaque, index: usize) Widget {
-                const component = ModelType.getComponent(@ptrCast(*ModelType, @alignCast(@alignOf(ModelType), self)), index);
+                const component = ModelType.getComponent(@as(*ModelType, @ptrCast(@alignCast(self))), index);
                 // Convert the component (Label, Button..) to a widget
                 const widget = @import("internal.zig").genericWidgetFrom(component) catch unreachable; // TODO: handle error
                 return widget;

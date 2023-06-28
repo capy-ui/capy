@@ -54,8 +54,8 @@ var list_model: ListModel = undefined;
 
 fn onSubmit(_: *anyopaque) !void {
     try list_model.add(.{
-        .start = @intCast(u64, std.time.timestamp() - 1000),
-        .end = @intCast(u64, std.time.timestamp()),
+        .start = @as(u64, @intCast(std.time.timestamp() - 1000)),
+        .end = @as(u64, @intCast(std.time.timestamp())),
         .description = submitDesc.get(),
     });
 

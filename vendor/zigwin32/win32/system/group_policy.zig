@@ -511,51 +511,51 @@ pub const IGPM = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetDomain(self: *const T, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, pIGPMDomain: ?*?*IGPMDomain) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetDomain(@ptrCast(*const IGPM, self), bstrDomain, bstrDomainController, lDCFlags, pIGPMDomain);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetDomain(@as(*const IGPM, @ptrCast(self)), bstrDomain, bstrDomainController, lDCFlags, pIGPMDomain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetBackupDir(self: *const T, bstrBackupDir: ?BSTR, pIGPMBackupDir: ?*?*IGPMBackupDir) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetBackupDir(@ptrCast(*const IGPM, self), bstrBackupDir, pIGPMBackupDir);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetBackupDir(@as(*const IGPM, @ptrCast(self)), bstrBackupDir, pIGPMBackupDir);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetSitesContainer(self: *const T, bstrForest: ?BSTR, bstrDomain: ?BSTR, bstrDomainController: ?BSTR, lDCFlags: i32, ppIGPMSitesContainer: ?*?*IGPMSitesContainer) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetSitesContainer(@ptrCast(*const IGPM, self), bstrForest, bstrDomain, bstrDomainController, lDCFlags, ppIGPMSitesContainer);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetSitesContainer(@as(*const IGPM, @ptrCast(self)), bstrForest, bstrDomain, bstrDomainController, lDCFlags, ppIGPMSitesContainer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetRSOP(self: *const T, gpmRSoPMode: GPMRSOPMode, bstrNamespace: ?BSTR, lFlags: i32, ppIGPMRSOP: ?*?*IGPMRSOP) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetRSOP(@ptrCast(*const IGPM, self), gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetRSOP(@as(*const IGPM, @ptrCast(self)), gpmRSoPMode, bstrNamespace, lFlags, ppIGPMRSOP);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_CreatePermission(self: *const T, bstrTrustee: ?BSTR, perm: GPMPermissionType, bInheritable: i16, ppPerm: ?*?*IGPMPermission) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).CreatePermission(@ptrCast(*const IGPM, self), bstrTrustee, perm, bInheritable, ppPerm);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreatePermission(@as(*const IGPM, @ptrCast(self)), bstrTrustee, perm, bInheritable, ppPerm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_CreateSearchCriteria(self: *const T, ppIGPMSearchCriteria: ?*?*IGPMSearchCriteria) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).CreateSearchCriteria(@ptrCast(*const IGPM, self), ppIGPMSearchCriteria);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateSearchCriteria(@as(*const IGPM, @ptrCast(self)), ppIGPMSearchCriteria);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_CreateTrustee(self: *const T, bstrTrustee: ?BSTR, ppIGPMTrustee: ?*?*IGPMTrustee) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).CreateTrustee(@ptrCast(*const IGPM, self), bstrTrustee, ppIGPMTrustee);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateTrustee(@as(*const IGPM, @ptrCast(self)), bstrTrustee, ppIGPMTrustee);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetClientSideExtensions(self: *const T, ppIGPMCSECollection: ?*?*IGPMCSECollection) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetClientSideExtensions(@ptrCast(*const IGPM, self), ppIGPMCSECollection);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetClientSideExtensions(@as(*const IGPM, @ptrCast(self)), ppIGPMCSECollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetConstants(self: *const T, ppIGPMConstants: ?*?*IGPMConstants) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetConstants(@ptrCast(*const IGPM, self), ppIGPMConstants);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetConstants(@as(*const IGPM, @ptrCast(self)), ppIGPMConstants);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_GetMigrationTable(self: *const T, bstrMigrationTablePath: ?BSTR, ppMigrationTable: ?*?*IGPMMigrationTable) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).GetMigrationTable(@ptrCast(*const IGPM, self), bstrMigrationTablePath, ppMigrationTable);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).GetMigrationTable(@as(*const IGPM, @ptrCast(self)), bstrMigrationTablePath, ppMigrationTable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_CreateMigrationTable(self: *const T, ppMigrationTable: ?*?*IGPMMigrationTable) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).CreateMigrationTable(@ptrCast(*const IGPM, self), ppMigrationTable);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).CreateMigrationTable(@as(*const IGPM, @ptrCast(self)), ppMigrationTable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM_InitializeReporting(self: *const T, bstrAdmPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPM.VTable, self.vtable).InitializeReporting(@ptrCast(*const IGPM, self), bstrAdmPath);
+                return @as(*const IGPM.VTable, @ptrCast(self.vtable)).InitializeReporting(@as(*const IGPM, @ptrCast(self)), bstrAdmPath);
             }
         };
     }
@@ -701,43 +701,43 @@ pub const IGPMDomain = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_get_DomainController(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).get_DomainController(@ptrCast(*const IGPMDomain, self), pVal);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).get_DomainController(@as(*const IGPMDomain, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_get_Domain(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMDomain, self), pVal);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMDomain, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_CreateGPO(self: *const T, ppNewGPO: ?*?*IGPMGPO) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).CreateGPO(@ptrCast(*const IGPMDomain, self), ppNewGPO);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).CreateGPO(@as(*const IGPMDomain, @ptrCast(self)), ppNewGPO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_GetGPO(self: *const T, bstrGuid: ?BSTR, ppGPO: ?*?*IGPMGPO) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetGPO(@ptrCast(*const IGPMDomain, self), bstrGuid, ppGPO);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetGPO(@as(*const IGPMDomain, @ptrCast(self)), bstrGuid, ppGPO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_SearchGPOs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMGPOCollection: ?*?*IGPMGPOCollection) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchGPOs(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMGPOCollection);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchGPOs(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMGPOCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_RestoreGPO(self: *const T, pIGPMBackup: ?*IGPMBackup, lDCFlags: i32, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).RestoreGPO(@ptrCast(*const IGPMDomain, self), pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).RestoreGPO(@as(*const IGPMDomain, @ptrCast(self)), pIGPMBackup, lDCFlags, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_GetSOM(self: *const T, bstrPath: ?BSTR, ppSOM: ?*?*IGPMSOM) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetSOM(@ptrCast(*const IGPMDomain, self), bstrPath, ppSOM);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetSOM(@as(*const IGPMDomain, @ptrCast(self)), bstrPath, ppSOM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_SearchSOMs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchSOMs(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMSOMCollection);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchSOMs(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMSOMCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_GetWMIFilter(self: *const T, bstrPath: ?BSTR, ppWMIFilter: ?*?*IGPMWMIFilter) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).GetWMIFilter(@ptrCast(*const IGPMDomain, self), bstrPath, ppWMIFilter);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).GetWMIFilter(@as(*const IGPMDomain, @ptrCast(self)), bstrPath, ppWMIFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain_SearchWMIFilters(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMWMIFilterCollection: ?*?*IGPMWMIFilterCollection) HRESULT {
-                return @ptrCast(*const IGPMDomain.VTable, self.vtable).SearchWMIFilters(@ptrCast(*const IGPMDomain, self), pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
+                return @as(*const IGPMDomain.VTable, @ptrCast(self.vtable)).SearchWMIFilters(@as(*const IGPMDomain, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMWMIFilterCollection);
             }
         };
     }
@@ -794,15 +794,15 @@ pub const IGPMBackupDir = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDir_get_BackupDirectory(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).get_BackupDirectory(@ptrCast(*const IGPMBackupDir, self), pVal);
+                return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).get_BackupDirectory(@as(*const IGPMBackupDir, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDir_GetBackup(self: *const T, bstrID: ?BSTR, ppBackup: ?*?*IGPMBackup) HRESULT {
-                return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).GetBackup(@ptrCast(*const IGPMBackupDir, self), bstrID, ppBackup);
+                return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).GetBackup(@as(*const IGPMBackupDir, @ptrCast(self)), bstrID, ppBackup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDir_SearchBackups(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMBackupCollection: ?*?*IGPMBackupCollection) HRESULT {
-                return @ptrCast(*const IGPMBackupDir.VTable, self.vtable).SearchBackups(@ptrCast(*const IGPMBackupDir, self), pIGPMSearchCriteria, ppIGPMBackupCollection);
+                return @as(*const IGPMBackupDir.VTable, @ptrCast(self.vtable)).SearchBackups(@as(*const IGPMBackupDir, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMBackupCollection);
             }
         };
     }
@@ -885,23 +885,23 @@ pub const IGPMSitesContainer = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSitesContainer_get_DomainController(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_DomainController(@ptrCast(*const IGPMSitesContainer, self), pVal);
+                return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_DomainController(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSitesContainer_get_Domain(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMSitesContainer, self), pVal);
+                return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSitesContainer_get_Forest(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).get_Forest(@ptrCast(*const IGPMSitesContainer, self), pVal);
+                return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).get_Forest(@as(*const IGPMSitesContainer, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSitesContainer_GetSite(self: *const T, bstrSiteName: ?BSTR, ppSOM: ?*?*IGPMSOM) HRESULT {
-                return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).GetSite(@ptrCast(*const IGPMSitesContainer, self), bstrSiteName, ppSOM);
+                return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).GetSite(@as(*const IGPMSitesContainer, @ptrCast(self)), bstrSiteName, ppSOM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSitesContainer_SearchSites(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMSOMCollection: ?*?*IGPMSOMCollection) HRESULT {
-                return @ptrCast(*const IGPMSitesContainer.VTable, self.vtable).SearchSites(@ptrCast(*const IGPMSitesContainer, self), pIGPMSearchCriteria, ppIGPMSOMCollection);
+                return @as(*const IGPMSitesContainer.VTable, @ptrCast(self.vtable)).SearchSites(@as(*const IGPMSitesContainer, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMSOMCollection);
             }
         };
     }
@@ -935,7 +935,7 @@ pub const IGPMSearchCriteria = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSearchCriteria_Add(self: *const T, searchProperty: GPMSearchProperty, searchOperation: GPMSearchOperation, varValue: VARIANT) HRESULT {
-                return @ptrCast(*const IGPMSearchCriteria.VTable, self.vtable).Add(@ptrCast(*const IGPMSearchCriteria, self), searchProperty, searchOperation, varValue);
+                return @as(*const IGPMSearchCriteria.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMSearchCriteria, @ptrCast(self)), searchProperty, searchOperation, varValue);
             }
         };
     }
@@ -1020,23 +1020,23 @@ pub const IGPMTrustee = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMTrustee_get_TrusteeSid(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeSid(@ptrCast(*const IGPMTrustee, self), bstrVal);
+                return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeSid(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMTrustee_get_TrusteeName(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeName(@ptrCast(*const IGPMTrustee, self), bstrVal);
+                return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeName(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMTrustee_get_TrusteeDomain(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeDomain(@ptrCast(*const IGPMTrustee, self), bstrVal);
+                return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeDomain(@as(*const IGPMTrustee, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMTrustee_get_TrusteeDSPath(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeDSPath(@ptrCast(*const IGPMTrustee, self), pVal);
+                return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeDSPath(@as(*const IGPMTrustee, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMTrustee_get_TrusteeType(self: *const T, lVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMTrustee.VTable, self.vtable).get_TrusteeType(@ptrCast(*const IGPMTrustee, self), lVal);
+                return @as(*const IGPMTrustee.VTable, @ptrCast(self.vtable)).get_TrusteeType(@as(*const IGPMTrustee, @ptrCast(self)), lVal);
             }
         };
     }
@@ -1121,23 +1121,23 @@ pub const IGPMPermission = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMPermission_get_Inherited(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Inherited(@ptrCast(*const IGPMPermission, self), pVal);
+                return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Inherited(@as(*const IGPMPermission, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMPermission_get_Inheritable(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Inheritable(@ptrCast(*const IGPMPermission, self), pVal);
+                return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Inheritable(@as(*const IGPMPermission, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMPermission_get_Denied(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Denied(@ptrCast(*const IGPMPermission, self), pVal);
+                return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Denied(@as(*const IGPMPermission, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMPermission_get_Permission(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Permission(@ptrCast(*const IGPMPermission, self), pVal);
+                return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Permission(@as(*const IGPMPermission, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMPermission_get_Trustee(self: *const T, ppIGPMTrustee: ?*?*IGPMTrustee) HRESULT {
-                return @ptrCast(*const IGPMPermission.VTable, self.vtable).get_Trustee(@ptrCast(*const IGPMPermission, self), ppIGPMTrustee);
+                return @as(*const IGPMPermission.VTable, @ptrCast(self.vtable)).get_Trustee(@as(*const IGPMPermission, @ptrCast(self)), ppIGPMTrustee);
             }
         };
     }
@@ -1228,27 +1228,27 @@ pub const IGPMSecurityInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get_Count(@ptrCast(*const IGPMSecurityInfo, self), pVal);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMSecurityInfo, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get_Item(@ptrCast(*const IGPMSecurityInfo, self), lIndex, pVal);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMSecurityInfo, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_get__NewEnum(self: *const T, ppEnum: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMSecurityInfo, self), ppEnum);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMSecurityInfo, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_Add(self: *const T, pPerm: ?*IGPMPermission) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).Add(@ptrCast(*const IGPMSecurityInfo, self), pPerm);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMSecurityInfo, @ptrCast(self)), pPerm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_Remove(self: *const T, pPerm: ?*IGPMPermission) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).Remove(@ptrCast(*const IGPMSecurityInfo, self), pPerm);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).Remove(@as(*const IGPMSecurityInfo, @ptrCast(self)), pPerm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSecurityInfo_RemoveTrustee(self: *const T, bstrTrustee: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSecurityInfo.VTable, self.vtable).RemoveTrustee(@ptrCast(*const IGPMSecurityInfo, self), bstrTrustee);
+                return @as(*const IGPMSecurityInfo.VTable, @ptrCast(self.vtable)).RemoveTrustee(@as(*const IGPMSecurityInfo, @ptrCast(self)), bstrTrustee);
             }
         };
     }
@@ -1397,43 +1397,43 @@ pub const IGPMBackup = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_ID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_ID(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_GPOID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPOID(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPOID(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_GPODomain(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPODomain(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPODomain(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_GPODisplayName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_GPODisplayName(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_GPODisplayName(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_Timestamp(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_Timestamp(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_Comment(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_Comment(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_Comment(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_get_BackupDir(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMBackup, self), pVal);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMBackup, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).Delete(@ptrCast(*const IGPMBackup, self));
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMBackup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMBackup, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMBackup, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMBackup.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMBackup, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+                return @as(*const IGPMBackup.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMBackup, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
             }
         };
     }
@@ -1494,15 +1494,15 @@ pub const IGPMBackupCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMBackupCollection, self), pVal);
+                return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMBackupCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMBackupCollection, self), lIndex, pVal);
+                return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMBackupCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupCollection_get__NewEnum(self: *const T, ppIGPMBackup: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMBackupCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMBackupCollection, self), ppIGPMBackup);
+                return @as(*const IGPMBackupCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMBackupCollection, @ptrCast(self)), ppIGPMBackup);
             }
         };
     }
@@ -1650,43 +1650,43 @@ pub const IGPMSOM = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_get_GPOInheritanceBlocked(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_GPOInheritanceBlocked(@ptrCast(*const IGPMSOM, self), pVal);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_GPOInheritanceBlocked(@as(*const IGPMSOM, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_put_GPOInheritanceBlocked(self: *const T, newVal: i16) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).put_GPOInheritanceBlocked(@ptrCast(*const IGPMSOM, self), newVal);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).put_GPOInheritanceBlocked(@as(*const IGPMSOM, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_get_Name(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Name(@ptrCast(*const IGPMSOM, self), pVal);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IGPMSOM, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_get_Path(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Path(@ptrCast(*const IGPMSOM, self), pVal);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMSOM, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_CreateGPOLink(self: *const T, lLinkPos: i32, pGPO: ?*IGPMGPO, ppNewGPOLink: ?*?*IGPMGPOLink) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).CreateGPOLink(@ptrCast(*const IGPMSOM, self), lLinkPos, pGPO, ppNewGPOLink);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).CreateGPOLink(@as(*const IGPMSOM, @ptrCast(self)), lLinkPos, pGPO, ppNewGPOLink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_get_Type(self: *const T, pVal: ?*GPMSOMType) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).get_Type(@ptrCast(*const IGPMSOM, self), pVal);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMSOM, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_GetGPOLinks(self: *const T, ppGPOLinks: ?*?*IGPMGPOLinksCollection) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetGPOLinks(@ptrCast(*const IGPMSOM, self), ppGPOLinks);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetGPOLinks(@as(*const IGPMSOM, @ptrCast(self)), ppGPOLinks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_GetInheritedGPOLinks(self: *const T, ppGPOLinks: ?*?*IGPMGPOLinksCollection) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetInheritedGPOLinks(@ptrCast(*const IGPMSOM, self), ppGPOLinks);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetInheritedGPOLinks(@as(*const IGPMSOM, @ptrCast(self)), ppGPOLinks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMSOM, self), ppSecurityInfo);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMSOM, @ptrCast(self)), ppSecurityInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOM_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMSOM.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMSOM, self), pSecurityInfo);
+                return @as(*const IGPMSOM.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMSOM, @ptrCast(self)), pSecurityInfo);
             }
         };
     }
@@ -1747,15 +1747,15 @@ pub const IGPMSOMCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOMCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMSOMCollection, self), pVal);
+                return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMSOMCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOMCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMSOMCollection, self), lIndex, pVal);
+                return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMSOMCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMSOMCollection_get__NewEnum(self: *const T, ppIGPMSOM: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMSOMCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMSOMCollection, self), ppIGPMSOM);
+                return @as(*const IGPMSOMCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMSOMCollection, @ptrCast(self)), ppIGPMSOM);
             }
         };
     }
@@ -1870,35 +1870,35 @@ pub const IGPMWMIFilter = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_get_Path(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Path(@ptrCast(*const IGPMWMIFilter, self), pVal);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_put_Name(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).put_Name(@ptrCast(*const IGPMWMIFilter, self), newVal);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IGPMWMIFilter, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_get_Name(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Name(@ptrCast(*const IGPMWMIFilter, self), pVal);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_put_Description(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).put_Description(@ptrCast(*const IGPMWMIFilter, self), newVal);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMWMIFilter, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_get_Description(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).get_Description(@ptrCast(*const IGPMWMIFilter, self), pVal);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMWMIFilter, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_GetQueryList(self: *const T, pQryList: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).GetQueryList(@ptrCast(*const IGPMWMIFilter, self), pQryList);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).GetQueryList(@as(*const IGPMWMIFilter, @ptrCast(self)), pQryList);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMWMIFilter, self), ppSecurityInfo);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMWMIFilter, @ptrCast(self)), ppSecurityInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilter_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMWMIFilter.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMWMIFilter, self), pSecurityInfo);
+                return @as(*const IGPMWMIFilter.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMWMIFilter, @ptrCast(self)), pSecurityInfo);
             }
         };
     }
@@ -1959,15 +1959,15 @@ pub const IGPMWMIFilterCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilterCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMWMIFilterCollection, self), pVal);
+                return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilterCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMWMIFilterCollection, self), lIndex, pVal);
+                return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMWMIFilterCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMWMIFilterCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMWMIFilterCollection, self), pVal);
+                return @as(*const IGPMWMIFilterCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMWMIFilterCollection, @ptrCast(self)), pVal);
             }
         };
     }
@@ -2433,143 +2433,143 @@ pub const IGPMRSOP = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_Mode(self: *const T, pVal: ?*GPMRSOPMode) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_Mode(@ptrCast(*const IGPMRSOP, self), pVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_Mode(@as(*const IGPMRSOP, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_Namespace(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_Namespace(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_Namespace(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_LoggingComputer(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_LoggingComputer(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_LoggingUser(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_LoggingUser(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_LoggingFlags(self: *const T, lVal: i32) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_LoggingFlags(@ptrCast(*const IGPMRSOP, self), lVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_LoggingFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_LoggingFlags(self: *const T, lVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_LoggingFlags(@ptrCast(*const IGPMRSOP, self), lVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_LoggingFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningFlags(self: *const T, lVal: i32) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningFlags(@ptrCast(*const IGPMRSOP, self), lVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningFlags(self: *const T, lVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningFlags(@ptrCast(*const IGPMRSOP, self), lVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningFlags(@as(*const IGPMRSOP, @ptrCast(self)), lVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningDomainController(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningDomainController(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningDomainController(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningDomainController(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningDomainController(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningDomainController(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningSiteName(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningSiteName(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningSiteName(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningSiteName(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningSiteName(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningSiteName(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningUser(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningUser(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUser(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUser(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningUserSOM(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningUserSOM(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningUserWMIFilters(self: *const T, varVal: VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningUserWMIFilters(self: *const T, varVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningUserSecurityGroups(self: *const T, varVal: VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningUserSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningUserSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningUserSecurityGroups(self: *const T, varVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningUserSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningUserSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningComputer(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningComputer(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputer(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputer(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningComputerSOM(self: *const T, bstrVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningComputerSOM(self: *const T, bstrVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerSOM(@ptrCast(*const IGPMRSOP, self), bstrVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerSOM(@as(*const IGPMRSOP, @ptrCast(self)), bstrVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningComputerWMIFilters(self: *const T, varVal: VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningComputerWMIFilters(self: *const T, varVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerWMIFilters(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerWMIFilters(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_put_PlanningComputerSecurityGroups(self: *const T, varVal: VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).put_PlanningComputerSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).put_PlanningComputerSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_get_PlanningComputerSecurityGroups(self: *const T, varVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).get_PlanningComputerSecurityGroups(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).get_PlanningComputerSecurityGroups(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_LoggingEnumerateUsers(self: *const T, varVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).LoggingEnumerateUsers(@ptrCast(*const IGPMRSOP, self), varVal);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).LoggingEnumerateUsers(@as(*const IGPMRSOP, @ptrCast(self)), varVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_CreateQueryResults(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).CreateQueryResults(@ptrCast(*const IGPMRSOP, self));
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).CreateQueryResults(@as(*const IGPMRSOP, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_ReleaseQueryResults(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).ReleaseQueryResults(@ptrCast(*const IGPMRSOP, self));
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).ReleaseQueryResults(@as(*const IGPMRSOP, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMRSOP, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMRSOP, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMRSOP_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMRSOP.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMRSOP, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+                return @as(*const IGPMRSOP.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMRSOP, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
             }
         };
     }
@@ -2952,119 +2952,119 @@ pub const IGPMGPO = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_DisplayName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_put_DisplayName(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).put_DisplayName(@ptrCast(*const IGPMGPO, self), newVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IGPMGPO, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_Path(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_Path(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_ID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ID(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_DomainName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_DomainName(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_DomainName(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_CreationTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_CreationTime(@ptrCast(*const IGPMGPO, self), pDate);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IGPMGPO, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_ModificationTime(self: *const T, pDate: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ModificationTime(@ptrCast(*const IGPMGPO, self), pDate);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ModificationTime(@as(*const IGPMGPO, @ptrCast(self)), pDate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_UserDSVersionNumber(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_UserDSVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_UserDSVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_ComputerDSVersionNumber(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ComputerDSVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ComputerDSVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_UserSysvolVersionNumber(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_UserSysvolVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_UserSysvolVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_get_ComputerSysvolVersionNumber(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).get_ComputerSysvolVersionNumber(@ptrCast(*const IGPMGPO, self), pVal);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).get_ComputerSysvolVersionNumber(@as(*const IGPMGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_GetWMIFilter(self: *const T, ppIGPMWMIFilter: ?*?*IGPMWMIFilter) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetWMIFilter(@ptrCast(*const IGPMGPO, self), ppIGPMWMIFilter);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetWMIFilter(@as(*const IGPMGPO, @ptrCast(self)), ppIGPMWMIFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_SetWMIFilter(self: *const T, pIGPMWMIFilter: ?*IGPMWMIFilter) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetWMIFilter(@ptrCast(*const IGPMGPO, self), pIGPMWMIFilter);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetWMIFilter(@as(*const IGPMGPO, @ptrCast(self)), pIGPMWMIFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_SetUserEnabled(self: *const T, vbEnabled: i16) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetUserEnabled(@ptrCast(*const IGPMGPO, self), vbEnabled);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetUserEnabled(@as(*const IGPMGPO, @ptrCast(self)), vbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_SetComputerEnabled(self: *const T, vbEnabled: i16) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetComputerEnabled(@ptrCast(*const IGPMGPO, self), vbEnabled);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetComputerEnabled(@as(*const IGPMGPO, @ptrCast(self)), vbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_IsUserEnabled(self: *const T, pvbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsUserEnabled(@ptrCast(*const IGPMGPO, self), pvbEnabled);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsUserEnabled(@as(*const IGPMGPO, @ptrCast(self)), pvbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_IsComputerEnabled(self: *const T, pvbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsComputerEnabled(@ptrCast(*const IGPMGPO, self), pvbEnabled);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsComputerEnabled(@as(*const IGPMGPO, @ptrCast(self)), pvbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMGPO, self), ppSecurityInfo);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMGPO, @ptrCast(self)), ppSecurityInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMGPO, self), pSecurityInfo);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMGPO, @ptrCast(self)), pSecurityInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).Delete(@ptrCast(*const IGPMGPO, self));
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMGPO, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_Backup(self: *const T, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).Backup(@ptrCast(*const IGPMGPO, self), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Backup(@as(*const IGPMGPO, @ptrCast(self)), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_Import(self: *const T, lFlags: i32, pIGPMBackup: ?*IGPMBackup, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).Import(@ptrCast(*const IGPMGPO, self), lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).Import(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pIGPMBackup, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMGPO, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMGPO, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMGPO, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMGPO, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_CopyTo(self: *const T, lFlags: i32, pIGPMDomain: ?*IGPMDomain, pvarNewDisplayName: ?*VARIANT, pvarMigrationTable: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).CopyTo(@ptrCast(*const IGPMGPO, self), lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).CopyTo(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pIGPMDomain, pvarNewDisplayName, pvarMigrationTable, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_SetSecurityDescriptor(self: *const T, lFlags: i32, pSD: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).SetSecurityDescriptor(@ptrCast(*const IGPMGPO, self), lFlags, pSD);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).SetSecurityDescriptor(@as(*const IGPMGPO, @ptrCast(self)), lFlags, pSD);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_GetSecurityDescriptor(self: *const T, lFlags: i32, ppSD: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).GetSecurityDescriptor(@ptrCast(*const IGPMGPO, self), lFlags, ppSD);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).GetSecurityDescriptor(@as(*const IGPMGPO, @ptrCast(self)), lFlags, ppSD);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_IsACLConsistent(self: *const T, pvbConsistent: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).IsACLConsistent(@ptrCast(*const IGPMGPO, self), pvbConsistent);
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).IsACLConsistent(@as(*const IGPMGPO, @ptrCast(self)), pvbConsistent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO_MakeACLConsistent(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMGPO.VTable, self.vtable).MakeACLConsistent(@ptrCast(*const IGPMGPO, self));
+                return @as(*const IGPMGPO.VTable, @ptrCast(self.vtable)).MakeACLConsistent(@as(*const IGPMGPO, @ptrCast(self)));
             }
         };
     }
@@ -3125,15 +3125,15 @@ pub const IGPMGPOCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMGPOCollection, self), pVal);
+                return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMGPOCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMGPOCollection, self), lIndex, pVal);
+                return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMGPOCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOCollection_get__NewEnum(self: *const T, ppIGPMGPOs: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMGPOCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMGPOCollection, self), ppIGPMGPOs);
+                return @as(*const IGPMGPOCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMGPOCollection, @ptrCast(self)), ppIGPMGPOs);
             }
         };
     }
@@ -3265,39 +3265,39 @@ pub const IGPMGPOLink = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_GPOID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_GPOID(@ptrCast(*const IGPMGPOLink, self), pVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_GPOID(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_GPODomain(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_GPODomain(@ptrCast(*const IGPMGPOLink, self), pVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_GPODomain(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_Enabled(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_Enabled(@ptrCast(*const IGPMGPOLink, self), pVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_put_Enabled(self: *const T, newVal: i16) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).put_Enabled(@ptrCast(*const IGPMGPOLink, self), newVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IGPMGPOLink, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_Enforced(self: *const T, pVal: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_Enforced(@ptrCast(*const IGPMGPOLink, self), pVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_Enforced(@as(*const IGPMGPOLink, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_put_Enforced(self: *const T, newVal: i16) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).put_Enforced(@ptrCast(*const IGPMGPOLink, self), newVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).put_Enforced(@as(*const IGPMGPOLink, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_SOMLinkOrder(self: *const T, lVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_SOMLinkOrder(@ptrCast(*const IGPMGPOLink, self), lVal);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_SOMLinkOrder(@as(*const IGPMGPOLink, @ptrCast(self)), lVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_get_SOM(self: *const T, ppIGPMSOM: ?*?*IGPMSOM) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).get_SOM(@ptrCast(*const IGPMGPOLink, self), ppIGPMSOM);
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).get_SOM(@as(*const IGPMGPOLink, @ptrCast(self)), ppIGPMSOM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLink_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMGPOLink.VTable, self.vtable).Delete(@ptrCast(*const IGPMGPOLink, self));
+                return @as(*const IGPMGPOLink.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMGPOLink, @ptrCast(self)));
             }
         };
     }
@@ -3358,15 +3358,15 @@ pub const IGPMGPOLinksCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLinksCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMGPOLinksCollection, self), pVal);
+                return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLinksCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMGPOLinksCollection, self), lIndex, pVal);
+                return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPOLinksCollection_get__NewEnum(self: *const T, ppIGPMLinks: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMGPOLinksCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMGPOLinksCollection, self), ppIGPMLinks);
+                return @as(*const IGPMGPOLinksCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMGPOLinksCollection, @ptrCast(self)), ppIGPMLinks);
             }
         };
     }
@@ -3427,15 +3427,15 @@ pub const IGPMCSECollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMCSECollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMCSECollection, self), pVal);
+                return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMCSECollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMCSECollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMCSECollection, self), lIndex, pVal);
+                return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMCSECollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMCSECollection_get__NewEnum(self: *const T, ppIGPMCSEs: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMCSECollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMCSECollection, self), ppIGPMCSEs);
+                return @as(*const IGPMCSECollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMCSECollection, @ptrCast(self)), ppIGPMCSEs);
             }
         };
     }
@@ -3501,19 +3501,19 @@ pub const IGPMClientSideExtension = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMClientSideExtension_get_ID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).get_ID(@ptrCast(*const IGPMClientSideExtension, self), pVal);
+                return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMClientSideExtension, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMClientSideExtension_get_DisplayName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMClientSideExtension, self), pVal);
+                return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMClientSideExtension, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMClientSideExtension_IsUserEnabled(self: *const T, pvbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).IsUserEnabled(@ptrCast(*const IGPMClientSideExtension, self), pvbEnabled);
+                return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).IsUserEnabled(@as(*const IGPMClientSideExtension, @ptrCast(self)), pvbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMClientSideExtension_IsComputerEnabled(self: *const T, pvbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IGPMClientSideExtension.VTable, self.vtable).IsComputerEnabled(@ptrCast(*const IGPMClientSideExtension, self), pvbEnabled);
+                return @as(*const IGPMClientSideExtension.VTable, @ptrCast(self.vtable)).IsComputerEnabled(@as(*const IGPMClientSideExtension, @ptrCast(self)), pvbEnabled);
             }
         };
     }
@@ -3541,7 +3541,7 @@ pub const IGPMAsyncCancel = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMAsyncCancel_Cancel(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMAsyncCancel.VTable, self.vtable).Cancel(@ptrCast(*const IGPMAsyncCancel, self));
+                return @as(*const IGPMAsyncCancel.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IGPMAsyncCancel, @ptrCast(self)));
             }
         };
     }
@@ -3579,7 +3579,7 @@ pub const IGPMAsyncProgress = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMAsyncProgress_Status(self: *const T, lProgressNumerator: i32, lProgressDenominator: i32, hrStatus: HRESULT, pResult: ?*VARIANT, ppIGPMStatusMsgCollection: ?*IGPMStatusMsgCollection) HRESULT {
-                return @ptrCast(*const IGPMAsyncProgress.VTable, self.vtable).Status(@ptrCast(*const IGPMAsyncProgress, self), lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
+                return @as(*const IGPMAsyncProgress.VTable, @ptrCast(self.vtable)).Status(@as(*const IGPMAsyncProgress, @ptrCast(self)), lProgressNumerator, lProgressDenominator, hrStatus, pResult, ppIGPMStatusMsgCollection);
             }
         };
     }
@@ -3640,15 +3640,15 @@ pub const IGPMStatusMsgCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMsgCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStatusMsgCollection, self), pVal);
+                return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMsgCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStatusMsgCollection, self), lIndex, pVal);
+                return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMsgCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMStatusMsgCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStatusMsgCollection, self), pVal);
+                return @as(*const IGPMStatusMsgCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStatusMsgCollection, @ptrCast(self)), pVal);
             }
         };
     }
@@ -3736,27 +3736,27 @@ pub const IGPMStatusMessage = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_get_ObjectPath(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_ObjectPath(@ptrCast(*const IGPMStatusMessage, self), pVal);
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_ObjectPath(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_ErrorCode(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).ErrorCode(@ptrCast(*const IGPMStatusMessage, self));
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).ErrorCode(@as(*const IGPMStatusMessage, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_get_ExtensionName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_ExtensionName(@ptrCast(*const IGPMStatusMessage, self), pVal);
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_ExtensionName(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_get_SettingsName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_SettingsName(@ptrCast(*const IGPMStatusMessage, self), pVal);
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_SettingsName(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_OperationCode(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).OperationCode(@ptrCast(*const IGPMStatusMessage, self));
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).OperationCode(@as(*const IGPMStatusMessage, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStatusMessage_get_Message(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStatusMessage.VTable, self.vtable).get_Message(@ptrCast(*const IGPMStatusMessage, self), pVal);
+                return @as(*const IGPMStatusMessage.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IGPMStatusMessage, @ptrCast(self)), pVal);
             }
         };
     }
@@ -4566,243 +4566,243 @@ pub const IGPMConstants = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermGPOApply(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOApply(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOApply(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermGPORead(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPORead(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPORead(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermGPOEdit(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOEdit(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOEdit(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermGPOEditSecurityAndDelete(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOEditSecurityAndDelete(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOEditSecurityAndDelete(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermGPOCustom(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermGPOCustom(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermGPOCustom(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermWMIFilterEdit(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterEdit(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterEdit(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermWMIFilterFullControl(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterFullControl(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterFullControl(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermWMIFilterCustom(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermWMIFilterCustom(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermWMIFilterCustom(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMLink(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMLink(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMLink(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMLogging(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMLogging(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMLogging(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMPlanning(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMPlanning(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMPlanning(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMGPOCreate(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMGPOCreate(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMGPOCreate(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMWMICreate(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMWMICreate(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMWMICreate(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_PermSOMWMIFullControl(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_PermSOMWMIFullControl(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_PermSOMWMIFullControl(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOPermissions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOPermissions(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOPermissions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOEffectivePermissions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOEffectivePermissions(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOEffectivePermissions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPODisplayName(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPODisplayName(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPODisplayName(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOWMIFilter(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOWMIFilter(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOWMIFilter(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOID(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOID(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOID(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOComputerExtensions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOComputerExtensions(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOComputerExtensions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPOUserExtensions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPOUserExtensions(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPOUserExtensions(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertySOMLinks(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertySOMLinks(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertySOMLinks(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyGPODomain(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyGPODomain(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyGPODomain(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchPropertyBackupMostRecent(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchPropertyBackupMostRecent(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchPropertyBackupMostRecent(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchOpEquals(self: *const T, pVal: ?*GPMSearchOperation) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpEquals(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpEquals(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchOpContains(self: *const T, pVal: ?*GPMSearchOperation) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpContains(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpContains(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchOpNotContains(self: *const T, pVal: ?*GPMSearchOperation) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpNotContains(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpNotContains(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SearchOpNotEquals(self: *const T, pVal: ?*GPMSearchOperation) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SearchOpNotEquals(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SearchOpNotEquals(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_UsePDC(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_UsePDC(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_UsePDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_UseAnyDC(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_UseAnyDC(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_UseAnyDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DoNotUseW2KDC(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DoNotUseW2KDC(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DoNotUseW2KDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SOMSite(self: *const T, pVal: ?*GPMSOMType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMSite(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMSite(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SOMDomain(self: *const T, pVal: ?*GPMSOMType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMDomain(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMDomain(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SOMOU(self: *const T, pVal: ?*GPMSOMType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SOMOU(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SOMOU(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_SecurityFlags(self: *const T, vbOwner: i16, vbGroup: i16, vbDACL: i16, vbSACL: i16, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_SecurityFlags(@ptrCast(*const IGPMConstants, self), vbOwner, vbGroup, vbDACL, vbSACL, pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_SecurityFlags(@as(*const IGPMConstants, @ptrCast(self)), vbOwner, vbGroup, vbDACL, vbSACL, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DoNotValidateDC(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DoNotValidateDC(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DoNotValidateDC(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_ReportHTML(self: *const T, pVal: ?*GPMReportType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ReportHTML(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ReportHTML(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_ReportXML(self: *const T, pVal: ?*GPMReportType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ReportXML(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ReportXML(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RSOPModeUnknown(self: *const T, pVal: ?*GPMRSOPMode) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModeUnknown(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModeUnknown(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RSOPModePlanning(self: *const T, pVal: ?*GPMRSOPMode) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModePlanning(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModePlanning(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RSOPModeLogging(self: *const T, pVal: ?*GPMRSOPMode) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RSOPModeLogging(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RSOPModeLogging(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeUser(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUser(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUser(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeComputer(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeComputer(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeComputer(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeLocalGroup(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeLocalGroup(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeLocalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeGlobalGroup(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeGlobalGroup(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeGlobalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeUniversalGroup(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUniversalGroup(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUniversalGroup(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeUNCPath(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUNCPath(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUNCPath(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_EntryTypeUnknown(self: *const T, pVal: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_EntryTypeUnknown(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_EntryTypeUnknown(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DestinationOptionSameAsSource(self: *const T, pVal: ?*GPMDestinationOption) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionSameAsSource(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionSameAsSource(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DestinationOptionNone(self: *const T, pVal: ?*GPMDestinationOption) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionNone(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionNone(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DestinationOptionByRelativeName(self: *const T, pVal: ?*GPMDestinationOption) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionByRelativeName(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionByRelativeName(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_DestinationOptionSet(self: *const T, pVal: ?*GPMDestinationOption) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_DestinationOptionSet(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_DestinationOptionSet(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_MigrationTableOnly(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_MigrationTableOnly(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_MigrationTableOnly(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_ProcessSecurity(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_ProcessSecurity(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_ProcessSecurity(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopLoggingNoComputer(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopLoggingNoComputer(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopLoggingNoComputer(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopLoggingNoUser(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopLoggingNoUser(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopLoggingNoUser(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopPlanningAssumeSlowLink(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeSlowLink(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeSlowLink(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopPlanningLoopbackOption(self: *const T, vbMerge: i16, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningLoopbackOption(@ptrCast(*const IGPMConstants, self), vbMerge, pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningLoopbackOption(@as(*const IGPMConstants, @ptrCast(self)), vbMerge, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopPlanningAssumeUserWQLFilterTrue(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeUserWQLFilterTrue(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeUserWQLFilterTrue(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants_get_RsopPlanningAssumeCompWQLFilterTrue(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMConstants.VTable, self.vtable).get_RsopPlanningAssumeCompWQLFilterTrue(@ptrCast(*const IGPMConstants, self), pVal);
+                return @as(*const IGPMConstants.VTable, @ptrCast(self.vtable)).get_RsopPlanningAssumeCompWQLFilterTrue(@as(*const IGPMConstants, @ptrCast(self)), pVal);
             }
         };
     }
@@ -4856,15 +4856,15 @@ pub const IGPMResult = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMResult_get_Status(self: *const T, ppIGPMStatusMsgCollection: ?*?*IGPMStatusMsgCollection) HRESULT {
-                return @ptrCast(*const IGPMResult.VTable, self.vtable).get_Status(@ptrCast(*const IGPMResult, self), ppIGPMStatusMsgCollection);
+                return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IGPMResult, @ptrCast(self)), ppIGPMStatusMsgCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMResult_get_Result(self: *const T, pvarResult: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMResult.VTable, self.vtable).get_Result(@ptrCast(*const IGPMResult, self), pvarResult);
+                return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).get_Result(@as(*const IGPMResult, @ptrCast(self)), pvarResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMResult_OverallStatus(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMResult.VTable, self.vtable).OverallStatus(@ptrCast(*const IGPMResult, self));
+                return @as(*const IGPMResult.VTable, @ptrCast(self.vtable)).OverallStatus(@as(*const IGPMResult, @ptrCast(self)));
             }
         };
     }
@@ -4925,15 +4925,15 @@ pub const IGPMMapEntryCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntryCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMMapEntryCollection, self), pVal);
+                return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMMapEntryCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntryCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMMapEntryCollection, self), lIndex, pVal);
+                return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMMapEntryCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntryCollection_get__NewEnum(self: *const T, pVal: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMMapEntryCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMMapEntryCollection, self), pVal);
+                return @as(*const IGPMMapEntryCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMMapEntryCollection, @ptrCast(self)), pVal);
             }
         };
     }
@@ -5005,19 +5005,19 @@ pub const IGPMMapEntry = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntry_get_Source(self: *const T, pbstrSource: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_Source(@ptrCast(*const IGPMMapEntry, self), pbstrSource);
+                return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_Source(@as(*const IGPMMapEntry, @ptrCast(self)), pbstrSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntry_get_Destination(self: *const T, pbstrDestination: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_Destination(@ptrCast(*const IGPMMapEntry, self), pbstrDestination);
+                return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IGPMMapEntry, @ptrCast(self)), pbstrDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntry_get_DestinationOption(self: *const T, pgpmDestOption: ?*GPMDestinationOption) HRESULT {
-                return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_DestinationOption(@ptrCast(*const IGPMMapEntry, self), pgpmDestOption);
+                return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_DestinationOption(@as(*const IGPMMapEntry, @ptrCast(self)), pgpmDestOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMapEntry_get_EntryType(self: *const T, pgpmEntryType: ?*GPMEntryType) HRESULT {
-                return @ptrCast(*const IGPMMapEntry.VTable, self.vtable).get_EntryType(@ptrCast(*const IGPMMapEntry, self), pgpmEntryType);
+                return @as(*const IGPMMapEntry.VTable, @ptrCast(self.vtable)).get_EntryType(@as(*const IGPMMapEntry, @ptrCast(self)), pgpmEntryType);
             }
         };
     }
@@ -5131,35 +5131,35 @@ pub const IGPMMigrationTable = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_Save(self: *const T, bstrMigrationTablePath: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Save(@ptrCast(*const IGPMMigrationTable, self), bstrMigrationTablePath);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Save(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrMigrationTablePath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_Add(self: *const T, lFlags: i32, @"var": VARIANT) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Add(@ptrCast(*const IGPMMigrationTable, self), lFlags, @"var");
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Add(@as(*const IGPMMigrationTable, @ptrCast(self)), lFlags, @"var");
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_AddEntry(self: *const T, bstrSource: ?BSTR, gpmEntryType: GPMEntryType, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).AddEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource, gpmEntryType, pvarDestination, ppEntry);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, gpmEntryType, pvarDestination, ppEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_GetEntry(self: *const T, bstrSource: ?BSTR, ppEntry: ?*?*IGPMMapEntry) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).GetEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource, ppEntry);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).GetEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, ppEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_DeleteEntry(self: *const T, bstrSource: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).DeleteEntry(@ptrCast(*const IGPMMigrationTable, self), bstrSource);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).DeleteEntry(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_UpdateDestination(self: *const T, bstrSource: ?BSTR, pvarDestination: ?*VARIANT, ppEntry: ?*?*IGPMMapEntry) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).UpdateDestination(@ptrCast(*const IGPMMigrationTable, self), bstrSource, pvarDestination, ppEntry);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).UpdateDestination(@as(*const IGPMMigrationTable, @ptrCast(self)), bstrSource, pvarDestination, ppEntry);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_Validate(self: *const T, ppResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).Validate(@ptrCast(*const IGPMMigrationTable, self), ppResult);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).Validate(@as(*const IGPMMigrationTable, @ptrCast(self)), ppResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMMigrationTable_GetEntries(self: *const T, ppEntries: ?*?*IGPMMapEntryCollection) HRESULT {
-                return @ptrCast(*const IGPMMigrationTable.VTable, self.vtable).GetEntries(@ptrCast(*const IGPMMigrationTable, self), ppEntries);
+                return @as(*const IGPMMigrationTable.VTable, @ptrCast(self.vtable)).GetEntries(@as(*const IGPMMigrationTable, @ptrCast(self)), ppEntries);
             }
         };
     }
@@ -5243,19 +5243,19 @@ pub const IGPMBackupDirEx = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDirEx_get_BackupDir(self: *const T, pbstrBackupDir: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMBackupDirEx, self), pbstrBackupDir);
+                return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMBackupDirEx, @ptrCast(self)), pbstrBackupDir);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDirEx_get_BackupType(self: *const T, pgpmBackupType: ?*GPMBackupType) HRESULT {
-                return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).get_BackupType(@ptrCast(*const IGPMBackupDirEx, self), pgpmBackupType);
+                return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).get_BackupType(@as(*const IGPMBackupDirEx, @ptrCast(self)), pgpmBackupType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDirEx_GetBackup(self: *const T, bstrID: ?BSTR, pvarBackup: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).GetBackup(@ptrCast(*const IGPMBackupDirEx, self), bstrID, pvarBackup);
+                return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).GetBackup(@as(*const IGPMBackupDirEx, @ptrCast(self)), bstrID, pvarBackup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMBackupDirEx_SearchBackups(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, pvarBackupCollection: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMBackupDirEx.VTable, self.vtable).SearchBackups(@ptrCast(*const IGPMBackupDirEx, self), pIGPMSearchCriteria, pvarBackupCollection);
+                return @as(*const IGPMBackupDirEx.VTable, @ptrCast(self.vtable)).SearchBackups(@as(*const IGPMBackupDirEx, @ptrCast(self)), pIGPMSearchCriteria, pvarBackupCollection);
             }
         };
     }
@@ -5316,15 +5316,15 @@ pub const IGPMStarterGPOBackupCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackupCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStarterGPOBackupCollection, self), pVal);
+                return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackupCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStarterGPOBackupCollection, self), lIndex, pVal);
+                return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackupCollection_get__NewEnum(self: *const T, ppIGPMTmplBackup: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackupCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStarterGPOBackupCollection, self), ppIGPMTmplBackup);
+                return @as(*const IGPMStarterGPOBackupCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStarterGPOBackupCollection, @ptrCast(self)), ppIGPMTmplBackup);
             }
         };
     }
@@ -5486,47 +5486,47 @@ pub const IGPMStarterGPOBackup = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_BackupDir(self: *const T, pbstrBackupDir: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_BackupDir(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrBackupDir);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_BackupDir(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrBackupDir);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_Comment(self: *const T, pbstrComment: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Comment(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrComment);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Comment(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrComment);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_DisplayName(self: *const T, pbstrDisplayName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrDisplayName);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrDisplayName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_Domain(self: *const T, pbstrTemplateDomain: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Domain(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrTemplateDomain);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Domain(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrTemplateDomain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_StarterGPOID(self: *const T, pbstrTemplateID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_StarterGPOID(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrTemplateID);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_StarterGPOID(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrTemplateID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_ID(self: *const T, pbstrID: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_ID(@ptrCast(*const IGPMStarterGPOBackup, self), pbstrID);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pbstrID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_Timestamp(self: *const T, pTimestamp: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Timestamp(@ptrCast(*const IGPMStarterGPOBackup, self), pTimestamp);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pTimestamp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_get_Type(self: *const T, pType: ?*GPMStarterGPOType) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).get_Type(@ptrCast(*const IGPMStarterGPOBackup, self), pType);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), pType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).Delete(@ptrCast(*const IGPMStarterGPOBackup, self));
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMStarterGPOBackup, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMStarterGPOBackup, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOBackup_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOBackup.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMStarterGPOBackup, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+                return @as(*const IGPMStarterGPOBackup.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMStarterGPOBackup, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
             }
         };
     }
@@ -5572,11 +5572,11 @@ pub const IGPM2 = extern struct {
             pub usingnamespace IGPM.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM2_GetBackupDirEx(self: *const T, bstrBackupDir: ?BSTR, backupDirType: GPMBackupType, ppIGPMBackupDirEx: ?*?*IGPMBackupDirEx) HRESULT {
-                return @ptrCast(*const IGPM2.VTable, self.vtable).GetBackupDirEx(@ptrCast(*const IGPM2, self), bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
+                return @as(*const IGPM2.VTable, @ptrCast(self.vtable)).GetBackupDirEx(@as(*const IGPM2, @ptrCast(self)), bstrBackupDir, backupDirType, ppIGPMBackupDirEx);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPM2_InitializeReportingEx(self: *const T, bstrAdmPath: ?BSTR, reportingOptions: i32) HRESULT {
-                return @ptrCast(*const IGPM2.VTable, self.vtable).InitializeReportingEx(@ptrCast(*const IGPM2, self), bstrAdmPath, reportingOptions);
+                return @as(*const IGPM2.VTable, @ptrCast(self.vtable)).InitializeReportingEx(@as(*const IGPM2, @ptrCast(self)), bstrAdmPath, reportingOptions);
             }
         };
     }
@@ -5887,87 +5887,87 @@ pub const IGPMStarterGPO = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_DisplayName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_DisplayName(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_put_DisplayName(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).put_DisplayName(@ptrCast(*const IGPMStarterGPO, self), newVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IGPMStarterGPO, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_Description(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Description(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_put_Description(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).put_Description(@ptrCast(*const IGPMStarterGPO, self), newVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMStarterGPO, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_Author(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Author(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Author(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_Product(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Product(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Product(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_CreationTime(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_CreationTime(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_ID(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ID(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ID(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_ModifiedTime(self: *const T, pVal: ?*f64) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ModifiedTime(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ModifiedTime(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_Type(self: *const T, pVal: ?*GPMStarterGPOType) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_Type(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_ComputerVersion(self: *const T, pVal: ?*u16) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_ComputerVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_ComputerVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_UserVersion(self: *const T, pVal: ?*u16) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_UserVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_UserVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_get_StarterGPOVersion(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).get_StarterGPOVersion(@ptrCast(*const IGPMStarterGPO, self), pVal);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).get_StarterGPOVersion(@as(*const IGPMStarterGPO, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Delete(@ptrCast(*const IGPMStarterGPO, self));
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGPMStarterGPO, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_Save(self: *const T, bstrSaveFile: ?BSTR, bOverwrite: i16, bSaveAsSystem: i16, bstrLanguage: ?*VARIANT, bstrAuthor: ?*VARIANT, bstrProduct: ?*VARIANT, bstrUniqueID: ?*VARIANT, bstrVersion: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Save(@ptrCast(*const IGPMStarterGPO, self), bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Save(@as(*const IGPMStarterGPO, @ptrCast(self)), bstrSaveFile, bOverwrite, bSaveAsSystem, bstrLanguage, bstrAuthor, bstrProduct, bstrUniqueID, bstrVersion, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_Backup(self: *const T, bstrBackupDir: ?BSTR, bstrComment: ?BSTR, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).Backup(@ptrCast(*const IGPMStarterGPO, self), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).Backup(@as(*const IGPMStarterGPO, @ptrCast(self)), bstrBackupDir, bstrComment, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_CopyTo(self: *const T, pvarNewDisplayName: ?*VARIANT, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).CopyTo(@ptrCast(*const IGPMStarterGPO, self), pvarNewDisplayName, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).CopyTo(@as(*const IGPMStarterGPO, @ptrCast(self)), pvarNewDisplayName, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMStarterGPO, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMStarterGPO, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_GenerateReportToFile(self: *const T, gpmReportType: GPMReportType, bstrTargetFilePath: ?BSTR, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GenerateReportToFile(@ptrCast(*const IGPMStarterGPO, self), gpmReportType, bstrTargetFilePath, ppIGPMResult);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GenerateReportToFile(@as(*const IGPMStarterGPO, @ptrCast(self)), gpmReportType, bstrTargetFilePath, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_GetSecurityInfo(self: *const T, ppSecurityInfo: ?*?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).GetSecurityInfo(@ptrCast(*const IGPMStarterGPO, self), ppSecurityInfo);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).GetSecurityInfo(@as(*const IGPMStarterGPO, @ptrCast(self)), ppSecurityInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPO_SetSecurityInfo(self: *const T, pSecurityInfo: ?*IGPMSecurityInfo) HRESULT {
-                return @ptrCast(*const IGPMStarterGPO.VTable, self.vtable).SetSecurityInfo(@ptrCast(*const IGPMStarterGPO, self), pSecurityInfo);
+                return @as(*const IGPMStarterGPO.VTable, @ptrCast(self.vtable)).SetSecurityInfo(@as(*const IGPMStarterGPO, @ptrCast(self)), pSecurityInfo);
             }
         };
     }
@@ -6028,15 +6028,15 @@ pub const IGPMStarterGPOCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOCollection_get_Count(self: *const T, pVal: ?*i32) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get_Count(@ptrCast(*const IGPMStarterGPOCollection, self), pVal);
+                return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOCollection_get_Item(self: *const T, lIndex: i32, pVal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get_Item(@ptrCast(*const IGPMStarterGPOCollection, self), lIndex, pVal);
+                return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), lIndex, pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMStarterGPOCollection_get__NewEnum(self: *const T, ppIGPMTemplates: ?*?*IEnumVARIANT) HRESULT {
-                return @ptrCast(*const IGPMStarterGPOCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IGPMStarterGPOCollection, self), ppIGPMTemplates);
+                return @as(*const IGPMStarterGPOCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IGPMStarterGPOCollection, @ptrCast(self)), ppIGPMTemplates);
             }
         };
     }
@@ -6136,27 +6136,27 @@ pub const IGPMDomain2 = extern struct {
             pub usingnamespace IGPMDomain.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_CreateStarterGPO(self: *const T, ppnewTemplate: ?*?*IGPMStarterGPO) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).CreateStarterGPO(@ptrCast(*const IGPMDomain2, self), ppnewTemplate);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).CreateStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), ppnewTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_CreateGPOFromStarterGPO(self: *const T, pGPOTemplate: ?*IGPMStarterGPO, ppnewGPO: ?*?*IGPMGPO) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).CreateGPOFromStarterGPO(@ptrCast(*const IGPMDomain2, self), pGPOTemplate, ppnewGPO);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).CreateGPOFromStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), pGPOTemplate, ppnewGPO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_GetStarterGPO(self: *const T, bstrGuid: ?BSTR, ppTemplate: ?*?*IGPMStarterGPO) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).GetStarterGPO(@ptrCast(*const IGPMDomain2, self), bstrGuid, ppTemplate);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).GetStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), bstrGuid, ppTemplate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_SearchStarterGPOs(self: *const T, pIGPMSearchCriteria: ?*IGPMSearchCriteria, ppIGPMTemplateCollection: ?*?*IGPMStarterGPOCollection) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).SearchStarterGPOs(@ptrCast(*const IGPMDomain2, self), pIGPMSearchCriteria, ppIGPMTemplateCollection);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).SearchStarterGPOs(@as(*const IGPMDomain2, @ptrCast(self)), pIGPMSearchCriteria, ppIGPMTemplateCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_LoadStarterGPO(self: *const T, bstrLoadFile: ?BSTR, bOverwrite: i16, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).LoadStarterGPO(@ptrCast(*const IGPMDomain2, self), bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).LoadStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), bstrLoadFile, bOverwrite, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain2_RestoreStarterGPO(self: *const T, pIGPMTmplBackup: ?*IGPMStarterGPOBackup, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMDomain2.VTable, self.vtable).RestoreStarterGPO(@ptrCast(*const IGPMDomain2, self), pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMDomain2.VTable, @ptrCast(self.vtable)).RestoreStarterGPO(@as(*const IGPMDomain2, @ptrCast(self)), pIGPMTmplBackup, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
         };
     }
@@ -6371,63 +6371,63 @@ pub const IGPMConstants2 = extern struct {
             pub usingnamespace IGPMConstants.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_BackupTypeGPO(self: *const T, pVal: ?*GPMBackupType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_BackupTypeGPO(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_BackupTypeGPO(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_BackupTypeStarterGPO(self: *const T, pVal: ?*GPMBackupType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_BackupTypeStarterGPO(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_BackupTypeStarterGPO(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_StarterGPOTypeSystem(self: *const T, pVal: ?*GPMStarterGPOType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_StarterGPOTypeSystem(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_StarterGPOTypeSystem(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_StarterGPOTypeCustom(self: *const T, pVal: ?*GPMStarterGPOType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_StarterGPOTypeCustom(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_StarterGPOTypeCustom(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_SearchPropertyStarterGPOPermissions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOPermissions(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOPermissions(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_SearchPropertyStarterGPOEffectivePermissions(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOEffectivePermissions(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOEffectivePermissions(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_SearchPropertyStarterGPODisplayName(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPODisplayName(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPODisplayName(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_SearchPropertyStarterGPOID(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPOID(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPOID(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_SearchPropertyStarterGPODomain(self: *const T, pVal: ?*GPMSearchProperty) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_SearchPropertyStarterGPODomain(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_SearchPropertyStarterGPODomain(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_PermStarterGPORead(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPORead(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPORead(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_PermStarterGPOEdit(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOEdit(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOEdit(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_PermStarterGPOFullControl(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOFullControl(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOFullControl(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_PermStarterGPOCustom(self: *const T, pVal: ?*GPMPermissionType) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_PermStarterGPOCustom(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_PermStarterGPOCustom(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_ReportLegacy(self: *const T, pVal: ?*GPMReportingOptions) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_ReportLegacy(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_ReportLegacy(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMConstants2_get_ReportComments(self: *const T, pVal: ?*GPMReportingOptions) HRESULT {
-                return @ptrCast(*const IGPMConstants2.VTable, self.vtable).get_ReportComments(@ptrCast(*const IGPMConstants2, self), pVal);
+                return @as(*const IGPMConstants2.VTable, @ptrCast(self.vtable)).get_ReportComments(@as(*const IGPMConstants2, @ptrCast(self)), pVal);
             }
         };
     }
@@ -6473,11 +6473,11 @@ pub const IGPMGPO2 = extern struct {
             pub usingnamespace IGPMGPO.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO2_get_Description(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO2.VTable, self.vtable).get_Description(@ptrCast(*const IGPMGPO2, self), pVal);
+                return @as(*const IGPMGPO2.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IGPMGPO2, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO2_put_Description(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO2.VTable, self.vtable).put_Description(@ptrCast(*const IGPMGPO2, self), newVal);
+                return @as(*const IGPMGPO2.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IGPMGPO2, @ptrCast(self)), newVal);
             }
         };
     }
@@ -6551,19 +6551,19 @@ pub const IGPMDomain3 = extern struct {
             pub usingnamespace IGPMDomain2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain3_GenerateReport(self: *const T, gpmReportType: GPMReportType, pvarGPMProgress: ?*VARIANT, pvarGPMCancel: ?*VARIANT, ppIGPMResult: ?*?*IGPMResult) HRESULT {
-                return @ptrCast(*const IGPMDomain3.VTable, self.vtable).GenerateReport(@ptrCast(*const IGPMDomain3, self), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
+                return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).GenerateReport(@as(*const IGPMDomain3, @ptrCast(self)), gpmReportType, pvarGPMProgress, pvarGPMCancel, ppIGPMResult);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain3_get_InfrastructureDC(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMDomain3.VTable, self.vtable).get_InfrastructureDC(@ptrCast(*const IGPMDomain3, self), pVal);
+                return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).get_InfrastructureDC(@as(*const IGPMDomain3, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain3_put_InfrastructureDC(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMDomain3.VTable, self.vtable).put_InfrastructureDC(@ptrCast(*const IGPMDomain3, self), newVal);
+                return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).put_InfrastructureDC(@as(*const IGPMDomain3, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMDomain3_put_InfrastructureFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGPMDomain3.VTable, self.vtable).put_InfrastructureFlags(@ptrCast(*const IGPMDomain3, self), dwFlags);
+                return @as(*const IGPMDomain3.VTable, @ptrCast(self.vtable)).put_InfrastructureFlags(@as(*const IGPMDomain3, @ptrCast(self)), dwFlags);
             }
         };
     }
@@ -6621,15 +6621,15 @@ pub const IGPMGPO3 = extern struct {
             pub usingnamespace IGPMGPO2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO3_get_InfrastructureDC(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO3.VTable, self.vtable).get_InfrastructureDC(@ptrCast(*const IGPMGPO3, self), pVal);
+                return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).get_InfrastructureDC(@as(*const IGPMGPO3, @ptrCast(self)), pVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO3_put_InfrastructureDC(self: *const T, newVal: ?BSTR) HRESULT {
-                return @ptrCast(*const IGPMGPO3.VTable, self.vtable).put_InfrastructureDC(@ptrCast(*const IGPMGPO3, self), newVal);
+                return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).put_InfrastructureDC(@as(*const IGPMGPO3, @ptrCast(self)), newVal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPMGPO3_put_InfrastructureFlags(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGPMGPO3.VTable, self.vtable).put_InfrastructureFlags(@ptrCast(*const IGPMGPO3, self), dwFlags);
+                return @as(*const IGPMGPO3.VTable, @ptrCast(self.vtable)).put_InfrastructureFlags(@as(*const IGPMGPO3, @ptrCast(self)), dwFlags);
             }
         };
     }
@@ -7004,39 +7004,39 @@ pub const IGPEInformation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetName(self: *const T, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetName(@ptrCast(*const IGPEInformation, self), pszName, cchMaxLength);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetName(@as(*const IGPEInformation, @ptrCast(self)), pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetDisplayName(self: *const T, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetDisplayName(@ptrCast(*const IGPEInformation, self), pszName, cchMaxLength);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IGPEInformation, @ptrCast(self)), pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetRegistryKey(self: *const T, dwSection: u32, hKey: ?*?HKEY) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetRegistryKey(@ptrCast(*const IGPEInformation, self), dwSection, hKey);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetRegistryKey(@as(*const IGPEInformation, @ptrCast(self)), dwSection, hKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetDSPath(self: *const T, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetDSPath(@ptrCast(*const IGPEInformation, self), dwSection, pszPath, cchMaxPath);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetDSPath(@as(*const IGPEInformation, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetFileSysPath(self: *const T, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetFileSysPath(@ptrCast(*const IGPEInformation, self), dwSection, pszPath, cchMaxPath);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetFileSysPath(@as(*const IGPEInformation, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetOptions(self: *const T, dwOptions: ?*u32) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetOptions(@ptrCast(*const IGPEInformation, self), dwOptions);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IGPEInformation, @ptrCast(self)), dwOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetType(self: *const T, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetType(@ptrCast(*const IGPEInformation, self), gpoType);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetType(@as(*const IGPEInformation, @ptrCast(self)), gpoType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_GetHint(self: *const T, gpHint: ?*GROUP_POLICY_HINT_TYPE) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).GetHint(@ptrCast(*const IGPEInformation, self), gpHint);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).GetHint(@as(*const IGPEInformation, @ptrCast(self)), gpHint);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGPEInformation_PolicyChanged(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuidSnapin: ?*Guid) HRESULT {
-                return @ptrCast(*const IGPEInformation.VTable, self.vtable).PolicyChanged(@ptrCast(*const IGPEInformation, self), bMachine, bAdd, pGuidExtension, pGuidSnapin);
+                return @as(*const IGPEInformation.VTable, @ptrCast(self.vtable)).PolicyChanged(@as(*const IGPEInformation, @ptrCast(self)), bMachine, bAdd, pGuidExtension, pGuidSnapin);
             }
         };
     }
@@ -7270,75 +7270,75 @@ pub const IGroupPolicyObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_New(self: *const T, pszDomainName: ?PWSTR, pszDisplayName: ?PWSTR, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).New(@ptrCast(*const IGroupPolicyObject, self), pszDomainName, pszDisplayName, dwFlags);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).New(@as(*const IGroupPolicyObject, @ptrCast(self)), pszDomainName, pszDisplayName, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_OpenDSGPO(self: *const T, pszPath: ?PWSTR, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenDSGPO(@ptrCast(*const IGroupPolicyObject, self), pszPath, dwFlags);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenDSGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), pszPath, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_OpenLocalMachineGPO(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenLocalMachineGPO(@ptrCast(*const IGroupPolicyObject, self), dwFlags);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenLocalMachineGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_OpenRemoteMachineGPO(self: *const T, pszComputerName: ?PWSTR, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).OpenRemoteMachineGPO(@ptrCast(*const IGroupPolicyObject, self), pszComputerName, dwFlags);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).OpenRemoteMachineGPO(@as(*const IGroupPolicyObject, @ptrCast(self)), pszComputerName, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_Save(self: *const T, bMachine: BOOL, bAdd: BOOL, pGuidExtension: ?*Guid, pGuid: ?*Guid) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).Save(@ptrCast(*const IGroupPolicyObject, self), bMachine, bAdd, pGuidExtension, pGuid);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).Save(@as(*const IGroupPolicyObject, @ptrCast(self)), bMachine, bAdd, pGuidExtension, pGuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).Delete(@ptrCast(*const IGroupPolicyObject, self));
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).Delete(@as(*const IGroupPolicyObject, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetName(self: *const T, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetName(@ptrCast(*const IGroupPolicyObject, self), pszName, cchMaxLength);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetDisplayName(self: *const T, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetDisplayName(@ptrCast(*const IGroupPolicyObject, self), pszName, cchMaxLength);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_SetDisplayName(self: *const T, pszName: ?PWSTR) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).SetDisplayName(@ptrCast(*const IGroupPolicyObject, self), pszName);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetPath(self: *const T, pszPath: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetPath(@ptrCast(*const IGroupPolicyObject, self), pszPath, cchMaxLength);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IGroupPolicyObject, @ptrCast(self)), pszPath, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetDSPath(self: *const T, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetDSPath(@ptrCast(*const IGroupPolicyObject, self), dwSection, pszPath, cchMaxPath);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetDSPath(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetFileSysPath(self: *const T, dwSection: u32, pszPath: [*:0]u16, cchMaxPath: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetFileSysPath(@ptrCast(*const IGroupPolicyObject, self), dwSection, pszPath, cchMaxPath);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetFileSysPath(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, pszPath, cchMaxPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetRegistryKey(self: *const T, dwSection: u32, hKey: ?*?HKEY) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetRegistryKey(@ptrCast(*const IGroupPolicyObject, self), dwSection, hKey);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetRegistryKey(@as(*const IGroupPolicyObject, @ptrCast(self)), dwSection, hKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetOptions(self: *const T, dwOptions: ?*u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetOptions(@ptrCast(*const IGroupPolicyObject, self), dwOptions);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const IGroupPolicyObject, @ptrCast(self)), dwOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_SetOptions(self: *const T, dwOptions: u32, dwMask: u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).SetOptions(@ptrCast(*const IGroupPolicyObject, self), dwOptions, dwMask);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const IGroupPolicyObject, @ptrCast(self)), dwOptions, dwMask);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetType(self: *const T, gpoType: ?*GROUP_POLICY_OBJECT_TYPE) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetType(@ptrCast(*const IGroupPolicyObject, self), gpoType);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetType(@as(*const IGroupPolicyObject, @ptrCast(self)), gpoType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetMachineName(self: *const T, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetMachineName(@ptrCast(*const IGroupPolicyObject, self), pszName, cchMaxLength);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetMachineName(@as(*const IGroupPolicyObject, @ptrCast(self)), pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGroupPolicyObject_GetPropertySheetPages(self: *const T, hPages: ?*?*?HPROPSHEETPAGE, uPageCount: ?*u32) HRESULT {
-                return @ptrCast(*const IGroupPolicyObject.VTable, self.vtable).GetPropertySheetPages(@ptrCast(*const IGroupPolicyObject, self), hPages, uPageCount);
+                return @as(*const IGroupPolicyObject.VTable, @ptrCast(self.vtable)).GetPropertySheetPages(@as(*const IGroupPolicyObject, @ptrCast(self)), hPages, uPageCount);
             }
         };
     }
@@ -7400,15 +7400,15 @@ pub const IRSOPInformation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRSOPInformation_GetNamespace(self: *const T, dwSection: u32, pszName: [*:0]u16, cchMaxLength: i32) HRESULT {
-                return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetNamespace(@ptrCast(*const IRSOPInformation, self), dwSection, pszName, cchMaxLength);
+                return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetNamespace(@as(*const IRSOPInformation, @ptrCast(self)), dwSection, pszName, cchMaxLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRSOPInformation_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetFlags(@ptrCast(*const IRSOPInformation, self), pdwFlags);
+                return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IRSOPInformation, @ptrCast(self)), pdwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRSOPInformation_GetEventLogEntryText(self: *const T, pszEventSource: ?PWSTR, pszEventLogName: ?PWSTR, pszEventTime: ?PWSTR, dwEventID: u32, ppszText: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IRSOPInformation.VTable, self.vtable).GetEventLogEntryText(@ptrCast(*const IRSOPInformation, self), pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
+                return @as(*const IRSOPInformation.VTable, @ptrCast(self.vtable)).GetEventLogEntryText(@as(*const IRSOPInformation, @ptrCast(self)), pszEventSource, pszEventLogName, pszEventTime, dwEventID, ppszText);
             }
         };
     }

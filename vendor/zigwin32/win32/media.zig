@@ -117,7 +117,7 @@ pub const TIMECODE_SAMPLE_FLAGS = enum(u32) {
         ATN_READ: u1 = 0,
         RTC_READ: u1 = 0,
     }) TIMECODE_SAMPLE_FLAGS {
-        return @enumFromInt(TIMECODE_SAMPLE_FLAGS, (if (o.TIMECODE_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.TIMECODE_READ) else 0) | (if (o.ATN_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.ATN_READ) else 0) | (if (o.RTC_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.RTC_READ) else 0));
+        return @as(TIMECODE_SAMPLE_FLAGS, @enumFromInt((if (o.TIMECODE_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.TIMECODE_READ) else 0) | (if (o.ATN_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.ATN_READ) else 0) | (if (o.RTC_READ == 1) @intFromEnum(TIMECODE_SAMPLE_FLAGS.RTC_READ) else 0)));
     }
 };
 pub const ED_DEVCAP_TIMECODE_READ = TIMECODE_SAMPLE_FLAGS.TIMECODE_READ;
@@ -252,19 +252,19 @@ pub const IReferenceClock = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClock_GetTime(self: *const T, pTime: ?*i64) HRESULT {
-                return @ptrCast(*const IReferenceClock.VTable, self.vtable).GetTime(@ptrCast(*const IReferenceClock, self), pTime);
+                return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IReferenceClock, @ptrCast(self)), pTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClock_AdviseTime(self: *const T, baseTime: i64, streamTime: i64, hEvent: ?HANDLE, pdwAdviseCookie: ?*usize) HRESULT {
-                return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdviseTime(@ptrCast(*const IReferenceClock, self), baseTime, streamTime, hEvent, pdwAdviseCookie);
+                return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdviseTime(@as(*const IReferenceClock, @ptrCast(self)), baseTime, streamTime, hEvent, pdwAdviseCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClock_AdvisePeriodic(self: *const T, startTime: i64, periodTime: i64, hSemaphore: ?HANDLE, pdwAdviseCookie: ?*usize) HRESULT {
-                return @ptrCast(*const IReferenceClock.VTable, self.vtable).AdvisePeriodic(@ptrCast(*const IReferenceClock, self), startTime, periodTime, hSemaphore, pdwAdviseCookie);
+                return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).AdvisePeriodic(@as(*const IReferenceClock, @ptrCast(self)), startTime, periodTime, hSemaphore, pdwAdviseCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClock_Unadvise(self: *const T, dwAdviseCookie: usize) HRESULT {
-                return @ptrCast(*const IReferenceClock.VTable, self.vtable).Unadvise(@ptrCast(*const IReferenceClock, self), dwAdviseCookie);
+                return @as(*const IReferenceClock.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IReferenceClock, @ptrCast(self)), dwAdviseCookie);
             }
         };
     }
@@ -304,11 +304,11 @@ pub const IReferenceClockTimerControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClockTimerControl_SetDefaultTimerResolution(self: *const T, timerResolution: i64) HRESULT {
-                return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).SetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), timerResolution);
+                return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).SetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), timerResolution);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IReferenceClockTimerControl_GetDefaultTimerResolution(self: *const T, pTimerResolution: ?*i64) HRESULT {
-                return @ptrCast(*const IReferenceClockTimerControl.VTable, self.vtable).GetDefaultTimerResolution(@ptrCast(*const IReferenceClockTimerControl, self), pTimerResolution);
+                return @as(*const IReferenceClockTimerControl.VTable, @ptrCast(self.vtable)).GetDefaultTimerResolution(@as(*const IReferenceClockTimerControl, @ptrCast(self)), pTimerResolution);
             }
         };
     }

@@ -941,7 +941,7 @@ pub const IMSMQQuery = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) HRESULT {
-                return @ptrCast(*const IMSMQQuery.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+                return @as(*const IMSMQQuery.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
             }
         };
     }
@@ -1335,123 +1335,123 @@ pub const IMSMQQueueInfo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidQueue);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrGuidQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), pbstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo, self), bstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo, self), pbstrLabel);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo, self), bstrLabel);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo, self), pbstrPathName);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo, self), bstrPathName);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo, self), pbstrFormatName);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo, self), bstrFormatName);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo, @ptrCast(self)), bstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), plPrivLevel);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo, self), lPrivLevel);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo, self), plJournal);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo, self), lJournal);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo, self), plQuota);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo, @ptrCast(self)), plQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_Quota(self: *const T, lQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo, self), lQuota);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo, @ptrCast(self)), lQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), plBasePriority);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo, @ptrCast(self)), plBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo, self), lBasePriority);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo, @ptrCast(self)), lBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo, self), pvarCreateTime);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo, @ptrCast(self)), pvarCreateTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo, self), pvarModifyTime);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo, @ptrCast(self)), pvarModifyTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), plAuthenticate);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo, @ptrCast(self)), plAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo, self), lAuthenticate);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo, @ptrCast(self)), lAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), plJournalQuota);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo, @ptrCast(self)), plJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo, self), lJournalQuota);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo, @ptrCast(self)), lJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo, self), IsTransactional, IsWorldReadable);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo, @ptrCast(self)), IsTransactional, IsWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo, self));
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo, self), Access, ShareMode, ppq);
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo, @ptrCast(self)), Access, ShareMode, ppq);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo, self));
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo_Update(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo, self));
+                return @as(*const IMSMQQueueInfo.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo, @ptrCast(self)));
             }
         };
     }
@@ -1897,139 +1897,139 @@ pub const IMSMQQueueInfo2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidQueue);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrGuidQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), pbstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo2, self), bstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo2, self), pbstrLabel);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo2, self), bstrLabel);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathName);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo2, self), bstrPathName);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), pbstrFormatName);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo2, self), bstrFormatName);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo2, @ptrCast(self)), bstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo2, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), plPrivLevel);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo2, self), lPrivLevel);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo2, self), plJournal);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo2, self), lJournal);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo2, self), plQuota);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_Quota(self: *const T, lQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo2, self), lQuota);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), plBasePriority);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo2, self), lBasePriority);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarCreateTime);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarCreateTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo2, self), pvarModifyTime);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarModifyTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), plAuthenticate);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo2, self), lAuthenticate);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), plJournalQuota);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), plJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo2, self), lJournalQuota);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo2, @ptrCast(self)), lJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo2, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo2, self), IsTransactional, IsWorldReadable);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo2, @ptrCast(self)), IsTransactional, IsWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo2, self));
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo2, self), Access, ShareMode, ppq);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo2, @ptrCast(self)), Access, ShareMode, ppq);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo2, self));
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_Update(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo2, self));
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo2, self), pbstrPathNameDNS);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pbstrPathNameDNS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo2, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo2, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo2, self), pvarSecurity);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo2, @ptrCast(self)), pvarSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo2_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo2.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo2, self), varSecurity);
+                return @as(*const IMSMQQueueInfo2.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo2, @ptrCast(self)), varSecurity);
             }
         };
     }
@@ -2540,159 +2540,159 @@ pub const IMSMQQueueInfo3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidQueue);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrGuidQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), pbstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo3, self), bstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo3, self), pbstrLabel);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo3, self), bstrLabel);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathName);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo3, self), bstrPathName);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), pbstrFormatName);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo3, self), bstrFormatName);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), plPrivLevel);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo3, self), lPrivLevel);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo3, self), plJournal);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo3, self), lJournal);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo3, self), plQuota);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_Quota(self: *const T, lQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo3, self), lQuota);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), plBasePriority);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo3, self), lBasePriority);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarCreateTime);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarCreateTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo3, self), pvarModifyTime);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarModifyTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), plAuthenticate);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo3, self), lAuthenticate);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), plJournalQuota);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), plJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo3, self), lJournalQuota);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo3, @ptrCast(self)), lJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo3, self), IsTransactional, IsWorldReadable);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo3, @ptrCast(self)), IsTransactional, IsWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo3, self));
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo3, self), Access, ShareMode, ppq);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo3, @ptrCast(self)), Access, ShareMode, ppq);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo3, self));
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_Update(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo3, self));
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo3, self), pbstrPathNameDNS);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrPathNameDNS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo3, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo3, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo3, self), pvarSecurity);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pvarSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo3, self), varSecurity);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo3, @ptrCast(self)), varSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo3, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsTransactional2(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo3, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_IsWorldReadable2(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), pbstrMulticastAddress);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_MulticastAddress(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrMulticastAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo3, self), bstrMulticastAddress);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).put_MulticastAddress(@as(*const IMSMQQueueInfo3, @ptrCast(self)), bstrMulticastAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo3_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo3.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo3, self), pbstrADsPath);
+                return @as(*const IMSMQQueueInfo3.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo3, @ptrCast(self)), pbstrADsPath);
             }
         };
     }
@@ -3203,159 +3203,159 @@ pub const IMSMQQueueInfo4 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_QueueGuid(self: *const T, pbstrGuidQueue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_QueueGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidQueue);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_QueueGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrGuidQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_ServiceTypeGuid(self: *const T, pbstrGuidServiceType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), pbstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ServiceTypeGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_ServiceTypeGuid(self: *const T, bstrGuidServiceType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_ServiceTypeGuid(@ptrCast(*const IMSMQQueueInfo4, self), bstrGuidServiceType);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_ServiceTypeGuid(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrGuidServiceType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQQueueInfo4, self), pbstrLabel);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQQueueInfo4, self), bstrLabel);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathName);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQQueueInfo4, self), bstrPathName);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), pbstrFormatName);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQQueueInfo4, self), bstrFormatName);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_IsTransactional(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsTransactional(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), plPrivLevel);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQQueueInfo4, self), lPrivLevel);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQQueueInfo4, self), plJournal);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQQueueInfo4, self), lJournal);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Quota(self: *const T, plQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Quota(@ptrCast(*const IMSMQQueueInfo4, self), plQuota);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Quota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_Quota(self: *const T, lQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Quota(@ptrCast(*const IMSMQQueueInfo4, self), lQuota);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Quota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_BasePriority(self: *const T, plBasePriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), plBasePriority);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_BasePriority(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_BasePriority(self: *const T, lBasePriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_BasePriority(@ptrCast(*const IMSMQQueueInfo4, self), lBasePriority);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_BasePriority(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lBasePriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_CreateTime(self: *const T, pvarCreateTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_CreateTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarCreateTime);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_CreateTime(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarCreateTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_ModifyTime(self: *const T, pvarModifyTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ModifyTime(@ptrCast(*const IMSMQQueueInfo4, self), pvarModifyTime);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ModifyTime(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarModifyTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Authenticate(self: *const T, plAuthenticate: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), plAuthenticate);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Authenticate(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_Authenticate(self: *const T, lAuthenticate: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Authenticate(@ptrCast(*const IMSMQQueueInfo4, self), lAuthenticate);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Authenticate(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lAuthenticate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_JournalQuota(self: *const T, plJournalQuota: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), plJournalQuota);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_JournalQuota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), plJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_JournalQuota(self: *const T, lJournalQuota: i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_JournalQuota(@ptrCast(*const IMSMQQueueInfo4, self), lJournalQuota);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_JournalQuota(@as(*const IMSMQQueueInfo4, @ptrCast(self)), lJournalQuota);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_IsWorldReadable(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsWorldReadable(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_Create(self: *const T, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Create(@ptrCast(*const IMSMQQueueInfo4, self), IsTransactional, IsWorldReadable);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Create(@as(*const IMSMQQueueInfo4, @ptrCast(self)), IsTransactional, IsWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_Delete(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Delete(@ptrCast(*const IMSMQQueueInfo4, self));
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Delete(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_Open(self: *const T, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Open(@ptrCast(*const IMSMQQueueInfo4, self), Access, ShareMode, ppq);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQQueueInfo4, @ptrCast(self)), Access, ShareMode, ppq);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Refresh(@ptrCast(*const IMSMQQueueInfo4, self));
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_Update(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).Update(@ptrCast(*const IMSMQQueueInfo4, self));
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).Update(@as(*const IMSMQQueueInfo4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_PathNameDNS(self: *const T, pbstrPathNameDNS: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_PathNameDNS(@ptrCast(*const IMSMQQueueInfo4, self), pbstrPathNameDNS);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_PathNameDNS(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrPathNameDNS);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfo4, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfo4, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_Security(self: *const T, pvarSecurity: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_Security(@ptrCast(*const IMSMQQueueInfo4, self), pvarSecurity);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_Security(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pvarSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_Security(self: *const T, varSecurity: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_Security(@ptrCast(*const IMSMQQueueInfo4, self), varSecurity);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_Security(@as(*const IMSMQQueueInfo4, @ptrCast(self)), varSecurity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_IsTransactional2(self: *const T, pisTransactional: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsTransactional2(@ptrCast(*const IMSMQQueueInfo4, self), pisTransactional);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsTransactional2(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisTransactional);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_IsWorldReadable2(self: *const T, pisWorldReadable: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_IsWorldReadable2(@ptrCast(*const IMSMQQueueInfo4, self), pisWorldReadable);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_IsWorldReadable2(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pisWorldReadable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_MulticastAddress(self: *const T, pbstrMulticastAddress: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), pbstrMulticastAddress);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_MulticastAddress(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrMulticastAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_put_MulticastAddress(self: *const T, bstrMulticastAddress: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).put_MulticastAddress(@ptrCast(*const IMSMQQueueInfo4, self), bstrMulticastAddress);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).put_MulticastAddress(@as(*const IMSMQQueueInfo4, @ptrCast(self)), bstrMulticastAddress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfo4_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfo4.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQQueueInfo4, self), pbstrADsPath);
+                return @as(*const IMSMQQueueInfo4.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQQueueInfo4, @ptrCast(self)), pbstrADsPath);
             }
         };
     }
@@ -3553,55 +3553,55 @@ pub const IMSMQQueue = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue, self), plAccess);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue, @ptrCast(self)), plAccess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue, self), plShareMode);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue, @ptrCast(self)), plShareMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue, self), ppqinfo);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue, @ptrCast(self)), ppqinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue, self), plHandle);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue, @ptrCast(self)), plHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue, self), pisOpen);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue, @ptrCast(self)), pisOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue, self));
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_EnableNotification(self: *const T, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue, self), Event, Cursor, ReceiveTimeout);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue, self));
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
         };
     }
@@ -3906,79 +3906,79 @@ pub const IMSMQQueue2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue2, self), plAccess);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue2, @ptrCast(self)), plAccess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue2, self), plShareMode);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue2, @ptrCast(self)), plShareMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue2, self), ppqinfo);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue2, @ptrCast(self)), ppqinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue2, self), plHandle);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue2, @ptrCast(self)), plHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue2, self), pisOpen);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue2, @ptrCast(self)), pisOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue2, self));
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_EnableNotification(self: *const T, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue2, self), Event, Cursor, ReceiveTimeout);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue2, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue2, self));
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue2, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue2, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue2, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue2, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueue2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue2, self), ppcolProperties);
+                return @as(*const IMSMQQueue2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -4499,131 +4499,131 @@ pub const IMSMQQueue3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue3, self), plAccess);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue3, @ptrCast(self)), plAccess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue3, self), plShareMode);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue3, @ptrCast(self)), plShareMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue3, self), ppqinfo);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue3, @ptrCast(self)), ppqinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue3, self), plHandle);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue3, @ptrCast(self)), plHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue3, self), pisOpen);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue3, @ptrCast(self)), pisOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue3, self));
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue3, self), Event, Cursor, ReceiveTimeout);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue3, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue3, self));
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue3, self), ppcolProperties);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue3, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue3, self), pvarHandle);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_Handle2(@as(*const IMSMQQueue3, @ptrCast(self)), pvarHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveNextByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceivePreviousByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveFirstByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue3, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).ReceiveLastByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekNextByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue3, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekPreviousByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekFirstByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue3, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).PeekLastByLookupId(@as(*const IMSMQQueue3, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_Purge(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue3, self));
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).Purge(@as(*const IMSMQQueue3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue3_get_IsOpen2(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue3.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue3, self), pisOpen);
+                return @as(*const IMSMQQueue3.VTable, @ptrCast(self.vtable)).get_IsOpen2(@as(*const IMSMQQueue3, @ptrCast(self)), pisOpen);
             }
         };
     }
@@ -5164,135 +5164,135 @@ pub const IMSMQQueue4 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_Access(self: *const T, plAccess: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Access(@ptrCast(*const IMSMQQueue4, self), plAccess);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Access(@as(*const IMSMQQueue4, @ptrCast(self)), plAccess);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_ShareMode(self: *const T, plShareMode: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_ShareMode(@ptrCast(*const IMSMQQueue4, self), plShareMode);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_ShareMode(@as(*const IMSMQQueue4, @ptrCast(self)), plShareMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_QueueInfo(self: *const T, ppqinfo: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_QueueInfo(@ptrCast(*const IMSMQQueue4, self), ppqinfo);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_QueueInfo(@as(*const IMSMQQueue4, @ptrCast(self)), ppqinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_Handle(self: *const T, plHandle: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQQueue4, self), plHandle);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQQueue4, @ptrCast(self)), plHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_IsOpen(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQQueue4, self), pisOpen);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQQueue4, @ptrCast(self)), pisOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Close(@ptrCast(*const IMSMQQueue4, self));
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQQueue4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Receive_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Receive_v1(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Peek_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Peek_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_EnableNotification(self: *const T, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).EnableNotification(@ptrCast(*const IMSMQQueue4, self), Event, Cursor, ReceiveTimeout);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).EnableNotification(@as(*const IMSMQQueue4, @ptrCast(self)), Event, Cursor, ReceiveTimeout);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueue4, self));
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueue4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveCurrent_v1(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent_v1(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveCurrent_v1(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekNext_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNext_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekCurrent_v1(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent_v1(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekCurrent_v1(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Receive(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Receive(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Receive(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Peek(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Peek(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Peek(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveCurrent(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveCurrent(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveCurrent(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekNext(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNext(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNext(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekCurrent(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekCurrent(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekCurrent(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueue4, self), ppcolProperties);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueue4, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_Handle2(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_Handle2(@ptrCast(*const IMSMQQueue4, self), pvarHandle);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_Handle2(@as(*const IMSMQQueue4, @ptrCast(self)), pvarHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveNextByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveNextByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceivePreviousByLookupId(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceivePreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceivePreviousByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveFirstByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveFirstByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveLastByLookupId(self: *const T, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveLastByLookupId(@ptrCast(*const IMSMQQueue4, self), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveLastByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekNextByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekNextByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekNextByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekPreviousByLookupId(self: *const T, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekPreviousByLookupId(@ptrCast(*const IMSMQQueue4, self), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekPreviousByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekFirstByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekFirstByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekFirstByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_PeekLastByLookupId(self: *const T, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).PeekLastByLookupId(@ptrCast(*const IMSMQQueue4, self), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).PeekLastByLookupId(@as(*const IMSMQQueue4, @ptrCast(self)), WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_Purge(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).Purge(@ptrCast(*const IMSMQQueue4, self));
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).Purge(@as(*const IMSMQQueue4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_get_IsOpen2(self: *const T, pisOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).get_IsOpen2(@ptrCast(*const IMSMQQueue4, self), pisOpen);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).get_IsOpen2(@as(*const IMSMQQueue4, @ptrCast(self)), pisOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueue4_ReceiveByLookupIdAllowPeek(self: *const T, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
-                return @ptrCast(*const IMSMQQueue4.VTable, self.vtable).ReceiveByLookupIdAllowPeek(@ptrCast(*const IMSMQQueue4, self), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
+                return @as(*const IMSMQQueue4.VTable, @ptrCast(self.vtable)).ReceiveByLookupIdAllowPeek(@as(*const IMSMQQueue4, @ptrCast(self)), LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
             }
         };
     }
@@ -5936,199 +5936,199 @@ pub const IMSMQMessage = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Class(self: *const T, plClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage, self), plClass);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage, @ptrCast(self)), plClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage, self), plPrivLevel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage, self), lPrivLevel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage, self), plAuthLevel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage, @ptrCast(self)), plAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage, self), lAuthLevel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage, @ptrCast(self)), lAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage, self), pisAuthenticated);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage, self), plDelivery);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage, @ptrCast(self)), plDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage, self), lDelivery);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage, @ptrCast(self)), lDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage, self), plTrace);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage, @ptrCast(self)), plTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Trace(self: *const T, lTrace: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage, self), lTrace);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage, @ptrCast(self)), lTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage, self), plPriority);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage, @ptrCast(self)), plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Priority(self: *const T, lPriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage, self), lPriority);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage, @ptrCast(self)), lPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage, self), plJournal);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage, self), lJournal);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoResponse);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage, self), plAppSpecific);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage, @ptrCast(self)), plAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage, self), lAppSpecific);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage, @ptrCast(self)), lAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage, self), pbstrGuidSrcMachine);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage, @ptrCast(self)), pbstrGuidSrcMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage, self), pcbBody);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage, @ptrCast(self)), pcbBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage, self), pvarBody);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Body(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage, self), varBody);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage, self), pvarMsgId);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage, self), varMsgId);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage, @ptrCast(self)), varMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage, self), plAck);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage, @ptrCast(self)), plAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Ack(self: *const T, lAck: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage, self), lAck);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage, @ptrCast(self)), lAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage, self), pbstrLabel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage, self), bstrLabel);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage, @ptrCast(self)), plMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage, @ptrCast(self)), lMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), plMaxTimeToReceive);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage, @ptrCast(self)), plMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage, self), lMaxTimeToReceive);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage, @ptrCast(self)), lMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), plHashAlg);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), plHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage, self), lHashAlg);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), lHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), plEncryptAlg);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), plEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage, self), lEncryptAlg);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage, @ptrCast(self)), lEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage, self), pvarSentTime);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage, @ptrCast(self)), pvarSentTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage, self), plArrivedTime);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage, @ptrCast(self)), plArrivedTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage, self), ppqinfoDest);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage, @ptrCast(self)), ppqinfoDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage, self), pvarSenderCert);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage, @ptrCast(self)), pvarSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage, self), varSenderCert);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage, @ptrCast(self)), varSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage, self), pvarSenderId);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage, @ptrCast(self)), pvarSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage, self), plSenderIdType);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage, @ptrCast(self)), plSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage, self), lSenderIdType);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage, @ptrCast(self)), lSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_Send(self: *const T, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage, self), DestinationQueue, Transaction);
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage, @ptrCast(self)), DestinationQueue, Transaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage_AttachCurrentSecurityContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage, self));
+                return @as(*const IMSMQMessage.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage, @ptrCast(self)));
             }
         };
     }
@@ -6165,11 +6165,11 @@ pub const IMSMQQueueInfos = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos, self));
+                return @as(*const IMSMQQueueInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos, self), ppqinfoNext);
+                return @as(*const IMSMQQueueInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos, @ptrCast(self)), ppqinfoNext);
             }
         };
     }
@@ -6219,15 +6219,15 @@ pub const IMSMQQueueInfos2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos2_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos2, self));
+                return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos2_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos2, self), ppqinfoNext);
+                return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos2, @ptrCast(self)), ppqinfoNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos2, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfos2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -6277,15 +6277,15 @@ pub const IMSMQQueueInfos3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos3_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos3, self));
+                return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos3_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos3, self), ppqinfoNext);
+                return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos3, @ptrCast(self)), ppqinfoNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos3, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfos3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos3, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -6335,15 +6335,15 @@ pub const IMSMQQueueInfos4 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos4_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Reset(@ptrCast(*const IMSMQQueueInfos4, self));
+                return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMSMQQueueInfos4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos4_Next(self: *const T, ppqinfoNext: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).Next(@ptrCast(*const IMSMQQueueInfos4, self), ppqinfoNext);
+                return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).Next(@as(*const IMSMQQueueInfos4, @ptrCast(self)), ppqinfoNext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueInfos4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQueueInfos4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQueueInfos4, self), ppcolProperties);
+                return @as(*const IMSMQQueueInfos4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQueueInfos4, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -6390,7 +6390,7 @@ pub const IMSMQEvent2 = extern struct {
             pub usingnamespace IMSMQEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQEvent2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQEvent2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQEvent2, self), ppcolProperties);
+                return @as(*const IMSMQEvent2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQEvent2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -6463,15 +6463,15 @@ pub const IMSMQTransaction = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction_get_Transaction(self: *const T, plTransaction: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).get_Transaction(@ptrCast(*const IMSMQTransaction, self), plTransaction);
+                return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).get_Transaction(@as(*const IMSMQTransaction, @ptrCast(self)), plTransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction_Commit(self: *const T, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Commit(@ptrCast(*const IMSMQTransaction, self), fRetaining, grfTC, grfRM);
+                return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).Commit(@as(*const IMSMQTransaction, @ptrCast(self)), fRetaining, grfTC, grfRM);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction_Abort(self: *const T, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQTransaction.VTable, self.vtable).Abort(@ptrCast(*const IMSMQTransaction, self), fRetaining, fAsync);
+                return @as(*const IMSMQTransaction.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMSMQTransaction, @ptrCast(self)), fRetaining, fAsync);
             }
         };
     }
@@ -6500,7 +6500,7 @@ pub const IMSMQCoordinatedTransactionDispenser = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCoordinatedTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) HRESULT {
-                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser, self), ptransaction);
+                return @as(*const IMSMQCoordinatedTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser, @ptrCast(self)), ptransaction);
             }
         };
     }
@@ -6529,7 +6529,7 @@ pub const IMSMQTransactionDispenser = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransactionDispenser_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction) HRESULT {
-                return @ptrCast(*const IMSMQTransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser, self), ptransaction);
+                return @as(*const IMSMQTransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser, @ptrCast(self)), ptransaction);
             }
         };
     }
@@ -6589,11 +6589,11 @@ pub const IMSMQQuery2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery2_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) HRESULT {
-                return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery2, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+                return @as(*const IMSMQQuery2.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery2, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQuery2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery2, self), ppcolProperties);
+                return @as(*const IMSMQQuery2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -6685,15 +6685,15 @@ pub const IMSMQQuery3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery3_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
-                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+                return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).LookupQueue_v2(@as(*const IMSMQQuery3, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery3, self), ppcolProperties);
+                return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery3, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery3_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
-                return @ptrCast(*const IMSMQQuery3.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery3, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+                return @as(*const IMSMQQuery3.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery3, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
             }
         };
     }
@@ -6785,15 +6785,15 @@ pub const IMSMQQuery4 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery4_LookupQueue_v2(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
-                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue_v2(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
+                return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).LookupQueue_v2(@as(*const IMSMQQuery4, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQQuery4, self), ppcolProperties);
+                return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQQuery4, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQuery4_LookupQueue(self: *const T, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
-                return @ptrCast(*const IMSMQQuery4.VTable, self.vtable).LookupQueue(@ptrCast(*const IMSMQQuery4, self), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
+                return @as(*const IMSMQQuery4.VTable, @ptrCast(self.vtable)).LookupQueue(@as(*const IMSMQQuery4, @ptrCast(self)), QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
             }
         };
     }
@@ -7769,303 +7769,303 @@ pub const IMSMQMessage2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Class(self: *const T, plClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage2, self), plClass);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage2, @ptrCast(self)), plClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage2, self), plPrivLevel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage2, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage2, self), lPrivLevel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage2, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage2, self), plAuthLevel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage2, @ptrCast(self)), plAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage2, self), lAuthLevel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage2, @ptrCast(self)), lAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage2, self), pisAuthenticated);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage2, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage2, self), plDelivery);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage2, @ptrCast(self)), plDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage2, self), lDelivery);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage2, @ptrCast(self)), lDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage2, self), plTrace);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage2, @ptrCast(self)), plTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Trace(self: *const T, lTrace: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage2, self), lTrace);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage2, @ptrCast(self)), lTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage2, self), plPriority);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage2, @ptrCast(self)), plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Priority(self: *const T, lPriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage2, self), lPriority);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage2, @ptrCast(self)), lPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage2, self), plJournal);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage2, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage2, self), lJournal);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage2, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage2, self), plAppSpecific);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage2, @ptrCast(self)), plAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage2, self), lAppSpecific);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage2, @ptrCast(self)), lAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidSrcMachine);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrGuidSrcMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage2, self), pcbBody);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage2, @ptrCast(self)), pcbBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage2, self), pvarBody);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage2, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Body(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage2, self), varBody);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage2, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage2, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage2, self), pvarMsgId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage2, self), varMsgId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage2, @ptrCast(self)), varMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage2, self), plAck);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage2, @ptrCast(self)), plAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Ack(self: *const T, lAck: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage2, self), lAck);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage2, @ptrCast(self)), lAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage2, self), pbstrLabel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage2, self), bstrLabel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage2, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage2, @ptrCast(self)), plMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage2, @ptrCast(self)), lMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), plMaxTimeToReceive);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage2, @ptrCast(self)), plMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage2, self), lMaxTimeToReceive);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage2, @ptrCast(self)), lMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), plHashAlg);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), plHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage2, self), lHashAlg);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), lHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), plEncryptAlg);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), plEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage2, self), lEncryptAlg);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage2, @ptrCast(self)), lEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage2, self), pvarSentTime);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSentTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage2, self), plArrivedTime);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage2, @ptrCast(self)), plArrivedTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoDest);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), pvarSenderCert);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage2, self), varSenderCert);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage2, @ptrCast(self)), varSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage2, self), pvarSenderId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage2, self), plSenderIdType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage2, @ptrCast(self)), plSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage2, self), lSenderIdType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage2, @ptrCast(self)), lSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_Send(self: *const T, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage2, self), DestinationQueue, Transaction);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage2, @ptrCast(self)), DestinationQueue, Transaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_AttachCurrentSecurityContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage2, self));
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage2, self), plSenderVersion);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage2, @ptrCast(self)), plSenderVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage2, self), pvarExtension);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage2, @ptrCast(self)), pvarExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage2, self), varExtension);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage2, @ptrCast(self)), varExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), pbstrGuidConnectorType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage2, self), bstrGuidConnectorType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage2, @ptrCast(self)), bstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoXactStatus);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoXactStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), pvarDestSymmKey);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage2, @ptrCast(self)), pvarDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage2, self), varDestSymmKey);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage2, @ptrCast(self)), varDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage2, self), pvarSignature);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage2, @ptrCast(self)), pvarSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage2, self), varSignature);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage2, @ptrCast(self)), varSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), plAuthProvType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage2, @ptrCast(self)), plAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage2, self), lAuthProvType);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage2, @ptrCast(self)), lAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), pbstrAuthProvName);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage2, @ptrCast(self)), pbstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage2, self), bstrAuthProvName);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage2, @ptrCast(self)), bstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage2, self), varSenderId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage2, @ptrCast(self)), varSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage2, self), plMsgClass);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage2, @ptrCast(self)), plMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage2, self), lMsgClass);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage2, @ptrCast(self)), lMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage2, self), ppcolProperties);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage2, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage2, self), pvarXactId);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage2, @ptrCast(self)), pvarXactId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage2, self), pisFirstInXact);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage2, @ptrCast(self)), pisFirstInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage2, self), pisLastInXact);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage2, @ptrCast(self)), pisLastInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoResponse);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage2, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage2, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage2_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage2.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage2, self), psReceivedAuthenticationLevel);
+                return @as(*const IMSMQMessage2.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage2, @ptrCast(self)), psReceivedAuthenticationLevel);
             }
         };
     }
@@ -9235,367 +9235,367 @@ pub const IMSMQMessage3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Class(self: *const T, plClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage3, self), plClass);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage3, @ptrCast(self)), plClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage3, self), plPrivLevel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage3, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage3, self), lPrivLevel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage3, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage3, self), plAuthLevel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage3, @ptrCast(self)), plAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage3, self), lAuthLevel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage3, @ptrCast(self)), lAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage3, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage3, self), plDelivery);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage3, @ptrCast(self)), plDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage3, self), lDelivery);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage3, @ptrCast(self)), lDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage3, self), plTrace);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage3, @ptrCast(self)), plTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Trace(self: *const T, lTrace: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage3, self), lTrace);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage3, @ptrCast(self)), lTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage3, self), plPriority);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage3, @ptrCast(self)), plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Priority(self: *const T, lPriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage3, self), lPriority);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage3, @ptrCast(self)), lPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage3, self), plJournal);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage3, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage3, self), lJournal);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage3, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage3, self), plAppSpecific);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage3, @ptrCast(self)), plAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage3, self), lAppSpecific);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage3, @ptrCast(self)), lAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidSrcMachine);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrGuidSrcMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage3, self), pcbBody);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage3, @ptrCast(self)), pcbBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage3, self), pvarBody);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage3, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Body(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage3, self), varBody);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage3, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage3, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage3, self), pvarMsgId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage3, self), varMsgId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage3, @ptrCast(self)), varMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage3, self), plAck);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage3, @ptrCast(self)), plAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Ack(self: *const T, lAck: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage3, self), lAck);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage3, @ptrCast(self)), lAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage3, self), pbstrLabel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage3, self), bstrLabel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage3, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage3, @ptrCast(self)), plMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage3, @ptrCast(self)), lMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), plMaxTimeToReceive);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage3, @ptrCast(self)), plMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage3, self), lMaxTimeToReceive);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage3, @ptrCast(self)), lMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), plHashAlg);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), plHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage3, self), lHashAlg);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), lHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), plEncryptAlg);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), plEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage3, self), lEncryptAlg);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage3, @ptrCast(self)), lEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage3, self), pvarSentTime);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSentTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage3, self), plArrivedTime);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage3, @ptrCast(self)), plArrivedTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoDest);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), pvarSenderCert);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage3, self), varSenderCert);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage3, @ptrCast(self)), varSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage3, self), pvarSenderId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage3, self), plSenderIdType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage3, @ptrCast(self)), plSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage3, self), lSenderIdType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage3, @ptrCast(self)), lSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage3, self), DestinationQueue, Transaction);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage3, @ptrCast(self)), DestinationQueue, Transaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_AttachCurrentSecurityContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage3, self));
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage3, self), plSenderVersion);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage3, @ptrCast(self)), plSenderVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage3, self), pvarExtension);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage3, @ptrCast(self)), pvarExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage3, self), varExtension);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage3, @ptrCast(self)), varExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), pbstrGuidConnectorType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage3, self), bstrGuidConnectorType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage3, @ptrCast(self)), bstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoXactStatus);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoXactStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), pvarDestSymmKey);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage3, @ptrCast(self)), pvarDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage3, self), varDestSymmKey);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage3, @ptrCast(self)), varDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage3, self), pvarSignature);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage3, @ptrCast(self)), pvarSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage3, self), varSignature);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage3, @ptrCast(self)), varSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), plAuthProvType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage3, @ptrCast(self)), plAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage3, self), lAuthProvType);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage3, @ptrCast(self)), lAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), pbstrAuthProvName);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage3, self), bstrAuthProvName);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage3, @ptrCast(self)), bstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage3, self), varSenderId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage3, @ptrCast(self)), varSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage3, self), plMsgClass);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage3, @ptrCast(self)), plMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage3, self), lMsgClass);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage3, @ptrCast(self)), lMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage3, self), ppcolProperties);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage3, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage3, self), pvarXactId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarXactId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage3, @ptrCast(self)), pisFirstInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage3, @ptrCast(self)), pisLastInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v2(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage3, self), psReceivedAuthenticationLevel);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage3, @ptrCast(self)), psReceivedAuthenticationLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo3) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage3, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage3, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), ppdestResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_ResponseDestination(@as(*const IMSMQMessage3, @ptrCast(self)), ppdestResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage3, self), pdestResponse);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).putref_ResponseDestination(@as(*const IMSMQMessage3, @ptrCast(self)), pdestResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage3, self), ppdestDestination);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IMSMQMessage3, @ptrCast(self)), ppdestDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage3, self), pvarLookupId);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_LookupId(@as(*const IMSMQMessage3, @ptrCast(self)), pvarLookupId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage3, self), pisAuthenticated);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsAuthenticated2(@as(*const IMSMQMessage3, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisFirstInXact);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction2(@as(*const IMSMQMessage3, @ptrCast(self)), pisFirstInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage3, self), pisLastInXact);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction2(@as(*const IMSMQMessage3, @ptrCast(self)), pisLastInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_AttachCurrentSecurityContext2(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage3, self));
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext2(@as(*const IMSMQMessage3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage3, self), pbstrSoapEnvelope);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_SoapEnvelope(@as(*const IMSMQMessage3, @ptrCast(self)), pbstrSoapEnvelope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage3, self), pvarCompoundMessage);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).get_CompoundMessage(@as(*const IMSMQMessage3, @ptrCast(self)), pvarCompoundMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage3, self), bstrSoapHeader);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SoapHeader(@as(*const IMSMQMessage3, @ptrCast(self)), bstrSoapHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage3_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage3.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage3, self), bstrSoapBody);
+                return @as(*const IMSMQMessage3.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage3, @ptrCast(self)), bstrSoapBody);
             }
         };
     }
@@ -10765,367 +10765,367 @@ pub const IMSMQMessage4 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Class(self: *const T, plClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Class(@ptrCast(*const IMSMQMessage4, self), plClass);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Class(@as(*const IMSMQMessage4, @ptrCast(self)), plClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_PrivLevel(self: *const T, plPrivLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_PrivLevel(@ptrCast(*const IMSMQMessage4, self), plPrivLevel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_PrivLevel(@as(*const IMSMQMessage4, @ptrCast(self)), plPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_PrivLevel(self: *const T, lPrivLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_PrivLevel(@ptrCast(*const IMSMQMessage4, self), lPrivLevel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_PrivLevel(@as(*const IMSMQMessage4, @ptrCast(self)), lPrivLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AuthLevel(self: *const T, plAuthLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthLevel(@ptrCast(*const IMSMQMessage4, self), plAuthLevel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthLevel(@as(*const IMSMQMessage4, @ptrCast(self)), plAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_AuthLevel(self: *const T, lAuthLevel: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthLevel(@ptrCast(*const IMSMQMessage4, self), lAuthLevel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthLevel(@as(*const IMSMQMessage4, @ptrCast(self)), lAuthLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsAuthenticated(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsAuthenticated(@as(*const IMSMQMessage4, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Delivery(self: *const T, plDelivery: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Delivery(@ptrCast(*const IMSMQMessage4, self), plDelivery);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Delivery(@as(*const IMSMQMessage4, @ptrCast(self)), plDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Delivery(self: *const T, lDelivery: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Delivery(@ptrCast(*const IMSMQMessage4, self), lDelivery);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Delivery(@as(*const IMSMQMessage4, @ptrCast(self)), lDelivery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Trace(self: *const T, plTrace: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Trace(@ptrCast(*const IMSMQMessage4, self), plTrace);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Trace(@as(*const IMSMQMessage4, @ptrCast(self)), plTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Trace(self: *const T, lTrace: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Trace(@ptrCast(*const IMSMQMessage4, self), lTrace);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Trace(@as(*const IMSMQMessage4, @ptrCast(self)), lTrace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Priority(self: *const T, plPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Priority(@ptrCast(*const IMSMQMessage4, self), plPriority);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IMSMQMessage4, @ptrCast(self)), plPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Priority(self: *const T, lPriority: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Priority(@ptrCast(*const IMSMQMessage4, self), lPriority);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const IMSMQMessage4, @ptrCast(self)), lPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Journal(self: *const T, plJournal: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Journal(@ptrCast(*const IMSMQMessage4, self), plJournal);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Journal(@as(*const IMSMQMessage4, @ptrCast(self)), plJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Journal(self: *const T, lJournal: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Journal(@ptrCast(*const IMSMQMessage4, self), lJournal);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Journal(@as(*const IMSMQMessage4, @ptrCast(self)), lJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ResponseQueueInfo_v1(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_ResponseQueueInfo_v1(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AppSpecific(self: *const T, plAppSpecific: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AppSpecific(@ptrCast(*const IMSMQMessage4, self), plAppSpecific);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AppSpecific(@as(*const IMSMQMessage4, @ptrCast(self)), plAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_AppSpecific(self: *const T, lAppSpecific: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AppSpecific(@ptrCast(*const IMSMQMessage4, self), lAppSpecific);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AppSpecific(@as(*const IMSMQMessage4, @ptrCast(self)), lAppSpecific);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SourceMachineGuid(self: *const T, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SourceMachineGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidSrcMachine);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SourceMachineGuid(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrGuidSrcMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_BodyLength(self: *const T, pcbBody: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_BodyLength(@ptrCast(*const IMSMQMessage4, self), pcbBody);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_BodyLength(@as(*const IMSMQMessage4, @ptrCast(self)), pcbBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Body(self: *const T, pvarBody: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Body(@ptrCast(*const IMSMQMessage4, self), pvarBody);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Body(@as(*const IMSMQMessage4, @ptrCast(self)), pvarBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Body(self: *const T, varBody: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Body(@ptrCast(*const IMSMQMessage4, self), varBody);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Body(@as(*const IMSMQMessage4, @ptrCast(self)), varBody);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AdminQueueInfo_v1(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_AdminQueueInfo_v1(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v1(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v1(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Id(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Id(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IMSMQMessage4, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_CorrelationId(self: *const T, pvarMsgId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CorrelationId(@ptrCast(*const IMSMQMessage4, self), pvarMsgId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_CorrelationId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_CorrelationId(self: *const T, varMsgId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_CorrelationId(@ptrCast(*const IMSMQMessage4, self), varMsgId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_CorrelationId(@as(*const IMSMQMessage4, @ptrCast(self)), varMsgId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Ack(self: *const T, plAck: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Ack(@ptrCast(*const IMSMQMessage4, self), plAck);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Ack(@as(*const IMSMQMessage4, @ptrCast(self)), plAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Ack(self: *const T, lAck: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Ack(@ptrCast(*const IMSMQMessage4, self), lAck);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Ack(@as(*const IMSMQMessage4, @ptrCast(self)), lAck);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Label(self: *const T, pbstrLabel: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Label(@ptrCast(*const IMSMQMessage4, self), pbstrLabel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Label(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Label(self: *const T, bstrLabel: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Label(@ptrCast(*const IMSMQMessage4, self), bstrLabel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Label(@as(*const IMSMQMessage4, @ptrCast(self)), bstrLabel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_MaxTimeToReachQueue(self: *const T, plMaxTimeToReachQueue: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MaxTimeToReachQueue(@as(*const IMSMQMessage4, @ptrCast(self)), plMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_MaxTimeToReachQueue(self: *const T, lMaxTimeToReachQueue: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReachQueue(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReachQueue);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MaxTimeToReachQueue(@as(*const IMSMQMessage4, @ptrCast(self)), lMaxTimeToReachQueue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_MaxTimeToReceive(self: *const T, plMaxTimeToReceive: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), plMaxTimeToReceive);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MaxTimeToReceive(@as(*const IMSMQMessage4, @ptrCast(self)), plMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_MaxTimeToReceive(self: *const T, lMaxTimeToReceive: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MaxTimeToReceive(@ptrCast(*const IMSMQMessage4, self), lMaxTimeToReceive);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MaxTimeToReceive(@as(*const IMSMQMessage4, @ptrCast(self)), lMaxTimeToReceive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_HashAlgorithm(self: *const T, plHashAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), plHashAlg);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_HashAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), plHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_HashAlgorithm(self: *const T, lHashAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_HashAlgorithm(@ptrCast(*const IMSMQMessage4, self), lHashAlg);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_HashAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), lHashAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_EncryptAlgorithm(self: *const T, plEncryptAlg: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), plEncryptAlg);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_EncryptAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), plEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_EncryptAlgorithm(self: *const T, lEncryptAlg: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_EncryptAlgorithm(@ptrCast(*const IMSMQMessage4, self), lEncryptAlg);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_EncryptAlgorithm(@as(*const IMSMQMessage4, @ptrCast(self)), lEncryptAlg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SentTime(self: *const T, pvarSentTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SentTime(@ptrCast(*const IMSMQMessage4, self), pvarSentTime);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SentTime(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSentTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ArrivedTime(self: *const T, plArrivedTime: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ArrivedTime(@ptrCast(*const IMSMQMessage4, self), plArrivedTime);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ArrivedTime(@as(*const IMSMQMessage4, @ptrCast(self)), plArrivedTime);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_DestinationQueueInfo(self: *const T, ppqinfoDest: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoDest);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_DestinationQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoDest);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SenderCertificate(self: *const T, pvarSenderCert: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), pvarSenderCert);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderCertificate(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_SenderCertificate(self: *const T, varSenderCert: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderCertificate(@ptrCast(*const IMSMQMessage4, self), varSenderCert);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderCertificate(@as(*const IMSMQMessage4, @ptrCast(self)), varSenderCert);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SenderId(self: *const T, pvarSenderId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderId(@ptrCast(*const IMSMQMessage4, self), pvarSenderId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SenderIdType(self: *const T, plSenderIdType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderIdType(@ptrCast(*const IMSMQMessage4, self), plSenderIdType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderIdType(@as(*const IMSMQMessage4, @ptrCast(self)), plSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_SenderIdType(self: *const T, lSenderIdType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderIdType(@ptrCast(*const IMSMQMessage4, self), lSenderIdType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderIdType(@as(*const IMSMQMessage4, @ptrCast(self)), lSenderIdType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_Send(self: *const T, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).Send(@ptrCast(*const IMSMQMessage4, self), DestinationQueue, Transaction);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).Send(@as(*const IMSMQMessage4, @ptrCast(self)), DestinationQueue, Transaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_AttachCurrentSecurityContext(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext(@ptrCast(*const IMSMQMessage4, self));
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext(@as(*const IMSMQMessage4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SenderVersion(self: *const T, plSenderVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SenderVersion(@ptrCast(*const IMSMQMessage4, self), plSenderVersion);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SenderVersion(@as(*const IMSMQMessage4, @ptrCast(self)), plSenderVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Extension(self: *const T, pvarExtension: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Extension(@ptrCast(*const IMSMQMessage4, self), pvarExtension);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Extension(@as(*const IMSMQMessage4, @ptrCast(self)), pvarExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Extension(self: *const T, varExtension: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Extension(@ptrCast(*const IMSMQMessage4, self), varExtension);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Extension(@as(*const IMSMQMessage4, @ptrCast(self)), varExtension);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ConnectorTypeGuid(self: *const T, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), pbstrGuidConnectorType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ConnectorTypeGuid(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_ConnectorTypeGuid(self: *const T, bstrGuidConnectorType: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_ConnectorTypeGuid(@ptrCast(*const IMSMQMessage4, self), bstrGuidConnectorType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_ConnectorTypeGuid(@as(*const IMSMQMessage4, @ptrCast(self)), bstrGuidConnectorType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_TransactionStatusQueueInfo(self: *const T, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionStatusQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoXactStatus);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_TransactionStatusQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoXactStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_DestinationSymmetricKey(self: *const T, pvarDestSymmKey: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), pvarDestSymmKey);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_DestinationSymmetricKey(@as(*const IMSMQMessage4, @ptrCast(self)), pvarDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_DestinationSymmetricKey(self: *const T, varDestSymmKey: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_DestinationSymmetricKey(@ptrCast(*const IMSMQMessage4, self), varDestSymmKey);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_DestinationSymmetricKey(@as(*const IMSMQMessage4, @ptrCast(self)), varDestSymmKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Signature(self: *const T, pvarSignature: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Signature(@ptrCast(*const IMSMQMessage4, self), pvarSignature);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const IMSMQMessage4, @ptrCast(self)), pvarSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_Signature(self: *const T, varSignature: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_Signature(@ptrCast(*const IMSMQMessage4, self), varSignature);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_Signature(@as(*const IMSMQMessage4, @ptrCast(self)), varSignature);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AuthenticationProviderType(self: *const T, plAuthProvType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), plAuthProvType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderType(@as(*const IMSMQMessage4, @ptrCast(self)), plAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_AuthenticationProviderType(self: *const T, lAuthProvType: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderType(@ptrCast(*const IMSMQMessage4, self), lAuthProvType);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderType(@as(*const IMSMQMessage4, @ptrCast(self)), lAuthProvType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AuthenticationProviderName(self: *const T, pbstrAuthProvName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), pbstrAuthProvName);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AuthenticationProviderName(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_AuthenticationProviderName(self: *const T, bstrAuthProvName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_AuthenticationProviderName(@ptrCast(*const IMSMQMessage4, self), bstrAuthProvName);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_AuthenticationProviderName(@as(*const IMSMQMessage4, @ptrCast(self)), bstrAuthProvName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_SenderId(self: *const T, varSenderId: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SenderId(@ptrCast(*const IMSMQMessage4, self), varSenderId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SenderId(@as(*const IMSMQMessage4, @ptrCast(self)), varSenderId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_MsgClass(self: *const T, plMsgClass: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_MsgClass(@ptrCast(*const IMSMQMessage4, self), plMsgClass);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_MsgClass(@as(*const IMSMQMessage4, @ptrCast(self)), plMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_MsgClass(self: *const T, lMsgClass: i32) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_MsgClass(@ptrCast(*const IMSMQMessage4, self), lMsgClass);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_MsgClass(@as(*const IMSMQMessage4, @ptrCast(self)), lMsgClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQMessage4, self), ppcolProperties);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQMessage4, @ptrCast(self)), ppcolProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_TransactionId(self: *const T, pvarXactId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_TransactionId(@ptrCast(*const IMSMQMessage4, self), pvarXactId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_TransactionId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarXactId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsFirstInTransaction(self: *const T, pisFirstInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction(@as(*const IMSMQMessage4, @ptrCast(self)), pisFirstInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsLastInTransaction(self: *const T, pisLastInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction(@as(*const IMSMQMessage4, @ptrCast(self)), pisLastInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ResponseQueueInfo_v2(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_ResponseQueueInfo_v2(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AdminQueueInfo_v2(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_AdminQueueInfo_v2(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo_v2(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo_v2(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ReceivedAuthenticationLevel(self: *const T, psReceivedAuthenticationLevel: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ReceivedAuthenticationLevel(@ptrCast(*const IMSMQMessage4, self), psReceivedAuthenticationLevel);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ReceivedAuthenticationLevel(@as(*const IMSMQMessage4, @ptrCast(self)), psReceivedAuthenticationLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ResponseQueueInfo(self: *const T, ppqinfoResponse: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_ResponseQueueInfo(self: *const T, pqinfoResponse: ?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_AdminQueueInfo(self: *const T, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), ppqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_AdminQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), ppqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_AdminQueueInfo(self: *const T, pqinfoAdmin: ?*IMSMQQueueInfo4) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_AdminQueueInfo(@ptrCast(*const IMSMQMessage4, self), pqinfoAdmin);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_AdminQueueInfo(@as(*const IMSMQMessage4, @ptrCast(self)), pqinfoAdmin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_ResponseDestination(self: *const T, ppdestResponse: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), ppdestResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_ResponseDestination(@as(*const IMSMQMessage4, @ptrCast(self)), ppdestResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_putref_ResponseDestination(self: *const T, pdestResponse: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).putref_ResponseDestination(@ptrCast(*const IMSMQMessage4, self), pdestResponse);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).putref_ResponseDestination(@as(*const IMSMQMessage4, @ptrCast(self)), pdestResponse);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_Destination(self: *const T, ppdestDestination: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_Destination(@ptrCast(*const IMSMQMessage4, self), ppdestDestination);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_Destination(@as(*const IMSMQMessage4, @ptrCast(self)), ppdestDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_LookupId(self: *const T, pvarLookupId: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_LookupId(@ptrCast(*const IMSMQMessage4, self), pvarLookupId);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_LookupId(@as(*const IMSMQMessage4, @ptrCast(self)), pvarLookupId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsAuthenticated2(self: *const T, pisAuthenticated: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsAuthenticated2(@ptrCast(*const IMSMQMessage4, self), pisAuthenticated);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsAuthenticated2(@as(*const IMSMQMessage4, @ptrCast(self)), pisAuthenticated);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsFirstInTransaction2(self: *const T, pisFirstInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsFirstInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisFirstInXact);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsFirstInTransaction2(@as(*const IMSMQMessage4, @ptrCast(self)), pisFirstInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_IsLastInTransaction2(self: *const T, pisLastInXact: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_IsLastInTransaction2(@ptrCast(*const IMSMQMessage4, self), pisLastInXact);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_IsLastInTransaction2(@as(*const IMSMQMessage4, @ptrCast(self)), pisLastInXact);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_AttachCurrentSecurityContext2(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).AttachCurrentSecurityContext2(@ptrCast(*const IMSMQMessage4, self));
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).AttachCurrentSecurityContext2(@as(*const IMSMQMessage4, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_SoapEnvelope(self: *const T, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_SoapEnvelope(@ptrCast(*const IMSMQMessage4, self), pbstrSoapEnvelope);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_SoapEnvelope(@as(*const IMSMQMessage4, @ptrCast(self)), pbstrSoapEnvelope);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_get_CompoundMessage(self: *const T, pvarCompoundMessage: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).get_CompoundMessage(@ptrCast(*const IMSMQMessage4, self), pvarCompoundMessage);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).get_CompoundMessage(@as(*const IMSMQMessage4, @ptrCast(self)), pvarCompoundMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_SoapHeader(self: *const T, bstrSoapHeader: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapHeader(@ptrCast(*const IMSMQMessage4, self), bstrSoapHeader);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SoapHeader(@as(*const IMSMQMessage4, @ptrCast(self)), bstrSoapHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQMessage4_put_SoapBody(self: *const T, bstrSoapBody: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQMessage4.VTable, self.vtable).put_SoapBody(@ptrCast(*const IMSMQMessage4, self), bstrSoapBody);
+                return @as(*const IMSMQMessage4.VTable, @ptrCast(self.vtable)).put_SoapBody(@as(*const IMSMQMessage4, @ptrCast(self)), bstrSoapBody);
             }
         };
     }
@@ -11183,15 +11183,15 @@ pub const IMSMQPrivateEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQPrivateEvent_get_Hwnd(self: *const T, phwnd: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).get_Hwnd(@ptrCast(*const IMSMQPrivateEvent, self), phwnd);
+                return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).get_Hwnd(@as(*const IMSMQPrivateEvent, @ptrCast(self)), phwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQPrivateEvent_FireArrivedEvent(self: *const T, pq: ?*IMSMQQueue, msgcursor: i32) HRESULT {
-                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, msgcursor);
+                return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).FireArrivedEvent(@as(*const IMSMQPrivateEvent, @ptrCast(self)), pq, msgcursor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQPrivateEvent_FireArrivedErrorEvent(self: *const T, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) HRESULT {
-                return @ptrCast(*const IMSMQPrivateEvent.VTable, self.vtable).FireArrivedErrorEvent(@ptrCast(*const IMSMQPrivateEvent, self), pq, hrStatus, msgcursor);
+                return @as(*const IMSMQPrivateEvent.VTable, @ptrCast(self.vtable)).FireArrivedErrorEvent(@as(*const IMSMQPrivateEvent, @ptrCast(self)), pq, hrStatus, msgcursor);
             }
         };
     }
@@ -11248,11 +11248,11 @@ pub const IMSMQTransaction2 = extern struct {
             pub usingnamespace IMSMQTransaction.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction2_InitNew(self: *const T, varTransaction: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).InitNew(@ptrCast(*const IMSMQTransaction2, self), varTransaction);
+                return @as(*const IMSMQTransaction2.VTable, @ptrCast(self.vtable)).InitNew(@as(*const IMSMQTransaction2, @ptrCast(self)), varTransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQTransaction2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransaction2, self), ppcolProperties);
+                return @as(*const IMSMQTransaction2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransaction2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11284,7 +11284,7 @@ pub const IMSMQTransaction3 = extern struct {
             pub usingnamespace IMSMQTransaction2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransaction3_get_ITransaction(self: *const T, pvarITransaction: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQTransaction3.VTable, self.vtable).get_ITransaction(@ptrCast(*const IMSMQTransaction3, self), pvarITransaction);
+                return @as(*const IMSMQTransaction3.VTable, @ptrCast(self.vtable)).get_ITransaction(@as(*const IMSMQTransaction3, @ptrCast(self)), pvarITransaction);
             }
         };
     }
@@ -11326,11 +11326,11 @@ pub const IMSMQCoordinatedTransactionDispenser2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCoordinatedTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
-                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ptransaction);
+                return @as(*const IMSMQCoordinatedTransactionDispenser2.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser2, @ptrCast(self)), ptransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCoordinatedTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser2, self), ppcolProperties);
+                return @as(*const IMSMQCoordinatedTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11372,11 +11372,11 @@ pub const IMSMQCoordinatedTransactionDispenser3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCoordinatedTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
-                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ptransaction);
+                return @as(*const IMSMQCoordinatedTransactionDispenser3.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQCoordinatedTransactionDispenser3, @ptrCast(self)), ptransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCoordinatedTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQCoordinatedTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQCoordinatedTransactionDispenser3, self), ppcolProperties);
+                return @as(*const IMSMQCoordinatedTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQCoordinatedTransactionDispenser3, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11418,11 +11418,11 @@ pub const IMSMQTransactionDispenser2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransactionDispenser2_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
-                return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser2, self), ptransaction);
+                return @as(*const IMSMQTransactionDispenser2.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser2, @ptrCast(self)), ptransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransactionDispenser2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQTransactionDispenser2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser2, self), ppcolProperties);
+                return @as(*const IMSMQTransactionDispenser2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11464,11 +11464,11 @@ pub const IMSMQTransactionDispenser3 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransactionDispenser3_BeginTransaction(self: *const T, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
-                return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).BeginTransaction(@ptrCast(*const IMSMQTransactionDispenser3, self), ptransaction);
+                return @as(*const IMSMQTransactionDispenser3.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const IMSMQTransactionDispenser3, @ptrCast(self)), ptransaction);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQTransactionDispenser3_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQTransactionDispenser3.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQTransactionDispenser3, self), ppcolProperties);
+                return @as(*const IMSMQTransactionDispenser3.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQTransactionDispenser3, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11499,7 +11499,7 @@ pub const IMSMQApplication = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication_MachineIdOfMachineName(self: *const T, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQApplication.VTable, self.vtable).MachineIdOfMachineName(@ptrCast(*const IMSMQApplication, self), MachineName, pbstrGuid);
+                return @as(*const IMSMQApplication.VTable, @ptrCast(self.vtable)).MachineIdOfMachineName(@as(*const IMSMQApplication, @ptrCast(self)), MachineName, pbstrGuid);
             }
         };
     }
@@ -11607,31 +11607,31 @@ pub const IMSMQApplication2 = extern struct {
             pub usingnamespace IMSMQApplication.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_RegisterCertificate(self: *const T, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).RegisterCertificate(@ptrCast(*const IMSMQApplication2, self), Flags, ExternalCertificate);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).RegisterCertificate(@as(*const IMSMQApplication2, @ptrCast(self)), Flags, ExternalCertificate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_MachineNameOfMachineId(self: *const T, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).MachineNameOfMachineId(@ptrCast(*const IMSMQApplication2, self), bstrGuid, pbstrMachineName);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).MachineNameOfMachineId(@as(*const IMSMQApplication2, @ptrCast(self)), bstrGuid, pbstrMachineName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_get_MSMQVersionMajor(self: *const T, psMSMQVersionMajor: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMajor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMajor);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionMajor(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionMajor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_get_MSMQVersionMinor(self: *const T, psMSMQVersionMinor: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionMinor(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionMinor);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionMinor(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionMinor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_get_MSMQVersionBuild(self: *const T, psMSMQVersionBuild: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_MSMQVersionBuild(@ptrCast(*const IMSMQApplication2, self), psMSMQVersionBuild);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_MSMQVersionBuild(@as(*const IMSMQApplication2, @ptrCast(self)), psMSMQVersionBuild);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_get_IsDsEnabled(self: *const T, pfIsDsEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_IsDsEnabled(@ptrCast(*const IMSMQApplication2, self), pfIsDsEnabled);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_IsDsEnabled(@as(*const IMSMQApplication2, @ptrCast(self)), pfIsDsEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication2_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQApplication2.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQApplication2, self), ppcolProperties);
+                return @as(*const IMSMQApplication2.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQApplication2, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -11765,43 +11765,43 @@ pub const IMSMQApplication3 = extern struct {
             pub usingnamespace IMSMQApplication2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_ActiveQueues(self: *const T, pvActiveQueues: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_ActiveQueues(@ptrCast(*const IMSMQApplication3, self), pvActiveQueues);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_ActiveQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvActiveQueues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_PrivateQueues(self: *const T, pvPrivateQueues: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_PrivateQueues(@ptrCast(*const IMSMQApplication3, self), pvPrivateQueues);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_PrivateQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvPrivateQueues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_DirectoryServiceServer(self: *const T, pbstrDirectoryServiceServer: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_DirectoryServiceServer(@ptrCast(*const IMSMQApplication3, self), pbstrDirectoryServiceServer);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_DirectoryServiceServer(@as(*const IMSMQApplication3, @ptrCast(self)), pbstrDirectoryServiceServer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_IsConnected(self: *const T, pfIsConnected: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_IsConnected(@ptrCast(*const IMSMQApplication3, self), pfIsConnected);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const IMSMQApplication3, @ptrCast(self)), pfIsConnected);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_BytesInAllQueues(self: *const T, pvBytesInAllQueues: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_BytesInAllQueues(@ptrCast(*const IMSMQApplication3, self), pvBytesInAllQueues);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_BytesInAllQueues(@as(*const IMSMQApplication3, @ptrCast(self)), pvBytesInAllQueues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_put_Machine(self: *const T, bstrMachine: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).put_Machine(@ptrCast(*const IMSMQApplication3, self), bstrMachine);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).put_Machine(@as(*const IMSMQApplication3, @ptrCast(self)), bstrMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQApplication3, self), pbstrMachine);
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).get_Machine(@as(*const IMSMQApplication3, @ptrCast(self)), pbstrMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_Connect(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Connect(@ptrCast(*const IMSMQApplication3, self));
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Connect(@as(*const IMSMQApplication3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_Disconnect(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Disconnect(@ptrCast(*const IMSMQApplication3, self));
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IMSMQApplication3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQApplication3_Tidy(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQApplication3.VTable, self.vtable).Tidy(@ptrCast(*const IMSMQApplication3, self));
+                return @as(*const IMSMQApplication3.VTable, @ptrCast(self.vtable)).Tidy(@as(*const IMSMQApplication3, @ptrCast(self)));
             }
         };
     }
@@ -11986,59 +11986,59 @@ pub const IMSMQDestination = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_Open(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Open(@ptrCast(*const IMSMQDestination, self));
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).Open(@as(*const IMSMQDestination, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_Close(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).Close(@ptrCast(*const IMSMQDestination, self));
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).Close(@as(*const IMSMQDestination, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_IsOpen(self: *const T, pfIsOpen: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IsOpen(@ptrCast(*const IMSMQDestination, self), pfIsOpen);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_IsOpen(@as(*const IMSMQDestination, @ptrCast(self)), pfIsOpen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_IADs(self: *const T, ppIADs: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_IADs(@ptrCast(*const IMSMQDestination, self), ppIADs);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_IADs(@as(*const IMSMQDestination, @ptrCast(self)), ppIADs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_putref_IADs(self: *const T, pIADs: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_IADs(@ptrCast(*const IMSMQDestination, self), pIADs);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).putref_IADs(@as(*const IMSMQDestination, @ptrCast(self)), pIADs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_ADsPath(self: *const T, pbstrADsPath: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_ADsPath(@ptrCast(*const IMSMQDestination, self), pbstrADsPath);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_ADsPath(@as(*const IMSMQDestination, @ptrCast(self)), pbstrADsPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_put_ADsPath(self: *const T, bstrADsPath: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_ADsPath(@ptrCast(*const IMSMQDestination, self), bstrADsPath);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_ADsPath(@as(*const IMSMQDestination, @ptrCast(self)), bstrADsPath);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_PathName(self: *const T, pbstrPathName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_PathName(@ptrCast(*const IMSMQDestination, self), pbstrPathName);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_PathName(@as(*const IMSMQDestination, @ptrCast(self)), pbstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_put_PathName(self: *const T, bstrPathName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_PathName(@ptrCast(*const IMSMQDestination, self), bstrPathName);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_PathName(@as(*const IMSMQDestination, @ptrCast(self)), bstrPathName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQDestination, self), pbstrFormatName);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQDestination, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_put_FormatName(self: *const T, bstrFormatName: ?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).put_FormatName(@ptrCast(*const IMSMQDestination, self), bstrFormatName);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).put_FormatName(@as(*const IMSMQDestination, @ptrCast(self)), bstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_Destinations(self: *const T, ppDestinations: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Destinations(@ptrCast(*const IMSMQDestination, self), ppDestinations);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_Destinations(@as(*const IMSMQDestination, @ptrCast(self)), ppDestinations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_putref_Destinations(self: *const T, pDestinations: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).putref_Destinations(@ptrCast(*const IMSMQDestination, self), pDestinations);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).putref_Destinations(@as(*const IMSMQDestination, @ptrCast(self)), pDestinations);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQDestination_get_Properties(self: *const T, ppcolProperties: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const IMSMQDestination.VTable, self.vtable).get_Properties(@ptrCast(*const IMSMQDestination, self), ppcolProperties);
+                return @as(*const IMSMQDestination.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IMSMQDestination, @ptrCast(self)), ppcolProperties);
             }
         };
     }
@@ -12083,11 +12083,11 @@ pub const IMSMQPrivateDestination = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQPrivateDestination_get_Handle(self: *const T, pvarHandle: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).get_Handle(@ptrCast(*const IMSMQPrivateDestination, self), pvarHandle);
+                return @as(*const IMSMQPrivateDestination.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const IMSMQPrivateDestination, @ptrCast(self)), pvarHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQPrivateDestination_put_Handle(self: *const T, varHandle: VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQPrivateDestination.VTable, self.vtable).put_Handle(@ptrCast(*const IMSMQPrivateDestination, self), varHandle);
+                return @as(*const IMSMQPrivateDestination.VTable, @ptrCast(self.vtable)).put_Handle(@as(*const IMSMQPrivateDestination, @ptrCast(self)), varHandle);
             }
         };
     }
@@ -12141,15 +12141,15 @@ pub const IMSMQCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCollection_Item(self: *const T, Index: ?*VARIANT, pvarRet: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQCollection.VTable, self.vtable).Item(@ptrCast(*const IMSMQCollection, self), Index, pvarRet);
+                return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const IMSMQCollection, @ptrCast(self)), Index, pvarRet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQCollection.VTable, self.vtable).get_Count(@ptrCast(*const IMSMQCollection, self), pCount);
+                return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMSMQCollection, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQCollection__NewEnum(self: *const T, ppunk: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IMSMQCollection.VTable, self.vtable)._NewEnum(@ptrCast(*const IMSMQCollection, self), ppunk);
+                return @as(*const IMSMQCollection.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const IMSMQCollection, @ptrCast(self)), ppunk);
             }
         };
     }
@@ -12286,39 +12286,39 @@ pub const IMSMQManagement = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_Init(self: *const T, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).Init(@ptrCast(*const IMSMQManagement, self), Machine, Pathname, FormatName);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).Init(@as(*const IMSMQManagement, @ptrCast(self)), Machine, Pathname, FormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_FormatName(self: *const T, pbstrFormatName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_FormatName(@ptrCast(*const IMSMQManagement, self), pbstrFormatName);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_FormatName(@as(*const IMSMQManagement, @ptrCast(self)), pbstrFormatName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_Machine(self: *const T, pbstrMachine: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_Machine(@ptrCast(*const IMSMQManagement, self), pbstrMachine);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_Machine(@as(*const IMSMQManagement, @ptrCast(self)), pbstrMachine);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_MessageCount(self: *const T, plMessageCount: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_MessageCount(@ptrCast(*const IMSMQManagement, self), plMessageCount);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_MessageCount(@as(*const IMSMQManagement, @ptrCast(self)), plMessageCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_ForeignStatus(self: *const T, plForeignStatus: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_ForeignStatus(@ptrCast(*const IMSMQManagement, self), plForeignStatus);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_ForeignStatus(@as(*const IMSMQManagement, @ptrCast(self)), plForeignStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_QueueType(self: *const T, plQueueType: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_QueueType(@ptrCast(*const IMSMQManagement, self), plQueueType);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_QueueType(@as(*const IMSMQManagement, @ptrCast(self)), plQueueType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_IsLocal(self: *const T, pfIsLocal: ?*i16) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_IsLocal(@ptrCast(*const IMSMQManagement, self), pfIsLocal);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_IsLocal(@as(*const IMSMQManagement, @ptrCast(self)), pfIsLocal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_TransactionalStatus(self: *const T, plTransactionalStatus: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_TransactionalStatus(@ptrCast(*const IMSMQManagement, self), plTransactionalStatus);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_TransactionalStatus(@as(*const IMSMQManagement, @ptrCast(self)), plTransactionalStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQManagement_get_BytesInQueue(self: *const T, pvBytesInQueue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQManagement.VTable, self.vtable).get_BytesInQueue(@ptrCast(*const IMSMQManagement, self), pvBytesInQueue);
+                return @as(*const IMSMQManagement.VTable, @ptrCast(self.vtable)).get_BytesInQueue(@as(*const IMSMQManagement, @ptrCast(self)), pvBytesInQueue);
             }
         };
     }
@@ -12397,27 +12397,27 @@ pub const IMSMQOutgoingQueueManagement = extern struct {
             pub usingnamespace IMSMQManagement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_get_State(self: *const T, plState: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_State(@ptrCast(*const IMSMQOutgoingQueueManagement, self), plState);
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).get_State(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), plState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_get_NextHops(self: *const T, pvNextHops: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).get_NextHops(@ptrCast(*const IMSMQOutgoingQueueManagement, self), pvNextHops);
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).get_NextHops(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), pvNextHops);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_EodGetSendInfo(self: *const T, ppCollection: ?*?*IMSMQCollection) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodGetSendInfo(@ptrCast(*const IMSMQOutgoingQueueManagement, self), ppCollection);
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).EodGetSendInfo(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Resume(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).Resume(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_Pause(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).Pause(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQOutgoingQueueManagement_EodResend(self: *const T) HRESULT {
-                return @ptrCast(*const IMSMQOutgoingQueueManagement.VTable, self.vtable).EodResend(@ptrCast(*const IMSMQOutgoingQueueManagement, self));
+                return @as(*const IMSMQOutgoingQueueManagement.VTable, @ptrCast(self.vtable)).EodResend(@as(*const IMSMQOutgoingQueueManagement, @ptrCast(self)));
             }
         };
     }
@@ -12472,15 +12472,15 @@ pub const IMSMQQueueManagement = extern struct {
             pub usingnamespace IMSMQManagement.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueManagement_get_JournalMessageCount(self: *const T, plJournalMessageCount: ?*i32) HRESULT {
-                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_JournalMessageCount(@ptrCast(*const IMSMQQueueManagement, self), plJournalMessageCount);
+                return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).get_JournalMessageCount(@as(*const IMSMQQueueManagement, @ptrCast(self)), plJournalMessageCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueManagement_get_BytesInJournal(self: *const T, pvBytesInJournal: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).get_BytesInJournal(@ptrCast(*const IMSMQQueueManagement, self), pvBytesInJournal);
+                return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).get_BytesInJournal(@as(*const IMSMQQueueManagement, @ptrCast(self)), pvBytesInJournal);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMSMQQueueManagement_EodGetReceiveInfo(self: *const T, pvCollection: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IMSMQQueueManagement.VTable, self.vtable).EodGetReceiveInfo(@ptrCast(*const IMSMQQueueManagement, self), pvCollection);
+                return @as(*const IMSMQQueueManagement.VTable, @ptrCast(self.vtable)).EodGetReceiveInfo(@as(*const IMSMQQueueManagement, @ptrCast(self)), pvCollection);
             }
         };
     }

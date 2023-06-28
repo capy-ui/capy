@@ -718,15 +718,15 @@ pub const IKsControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsControl_KsProperty(self: *const T, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const IKsControl.VTable, self.vtable).KsProperty(@ptrCast(*const IKsControl, self), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
+                return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsProperty(@as(*const IKsControl, @ptrCast(self)), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsControl_KsMethod(self: *const T, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const IKsControl.VTable, self.vtable).KsMethod(@ptrCast(*const IKsControl, self), Method, MethodLength, MethodData, DataLength, BytesReturned);
+                return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsMethod(@as(*const IKsControl, @ptrCast(self)), Method, MethodLength, MethodData, DataLength, BytesReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsControl_KsEvent(self: *const T, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const IKsControl.VTable, self.vtable).KsEvent(@ptrCast(*const IKsControl, self), Event, EventLength, EventData, DataLength, BytesReturned);
+                return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsEvent(@as(*const IKsControl, @ptrCast(self)), Event, EventLength, EventData, DataLength, BytesReturned);
             }
         };
     }
@@ -770,11 +770,11 @@ pub const IKsFormatSupport = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsFormatSupport_IsFormatSupported(self: *const T, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) HRESULT {
-                return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).IsFormatSupported(@ptrCast(*const IKsFormatSupport, self), pKsFormat, cbFormat, pbSupported);
+                return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).IsFormatSupported(@as(*const IKsFormatSupport, @ptrCast(self)), pKsFormat, cbFormat, pbSupported);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsFormatSupport_GetDevicePreferredFormat(self: *const T, ppKsFormat: ?*?*KSDATAFORMAT) HRESULT {
-                return @ptrCast(*const IKsFormatSupport.VTable, self.vtable).GetDevicePreferredFormat(@ptrCast(*const IKsFormatSupport, self), ppKsFormat);
+                return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).GetDevicePreferredFormat(@as(*const IKsFormatSupport, @ptrCast(self)), ppKsFormat);
             }
         };
     }
@@ -816,11 +816,11 @@ pub const IKsJackDescription = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackDescription_GetJackCount(self: *const T, pcJacks: ?*u32) HRESULT {
-                return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription, self), pcJacks);
+                return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription, @ptrCast(self)), pcJacks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackDescription_GetJackDescription(self: *const T, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) HRESULT {
-                return @ptrCast(*const IKsJackDescription.VTable, self.vtable).GetJackDescription(@ptrCast(*const IKsJackDescription, self), nJack, pDescription);
+                return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackDescription(@as(*const IKsJackDescription, @ptrCast(self)), nJack, pDescription);
             }
         };
     }
@@ -862,11 +862,11 @@ pub const IKsJackDescription2 = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackDescription2_GetJackCount(self: *const T, pcJacks: ?*u32) HRESULT {
-                return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackCount(@ptrCast(*const IKsJackDescription2, self), pcJacks);
+                return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription2, @ptrCast(self)), pcJacks);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackDescription2_GetJackDescription2(self: *const T, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) HRESULT {
-                return @ptrCast(*const IKsJackDescription2.VTable, self.vtable).GetJackDescription2(@ptrCast(*const IKsJackDescription2, self), nJack, pDescription2);
+                return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackDescription2(@as(*const IKsJackDescription2, @ptrCast(self)), nJack, pDescription2);
             }
         };
     }
@@ -896,7 +896,7 @@ pub const IKsJackSinkInformation = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackSinkInformation_GetJackSinkInformation(self: *const T, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) HRESULT {
-                return @ptrCast(*const IKsJackSinkInformation.VTable, self.vtable).GetJackSinkInformation(@ptrCast(*const IKsJackSinkInformation, self), pJackSinkInformation);
+                return @as(*const IKsJackSinkInformation.VTable, @ptrCast(self.vtable)).GetJackSinkInformation(@as(*const IKsJackSinkInformation, @ptrCast(self)), pJackSinkInformation);
             }
         };
     }
@@ -925,7 +925,7 @@ pub const IKsJackContainerId = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsJackContainerId_GetJackContainerId(self: *const T, pJackContainerId: ?*Guid) HRESULT {
-                return @ptrCast(*const IKsJackContainerId.VTable, self.vtable).GetJackContainerId(@ptrCast(*const IKsJackContainerId, self), pJackContainerId);
+                return @as(*const IKsJackContainerId.VTable, @ptrCast(self.vtable)).GetJackContainerId(@as(*const IKsJackContainerId, @ptrCast(self)), pJackContainerId);
             }
         };
     }
@@ -7273,15 +7273,15 @@ pub const IKsPropertySet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsPropertySet_Set(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) HRESULT {
-                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Set(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
+                return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Set(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsPropertySet_Get(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) HRESULT {
-                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Get(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
+                return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Get(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsPropertySet_QuerySupported(self: *const T, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) HRESULT {
-                return @ptrCast(*const IKsPropertySet.VTable, self.vtable).QuerySupported(@ptrCast(*const IKsPropertySet, self), PropSet, Id, TypeSupport);
+                return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).QuerySupported(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, TypeSupport);
             }
         };
     }
@@ -7320,11 +7320,11 @@ pub const IKsAggregateControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsAggregateControl_KsAddAggregate(self: *const T, AggregateClass: ?*const Guid) HRESULT {
-                return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsAddAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
+                return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsAddAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsAggregateControl_KsRemoveAggregate(self: *const T, AggregateClass: ?*const Guid) HRESULT {
-                return @ptrCast(*const IKsAggregateControl.VTable, self.vtable).KsRemoveAggregate(@ptrCast(*const IKsAggregateControl, self), AggregateClass);
+                return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsRemoveAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
             }
         };
     }
@@ -7363,7 +7363,7 @@ pub const IKsTopology = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IKsTopology_CreateNodeInstance(self: *const T, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IKsTopology.VTable, self.vtable).CreateNodeInstance(@ptrCast(*const IKsTopology, self), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
+                return @as(*const IKsTopology.VTable, @ptrCast(self.vtable)).CreateNodeInstance(@as(*const IKsTopology, @ptrCast(self)), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
             }
         };
     }

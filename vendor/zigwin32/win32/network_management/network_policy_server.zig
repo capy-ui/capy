@@ -1168,39 +1168,39 @@ pub const ISdoMachine = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_Attach(self: *const T, bstrComputerName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).Attach(@ptrCast(*const ISdoMachine, self), bstrComputerName);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).Attach(@as(*const ISdoMachine, @ptrCast(self)), bstrComputerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetDictionarySDO(self: *const T, ppDictionarySDO: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetDictionarySDO(@ptrCast(*const ISdoMachine, self), ppDictionarySDO);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetDictionarySDO(@as(*const ISdoMachine, @ptrCast(self)), ppDictionarySDO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetServiceSDO(self: *const T, eDataStore: IASDATASTORE, bstrServiceName: ?BSTR, ppServiceSDO: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetServiceSDO(@ptrCast(*const ISdoMachine, self), eDataStore, bstrServiceName, ppServiceSDO);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetServiceSDO(@as(*const ISdoMachine, @ptrCast(self)), eDataStore, bstrServiceName, ppServiceSDO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetUserSDO(self: *const T, eDataStore: IASDATASTORE, bstrUserName: ?BSTR, ppUserSDO: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetUserSDO(@ptrCast(*const ISdoMachine, self), eDataStore, bstrUserName, ppUserSDO);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetUserSDO(@as(*const ISdoMachine, @ptrCast(self)), eDataStore, bstrUserName, ppUserSDO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetOSType(self: *const T, eOSType: ?*IASOSTYPE) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetOSType(@ptrCast(*const ISdoMachine, self), eOSType);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetOSType(@as(*const ISdoMachine, @ptrCast(self)), eOSType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetDomainType(self: *const T, eDomainType: ?*IASDOMAINTYPE) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetDomainType(@ptrCast(*const ISdoMachine, self), eDomainType);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const ISdoMachine, @ptrCast(self)), eDomainType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_IsDirectoryAvailable(self: *const T, boolDirectoryAvailable: ?*i16) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).IsDirectoryAvailable(@ptrCast(*const ISdoMachine, self), boolDirectoryAvailable);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).IsDirectoryAvailable(@as(*const ISdoMachine, @ptrCast(self)), boolDirectoryAvailable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetAttachedComputer(self: *const T, bstrComputerName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetAttachedComputer(@ptrCast(*const ISdoMachine, self), bstrComputerName);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetAttachedComputer(@as(*const ISdoMachine, @ptrCast(self)), bstrComputerName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine_GetSDOSchema(self: *const T, ppSDOSchema: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoMachine.VTable, self.vtable).GetSDOSchema(@ptrCast(*const ISdoMachine, self), ppSDOSchema);
+                return @as(*const ISdoMachine.VTable, @ptrCast(self.vtable)).GetSDOSchema(@as(*const ISdoMachine, @ptrCast(self)), ppSDOSchema);
             }
         };
     }
@@ -1275,23 +1275,23 @@ pub const ISdoMachine2 = extern struct {
             pub usingnamespace ISdoMachine.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine2_GetTemplatesSDO(self: *const T, bstrServiceName: ?BSTR, ppTemplatesSDO: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoMachine2.VTable, self.vtable).GetTemplatesSDO(@ptrCast(*const ISdoMachine2, self), bstrServiceName, ppTemplatesSDO);
+                return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).GetTemplatesSDO(@as(*const ISdoMachine2, @ptrCast(self)), bstrServiceName, ppTemplatesSDO);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine2_EnableTemplates(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoMachine2.VTable, self.vtable).EnableTemplates(@ptrCast(*const ISdoMachine2, self));
+                return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).EnableTemplates(@as(*const ISdoMachine2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine2_SyncConfigAgainstTemplates(self: *const T, bstrServiceName: ?BSTR, ppConfigRoot: ?*?*IUnknown, ppTemplatesRoot: ?*?*IUnknown, bForcedSync: i16) HRESULT {
-                return @ptrCast(*const ISdoMachine2.VTable, self.vtable).SyncConfigAgainstTemplates(@ptrCast(*const ISdoMachine2, self), bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
+                return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).SyncConfigAgainstTemplates(@as(*const ISdoMachine2, @ptrCast(self)), bstrServiceName, ppConfigRoot, ppTemplatesRoot, bForcedSync);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine2_ImportRemoteTemplates(self: *const T, pLocalTemplatesRoot: ?*IUnknown, bstrRemoteMachineName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISdoMachine2.VTable, self.vtable).ImportRemoteTemplates(@ptrCast(*const ISdoMachine2, self), pLocalTemplatesRoot, bstrRemoteMachineName);
+                return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).ImportRemoteTemplates(@as(*const ISdoMachine2, @ptrCast(self)), pLocalTemplatesRoot, bstrRemoteMachineName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoMachine2_Reload(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoMachine2.VTable, self.vtable).Reload(@ptrCast(*const ISdoMachine2, self));
+                return @as(*const ISdoMachine2.VTable, @ptrCast(self.vtable)).Reload(@as(*const ISdoMachine2, @ptrCast(self)));
             }
         };
     }
@@ -1345,19 +1345,19 @@ pub const ISdoServiceControl = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoServiceControl_StartService(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).StartService(@ptrCast(*const ISdoServiceControl, self));
+                return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).StartService(@as(*const ISdoServiceControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoServiceControl_StopService(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).StopService(@ptrCast(*const ISdoServiceControl, self));
+                return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).StopService(@as(*const ISdoServiceControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoServiceControl_GetServiceStatus(self: *const T, status: ?*i32) HRESULT {
-                return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).GetServiceStatus(@ptrCast(*const ISdoServiceControl, self), status);
+                return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).GetServiceStatus(@as(*const ISdoServiceControl, @ptrCast(self)), status);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoServiceControl_ResetService(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).ResetService(@ptrCast(*const ISdoServiceControl, self));
+                return @as(*const ISdoServiceControl.VTable, @ptrCast(self.vtable)).ResetService(@as(*const ISdoServiceControl, @ptrCast(self)));
             }
         };
     }
@@ -1452,31 +1452,31 @@ pub const ISdo = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_GetPropertyInfo(self: *const T, Id: i32, ppPropertyInfo: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).GetPropertyInfo(@ptrCast(*const ISdo, self), Id, ppPropertyInfo);
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).GetPropertyInfo(@as(*const ISdo, @ptrCast(self)), Id, ppPropertyInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_GetProperty(self: *const T, Id: i32, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).GetProperty(@ptrCast(*const ISdo, self), Id, pValue);
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ISdo, @ptrCast(self)), Id, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_PutProperty(self: *const T, Id: i32, pValue: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).PutProperty(@ptrCast(*const ISdo, self), Id, pValue);
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const ISdo, @ptrCast(self)), Id, pValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_ResetProperty(self: *const T, Id: i32) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).ResetProperty(@ptrCast(*const ISdo, self), Id);
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).ResetProperty(@as(*const ISdo, @ptrCast(self)), Id);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_Apply(self: *const T) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).Apply(@ptrCast(*const ISdo, self));
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).Apply(@as(*const ISdo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).Restore(@ptrCast(*const ISdo, self));
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).Restore(@as(*const ISdo, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdo_get__NewEnum(self: *const T, ppEnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdo.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISdo, self), ppEnumVARIANT);
+                return @as(*const ISdo.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISdo, @ptrCast(self)), ppEnumVARIANT);
             }
         };
     }
@@ -1584,35 +1584,35 @@ pub const ISdoCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_get_Count(self: *const T, pCount: ?*i32) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).get_Count(@ptrCast(*const ISdoCollection, self), pCount);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISdoCollection, @ptrCast(self)), pCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_Add(self: *const T, bstrName: ?BSTR, ppItem: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).Add(@ptrCast(*const ISdoCollection, self), bstrName, ppItem);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISdoCollection, @ptrCast(self)), bstrName, ppItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_Remove(self: *const T, pItem: ?*IDispatch) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).Remove(@ptrCast(*const ISdoCollection, self), pItem);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISdoCollection, @ptrCast(self)), pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_RemoveAll(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).RemoveAll(@ptrCast(*const ISdoCollection, self));
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).RemoveAll(@as(*const ISdoCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_Reload(self: *const T) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).Reload(@ptrCast(*const ISdoCollection, self));
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Reload(@as(*const ISdoCollection, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_IsNameUnique(self: *const T, bstrName: ?BSTR, pBool: ?*i16) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).IsNameUnique(@ptrCast(*const ISdoCollection, self), bstrName, pBool);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).IsNameUnique(@as(*const ISdoCollection, @ptrCast(self)), bstrName, pBool);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_Item(self: *const T, Name: ?*VARIANT, pItem: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).Item(@ptrCast(*const ISdoCollection, self), Name, pItem);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).Item(@as(*const ISdoCollection, @ptrCast(self)), Name, pItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoCollection_get__NewEnum(self: *const T, ppEnumVARIANT: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const ISdoCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const ISdoCollection, self), ppEnumVARIANT);
+                return @as(*const ISdoCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISdoCollection, @ptrCast(self)), ppEnumVARIANT);
             }
         };
     }
@@ -1671,15 +1671,15 @@ pub const ITemplateSdo = extern struct {
             pub usingnamespace ISdo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITemplateSdo_AddToCollection(self: *const T, bstrName: ?BSTR, pCollection: ?*IDispatch, ppItem: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ITemplateSdo.VTable, self.vtable).AddToCollection(@ptrCast(*const ITemplateSdo, self), bstrName, pCollection, ppItem);
+                return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToCollection(@as(*const ITemplateSdo, @ptrCast(self)), bstrName, pCollection, ppItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITemplateSdo_AddToSdo(self: *const T, bstrName: ?BSTR, pSdoTarget: ?*IDispatch, ppItem: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ITemplateSdo.VTable, self.vtable).AddToSdo(@ptrCast(*const ITemplateSdo, self), bstrName, pSdoTarget, ppItem);
+                return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToSdo(@as(*const ITemplateSdo, @ptrCast(self)), bstrName, pSdoTarget, ppItem);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITemplateSdo_AddToSdoAsProperty(self: *const T, pSdoTarget: ?*IDispatch, id: i32) HRESULT {
-                return @ptrCast(*const ITemplateSdo.VTable, self.vtable).AddToSdoAsProperty(@ptrCast(*const ITemplateSdo, self), pSdoTarget, id);
+                return @as(*const ITemplateSdo.VTable, @ptrCast(self.vtable)).AddToSdoAsProperty(@as(*const ITemplateSdo, @ptrCast(self)), pSdoTarget, id);
             }
         };
     }
@@ -1763,23 +1763,23 @@ pub const ISdoDictionaryOld = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoDictionaryOld_EnumAttributes(self: *const T, Id: ?*VARIANT, pValues: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISdoDictionaryOld.VTable, self.vtable).EnumAttributes(@ptrCast(*const ISdoDictionaryOld, self), Id, pValues);
+                return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).EnumAttributes(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pValues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoDictionaryOld_GetAttributeInfo(self: *const T, Id: ATTRIBUTEID, pInfoIDs: ?*VARIANT, pInfoValues: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISdoDictionaryOld.VTable, self.vtable).GetAttributeInfo(@ptrCast(*const ISdoDictionaryOld, self), Id, pInfoIDs, pInfoValues);
+                return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).GetAttributeInfo(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pInfoIDs, pInfoValues);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoDictionaryOld_EnumAttributeValues(self: *const T, Id: ATTRIBUTEID, pValueIds: ?*VARIANT, pValuesDesc: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ISdoDictionaryOld.VTable, self.vtable).EnumAttributeValues(@ptrCast(*const ISdoDictionaryOld, self), Id, pValueIds, pValuesDesc);
+                return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).EnumAttributeValues(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, pValueIds, pValuesDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoDictionaryOld_CreateAttribute(self: *const T, Id: ATTRIBUTEID, ppAttributeObject: ?*?*IDispatch) HRESULT {
-                return @ptrCast(*const ISdoDictionaryOld.VTable, self.vtable).CreateAttribute(@ptrCast(*const ISdoDictionaryOld, self), Id, ppAttributeObject);
+                return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).CreateAttribute(@as(*const ISdoDictionaryOld, @ptrCast(self)), Id, ppAttributeObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISdoDictionaryOld_GetAttributeID(self: *const T, bstrAttributeName: ?BSTR, pId: ?*ATTRIBUTEID) HRESULT {
-                return @ptrCast(*const ISdoDictionaryOld.VTable, self.vtable).GetAttributeID(@ptrCast(*const ISdoDictionaryOld, self), bstrAttributeName, pId);
+                return @as(*const ISdoDictionaryOld.VTable, @ptrCast(self.vtable)).GetAttributeID(@as(*const ISdoDictionaryOld, @ptrCast(self)), bstrAttributeName, pId);
             }
         };
     }

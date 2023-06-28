@@ -33,19 +33,19 @@ pub const TextArea_Impl = struct {
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @ptrFromInt(*TextArea_Impl, userdata);
+        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
     }
 
     fn wrapperMonospaceChanged(newValue: bool, userdata: usize) void {
-        const self = @ptrFromInt(*TextArea_Impl, userdata);
+        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
         self.peer.?.setMonospaced(newValue);
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @ptrFromInt(*TextArea_Impl, userdata);
+        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
         const text = self.peer.?.getText();
 
         self._wrapperTextBlock.store(true, .Monotonic);

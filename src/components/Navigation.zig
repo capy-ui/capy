@@ -72,8 +72,8 @@ pub const Navigation_Impl = struct {
             defer self.relayouting.store(false, .SeqCst);
 
             const available = Size{
-                .width = @intCast(u32, peer.getWidth()),
-                .height = @intCast(u32, peer.getHeight()),
+                .width = @as(u32, @intCast(peer.getWidth())),
+                .height = @as(u32, @intCast(peer.getHeight())),
             };
 
             if (self.activeChild.peer) |widgetPeer| {

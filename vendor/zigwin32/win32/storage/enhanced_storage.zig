@@ -1407,11 +1407,11 @@ pub const IEnumEnhancedStorageACT = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEnhancedStorageACT_GetACTs(self: *const T, pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT, pcEnhancedStorageACTs: ?*u32) HRESULT {
-                return @ptrCast(*const IEnumEnhancedStorageACT.VTable, self.vtable).GetACTs(@ptrCast(*const IEnumEnhancedStorageACT, self), pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
+                return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetACTs(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageACTs, pcEnhancedStorageACTs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnumEnhancedStorageACT_GetMatchingACT(self: *const T, szVolume: ?[*:0]const u16, ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT) HRESULT {
-                return @ptrCast(*const IEnumEnhancedStorageACT.VTable, self.vtable).GetMatchingACT(@ptrCast(*const IEnumEnhancedStorageACT, self), szVolume, ppIEnhancedStorageACT);
+                return @as(*const IEnumEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingACT(@as(*const IEnumEnhancedStorageACT, @ptrCast(self)), szVolume, ppIEnhancedStorageACT);
             }
         };
     }
@@ -1493,27 +1493,27 @@ pub const IEnhancedStorageACT = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_Authorize(self: *const T, hwndParent: u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).Authorize(@ptrCast(*const IEnhancedStorageACT, self), hwndParent, dwFlags);
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Authorize(@as(*const IEnhancedStorageACT, @ptrCast(self)), hwndParent, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_Unauthorize(self: *const T) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).Unauthorize(@ptrCast(*const IEnhancedStorageACT, self));
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).Unauthorize(@as(*const IEnhancedStorageACT, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_GetAuthorizationState(self: *const T, pState: ?*ACT_AUTHORIZATION_STATE) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetAuthorizationState(@ptrCast(*const IEnhancedStorageACT, self), pState);
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetAuthorizationState(@as(*const IEnhancedStorageACT, @ptrCast(self)), pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_GetMatchingVolume(self: *const T, ppwszVolume: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetMatchingVolume(@ptrCast(*const IEnhancedStorageACT, self), ppwszVolume);
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetMatchingVolume(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_GetUniqueIdentity(self: *const T, ppwszIdentity: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetUniqueIdentity(@ptrCast(*const IEnhancedStorageACT, self), ppwszIdentity);
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetUniqueIdentity(@as(*const IEnhancedStorageACT, @ptrCast(self)), ppwszIdentity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT_GetSilos(self: *const T, pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo, pcEnhancedStorageSilos: ?*u32) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT.VTable, self.vtable).GetSilos(@ptrCast(*const IEnhancedStorageACT, self), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
+                return @as(*const IEnhancedStorageACT.VTable, @ptrCast(self.vtable)).GetSilos(@as(*const IEnhancedStorageACT, @ptrCast(self)), pppIEnhancedStorageSilos, pcEnhancedStorageSilos);
             }
         };
     }
@@ -1553,11 +1553,11 @@ pub const IEnhancedStorageACT2 = extern struct {
             pub usingnamespace IEnhancedStorageACT.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT2_GetDeviceName(self: *const T, ppwszDeviceName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT2.VTable, self.vtable).GetDeviceName(@ptrCast(*const IEnhancedStorageACT2, self), ppwszDeviceName);
+                return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).GetDeviceName(@as(*const IEnhancedStorageACT2, @ptrCast(self)), ppwszDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT2_IsDeviceRemovable(self: *const T, pIsDeviceRemovable: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT2.VTable, self.vtable).IsDeviceRemovable(@ptrCast(*const IEnhancedStorageACT2, self), pIsDeviceRemovable);
+                return @as(*const IEnhancedStorageACT2.VTable, @ptrCast(self.vtable)).IsDeviceRemovable(@as(*const IEnhancedStorageACT2, @ptrCast(self)), pIsDeviceRemovable);
             }
         };
     }
@@ -1606,15 +1606,15 @@ pub const IEnhancedStorageACT3 = extern struct {
             pub usingnamespace IEnhancedStorageACT2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT3_UnauthorizeEx(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).UnauthorizeEx(@ptrCast(*const IEnhancedStorageACT3, self), dwFlags);
+                return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).UnauthorizeEx(@as(*const IEnhancedStorageACT3, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT3_IsQueueFrozen(self: *const T, pIsQueueFrozen: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).IsQueueFrozen(@ptrCast(*const IEnhancedStorageACT3, self), pIsQueueFrozen);
+                return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).IsQueueFrozen(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pIsQueueFrozen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageACT3_GetShellExtSupport(self: *const T, pShellExtSupport: ?*BOOL) HRESULT {
-                return @ptrCast(*const IEnhancedStorageACT3.VTable, self.vtable).GetShellExtSupport(@ptrCast(*const IEnhancedStorageACT3, self), pShellExtSupport);
+                return @as(*const IEnhancedStorageACT3.VTable, @ptrCast(self.vtable)).GetShellExtSupport(@as(*const IEnhancedStorageACT3, @ptrCast(self)), pShellExtSupport);
             }
         };
     }
@@ -1694,23 +1694,23 @@ pub const IEnhancedStorageSilo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSilo_GetInfo(self: *const T, pSiloInfo: ?*SILO_INFO) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetInfo(@ptrCast(*const IEnhancedStorageSilo, self), pSiloInfo);
+                return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pSiloInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSilo_GetActions(self: *const T, pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction, pcEnhancedStorageSiloActions: ?*u32) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetActions(@ptrCast(*const IEnhancedStorageSilo, self), pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
+                return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetActions(@as(*const IEnhancedStorageSilo, @ptrCast(self)), pppIEnhancedStorageSiloActions, pcEnhancedStorageSiloActions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSilo_SendCommand(self: *const T, Command: u8, pbCommandBuffer: [*:0]u8, cbCommandBuffer: u32, pbResponseBuffer: [*:0]u8, pcbResponseBuffer: ?*u32) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).SendCommand(@ptrCast(*const IEnhancedStorageSilo, self), Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
+                return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).SendCommand(@as(*const IEnhancedStorageSilo, @ptrCast(self)), Command, pbCommandBuffer, cbCommandBuffer, pbResponseBuffer, pcbResponseBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSilo_GetPortableDevice(self: *const T, ppIPortableDevice: ?*?*IPortableDevice) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetPortableDevice(@ptrCast(*const IEnhancedStorageSilo, self), ppIPortableDevice);
+                return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetPortableDevice(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppIPortableDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSilo_GetDevicePath(self: *const T, ppwszSiloDevicePath: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSilo.VTable, self.vtable).GetDevicePath(@ptrCast(*const IEnhancedStorageSilo, self), ppwszSiloDevicePath);
+                return @as(*const IEnhancedStorageSilo.VTable, @ptrCast(self.vtable)).GetDevicePath(@as(*const IEnhancedStorageSilo, @ptrCast(self)), ppwszSiloDevicePath);
             }
         };
     }
@@ -1758,15 +1758,15 @@ pub const IEnhancedStorageSiloAction = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSiloAction_GetName(self: *const T, ppwszActionName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSiloAction.VTable, self.vtable).GetName(@ptrCast(*const IEnhancedStorageSiloAction, self), ppwszActionName);
+                return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetName(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSiloAction_GetDescription(self: *const T, ppwszActionDescription: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSiloAction.VTable, self.vtable).GetDescription(@ptrCast(*const IEnhancedStorageSiloAction, self), ppwszActionDescription);
+                return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)), ppwszActionDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEnhancedStorageSiloAction_Invoke(self: *const T) HRESULT {
-                return @ptrCast(*const IEnhancedStorageSiloAction.VTable, self.vtable).Invoke(@ptrCast(*const IEnhancedStorageSiloAction, self));
+                return @as(*const IEnhancedStorageSiloAction.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IEnhancedStorageSiloAction, @ptrCast(self)));
             }
         };
     }

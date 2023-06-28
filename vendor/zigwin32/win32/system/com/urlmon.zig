@@ -408,27 +408,27 @@ pub const IPersistMoniker = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_GetClassID(self: *const T, pClassID: ?*Guid) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).GetClassID(@ptrCast(*const IPersistMoniker, self), pClassID);
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).GetClassID(@as(*const IPersistMoniker, @ptrCast(self)), pClassID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_IsDirty(self: *const T) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).IsDirty(@ptrCast(*const IPersistMoniker, self));
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IPersistMoniker, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_Load(self: *const T, fFullyAvailable: BOOL, pimkName: ?*IMoniker, pibc: ?*IBindCtx, grfMode: u32) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).Load(@ptrCast(*const IPersistMoniker, self), fFullyAvailable, pimkName, pibc, grfMode);
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).Load(@as(*const IPersistMoniker, @ptrCast(self)), fFullyAvailable, pimkName, pibc, grfMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_Save(self: *const T, pimkName: ?*IMoniker, pbc: ?*IBindCtx, fRemember: BOOL) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).Save(@ptrCast(*const IPersistMoniker, self), pimkName, pbc, fRemember);
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).Save(@as(*const IPersistMoniker, @ptrCast(self)), pimkName, pbc, fRemember);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_SaveCompleted(self: *const T, pimkName: ?*IMoniker, pibc: ?*IBindCtx) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).SaveCompleted(@ptrCast(*const IPersistMoniker, self), pimkName, pibc);
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).SaveCompleted(@as(*const IPersistMoniker, @ptrCast(self)), pimkName, pibc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IPersistMoniker_GetCurMoniker(self: *const T, ppimkName: ?*?*IMoniker) HRESULT {
-                return @ptrCast(*const IPersistMoniker.VTable, self.vtable).GetCurMoniker(@ptrCast(*const IPersistMoniker, self), ppimkName);
+                return @as(*const IPersistMoniker.VTable, @ptrCast(self.vtable)).GetCurMoniker(@as(*const IPersistMoniker, @ptrCast(self)), ppimkName);
             }
         };
     }
@@ -472,7 +472,7 @@ pub const IMonikerProp = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IMonikerProp_PutProperty(self: *const T, mkp: MONIKERPROPERTY, val: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IMonikerProp.VTable, self.vtable).PutProperty(@ptrCast(*const IMonikerProp, self), mkp, val);
+                return @as(*const IMonikerProp.VTable, @ptrCast(self.vtable)).PutProperty(@as(*const IMonikerProp, @ptrCast(self)), mkp, val);
             }
         };
     }
@@ -505,7 +505,7 @@ pub const IBindProtocol = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBindProtocol_CreateBinding(self: *const T, szUrl: ?[*:0]const u16, pbc: ?*IBindCtx, ppb: ?*?*IBinding) HRESULT {
-                return @ptrCast(*const IBindProtocol.VTable, self.vtable).CreateBinding(@ptrCast(*const IBindProtocol, self), szUrl, pbc, ppb);
+                return @as(*const IBindProtocol.VTable, @ptrCast(self.vtable)).CreateBinding(@as(*const IBindProtocol, @ptrCast(self)), szUrl, pbc, ppb);
             }
         };
     }
@@ -958,11 +958,11 @@ pub const IHttpNegotiate = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHttpNegotiate_BeginningTransaction(self: *const T, szURL: ?[*:0]const u16, szHeaders: ?[*:0]const u16, dwReserved: u32, pszAdditionalHeaders: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IHttpNegotiate.VTable, self.vtable).BeginningTransaction(@ptrCast(*const IHttpNegotiate, self), szURL, szHeaders, dwReserved, pszAdditionalHeaders);
+                return @as(*const IHttpNegotiate.VTable, @ptrCast(self.vtable)).BeginningTransaction(@as(*const IHttpNegotiate, @ptrCast(self)), szURL, szHeaders, dwReserved, pszAdditionalHeaders);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHttpNegotiate_OnResponse(self: *const T, dwResponseCode: u32, szResponseHeaders: ?[*:0]const u16, szRequestHeaders: ?[*:0]const u16, pszAdditionalRequestHeaders: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IHttpNegotiate.VTable, self.vtable).OnResponse(@ptrCast(*const IHttpNegotiate, self), dwResponseCode, szResponseHeaders, szRequestHeaders, pszAdditionalRequestHeaders);
+                return @as(*const IHttpNegotiate.VTable, @ptrCast(self.vtable)).OnResponse(@as(*const IHttpNegotiate, @ptrCast(self)), dwResponseCode, szResponseHeaders, szRequestHeaders, pszAdditionalRequestHeaders);
             }
         };
     }
@@ -995,7 +995,7 @@ pub const IHttpNegotiate2 = extern struct {
             pub usingnamespace IHttpNegotiate.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHttpNegotiate2_GetRootSecurityId(self: *const T, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IHttpNegotiate2.VTable, self.vtable).GetRootSecurityId(@ptrCast(*const IHttpNegotiate2, self), pbSecurityId, pcbSecurityId, dwReserved);
+                return @as(*const IHttpNegotiate2.VTable, @ptrCast(self.vtable)).GetRootSecurityId(@as(*const IHttpNegotiate2, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
             }
         };
     }
@@ -1026,7 +1026,7 @@ pub const IHttpNegotiate3 = extern struct {
             pub usingnamespace IHttpNegotiate2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHttpNegotiate3_GetSerializedClientCertContext(self: *const T, ppbCert: [*]?*u8, pcbCert: ?*u32) HRESULT {
-                return @ptrCast(*const IHttpNegotiate3.VTable, self.vtable).GetSerializedClientCertContext(@ptrCast(*const IHttpNegotiate3, self), ppbCert, pcbCert);
+                return @as(*const IHttpNegotiate3.VTable, @ptrCast(self.vtable)).GetSerializedClientCertContext(@as(*const IHttpNegotiate3, @ptrCast(self)), ppbCert, pcbCert);
             }
         };
     }
@@ -1067,11 +1067,11 @@ pub const IWinInetFileStream = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetFileStream_SetHandleForUnlock(self: *const T, hWinInetLockHandle: usize, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IWinInetFileStream.VTable, self.vtable).SetHandleForUnlock(@ptrCast(*const IWinInetFileStream, self), hWinInetLockHandle, dwReserved);
+                return @as(*const IWinInetFileStream.VTable, @ptrCast(self.vtable)).SetHandleForUnlock(@as(*const IWinInetFileStream, @ptrCast(self)), hWinInetLockHandle, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetFileStream_SetDeleteFile(self: *const T, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IWinInetFileStream.VTable, self.vtable).SetDeleteFile(@ptrCast(*const IWinInetFileStream, self), dwReserved);
+                return @as(*const IWinInetFileStream.VTable, @ptrCast(self.vtable)).SetDeleteFile(@as(*const IWinInetFileStream, @ptrCast(self)), dwReserved);
             }
         };
     }
@@ -1102,7 +1102,7 @@ pub const IWindowForBindingUI = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWindowForBindingUI_GetWindow(self: *const T, rguidReason: ?*const Guid, phwnd: ?*?HWND) HRESULT {
-                return @ptrCast(*const IWindowForBindingUI.VTable, self.vtable).GetWindow(@ptrCast(*const IWindowForBindingUI, self), rguidReason, phwnd);
+                return @as(*const IWindowForBindingUI.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IWindowForBindingUI, @ptrCast(self)), rguidReason, phwnd);
             }
         };
     }
@@ -1160,7 +1160,7 @@ pub const ICodeInstall = extern struct {
             pub usingnamespace IWindowForBindingUI.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICodeInstall_OnCodeInstallProblem(self: *const T, ulStatusCode: u32, szDestination: ?[*:0]const u16, szSource: ?[*:0]const u16, dwReserved: u32) HRESULT {
-                return @ptrCast(*const ICodeInstall.VTable, self.vtable).OnCodeInstallProblem(@ptrCast(*const ICodeInstall, self), ulStatusCode, szDestination, szSource, dwReserved);
+                return @as(*const ICodeInstall.VTable, @ptrCast(self.vtable)).OnCodeInstallProblem(@as(*const ICodeInstall, @ptrCast(self)), ulStatusCode, szDestination, szSource, dwReserved);
             }
         };
     }
@@ -1202,7 +1202,7 @@ pub const IUriContainer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUriContainer_GetIUri(self: *const T, ppIUri: ?*?*IUri) HRESULT {
-                return @ptrCast(*const IUriContainer.VTable, self.vtable).GetIUri(@ptrCast(*const IUriContainer, self), ppIUri);
+                return @as(*const IUriContainer.VTable, @ptrCast(self.vtable)).GetIUri(@as(*const IUriContainer, @ptrCast(self)), ppIUri);
             }
         };
     }
@@ -1249,11 +1249,11 @@ pub const IUriBuilderFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUriBuilderFactory_CreateIUriBuilder(self: *const T, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) HRESULT {
-                return @ptrCast(*const IUriBuilderFactory.VTable, self.vtable).CreateIUriBuilder(@ptrCast(*const IUriBuilderFactory, self), dwFlags, dwReserved, ppIUriBuilder);
+                return @as(*const IUriBuilderFactory.VTable, @ptrCast(self.vtable)).CreateIUriBuilder(@as(*const IUriBuilderFactory, @ptrCast(self)), dwFlags, dwReserved, ppIUriBuilder);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUriBuilderFactory_CreateInitializedIUriBuilder(self: *const T, dwFlags: u32, dwReserved: usize, ppIUriBuilder: ?*?*IUriBuilder) HRESULT {
-                return @ptrCast(*const IUriBuilderFactory.VTable, self.vtable).CreateInitializedIUriBuilder(@ptrCast(*const IUriBuilderFactory, self), dwFlags, dwReserved, ppIUriBuilder);
+                return @as(*const IUriBuilderFactory.VTable, @ptrCast(self.vtable)).CreateInitializedIUriBuilder(@as(*const IUriBuilderFactory, @ptrCast(self)), dwFlags, dwReserved, ppIUriBuilder);
             }
         };
     }
@@ -1286,7 +1286,7 @@ pub const IWinInetInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetInfo_QueryOption(self: *const T, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32) HRESULT {
-                return @ptrCast(*const IWinInetInfo.VTable, self.vtable).QueryOption(@ptrCast(*const IWinInetInfo, self), dwOption, pBuffer, pcbBuf);
+                return @as(*const IWinInetInfo.VTable, @ptrCast(self.vtable)).QueryOption(@as(*const IWinInetInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf);
             }
         };
     }
@@ -1315,7 +1315,7 @@ pub const IHttpSecurity = extern struct {
             pub usingnamespace IWindowForBindingUI.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IHttpSecurity_OnSecurityProblem(self: *const T, dwProblem: u32) HRESULT {
-                return @ptrCast(*const IHttpSecurity.VTable, self.vtable).OnSecurityProblem(@ptrCast(*const IHttpSecurity, self), dwProblem);
+                return @as(*const IHttpSecurity.VTable, @ptrCast(self.vtable)).OnSecurityProblem(@as(*const IHttpSecurity, @ptrCast(self)), dwProblem);
             }
         };
     }
@@ -1352,7 +1352,7 @@ pub const IWinInetHttpInfo = extern struct {
             pub usingnamespace IWinInetInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetHttpInfo_QueryInfo(self: *const T, dwOption: u32, pBuffer: [*]u8, pcbBuf: ?*u32, pdwFlags: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IWinInetHttpInfo.VTable, self.vtable).QueryInfo(@ptrCast(*const IWinInetHttpInfo, self), dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
+                return @as(*const IWinInetHttpInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IWinInetHttpInfo, @ptrCast(self)), dwOption, pBuffer, pcbBuf, pdwFlags, pdwReserved);
             }
         };
     }
@@ -1385,7 +1385,7 @@ pub const IWinInetHttpTimeouts = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetHttpTimeouts_GetRequestTimeouts(self: *const T, pdwConnectTimeout: ?*u32, pdwSendTimeout: ?*u32, pdwReceiveTimeout: ?*u32) HRESULT {
-                return @ptrCast(*const IWinInetHttpTimeouts.VTable, self.vtable).GetRequestTimeouts(@ptrCast(*const IWinInetHttpTimeouts, self), pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
+                return @as(*const IWinInetHttpTimeouts.VTable, @ptrCast(self.vtable)).GetRequestTimeouts(@as(*const IWinInetHttpTimeouts, @ptrCast(self)), pdwConnectTimeout, pdwSendTimeout, pdwReceiveTimeout);
             }
         };
     }
@@ -1422,7 +1422,7 @@ pub const IWinInetCacheHints = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetCacheHints_SetCacheExtension(self: *const T, pwzExt: ?[*:0]const u16, pszCacheFile: [*]u8, pcbCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IWinInetCacheHints.VTable, self.vtable).SetCacheExtension(@ptrCast(*const IWinInetCacheHints, self), pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
+                return @as(*const IWinInetCacheHints.VTable, @ptrCast(self.vtable)).SetCacheExtension(@as(*const IWinInetCacheHints, @ptrCast(self)), pwzExt, pszCacheFile, pcbCacheFile, pdwWinInetError, pdwReserved);
             }
         };
     }
@@ -1459,7 +1459,7 @@ pub const IWinInetCacheHints2 = extern struct {
             pub usingnamespace IWinInetCacheHints.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWinInetCacheHints2_SetCacheExtension2(self: *const T, pwzExt: ?[*:0]const u16, pwzCacheFile: ?PWSTR, pcchCacheFile: ?*u32, pdwWinInetError: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IWinInetCacheHints2.VTable, self.vtable).SetCacheExtension2(@ptrCast(*const IWinInetCacheHints2, self), pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
+                return @as(*const IWinInetCacheHints2.VTable, @ptrCast(self.vtable)).SetCacheExtension2(@as(*const IWinInetCacheHints2, @ptrCast(self)), pwzExt, pwzCacheFile, pcchCacheFile, pdwWinInetError, pdwReserved);
             }
         };
     }
@@ -1576,11 +1576,11 @@ pub const IInternetBindInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetBindInfo_GetBindInfo(self: *const T, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO) HRESULT {
-                return @ptrCast(*const IInternetBindInfo.VTable, self.vtable).GetBindInfo(@ptrCast(*const IInternetBindInfo, self), grfBINDF, pbindinfo);
+                return @as(*const IInternetBindInfo.VTable, @ptrCast(self.vtable)).GetBindInfo(@as(*const IInternetBindInfo, @ptrCast(self)), grfBINDF, pbindinfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetBindInfo_GetBindString(self: *const T, ulStringType: u32, ppwzStr: ?*?PWSTR, cEl: u32, pcElFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetBindInfo.VTable, self.vtable).GetBindString(@ptrCast(*const IInternetBindInfo, self), ulStringType, ppwzStr, cEl, pcElFetched);
+                return @as(*const IInternetBindInfo.VTable, @ptrCast(self.vtable)).GetBindString(@as(*const IInternetBindInfo, @ptrCast(self)), ulStringType, ppwzStr, cEl, pcElFetched);
             }
         };
     }
@@ -1615,7 +1615,7 @@ pub const IInternetBindInfoEx = extern struct {
             pub usingnamespace IInternetBindInfo.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetBindInfoEx_GetBindInfoEx(self: *const T, grfBINDF: ?*u32, pbindinfo: ?*BINDINFO, grfBINDF2: ?*u32, pdwReserved: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetBindInfoEx.VTable, self.vtable).GetBindInfoEx(@ptrCast(*const IInternetBindInfoEx, self), grfBINDF, pbindinfo, grfBINDF2, pdwReserved);
+                return @as(*const IInternetBindInfoEx.VTable, @ptrCast(self.vtable)).GetBindInfoEx(@as(*const IInternetBindInfoEx, @ptrCast(self)), grfBINDF, pbindinfo, grfBINDF2, pdwReserved);
             }
         };
     }
@@ -1746,27 +1746,27 @@ pub const IInternetProtocolRoot = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Start(self: *const T, szUrl: ?[*:0]const u16, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Start(@ptrCast(*const IInternetProtocolRoot, self), szUrl, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Start(@as(*const IInternetProtocolRoot, @ptrCast(self)), szUrl, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Continue(self: *const T, pProtocolData: ?*PROTOCOLDATA) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Continue(@ptrCast(*const IInternetProtocolRoot, self), pProtocolData);
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Continue(@as(*const IInternetProtocolRoot, @ptrCast(self)), pProtocolData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Abort(self: *const T, hrReason: HRESULT, dwOptions: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Abort(@ptrCast(*const IInternetProtocolRoot, self), hrReason, dwOptions);
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Abort(@as(*const IInternetProtocolRoot, @ptrCast(self)), hrReason, dwOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Terminate(self: *const T, dwOptions: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Terminate(@ptrCast(*const IInternetProtocolRoot, self), dwOptions);
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IInternetProtocolRoot, @ptrCast(self)), dwOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Suspend(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Suspend(@ptrCast(*const IInternetProtocolRoot, self));
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IInternetProtocolRoot, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolRoot_Resume(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetProtocolRoot.VTable, self.vtable).Resume(@ptrCast(*const IInternetProtocolRoot, self));
+                return @as(*const IInternetProtocolRoot.VTable, @ptrCast(self.vtable)).Resume(@as(*const IInternetProtocolRoot, @ptrCast(self)));
             }
         };
     }
@@ -1831,19 +1831,19 @@ pub const IInternetProtocol = extern struct {
             pub usingnamespace IInternetProtocolRoot.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocol_Read(self: *const T, pv: [*]u8, cb: u32, pcbRead: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetProtocol.VTable, self.vtable).Read(@ptrCast(*const IInternetProtocol, self), pv, cb, pcbRead);
+                return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).Read(@as(*const IInternetProtocol, @ptrCast(self)), pv, cb, pcbRead);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocol_Seek(self: *const T, dlibMove: LARGE_INTEGER, dwOrigin: u32, plibNewPosition: ?*ULARGE_INTEGER) HRESULT {
-                return @ptrCast(*const IInternetProtocol.VTable, self.vtable).Seek(@ptrCast(*const IInternetProtocol, self), dlibMove, dwOrigin, plibNewPosition);
+                return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).Seek(@as(*const IInternetProtocol, @ptrCast(self)), dlibMove, dwOrigin, plibNewPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocol_LockRequest(self: *const T, dwOptions: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocol.VTable, self.vtable).LockRequest(@ptrCast(*const IInternetProtocol, self), dwOptions);
+                return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).LockRequest(@as(*const IInternetProtocol, @ptrCast(self)), dwOptions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocol_UnlockRequest(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetProtocol.VTable, self.vtable).UnlockRequest(@ptrCast(*const IInternetProtocol, self));
+                return @as(*const IInternetProtocol.VTable, @ptrCast(self.vtable)).UnlockRequest(@as(*const IInternetProtocol, @ptrCast(self)));
             }
         };
     }
@@ -1880,7 +1880,7 @@ pub const IInternetProtocolEx = extern struct {
             pub usingnamespace IInternetProtocol.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolEx_StartEx(self: *const T, pUri: ?*IUri, pOIProtSink: ?*IInternetProtocolSink, pOIBindInfo: ?*IInternetBindInfo, grfPI: u32, dwReserved: HANDLE_PTR) HRESULT {
-                return @ptrCast(*const IInternetProtocolEx.VTable, self.vtable).StartEx(@ptrCast(*const IInternetProtocolEx, self), pUri, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
+                return @as(*const IInternetProtocolEx.VTable, @ptrCast(self.vtable)).StartEx(@as(*const IInternetProtocolEx, @ptrCast(self)), pUri, pOIProtSink, pOIBindInfo, grfPI, dwReserved);
             }
         };
     }
@@ -1949,19 +1949,19 @@ pub const IInternetProtocolSink = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSink_Switch(self: *const T, pProtocolData: ?*PROTOCOLDATA) HRESULT {
-                return @ptrCast(*const IInternetProtocolSink.VTable, self.vtable).Switch(@ptrCast(*const IInternetProtocolSink, self), pProtocolData);
+                return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).Switch(@as(*const IInternetProtocolSink, @ptrCast(self)), pProtocolData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSink_ReportProgress(self: *const T, ulStatusCode: u32, szStatusText: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IInternetProtocolSink.VTable, self.vtable).ReportProgress(@ptrCast(*const IInternetProtocolSink, self), ulStatusCode, szStatusText);
+                return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const IInternetProtocolSink, @ptrCast(self)), ulStatusCode, szStatusText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSink_ReportData(self: *const T, grfBSCF: u32, ulProgress: u32, ulProgressMax: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolSink.VTable, self.vtable).ReportData(@ptrCast(*const IInternetProtocolSink, self), grfBSCF, ulProgress, ulProgressMax);
+                return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportData(@as(*const IInternetProtocolSink, @ptrCast(self)), grfBSCF, ulProgress, ulProgressMax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSink_ReportResult(self: *const T, hrResult: HRESULT, dwError: u32, szResult: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IInternetProtocolSink.VTable, self.vtable).ReportResult(@ptrCast(*const IInternetProtocolSink, self), hrResult, dwError, szResult);
+                return @as(*const IInternetProtocolSink.VTable, @ptrCast(self.vtable)).ReportResult(@as(*const IInternetProtocolSink, @ptrCast(self)), hrResult, dwError, szResult);
             }
         };
     }
@@ -2006,15 +2006,15 @@ pub const IInternetProtocolSinkStackable = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSinkStackable_SwitchSink(self: *const T, pOIProtSink: ?*IInternetProtocolSink) HRESULT {
-                return @ptrCast(*const IInternetProtocolSinkStackable.VTable, self.vtable).SwitchSink(@ptrCast(*const IInternetProtocolSinkStackable, self), pOIProtSink);
+                return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).SwitchSink(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)), pOIProtSink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSinkStackable_CommitSwitch(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetProtocolSinkStackable.VTable, self.vtable).CommitSwitch(@ptrCast(*const IInternetProtocolSinkStackable, self));
+                return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).CommitSwitch(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolSinkStackable_RollbackSwitch(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetProtocolSinkStackable.VTable, self.vtable).RollbackSwitch(@ptrCast(*const IInternetProtocolSinkStackable, self));
+                return @as(*const IInternetProtocolSinkStackable.VTable, @ptrCast(self.vtable)).RollbackSwitch(@as(*const IInternetProtocolSinkStackable, @ptrCast(self)));
             }
         };
     }
@@ -2150,31 +2150,31 @@ pub const IInternetSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_RegisterNameSpace(self: *const T, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzProtocol: ?[*:0]const u16, cPatterns: u32, ppwzPatterns: ?*const ?PWSTR, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).RegisterNameSpace(@ptrCast(*const IInternetSession, self), pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).RegisterNameSpace(@as(*const IInternetSession, @ptrCast(self)), pCF, rclsid, pwzProtocol, cPatterns, ppwzPatterns, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_UnregisterNameSpace(self: *const T, pCF: ?*IClassFactory, pszProtocol: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).UnregisterNameSpace(@ptrCast(*const IInternetSession, self), pCF, pszProtocol);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).UnregisterNameSpace(@as(*const IInternetSession, @ptrCast(self)), pCF, pszProtocol);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_RegisterMimeFilter(self: *const T, pCF: ?*IClassFactory, rclsid: ?*const Guid, pwzType: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).RegisterMimeFilter(@ptrCast(*const IInternetSession, self), pCF, rclsid, pwzType);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).RegisterMimeFilter(@as(*const IInternetSession, @ptrCast(self)), pCF, rclsid, pwzType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_UnregisterMimeFilter(self: *const T, pCF: ?*IClassFactory, pwzType: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).UnregisterMimeFilter(@ptrCast(*const IInternetSession, self), pCF, pwzType);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).UnregisterMimeFilter(@as(*const IInternetSession, @ptrCast(self)), pCF, pwzType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_CreateBinding(self: *const T, pBC: ?*IBindCtx, szUrl: ?[*:0]const u16, pUnkOuter: ?*IUnknown, ppUnk: ?*?*IUnknown, ppOInetProt: ?*?*IInternetProtocol, dwOption: u32) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).CreateBinding(@ptrCast(*const IInternetSession, self), pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).CreateBinding(@as(*const IInternetSession, @ptrCast(self)), pBC, szUrl, pUnkOuter, ppUnk, ppOInetProt, dwOption);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_SetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*anyopaque, dwBufferLength: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).SetSessionOption(@ptrCast(*const IInternetSession, self), dwOption, pBuffer, dwBufferLength, dwReserved);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).SetSessionOption(@as(*const IInternetSession, @ptrCast(self)), dwOption, pBuffer, dwBufferLength, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSession_GetSessionOption(self: *const T, dwOption: u32, pBuffer: ?*anyopaque, pdwBufferLength: ?*u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetSession.VTable, self.vtable).GetSessionOption(@ptrCast(*const IInternetSession, self), dwOption, pBuffer, pdwBufferLength, dwReserved);
+                return @as(*const IInternetSession.VTable, @ptrCast(self.vtable)).GetSessionOption(@as(*const IInternetSession, @ptrCast(self)), dwOption, pBuffer, pdwBufferLength, dwReserved);
             }
         };
     }
@@ -2209,11 +2209,11 @@ pub const IInternetThreadSwitch = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetThreadSwitch_Prepare(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetThreadSwitch.VTable, self.vtable).Prepare(@ptrCast(*const IInternetThreadSwitch, self));
+                return @as(*const IInternetThreadSwitch.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IInternetThreadSwitch, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetThreadSwitch_Continue(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetThreadSwitch.VTable, self.vtable).Continue(@ptrCast(*const IInternetThreadSwitch, self));
+                return @as(*const IInternetThreadSwitch.VTable, @ptrCast(self.vtable)).Continue(@as(*const IInternetThreadSwitch, @ptrCast(self)));
             }
         };
     }
@@ -2252,11 +2252,11 @@ pub const IInternetPriority = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetPriority_SetPriority(self: *const T, nPriority: i32) HRESULT {
-                return @ptrCast(*const IInternetPriority.VTable, self.vtable).SetPriority(@ptrCast(*const IInternetPriority, self), nPriority);
+                return @as(*const IInternetPriority.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IInternetPriority, @ptrCast(self)), nPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetPriority_GetPriority(self: *const T, pnPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IInternetPriority.VTable, self.vtable).GetPriority(@ptrCast(*const IInternetPriority, self), pnPriority);
+                return @as(*const IInternetPriority.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IInternetPriority, @ptrCast(self)), pnPriority);
             }
         };
     }
@@ -2438,19 +2438,19 @@ pub const IInternetProtocolInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolInfo_ParseUrl(self: *const T, pwzUrl: ?[*:0]const u16, ParseAction: PARSEACTION, dwParseFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolInfo.VTable, self.vtable).ParseUrl(@ptrCast(*const IInternetProtocolInfo, self), pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
+                return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).ParseUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl, ParseAction, dwParseFlags, pwzResult, cchResult, pcchResult, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolInfo_CombineUrl(self: *const T, pwzBaseUrl: ?[*:0]const u16, pwzRelativeUrl: ?[*:0]const u16, dwCombineFlags: u32, pwzResult: ?PWSTR, cchResult: u32, pcchResult: ?*u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolInfo.VTable, self.vtable).CombineUrl(@ptrCast(*const IInternetProtocolInfo, self), pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
+                return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).CombineUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzBaseUrl, pwzRelativeUrl, dwCombineFlags, pwzResult, cchResult, pcchResult, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolInfo_CompareUrl(self: *const T, pwzUrl1: ?[*:0]const u16, pwzUrl2: ?[*:0]const u16, dwCompareFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolInfo.VTable, self.vtable).CompareUrl(@ptrCast(*const IInternetProtocolInfo, self), pwzUrl1, pwzUrl2, dwCompareFlags);
+                return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).CompareUrl(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl1, pwzUrl2, dwCompareFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetProtocolInfo_QueryInfo(self: *const T, pwzUrl: ?[*:0]const u16, OueryOption: QUERYOPTION, dwQueryFlags: u32, pBuffer: [*]u8, cbBuffer: u32, pcbBuf: ?*u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetProtocolInfo.VTable, self.vtable).QueryInfo(@ptrCast(*const IInternetProtocolInfo, self), pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
+                return @as(*const IInternetProtocolInfo.VTable, @ptrCast(self.vtable)).QueryInfo(@as(*const IInternetProtocolInfo, @ptrCast(self)), pwzUrl, OueryOption, dwQueryFlags, pBuffer, cbBuffer, pcbBuf, dwReserved);
             }
         };
     }
@@ -2550,11 +2550,11 @@ pub const IInternetSecurityMgrSite = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityMgrSite_GetWindow(self: *const T, phwnd: ?*?HWND) HRESULT {
-                return @ptrCast(*const IInternetSecurityMgrSite.VTable, self.vtable).GetWindow(@ptrCast(*const IInternetSecurityMgrSite, self), phwnd);
+                return @as(*const IInternetSecurityMgrSite.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IInternetSecurityMgrSite, @ptrCast(self)), phwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityMgrSite_EnableModeless(self: *const T, fEnable: BOOL) HRESULT {
-                return @ptrCast(*const IInternetSecurityMgrSite.VTable, self.vtable).EnableModeless(@ptrCast(*const IInternetSecurityMgrSite, self), fEnable);
+                return @as(*const IInternetSecurityMgrSite.VTable, @ptrCast(self.vtable)).EnableModeless(@as(*const IInternetSecurityMgrSite, @ptrCast(self)), fEnable);
             }
         };
     }
@@ -2756,35 +2756,35 @@ pub const IInternetSecurityManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_SetSecuritySite(self: *const T, pSite: ?*IInternetSecurityMgrSite) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).SetSecuritySite(@ptrCast(*const IInternetSecurityManager, self), pSite);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).SetSecuritySite(@as(*const IInternetSecurityManager, @ptrCast(self)), pSite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_GetSecuritySite(self: *const T, ppSite: ?*?*IInternetSecurityMgrSite) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).GetSecuritySite(@ptrCast(*const IInternetSecurityManager, self), ppSite);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetSecuritySite(@as(*const IInternetSecurityManager, @ptrCast(self)), ppSite);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_MapUrlToZone(self: *const T, pwszUrl: ?[*:0]const u16, pdwZone: ?*u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).MapUrlToZone(@ptrCast(*const IInternetSecurityManager, self), pwszUrl, pdwZone, dwFlags);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).MapUrlToZone(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, pdwZone, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_GetSecurityId(self: *const T, pwszUrl: ?[*:0]const u16, pbSecurityId: *[512]u8, pcbSecurityId: ?*u32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).GetSecurityId(@ptrCast(*const IInternetSecurityManager, self), pwszUrl, pbSecurityId, pcbSecurityId, dwReserved);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetSecurityId(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, pbSecurityId, pcbSecurityId, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_ProcessUrlAction(self: *const T, pwszUrl: ?[*:0]const u16, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).ProcessUrlAction(@ptrCast(*const IInternetSecurityManager, self), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).ProcessUrlAction(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_QueryCustomPolicy(self: *const T, pwszUrl: ?[*:0]const u16, guidKey: ?*const Guid, ppPolicy: [*]?*u8, pcbPolicy: ?*u32, pContext: ?*u8, cbContext: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).QueryCustomPolicy(@ptrCast(*const IInternetSecurityManager, self), pwszUrl, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).QueryCustomPolicy(@as(*const IInternetSecurityManager, @ptrCast(self)), pwszUrl, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_SetZoneMapping(self: *const T, dwZone: u32, lpszPattern: ?[*:0]const u16, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).SetZoneMapping(@ptrCast(*const IInternetSecurityManager, self), dwZone, lpszPattern, dwFlags);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).SetZoneMapping(@as(*const IInternetSecurityManager, @ptrCast(self)), dwZone, lpszPattern, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManager_GetZoneMappings(self: *const T, dwZone: u32, ppenumString: ?*?*IEnumString, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManager.VTable, self.vtable).GetZoneMappings(@ptrCast(*const IInternetSecurityManager, self), dwZone, ppenumString, dwFlags);
+                return @as(*const IInternetSecurityManager.VTable, @ptrCast(self.vtable)).GetZoneMappings(@as(*const IInternetSecurityManager, @ptrCast(self)), dwZone, ppenumString, dwFlags);
             }
         };
     }
@@ -2829,7 +2829,7 @@ pub const IInternetSecurityManagerEx = extern struct {
             pub usingnamespace IInternetSecurityManager.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManagerEx_ProcessUrlActionEx(self: *const T, pwszUrl: ?[*:0]const u16, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: u32, pdwOutFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManagerEx.VTable, self.vtable).ProcessUrlActionEx(@ptrCast(*const IInternetSecurityManagerEx, self), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
+                return @as(*const IInternetSecurityManagerEx.VTable, @ptrCast(self.vtable)).ProcessUrlActionEx(@as(*const IInternetSecurityManagerEx, @ptrCast(self)), pwszUrl, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
             }
         };
     }
@@ -2930,19 +2930,19 @@ pub const IInternetSecurityManagerEx2 = extern struct {
             pub usingnamespace IInternetSecurityManagerEx.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManagerEx2_MapUrlToZoneEx2(self: *const T, pUri: ?*IUri, pdwZone: ?*u32, dwFlags: u32, ppwszMappedUrl: ?*?PWSTR, pdwOutFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManagerEx2.VTable, self.vtable).MapUrlToZoneEx2(@ptrCast(*const IInternetSecurityManagerEx2, self), pUri, pdwZone, dwFlags, ppwszMappedUrl, pdwOutFlags);
+                return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).MapUrlToZoneEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, pdwZone, dwFlags, ppwszMappedUrl, pdwOutFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManagerEx2_ProcessUrlActionEx2(self: *const T, pUri: ?*IUri, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?*u8, cbContext: u32, dwFlags: u32, dwReserved: usize, pdwOutFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetSecurityManagerEx2.VTable, self.vtable).ProcessUrlActionEx2(@ptrCast(*const IInternetSecurityManagerEx2, self), pUri, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
+                return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).ProcessUrlActionEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved, pdwOutFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManagerEx2_GetSecurityIdEx2(self: *const T, pUri: ?*IUri, pbSecurityId: *[512]u8, pcbSecurityId: ?*u32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IInternetSecurityManagerEx2.VTable, self.vtable).GetSecurityIdEx2(@ptrCast(*const IInternetSecurityManagerEx2, self), pUri, pbSecurityId, pcbSecurityId, dwReserved);
+                return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).GetSecurityIdEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, pbSecurityId, pcbSecurityId, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetSecurityManagerEx2_QueryCustomPolicyEx2(self: *const T, pUri: ?*IUri, guidKey: ?*const Guid, ppPolicy: [*]?*u8, pcbPolicy: ?*u32, pContext: ?*u8, cbContext: u32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IInternetSecurityManagerEx2.VTable, self.vtable).QueryCustomPolicyEx2(@ptrCast(*const IInternetSecurityManagerEx2, self), pUri, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+                return @as(*const IInternetSecurityManagerEx2.VTable, @ptrCast(self.vtable)).QueryCustomPolicyEx2(@as(*const IInternetSecurityManagerEx2, @ptrCast(self)), pUri, guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
             }
         };
     }
@@ -2989,15 +2989,15 @@ pub const IZoneIdentifier = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier_GetId(self: *const T, pdwZone: ?*u32) HRESULT {
-                return @ptrCast(*const IZoneIdentifier.VTable, self.vtable).GetId(@ptrCast(*const IZoneIdentifier, self), pdwZone);
+                return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).GetId(@as(*const IZoneIdentifier, @ptrCast(self)), pdwZone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier_SetId(self: *const T, dwZone: u32) HRESULT {
-                return @ptrCast(*const IZoneIdentifier.VTable, self.vtable).SetId(@ptrCast(*const IZoneIdentifier, self), dwZone);
+                return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).SetId(@as(*const IZoneIdentifier, @ptrCast(self)), dwZone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier_Remove(self: *const T) HRESULT {
-                return @ptrCast(*const IZoneIdentifier.VTable, self.vtable).Remove(@ptrCast(*const IZoneIdentifier, self));
+                return @as(*const IZoneIdentifier.VTable, @ptrCast(self.vtable)).Remove(@as(*const IZoneIdentifier, @ptrCast(self)));
             }
         };
     }
@@ -3072,27 +3072,27 @@ pub const IZoneIdentifier2 = extern struct {
             pub usingnamespace IZoneIdentifier.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_GetLastWriterPackageFamilyName(self: *const T, packageFamilyName: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).GetLastWriterPackageFamilyName(@ptrCast(*const IZoneIdentifier2, self), packageFamilyName);
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).GetLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)), packageFamilyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_SetLastWriterPackageFamilyName(self: *const T, packageFamilyName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).SetLastWriterPackageFamilyName(@ptrCast(*const IZoneIdentifier2, self), packageFamilyName);
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).SetLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)), packageFamilyName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_RemoveLastWriterPackageFamilyName(self: *const T) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).RemoveLastWriterPackageFamilyName(@ptrCast(*const IZoneIdentifier2, self));
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).RemoveLastWriterPackageFamilyName(@as(*const IZoneIdentifier2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_GetAppZoneId(self: *const T, zone: ?*u32) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).GetAppZoneId(@ptrCast(*const IZoneIdentifier2, self), zone);
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).GetAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)), zone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_SetAppZoneId(self: *const T, zone: u32) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).SetAppZoneId(@ptrCast(*const IZoneIdentifier2, self), zone);
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).SetAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)), zone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IZoneIdentifier2_RemoveAppZoneId(self: *const T) HRESULT {
-                return @ptrCast(*const IZoneIdentifier2.VTable, self.vtable).RemoveAppZoneId(@ptrCast(*const IZoneIdentifier2, self));
+                return @as(*const IZoneIdentifier2.VTable, @ptrCast(self.vtable)).RemoveAppZoneId(@as(*const IZoneIdentifier2, @ptrCast(self)));
             }
         };
     }
@@ -3167,15 +3167,15 @@ pub const IInternetHostSecurityManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetHostSecurityManager_GetSecurityId(self: *const T, pbSecurityId: [*:0]u8, pcbSecurityId: ?*u32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IInternetHostSecurityManager.VTable, self.vtable).GetSecurityId(@ptrCast(*const IInternetHostSecurityManager, self), pbSecurityId, pcbSecurityId, dwReserved);
+                return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).GetSecurityId(@as(*const IInternetHostSecurityManager, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetHostSecurityManager_ProcessUrlAction(self: *const T, dwAction: u32, pPolicy: ?*u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetHostSecurityManager.VTable, self.vtable).ProcessUrlAction(@ptrCast(*const IInternetHostSecurityManager, self), dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
+                return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).ProcessUrlAction(@as(*const IInternetHostSecurityManager, @ptrCast(self)), dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetHostSecurityManager_QueryCustomPolicy(self: *const T, guidKey: ?*const Guid, ppPolicy: ?[*]?*u8, pcbPolicy: ?*u32, pContext: [*:0]u8, cbContext: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetHostSecurityManager.VTable, self.vtable).QueryCustomPolicy(@ptrCast(*const IInternetHostSecurityManager, self), guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
+                return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).QueryCustomPolicy(@as(*const IInternetHostSecurityManager, @ptrCast(self)), guidKey, ppPolicy, pcbPolicy, pContext, cbContext, dwReserved);
             }
         };
     }
@@ -3472,51 +3472,51 @@ pub const IInternetZoneManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_GetZoneAttributes(self: *const T, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).GetZoneAttributes(@ptrCast(*const IInternetZoneManager, self), dwZone, pZoneAttributes);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneAttributes(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, pZoneAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_SetZoneAttributes(self: *const T, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).SetZoneAttributes(@ptrCast(*const IInternetZoneManager, self), dwZone, pZoneAttributes);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneAttributes(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, pZoneAttributes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_GetZoneCustomPolicy(self: *const T, dwZone: u32, guidKey: ?*const Guid, ppPolicy: ?*?*u8, pcbPolicy: ?*u32, urlZoneReg: URLZONEREG) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).GetZoneCustomPolicy(@ptrCast(*const IInternetZoneManager, self), dwZone, guidKey, ppPolicy, pcbPolicy, urlZoneReg);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneCustomPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, guidKey, ppPolicy, pcbPolicy, urlZoneReg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_SetZoneCustomPolicy(self: *const T, dwZone: u32, guidKey: ?*const Guid, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).SetZoneCustomPolicy(@ptrCast(*const IInternetZoneManager, self), dwZone, guidKey, pPolicy, cbPolicy, urlZoneReg);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneCustomPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, guidKey, pPolicy, cbPolicy, urlZoneReg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_GetZoneActionPolicy(self: *const T, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).GetZoneActionPolicy(@ptrCast(*const IInternetZoneManager, self), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneActionPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_SetZoneActionPolicy(self: *const T, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).SetZoneActionPolicy(@ptrCast(*const IInternetZoneManager, self), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).SetZoneActionPolicy(@as(*const IInternetZoneManager, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_PromptAction(self: *const T, dwAction: u32, hwndParent: ?HWND, pwszUrl: ?[*:0]const u16, pwszText: ?[*:0]const u16, dwPromptFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).PromptAction(@ptrCast(*const IInternetZoneManager, self), dwAction, hwndParent, pwszUrl, pwszText, dwPromptFlags);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).PromptAction(@as(*const IInternetZoneManager, @ptrCast(self)), dwAction, hwndParent, pwszUrl, pwszText, dwPromptFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_LogAction(self: *const T, dwAction: u32, pwszUrl: ?[*:0]const u16, pwszText: ?[*:0]const u16, dwLogFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).LogAction(@ptrCast(*const IInternetZoneManager, self), dwAction, pwszUrl, pwszText, dwLogFlags);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).LogAction(@as(*const IInternetZoneManager, @ptrCast(self)), dwAction, pwszUrl, pwszText, dwLogFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_CreateZoneEnumerator(self: *const T, pdwEnum: ?*u32, pdwCount: ?*u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).CreateZoneEnumerator(@ptrCast(*const IInternetZoneManager, self), pdwEnum, pdwCount, dwFlags);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).CreateZoneEnumerator(@as(*const IInternetZoneManager, @ptrCast(self)), pdwEnum, pdwCount, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_GetZoneAt(self: *const T, dwEnum: u32, dwIndex: u32, pdwZone: ?*u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).GetZoneAt(@ptrCast(*const IInternetZoneManager, self), dwEnum, dwIndex, pdwZone);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).GetZoneAt(@as(*const IInternetZoneManager, @ptrCast(self)), dwEnum, dwIndex, pdwZone);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_DestroyZoneEnumerator(self: *const T, dwEnum: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).DestroyZoneEnumerator(@ptrCast(*const IInternetZoneManager, self), dwEnum);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).DestroyZoneEnumerator(@as(*const IInternetZoneManager, @ptrCast(self)), dwEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManager_CopyTemplatePoliciesToZone(self: *const T, dwTemplate: u32, dwZone: u32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManager.VTable, self.vtable).CopyTemplatePoliciesToZone(@ptrCast(*const IInternetZoneManager, self), dwTemplate, dwZone, dwReserved);
+                return @as(*const IInternetZoneManager.VTable, @ptrCast(self.vtable)).CopyTemplatePoliciesToZone(@as(*const IInternetZoneManager, @ptrCast(self)), dwTemplate, dwZone, dwReserved);
             }
         };
     }
@@ -3575,11 +3575,11 @@ pub const IInternetZoneManagerEx = extern struct {
             pub usingnamespace IInternetZoneManager.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx_GetZoneActionPolicyEx(self: *const T, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx.VTable, self.vtable).GetZoneActionPolicyEx(@ptrCast(*const IInternetZoneManagerEx, self), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
+                return @as(*const IInternetZoneManagerEx.VTable, @ptrCast(self.vtable)).GetZoneActionPolicyEx(@as(*const IInternetZoneManagerEx, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx_SetZoneActionPolicyEx(self: *const T, dwZone: u32, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, urlZoneReg: URLZONEREG, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx.VTable, self.vtable).SetZoneActionPolicyEx(@ptrCast(*const IInternetZoneManagerEx, self), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
+                return @as(*const IInternetZoneManagerEx.VTable, @ptrCast(self.vtable)).SetZoneActionPolicyEx(@as(*const IInternetZoneManagerEx, @ptrCast(self)), dwZone, dwAction, pPolicy, cbPolicy, urlZoneReg, dwFlags);
             }
         };
     }
@@ -3652,19 +3652,19 @@ pub const IInternetZoneManagerEx2 = extern struct {
             pub usingnamespace IInternetZoneManagerEx.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx2_GetZoneAttributesEx(self: *const T, dwZone: u32, pZoneAttributes: ?*ZONEATTRIBUTES, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx2.VTable, self.vtable).GetZoneAttributesEx(@ptrCast(*const IInternetZoneManagerEx2, self), dwZone, pZoneAttributes, dwFlags);
+                return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetZoneAttributesEx(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), dwZone, pZoneAttributes, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx2_GetZoneSecurityState(self: *const T, dwZoneIndex: u32, fRespectPolicy: BOOL, pdwState: ?*u32, pfPolicyEncountered: ?*BOOL) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx2.VTable, self.vtable).GetZoneSecurityState(@ptrCast(*const IInternetZoneManagerEx2, self), dwZoneIndex, fRespectPolicy, pdwState, pfPolicyEncountered);
+                return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetZoneSecurityState(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), dwZoneIndex, fRespectPolicy, pdwState, pfPolicyEncountered);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx2_GetIESecurityState(self: *const T, fRespectPolicy: BOOL, pdwState: ?*u32, pfPolicyEncountered: ?*BOOL, fNoCache: BOOL) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx2.VTable, self.vtable).GetIESecurityState(@ptrCast(*const IInternetZoneManagerEx2, self), fRespectPolicy, pdwState, pfPolicyEncountered, fNoCache);
+                return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).GetIESecurityState(@as(*const IInternetZoneManagerEx2, @ptrCast(self)), fRespectPolicy, pdwState, pfPolicyEncountered, fNoCache);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInternetZoneManagerEx2_FixUnsecureSettings(self: *const T) HRESULT {
-                return @ptrCast(*const IInternetZoneManagerEx2.VTable, self.vtable).FixUnsecureSettings(@ptrCast(*const IInternetZoneManagerEx2, self));
+                return @as(*const IInternetZoneManagerEx2.VTable, @ptrCast(self.vtable)).FixUnsecureSettings(@as(*const IInternetZoneManagerEx2, @ptrCast(self)));
             }
         };
     }
@@ -3762,19 +3762,19 @@ pub const ISoftDistExt = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftDistExt_ProcessSoftDist(self: *const T, szCDFURL: ?[*:0]const u16, pSoftDistElement: ?*IXMLElement, lpsdi: ?*SOFTDISTINFO) HRESULT {
-                return @ptrCast(*const ISoftDistExt.VTable, self.vtable).ProcessSoftDist(@ptrCast(*const ISoftDistExt, self), szCDFURL, pSoftDistElement, lpsdi);
+                return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).ProcessSoftDist(@as(*const ISoftDistExt, @ptrCast(self)), szCDFURL, pSoftDistElement, lpsdi);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftDistExt_GetFirstCodeBase(self: *const T, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) HRESULT {
-                return @ptrCast(*const ISoftDistExt.VTable, self.vtable).GetFirstCodeBase(@ptrCast(*const ISoftDistExt, self), szCodeBase, dwMaxSize);
+                return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).GetFirstCodeBase(@as(*const ISoftDistExt, @ptrCast(self)), szCodeBase, dwMaxSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftDistExt_GetNextCodeBase(self: *const T, szCodeBase: ?*?PWSTR, dwMaxSize: ?*u32) HRESULT {
-                return @ptrCast(*const ISoftDistExt.VTable, self.vtable).GetNextCodeBase(@ptrCast(*const ISoftDistExt, self), szCodeBase, dwMaxSize);
+                return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).GetNextCodeBase(@as(*const ISoftDistExt, @ptrCast(self)), szCodeBase, dwMaxSize);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISoftDistExt_AsyncInstallDistributionUnit(self: *const T, pbc: ?*IBindCtx, pvReserved: ?*anyopaque, flags: u32, lpcbh: ?*CODEBASEHOLD) HRESULT {
-                return @ptrCast(*const ISoftDistExt.VTable, self.vtable).AsyncInstallDistributionUnit(@ptrCast(*const ISoftDistExt, self), pbc, pvReserved, flags, lpcbh);
+                return @as(*const ISoftDistExt.VTable, @ptrCast(self.vtable)).AsyncInstallDistributionUnit(@as(*const ISoftDistExt, @ptrCast(self)), pbc, pvReserved, flags, lpcbh);
             }
         };
     }
@@ -3813,11 +3813,11 @@ pub const ICatalogFileInfo = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogFileInfo_GetCatalogFile(self: *const T, ppszCatalogFile: ?*?PSTR) HRESULT {
-                return @ptrCast(*const ICatalogFileInfo.VTable, self.vtable).GetCatalogFile(@ptrCast(*const ICatalogFileInfo, self), ppszCatalogFile);
+                return @as(*const ICatalogFileInfo.VTable, @ptrCast(self.vtable)).GetCatalogFile(@as(*const ICatalogFileInfo, @ptrCast(self)), ppszCatalogFile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICatalogFileInfo_GetJavaTrust(self: *const T, ppJavaTrust: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const ICatalogFileInfo.VTable, self.vtable).GetJavaTrust(@ptrCast(*const ICatalogFileInfo, self), ppJavaTrust);
+                return @as(*const ICatalogFileInfo.VTable, @ptrCast(self.vtable)).GetJavaTrust(@as(*const ICatalogFileInfo, @ptrCast(self)), ppJavaTrust);
             }
         };
     }
@@ -3898,15 +3898,15 @@ pub const IDataFilter = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataFilter_DoEncode(self: *const T, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IDataFilter.VTable, self.vtable).DoEncode(@ptrCast(*const IDataFilter, self), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+                return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).DoEncode(@as(*const IDataFilter, @ptrCast(self)), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataFilter_DoDecode(self: *const T, dwFlags: u32, lInBufferSize: i32, pbInBuffer: [*:0]u8, lOutBufferSize: i32, pbOutBuffer: [*:0]u8, lInBytesAvailable: i32, plInBytesRead: ?*i32, plOutBytesWritten: ?*i32, dwReserved: u32) HRESULT {
-                return @ptrCast(*const IDataFilter.VTable, self.vtable).DoDecode(@ptrCast(*const IDataFilter, self), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
+                return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).DoDecode(@as(*const IDataFilter, @ptrCast(self)), dwFlags, lInBufferSize, pbInBuffer, lOutBufferSize, pbOutBuffer, lInBytesAvailable, plInBytesRead, plOutBytesWritten, dwReserved);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDataFilter_SetEncodingLevel(self: *const T, dwEncLevel: u32) HRESULT {
-                return @ptrCast(*const IDataFilter.VTable, self.vtable).SetEncodingLevel(@ptrCast(*const IDataFilter, self), dwEncLevel);
+                return @as(*const IDataFilter.VTable, @ptrCast(self.vtable)).SetEncodingLevel(@as(*const IDataFilter, @ptrCast(self)), dwEncLevel);
             }
         };
     }
@@ -3970,11 +3970,11 @@ pub const IEncodingFilterFactory = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEncodingFilterFactory_FindBestFilter(self: *const T, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, info: DATAINFO, ppDF: ?*?*IDataFilter) HRESULT {
-                return @ptrCast(*const IEncodingFilterFactory.VTable, self.vtable).FindBestFilter(@ptrCast(*const IEncodingFilterFactory, self), pwzCodeIn, pwzCodeOut, info, ppDF);
+                return @as(*const IEncodingFilterFactory.VTable, @ptrCast(self.vtable)).FindBestFilter(@as(*const IEncodingFilterFactory, @ptrCast(self)), pwzCodeIn, pwzCodeOut, info, ppDF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IEncodingFilterFactory_GetDefaultFilter(self: *const T, pwzCodeIn: ?[*:0]const u16, pwzCodeOut: ?[*:0]const u16, ppDF: ?*?*IDataFilter) HRESULT {
-                return @ptrCast(*const IEncodingFilterFactory.VTable, self.vtable).GetDefaultFilter(@ptrCast(*const IEncodingFilterFactory, self), pwzCodeIn, pwzCodeOut, ppDF);
+                return @as(*const IEncodingFilterFactory.VTable, @ptrCast(self.vtable)).GetDefaultFilter(@as(*const IEncodingFilterFactory, @ptrCast(self)), pwzCodeIn, pwzCodeOut, ppDF);
             }
         };
     }
@@ -4019,7 +4019,7 @@ pub const IWrappedProtocol = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IWrappedProtocol_GetWrapperCode(self: *const T, pnCode: ?*i32, dwReserved: usize) HRESULT {
-                return @ptrCast(*const IWrappedProtocol.VTable, self.vtable).GetWrapperCode(@ptrCast(*const IWrappedProtocol, self), pnCode, dwReserved);
+                return @as(*const IWrappedProtocol.VTable, @ptrCast(self.vtable)).GetWrapperCode(@as(*const IWrappedProtocol, @ptrCast(self)), pnCode, dwReserved);
             }
         };
     }
@@ -4059,7 +4059,7 @@ pub const IGetBindHandle = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IGetBindHandle_GetBindHandle(self: *const T, enumRequestedHandle: BINDHANDLETYPES, pRetHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IGetBindHandle.VTable, self.vtable).GetBindHandle(@ptrCast(*const IGetBindHandle, self), enumRequestedHandle, pRetHandle);
+                return @as(*const IGetBindHandle.VTable, @ptrCast(self.vtable)).GetBindHandle(@as(*const IGetBindHandle, @ptrCast(self)), enumRequestedHandle, pRetHandle);
             }
         };
     }
@@ -4095,7 +4095,7 @@ pub const IBindCallbackRedirect = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBindCallbackRedirect_Redirect(self: *const T, lpcUrl: ?[*:0]const u16, vbCancel: ?*i16) HRESULT {
-                return @ptrCast(*const IBindCallbackRedirect.VTable, self.vtable).Redirect(@ptrCast(*const IBindCallbackRedirect, self), lpcUrl, vbCancel);
+                return @as(*const IBindCallbackRedirect.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IBindCallbackRedirect, @ptrCast(self)), lpcUrl, vbCancel);
             }
         };
     }
@@ -4124,7 +4124,7 @@ pub const IBindHttpSecurity = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IBindHttpSecurity_GetIgnoreCertMask(self: *const T, pdwIgnoreCertMask: ?*u32) HRESULT {
-                return @ptrCast(*const IBindHttpSecurity.VTable, self.vtable).GetIgnoreCertMask(@ptrCast(*const IBindHttpSecurity, self), pdwIgnoreCertMask);
+                return @as(*const IBindHttpSecurity.VTable, @ptrCast(self.vtable)).GetIgnoreCertMask(@as(*const IBindHttpSecurity, @ptrCast(self)), pdwIgnoreCertMask);
             }
         };
     }

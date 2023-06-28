@@ -1344,171 +1344,171 @@ pub const IRTCClient = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_Initialize(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).Initialize(@ptrCast(*const IRTCClient, self));
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRTCClient, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_Shutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).Shutdown(@ptrCast(*const IRTCClient, self));
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IRTCClient, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_PrepareForShutdown(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).PrepareForShutdown(@ptrCast(*const IRTCClient, self));
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).PrepareForShutdown(@as(*const IRTCClient, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_EventFilter(self: *const T, lFilter: i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_EventFilter(@ptrCast(*const IRTCClient, self), lFilter);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_EventFilter(@as(*const IRTCClient, @ptrCast(self)), lFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_EventFilter(self: *const T, plFilter: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_EventFilter(@ptrCast(*const IRTCClient, self), plFilter);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_EventFilter(@as(*const IRTCClient, @ptrCast(self)), plFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_SetPreferredMediaTypes(self: *const T, lMediaTypes: i32, fPersistent: i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).SetPreferredMediaTypes(@ptrCast(*const IRTCClient, self), lMediaTypes, fPersistent);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).SetPreferredMediaTypes(@as(*const IRTCClient, @ptrCast(self)), lMediaTypes, fPersistent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_PreferredMediaTypes(self: *const T, plMediaTypes: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_PreferredMediaTypes(@ptrCast(*const IRTCClient, self), plMediaTypes);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredMediaTypes(@as(*const IRTCClient, @ptrCast(self)), plMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_MediaCapabilities(self: *const T, plMediaTypes: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_MediaCapabilities(@ptrCast(*const IRTCClient, self), plMediaTypes);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_MediaCapabilities(@as(*const IRTCClient, @ptrCast(self)), plMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_CreateSession(self: *const T, enType: RTC_SESSION_TYPE, bstrLocalPhoneURI: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppSession: ?*?*IRTCSession) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).CreateSession(@ptrCast(*const IRTCClient, self), enType, bstrLocalPhoneURI, pProfile, lFlags, ppSession);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IRTCClient, @ptrCast(self)), enType, bstrLocalPhoneURI, pProfile, lFlags, ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_ListenForIncomingSessions(self: *const T, enListen: RTC_LISTEN_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_ListenForIncomingSessions(@ptrCast(*const IRTCClient, self), enListen);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_ListenForIncomingSessions(@as(*const IRTCClient, @ptrCast(self)), enListen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_ListenForIncomingSessions(self: *const T, penListen: ?*RTC_LISTEN_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_ListenForIncomingSessions(@ptrCast(*const IRTCClient, self), penListen);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_ListenForIncomingSessions(@as(*const IRTCClient, @ptrCast(self)), penListen);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_NetworkAddresses(self: *const T, fTCP: i16, fExternal: i16, pvAddresses: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_NetworkAddresses(@ptrCast(*const IRTCClient, self), fTCP, fExternal, pvAddresses);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_NetworkAddresses(@as(*const IRTCClient, @ptrCast(self)), fTCP, fExternal, pvAddresses);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_Volume(self: *const T, enDevice: RTC_AUDIO_DEVICE, lVolume: i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_Volume(@ptrCast(*const IRTCClient, self), enDevice, lVolume);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const IRTCClient, @ptrCast(self)), enDevice, lVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_Volume(self: *const T, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_Volume(@ptrCast(*const IRTCClient, self), enDevice, plVolume);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const IRTCClient, @ptrCast(self)), enDevice, plVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_AudioMuted(self: *const T, enDevice: RTC_AUDIO_DEVICE, fMuted: i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_AudioMuted(@ptrCast(*const IRTCClient, self), enDevice, fMuted);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_AudioMuted(@as(*const IRTCClient, @ptrCast(self)), enDevice, fMuted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_AudioMuted(self: *const T, enDevice: RTC_AUDIO_DEVICE, pfMuted: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_AudioMuted(@ptrCast(*const IRTCClient, self), enDevice, pfMuted);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_AudioMuted(@as(*const IRTCClient, @ptrCast(self)), enDevice, pfMuted);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_IVideoWindow(self: *const T, enDevice: RTC_VIDEO_DEVICE, ppIVideoWindow: ?*?*IVideoWindow) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_IVideoWindow(@ptrCast(*const IRTCClient, self), enDevice, ppIVideoWindow);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IVideoWindow(@as(*const IRTCClient, @ptrCast(self)), enDevice, ppIVideoWindow);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_PreferredAudioDevice(self: *const T, enDevice: RTC_AUDIO_DEVICE, bstrDeviceName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_PreferredAudioDevice(@ptrCast(*const IRTCClient, self), enDevice, bstrDeviceName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredAudioDevice(@as(*const IRTCClient, @ptrCast(self)), enDevice, bstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_PreferredAudioDevice(self: *const T, enDevice: RTC_AUDIO_DEVICE, pbstrDeviceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_PreferredAudioDevice(@ptrCast(*const IRTCClient, self), enDevice, pbstrDeviceName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredAudioDevice(@as(*const IRTCClient, @ptrCast(self)), enDevice, pbstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_PreferredVolume(self: *const T, enDevice: RTC_AUDIO_DEVICE, lVolume: i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_PreferredVolume(@ptrCast(*const IRTCClient, self), enDevice, lVolume);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredVolume(@as(*const IRTCClient, @ptrCast(self)), enDevice, lVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_PreferredVolume(self: *const T, enDevice: RTC_AUDIO_DEVICE, plVolume: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_PreferredVolume(@ptrCast(*const IRTCClient, self), enDevice, plVolume);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredVolume(@as(*const IRTCClient, @ptrCast(self)), enDevice, plVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_PreferredAEC(self: *const T, bEnable: i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_PreferredAEC(@ptrCast(*const IRTCClient, self), bEnable);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredAEC(@as(*const IRTCClient, @ptrCast(self)), bEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_PreferredAEC(self: *const T, pbEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_PreferredAEC(@ptrCast(*const IRTCClient, self), pbEnabled);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredAEC(@as(*const IRTCClient, @ptrCast(self)), pbEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_PreferredVideoDevice(self: *const T, bstrDeviceName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_PreferredVideoDevice(@ptrCast(*const IRTCClient, self), bstrDeviceName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_PreferredVideoDevice(@as(*const IRTCClient, @ptrCast(self)), bstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_PreferredVideoDevice(self: *const T, pbstrDeviceName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_PreferredVideoDevice(@ptrCast(*const IRTCClient, self), pbstrDeviceName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_PreferredVideoDevice(@as(*const IRTCClient, @ptrCast(self)), pbstrDeviceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_ActiveMedia(self: *const T, plMediaType: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_ActiveMedia(@ptrCast(*const IRTCClient, self), plMediaType);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_ActiveMedia(@as(*const IRTCClient, @ptrCast(self)), plMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_MaxBitrate(self: *const T, lMaxBitrate: i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_MaxBitrate(@ptrCast(*const IRTCClient, self), lMaxBitrate);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_MaxBitrate(@as(*const IRTCClient, @ptrCast(self)), lMaxBitrate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_MaxBitrate(self: *const T, plMaxBitrate: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_MaxBitrate(@ptrCast(*const IRTCClient, self), plMaxBitrate);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_MaxBitrate(@as(*const IRTCClient, @ptrCast(self)), plMaxBitrate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_TemporalSpatialTradeOff(self: *const T, lValue: i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_TemporalSpatialTradeOff(@ptrCast(*const IRTCClient, self), lValue);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_TemporalSpatialTradeOff(@as(*const IRTCClient, @ptrCast(self)), lValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_TemporalSpatialTradeOff(self: *const T, plValue: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_TemporalSpatialTradeOff(@ptrCast(*const IRTCClient, self), plValue);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_TemporalSpatialTradeOff(@as(*const IRTCClient, @ptrCast(self)), plValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_NetworkQuality(self: *const T, plNetworkQuality: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_NetworkQuality(@ptrCast(*const IRTCClient, self), plNetworkQuality);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_NetworkQuality(@as(*const IRTCClient, @ptrCast(self)), plNetworkQuality);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_StartT120Applet(self: *const T, enApplet: RTC_T120_APPLET) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).StartT120Applet(@ptrCast(*const IRTCClient, self), enApplet);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).StartT120Applet(@as(*const IRTCClient, @ptrCast(self)), enApplet);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_StopT120Applets(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).StopT120Applets(@ptrCast(*const IRTCClient, self));
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).StopT120Applets(@as(*const IRTCClient, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_IsT120AppletRunning(self: *const T, enApplet: RTC_T120_APPLET, pfRunning: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_IsT120AppletRunning(@ptrCast(*const IRTCClient, self), enApplet, pfRunning);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IsT120AppletRunning(@as(*const IRTCClient, @ptrCast(self)), enApplet, pfRunning);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_LocalUserURI(self: *const T, pbstrUserURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_LocalUserURI(@ptrCast(*const IRTCClient, self), pbstrUserURI);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_LocalUserURI(@as(*const IRTCClient, @ptrCast(self)), pbstrUserURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_LocalUserURI(self: *const T, bstrUserURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_LocalUserURI(@ptrCast(*const IRTCClient, self), bstrUserURI);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_LocalUserURI(@as(*const IRTCClient, @ptrCast(self)), bstrUserURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_LocalUserName(self: *const T, pbstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_LocalUserName(@ptrCast(*const IRTCClient, self), pbstrUserName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_LocalUserName(@as(*const IRTCClient, @ptrCast(self)), pbstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_put_LocalUserName(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).put_LocalUserName(@ptrCast(*const IRTCClient, self), bstrUserName);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).put_LocalUserName(@as(*const IRTCClient, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_PlayRing(self: *const T, enType: RTC_RING_TYPE, bPlay: i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).PlayRing(@ptrCast(*const IRTCClient, self), enType, bPlay);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).PlayRing(@as(*const IRTCClient, @ptrCast(self)), enType, bPlay);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_SendDTMF(self: *const T, enDTMF: RTC_DTMF) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).SendDTMF(@ptrCast(*const IRTCClient, self), enDTMF);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).SendDTMF(@as(*const IRTCClient, @ptrCast(self)), enDTMF);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_InvokeTuningWizard(self: *const T, hwndParent: isize) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).InvokeTuningWizard(@ptrCast(*const IRTCClient, self), hwndParent);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).InvokeTuningWizard(@as(*const IRTCClient, @ptrCast(self)), hwndParent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient_get_IsTuned(self: *const T, pfTuned: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCClient.VTable, self.vtable).get_IsTuned(@ptrCast(*const IRTCClient, self), pfTuned);
+                return @as(*const IRTCClient.VTable, @ptrCast(self.vtable)).get_IsTuned(@as(*const IRTCClient, @ptrCast(self)), pfTuned);
             }
         };
     }
@@ -1708,55 +1708,55 @@ pub const IRTCClient2 = extern struct {
             pub usingnamespace IRTCClient.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_put_AnswerMode(self: *const T, enType: RTC_SESSION_TYPE, enMode: RTC_ANSWER_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).put_AnswerMode(@ptrCast(*const IRTCClient2, self), enType, enMode);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_AnswerMode(@as(*const IRTCClient2, @ptrCast(self)), enType, enMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_get_AnswerMode(self: *const T, enType: RTC_SESSION_TYPE, penMode: ?*RTC_ANSWER_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).get_AnswerMode(@ptrCast(*const IRTCClient2, self), enType, penMode);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_AnswerMode(@as(*const IRTCClient2, @ptrCast(self)), enType, penMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_InvokeTuningWizardEx(self: *const T, hwndParent: isize, fAllowAudio: i16, fAllowVideo: i16) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).InvokeTuningWizardEx(@ptrCast(*const IRTCClient2, self), hwndParent, fAllowAudio, fAllowVideo);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).InvokeTuningWizardEx(@as(*const IRTCClient2, @ptrCast(self)), hwndParent, fAllowAudio, fAllowVideo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_get_Version(self: *const T, plVersion: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).get_Version(@ptrCast(*const IRTCClient2, self), plVersion);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IRTCClient2, @ptrCast(self)), plVersion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_put_ClientName(self: *const T, bstrClientName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).put_ClientName(@ptrCast(*const IRTCClient2, self), bstrClientName);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IRTCClient2, @ptrCast(self)), bstrClientName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_put_ClientCurVer(self: *const T, bstrClientCurVer: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).put_ClientCurVer(@ptrCast(*const IRTCClient2, self), bstrClientCurVer);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_ClientCurVer(@as(*const IRTCClient2, @ptrCast(self)), bstrClientCurVer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_InitializeEx(self: *const T, lFlags: i32) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).InitializeEx(@ptrCast(*const IRTCClient2, self), lFlags);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).InitializeEx(@as(*const IRTCClient2, @ptrCast(self)), lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_CreateSessionWithDescription(self: *const T, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppSession2: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).CreateSessionWithDescription(@ptrCast(*const IRTCClient2, self), bstrContentType, bstrSessionDescription, pProfile, lFlags, ppSession2);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).CreateSessionWithDescription(@as(*const IRTCClient2, @ptrCast(self)), bstrContentType, bstrSessionDescription, pProfile, lFlags, ppSession2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_SetSessionDescriptionManager(self: *const T, pSessionDescriptionManager: ?*IRTCSessionDescriptionManager) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).SetSessionDescriptionManager(@ptrCast(*const IRTCClient2, self), pSessionDescriptionManager);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).SetSessionDescriptionManager(@as(*const IRTCClient2, @ptrCast(self)), pSessionDescriptionManager);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_put_PreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, enSecurityLevel: RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).put_PreferredSecurityLevel(@ptrCast(*const IRTCClient2, self), enSecurityType, enSecurityLevel);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_PreferredSecurityLevel(@as(*const IRTCClient2, @ptrCast(self)), enSecurityType, enSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_get_PreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).get_PreferredSecurityLevel(@ptrCast(*const IRTCClient2, self), enSecurityType, penSecurityLevel);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_PreferredSecurityLevel(@as(*const IRTCClient2, @ptrCast(self)), enSecurityType, penSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_put_AllowedPorts(self: *const T, lTransport: i32, enListenMode: RTC_LISTEN_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).put_AllowedPorts(@ptrCast(*const IRTCClient2, self), lTransport, enListenMode);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).put_AllowedPorts(@as(*const IRTCClient2, @ptrCast(self)), lTransport, enListenMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClient2_get_AllowedPorts(self: *const T, lTransport: i32, penListenMode: ?*RTC_LISTEN_MODE) HRESULT {
-                return @ptrCast(*const IRTCClient2.VTable, self.vtable).get_AllowedPorts(@ptrCast(*const IRTCClient2, self), lTransport, penListenMode);
+                return @as(*const IRTCClient2.VTable, @ptrCast(self.vtable)).get_AllowedPorts(@as(*const IRTCClient2, @ptrCast(self)), lTransport, penListenMode);
             }
         };
     }
@@ -2011,75 +2011,75 @@ pub const IRTCClientPresence = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_EnablePresence(self: *const T, fUseStorage: i16, varStorage: VARIANT) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).EnablePresence(@ptrCast(*const IRTCClientPresence, self), fUseStorage, varStorage);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnablePresence(@as(*const IRTCClientPresence, @ptrCast(self)), fUseStorage, varStorage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_Export(self: *const T, varStorage: VARIANT) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).Export(@ptrCast(*const IRTCClientPresence, self), varStorage);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).Export(@as(*const IRTCClientPresence, @ptrCast(self)), varStorage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_Import(self: *const T, varStorage: VARIANT, fReplaceAll: i16) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).Import(@ptrCast(*const IRTCClientPresence, self), varStorage, fReplaceAll);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).Import(@as(*const IRTCClientPresence, @ptrCast(self)), varStorage, fReplaceAll);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_EnumerateBuddies(self: *const T, ppEnum: ?*?*IRTCEnumBuddies) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).EnumerateBuddies(@ptrCast(*const IRTCClientPresence, self), ppEnum);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnumerateBuddies(@as(*const IRTCClientPresence, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_Buddies(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_Buddies(@ptrCast(*const IRTCClientPresence, self), ppCollection);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Buddies(@as(*const IRTCClientPresence, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_Buddy(self: *const T, bstrPresentityURI: ?BSTR, ppBuddy: ?*?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_Buddy(@ptrCast(*const IRTCClientPresence, self), bstrPresentityURI, ppBuddy);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, ppBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_AddBuddy(self: *const T, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).AddBuddy(@ptrCast(*const IRTCClientPresence, self), bstrPresentityURI, bstrUserName, bstrData, fPersistent, pProfile, lFlags, ppBuddy);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).AddBuddy(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fPersistent, pProfile, lFlags, ppBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_RemoveBuddy(self: *const T, pBuddy: ?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).RemoveBuddy(@ptrCast(*const IRTCClientPresence, self), pBuddy);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).RemoveBuddy(@as(*const IRTCClientPresence, @ptrCast(self)), pBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_EnumerateWatchers(self: *const T, ppEnum: ?*?*IRTCEnumWatchers) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).EnumerateWatchers(@ptrCast(*const IRTCClientPresence, self), ppEnum);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).EnumerateWatchers(@as(*const IRTCClientPresence, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_Watchers(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_Watchers(@ptrCast(*const IRTCClientPresence, self), ppCollection);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Watchers(@as(*const IRTCClientPresence, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_Watcher(self: *const T, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_Watcher(@ptrCast(*const IRTCClientPresence, self), bstrPresentityURI, ppWatcher);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_Watcher(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, ppWatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_AddWatcher(self: *const T, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fBlocked: i16, fPersistent: i16, ppWatcher: ?*?*IRTCWatcher) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).AddWatcher(@ptrCast(*const IRTCClientPresence, self), bstrPresentityURI, bstrUserName, bstrData, fBlocked, fPersistent, ppWatcher);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).AddWatcher(@as(*const IRTCClientPresence, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fBlocked, fPersistent, ppWatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_RemoveWatcher(self: *const T, pWatcher: ?*IRTCWatcher) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).RemoveWatcher(@ptrCast(*const IRTCClientPresence, self), pWatcher);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).RemoveWatcher(@as(*const IRTCClientPresence, @ptrCast(self)), pWatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_SetLocalPresenceInfo(self: *const T, enStatus: RTC_PRESENCE_STATUS, bstrNotes: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).SetLocalPresenceInfo(@ptrCast(*const IRTCClientPresence, self), enStatus, bstrNotes);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).SetLocalPresenceInfo(@as(*const IRTCClientPresence, @ptrCast(self)), enStatus, bstrNotes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_OfferWatcherMode(self: *const T, penMode: ?*RTC_OFFER_WATCHER_MODE) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_OfferWatcherMode(@ptrCast(*const IRTCClientPresence, self), penMode);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_OfferWatcherMode(@as(*const IRTCClientPresence, @ptrCast(self)), penMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_put_OfferWatcherMode(self: *const T, enMode: RTC_OFFER_WATCHER_MODE) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).put_OfferWatcherMode(@ptrCast(*const IRTCClientPresence, self), enMode);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).put_OfferWatcherMode(@as(*const IRTCClientPresence, @ptrCast(self)), enMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_get_PrivacyMode(self: *const T, penMode: ?*RTC_PRIVACY_MODE) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).get_PrivacyMode(@ptrCast(*const IRTCClientPresence, self), penMode);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).get_PrivacyMode(@as(*const IRTCClientPresence, @ptrCast(self)), penMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence_put_PrivacyMode(self: *const T, enMode: RTC_PRIVACY_MODE) HRESULT {
-                return @ptrCast(*const IRTCClientPresence.VTable, self.vtable).put_PrivacyMode(@ptrCast(*const IRTCClientPresence, self), enMode);
+                return @as(*const IRTCClientPresence.VTable, @ptrCast(self.vtable)).put_PrivacyMode(@as(*const IRTCClientPresence, @ptrCast(self)), enMode);
             }
         };
     }
@@ -2319,63 +2319,63 @@ pub const IRTCClientPresence2 = extern struct {
             pub usingnamespace IRTCClientPresence.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_EnablePresenceEx(self: *const T, pProfile: ?*IRTCProfile, varStorage: VARIANT, lFlags: i32) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).EnablePresenceEx(@ptrCast(*const IRTCClientPresence2, self), pProfile, varStorage, lFlags);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).EnablePresenceEx(@as(*const IRTCClientPresence2, @ptrCast(self)), pProfile, varStorage, lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_DisablePresence(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).DisablePresence(@ptrCast(*const IRTCClientPresence2, self));
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).DisablePresence(@as(*const IRTCClientPresence2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_AddGroup(self: *const T, bstrGroupName: ?BSTR, bstrData: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32, ppGroup: ?*?*IRTCBuddyGroup) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).AddGroup(@ptrCast(*const IRTCClientPresence2, self), bstrGroupName, bstrData, pProfile, lFlags, ppGroup);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddGroup(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrGroupName, bstrData, pProfile, lFlags, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_RemoveGroup(self: *const T, pGroup: ?*IRTCBuddyGroup) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).RemoveGroup(@ptrCast(*const IRTCClientPresence2, self), pGroup);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).RemoveGroup(@as(*const IRTCClientPresence2, @ptrCast(self)), pGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_EnumerateGroups(self: *const T, ppEnum: ?*?*IRTCEnumGroups) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).EnumerateGroups(@ptrCast(*const IRTCClientPresence2, self), ppEnum);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).EnumerateGroups(@as(*const IRTCClientPresence2, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_get_Groups(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).get_Groups(@ptrCast(*const IRTCClientPresence2, self), ppCollection);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IRTCClientPresence2, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_get_Group(self: *const T, bstrGroupName: ?BSTR, ppGroup: ?*?*IRTCBuddyGroup) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).get_Group(@ptrCast(*const IRTCClientPresence2, self), bstrGroupName, ppGroup);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_Group(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrGroupName, ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_AddWatcherEx(self: *const T, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, enState: RTC_WATCHER_STATE, fPersistent: i16, enScope: RTC_ACE_SCOPE, pProfile: ?*IRTCProfile, lFlags: i32, ppWatcher: ?*?*IRTCWatcher2) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).AddWatcherEx(@ptrCast(*const IRTCClientPresence2, self), bstrPresentityURI, bstrUserName, bstrData, enState, fPersistent, enScope, pProfile, lFlags, ppWatcher);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddWatcherEx(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, enState, fPersistent, enScope, pProfile, lFlags, ppWatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_get_WatcherEx(self: *const T, enMode: RTC_WATCHER_MATCH_MODE, bstrPresentityURI: ?BSTR, ppWatcher: ?*?*IRTCWatcher2) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).get_WatcherEx(@ptrCast(*const IRTCClientPresence2, self), enMode, bstrPresentityURI, ppWatcher);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_WatcherEx(@as(*const IRTCClientPresence2, @ptrCast(self)), enMode, bstrPresentityURI, ppWatcher);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_put_PresenceProperty(self: *const T, enProperty: RTC_PRESENCE_PROPERTY, bstrProperty: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).put_PresenceProperty(@ptrCast(*const IRTCClientPresence2, self), enProperty, bstrProperty);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).put_PresenceProperty(@as(*const IRTCClientPresence2, @ptrCast(self)), enProperty, bstrProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_get_PresenceProperty(self: *const T, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).get_PresenceProperty(@ptrCast(*const IRTCClientPresence2, self), enProperty, pbstrProperty);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCClientPresence2, @ptrCast(self)), enProperty, pbstrProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_SetPresenceData(self: *const T, bstrNamespace: ?BSTR, bstrData: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).SetPresenceData(@ptrCast(*const IRTCClientPresence2, self), bstrNamespace, bstrData);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).SetPresenceData(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrNamespace, bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_GetPresenceData(self: *const T, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).GetPresenceData(@ptrCast(*const IRTCClientPresence2, self), pbstrNamespace, pbstrData);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCClientPresence2, @ptrCast(self)), pbstrNamespace, pbstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_GetLocalPresenceInfo(self: *const T, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).GetLocalPresenceInfo(@ptrCast(*const IRTCClientPresence2, self), penStatus, pbstrNotes);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).GetLocalPresenceInfo(@as(*const IRTCClientPresence2, @ptrCast(self)), penStatus, pbstrNotes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPresence2_AddBuddyEx(self: *const T, bstrPresentityURI: ?BSTR, bstrUserName: ?BSTR, bstrData: ?BSTR, fPersistent: i16, enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE, pProfile: ?*IRTCProfile, lFlags: i32, ppBuddy: ?*?*IRTCBuddy2) HRESULT {
-                return @ptrCast(*const IRTCClientPresence2.VTable, self.vtable).AddBuddyEx(@ptrCast(*const IRTCClientPresence2, self), bstrPresentityURI, bstrUserName, bstrData, fPersistent, enSubscriptionType, pProfile, lFlags, ppBuddy);
+                return @as(*const IRTCClientPresence2.VTable, @ptrCast(self.vtable)).AddBuddyEx(@as(*const IRTCClientPresence2, @ptrCast(self)), bstrPresentityURI, bstrUserName, bstrData, fPersistent, enSubscriptionType, pProfile, lFlags, ppBuddy);
             }
         };
     }
@@ -2484,31 +2484,31 @@ pub const IRTCClientProvisioning = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_CreateProfile(self: *const T, bstrProfileXML: ?BSTR, ppProfile: ?*?*IRTCProfile) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).CreateProfile(@ptrCast(*const IRTCClientProvisioning, self), bstrProfileXML, ppProfile);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).CreateProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), bstrProfileXML, ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_EnableProfile(self: *const T, pProfile: ?*IRTCProfile, lRegisterFlags: i32) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).EnableProfile(@ptrCast(*const IRTCClientProvisioning, self), pProfile, lRegisterFlags);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).EnableProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), pProfile, lRegisterFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_DisableProfile(self: *const T, pProfile: ?*IRTCProfile) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).DisableProfile(@ptrCast(*const IRTCClientProvisioning, self), pProfile);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).DisableProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), pProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_EnumerateProfiles(self: *const T, ppEnum: ?*?*IRTCEnumProfiles) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).EnumerateProfiles(@ptrCast(*const IRTCClientProvisioning, self), ppEnum);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).EnumerateProfiles(@as(*const IRTCClientProvisioning, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_get_Profiles(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).get_Profiles(@ptrCast(*const IRTCClientProvisioning, self), ppCollection);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).get_Profiles(@as(*const IRTCClientProvisioning, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_GetProfile(self: *const T, bstrUserAccount: ?BSTR, bstrUserPassword: ?BSTR, bstrUserURI: ?BSTR, bstrServer: ?BSTR, lTransport: i32, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).GetProfile(@ptrCast(*const IRTCClientProvisioning, self), bstrUserAccount, bstrUserPassword, bstrUserURI, bstrServer, lTransport, lCookie);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IRTCClientProvisioning, @ptrCast(self)), bstrUserAccount, bstrUserPassword, bstrUserURI, bstrServer, lTransport, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning_get_SessionCapabilities(self: *const T, plSupportedSessions: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning.VTable, self.vtable).get_SessionCapabilities(@ptrCast(*const IRTCClientProvisioning, self), plSupportedSessions);
+                return @as(*const IRTCClientProvisioning.VTable, @ptrCast(self.vtable)).get_SessionCapabilities(@as(*const IRTCClientProvisioning, @ptrCast(self)), plSupportedSessions);
             }
         };
     }
@@ -2541,7 +2541,7 @@ pub const IRTCClientProvisioning2 = extern struct {
             pub usingnamespace IRTCClientProvisioning.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientProvisioning2_EnableProfileEx(self: *const T, pProfile: ?*IRTCProfile, lRegisterFlags: i32, lRoamingFlags: i32) HRESULT {
-                return @ptrCast(*const IRTCClientProvisioning2.VTable, self.vtable).EnableProfileEx(@ptrCast(*const IRTCClientProvisioning2, self), pProfile, lRegisterFlags, lRoamingFlags);
+                return @as(*const IRTCClientProvisioning2.VTable, @ptrCast(self.vtable)).EnableProfileEx(@as(*const IRTCClientProvisioning2, @ptrCast(self)), pProfile, lRegisterFlags, lRoamingFlags);
             }
         };
     }
@@ -2797,75 +2797,75 @@ pub const IRTCProfile = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_Key(self: *const T, pbstrKey: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_Key(@ptrCast(*const IRTCProfile, self), pbstrKey);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_Key(@as(*const IRTCProfile, @ptrCast(self)), pbstrKey);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_Name(@ptrCast(*const IRTCProfile, self), pbstrName);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_XML(self: *const T, pbstrXML: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_XML(@ptrCast(*const IRTCProfile, self), pbstrXML);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IRTCProfile, @ptrCast(self)), pbstrXML);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ProviderName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ProviderName(@ptrCast(*const IRTCProfile, self), pbstrName);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderName(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ProviderURI(self: *const T, enURI: RTC_PROVIDER_URI, pbstrURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ProviderURI(@ptrCast(*const IRTCProfile, self), enURI, pbstrURI);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderURI(@as(*const IRTCProfile, @ptrCast(self)), enURI, pbstrURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ProviderData(self: *const T, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ProviderData(@ptrCast(*const IRTCProfile, self), pbstrData);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ProviderData(@as(*const IRTCProfile, @ptrCast(self)), pbstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientName(@ptrCast(*const IRTCProfile, self), pbstrName);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IRTCProfile, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientBanner(self: *const T, pfBanner: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientBanner(@ptrCast(*const IRTCProfile, self), pfBanner);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientBanner(@as(*const IRTCProfile, @ptrCast(self)), pfBanner);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientMinVer(self: *const T, pbstrMinVer: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientMinVer(@ptrCast(*const IRTCProfile, self), pbstrMinVer);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientMinVer(@as(*const IRTCProfile, @ptrCast(self)), pbstrMinVer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientCurVer(self: *const T, pbstrCurVer: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientCurVer(@ptrCast(*const IRTCProfile, self), pbstrCurVer);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientCurVer(@as(*const IRTCProfile, @ptrCast(self)), pbstrCurVer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientUpdateURI(self: *const T, pbstrUpdateURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientUpdateURI(@ptrCast(*const IRTCProfile, self), pbstrUpdateURI);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientUpdateURI(@as(*const IRTCProfile, @ptrCast(self)), pbstrUpdateURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_ClientData(self: *const T, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_ClientData(@ptrCast(*const IRTCProfile, self), pbstrData);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_ClientData(@as(*const IRTCProfile, @ptrCast(self)), pbstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_UserURI(self: *const T, pbstrUserURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_UserURI(@ptrCast(*const IRTCProfile, self), pbstrUserURI);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserURI(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_UserName(self: *const T, pbstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_UserName(@ptrCast(*const IRTCProfile, self), pbstrUserName);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserName(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_UserAccount(self: *const T, pbstrUserAccount: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_UserAccount(@ptrCast(*const IRTCProfile, self), pbstrUserAccount);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IRTCProfile, @ptrCast(self)), pbstrUserAccount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_SetCredentials(self: *const T, bstrUserURI: ?BSTR, bstrUserAccount: ?BSTR, bstrPassword: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).SetCredentials(@ptrCast(*const IRTCProfile, self), bstrUserURI, bstrUserAccount, bstrPassword);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IRTCProfile, @ptrCast(self)), bstrUserURI, bstrUserAccount, bstrPassword);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_SessionCapabilities(self: *const T, plSupportedSessions: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_SessionCapabilities(@ptrCast(*const IRTCProfile, self), plSupportedSessions);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_SessionCapabilities(@as(*const IRTCProfile, @ptrCast(self)), plSupportedSessions);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile_get_State(self: *const T, penState: ?*RTC_REGISTRATION_STATE) HRESULT {
-                return @ptrCast(*const IRTCProfile.VTable, self.vtable).get_State(@ptrCast(*const IRTCProfile, self), penState);
+                return @as(*const IRTCProfile.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCProfile, @ptrCast(self)), penState);
             }
         };
     }
@@ -2936,19 +2936,19 @@ pub const IRTCProfile2 = extern struct {
             pub usingnamespace IRTCProfile.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile2_get_Realm(self: *const T, pbstrRealm: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile2.VTable, self.vtable).get_Realm(@ptrCast(*const IRTCProfile2, self), pbstrRealm);
+                return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).get_Realm(@as(*const IRTCProfile2, @ptrCast(self)), pbstrRealm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile2_put_Realm(self: *const T, bstrRealm: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCProfile2.VTable, self.vtable).put_Realm(@ptrCast(*const IRTCProfile2, self), bstrRealm);
+                return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).put_Realm(@as(*const IRTCProfile2, @ptrCast(self)), bstrRealm);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile2_get_AllowedAuth(self: *const T, plAllowedAuth: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCProfile2.VTable, self.vtable).get_AllowedAuth(@ptrCast(*const IRTCProfile2, self), plAllowedAuth);
+                return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).get_AllowedAuth(@as(*const IRTCProfile2, @ptrCast(self)), plAllowedAuth);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfile2_put_AllowedAuth(self: *const T, lAllowedAuth: i32) HRESULT {
-                return @ptrCast(*const IRTCProfile2.VTable, self.vtable).put_AllowedAuth(@ptrCast(*const IRTCProfile2, self), lAllowedAuth);
+                return @as(*const IRTCProfile2.VTable, @ptrCast(self.vtable)).put_AllowedAuth(@as(*const IRTCProfile2, @ptrCast(self)), lAllowedAuth);
             }
         };
     }
@@ -3212,83 +3212,83 @@ pub const IRTCSession = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_Client(self: *const T, ppClient: ?*?*IRTCClient) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_Client(@ptrCast(*const IRTCSession, self), ppClient);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Client(@as(*const IRTCSession, @ptrCast(self)), ppClient);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_State(self: *const T, penState: ?*RTC_SESSION_STATE) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_State(@ptrCast(*const IRTCSession, self), penState);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCSession, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_Type(self: *const T, penType: ?*RTC_SESSION_TYPE) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_Type(@ptrCast(*const IRTCSession, self), penType);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IRTCSession, @ptrCast(self)), penType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCSession, self), ppProfile);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCSession, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_Participants(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_Participants(@ptrCast(*const IRTCSession, self), ppCollection);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_Participants(@as(*const IRTCSession, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_Answer(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).Answer(@ptrCast(*const IRTCSession, self));
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Answer(@as(*const IRTCSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_Terminate(self: *const T, enReason: RTC_TERMINATE_REASON) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).Terminate(@ptrCast(*const IRTCSession, self), enReason);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRTCSession, @ptrCast(self)), enReason);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_Redirect(self: *const T, enType: RTC_SESSION_TYPE, bstrLocalPhoneURI: ?BSTR, pProfile: ?*IRTCProfile, lFlags: i32) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).Redirect(@ptrCast(*const IRTCSession, self), enType, bstrLocalPhoneURI, pProfile, lFlags);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).Redirect(@as(*const IRTCSession, @ptrCast(self)), enType, bstrLocalPhoneURI, pProfile, lFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_AddParticipant(self: *const T, bstrAddress: ?BSTR, bstrName: ?BSTR, ppParticipant: ?*?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).AddParticipant(@ptrCast(*const IRTCSession, self), bstrAddress, bstrName, ppParticipant);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).AddParticipant(@as(*const IRTCSession, @ptrCast(self)), bstrAddress, bstrName, ppParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_RemoveParticipant(self: *const T, pParticipant: ?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).RemoveParticipant(@ptrCast(*const IRTCSession, self), pParticipant);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).RemoveParticipant(@as(*const IRTCSession, @ptrCast(self)), pParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_EnumerateParticipants(self: *const T, ppEnum: ?*?*IRTCEnumParticipants) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).EnumerateParticipants(@ptrCast(*const IRTCSession, self), ppEnum);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).EnumerateParticipants(@as(*const IRTCSession, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_CanAddParticipants(self: *const T, pfCanAdd: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_CanAddParticipants(@ptrCast(*const IRTCSession, self), pfCanAdd);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_CanAddParticipants(@as(*const IRTCSession, @ptrCast(self)), pfCanAdd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_RedirectedUserURI(self: *const T, pbstrUserURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_RedirectedUserURI(@ptrCast(*const IRTCSession, self), pbstrUserURI);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_RedirectedUserURI(@as(*const IRTCSession, @ptrCast(self)), pbstrUserURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_get_RedirectedUserName(self: *const T, pbstrUserName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).get_RedirectedUserName(@ptrCast(*const IRTCSession, self), pbstrUserName);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).get_RedirectedUserName(@as(*const IRTCSession, @ptrCast(self)), pbstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_NextRedirectedUser(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).NextRedirectedUser(@ptrCast(*const IRTCSession, self));
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).NextRedirectedUser(@as(*const IRTCSession, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_SendMessage(self: *const T, bstrMessageHeader: ?BSTR, bstrMessage: ?BSTR, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).SendMessage(@ptrCast(*const IRTCSession, self), bstrMessageHeader, bstrMessage, lCookie);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).SendMessage(@as(*const IRTCSession, @ptrCast(self)), bstrMessageHeader, bstrMessage, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_SendMessageStatus(self: *const T, enUserStatus: RTC_MESSAGING_USER_STATUS, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).SendMessageStatus(@ptrCast(*const IRTCSession, self), enUserStatus, lCookie);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).SendMessageStatus(@as(*const IRTCSession, @ptrCast(self)), enUserStatus, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_AddStream(self: *const T, lMediaType: i32, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).AddStream(@ptrCast(*const IRTCSession, self), lMediaType, lCookie);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IRTCSession, @ptrCast(self)), lMediaType, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_RemoveStream(self: *const T, lMediaType: i32, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).RemoveStream(@ptrCast(*const IRTCSession, self), lMediaType, lCookie);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IRTCSession, @ptrCast(self)), lMediaType, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession_put_EncryptionKey(self: *const T, lMediaType: i32, EncryptionKey: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSession.VTable, self.vtable).put_EncryptionKey(@ptrCast(*const IRTCSession, self), lMediaType, EncryptionKey);
+                return @as(*const IRTCSession.VTable, @ptrCast(self.vtable)).put_EncryptionKey(@as(*const IRTCSession, @ptrCast(self)), lMediaType, EncryptionKey);
             }
         };
     }
@@ -3389,27 +3389,27 @@ pub const IRTCSession2 = extern struct {
             pub usingnamespace IRTCSession.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_SendInfo(self: *const T, bstrInfoHeader: ?BSTR, bstrInfo: ?BSTR, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).SendInfo(@ptrCast(*const IRTCSession2, self), bstrInfoHeader, bstrInfo, lCookie);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).SendInfo(@as(*const IRTCSession2, @ptrCast(self)), bstrInfoHeader, bstrInfo, lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_put_PreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, enSecurityLevel: RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).put_PreferredSecurityLevel(@ptrCast(*const IRTCSession2, self), enSecurityType, enSecurityLevel);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).put_PreferredSecurityLevel(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, enSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_get_PreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).get_PreferredSecurityLevel(@ptrCast(*const IRTCSession2, self), enSecurityType, penSecurityLevel);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).get_PreferredSecurityLevel(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, penSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_IsSecurityEnabled(self: *const T, enSecurityType: RTC_SECURITY_TYPE, pfSecurityEnabled: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).IsSecurityEnabled(@ptrCast(*const IRTCSession2, self), enSecurityType, pfSecurityEnabled);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).IsSecurityEnabled(@as(*const IRTCSession2, @ptrCast(self)), enSecurityType, pfSecurityEnabled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_AnswerWithSessionDescription(self: *const T, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).AnswerWithSessionDescription(@ptrCast(*const IRTCSession2, self), bstrContentType, bstrSessionDescription);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).AnswerWithSessionDescription(@as(*const IRTCSession2, @ptrCast(self)), bstrContentType, bstrSessionDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSession2_ReInviteWithSessionDescription(self: *const T, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSession2.VTable, self.vtable).ReInviteWithSessionDescription(@ptrCast(*const IRTCSession2, self), bstrContentType, bstrSessionDescription, lCookie);
+                return @as(*const IRTCSession2.VTable, @ptrCast(self.vtable)).ReInviteWithSessionDescription(@as(*const IRTCSession2, @ptrCast(self)), bstrContentType, bstrSessionDescription, lCookie);
             }
         };
     }
@@ -3535,39 +3535,39 @@ pub const IRTCSessionCallControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_Hold(self: *const T, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).Hold(@ptrCast(*const IRTCSessionCallControl, self), lCookie);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Hold(@as(*const IRTCSessionCallControl, @ptrCast(self)), lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_UnHold(self: *const T, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).UnHold(@ptrCast(*const IRTCSessionCallControl, self), lCookie);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).UnHold(@as(*const IRTCSessionCallControl, @ptrCast(self)), lCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_Forward(self: *const T, bstrForwardToURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).Forward(@ptrCast(*const IRTCSessionCallControl, self), bstrForwardToURI);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Forward(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrForwardToURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_Refer(self: *const T, bstrReferToURI: ?BSTR, bstrReferCookie: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).Refer(@ptrCast(*const IRTCSessionCallControl, self), bstrReferToURI, bstrReferCookie);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).Refer(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferToURI, bstrReferCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_put_ReferredByURI(self: *const T, bstrReferredByURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).put_ReferredByURI(@ptrCast(*const IRTCSessionCallControl, self), bstrReferredByURI);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).put_ReferredByURI(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferredByURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_get_ReferredByURI(self: *const T, pbstrReferredByURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).get_ReferredByURI(@ptrCast(*const IRTCSessionCallControl, self), pbstrReferredByURI);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_ReferredByURI(@as(*const IRTCSessionCallControl, @ptrCast(self)), pbstrReferredByURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_put_ReferCookie(self: *const T, bstrReferCookie: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).put_ReferCookie(@ptrCast(*const IRTCSessionCallControl, self), bstrReferCookie);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).put_ReferCookie(@as(*const IRTCSessionCallControl, @ptrCast(self)), bstrReferCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_get_ReferCookie(self: *const T, pbstrReferCookie: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).get_ReferCookie(@ptrCast(*const IRTCSessionCallControl, self), pbstrReferCookie);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_ReferCookie(@as(*const IRTCSessionCallControl, @ptrCast(self)), pbstrReferCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionCallControl_get_IsReferred(self: *const T, pfIsReferred: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCSessionCallControl.VTable, self.vtable).get_IsReferred(@ptrCast(*const IRTCSessionCallControl, self), pfIsReferred);
+                return @as(*const IRTCSessionCallControl.VTable, @ptrCast(self.vtable)).get_IsReferred(@as(*const IRTCSessionCallControl, @ptrCast(self)), pfIsReferred);
             }
         };
     }
@@ -3651,23 +3651,23 @@ pub const IRTCParticipant = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipant_get_UserURI(self: *const T, pbstrUserURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCParticipant.VTable, self.vtable).get_UserURI(@ptrCast(*const IRTCParticipant, self), pbstrUserURI);
+                return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_UserURI(@as(*const IRTCParticipant, @ptrCast(self)), pbstrUserURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipant_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCParticipant.VTable, self.vtable).get_Name(@ptrCast(*const IRTCParticipant, self), pbstrName);
+                return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCParticipant, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipant_get_Removable(self: *const T, pfRemovable: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCParticipant.VTable, self.vtable).get_Removable(@ptrCast(*const IRTCParticipant, self), pfRemovable);
+                return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Removable(@as(*const IRTCParticipant, @ptrCast(self)), pfRemovable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipant_get_State(self: *const T, penState: ?*RTC_PARTICIPANT_STATE) HRESULT {
-                return @ptrCast(*const IRTCParticipant.VTable, self.vtable).get_State(@ptrCast(*const IRTCParticipant, self), penState);
+                return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCParticipant, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipant_get_Session(self: *const T, ppSession: ?*?*IRTCSession) HRESULT {
-                return @ptrCast(*const IRTCParticipant.VTable, self.vtable).get_Session(@ptrCast(*const IRTCParticipant, self), ppSession);
+                return @as(*const IRTCParticipant.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCParticipant, @ptrCast(self)), ppSession);
             }
         };
     }
@@ -3738,19 +3738,19 @@ pub const IRTCRoamingEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRoamingEvent_get_EventType(self: *const T, pEventType: ?*RTC_ROAMING_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCRoamingEvent.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCRoamingEvent, self), pEventType);
+                return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCRoamingEvent, @ptrCast(self)), pEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRoamingEvent_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile2) HRESULT {
-                return @ptrCast(*const IRTCRoamingEvent.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCRoamingEvent, self), ppProfile);
+                return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCRoamingEvent, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRoamingEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCRoamingEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCRoamingEvent, self), plStatusCode);
+                return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCRoamingEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRoamingEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCRoamingEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCRoamingEvent, self), pbstrStatusText);
+                return @as(*const IRTCRoamingEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCRoamingEvent, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -3808,15 +3808,15 @@ pub const IRTCProfileEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfileEvent_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile) HRESULT {
-                return @ptrCast(*const IRTCProfileEvent.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCProfileEvent, self), ppProfile);
+                return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCProfileEvent, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfileEvent_get_Cookie(self: *const T, plCookie: ?*isize) HRESULT {
-                return @ptrCast(*const IRTCProfileEvent.VTable, self.vtable).get_Cookie(@ptrCast(*const IRTCProfileEvent, self), plCookie);
+                return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCProfileEvent, @ptrCast(self)), plCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfileEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCProfileEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCProfileEvent, self), plStatusCode);
+                return @as(*const IRTCProfileEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCProfileEvent, @ptrCast(self)), plStatusCode);
             }
         };
     }
@@ -3848,7 +3848,7 @@ pub const IRTCProfileEvent2 = extern struct {
             pub usingnamespace IRTCProfileEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCProfileEvent2_get_EventType(self: *const T, pEventType: ?*RTC_PROFILE_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCProfileEvent2.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCProfileEvent2, self), pEventType);
+                return @as(*const IRTCProfileEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCProfileEvent2, @ptrCast(self)), pEventType);
             }
         };
     }
@@ -3893,11 +3893,11 @@ pub const IRTCClientEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientEvent_get_EventType(self: *const T, penEventType: ?*RTC_CLIENT_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCClientEvent.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCClientEvent, self), penEventType);
+                return @as(*const IRTCClientEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCClientEvent, @ptrCast(self)), penEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientEvent_get_Client(self: *const T, ppClient: ?*?*IRTCClient) HRESULT {
-                return @ptrCast(*const IRTCClientEvent.VTable, self.vtable).get_Client(@ptrCast(*const IRTCClientEvent, self), ppClient);
+                return @as(*const IRTCClientEvent.VTable, @ptrCast(self.vtable)).get_Client(@as(*const IRTCClientEvent, @ptrCast(self)), ppClient);
             }
         };
     }
@@ -3968,19 +3968,19 @@ pub const IRTCRegistrationStateChangeEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRegistrationStateChangeEvent_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile) HRESULT {
-                return @ptrCast(*const IRTCRegistrationStateChangeEvent.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCRegistrationStateChangeEvent, self), ppProfile);
+                return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRegistrationStateChangeEvent_get_State(self: *const T, penState: ?*RTC_REGISTRATION_STATE) HRESULT {
-                return @ptrCast(*const IRTCRegistrationStateChangeEvent.VTable, self.vtable).get_State(@ptrCast(*const IRTCRegistrationStateChangeEvent, self), penState);
+                return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRegistrationStateChangeEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCRegistrationStateChangeEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCRegistrationStateChangeEvent, self), plStatusCode);
+                return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCRegistrationStateChangeEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCRegistrationStateChangeEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCRegistrationStateChangeEvent, self), pbstrStatusText);
+                return @as(*const IRTCRegistrationStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCRegistrationStateChangeEvent, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -4051,19 +4051,19 @@ pub const IRTCSessionStateChangeEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCSessionStateChangeEvent, self), ppSession);
+                return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent_get_State(self: *const T, penState: ?*RTC_SESSION_STATE) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent.VTable, self.vtable).get_State(@ptrCast(*const IRTCSessionStateChangeEvent, self), penState);
+                return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCSessionStateChangeEvent, self), plStatusCode);
+                return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCSessionStateChangeEvent, self), pbstrStatusText);
+                return @as(*const IRTCSessionStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionStateChangeEvent, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -4135,19 +4135,19 @@ pub const IRTCSessionStateChangeEvent2 = extern struct {
             pub usingnamespace IRTCSessionStateChangeEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent2_get_MediaTypes(self: *const T, pMediaTypes: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent2.VTable, self.vtable).get_MediaTypes(@ptrCast(*const IRTCSessionStateChangeEvent2, self), pMediaTypes);
+                return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_MediaTypes(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent2_get_RemotePreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent2.VTable, self.vtable).get_RemotePreferredSecurityLevel(@ptrCast(*const IRTCSessionStateChangeEvent2, self), enSecurityType, penSecurityLevel);
+                return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_RemotePreferredSecurityLevel(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), enSecurityType, penSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent2_get_IsForked(self: *const T, pfIsForked: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent2.VTable, self.vtable).get_IsForked(@ptrCast(*const IRTCSessionStateChangeEvent2, self), pfIsForked);
+                return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).get_IsForked(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pfIsForked);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionStateChangeEvent2_GetRemoteSessionDescription(self: *const T, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionStateChangeEvent2.VTable, self.vtable).GetRemoteSessionDescription(@ptrCast(*const IRTCSessionStateChangeEvent2, self), pbstrContentType, pbstrSessionDescription);
+                return @as(*const IRTCSessionStateChangeEvent2.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCSessionStateChangeEvent2, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
             }
         };
     }
@@ -4218,19 +4218,19 @@ pub const IRTCSessionOperationCompleteEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCSessionOperationCompleteEvent, self), ppSession);
+                return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent_get_Cookie(self: *const T, plCookie: ?*isize) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent.VTable, self.vtable).get_Cookie(@ptrCast(*const IRTCSessionOperationCompleteEvent, self), plCookie);
+                return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), plCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCSessionOperationCompleteEvent, self), plStatusCode);
+                return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCSessionOperationCompleteEvent, self), pbstrStatusText);
+                return @as(*const IRTCSessionOperationCompleteEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionOperationCompleteEvent, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -4274,11 +4274,11 @@ pub const IRTCSessionOperationCompleteEvent2 = extern struct {
             pub usingnamespace IRTCSessionOperationCompleteEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent2_get_Participant(self: *const T, ppParticipant: ?*?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent2.VTable, self.vtable).get_Participant(@ptrCast(*const IRTCSessionOperationCompleteEvent2, self), ppParticipant);
+                return @as(*const IRTCSessionOperationCompleteEvent2.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCSessionOperationCompleteEvent2, @ptrCast(self)), ppParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionOperationCompleteEvent2_GetRemoteSessionDescription(self: *const T, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionOperationCompleteEvent2.VTable, self.vtable).GetRemoteSessionDescription(@ptrCast(*const IRTCSessionOperationCompleteEvent2, self), pbstrContentType, pbstrSessionDescription);
+                return @as(*const IRTCSessionOperationCompleteEvent2.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCSessionOperationCompleteEvent2, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
             }
         };
     }
@@ -4336,15 +4336,15 @@ pub const IRTCParticipantStateChangeEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipantStateChangeEvent_get_Participant(self: *const T, ppParticipant: ?*?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCParticipantStateChangeEvent.VTable, self.vtable).get_Participant(@ptrCast(*const IRTCParticipantStateChangeEvent, self), ppParticipant);
+                return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), ppParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipantStateChangeEvent_get_State(self: *const T, penState: ?*RTC_PARTICIPANT_STATE) HRESULT {
-                return @ptrCast(*const IRTCParticipantStateChangeEvent.VTable, self.vtable).get_State(@ptrCast(*const IRTCParticipantStateChangeEvent, self), penState);
+                return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCParticipantStateChangeEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCParticipantStateChangeEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCParticipantStateChangeEvent, self), plStatusCode);
+                return @as(*const IRTCParticipantStateChangeEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCParticipantStateChangeEvent, @ptrCast(self)), plStatusCode);
             }
         };
     }
@@ -4402,15 +4402,15 @@ pub const IRTCMediaEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaEvent_get_MediaType(self: *const T, pMediaType: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCMediaEvent.VTable, self.vtable).get_MediaType(@ptrCast(*const IRTCMediaEvent, self), pMediaType);
+                return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const IRTCMediaEvent, @ptrCast(self)), pMediaType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaEvent_get_EventType(self: *const T, penEventType: ?*RTC_MEDIA_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCMediaEvent.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCMediaEvent, self), penEventType);
+                return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCMediaEvent, @ptrCast(self)), penEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaEvent_get_EventReason(self: *const T, penEventReason: ?*RTC_MEDIA_EVENT_REASON) HRESULT {
-                return @ptrCast(*const IRTCMediaEvent.VTable, self.vtable).get_EventReason(@ptrCast(*const IRTCMediaEvent, self), penEventReason);
+                return @as(*const IRTCMediaEvent.VTable, @ptrCast(self.vtable)).get_EventReason(@as(*const IRTCMediaEvent, @ptrCast(self)), penEventReason);
             }
         };
     }
@@ -4481,19 +4481,19 @@ pub const IRTCIntensityEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCIntensityEvent_get_Level(self: *const T, plLevel: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCIntensityEvent.VTable, self.vtable).get_Level(@ptrCast(*const IRTCIntensityEvent, self), plLevel);
+                return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Level(@as(*const IRTCIntensityEvent, @ptrCast(self)), plLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCIntensityEvent_get_Min(self: *const T, plMin: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCIntensityEvent.VTable, self.vtable).get_Min(@ptrCast(*const IRTCIntensityEvent, self), plMin);
+                return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Min(@as(*const IRTCIntensityEvent, @ptrCast(self)), plMin);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCIntensityEvent_get_Max(self: *const T, plMax: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCIntensityEvent.VTable, self.vtable).get_Max(@ptrCast(*const IRTCIntensityEvent, self), plMax);
+                return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Max(@as(*const IRTCIntensityEvent, @ptrCast(self)), plMax);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCIntensityEvent_get_Direction(self: *const T, penDirection: ?*RTC_AUDIO_DEVICE) HRESULT {
-                return @ptrCast(*const IRTCIntensityEvent.VTable, self.vtable).get_Direction(@ptrCast(*const IRTCIntensityEvent, self), penDirection);
+                return @as(*const IRTCIntensityEvent.VTable, @ptrCast(self.vtable)).get_Direction(@as(*const IRTCIntensityEvent, @ptrCast(self)), penDirection);
             }
         };
     }
@@ -4590,27 +4590,27 @@ pub const IRTCMessagingEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCMessagingEvent, self), ppSession);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCMessagingEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_Participant(self: *const T, ppParticipant: ?*?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_Participant(@ptrCast(*const IRTCMessagingEvent, self), ppParticipant);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCMessagingEvent, @ptrCast(self)), ppParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_EventType(self: *const T, penEventType: ?*RTC_MESSAGING_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCMessagingEvent, self), penEventType);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCMessagingEvent, @ptrCast(self)), penEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_Message(self: *const T, pbstrMessage: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_Message(@ptrCast(*const IRTCMessagingEvent, self), pbstrMessage);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_Message(@as(*const IRTCMessagingEvent, @ptrCast(self)), pbstrMessage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_MessageHeader(self: *const T, pbstrMessageHeader: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_MessageHeader(@ptrCast(*const IRTCMessagingEvent, self), pbstrMessageHeader);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_MessageHeader(@as(*const IRTCMessagingEvent, @ptrCast(self)), pbstrMessageHeader);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMessagingEvent_get_UserStatus(self: *const T, penUserStatus: ?*RTC_MESSAGING_USER_STATUS) HRESULT {
-                return @ptrCast(*const IRTCMessagingEvent.VTable, self.vtable).get_UserStatus(@ptrCast(*const IRTCMessagingEvent, self), penUserStatus);
+                return @as(*const IRTCMessagingEvent.VTable, @ptrCast(self.vtable)).get_UserStatus(@as(*const IRTCMessagingEvent, @ptrCast(self)), penUserStatus);
             }
         };
     }
@@ -4642,7 +4642,7 @@ pub const IRTCBuddyEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyEvent_get_Buddy(self: *const T, ppBuddy: ?*?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCBuddyEvent.VTable, self.vtable).get_Buddy(@ptrCast(*const IRTCBuddyEvent, self), ppBuddy);
+                return @as(*const IRTCBuddyEvent.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCBuddyEvent, @ptrCast(self)), ppBuddy);
             }
         };
     }
@@ -4700,15 +4700,15 @@ pub const IRTCBuddyEvent2 = extern struct {
             pub usingnamespace IRTCBuddyEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyEvent2_get_EventType(self: *const T, pEventType: ?*RTC_BUDDY_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCBuddyEvent2.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCBuddyEvent2, self), pEventType);
+                return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCBuddyEvent2, @ptrCast(self)), pEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyEvent2_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCBuddyEvent2.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCBuddyEvent2, self), plStatusCode);
+                return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCBuddyEvent2, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyEvent2_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddyEvent2.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCBuddyEvent2, self), pbstrStatusText);
+                return @as(*const IRTCBuddyEvent2.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCBuddyEvent2, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -4740,7 +4740,7 @@ pub const IRTCWatcherEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcherEvent_get_Watcher(self: *const T, ppWatcher: ?*?*IRTCWatcher) HRESULT {
-                return @ptrCast(*const IRTCWatcherEvent.VTable, self.vtable).get_Watcher(@ptrCast(*const IRTCWatcherEvent, self), ppWatcher);
+                return @as(*const IRTCWatcherEvent.VTable, @ptrCast(self.vtable)).get_Watcher(@as(*const IRTCWatcherEvent, @ptrCast(self)), ppWatcher);
             }
         };
     }
@@ -4785,11 +4785,11 @@ pub const IRTCWatcherEvent2 = extern struct {
             pub usingnamespace IRTCWatcherEvent.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcherEvent2_get_EventType(self: *const T, pEventType: ?*RTC_WATCHER_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCWatcherEvent2.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCWatcherEvent2, self), pEventType);
+                return @as(*const IRTCWatcherEvent2.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCWatcherEvent2, @ptrCast(self)), pEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcherEvent2_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCWatcherEvent2.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCWatcherEvent2, self), plStatusCode);
+                return @as(*const IRTCWatcherEvent2.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCWatcherEvent2, @ptrCast(self)), plStatusCode);
             }
         };
     }
@@ -4860,19 +4860,19 @@ pub const IRTCBuddyGroupEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroupEvent_get_EventType(self: *const T, pEventType: ?*RTC_GROUP_EVENT_TYPE) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroupEvent.VTable, self.vtable).get_EventType(@ptrCast(*const IRTCBuddyGroupEvent, self), pEventType);
+                return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), pEventType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroupEvent_get_Group(self: *const T, ppGroup: ?*?*IRTCBuddyGroup) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroupEvent.VTable, self.vtable).get_Group(@ptrCast(*const IRTCBuddyGroupEvent, self), ppGroup);
+                return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_Group(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), ppGroup);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroupEvent_get_Buddy(self: *const T, ppBuddy: ?*?*IRTCBuddy2) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroupEvent.VTable, self.vtable).get_Buddy(@ptrCast(*const IRTCBuddyGroupEvent, self), ppBuddy);
+                return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_Buddy(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), ppBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroupEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroupEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCBuddyGroupEvent, self), plStatusCode);
+                return @as(*const IRTCBuddyGroupEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCBuddyGroupEvent, @ptrCast(self)), plStatusCode);
             }
         };
     }
@@ -4943,19 +4943,19 @@ pub const IRTCInfoEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCInfoEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCInfoEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCInfoEvent, self), ppSession);
+                return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCInfoEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCInfoEvent_get_Participant(self: *const T, ppParticipant: ?*?*IRTCParticipant) HRESULT {
-                return @ptrCast(*const IRTCInfoEvent.VTable, self.vtable).get_Participant(@ptrCast(*const IRTCInfoEvent, self), ppParticipant);
+                return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Participant(@as(*const IRTCInfoEvent, @ptrCast(self)), ppParticipant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCInfoEvent_get_Info(self: *const T, pbstrInfo: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCInfoEvent.VTable, self.vtable).get_Info(@ptrCast(*const IRTCInfoEvent, self), pbstrInfo);
+                return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IRTCInfoEvent, @ptrCast(self)), pbstrInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCInfoEvent_get_InfoHeader(self: *const T, pbstrInfoHeader: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCInfoEvent.VTable, self.vtable).get_InfoHeader(@ptrCast(*const IRTCInfoEvent, self), pbstrInfoHeader);
+                return @as(*const IRTCInfoEvent.VTable, @ptrCast(self.vtable)).get_InfoHeader(@as(*const IRTCInfoEvent, @ptrCast(self)), pbstrInfoHeader);
             }
         };
     }
@@ -5059,31 +5059,31 @@ pub const IRTCMediaRequestEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCMediaRequestEvent, self), ppSession);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_get_ProposedMedia(self: *const T, plMediaTypes: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).get_ProposedMedia(@ptrCast(*const IRTCMediaRequestEvent, self), plMediaTypes);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_ProposedMedia(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), plMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_get_CurrentMedia(self: *const T, plMediaTypes: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).get_CurrentMedia(@ptrCast(*const IRTCMediaRequestEvent, self), plMediaTypes);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_CurrentMedia(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), plMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_Accept(self: *const T, lMediaTypes: i32) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).Accept(@ptrCast(*const IRTCMediaRequestEvent, self), lMediaTypes);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), lMediaTypes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_get_RemotePreferredSecurityLevel(self: *const T, enSecurityType: RTC_SECURITY_TYPE, penSecurityLevel: ?*RTC_SECURITY_LEVEL) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).get_RemotePreferredSecurityLevel(@ptrCast(*const IRTCMediaRequestEvent, self), enSecurityType, penSecurityLevel);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_RemotePreferredSecurityLevel(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), enSecurityType, penSecurityLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_Reject(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).Reject(@ptrCast(*const IRTCMediaRequestEvent, self));
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCMediaRequestEvent, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCMediaRequestEvent_get_State(self: *const T, pState: ?*RTC_REINVITE_STATE) HRESULT {
-                return @ptrCast(*const IRTCMediaRequestEvent.VTable, self.vtable).get_State(@ptrCast(*const IRTCMediaRequestEvent, self), pState);
+                return @as(*const IRTCMediaRequestEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCMediaRequestEvent, @ptrCast(self)), pState);
             }
         };
     }
@@ -5160,23 +5160,23 @@ pub const IRTCReInviteEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCReInviteEvent_get_Session(self: *const T, ppSession2: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCReInviteEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCReInviteEvent, self), ppSession2);
+                return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCReInviteEvent, @ptrCast(self)), ppSession2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCReInviteEvent_Accept(self: *const T, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCReInviteEvent.VTable, self.vtable).Accept(@ptrCast(*const IRTCReInviteEvent, self), bstrContentType, bstrSessionDescription);
+                return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCReInviteEvent, @ptrCast(self)), bstrContentType, bstrSessionDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCReInviteEvent_Reject(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCReInviteEvent.VTable, self.vtable).Reject(@ptrCast(*const IRTCReInviteEvent, self));
+                return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCReInviteEvent, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCReInviteEvent_get_State(self: *const T, pState: ?*RTC_REINVITE_STATE) HRESULT {
-                return @ptrCast(*const IRTCReInviteEvent.VTable, self.vtable).get_State(@ptrCast(*const IRTCReInviteEvent, self), pState);
+                return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCReInviteEvent, @ptrCast(self)), pState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCReInviteEvent_GetRemoteSessionDescription(self: *const T, pbstrContentType: ?*?BSTR, pbstrSessionDescription: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCReInviteEvent.VTable, self.vtable).GetRemoteSessionDescription(@ptrCast(*const IRTCReInviteEvent, self), pbstrContentType, pbstrSessionDescription);
+                return @as(*const IRTCReInviteEvent.VTable, @ptrCast(self.vtable)).GetRemoteSessionDescription(@as(*const IRTCReInviteEvent, @ptrCast(self)), pbstrContentType, pbstrSessionDescription);
             }
         };
     }
@@ -5247,19 +5247,19 @@ pub const IRTCPresencePropertyEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresencePropertyEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCPresencePropertyEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCPresencePropertyEvent, self), plStatusCode);
+                return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresencePropertyEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresencePropertyEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCPresencePropertyEvent, self), pbstrStatusText);
+                return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), pbstrStatusText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresencePropertyEvent_get_PresenceProperty(self: *const T, penPresProp: ?*RTC_PRESENCE_PROPERTY) HRESULT {
-                return @ptrCast(*const IRTCPresencePropertyEvent.VTable, self.vtable).get_PresenceProperty(@ptrCast(*const IRTCPresencePropertyEvent, self), penPresProp);
+                return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), penPresProp);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresencePropertyEvent_get_Value(self: *const T, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresencePropertyEvent.VTable, self.vtable).get_Value(@ptrCast(*const IRTCPresencePropertyEvent, self), pbstrValue);
+                return @as(*const IRTCPresencePropertyEvent.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IRTCPresencePropertyEvent, @ptrCast(self)), pbstrValue);
             }
         };
     }
@@ -5316,15 +5316,15 @@ pub const IRTCPresenceDataEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDataEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCPresenceDataEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCPresenceDataEvent, self), plStatusCode);
+                return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDataEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceDataEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCPresenceDataEvent, self), pbstrStatusText);
+                return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), pbstrStatusText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDataEvent_GetPresenceData(self: *const T, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceDataEvent.VTable, self.vtable).GetPresenceData(@ptrCast(*const IRTCPresenceDataEvent, self), pbstrNamespace, pbstrData);
+                return @as(*const IRTCPresenceDataEvent.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCPresenceDataEvent, @ptrCast(self)), pbstrNamespace, pbstrData);
             }
         };
     }
@@ -5381,15 +5381,15 @@ pub const IRTCPresenceStatusEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceStatusEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCPresenceStatusEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCPresenceStatusEvent, self), plStatusCode);
+                return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceStatusEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceStatusEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCPresenceStatusEvent, self), pbstrStatusText);
+                return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), pbstrStatusText);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceStatusEvent_GetLocalPresenceInfo(self: *const T, penStatus: ?*RTC_PRESENCE_STATUS, pbstrNotes: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceStatusEvent.VTable, self.vtable).GetLocalPresenceInfo(@ptrCast(*const IRTCPresenceStatusEvent, self), penStatus, pbstrNotes);
+                return @as(*const IRTCPresenceStatusEvent.VTable, @ptrCast(self.vtable)).GetLocalPresenceInfo(@as(*const IRTCPresenceStatusEvent, @ptrCast(self)), penStatus, pbstrNotes);
             }
         };
     }
@@ -5449,15 +5449,15 @@ pub const IRTCCollection = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCCollection_get_Count(self: *const T, lCount: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCCollection.VTable, self.vtable).get_Count(@ptrCast(*const IRTCCollection, self), lCount);
+                return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IRTCCollection, @ptrCast(self)), lCount);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCCollection_get_Item(self: *const T, Index: i32, pVariant: ?*VARIANT) HRESULT {
-                return @ptrCast(*const IRTCCollection.VTable, self.vtable).get_Item(@ptrCast(*const IRTCCollection, self), Index, pVariant);
+                return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRTCCollection, @ptrCast(self)), Index, pVariant);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCCollection_get__NewEnum(self: *const T, ppNewEnum: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IRTCCollection.VTable, self.vtable).get__NewEnum(@ptrCast(*const IRTCCollection, self), ppNewEnum);
+                return @as(*const IRTCCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRTCCollection, @ptrCast(self)), ppNewEnum);
             }
         };
     }
@@ -5518,19 +5518,19 @@ pub const IRTCEnumParticipants = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumParticipants_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCParticipant, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumParticipants.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumParticipants, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumParticipants, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumParticipants_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumParticipants.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumParticipants, self));
+                return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumParticipants, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumParticipants_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumParticipants.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumParticipants, self), celt);
+                return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumParticipants, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumParticipants_Clone(self: *const T, ppEnum: ?*?*IRTCEnumParticipants) HRESULT {
-                return @ptrCast(*const IRTCEnumParticipants.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumParticipants, self), ppEnum);
+                return @as(*const IRTCEnumParticipants.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumParticipants, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -5591,19 +5591,19 @@ pub const IRTCEnumProfiles = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumProfiles_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCProfile, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumProfiles.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumProfiles, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumProfiles, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumProfiles_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumProfiles.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumProfiles, self));
+                return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumProfiles, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumProfiles_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumProfiles.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumProfiles, self), celt);
+                return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumProfiles, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumProfiles_Clone(self: *const T, ppEnum: ?*?*IRTCEnumProfiles) HRESULT {
-                return @ptrCast(*const IRTCEnumProfiles.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumProfiles, self), ppEnum);
+                return @as(*const IRTCEnumProfiles.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumProfiles, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -5664,19 +5664,19 @@ pub const IRTCEnumBuddies = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumBuddies_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCBuddy, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumBuddies.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumBuddies, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumBuddies, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumBuddies_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumBuddies.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumBuddies, self));
+                return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumBuddies, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumBuddies_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumBuddies.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumBuddies, self), celt);
+                return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumBuddies, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumBuddies_Clone(self: *const T, ppEnum: ?*?*IRTCEnumBuddies) HRESULT {
-                return @ptrCast(*const IRTCEnumBuddies.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumBuddies, self), ppEnum);
+                return @as(*const IRTCEnumBuddies.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumBuddies, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -5737,19 +5737,19 @@ pub const IRTCEnumWatchers = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumWatchers_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCWatcher, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumWatchers.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumWatchers, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumWatchers, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumWatchers_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumWatchers.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumWatchers, self));
+                return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumWatchers, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumWatchers_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumWatchers.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumWatchers, self), celt);
+                return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumWatchers, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumWatchers_Clone(self: *const T, ppEnum: ?*?*IRTCEnumWatchers) HRESULT {
-                return @ptrCast(*const IRTCEnumWatchers.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumWatchers, self), ppEnum);
+                return @as(*const IRTCEnumWatchers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumWatchers, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -5810,19 +5810,19 @@ pub const IRTCEnumGroups = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumGroups_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCBuddyGroup, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumGroups.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumGroups, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumGroups, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumGroups_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumGroups.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumGroups, self));
+                return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumGroups, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumGroups_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumGroups.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumGroups, self), celt);
+                return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumGroups, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumGroups_Clone(self: *const T, ppEnum: ?*?*IRTCEnumGroups) HRESULT {
-                return @ptrCast(*const IRTCEnumGroups.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumGroups, self), ppEnum);
+                return @as(*const IRTCEnumGroups.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumGroups, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -5945,35 +5945,35 @@ pub const IRTCPresenceContact = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_get_PresentityURI(self: *const T, pbstrPresentityURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).get_PresentityURI(@ptrCast(*const IRTCPresenceContact, self), pbstrPresentityURI);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_PresentityURI(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrPresentityURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_put_PresentityURI(self: *const T, bstrPresentityURI: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).put_PresentityURI(@ptrCast(*const IRTCPresenceContact, self), bstrPresentityURI);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_PresentityURI(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrPresentityURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).get_Name(@ptrCast(*const IRTCPresenceContact, self), pbstrName);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_put_Name(self: *const T, bstrName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).put_Name(@ptrCast(*const IRTCPresenceContact, self), bstrName);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_get_Data(self: *const T, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).get_Data(@ptrCast(*const IRTCPresenceContact, self), pbstrData);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IRTCPresenceContact, @ptrCast(self)), pbstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_put_Data(self: *const T, bstrData: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).put_Data(@ptrCast(*const IRTCPresenceContact, self), bstrData);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IRTCPresenceContact, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_get_Persistent(self: *const T, pfPersistent: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).get_Persistent(@ptrCast(*const IRTCPresenceContact, self), pfPersistent);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).get_Persistent(@as(*const IRTCPresenceContact, @ptrCast(self)), pfPersistent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceContact_put_Persistent(self: *const T, fPersistent: i16) HRESULT {
-                return @ptrCast(*const IRTCPresenceContact.VTable, self.vtable).put_Persistent(@ptrCast(*const IRTCPresenceContact, self), fPersistent);
+                return @as(*const IRTCPresenceContact.VTable, @ptrCast(self.vtable)).put_Persistent(@as(*const IRTCPresenceContact, @ptrCast(self)), fPersistent);
             }
         };
     }
@@ -6018,11 +6018,11 @@ pub const IRTCBuddy = extern struct {
             pub usingnamespace IRTCPresenceContact.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy_get_Status(self: *const T, penStatus: ?*RTC_PRESENCE_STATUS) HRESULT {
-                return @ptrCast(*const IRTCBuddy.VTable, self.vtable).get_Status(@ptrCast(*const IRTCBuddy, self), penStatus);
+                return @as(*const IRTCBuddy.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IRTCBuddy, @ptrCast(self)), penStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy_get_Notes(self: *const T, pbstrNotes: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddy.VTable, self.vtable).get_Notes(@ptrCast(*const IRTCBuddy, self), pbstrNotes);
+                return @as(*const IRTCBuddy.VTable, @ptrCast(self.vtable)).get_Notes(@as(*const IRTCBuddy, @ptrCast(self)), pbstrNotes);
             }
         };
     }
@@ -6136,35 +6136,35 @@ pub const IRTCBuddy2 = extern struct {
             pub usingnamespace IRTCBuddy.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile2) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCBuddy2, self), ppProfile);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCBuddy2, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_Refresh(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).Refresh(@ptrCast(*const IRTCBuddy2, self));
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IRTCBuddy2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_EnumerateGroups(self: *const T, ppEnum: ?*?*IRTCEnumGroups) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).EnumerateGroups(@ptrCast(*const IRTCBuddy2, self), ppEnum);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).EnumerateGroups(@as(*const IRTCBuddy2, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_get_Groups(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).get_Groups(@ptrCast(*const IRTCBuddy2, self), ppCollection);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_Groups(@as(*const IRTCBuddy2, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_get_PresenceProperty(self: *const T, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).get_PresenceProperty(@ptrCast(*const IRTCBuddy2, self), enProperty, pbstrProperty);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCBuddy2, @ptrCast(self)), enProperty, pbstrProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_EnumeratePresenceDevices(self: *const T, ppEnumDevices: ?*?*IRTCEnumPresenceDevices) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).EnumeratePresenceDevices(@ptrCast(*const IRTCBuddy2, self), ppEnumDevices);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).EnumeratePresenceDevices(@as(*const IRTCBuddy2, @ptrCast(self)), ppEnumDevices);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_get_PresenceDevices(self: *const T, ppDevicesCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).get_PresenceDevices(@ptrCast(*const IRTCBuddy2, self), ppDevicesCollection);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_PresenceDevices(@as(*const IRTCBuddy2, @ptrCast(self)), ppDevicesCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddy2_get_SubscriptionType(self: *const T, penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE) HRESULT {
-                return @ptrCast(*const IRTCBuddy2.VTable, self.vtable).get_SubscriptionType(@ptrCast(*const IRTCBuddy2, self), penSubscriptionType);
+                return @as(*const IRTCBuddy2.VTable, @ptrCast(self.vtable)).get_SubscriptionType(@as(*const IRTCBuddy2, @ptrCast(self)), penSubscriptionType);
             }
         };
     }
@@ -6209,11 +6209,11 @@ pub const IRTCWatcher = extern struct {
             pub usingnamespace IRTCPresenceContact.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcher_get_State(self: *const T, penState: ?*RTC_WATCHER_STATE) HRESULT {
-                return @ptrCast(*const IRTCWatcher.VTable, self.vtable).get_State(@ptrCast(*const IRTCWatcher, self), penState);
+                return @as(*const IRTCWatcher.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRTCWatcher, @ptrCast(self)), penState);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcher_put_State(self: *const T, enState: RTC_WATCHER_STATE) HRESULT {
-                return @ptrCast(*const IRTCWatcher.VTable, self.vtable).put_State(@ptrCast(*const IRTCWatcher, self), enState);
+                return @as(*const IRTCWatcher.VTable, @ptrCast(self.vtable)).put_State(@as(*const IRTCWatcher, @ptrCast(self)), enState);
             }
         };
     }
@@ -6258,11 +6258,11 @@ pub const IRTCWatcher2 = extern struct {
             pub usingnamespace IRTCWatcher.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcher2_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile2) HRESULT {
-                return @ptrCast(*const IRTCWatcher2.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCWatcher2, self), ppProfile);
+                return @as(*const IRTCWatcher2.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCWatcher2, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCWatcher2_get_Scope(self: *const T, penScope: ?*RTC_ACE_SCOPE) HRESULT {
-                return @ptrCast(*const IRTCWatcher2.VTable, self.vtable).get_Scope(@ptrCast(*const IRTCWatcher2, self), penScope);
+                return @as(*const IRTCWatcher2.VTable, @ptrCast(self.vtable)).get_Scope(@as(*const IRTCWatcher2, @ptrCast(self)), penScope);
             }
         };
     }
@@ -6389,39 +6389,39 @@ pub const IRTCBuddyGroup = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_get_Name(self: *const T, pbstrGroupName: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).get_Name(@ptrCast(*const IRTCBuddyGroup, self), pbstrGroupName);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRTCBuddyGroup, @ptrCast(self)), pbstrGroupName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_put_Name(self: *const T, bstrGroupName: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).put_Name(@ptrCast(*const IRTCBuddyGroup, self), bstrGroupName);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IRTCBuddyGroup, @ptrCast(self)), bstrGroupName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_AddBuddy(self: *const T, pBuddy: ?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).AddBuddy(@ptrCast(*const IRTCBuddyGroup, self), pBuddy);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).AddBuddy(@as(*const IRTCBuddyGroup, @ptrCast(self)), pBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_RemoveBuddy(self: *const T, pBuddy: ?*IRTCBuddy) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).RemoveBuddy(@ptrCast(*const IRTCBuddyGroup, self), pBuddy);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).RemoveBuddy(@as(*const IRTCBuddyGroup, @ptrCast(self)), pBuddy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_EnumerateBuddies(self: *const T, ppEnum: ?*?*IRTCEnumBuddies) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).EnumerateBuddies(@ptrCast(*const IRTCBuddyGroup, self), ppEnum);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).EnumerateBuddies(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_get_Buddies(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).get_Buddies(@ptrCast(*const IRTCBuddyGroup, self), ppCollection);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Buddies(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_get_Data(self: *const T, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).get_Data(@ptrCast(*const IRTCBuddyGroup, self), pbstrData);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IRTCBuddyGroup, @ptrCast(self)), pbstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_put_Data(self: *const T, bstrData: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).put_Data(@ptrCast(*const IRTCBuddyGroup, self), bstrData);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IRTCBuddyGroup, @ptrCast(self)), bstrData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCBuddyGroup_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile2) HRESULT {
-                return @ptrCast(*const IRTCBuddyGroup.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCBuddyGroup, self), ppProfile);
+                return @as(*const IRTCBuddyGroup.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCBuddyGroup, @ptrCast(self)), ppProfile);
             }
         };
     }
@@ -6452,7 +6452,7 @@ pub const IRTCEventNotification = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEventNotification_Event(self: *const T, RTCEvent: RTC_EVENT, pEvent: ?*IDispatch) HRESULT {
-                return @ptrCast(*const IRTCEventNotification.VTable, self.vtable).Event(@ptrCast(*const IRTCEventNotification, self), RTCEvent, pEvent);
+                return @as(*const IRTCEventNotification.VTable, @ptrCast(self.vtable)).Event(@as(*const IRTCEventNotification, @ptrCast(self)), RTCEvent, pEvent);
             }
         };
     }
@@ -6525,15 +6525,15 @@ pub const IRTCPortManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPortManager_GetMapping(self: *const T, bstrRemoteAddress: ?BSTR, enPortType: RTC_PORT_TYPE, pbstrInternalLocalAddress: ?*?BSTR, plInternalLocalPort: ?*i32, pbstrExternalLocalAddress: ?*?BSTR, plExternalLocalPort: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCPortManager.VTable, self.vtable).GetMapping(@ptrCast(*const IRTCPortManager, self), bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
+                return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).GetMapping(@as(*const IRTCPortManager, @ptrCast(self)), bstrRemoteAddress, enPortType, pbstrInternalLocalAddress, plInternalLocalPort, pbstrExternalLocalAddress, plExternalLocalPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPortManager_UpdateRemoteAddress(self: *const T, bstrRemoteAddress: ?BSTR, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalPort: i32) HRESULT {
-                return @ptrCast(*const IRTCPortManager.VTable, self.vtable).UpdateRemoteAddress(@ptrCast(*const IRTCPortManager, self), bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
+                return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).UpdateRemoteAddress(@as(*const IRTCPortManager, @ptrCast(self)), bstrRemoteAddress, bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPortManager_ReleaseMapping(self: *const T, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32, bstrExternalLocalAddress: ?BSTR, lExternalLocalAddress: i32) HRESULT {
-                return @ptrCast(*const IRTCPortManager.VTable, self.vtable).ReleaseMapping(@ptrCast(*const IRTCPortManager, self), bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
+                return @as(*const IRTCPortManager.VTable, @ptrCast(self.vtable)).ReleaseMapping(@as(*const IRTCPortManager, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort, bstrExternalLocalAddress, lExternalLocalAddress);
             }
         };
     }
@@ -6562,7 +6562,7 @@ pub const IRTCSessionPortManagement = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionPortManagement_SetPortManager(self: *const T, pPortManager: ?*IRTCPortManager) HRESULT {
-                return @ptrCast(*const IRTCSessionPortManagement.VTable, self.vtable).SetPortManager(@ptrCast(*const IRTCSessionPortManagement, self), pPortManager);
+                return @as(*const IRTCSessionPortManagement.VTable, @ptrCast(self.vtable)).SetPortManager(@as(*const IRTCSessionPortManagement, @ptrCast(self)), pPortManager);
             }
         };
     }
@@ -6619,15 +6619,15 @@ pub const IRTCClientPortManagement = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPortManagement_StartListenAddressAndPort(self: *const T, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) HRESULT {
-                return @ptrCast(*const IRTCClientPortManagement.VTable, self.vtable).StartListenAddressAndPort(@ptrCast(*const IRTCClientPortManagement, self), bstrInternalLocalAddress, lInternalLocalPort);
+                return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).StartListenAddressAndPort(@as(*const IRTCClientPortManagement, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPortManagement_StopListenAddressAndPort(self: *const T, bstrInternalLocalAddress: ?BSTR, lInternalLocalPort: i32) HRESULT {
-                return @ptrCast(*const IRTCClientPortManagement.VTable, self.vtable).StopListenAddressAndPort(@ptrCast(*const IRTCClientPortManagement, self), bstrInternalLocalAddress, lInternalLocalPort);
+                return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).StopListenAddressAndPort(@as(*const IRTCClientPortManagement, @ptrCast(self)), bstrInternalLocalAddress, lInternalLocalPort);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCClientPortManagement_GetPortRange(self: *const T, enPortType: RTC_PORT_TYPE, plMinValue: ?*i32, plMaxValue: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCClientPortManagement.VTable, self.vtable).GetPortRange(@ptrCast(*const IRTCClientPortManagement, self), enPortType, plMinValue, plMaxValue);
+                return @as(*const IRTCClientPortManagement.VTable, @ptrCast(self.vtable)).GetPortRange(@as(*const IRTCClientPortManagement, @ptrCast(self)), enPortType, plMinValue, plMaxValue);
             }
         };
     }
@@ -6670,11 +6670,11 @@ pub const IRTCUserSearch = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearch_CreateQuery(self: *const T, ppQuery: ?*?*IRTCUserSearchQuery) HRESULT {
-                return @ptrCast(*const IRTCUserSearch.VTable, self.vtable).CreateQuery(@ptrCast(*const IRTCUserSearch, self), ppQuery);
+                return @as(*const IRTCUserSearch.VTable, @ptrCast(self.vtable)).CreateQuery(@as(*const IRTCUserSearch, @ptrCast(self)), ppQuery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearch_ExecuteSearch(self: *const T, pQuery: ?*IRTCUserSearchQuery, pProfile: ?*IRTCProfile, lCookie: isize) HRESULT {
-                return @ptrCast(*const IRTCUserSearch.VTable, self.vtable).ExecuteSearch(@ptrCast(*const IRTCUserSearch, self), pQuery, pProfile, lCookie);
+                return @as(*const IRTCUserSearch.VTable, @ptrCast(self.vtable)).ExecuteSearch(@as(*const IRTCUserSearch, @ptrCast(self)), pQuery, pProfile, lCookie);
             }
         };
     }
@@ -6792,31 +6792,31 @@ pub const IRTCUserSearchQuery = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_put_SearchTerm(self: *const T, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).put_SearchTerm(@ptrCast(*const IRTCUserSearchQuery, self), bstrName, bstrValue);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchTerm(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrName, bstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_get_SearchTerm(self: *const T, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).get_SearchTerm(@ptrCast(*const IRTCUserSearchQuery, self), bstrName, pbstrValue);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchTerm(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrName, pbstrValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_get_SearchTerms(self: *const T, pbstrNames: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).get_SearchTerms(@ptrCast(*const IRTCUserSearchQuery, self), pbstrNames);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchTerms(@as(*const IRTCUserSearchQuery, @ptrCast(self)), pbstrNames);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_put_SearchPreference(self: *const T, enPreference: RTC_USER_SEARCH_PREFERENCE, lValue: i32) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).put_SearchPreference(@ptrCast(*const IRTCUserSearchQuery, self), enPreference, lValue);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchPreference(@as(*const IRTCUserSearchQuery, @ptrCast(self)), enPreference, lValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_get_SearchPreference(self: *const T, enPreference: RTC_USER_SEARCH_PREFERENCE, plValue: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).get_SearchPreference(@ptrCast(*const IRTCUserSearchQuery, self), enPreference, plValue);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchPreference(@as(*const IRTCUserSearchQuery, @ptrCast(self)), enPreference, plValue);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_put_SearchDomain(self: *const T, bstrDomain: ?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).put_SearchDomain(@ptrCast(*const IRTCUserSearchQuery, self), bstrDomain);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).put_SearchDomain(@as(*const IRTCUserSearchQuery, @ptrCast(self)), bstrDomain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchQuery_get_SearchDomain(self: *const T, pbstrDomain: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchQuery.VTable, self.vtable).get_SearchDomain(@ptrCast(*const IRTCUserSearchQuery, self), pbstrDomain);
+                return @as(*const IRTCUserSearchQuery.VTable, @ptrCast(self.vtable)).get_SearchDomain(@as(*const IRTCUserSearchQuery, @ptrCast(self)), pbstrDomain);
             }
         };
     }
@@ -6850,7 +6850,7 @@ pub const IRTCUserSearchResult = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResult_get_Value(self: *const T, enColumn: RTC_USER_SEARCH_COLUMN, pbstrValue: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResult.VTable, self.vtable).get_Value(@ptrCast(*const IRTCUserSearchResult, self), enColumn, pbstrValue);
+                return @as(*const IRTCUserSearchResult.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IRTCUserSearchResult, @ptrCast(self)), enColumn, pbstrValue);
             }
         };
     }
@@ -6911,19 +6911,19 @@ pub const IRTCEnumUserSearchResults = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumUserSearchResults_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCUserSearchResult, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumUserSearchResults.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumUserSearchResults, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumUserSearchResults_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumUserSearchResults.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumUserSearchResults, self));
+                return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumUserSearchResults_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumUserSearchResults.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumUserSearchResults, self), celt);
+                return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumUserSearchResults_Clone(self: *const T, ppEnum: ?*?*IRTCEnumUserSearchResults) HRESULT {
-                return @ptrCast(*const IRTCEnumUserSearchResults.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumUserSearchResults, self), ppEnum);
+                return @as(*const IRTCEnumUserSearchResults.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumUserSearchResults, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -7030,31 +7030,31 @@ pub const IRTCUserSearchResultsEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_EnumerateResults(self: *const T, ppEnum: ?*?*IRTCEnumUserSearchResults) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).EnumerateResults(@ptrCast(*const IRTCUserSearchResultsEvent, self), ppEnum);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).EnumerateResults(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppEnum);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_Results(self: *const T, ppCollection: ?*?*IRTCCollection) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_Results(@ptrCast(*const IRTCUserSearchResultsEvent, self), ppCollection);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppCollection);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_Profile(self: *const T, ppProfile: ?*?*IRTCProfile2) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_Profile(@ptrCast(*const IRTCUserSearchResultsEvent, self), ppProfile);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppProfile);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_Query(self: *const T, ppQuery: ?*?*IRTCUserSearchQuery) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_Query(@ptrCast(*const IRTCUserSearchResultsEvent, self), ppQuery);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Query(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), ppQuery);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_Cookie(self: *const T, plCookie: ?*isize) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_Cookie(@ptrCast(*const IRTCUserSearchResultsEvent, self), plCookie);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_Cookie(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), plCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCUserSearchResultsEvent, self), plStatusCode);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCUserSearchResultsEvent_get_MoreAvailable(self: *const T, pfMoreAvailable: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCUserSearchResultsEvent.VTable, self.vtable).get_MoreAvailable(@ptrCast(*const IRTCUserSearchResultsEvent, self), pfMoreAvailable);
+                return @as(*const IRTCUserSearchResultsEvent.VTable, @ptrCast(self.vtable)).get_MoreAvailable(@as(*const IRTCUserSearchResultsEvent, @ptrCast(self)), pfMoreAvailable);
             }
         };
     }
@@ -7125,19 +7125,19 @@ pub const IRTCSessionReferStatusEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferStatusEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCSessionReferStatusEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCSessionReferStatusEvent, self), ppSession);
+                return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferStatusEvent_get_ReferStatus(self: *const T, penReferStatus: ?*RTC_SESSION_REFER_STATUS) HRESULT {
-                return @ptrCast(*const IRTCSessionReferStatusEvent.VTable, self.vtable).get_ReferStatus(@ptrCast(*const IRTCSessionReferStatusEvent, self), penReferStatus);
+                return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_ReferStatus(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), penReferStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferStatusEvent_get_StatusCode(self: *const T, plStatusCode: ?*i32) HRESULT {
-                return @ptrCast(*const IRTCSessionReferStatusEvent.VTable, self.vtable).get_StatusCode(@ptrCast(*const IRTCSessionReferStatusEvent, self), plStatusCode);
+                return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusCode(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), plStatusCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferStatusEvent_get_StatusText(self: *const T, pbstrStatusText: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionReferStatusEvent.VTable, self.vtable).get_StatusText(@ptrCast(*const IRTCSessionReferStatusEvent, self), pbstrStatusText);
+                return @as(*const IRTCSessionReferStatusEvent.VTable, @ptrCast(self.vtable)).get_StatusText(@as(*const IRTCSessionReferStatusEvent, @ptrCast(self)), pbstrStatusText);
             }
         };
     }
@@ -7234,31 +7234,31 @@ pub const IRTCSessionReferredEvent = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_get_Session(self: *const T, ppSession: ?*?*IRTCSession2) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).get_Session(@ptrCast(*const IRTCSessionReferredEvent, self), ppSession);
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_Session(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), ppSession);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_get_ReferredByURI(self: *const T, pbstrReferredByURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).get_ReferredByURI(@ptrCast(*const IRTCSessionReferredEvent, self), pbstrReferredByURI);
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferredByURI(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferredByURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_get_ReferToURI(self: *const T, pbstrReferoURI: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).get_ReferToURI(@ptrCast(*const IRTCSessionReferredEvent, self), pbstrReferoURI);
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferToURI(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferoURI);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_get_ReferCookie(self: *const T, pbstrReferCookie: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).get_ReferCookie(@ptrCast(*const IRTCSessionReferredEvent, self), pbstrReferCookie);
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).get_ReferCookie(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), pbstrReferCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_Accept(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).Accept(@ptrCast(*const IRTCSessionReferredEvent, self));
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).Accept(@as(*const IRTCSessionReferredEvent, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_Reject(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).Reject(@ptrCast(*const IRTCSessionReferredEvent, self));
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).Reject(@as(*const IRTCSessionReferredEvent, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionReferredEvent_SetReferredSessionState(self: *const T, enState: RTC_SESSION_STATE) HRESULT {
-                return @ptrCast(*const IRTCSessionReferredEvent.VTable, self.vtable).SetReferredSessionState(@ptrCast(*const IRTCSessionReferredEvent, self), enState);
+                return @as(*const IRTCSessionReferredEvent.VTable, @ptrCast(self.vtable)).SetReferredSessionState(@as(*const IRTCSessionReferredEvent, @ptrCast(self)), enState);
             }
         };
     }
@@ -7291,7 +7291,7 @@ pub const IRTCSessionDescriptionManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCSessionDescriptionManager_EvaluateSessionDescription(self: *const T, bstrContentType: ?BSTR, bstrSessionDescription: ?BSTR, pfApplicationSession: ?*i16) HRESULT {
-                return @ptrCast(*const IRTCSessionDescriptionManager.VTable, self.vtable).EvaluateSessionDescription(@ptrCast(*const IRTCSessionDescriptionManager, self), bstrContentType, bstrSessionDescription, pfApplicationSession);
+                return @as(*const IRTCSessionDescriptionManager.VTable, @ptrCast(self.vtable)).EvaluateSessionDescription(@as(*const IRTCSessionDescriptionManager, @ptrCast(self)), bstrContentType, bstrSessionDescription, pfApplicationSession);
             }
         };
     }
@@ -7352,19 +7352,19 @@ pub const IRTCEnumPresenceDevices = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumPresenceDevices_Next(self: *const T, celt: u32, ppElements: [*]?*IRTCPresenceDevice, pceltFetched: ?*u32) HRESULT {
-                return @ptrCast(*const IRTCEnumPresenceDevices.VTable, self.vtable).Next(@ptrCast(*const IRTCEnumPresenceDevices, self), celt, ppElements, pceltFetched);
+                return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Next(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), celt, ppElements, pceltFetched);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumPresenceDevices_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IRTCEnumPresenceDevices.VTable, self.vtable).Reset(@ptrCast(*const IRTCEnumPresenceDevices, self));
+                return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumPresenceDevices_Skip(self: *const T, celt: u32) HRESULT {
-                return @ptrCast(*const IRTCEnumPresenceDevices.VTable, self.vtable).Skip(@ptrCast(*const IRTCEnumPresenceDevices, self), celt);
+                return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Skip(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), celt);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCEnumPresenceDevices_Clone(self: *const T, ppEnum: ?*?*IRTCEnumPresenceDevices) HRESULT {
-                return @ptrCast(*const IRTCEnumPresenceDevices.VTable, self.vtable).Clone(@ptrCast(*const IRTCEnumPresenceDevices, self), ppEnum);
+                return @as(*const IRTCEnumPresenceDevices.VTable, @ptrCast(self.vtable)).Clone(@as(*const IRTCEnumPresenceDevices, @ptrCast(self)), ppEnum);
             }
         };
     }
@@ -7436,19 +7436,19 @@ pub const IRTCPresenceDevice = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDevice_get_Status(self: *const T, penStatus: ?*RTC_PRESENCE_STATUS) HRESULT {
-                return @ptrCast(*const IRTCPresenceDevice.VTable, self.vtable).get_Status(@ptrCast(*const IRTCPresenceDevice, self), penStatus);
+                return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_Status(@as(*const IRTCPresenceDevice, @ptrCast(self)), penStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDevice_get_Notes(self: *const T, pbstrNotes: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceDevice.VTable, self.vtable).get_Notes(@ptrCast(*const IRTCPresenceDevice, self), pbstrNotes);
+                return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_Notes(@as(*const IRTCPresenceDevice, @ptrCast(self)), pbstrNotes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDevice_get_PresenceProperty(self: *const T, enProperty: RTC_PRESENCE_PROPERTY, pbstrProperty: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceDevice.VTable, self.vtable).get_PresenceProperty(@ptrCast(*const IRTCPresenceDevice, self), enProperty, pbstrProperty);
+                return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).get_PresenceProperty(@as(*const IRTCPresenceDevice, @ptrCast(self)), enProperty, pbstrProperty);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IRTCPresenceDevice_GetPresenceData(self: *const T, pbstrNamespace: ?*?BSTR, pbstrData: ?*?BSTR) HRESULT {
-                return @ptrCast(*const IRTCPresenceDevice.VTable, self.vtable).GetPresenceData(@ptrCast(*const IRTCPresenceDevice, self), pbstrNamespace, pbstrData);
+                return @as(*const IRTCPresenceDevice.VTable, @ptrCast(self.vtable)).GetPresenceData(@as(*const IRTCPresenceDevice, @ptrCast(self)), pbstrNamespace, pbstrData);
             }
         };
     }
@@ -7508,11 +7508,11 @@ pub const ITransportSettingsInternal = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransportSettingsInternal_ApplySetting(self: *const T, Setting: ?*TRANSPORT_SETTING) HRESULT {
-                return @ptrCast(*const ITransportSettingsInternal.VTable, self.vtable).ApplySetting(@ptrCast(*const ITransportSettingsInternal, self), Setting);
+                return @as(*const ITransportSettingsInternal.VTable, @ptrCast(self.vtable)).ApplySetting(@as(*const ITransportSettingsInternal, @ptrCast(self)), Setting);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ITransportSettingsInternal_QuerySetting(self: *const T, Setting: ?*TRANSPORT_SETTING) HRESULT {
-                return @ptrCast(*const ITransportSettingsInternal.VTable, self.vtable).QuerySetting(@ptrCast(*const ITransportSettingsInternal, self), Setting);
+                return @as(*const ITransportSettingsInternal.VTable, @ptrCast(self.vtable)).QuerySetting(@as(*const ITransportSettingsInternal, @ptrCast(self)), Setting);
             }
         };
     }
@@ -7567,11 +7567,11 @@ pub const INetworkTransportSettings = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkTransportSettings_ApplySetting(self: *const T, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) HRESULT {
-                return @ptrCast(*const INetworkTransportSettings.VTable, self.vtable).ApplySetting(@ptrCast(*const INetworkTransportSettings, self), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+                return @as(*const INetworkTransportSettings.VTable, @ptrCast(self.vtable)).ApplySetting(@as(*const INetworkTransportSettings, @ptrCast(self)), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INetworkTransportSettings_QuerySetting(self: *const T, SettingId: ?*const TRANSPORT_SETTING_ID, LengthIn: u32, ValueIn: [*:0]const u8, LengthOut: ?*u32, ValueOut: [*]?*u8) HRESULT {
-                return @ptrCast(*const INetworkTransportSettings.VTable, self.vtable).QuerySetting(@ptrCast(*const INetworkTransportSettings, self), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
+                return @as(*const INetworkTransportSettings.VTable, @ptrCast(self.vtable)).QuerySetting(@as(*const INetworkTransportSettings, @ptrCast(self)), SettingId, LengthIn, ValueIn, LengthOut, ValueOut);
             }
         };
     }
@@ -7606,11 +7606,11 @@ pub const INotificationTransportSync = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INotificationTransportSync_CompleteDelivery(self: *const T) HRESULT {
-                return @ptrCast(*const INotificationTransportSync.VTable, self.vtable).CompleteDelivery(@ptrCast(*const INotificationTransportSync, self));
+                return @as(*const INotificationTransportSync.VTable, @ptrCast(self.vtable)).CompleteDelivery(@as(*const INotificationTransportSync, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn INotificationTransportSync_Flush(self: *const T) HRESULT {
-                return @ptrCast(*const INotificationTransportSync.VTable, self.vtable).Flush(@ptrCast(*const INotificationTransportSync, self));
+                return @as(*const INotificationTransportSync.VTable, @ptrCast(self.vtable)).Flush(@as(*const INotificationTransportSync, @ptrCast(self)));
             }
         };
     }

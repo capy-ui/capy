@@ -32,7 +32,7 @@ pub const IAudioFrameNative = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAudioFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IAudioFrameNative.VTable, self.vtable).GetData(@ptrCast(*const IAudioFrameNative, self), riid, ppv);
+                return @as(*const IAudioFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IAudioFrameNative, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -75,11 +75,11 @@ pub const IVideoFrameNative = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVideoFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IVideoFrameNative.VTable, self.vtable).GetData(@ptrCast(*const IVideoFrameNative, self), riid, ppv);
+                return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVideoFrameNative_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IVideoFrameNative.VTable, self.vtable).GetDevice(@ptrCast(*const IVideoFrameNative, self), riid, ppv);
+                return @as(*const IVideoFrameNative.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IVideoFrameNative, @ptrCast(self)), riid, ppv);
             }
         };
     }
@@ -114,7 +114,7 @@ pub const IAudioFrameNativeFactory = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IAudioFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IAudioFrameNativeFactory.VTable, self.vtable).CreateFromMFSample(@ptrCast(*const IAudioFrameNativeFactory, self), data, forceReadOnly, riid, ppv);
+                return @as(*const IAudioFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IAudioFrameNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
             }
         };
     }
@@ -159,7 +159,7 @@ pub const IVideoFrameNativeFactory = extern struct {
             pub usingnamespace IInspectable.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IVideoFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IVideoFrameNativeFactory.VTable, self.vtable).CreateFromMFSample(@ptrCast(*const IVideoFrameNativeFactory, self), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
+                return @as(*const IVideoFrameNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMFSample(@as(*const IVideoFrameNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
             }
         };
     }

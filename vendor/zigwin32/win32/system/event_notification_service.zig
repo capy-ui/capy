@@ -123,23 +123,23 @@ pub const ISensNetwork = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensNetwork_ConnectionMade(self: *const T, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) HRESULT {
-                return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionMade(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType, lpQOCInfo);
+                return @as(*const ISensNetwork.VTable, @ptrCast(self.vtable)).ConnectionMade(@as(*const ISensNetwork, @ptrCast(self)), bstrConnection, ulType, lpQOCInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensNetwork_ConnectionMadeNoQOCInfo(self: *const T, bstrConnection: ?BSTR, ulType: u32) HRESULT {
-                return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionMadeNoQOCInfo(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
+                return @as(*const ISensNetwork.VTable, @ptrCast(self.vtable)).ConnectionMadeNoQOCInfo(@as(*const ISensNetwork, @ptrCast(self)), bstrConnection, ulType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensNetwork_ConnectionLost(self: *const T, bstrConnection: ?BSTR, ulType: SENS_CONNECTION_TYPE) HRESULT {
-                return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionLost(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
+                return @as(*const ISensNetwork.VTable, @ptrCast(self.vtable)).ConnectionLost(@as(*const ISensNetwork, @ptrCast(self)), bstrConnection, ulType);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensNetwork_DestinationReachable(self: *const T, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32, lpQOCInfo: ?*SENS_QOCINFO) HRESULT {
-                return @ptrCast(*const ISensNetwork.VTable, self.vtable).DestinationReachable(@ptrCast(*const ISensNetwork, self), bstrDestination, bstrConnection, ulType, lpQOCInfo);
+                return @as(*const ISensNetwork.VTable, @ptrCast(self.vtable)).DestinationReachable(@as(*const ISensNetwork, @ptrCast(self)), bstrDestination, bstrConnection, ulType, lpQOCInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensNetwork_DestinationReachableNoQOCInfo(self: *const T, bstrDestination: ?BSTR, bstrConnection: ?BSTR, ulType: u32) HRESULT {
-                return @ptrCast(*const ISensNetwork.VTable, self.vtable).DestinationReachableNoQOCInfo(@ptrCast(*const ISensNetwork, self), bstrDestination, bstrConnection, ulType);
+                return @as(*const ISensNetwork.VTable, @ptrCast(self.vtable)).DestinationReachableNoQOCInfo(@as(*const ISensNetwork, @ptrCast(self)), bstrDestination, bstrConnection, ulType);
             }
         };
     }
@@ -187,15 +187,15 @@ pub const ISensOnNow = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensOnNow_OnACPower(self: *const T) HRESULT {
-                return @ptrCast(*const ISensOnNow.VTable, self.vtable).OnACPower(@ptrCast(*const ISensOnNow, self));
+                return @as(*const ISensOnNow.VTable, @ptrCast(self.vtable)).OnACPower(@as(*const ISensOnNow, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensOnNow_OnBatteryPower(self: *const T, dwBatteryLifePercent: u32) HRESULT {
-                return @ptrCast(*const ISensOnNow.VTable, self.vtable).OnBatteryPower(@ptrCast(*const ISensOnNow, self), dwBatteryLifePercent);
+                return @as(*const ISensOnNow.VTable, @ptrCast(self.vtable)).OnBatteryPower(@as(*const ISensOnNow, @ptrCast(self)), dwBatteryLifePercent);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensOnNow_BatteryLow(self: *const T, dwBatteryLifePercent: u32) HRESULT {
-                return @ptrCast(*const ISensOnNow.VTable, self.vtable).BatteryLow(@ptrCast(*const ISensOnNow, self), dwBatteryLifePercent);
+                return @as(*const ISensOnNow.VTable, @ptrCast(self.vtable)).BatteryLow(@as(*const ISensOnNow, @ptrCast(self)), dwBatteryLifePercent);
             }
         };
     }
@@ -285,31 +285,31 @@ pub const ISensLogon = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_Logon(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).Logon(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).Logon(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_Logoff(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).Logoff(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).Logoff(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_StartShell(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).StartShell(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).StartShell(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_DisplayLock(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).DisplayLock(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).DisplayLock(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_DisplayUnlock(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).DisplayUnlock(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).DisplayUnlock(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_StartScreenSaver(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).StartScreenSaver(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).StartScreenSaver(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon_StopScreenSaver(self: *const T, bstrUserName: ?BSTR) HRESULT {
-                return @ptrCast(*const ISensLogon.VTable, self.vtable).StopScreenSaver(@ptrCast(*const ISensLogon, self), bstrUserName);
+                return @as(*const ISensLogon.VTable, @ptrCast(self.vtable)).StopScreenSaver(@as(*const ISensLogon, @ptrCast(self)), bstrUserName);
             }
         };
     }
@@ -389,23 +389,23 @@ pub const ISensLogon2 = extern struct {
             pub usingnamespace IDispatch.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon2_Logon(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) HRESULT {
-                return @ptrCast(*const ISensLogon2.VTable, self.vtable).Logon(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
+                return @as(*const ISensLogon2.VTable, @ptrCast(self.vtable)).Logon(@as(*const ISensLogon2, @ptrCast(self)), bstrUserName, dwSessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon2_Logoff(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) HRESULT {
-                return @ptrCast(*const ISensLogon2.VTable, self.vtable).Logoff(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
+                return @as(*const ISensLogon2.VTable, @ptrCast(self.vtable)).Logoff(@as(*const ISensLogon2, @ptrCast(self)), bstrUserName, dwSessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon2_SessionDisconnect(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) HRESULT {
-                return @ptrCast(*const ISensLogon2.VTable, self.vtable).SessionDisconnect(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
+                return @as(*const ISensLogon2.VTable, @ptrCast(self.vtable)).SessionDisconnect(@as(*const ISensLogon2, @ptrCast(self)), bstrUserName, dwSessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon2_SessionReconnect(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) HRESULT {
-                return @ptrCast(*const ISensLogon2.VTable, self.vtable).SessionReconnect(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
+                return @as(*const ISensLogon2.VTable, @ptrCast(self.vtable)).SessionReconnect(@as(*const ISensLogon2, @ptrCast(self)), bstrUserName, dwSessionId);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ISensLogon2_PostShell(self: *const T, bstrUserName: ?BSTR, dwSessionId: u32) HRESULT {
-                return @ptrCast(*const ISensLogon2.VTable, self.vtable).PostShell(@ptrCast(*const ISensLogon2, self), bstrUserName, dwSessionId);
+                return @as(*const ISensLogon2.VTable, @ptrCast(self.vtable)).PostShell(@as(*const ISensLogon2, @ptrCast(self)), bstrUserName, dwSessionId);
             }
         };
     }

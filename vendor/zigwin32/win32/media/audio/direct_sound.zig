@@ -589,35 +589,35 @@ pub const IDirectSound = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_CreateSoundBuffer(self: *const T, pcDSBufferDesc: ?*DSBUFFERDESC, ppDSBuffer: ?*?*IDirectSoundBuffer, pUnkOuter: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).CreateSoundBuffer(@ptrCast(*const IDirectSound, self), pcDSBufferDesc, ppDSBuffer, pUnkOuter);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).CreateSoundBuffer(@as(*const IDirectSound, @ptrCast(self)), pcDSBufferDesc, ppDSBuffer, pUnkOuter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_GetCaps(self: *const T, pDSCaps: ?*DSCAPS) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSound, self), pDSCaps);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSound, @ptrCast(self)), pDSCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_DuplicateSoundBuffer(self: *const T, pDSBufferOriginal: ?*IDirectSoundBuffer, ppDSBufferDuplicate: ?*?*IDirectSoundBuffer) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).DuplicateSoundBuffer(@ptrCast(*const IDirectSound, self), pDSBufferOriginal, ppDSBufferDuplicate);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).DuplicateSoundBuffer(@as(*const IDirectSound, @ptrCast(self)), pDSBufferOriginal, ppDSBufferDuplicate);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_SetCooperativeLevel(self: *const T, hwnd: ?HWND, dwLevel: u32) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).SetCooperativeLevel(@ptrCast(*const IDirectSound, self), hwnd, dwLevel);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).SetCooperativeLevel(@as(*const IDirectSound, @ptrCast(self)), hwnd, dwLevel);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_Compact(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).Compact(@ptrCast(*const IDirectSound, self));
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).Compact(@as(*const IDirectSound, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_GetSpeakerConfig(self: *const T, pdwSpeakerConfig: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).GetSpeakerConfig(@ptrCast(*const IDirectSound, self), pdwSpeakerConfig);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).GetSpeakerConfig(@as(*const IDirectSound, @ptrCast(self)), pdwSpeakerConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_SetSpeakerConfig(self: *const T, dwSpeakerConfig: u32) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).SetSpeakerConfig(@ptrCast(*const IDirectSound, self), dwSpeakerConfig);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).SetSpeakerConfig(@as(*const IDirectSound, @ptrCast(self)), dwSpeakerConfig);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound_Initialize(self: *const T, pcGuidDevice: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirectSound.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSound, self), pcGuidDevice);
+                return @as(*const IDirectSound.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSound, @ptrCast(self)), pcGuidDevice);
             }
         };
     }
@@ -646,7 +646,7 @@ pub const IDirectSound8 = extern struct {
             pub usingnamespace IDirectSound.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound8_VerifyCertification(self: *const T, pdwCertified: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSound8.VTable, self.vtable).VerifyCertification(@ptrCast(*const IDirectSound8, self), pdwCertified);
+                return @as(*const IDirectSound8.VTable, @ptrCast(self.vtable)).VerifyCertification(@as(*const IDirectSound8, @ptrCast(self)), pdwCertified);
             }
         };
     }
@@ -877,75 +877,75 @@ pub const IDirectSoundBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetCaps(self: *const T, pDSBufferCaps: ?*DSBCAPS) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundBuffer, self), pDSBufferCaps);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundBuffer, @ptrCast(self)), pDSBufferCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetCurrentPosition(self: *const T, pdwCurrentPlayCursor: ?*u32, pdwCurrentWriteCursor: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IDirectSoundBuffer, self), pdwCurrentPlayCursor, pdwCurrentWriteCursor);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwCurrentPlayCursor, pdwCurrentWriteCursor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetFormat(self: *const T, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectSoundBuffer, @ptrCast(self)), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetVolume(self: *const T, plVolume: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetVolume(@ptrCast(*const IDirectSoundBuffer, self), plVolume);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IDirectSoundBuffer, @ptrCast(self)), plVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetPan(self: *const T, plPan: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetPan(@ptrCast(*const IDirectSoundBuffer, self), plPan);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetPan(@as(*const IDirectSoundBuffer, @ptrCast(self)), plPan);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetFrequency(self: *const T, pdwFrequency: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetFrequency(@ptrCast(*const IDirectSoundBuffer, self), pdwFrequency);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetFrequency(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwFrequency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_GetStatus(self: *const T, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundBuffer, self), pdwStatus);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundBuffer, @ptrCast(self)), pdwStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Initialize(self: *const T, pDirectSound: ?*IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundBuffer, self), pDirectSound, pcDSBufferDesc);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundBuffer, @ptrCast(self)), pDirectSound, pcDSBufferDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Play(self: *const T, dwReserved1: u32, dwPriority: u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Play(@ptrCast(*const IDirectSoundBuffer, self), dwReserved1, dwPriority, dwFlags);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Play(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwReserved1, dwPriority, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_SetCurrentPosition(self: *const T, dwNewPosition: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetCurrentPosition(@ptrCast(*const IDirectSoundBuffer, self), dwNewPosition);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwNewPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_SetFormat(self: *const T, pcfxFormat: ?*WAVEFORMATEX) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetFormat(@ptrCast(*const IDirectSoundBuffer, self), pcfxFormat);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const IDirectSoundBuffer, @ptrCast(self)), pcfxFormat);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_SetVolume(self: *const T, lVolume: i32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetVolume(@ptrCast(*const IDirectSoundBuffer, self), lVolume);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IDirectSoundBuffer, @ptrCast(self)), lVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_SetPan(self: *const T, lPan: i32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetPan(@ptrCast(*const IDirectSoundBuffer, self), lPan);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetPan(@as(*const IDirectSoundBuffer, @ptrCast(self)), lPan);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_SetFrequency(self: *const T, dwFrequency: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).SetFrequency(@ptrCast(*const IDirectSoundBuffer, self), dwFrequency);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).SetFrequency(@as(*const IDirectSoundBuffer, @ptrCast(self)), dwFrequency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundBuffer, self));
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectSoundBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectSoundBuffer, @ptrCast(self)), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer_Restore(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Restore(@ptrCast(*const IDirectSoundBuffer, self));
+                return @as(*const IDirectSoundBuffer.VTable, @ptrCast(self.vtable)).Restore(@as(*const IDirectSoundBuffer, @ptrCast(self)));
             }
         };
     }
@@ -1008,15 +1008,15 @@ pub const IDirectSoundBuffer8 = extern struct {
             pub usingnamespace IDirectSoundBuffer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer8_SetFX(self: *const T, dwEffectsCount: u32, pDSFXDesc: ?[*]DSEFFECTDESC, pdwResultCodes: ?[*]u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).SetFX(@ptrCast(*const IDirectSoundBuffer8, self), dwEffectsCount, pDSFXDesc, pdwResultCodes);
+                return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).SetFX(@as(*const IDirectSoundBuffer8, @ptrCast(self)), dwEffectsCount, pDSFXDesc, pdwResultCodes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer8_AcquireResources(self: *const T, dwFlags: u32, dwEffectsCount: u32, pdwResultCodes: [*]u32) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).AcquireResources(@ptrCast(*const IDirectSoundBuffer8, self), dwFlags, dwEffectsCount, pdwResultCodes);
+                return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).AcquireResources(@as(*const IDirectSoundBuffer8, @ptrCast(self)), dwFlags, dwEffectsCount, pdwResultCodes);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
+                return @as(*const IDirectSoundBuffer8.VTable, @ptrCast(self.vtable)).GetObjectInPath(@as(*const IDirectSoundBuffer8, @ptrCast(self)), rguidObject, dwIndex, rguidInterface, ppObject);
             }
         };
     }
@@ -1217,63 +1217,63 @@ pub const IDirectSound3DListener = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetAllParameters(self: *const T, pListener: ?*DS3DLISTENER) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSound3DListener, self), pListener);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSound3DListener, @ptrCast(self)), pListener);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetDistanceFactor(self: *const T, pflDistanceFactor: ?*f32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetDistanceFactor(@ptrCast(*const IDirectSound3DListener, self), pflDistanceFactor);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetDistanceFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflDistanceFactor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetDopplerFactor(self: *const T, pflDopplerFactor: ?*f32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetDopplerFactor(@ptrCast(*const IDirectSound3DListener, self), pflDopplerFactor);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetDopplerFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflDopplerFactor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetOrientation(self: *const T, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetOrientation(@ptrCast(*const IDirectSound3DListener, self), pvOrientFront, pvOrientTop);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetOrientation(@as(*const IDirectSound3DListener, @ptrCast(self)), pvOrientFront, pvOrientTop);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetPosition(self: *const T, pvPosition: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetPosition(@ptrCast(*const IDirectSound3DListener, self), pvPosition);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IDirectSound3DListener, @ptrCast(self)), pvPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetRolloffFactor(self: *const T, pflRolloffFactor: ?*f32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetRolloffFactor(@ptrCast(*const IDirectSound3DListener, self), pflRolloffFactor);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetRolloffFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), pflRolloffFactor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_GetVelocity(self: *const T, pvVelocity: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).GetVelocity(@ptrCast(*const IDirectSound3DListener, self), pvVelocity);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).GetVelocity(@as(*const IDirectSound3DListener, @ptrCast(self)), pvVelocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetAllParameters(self: *const T, pcListener: ?*DS3DLISTENER, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSound3DListener, self), pcListener, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSound3DListener, @ptrCast(self)), pcListener, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetDistanceFactor(self: *const T, flDistanceFactor: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetDistanceFactor(@ptrCast(*const IDirectSound3DListener, self), flDistanceFactor, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetDistanceFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flDistanceFactor, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetDopplerFactor(self: *const T, flDopplerFactor: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetDopplerFactor(@ptrCast(*const IDirectSound3DListener, self), flDopplerFactor, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetDopplerFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flDopplerFactor, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetOrientation(self: *const T, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetOrientation(@ptrCast(*const IDirectSound3DListener, self), xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetOrientation(@as(*const IDirectSound3DListener, @ptrCast(self)), xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetPosition(self: *const T, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetPosition(@ptrCast(*const IDirectSound3DListener, self), x, y, z, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IDirectSound3DListener, @ptrCast(self)), x, y, z, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetRolloffFactor(self: *const T, flRolloffFactor: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetRolloffFactor(@ptrCast(*const IDirectSound3DListener, self), flRolloffFactor, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetRolloffFactor(@as(*const IDirectSound3DListener, @ptrCast(self)), flRolloffFactor, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_SetVelocity(self: *const T, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).SetVelocity(@ptrCast(*const IDirectSound3DListener, self), x, y, z, dwApply);
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).SetVelocity(@as(*const IDirectSound3DListener, @ptrCast(self)), x, y, z, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DListener_CommitDeferredSettings(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSound3DListener.VTable, self.vtable).CommitDeferredSettings(@ptrCast(*const IDirectSound3DListener, self));
+                return @as(*const IDirectSound3DListener.VTable, @ptrCast(self.vtable)).CommitDeferredSettings(@as(*const IDirectSound3DListener, @ptrCast(self)));
             }
         };
     }
@@ -1506,75 +1506,75 @@ pub const IDirectSound3DBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetAllParameters(self: *const T, pDs3dBuffer: ?*DS3DBUFFER) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSound3DBuffer, self), pDs3dBuffer);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pDs3dBuffer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetConeAngles(self: *const T, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeAngles(@ptrCast(*const IDirectSound3DBuffer, self), pdwInsideConeAngle, pdwOutsideConeAngle);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeAngles(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pdwInsideConeAngle, pdwOutsideConeAngle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetConeOrientation(self: *const T, pvOrientation: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeOrientation(@ptrCast(*const IDirectSound3DBuffer, self), pvOrientation);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeOrientation(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvOrientation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetConeOutsideVolume(self: *const T, plConeOutsideVolume: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetConeOutsideVolume(@ptrCast(*const IDirectSound3DBuffer, self), plConeOutsideVolume);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetConeOutsideVolume(@as(*const IDirectSound3DBuffer, @ptrCast(self)), plConeOutsideVolume);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetMaxDistance(self: *const T, pflMaxDistance: ?*f32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMaxDistance(@ptrCast(*const IDirectSound3DBuffer, self), pflMaxDistance);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMaxDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pflMaxDistance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetMinDistance(self: *const T, pflMinDistance: ?*f32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMinDistance(@ptrCast(*const IDirectSound3DBuffer, self), pflMinDistance);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMinDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pflMinDistance);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetMode(self: *const T, pdwMode: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetMode(@ptrCast(*const IDirectSound3DBuffer, self), pdwMode);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pdwMode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetPosition(self: *const T, pvPosition: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetPosition(@ptrCast(*const IDirectSound3DBuffer, self), pvPosition);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_GetVelocity(self: *const T, pvVelocity: ?*D3DVECTOR) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).GetVelocity(@ptrCast(*const IDirectSound3DBuffer, self), pvVelocity);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).GetVelocity(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pvVelocity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetAllParameters(self: *const T, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSound3DBuffer, self), pcDs3dBuffer, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSound3DBuffer, @ptrCast(self)), pcDs3dBuffer, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetConeAngles(self: *const T, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetConeAngles(@ptrCast(*const IDirectSound3DBuffer, self), dwInsideConeAngle, dwOutsideConeAngle, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeAngles(@as(*const IDirectSound3DBuffer, @ptrCast(self)), dwInsideConeAngle, dwOutsideConeAngle, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetConeOrientation(self: *const T, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetConeOrientation(@ptrCast(*const IDirectSound3DBuffer, self), x, y, z, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeOrientation(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetConeOutsideVolume(self: *const T, lConeOutsideVolume: i32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetConeOutsideVolume(@ptrCast(*const IDirectSound3DBuffer, self), lConeOutsideVolume, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetConeOutsideVolume(@as(*const IDirectSound3DBuffer, @ptrCast(self)), lConeOutsideVolume, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetMaxDistance(self: *const T, flMaxDistance: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetMaxDistance(@ptrCast(*const IDirectSound3DBuffer, self), flMaxDistance, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMaxDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), flMaxDistance, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetMinDistance(self: *const T, flMinDistance: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetMinDistance(@ptrCast(*const IDirectSound3DBuffer, self), flMinDistance, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMinDistance(@as(*const IDirectSound3DBuffer, @ptrCast(self)), flMinDistance, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetMode(self: *const T, dwMode: u32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetMode(@ptrCast(*const IDirectSound3DBuffer, self), dwMode, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDirectSound3DBuffer, @ptrCast(self)), dwMode, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetPosition(self: *const T, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetPosition(@ptrCast(*const IDirectSound3DBuffer, self), x, y, z, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSound3DBuffer_SetVelocity(self: *const T, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
-                return @ptrCast(*const IDirectSound3DBuffer.VTable, self.vtable).SetVelocity(@ptrCast(*const IDirectSound3DBuffer, self), x, y, z, dwApply);
+                return @as(*const IDirectSound3DBuffer.VTable, @ptrCast(self.vtable)).SetVelocity(@as(*const IDirectSound3DBuffer, @ptrCast(self)), x, y, z, dwApply);
             }
         };
     }
@@ -1627,15 +1627,15 @@ pub const IDirectSoundCapture = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCapture_CreateCaptureBuffer(self: *const T, pcDSCBufferDesc: ?*DSCBUFFERDESC, ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer, pUnkOuter: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDirectSoundCapture.VTable, self.vtable).CreateCaptureBuffer(@ptrCast(*const IDirectSoundCapture, self), pcDSCBufferDesc, ppDSCBuffer, pUnkOuter);
+                return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).CreateCaptureBuffer(@as(*const IDirectSoundCapture, @ptrCast(self)), pcDSCBufferDesc, ppDSCBuffer, pUnkOuter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCapture_GetCaps(self: *const T, pDSCCaps: ?*DSCCAPS) HRESULT {
-                return @ptrCast(*const IDirectSoundCapture.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundCapture, self), pDSCCaps);
+                return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundCapture, @ptrCast(self)), pDSCCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCapture_Initialize(self: *const T, pcGuidDevice: ?*const Guid) HRESULT {
-                return @ptrCast(*const IDirectSoundCapture.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundCapture, self), pcGuidDevice);
+                return @as(*const IDirectSoundCapture.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundCapture, @ptrCast(self)), pcGuidDevice);
             }
         };
     }
@@ -1774,39 +1774,39 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_GetCaps(self: *const T, pDSCBCaps: ?*DSCBCAPS) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDSCBCaps);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetCaps(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pDSCBCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_GetCurrentPosition(self: *const T, pdwCapturePosition: ?*u32, pdwReadPosition: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetCurrentPosition(@ptrCast(*const IDirectSoundCaptureBuffer, self), pdwCapturePosition, pdwReadPosition);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pdwCapturePosition, pdwReadPosition);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_GetFormat(self: *const T, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetFormat(@ptrCast(*const IDirectSoundCaptureBuffer, self), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pwfxFormat, dwSizeAllocated, pdwSizeWritten);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_GetStatus(self: *const T, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundCaptureBuffer, self), pdwStatus);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pdwStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_Initialize(self: *const T, pDirectSoundCapture: ?*IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDirectSoundCapture, pcDSCBufferDesc);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pDirectSoundCapture, pcDSCBufferDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundCaptureBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_Start(self: *const T, dwFlags: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Start(@ptrCast(*const IDirectSoundCaptureBuffer, self), dwFlags);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Start(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), dwFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_Stop(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundCaptureBuffer, self));
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundCaptureBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
+                return @as(*const IDirectSoundCaptureBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IDirectSoundCaptureBuffer, @ptrCast(self)), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
             }
         };
     }
@@ -1853,11 +1853,11 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
             pub usingnamespace IDirectSoundCaptureBuffer.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundCaptureBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
+                return @as(*const IDirectSoundCaptureBuffer8.VTable, @ptrCast(self.vtable)).GetObjectInPath(@as(*const IDirectSoundCaptureBuffer8, @ptrCast(self)), rguidObject, dwIndex, rguidInterface, ppObject);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureBuffer8_GetFXStatus(self: *const T, dwEffectsCount: u32, pdwFXStatus: [*]u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureBuffer8.VTable, self.vtable).GetFXStatus(@ptrCast(*const IDirectSoundCaptureBuffer8, self), dwEffectsCount, pdwFXStatus);
+                return @as(*const IDirectSoundCaptureBuffer8.VTable, @ptrCast(self.vtable)).GetFXStatus(@as(*const IDirectSoundCaptureBuffer8, @ptrCast(self)), dwEffectsCount, pdwFXStatus);
             }
         };
     }
@@ -1888,7 +1888,7 @@ pub const IDirectSoundNotify = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundNotify_SetNotificationPositions(self: *const T, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) HRESULT {
-                return @ptrCast(*const IDirectSoundNotify.VTable, self.vtable).SetNotificationPositions(@ptrCast(*const IDirectSoundNotify, self), dwPositionNotifies, pcPositionNotifies);
+                return @as(*const IDirectSoundNotify.VTable, @ptrCast(self.vtable)).SetNotificationPositions(@as(*const IDirectSoundNotify, @ptrCast(self)), dwPositionNotifies, pcPositionNotifies);
             }
         };
     }
@@ -1932,11 +1932,11 @@ pub const IDirectSoundFXGargle = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXGargle_SetAllParameters(self: *const T, pcDsFxGargle: ?*DSFXGargle) HRESULT {
-                return @ptrCast(*const IDirectSoundFXGargle.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXGargle, self), pcDsFxGargle);
+                return @as(*const IDirectSoundFXGargle.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXGargle, @ptrCast(self)), pcDsFxGargle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXGargle_GetAllParameters(self: *const T, pDsFxGargle: ?*DSFXGargle) HRESULT {
-                return @ptrCast(*const IDirectSoundFXGargle.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXGargle, self), pDsFxGargle);
+                return @as(*const IDirectSoundFXGargle.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXGargle, @ptrCast(self)), pDsFxGargle);
             }
         };
     }
@@ -1985,11 +1985,11 @@ pub const IDirectSoundFXChorus = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXChorus_SetAllParameters(self: *const T, pcDsFxChorus: ?*DSFXChorus) HRESULT {
-                return @ptrCast(*const IDirectSoundFXChorus.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXChorus, self), pcDsFxChorus);
+                return @as(*const IDirectSoundFXChorus.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXChorus, @ptrCast(self)), pcDsFxChorus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXChorus_GetAllParameters(self: *const T, pDsFxChorus: ?*DSFXChorus) HRESULT {
-                return @ptrCast(*const IDirectSoundFXChorus.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXChorus, self), pDsFxChorus);
+                return @as(*const IDirectSoundFXChorus.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXChorus, @ptrCast(self)), pDsFxChorus);
             }
         };
     }
@@ -2038,11 +2038,11 @@ pub const IDirectSoundFXFlanger = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXFlanger_SetAllParameters(self: *const T, pcDsFxFlanger: ?*DSFXFlanger) HRESULT {
-                return @ptrCast(*const IDirectSoundFXFlanger.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXFlanger, self), pcDsFxFlanger);
+                return @as(*const IDirectSoundFXFlanger.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXFlanger, @ptrCast(self)), pcDsFxFlanger);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXFlanger_GetAllParameters(self: *const T, pDsFxFlanger: ?*DSFXFlanger) HRESULT {
-                return @ptrCast(*const IDirectSoundFXFlanger.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXFlanger, self), pDsFxFlanger);
+                return @as(*const IDirectSoundFXFlanger.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXFlanger, @ptrCast(self)), pDsFxFlanger);
             }
         };
     }
@@ -2089,11 +2089,11 @@ pub const IDirectSoundFXEcho = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXEcho_SetAllParameters(self: *const T, pcDsFxEcho: ?*DSFXEcho) HRESULT {
-                return @ptrCast(*const IDirectSoundFXEcho.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXEcho, self), pcDsFxEcho);
+                return @as(*const IDirectSoundFXEcho.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXEcho, @ptrCast(self)), pcDsFxEcho);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXEcho_GetAllParameters(self: *const T, pDsFxEcho: ?*DSFXEcho) HRESULT {
-                return @ptrCast(*const IDirectSoundFXEcho.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXEcho, self), pDsFxEcho);
+                return @as(*const IDirectSoundFXEcho.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXEcho, @ptrCast(self)), pDsFxEcho);
             }
         };
     }
@@ -2140,11 +2140,11 @@ pub const IDirectSoundFXDistortion = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXDistortion_SetAllParameters(self: *const T, pcDsFxDistortion: ?*DSFXDistortion) HRESULT {
-                return @ptrCast(*const IDirectSoundFXDistortion.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXDistortion, self), pcDsFxDistortion);
+                return @as(*const IDirectSoundFXDistortion.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXDistortion, @ptrCast(self)), pcDsFxDistortion);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXDistortion_GetAllParameters(self: *const T, pDsFxDistortion: ?*DSFXDistortion) HRESULT {
-                return @ptrCast(*const IDirectSoundFXDistortion.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXDistortion, self), pDsFxDistortion);
+                return @as(*const IDirectSoundFXDistortion.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXDistortion, @ptrCast(self)), pDsFxDistortion);
             }
         };
     }
@@ -2192,11 +2192,11 @@ pub const IDirectSoundFXCompressor = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXCompressor_SetAllParameters(self: *const T, pcDsFxCompressor: ?*DSFXCompressor) HRESULT {
-                return @ptrCast(*const IDirectSoundFXCompressor.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXCompressor, self), pcDsFxCompressor);
+                return @as(*const IDirectSoundFXCompressor.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXCompressor, @ptrCast(self)), pcDsFxCompressor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXCompressor_GetAllParameters(self: *const T, pDsFxCompressor: ?*DSFXCompressor) HRESULT {
-                return @ptrCast(*const IDirectSoundFXCompressor.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXCompressor, self), pDsFxCompressor);
+                return @as(*const IDirectSoundFXCompressor.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXCompressor, @ptrCast(self)), pDsFxCompressor);
             }
         };
     }
@@ -2241,11 +2241,11 @@ pub const IDirectSoundFXParamEq = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXParamEq_SetAllParameters(self: *const T, pcDsFxParamEq: ?*DSFXParamEq) HRESULT {
-                return @ptrCast(*const IDirectSoundFXParamEq.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXParamEq, self), pcDsFxParamEq);
+                return @as(*const IDirectSoundFXParamEq.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXParamEq, @ptrCast(self)), pcDsFxParamEq);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXParamEq_GetAllParameters(self: *const T, pDsFxParamEq: ?*DSFXParamEq) HRESULT {
-                return @ptrCast(*const IDirectSoundFXParamEq.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXParamEq, self), pDsFxParamEq);
+                return @as(*const IDirectSoundFXParamEq.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXParamEq, @ptrCast(self)), pDsFxParamEq);
             }
         };
     }
@@ -2339,27 +2339,27 @@ pub const IDirectSoundFXI3DL2Reverb = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_SetAllParameters(self: *const T, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pcDsFxI3DL2Reverb);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pcDsFxI3DL2Reverb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_GetAllParameters(self: *const T, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pDsFxI3DL2Reverb);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pDsFxI3DL2Reverb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_SetPreset(self: *const T, dwPreset: u32) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetPreset(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), dwPreset);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetPreset(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), dwPreset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_GetPreset(self: *const T, pdwPreset: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetPreset(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), pdwPreset);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetPreset(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), pdwPreset);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_SetQuality(self: *const T, lQuality: i32) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).SetQuality(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), lQuality);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).SetQuality(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), lQuality);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXI3DL2Reverb_GetQuality(self: *const T, plQuality: ?*i32) HRESULT {
-                return @ptrCast(*const IDirectSoundFXI3DL2Reverb.VTable, self.vtable).GetQuality(@ptrCast(*const IDirectSoundFXI3DL2Reverb, self), plQuality);
+                return @as(*const IDirectSoundFXI3DL2Reverb.VTable, @ptrCast(self.vtable)).GetQuality(@as(*const IDirectSoundFXI3DL2Reverb, @ptrCast(self)), plQuality);
             }
         };
     }
@@ -2405,11 +2405,11 @@ pub const IDirectSoundFXWavesReverb = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXWavesReverb_SetAllParameters(self: *const T, pcDsFxWavesReverb: ?*DSFXWavesReverb) HRESULT {
-                return @ptrCast(*const IDirectSoundFXWavesReverb.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundFXWavesReverb, self), pcDsFxWavesReverb);
+                return @as(*const IDirectSoundFXWavesReverb.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundFXWavesReverb, @ptrCast(self)), pcDsFxWavesReverb);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFXWavesReverb_GetAllParameters(self: *const T, pDsFxWavesReverb: ?*DSFXWavesReverb) HRESULT {
-                return @ptrCast(*const IDirectSoundFXWavesReverb.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundFXWavesReverb, self), pDsFxWavesReverb);
+                return @as(*const IDirectSoundFXWavesReverb.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundFXWavesReverb, @ptrCast(self)), pDsFxWavesReverb);
             }
         };
     }
@@ -2472,19 +2472,19 @@ pub const IDirectSoundCaptureFXAec = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXAec_SetAllParameters(self: *const T, pDscFxAec: ?*DSCFXAec) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundCaptureFXAec, self), pDscFxAec);
+                return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pDscFxAec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXAec_GetAllParameters(self: *const T, pDscFxAec: ?*DSCFXAec) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundCaptureFXAec, self), pDscFxAec);
+                return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pDscFxAec);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXAec_GetStatus(self: *const T, pdwStatus: ?*u32) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).GetStatus(@ptrCast(*const IDirectSoundCaptureFXAec, self), pdwStatus);
+                return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)), pdwStatus);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXAec_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXAec.VTable, self.vtable).Reset(@ptrCast(*const IDirectSoundCaptureFXAec, self));
+                return @as(*const IDirectSoundCaptureFXAec.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXAec, @ptrCast(self)));
             }
         };
     }
@@ -2535,15 +2535,15 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXNoiseSuppress_SetAllParameters(self: *const T, pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXNoiseSuppress.VTable, self.vtable).SetAllParameters(@ptrCast(*const IDirectSoundCaptureFXNoiseSuppress, self), pcDscFxNoiseSuppress);
+                return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).SetAllParameters(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)), pcDscFxNoiseSuppress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXNoiseSuppress_GetAllParameters(self: *const T, pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXNoiseSuppress.VTable, self.vtable).GetAllParameters(@ptrCast(*const IDirectSoundCaptureFXNoiseSuppress, self), pDscFxNoiseSuppress);
+                return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).GetAllParameters(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)), pDscFxNoiseSuppress);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundCaptureFXNoiseSuppress_Reset(self: *const T) HRESULT {
-                return @ptrCast(*const IDirectSoundCaptureFXNoiseSuppress.VTable, self.vtable).Reset(@ptrCast(*const IDirectSoundCaptureFXNoiseSuppress, self));
+                return @as(*const IDirectSoundCaptureFXNoiseSuppress.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDirectSoundCaptureFXNoiseSuppress, @ptrCast(self)));
             }
         };
     }
@@ -2586,7 +2586,7 @@ pub const IDirectSoundFullDuplex = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDirectSoundFullDuplex_Initialize(self: *const T, pCaptureGuid: ?*const Guid, pRenderGuid: ?*const Guid, lpDscBufferDesc: ?*DSCBUFFERDESC, lpDsBufferDesc: ?*DSBUFFERDESC, hWnd: ?HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8) HRESULT {
-                return @ptrCast(*const IDirectSoundFullDuplex.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundFullDuplex, self), pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
+                return @as(*const IDirectSoundFullDuplex.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDirectSoundFullDuplex, @ptrCast(self)), pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
             }
         };
     }

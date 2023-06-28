@@ -343,79 +343,79 @@ pub const ICallFrame = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetInfo(self: *const T, pInfo: ?*CALLFRAMEINFO) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetInfo(@ptrCast(*const ICallFrame, self), pInfo);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ICallFrame, @ptrCast(self)), pInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetIIDAndMethod(self: *const T, pIID: ?*Guid, piMethod: ?*u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetIIDAndMethod(@ptrCast(*const ICallFrame, self), pIID, piMethod);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetIIDAndMethod(@as(*const ICallFrame, @ptrCast(self)), pIID, piMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetNames(self: *const T, pwszInterface: ?*?PWSTR, pwszMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetNames(@ptrCast(*const ICallFrame, self), pwszInterface, pwszMethod);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetNames(@as(*const ICallFrame, @ptrCast(self)), pwszInterface, pwszMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetStackLocation(self: *const T) ?*anyopaque {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetStackLocation(@ptrCast(*const ICallFrame, self));
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetStackLocation(@as(*const ICallFrame, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_SetStackLocation(self: *const T, pvStack: ?*anyopaque) void {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).SetStackLocation(@ptrCast(*const ICallFrame, self), pvStack);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetStackLocation(@as(*const ICallFrame, @ptrCast(self)), pvStack);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_SetReturnValue(self: *const T, hr: HRESULT) void {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).SetReturnValue(@ptrCast(*const ICallFrame, self), hr);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetReturnValue(@as(*const ICallFrame, @ptrCast(self)), hr);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetReturnValue(self: *const T) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetReturnValue(@ptrCast(*const ICallFrame, self));
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetReturnValue(@as(*const ICallFrame, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetParamInfo(self: *const T, iparam: u32, pInfo: ?*CALLFRAMEPARAMINFO) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetParamInfo(@ptrCast(*const ICallFrame, self), iparam, pInfo);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetParamInfo(@as(*const ICallFrame, @ptrCast(self)), iparam, pInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_SetParam(self: *const T, iparam: u32, pvar: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).SetParam(@ptrCast(*const ICallFrame, self), iparam, pvar);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).SetParam(@as(*const ICallFrame, @ptrCast(self)), iparam, pvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetParam(self: *const T, iparam: u32, pvar: ?*VARIANT) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetParam(@ptrCast(*const ICallFrame, self), iparam, pvar);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetParam(@as(*const ICallFrame, @ptrCast(self)), iparam, pvar);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_Copy(self: *const T, copyControl: CALLFRAME_COPY, pWalker: ?*ICallFrameWalker, ppFrame: ?*?*ICallFrame) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).Copy(@ptrCast(*const ICallFrame, self), copyControl, pWalker, ppFrame);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Copy(@as(*const ICallFrame, @ptrCast(self)), copyControl, pWalker, ppFrame);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_Free(self: *const T, pframeArgsDest: ?*ICallFrame, pWalkerDestFree: ?*ICallFrameWalker, pWalkerCopy: ?*ICallFrameWalker, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).Free(@ptrCast(*const ICallFrame, self), pframeArgsDest, pWalkerDestFree, pWalkerCopy, freeFlags, pWalkerFree, nullFlags);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Free(@as(*const ICallFrame, @ptrCast(self)), pframeArgsDest, pWalkerDestFree, pWalkerCopy, freeFlags, pWalkerFree, nullFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_FreeParam(self: *const T, iparam: u32, freeFlags: u32, pWalkerFree: ?*ICallFrameWalker, nullFlags: u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).FreeParam(@ptrCast(*const ICallFrame, self), iparam, freeFlags, pWalkerFree, nullFlags);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).FreeParam(@as(*const ICallFrame, @ptrCast(self)), iparam, freeFlags, pWalkerFree, nullFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_WalkFrame(self: *const T, walkWhat: u32, pWalker: ?*ICallFrameWalker) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).WalkFrame(@ptrCast(*const ICallFrame, self), walkWhat, pWalker);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).WalkFrame(@as(*const ICallFrame, @ptrCast(self)), walkWhat, pWalker);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_GetMarshalSizeMax(self: *const T, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pcbBufferNeeded: ?*u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).GetMarshalSizeMax(@ptrCast(*const ICallFrame, self), pmshlContext, mshlflags, pcbBufferNeeded);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const ICallFrame, @ptrCast(self)), pmshlContext, mshlflags, pcbBufferNeeded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_Marshal(self: *const T, pmshlContext: ?*CALLFRAME_MARSHALCONTEXT, mshlflags: MSHLFLAGS, pBuffer: [*]u8, cbBuffer: u32, pcbBufferUsed: ?*u32, pdataRep: ?*u32, prpcFlags: ?*u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).Marshal(@ptrCast(*const ICallFrame, self), pmshlContext, mshlflags, pBuffer, cbBuffer, pcbBufferUsed, pdataRep, prpcFlags);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Marshal(@as(*const ICallFrame, @ptrCast(self)), pmshlContext, mshlflags, pBuffer, cbBuffer, pcbBufferUsed, pdataRep, prpcFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_Unmarshal(self: *const T, pBuffer: [*]u8, cbBuffer: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).Unmarshal(@ptrCast(*const ICallFrame, self), pBuffer, cbBuffer, dataRep, pcontext, pcbUnmarshalled);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ICallFrame, @ptrCast(self)), pBuffer, cbBuffer, dataRep, pcontext, pcbUnmarshalled);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_ReleaseMarshalData(self: *const T, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).ReleaseMarshalData(@ptrCast(*const ICallFrame, self), pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const ICallFrame, @ptrCast(self)), pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrame_Invoke(self: *const T, pvReceiver: ?*anyopaque) HRESULT {
-                return @ptrCast(*const ICallFrame.VTable, self.vtable).Invoke(@ptrCast(*const ICallFrame, self), pvReceiver);
+                return @as(*const ICallFrame.VTable, @ptrCast(self.vtable)).Invoke(@as(*const ICallFrame, @ptrCast(self)), pvReceiver);
             }
         };
     }
@@ -493,19 +493,19 @@ pub const ICallIndirect = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallIndirect_CallIndirect(self: *const T, phrReturn: ?*HRESULT, iMethod: u32, pvArgs: ?*anyopaque, cbArgs: ?*u32) HRESULT {
-                return @ptrCast(*const ICallIndirect.VTable, self.vtable).CallIndirect(@ptrCast(*const ICallIndirect, self), phrReturn, iMethod, pvArgs, cbArgs);
+                return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).CallIndirect(@as(*const ICallIndirect, @ptrCast(self)), phrReturn, iMethod, pvArgs, cbArgs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallIndirect_GetMethodInfo(self: *const T, iMethod: u32, pInfo: ?*CALLFRAMEINFO, pwszMethod: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ICallIndirect.VTable, self.vtable).GetMethodInfo(@ptrCast(*const ICallIndirect, self), iMethod, pInfo, pwszMethod);
+                return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetMethodInfo(@as(*const ICallIndirect, @ptrCast(self)), iMethod, pInfo, pwszMethod);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallIndirect_GetStackSize(self: *const T, iMethod: u32, cbArgs: ?*u32) HRESULT {
-                return @ptrCast(*const ICallIndirect.VTable, self.vtable).GetStackSize(@ptrCast(*const ICallIndirect, self), iMethod, cbArgs);
+                return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetStackSize(@as(*const ICallIndirect, @ptrCast(self)), iMethod, cbArgs);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallIndirect_GetIID(self: *const T, piid: ?*Guid, pfDerivesFromIDispatch: ?*BOOL, pcMethod: ?*u32, pwszInterface: ?*?PWSTR) HRESULT {
-                return @ptrCast(*const ICallIndirect.VTable, self.vtable).GetIID(@ptrCast(*const ICallIndirect, self), piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
+                return @as(*const ICallIndirect.VTable, @ptrCast(self.vtable)).GetIID(@as(*const ICallIndirect, @ptrCast(self)), piid, pfDerivesFromIDispatch, pcMethod, pwszInterface);
             }
         };
     }
@@ -545,11 +545,11 @@ pub const ICallInterceptor = extern struct {
             pub usingnamespace ICallIndirect.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallInterceptor_RegisterSink(self: *const T, psink: ?*ICallFrameEvents) HRESULT {
-                return @ptrCast(*const ICallInterceptor.VTable, self.vtable).RegisterSink(@ptrCast(*const ICallInterceptor, self), psink);
+                return @as(*const ICallInterceptor.VTable, @ptrCast(self.vtable)).RegisterSink(@as(*const ICallInterceptor, @ptrCast(self)), psink);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallInterceptor_GetRegisteredSink(self: *const T, ppsink: ?*?*ICallFrameEvents) HRESULT {
-                return @ptrCast(*const ICallInterceptor.VTable, self.vtable).GetRegisteredSink(@ptrCast(*const ICallInterceptor, self), ppsink);
+                return @as(*const ICallInterceptor.VTable, @ptrCast(self.vtable)).GetRegisteredSink(@as(*const ICallInterceptor, @ptrCast(self)), ppsink);
             }
         };
     }
@@ -579,7 +579,7 @@ pub const ICallFrameEvents = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrameEvents_OnCall(self: *const T, pFrame: ?*ICallFrame) HRESULT {
-                return @ptrCast(*const ICallFrameEvents.VTable, self.vtable).OnCall(@ptrCast(*const ICallFrameEvents, self), pFrame);
+                return @as(*const ICallFrameEvents.VTable, @ptrCast(self.vtable)).OnCall(@as(*const ICallFrameEvents, @ptrCast(self)), pFrame);
             }
         };
     }
@@ -643,11 +643,11 @@ pub const ICallUnmarshal = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallUnmarshal_Unmarshal(self: *const T, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, fForceBufferCopy: BOOL, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT, pcbUnmarshalled: ?*u32, ppFrame: ?*?*ICallFrame) HRESULT {
-                return @ptrCast(*const ICallUnmarshal.VTable, self.vtable).Unmarshal(@ptrCast(*const ICallUnmarshal, self), iMethod, pBuffer, cbBuffer, fForceBufferCopy, dataRep, pcontext, pcbUnmarshalled, ppFrame);
+                return @as(*const ICallUnmarshal.VTable, @ptrCast(self.vtable)).Unmarshal(@as(*const ICallUnmarshal, @ptrCast(self)), iMethod, pBuffer, cbBuffer, fForceBufferCopy, dataRep, pcontext, pcbUnmarshalled, ppFrame);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallUnmarshal_ReleaseMarshalData(self: *const T, iMethod: u32, pBuffer: [*]u8, cbBuffer: u32, ibFirstRelease: u32, dataRep: u32, pcontext: ?*CALLFRAME_MARSHALCONTEXT) HRESULT {
-                return @ptrCast(*const ICallUnmarshal.VTable, self.vtable).ReleaseMarshalData(@ptrCast(*const ICallUnmarshal, self), iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
+                return @as(*const ICallUnmarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const ICallUnmarshal, @ptrCast(self)), iMethod, pBuffer, cbBuffer, ibFirstRelease, dataRep, pcontext);
             }
         };
     }
@@ -683,7 +683,7 @@ pub const ICallFrameWalker = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn ICallFrameWalker_OnWalkInterface(self: *const T, iid: ?*const Guid, ppvInterface: ?*?*anyopaque, fIn: BOOL, fOut: BOOL) HRESULT {
-                return @ptrCast(*const ICallFrameWalker.VTable, self.vtable).OnWalkInterface(@ptrCast(*const ICallFrameWalker, self), iid, ppvInterface, fIn, fOut);
+                return @as(*const ICallFrameWalker.VTable, @ptrCast(self.vtable)).OnWalkInterface(@as(*const ICallFrameWalker, @ptrCast(self)), iid, ppvInterface, fIn, fOut);
             }
         };
     }
@@ -722,11 +722,11 @@ pub const IInterfaceRelated = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInterfaceRelated_SetIID(self: *const T, iid: ?*const Guid) HRESULT {
-                return @ptrCast(*const IInterfaceRelated.VTable, self.vtable).SetIID(@ptrCast(*const IInterfaceRelated, self), iid);
+                return @as(*const IInterfaceRelated.VTable, @ptrCast(self.vtable)).SetIID(@as(*const IInterfaceRelated, @ptrCast(self)), iid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IInterfaceRelated_GetIID(self: *const T, piid: ?*Guid) HRESULT {
-                return @ptrCast(*const IInterfaceRelated.VTable, self.vtable).GetIID(@ptrCast(*const IInterfaceRelated, self), piid);
+                return @as(*const IInterfaceRelated.VTable, @ptrCast(self.vtable)).GetIID(@as(*const IInterfaceRelated, @ptrCast(self)), piid);
             }
         };
     }

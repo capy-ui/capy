@@ -56,7 +56,7 @@ fn returnFlight(_: *anyopaque) !void {
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn bookFlight(button_: *anyopaque) !void {
-    const button = @ptrCast(*capy.Button_Impl, @alignCast(@alignOf(capy.Button_Impl), button_));
+    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), button_)));
 
     const root = button.getRoot().?.as(capy.Container_Impl);
     _ = root;

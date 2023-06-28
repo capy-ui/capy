@@ -155,7 +155,7 @@ const TargaRLEDecoder = struct {
             if (packet_header.packet_type == .repeated) {
                 self.state = .repeated;
 
-                self.repeat_count = @intCast(usize, packet_header.pixel_count) + 1;
+                self.repeat_count = @as(usize, @intCast(packet_header.pixel_count)) + 1;
 
                 _ = try self.source_reader.read(self.repeat_data);
 
@@ -163,7 +163,7 @@ const TargaRLEDecoder = struct {
             } else if (packet_header.packet_type == .raw) {
                 self.state = .raw;
 
-                self.repeat_count = (@intCast(usize, packet_header.pixel_count) + 1) * self.bytes_per_pixel;
+                self.repeat_count = (@as(usize, @intCast(packet_header.pixel_count)) + 1) * self.bytes_per_pixel;
             }
         }
 
@@ -339,7 +339,7 @@ pub const TGA = struct {
 
         // Read extension
         if (footer.extension_offset > 0) {
-            const extension_pos = @intCast(u64, footer.extension_offset);
+            const extension_pos = @as(u64, @intCast(footer.extension_offset));
             try stream.seekTo(extension_pos);
             self.extension = try utils.readStructLittle(reader, TGAExtension);
         }
@@ -445,9 +445,9 @@ pub const TGA = struct {
         while (data_index < data_end) : (data_index += 1) {
             const raw_color = try stream.readIntLittle(u16);
 
-            data.palette[data_index].r = color.scaleToIntColor(u8, (@truncate(u5, raw_color >> (5 * 2))));
-            data.palette[data_index].g = color.scaleToIntColor(u8, (@truncate(u5, raw_color >> 5)));
-            data.palette[data_index].b = color.scaleToIntColor(u8, (@truncate(u5, raw_color)));
+            data.palette[data_index].r = color.scaleToIntColor(u8, (@as(u5, @truncate(raw_color >> (5 * 2)))));
+            data.palette[data_index].g = color.scaleToIntColor(u8, (@as(u5, @truncate(raw_color >> 5))));
+            data.palette[data_index].b = color.scaleToIntColor(u8, (@as(u5, @truncate(raw_color))));
             data.palette[data_index].a = 255;
         }
     }
@@ -459,9 +459,9 @@ pub const TGA = struct {
         while (data_index < data_end) : (data_index += 1) {
             const raw_color = try stream.readIntLittle(u16);
 
-            data[data_index].r = @truncate(u5, raw_color >> (5 * 2));
-            data[data_index].g = @truncate(u5, raw_color >> 5);
-            data[data_index].b = @truncate(u5, raw_color);
+            data[data_index].r = @as(u5, @truncate(raw_color >> (5 * 2)));
+            data[data_index].g = @as(u5, @truncate(raw_color >> 5));
+            data[data_index].b = @as(u5, @truncate(raw_color));
         }
     }
 

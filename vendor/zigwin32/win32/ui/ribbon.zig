@@ -138,7 +138,7 @@ pub const IUISimplePropertySet = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUISimplePropertySet_GetValue(self: *const T, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IUISimplePropertySet.VTable, self.vtable).GetValue(@ptrCast(*const IUISimplePropertySet, self), key, value);
+                return @as(*const IUISimplePropertySet.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IUISimplePropertySet, @ptrCast(self)), key, value);
             }
         };
     }
@@ -188,15 +188,15 @@ pub const IUIRibbon = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIRibbon_GetHeight(self: *const T, cy: ?*u32) HRESULT {
-                return @ptrCast(*const IUIRibbon.VTable, self.vtable).GetHeight(@ptrCast(*const IUIRibbon, self), cy);
+                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).GetHeight(@as(*const IUIRibbon, @ptrCast(self)), cy);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIRibbon_LoadSettingsFromStream(self: *const T, pStream: ?*IStream) HRESULT {
-                return @ptrCast(*const IUIRibbon.VTable, self.vtable).LoadSettingsFromStream(@ptrCast(*const IUIRibbon, self), pStream);
+                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).LoadSettingsFromStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIRibbon_SaveSettingsToStream(self: *const T, pStream: ?*IStream) HRESULT {
-                return @ptrCast(*const IUIRibbon.VTable, self.vtable).SaveSettingsToStream(@ptrCast(*const IUIRibbon, self), pStream);
+                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).SaveSettingsToStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
             }
         };
     }
@@ -333,39 +333,39 @@ pub const IUIFramework = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_Initialize(self: *const T, frameWnd: ?HWND, application: ?*IUIApplication) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).Initialize(@ptrCast(*const IUIFramework, self), frameWnd, application);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUIFramework, @ptrCast(self)), frameWnd, application);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_Destroy(self: *const T) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).Destroy(@ptrCast(*const IUIFramework, self));
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IUIFramework, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_LoadUI(self: *const T, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).LoadUI(@ptrCast(*const IUIFramework, self), instance, resourceName);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).LoadUI(@as(*const IUIFramework, @ptrCast(self)), instance, resourceName);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_GetView(self: *const T, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).GetView(@ptrCast(*const IUIFramework, self), viewId, riid, ppv);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetView(@as(*const IUIFramework, @ptrCast(self)), viewId, riid, ppv);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_GetUICommandProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).GetUICommandProperty(@ptrCast(*const IUIFramework, self), commandId, key, value);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_SetUICommandProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).SetUICommandProperty(@ptrCast(*const IUIFramework, self), commandId, key, value);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_InvalidateUICommand(self: *const T, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).InvalidateUICommand(@ptrCast(*const IUIFramework, self), commandId, flags, key);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).InvalidateUICommand(@as(*const IUIFramework, @ptrCast(self)), commandId, flags, key);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_FlushPendingInvalidations(self: *const T) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).FlushPendingInvalidations(@ptrCast(*const IUIFramework, self));
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).FlushPendingInvalidations(@as(*const IUIFramework, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIFramework_SetModes(self: *const T, iModes: i32) HRESULT {
-                return @ptrCast(*const IUIFramework.VTable, self.vtable).SetModes(@ptrCast(*const IUIFramework, self), iModes);
+                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetModes(@as(*const IUIFramework, @ptrCast(self)), iModes);
             }
         };
     }
@@ -412,7 +412,7 @@ pub const IUIEventLogger = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIEventLogger_OnUIEvent(self: *const T, pEventParams: ?*UI_EVENTPARAMS) void {
-                return @ptrCast(*const IUIEventLogger.VTable, self.vtable).OnUIEvent(@ptrCast(*const IUIEventLogger, self), pEventParams);
+                return @as(*const IUIEventLogger.VTable, @ptrCast(self.vtable)).OnUIEvent(@as(*const IUIEventLogger, @ptrCast(self)), pEventParams);
             }
         };
     }
@@ -442,7 +442,7 @@ pub const IUIEventingManager = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIEventingManager_SetEventLogger(self: *const T, eventLogger: ?*IUIEventLogger) HRESULT {
-                return @ptrCast(*const IUIEventingManager.VTable, self.vtable).SetEventLogger(@ptrCast(*const IUIEventingManager, self), eventLogger);
+                return @as(*const IUIEventingManager.VTable, @ptrCast(self.vtable)).SetEventLogger(@as(*const IUIEventingManager, @ptrCast(self)), eventLogger);
             }
         };
     }
@@ -474,7 +474,7 @@ pub const IUIContextualUI = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIContextualUI_ShowAtLocation(self: *const T, x: i32, y: i32) HRESULT {
-                return @ptrCast(*const IUIContextualUI.VTable, self.vtable).ShowAtLocation(@ptrCast(*const IUIContextualUI, self), x, y);
+                return @as(*const IUIContextualUI.VTable, @ptrCast(self.vtable)).ShowAtLocation(@as(*const IUIContextualUI, @ptrCast(self)), x, y);
             }
         };
     }
@@ -568,31 +568,31 @@ pub const IUICollection = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).GetCount(@ptrCast(*const IUICollection, self), count);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IUICollection, @ptrCast(self)), count);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_GetItem(self: *const T, index: u32, item: ?*?*IUnknown) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).GetItem(@ptrCast(*const IUICollection, self), index, item);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IUICollection, @ptrCast(self)), index, item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_Add(self: *const T, item: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).Add(@ptrCast(*const IUICollection, self), item);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IUICollection, @ptrCast(self)), item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_Insert(self: *const T, index: u32, item: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).Insert(@ptrCast(*const IUICollection, self), index, item);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IUICollection, @ptrCast(self)), index, item);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).RemoveAt(@ptrCast(*const IUICollection, self), index);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUICollection, @ptrCast(self)), index);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_Replace(self: *const T, indexReplaced: u32, itemReplaceWith: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).Replace(@ptrCast(*const IUICollection, self), indexReplaced, itemReplaceWith);
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Replace(@as(*const IUICollection, @ptrCast(self)), indexReplaced, itemReplaceWith);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollection_Clear(self: *const T) HRESULT {
-                return @ptrCast(*const IUICollection.VTable, self.vtable).Clear(@ptrCast(*const IUICollection, self));
+                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IUICollection, @ptrCast(self)));
             }
         };
     }
@@ -641,7 +641,7 @@ pub const IUICollectionChangedEvent = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICollectionChangedEvent_OnChanged(self: *const T, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IUICollectionChangedEvent.VTable, self.vtable).OnChanged(@ptrCast(*const IUICollectionChangedEvent, self), action, oldIndex, oldItem, newIndex, newItem);
+                return @as(*const IUICollectionChangedEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IUICollectionChangedEvent, @ptrCast(self)), action, oldIndex, oldItem, newIndex, newItem);
             }
         };
     }
@@ -704,11 +704,11 @@ pub const IUICommandHandler = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICommandHandler_Execute(self: *const T, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) HRESULT {
-                return @ptrCast(*const IUICommandHandler.VTable, self.vtable).Execute(@ptrCast(*const IUICommandHandler, self), commandId, verb, key, currentValue, commandExecutionProperties);
+                return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).Execute(@as(*const IUICommandHandler, @ptrCast(self)), commandId, verb, key, currentValue, commandExecutionProperties);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUICommandHandler_UpdateProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) HRESULT {
-                return @ptrCast(*const IUICommandHandler.VTable, self.vtable).UpdateProperty(@ptrCast(*const IUICommandHandler, self), commandId, key, currentValue, newValue);
+                return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).UpdateProperty(@as(*const IUICommandHandler, @ptrCast(self)), commandId, key, currentValue, newValue);
             }
         };
     }
@@ -819,15 +819,15 @@ pub const IUIApplication = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIApplication_OnViewChanged(self: *const T, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) HRESULT {
-                return @ptrCast(*const IUIApplication.VTable, self.vtable).OnViewChanged(@ptrCast(*const IUIApplication, self), viewId, typeID, view, verb, uReasonCode);
+                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnViewChanged(@as(*const IUIApplication, @ptrCast(self)), viewId, typeID, view, verb, uReasonCode);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIApplication_OnCreateUICommand(self: *const T, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) HRESULT {
-                return @ptrCast(*const IUIApplication.VTable, self.vtable).OnCreateUICommand(@ptrCast(*const IUIApplication, self), commandId, typeID, commandHandler);
+                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnCreateUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIApplication_OnDestroyUICommand(self: *const T, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) HRESULT {
-                return @ptrCast(*const IUIApplication.VTable, self.vtable).OnDestroyUICommand(@ptrCast(*const IUIApplication, self), commandId, typeID, commandHandler);
+                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnDestroyUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
             }
         };
     }
@@ -857,7 +857,7 @@ pub const IUIImage = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIImage_GetBitmap(self: *const T, bitmap: ?*?HBITMAP) HRESULT {
-                return @ptrCast(*const IUIImage.VTable, self.vtable).GetBitmap(@ptrCast(*const IUIImage, self), bitmap);
+                return @as(*const IUIImage.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IUIImage, @ptrCast(self)), bitmap);
             }
         };
     }
@@ -898,7 +898,7 @@ pub const IUIImageFromBitmap = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IUIImageFromBitmap_CreateImage(self: *const T, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) HRESULT {
-                return @ptrCast(*const IUIImageFromBitmap.VTable, self.vtable).CreateImage(@ptrCast(*const IUIImageFromBitmap, self), bitmap, options, image);
+                return @as(*const IUIImageFromBitmap.VTable, @ptrCast(self.vtable)).CreateImage(@as(*const IUIImageFromBitmap, @ptrCast(self)), bitmap, options, image);
             }
         };
     }

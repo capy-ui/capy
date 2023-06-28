@@ -41,33 +41,33 @@ pub const Slider_Impl = struct {
     }
 
     fn wrapperValueChanged(newValue: f32, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Slider, userdata);
+        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
         peer.*.?.setValue(newValue);
     }
 
     fn wrapperMinChanged(newValue: f32, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Slider, userdata);
+        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
         peer.*.?.setMinimum(newValue);
     }
 
     fn wrapperMaxChanged(newValue: f32, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Slider, userdata);
+        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
         peer.*.?.setMaximum(newValue);
     }
 
     fn wrapperStepChanged(newValue: f32, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Slider, userdata);
+        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
         peer.*.?.setStepSize(@fabs(newValue));
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @ptrFromInt(*?backend.Slider, userdata);
+        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
         peer.*.?.setEnabled(newValue);
     }
 
     fn onPropertyChange(self: *Slider_Impl, property_name: []const u8, new_value: *const anyopaque) !void {
         if (std.mem.eql(u8, property_name, "value")) {
-            const value = @ptrCast(*const f32, @alignCast(@alignOf(f32), new_value));
+            const value = @as(*const f32, @ptrCast(@alignCast(new_value)));
             self.value.set(value.*);
         }
     }

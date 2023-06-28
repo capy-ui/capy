@@ -23,11 +23,11 @@ pub const FlatButton = struct {
 
     // TODO: themes and custom styling
     fn draw(ctx: *backend.Canvas.DrawContext, data: usize) void {
-        const events = @ptrFromInt(*backend.EventUserData, data);
-        const self = @ptrFromInt(?*FlatButton, events.classUserdata).?;
+        const events = @as(*backend.EventUserData, @ptrFromInt(data));
+        const self = @as(?*FlatButton, @ptrFromInt(events.classUserdata)).?;
 
-        const width = @intCast(u32, backend.getWidthFromPeer(events.peer));
-        const height = @intCast(u32, backend.getHeightFromPeer(events.peer));
+        const width = @as(u32, @intCast(backend.getWidthFromPeer(events.peer)));
+        const height = @as(u32, @intCast(backend.getHeightFromPeer(events.peer)));
 
         ctx.setColorByte(Color.comptimeFromString("#ffffffb3"));
         // ctx.setColorByte(Color.comptimeFromString("#80b9ee"));
@@ -40,7 +40,7 @@ pub const FlatButton = struct {
             .x0 = 0,
             .y0 = 0,
             .x1 = 0,
-            .y1 = @floatFromInt(f32, height) * 3,
+            .y1 = @as(f32, @floatFromInt(height)) * 3,
             .stops = &.{
                 .{ .offset = 0.33, .color = Color.comptimeFromString("#00000029") },
                 .{ .offset = 1.00, .color = Color.comptimeFromString("#0000000F") },
@@ -57,7 +57,7 @@ pub const FlatButton = struct {
         const textSize = layout.getTextSize(text);
 
         ctx.setColorByte(Color.comptimeFromString("#000000e4"));
-        ctx.text(@intCast(i32, (width -| textSize.width) / 2), @intCast(i32, (height -| textSize.height) / 2), layout, text);
+        ctx.text(@as(i32, @intCast((width -| textSize.width) / 2)), @as(i32, @intCast((height -| textSize.height) / 2)), layout, text);
         ctx.fill();
     }
 

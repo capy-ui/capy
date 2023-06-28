@@ -268,19 +268,19 @@ pub const IDXGIObject = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIObject_SetPrivateData(self: *const T, Name: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIObject.VTable, self.vtable).SetPrivateData(@ptrCast(*const IDXGIObject, self), Name, DataSize, pData);
+                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDXGIObject, @ptrCast(self)), Name, DataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIObject_SetPrivateDataInterface(self: *const T, Name: ?*const Guid, pUnknown: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDXGIObject.VTable, self.vtable).SetPrivateDataInterface(@ptrCast(*const IDXGIObject, self), Name, pUnknown);
+                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const IDXGIObject, @ptrCast(self)), Name, pUnknown);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIObject_GetPrivateData(self: *const T, Name: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIObject.VTable, self.vtable).GetPrivateData(@ptrCast(*const IDXGIObject, self), Name, pDataSize, pData);
+                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDXGIObject, @ptrCast(self)), Name, pDataSize, pData);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIObject_GetParent(self: *const T, riid: ?*const Guid, ppParent: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIObject.VTable, self.vtable).GetParent(@ptrCast(*const IDXGIObject, self), riid, ppParent);
+                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).GetParent(@as(*const IDXGIObject, @ptrCast(self)), riid, ppParent);
             }
         };
     }
@@ -311,7 +311,7 @@ pub const IDXGIDeviceSubObject = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDeviceSubObject_GetDevice(self: *const T, riid: ?*const Guid, ppDevice: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIDeviceSubObject.VTable, self.vtable).GetDevice(@ptrCast(*const IDXGIDeviceSubObject, self), riid, ppDevice);
+                return @as(*const IDXGIDeviceSubObject.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDXGIDeviceSubObject, @ptrCast(self)), riid, ppDevice);
             }
         };
     }
@@ -370,19 +370,19 @@ pub const IDXGIResource = extern struct {
             pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource_GetSharedHandle(self: *const T, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDXGIResource.VTable, self.vtable).GetSharedHandle(@ptrCast(*const IDXGIResource, self), pSharedHandle);
+                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetSharedHandle(@as(*const IDXGIResource, @ptrCast(self)), pSharedHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource_GetUsage(self: *const T, pUsage: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIResource.VTable, self.vtable).GetUsage(@ptrCast(*const IDXGIResource, self), pUsage);
+                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetUsage(@as(*const IDXGIResource, @ptrCast(self)), pUsage);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource_SetEvictionPriority(self: *const T, EvictionPriority: DXGI_RESOURCE_PRIORITY) HRESULT {
-                return @ptrCast(*const IDXGIResource.VTable, self.vtable).SetEvictionPriority(@ptrCast(*const IDXGIResource, self), EvictionPriority);
+                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).SetEvictionPriority(@as(*const IDXGIResource, @ptrCast(self)), EvictionPriority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource_GetEvictionPriority(self: *const T, pEvictionPriority: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIResource.VTable, self.vtable).GetEvictionPriority(@ptrCast(*const IDXGIResource, self), pEvictionPriority);
+                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const IDXGIResource, @ptrCast(self)), pEvictionPriority);
             }
         };
     }
@@ -423,11 +423,11 @@ pub const IDXGIKeyedMutex = extern struct {
             pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIKeyedMutex_AcquireSync(self: *const T, Key: u64, dwMilliseconds: u32) HRESULT {
-                return @ptrCast(*const IDXGIKeyedMutex.VTable, self.vtable).AcquireSync(@ptrCast(*const IDXGIKeyedMutex, self), Key, dwMilliseconds);
+                return @as(*const IDXGIKeyedMutex.VTable, @ptrCast(self.vtable)).AcquireSync(@as(*const IDXGIKeyedMutex, @ptrCast(self)), Key, dwMilliseconds);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIKeyedMutex_ReleaseSync(self: *const T, Key: u64) HRESULT {
-                return @ptrCast(*const IDXGIKeyedMutex.VTable, self.vtable).ReleaseSync(@ptrCast(*const IDXGIKeyedMutex, self), Key);
+                return @as(*const IDXGIKeyedMutex.VTable, @ptrCast(self.vtable)).ReleaseSync(@as(*const IDXGIKeyedMutex, @ptrCast(self)), Key);
             }
         };
     }
@@ -476,15 +476,15 @@ pub const IDXGISurface = extern struct {
             pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface_GetDesc(self: *const T, pDesc: ?*DXGI_SURFACE_DESC) HRESULT {
-                return @ptrCast(*const IDXGISurface.VTable, self.vtable).GetDesc(@ptrCast(*const IDXGISurface, self), pDesc);
+                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGISurface, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface_Map(self: *const T, pLockedRect: ?*DXGI_MAPPED_RECT, MapFlags: u32) HRESULT {
-                return @ptrCast(*const IDXGISurface.VTable, self.vtable).Map(@ptrCast(*const IDXGISurface, self), pLockedRect, MapFlags);
+                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).Map(@as(*const IDXGISurface, @ptrCast(self)), pLockedRect, MapFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface_Unmap(self: *const T) HRESULT {
-                return @ptrCast(*const IDXGISurface.VTable, self.vtable).Unmap(@ptrCast(*const IDXGISurface, self));
+                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).Unmap(@as(*const IDXGISurface, @ptrCast(self)));
             }
         };
     }
@@ -526,11 +526,11 @@ pub const IDXGISurface1 = extern struct {
             pub usingnamespace IDXGISurface.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface1_GetDC(self: *const T, Discard: BOOL, phdc: ?*?HDC) HRESULT {
-                return @ptrCast(*const IDXGISurface1.VTable, self.vtable).GetDC(@ptrCast(*const IDXGISurface1, self), Discard, phdc);
+                return @as(*const IDXGISurface1.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDXGISurface1, @ptrCast(self)), Discard, phdc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface1_ReleaseDC(self: *const T, pDirtyRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IDXGISurface1.VTable, self.vtable).ReleaseDC(@ptrCast(*const IDXGISurface1, self), pDirtyRect);
+                return @as(*const IDXGISurface1.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDXGISurface1, @ptrCast(self)), pDirtyRect);
             }
         };
     }
@@ -583,15 +583,15 @@ pub const IDXGIAdapter = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter_EnumOutputs(self: *const T, Output: u32, ppOutput: ?*?*IDXGIOutput) HRESULT {
-                return @ptrCast(*const IDXGIAdapter.VTable, self.vtable).EnumOutputs(@ptrCast(*const IDXGIAdapter, self), Output, ppOutput);
+                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).EnumOutputs(@as(*const IDXGIAdapter, @ptrCast(self)), Output, ppOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter_GetDesc(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC) HRESULT {
-                return @ptrCast(*const IDXGIAdapter.VTable, self.vtable).GetDesc(@ptrCast(*const IDXGIAdapter, self), pDesc);
+                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIAdapter, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter_CheckInterfaceSupport(self: *const T, InterfaceName: ?*const Guid, pUMDVersion: ?*LARGE_INTEGER) HRESULT {
-                return @ptrCast(*const IDXGIAdapter.VTable, self.vtable).CheckInterfaceSupport(@ptrCast(*const IDXGIAdapter, self), InterfaceName, pUMDVersion);
+                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).CheckInterfaceSupport(@as(*const IDXGIAdapter, @ptrCast(self)), InterfaceName, pUMDVersion);
             }
         };
     }
@@ -738,51 +738,51 @@ pub const IDXGIOutput = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetDesc(self: *const T, pDesc: ?*DXGI_OUTPUT_DESC) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetDesc(@ptrCast(*const IDXGIOutput, self), pDesc);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIOutput, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetDisplayModeList(self: *const T, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetDisplayModeList(@ptrCast(*const IDXGIOutput, self), EnumFormat, Flags, pNumModes, pDesc);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDisplayModeList(@as(*const IDXGIOutput, @ptrCast(self)), EnumFormat, Flags, pNumModes, pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_FindClosestMatchingMode(self: *const T, pModeToMatch: ?*const DXGI_MODE_DESC, pClosestMatch: ?*DXGI_MODE_DESC, pConcernedDevice: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).FindClosestMatchingMode(@ptrCast(*const IDXGIOutput, self), pModeToMatch, pClosestMatch, pConcernedDevice);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).FindClosestMatchingMode(@as(*const IDXGIOutput, @ptrCast(self)), pModeToMatch, pClosestMatch, pConcernedDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_WaitForVBlank(self: *const T) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).WaitForVBlank(@ptrCast(*const IDXGIOutput, self));
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).WaitForVBlank(@as(*const IDXGIOutput, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_TakeOwnership(self: *const T, pDevice: ?*IUnknown, Exclusive: BOOL) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).TakeOwnership(@ptrCast(*const IDXGIOutput, self), pDevice, Exclusive);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).TakeOwnership(@as(*const IDXGIOutput, @ptrCast(self)), pDevice, Exclusive);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_ReleaseOwnership(self: *const T) void {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).ReleaseOwnership(@ptrCast(*const IDXGIOutput, self));
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).ReleaseOwnership(@as(*const IDXGIOutput, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetGammaControlCapabilities(self: *const T, pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetGammaControlCapabilities(@ptrCast(*const IDXGIOutput, self), pGammaCaps);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetGammaControlCapabilities(@as(*const IDXGIOutput, @ptrCast(self)), pGammaCaps);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_SetGammaControl(self: *const T, pArray: ?*const DXGI_GAMMA_CONTROL) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).SetGammaControl(@ptrCast(*const IDXGIOutput, self), pArray);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).SetGammaControl(@as(*const IDXGIOutput, @ptrCast(self)), pArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetGammaControl(self: *const T, pArray: ?*DXGI_GAMMA_CONTROL) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetGammaControl(@ptrCast(*const IDXGIOutput, self), pArray);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetGammaControl(@as(*const IDXGIOutput, @ptrCast(self)), pArray);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_SetDisplaySurface(self: *const T, pScanoutSurface: ?*IDXGISurface) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).SetDisplaySurface(@ptrCast(*const IDXGIOutput, self), pScanoutSurface);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).SetDisplaySurface(@as(*const IDXGIOutput, @ptrCast(self)), pScanoutSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetDisplaySurfaceData(self: *const T, pDestination: ?*IDXGISurface) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetDisplaySurfaceData(@ptrCast(*const IDXGIOutput, self), pDestination);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDisplaySurfaceData(@as(*const IDXGIOutput, @ptrCast(self)), pDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput_GetFrameStatistics(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS) HRESULT {
-                return @ptrCast(*const IDXGIOutput.VTable, self.vtable).GetFrameStatistics(@ptrCast(*const IDXGIOutput, self), pStats);
+                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDXGIOutput, @ptrCast(self)), pStats);
             }
         };
     }
@@ -919,43 +919,43 @@ pub const IDXGISwapChain = extern struct {
             pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_Present(self: *const T, SyncInterval: u32, Flags: u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).Present(@ptrCast(*const IDXGISwapChain, self), SyncInterval, Flags);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).Present(@as(*const IDXGISwapChain, @ptrCast(self)), SyncInterval, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetBuffer(self: *const T, Buffer: u32, riid: ?*const Guid, ppSurface: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetBuffer(@ptrCast(*const IDXGISwapChain, self), Buffer, riid, ppSurface);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDXGISwapChain, @ptrCast(self)), Buffer, riid, ppSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_SetFullscreenState(self: *const T, Fullscreen: BOOL, pTarget: ?*IDXGIOutput) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).SetFullscreenState(@ptrCast(*const IDXGISwapChain, self), Fullscreen, pTarget);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).SetFullscreenState(@as(*const IDXGISwapChain, @ptrCast(self)), Fullscreen, pTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetFullscreenState(self: *const T, pFullscreen: ?*BOOL, ppTarget: ?*?*IDXGIOutput) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetFullscreenState(@ptrCast(*const IDXGISwapChain, self), pFullscreen, ppTarget);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetFullscreenState(@as(*const IDXGISwapChain, @ptrCast(self)), pFullscreen, ppTarget);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetDesc(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_DESC) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetDesc(@ptrCast(*const IDXGISwapChain, self), pDesc);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGISwapChain, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_ResizeBuffers(self: *const T, BufferCount: u32, Width: u32, Height: u32, NewFormat: DXGI_FORMAT, SwapChainFlags: u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).ResizeBuffers(@ptrCast(*const IDXGISwapChain, self), BufferCount, Width, Height, NewFormat, SwapChainFlags);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).ResizeBuffers(@as(*const IDXGISwapChain, @ptrCast(self)), BufferCount, Width, Height, NewFormat, SwapChainFlags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_ResizeTarget(self: *const T, pNewTargetParameters: ?*const DXGI_MODE_DESC) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).ResizeTarget(@ptrCast(*const IDXGISwapChain, self), pNewTargetParameters);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).ResizeTarget(@as(*const IDXGISwapChain, @ptrCast(self)), pNewTargetParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetContainingOutput(self: *const T, ppOutput: ?*?*IDXGIOutput) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetContainingOutput(@ptrCast(*const IDXGISwapChain, self), ppOutput);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetContainingOutput(@as(*const IDXGISwapChain, @ptrCast(self)), ppOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetFrameStatistics(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetFrameStatistics(@ptrCast(*const IDXGISwapChain, self), pStats);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDXGISwapChain, @ptrCast(self)), pStats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain_GetLastPresentCount(self: *const T, pLastPresentCount: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain.VTable, self.vtable).GetLastPresentCount(@ptrCast(*const IDXGISwapChain, self), pLastPresentCount);
+                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetLastPresentCount(@as(*const IDXGISwapChain, @ptrCast(self)), pLastPresentCount);
             }
         };
     }
@@ -1034,23 +1034,23 @@ pub const IDXGIFactory = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory_EnumAdapters(self: *const T, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @ptrCast(*const IDXGIFactory.VTable, self.vtable).EnumAdapters(@ptrCast(*const IDXGIFactory, self), Adapter, ppAdapter);
+                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).EnumAdapters(@as(*const IDXGIFactory, @ptrCast(self)), Adapter, ppAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory_MakeWindowAssociation(self: *const T, WindowHandle: ?HWND, Flags: u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory.VTable, self.vtable).MakeWindowAssociation(@ptrCast(*const IDXGIFactory, self), WindowHandle, Flags);
+                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).MakeWindowAssociation(@as(*const IDXGIFactory, @ptrCast(self)), WindowHandle, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory_GetWindowAssociation(self: *const T, pWindowHandle: ?*?HWND) HRESULT {
-                return @ptrCast(*const IDXGIFactory.VTable, self.vtable).GetWindowAssociation(@ptrCast(*const IDXGIFactory, self), pWindowHandle);
+                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).GetWindowAssociation(@as(*const IDXGIFactory, @ptrCast(self)), pWindowHandle);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory_CreateSwapChain(self: *const T, pDevice: ?*IUnknown, pDesc: ?*DXGI_SWAP_CHAIN_DESC, ppSwapChain: ?*?*IDXGISwapChain) HRESULT {
-                return @ptrCast(*const IDXGIFactory.VTable, self.vtable).CreateSwapChain(@ptrCast(*const IDXGIFactory, self), pDevice, pDesc, ppSwapChain);
+                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).CreateSwapChain(@as(*const IDXGIFactory, @ptrCast(self)), pDevice, pDesc, ppSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory_CreateSoftwareAdapter(self: *const T, Module: ?HINSTANCE, ppAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @ptrCast(*const IDXGIFactory.VTable, self.vtable).CreateSoftwareAdapter(@ptrCast(*const IDXGIFactory, self), Module, ppAdapter);
+                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).CreateSoftwareAdapter(@as(*const IDXGIFactory, @ptrCast(self)), Module, ppAdapter);
             }
         };
     }
@@ -1131,23 +1131,23 @@ pub const IDXGIDevice = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice_GetAdapter(self: *const T, pAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @ptrCast(*const IDXGIDevice.VTable, self.vtable).GetAdapter(@ptrCast(*const IDXGIDevice, self), pAdapter);
+                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).GetAdapter(@as(*const IDXGIDevice, @ptrCast(self)), pAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice_CreateSurface(self: *const T, pDesc: ?*const DXGI_SURFACE_DESC, NumSurfaces: u32, Usage: u32, pSharedResource: ?*const DXGI_SHARED_RESOURCE, ppSurface: [*]?*IDXGISurface) HRESULT {
-                return @ptrCast(*const IDXGIDevice.VTable, self.vtable).CreateSurface(@ptrCast(*const IDXGIDevice, self), pDesc, NumSurfaces, Usage, pSharedResource, ppSurface);
+                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDXGIDevice, @ptrCast(self)), pDesc, NumSurfaces, Usage, pSharedResource, ppSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice_QueryResourceResidency(self: *const T, ppResources: [*]?*IUnknown, pResidencyStatus: [*]DXGI_RESIDENCY, NumResources: u32) HRESULT {
-                return @ptrCast(*const IDXGIDevice.VTable, self.vtable).QueryResourceResidency(@ptrCast(*const IDXGIDevice, self), ppResources, pResidencyStatus, NumResources);
+                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).QueryResourceResidency(@as(*const IDXGIDevice, @ptrCast(self)), ppResources, pResidencyStatus, NumResources);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice_SetGPUThreadPriority(self: *const T, Priority: i32) HRESULT {
-                return @ptrCast(*const IDXGIDevice.VTable, self.vtable).SetGPUThreadPriority(@ptrCast(*const IDXGIDevice, self), Priority);
+                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).SetGPUThreadPriority(@as(*const IDXGIDevice, @ptrCast(self)), Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice_GetGPUThreadPriority(self: *const T, pPriority: ?*i32) HRESULT {
-                return @ptrCast(*const IDXGIDevice.VTable, self.vtable).GetGPUThreadPriority(@ptrCast(*const IDXGIDevice, self), pPriority);
+                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).GetGPUThreadPriority(@as(*const IDXGIDevice, @ptrCast(self)), pPriority);
             }
         };
     }
@@ -1164,7 +1164,7 @@ pub const DXGI_ADAPTER_FLAG = enum(u32) {
         REMOTE: u1 = 0,
         SOFTWARE: u1 = 0,
     }) DXGI_ADAPTER_FLAG {
-        return @enumFromInt(DXGI_ADAPTER_FLAG, (if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.SOFTWARE) else 0));
+        return @as(DXGI_ADAPTER_FLAG, @enumFromInt((if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.SOFTWARE) else 0)));
     }
 };
 pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG.NONE;
@@ -1222,11 +1222,11 @@ pub const IDXGIFactory1 = extern struct {
             pub usingnamespace IDXGIFactory.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory1_EnumAdapters1(self: *const T, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter1) HRESULT {
-                return @ptrCast(*const IDXGIFactory1.VTable, self.vtable).EnumAdapters1(@ptrCast(*const IDXGIFactory1, self), Adapter, ppAdapter);
+                return @as(*const IDXGIFactory1.VTable, @ptrCast(self.vtable)).EnumAdapters1(@as(*const IDXGIFactory1, @ptrCast(self)), Adapter, ppAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory1_IsCurrent(self: *const T) BOOL {
-                return @ptrCast(*const IDXGIFactory1.VTable, self.vtable).IsCurrent(@ptrCast(*const IDXGIFactory1, self));
+                return @as(*const IDXGIFactory1.VTable, @ptrCast(self.vtable)).IsCurrent(@as(*const IDXGIFactory1, @ptrCast(self)));
             }
         };
     }
@@ -1256,7 +1256,7 @@ pub const IDXGIAdapter1 = extern struct {
             pub usingnamespace IDXGIAdapter.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter1_GetDesc1(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC1) HRESULT {
-                return @ptrCast(*const IDXGIAdapter1.VTable, self.vtable).GetDesc1(@ptrCast(*const IDXGIAdapter1, self), pDesc);
+                return @as(*const IDXGIAdapter1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGIAdapter1, @ptrCast(self)), pDesc);
             }
         };
     }
@@ -1296,11 +1296,11 @@ pub const IDXGIDevice1 = extern struct {
             pub usingnamespace IDXGIDevice.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice1_SetMaximumFrameLatency(self: *const T, MaxLatency: u32) HRESULT {
-                return @ptrCast(*const IDXGIDevice1.VTable, self.vtable).SetMaximumFrameLatency(@ptrCast(*const IDXGIDevice1, self), MaxLatency);
+                return @as(*const IDXGIDevice1.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDXGIDevice1, @ptrCast(self)), MaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice1_GetMaximumFrameLatency(self: *const T, pMaxLatency: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIDevice1.VTable, self.vtable).GetMaximumFrameLatency(@ptrCast(*const IDXGIDevice1, self), pMaxLatency);
+                return @as(*const IDXGIDevice1.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDXGIDevice1, @ptrCast(self)), pMaxLatency);
             }
         };
     }
@@ -1338,11 +1338,11 @@ pub const IDXGIDisplayControl = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDisplayControl_IsStereoEnabled(self: *const T) BOOL {
-                return @ptrCast(*const IDXGIDisplayControl.VTable, self.vtable).IsStereoEnabled(@ptrCast(*const IDXGIDisplayControl, self));
+                return @as(*const IDXGIDisplayControl.VTable, @ptrCast(self.vtable)).IsStereoEnabled(@as(*const IDXGIDisplayControl, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDisplayControl_SetStereoEnabled(self: *const T, enabled: BOOL) void {
-                return @ptrCast(*const IDXGIDisplayControl.VTable, self.vtable).SetStereoEnabled(@ptrCast(*const IDXGIDisplayControl, self), enabled);
+                return @as(*const IDXGIDisplayControl.VTable, @ptrCast(self.vtable)).SetStereoEnabled(@as(*const IDXGIDisplayControl, @ptrCast(self)), enabled);
             }
         };
     }
@@ -1506,35 +1506,35 @@ pub const IDXGIOutputDuplication = extern struct {
             pub usingnamespace IDXGIObject.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_GetDesc(self: *const T, pDesc: ?*DXGI_OUTDUPL_DESC) void {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).GetDesc(@ptrCast(*const IDXGIOutputDuplication, self), pDesc);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIOutputDuplication, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_AcquireNextFrame(self: *const T, TimeoutInMilliseconds: u32, pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO, ppDesktopResource: ?*?*IDXGIResource) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).AcquireNextFrame(@ptrCast(*const IDXGIOutputDuplication, self), TimeoutInMilliseconds, pFrameInfo, ppDesktopResource);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).AcquireNextFrame(@as(*const IDXGIOutputDuplication, @ptrCast(self)), TimeoutInMilliseconds, pFrameInfo, ppDesktopResource);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_GetFrameDirtyRects(self: *const T, DirtyRectsBufferSize: u32, pDirtyRectsBuffer: ?*RECT, pDirtyRectsBufferSizeRequired: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).GetFrameDirtyRects(@ptrCast(*const IDXGIOutputDuplication, self), DirtyRectsBufferSize, pDirtyRectsBuffer, pDirtyRectsBufferSizeRequired);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFrameDirtyRects(@as(*const IDXGIOutputDuplication, @ptrCast(self)), DirtyRectsBufferSize, pDirtyRectsBuffer, pDirtyRectsBufferSizeRequired);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_GetFrameMoveRects(self: *const T, MoveRectsBufferSize: u32, pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT, pMoveRectsBufferSizeRequired: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).GetFrameMoveRects(@ptrCast(*const IDXGIOutputDuplication, self), MoveRectsBufferSize, pMoveRectBuffer, pMoveRectsBufferSizeRequired);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFrameMoveRects(@as(*const IDXGIOutputDuplication, @ptrCast(self)), MoveRectsBufferSize, pMoveRectBuffer, pMoveRectsBufferSizeRequired);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_GetFramePointerShape(self: *const T, PointerShapeBufferSize: u32, pPointerShapeBuffer: ?*anyopaque, pPointerShapeBufferSizeRequired: ?*u32, pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).GetFramePointerShape(@ptrCast(*const IDXGIOutputDuplication, self), PointerShapeBufferSize, pPointerShapeBuffer, pPointerShapeBufferSizeRequired, pPointerShapeInfo);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFramePointerShape(@as(*const IDXGIOutputDuplication, @ptrCast(self)), PointerShapeBufferSize, pPointerShapeBuffer, pPointerShapeBufferSizeRequired, pPointerShapeInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_MapDesktopSurface(self: *const T, pLockedRect: ?*DXGI_MAPPED_RECT) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).MapDesktopSurface(@ptrCast(*const IDXGIOutputDuplication, self), pLockedRect);
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).MapDesktopSurface(@as(*const IDXGIOutputDuplication, @ptrCast(self)), pLockedRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_UnMapDesktopSurface(self: *const T) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).UnMapDesktopSurface(@ptrCast(*const IDXGIOutputDuplication, self));
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).UnMapDesktopSurface(@as(*const IDXGIOutputDuplication, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutputDuplication_ReleaseFrame(self: *const T) HRESULT {
-                return @ptrCast(*const IDXGIOutputDuplication.VTable, self.vtable).ReleaseFrame(@ptrCast(*const IDXGIOutputDuplication, self));
+                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).ReleaseFrame(@as(*const IDXGIOutputDuplication, @ptrCast(self)));
             }
         };
     }
@@ -1568,7 +1568,7 @@ pub const IDXGISurface2 = extern struct {
             pub usingnamespace IDXGISurface1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISurface2_GetResource(self: *const T, riid: ?*const Guid, ppParentResource: ?*?*anyopaque, pSubresourceIndex: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISurface2.VTable, self.vtable).GetResource(@ptrCast(*const IDXGISurface2, self), riid, ppParentResource, pSubresourceIndex);
+                return @as(*const IDXGISurface2.VTable, @ptrCast(self.vtable)).GetResource(@as(*const IDXGISurface2, @ptrCast(self)), riid, ppParentResource, pSubresourceIndex);
             }
         };
     }
@@ -1616,11 +1616,11 @@ pub const IDXGIResource1 = extern struct {
             pub usingnamespace IDXGIResource.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource1_CreateSubresourceSurface(self: *const T, index: u32, ppSurface: ?*?*IDXGISurface2) HRESULT {
-                return @ptrCast(*const IDXGIResource1.VTable, self.vtable).CreateSubresourceSurface(@ptrCast(*const IDXGIResource1, self), index, ppSurface);
+                return @as(*const IDXGIResource1.VTable, @ptrCast(self.vtable)).CreateSubresourceSurface(@as(*const IDXGIResource1, @ptrCast(self)), index, ppSurface);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIResource1_CreateSharedHandle(self: *const T, pAttributes: ?*const SECURITY_ATTRIBUTES, dwAccess: u32, lpName: ?[*:0]const u16, pHandle: ?*?HANDLE) HRESULT {
-                return @ptrCast(*const IDXGIResource1.VTable, self.vtable).CreateSharedHandle(@ptrCast(*const IDXGIResource1, self), pAttributes, dwAccess, lpName, pHandle);
+                return @as(*const IDXGIResource1.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const IDXGIResource1, @ptrCast(self)), pAttributes, dwAccess, lpName, pHandle);
             }
         };
     }
@@ -1687,15 +1687,15 @@ pub const IDXGIDevice2 = extern struct {
             pub usingnamespace IDXGIDevice1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice2_OfferResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY) HRESULT {
-                return @ptrCast(*const IDXGIDevice2.VTable, self.vtable).OfferResources(@ptrCast(*const IDXGIDevice2, self), NumResources, ppResources, Priority);
+                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).OfferResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, Priority);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice2_ReclaimResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pDiscarded: ?*BOOL) HRESULT {
-                return @ptrCast(*const IDXGIDevice2.VTable, self.vtable).ReclaimResources(@ptrCast(*const IDXGIDevice2, self), NumResources, ppResources, pDiscarded);
+                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).ReclaimResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, pDiscarded);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice2_EnqueueSetEvent(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @ptrCast(*const IDXGIDevice2.VTable, self.vtable).EnqueueSetEvent(@ptrCast(*const IDXGIDevice2, self), hEvent);
+                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).EnqueueSetEvent(@as(*const IDXGIDevice2, @ptrCast(self)), hEvent);
             }
         };
     }
@@ -1876,47 +1876,47 @@ pub const IDXGISwapChain1 = extern struct {
             pub usingnamespace IDXGISwapChain.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetDesc1(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_DESC1) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetDesc1(@ptrCast(*const IDXGISwapChain1, self), pDesc);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGISwapChain1, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetFullscreenDesc(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetFullscreenDesc(@ptrCast(*const IDXGISwapChain1, self), pDesc);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetFullscreenDesc(@as(*const IDXGISwapChain1, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetHwnd(self: *const T, pHwnd: ?*?HWND) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetHwnd(@ptrCast(*const IDXGISwapChain1, self), pHwnd);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetHwnd(@as(*const IDXGISwapChain1, @ptrCast(self)), pHwnd);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetCoreWindow(self: *const T, refiid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetCoreWindow(@ptrCast(*const IDXGISwapChain1, self), refiid, ppUnk);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetCoreWindow(@as(*const IDXGISwapChain1, @ptrCast(self)), refiid, ppUnk);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_Present1(self: *const T, SyncInterval: u32, PresentFlags: u32, pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).Present1(@ptrCast(*const IDXGISwapChain1, self), SyncInterval, PresentFlags, pPresentParameters);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).Present1(@as(*const IDXGISwapChain1, @ptrCast(self)), SyncInterval, PresentFlags, pPresentParameters);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_IsTemporaryMonoSupported(self: *const T) BOOL {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).IsTemporaryMonoSupported(@ptrCast(*const IDXGISwapChain1, self));
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).IsTemporaryMonoSupported(@as(*const IDXGISwapChain1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetRestrictToOutput(self: *const T, ppRestrictToOutput: ?*?*IDXGIOutput) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetRestrictToOutput(@ptrCast(*const IDXGISwapChain1, self), ppRestrictToOutput);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetRestrictToOutput(@as(*const IDXGISwapChain1, @ptrCast(self)), ppRestrictToOutput);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_SetBackgroundColor(self: *const T, pColor: ?*const DXGI_RGBA) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).SetBackgroundColor(@ptrCast(*const IDXGISwapChain1, self), pColor);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IDXGISwapChain1, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetBackgroundColor(self: *const T, pColor: ?*DXGI_RGBA) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetBackgroundColor(@ptrCast(*const IDXGISwapChain1, self), pColor);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IDXGISwapChain1, @ptrCast(self)), pColor);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_SetRotation(self: *const T, Rotation: DXGI_MODE_ROTATION) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).SetRotation(@ptrCast(*const IDXGISwapChain1, self), Rotation);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IDXGISwapChain1, @ptrCast(self)), Rotation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain1_GetRotation(self: *const T, pRotation: ?*DXGI_MODE_ROTATION) HRESULT {
-                return @ptrCast(*const IDXGISwapChain1.VTable, self.vtable).GetRotation(@ptrCast(*const IDXGISwapChain1, self), pRotation);
+                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IDXGISwapChain1, @ptrCast(self)), pRotation);
             }
         };
     }
@@ -2082,47 +2082,47 @@ pub const IDXGIFactory2 = extern struct {
             pub usingnamespace IDXGIFactory1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_IsWindowedStereoEnabled(self: *const T) BOOL {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).IsWindowedStereoEnabled(@ptrCast(*const IDXGIFactory2, self));
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).IsWindowedStereoEnabled(@as(*const IDXGIFactory2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_CreateSwapChainForHwnd(self: *const T, pDevice: ?*IUnknown, hWnd: ?HWND, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).CreateSwapChainForHwnd(@ptrCast(*const IDXGIFactory2, self), pDevice, hWnd, pDesc, pFullscreenDesc, pRestrictToOutput, ppSwapChain);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForHwnd(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, hWnd, pDesc, pFullscreenDesc, pRestrictToOutput, ppSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_CreateSwapChainForCoreWindow(self: *const T, pDevice: ?*IUnknown, pWindow: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).CreateSwapChainForCoreWindow(@ptrCast(*const IDXGIFactory2, self), pDevice, pWindow, pDesc, pRestrictToOutput, ppSwapChain);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForCoreWindow(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, pWindow, pDesc, pRestrictToOutput, ppSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_GetSharedResourceAdapterLuid(self: *const T, hResource: ?HANDLE, pLuid: ?*LUID) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).GetSharedResourceAdapterLuid(@ptrCast(*const IDXGIFactory2, self), hResource, pLuid);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).GetSharedResourceAdapterLuid(@as(*const IDXGIFactory2, @ptrCast(self)), hResource, pLuid);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_RegisterStereoStatusWindow(self: *const T, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).RegisterStereoStatusWindow(@ptrCast(*const IDXGIFactory2, self), WindowHandle, wMsg, pdwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterStereoStatusWindow(@as(*const IDXGIFactory2, @ptrCast(self)), WindowHandle, wMsg, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_RegisterStereoStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).RegisterStereoStatusEvent(@ptrCast(*const IDXGIFactory2, self), hEvent, pdwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterStereoStatusEvent(@as(*const IDXGIFactory2, @ptrCast(self)), hEvent, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_UnregisterStereoStatus(self: *const T, dwCookie: u32) void {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).UnregisterStereoStatus(@ptrCast(*const IDXGIFactory2, self), dwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).UnregisterStereoStatus(@as(*const IDXGIFactory2, @ptrCast(self)), dwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_RegisterOcclusionStatusWindow(self: *const T, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).RegisterOcclusionStatusWindow(@ptrCast(*const IDXGIFactory2, self), WindowHandle, wMsg, pdwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterOcclusionStatusWindow(@as(*const IDXGIFactory2, @ptrCast(self)), WindowHandle, wMsg, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_RegisterOcclusionStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).RegisterOcclusionStatusEvent(@ptrCast(*const IDXGIFactory2, self), hEvent, pdwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterOcclusionStatusEvent(@as(*const IDXGIFactory2, @ptrCast(self)), hEvent, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_UnregisterOcclusionStatus(self: *const T, dwCookie: u32) void {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).UnregisterOcclusionStatus(@ptrCast(*const IDXGIFactory2, self), dwCookie);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).UnregisterOcclusionStatus(@as(*const IDXGIFactory2, @ptrCast(self)), dwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory2_CreateSwapChainForComposition(self: *const T, pDevice: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @ptrCast(*const IDXGIFactory2.VTable, self.vtable).CreateSwapChainForComposition(@ptrCast(*const IDXGIFactory2, self), pDevice, pDesc, pRestrictToOutput, ppSwapChain);
+                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForComposition(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, pDesc, pRestrictToOutput, ppSwapChain);
             }
         };
     }
@@ -2193,7 +2193,7 @@ pub const IDXGIAdapter2 = extern struct {
             pub usingnamespace IDXGIAdapter1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter2_GetDesc2(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC2) HRESULT {
-                return @ptrCast(*const IDXGIAdapter2.VTable, self.vtable).GetDesc2(@ptrCast(*const IDXGIAdapter2, self), pDesc);
+                return @as(*const IDXGIAdapter2.VTable, @ptrCast(self.vtable)).GetDesc2(@as(*const IDXGIAdapter2, @ptrCast(self)), pDesc);
             }
         };
     }
@@ -2265,19 +2265,19 @@ pub const IDXGIOutput1 = extern struct {
             pub usingnamespace IDXGIOutput.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput1_GetDisplayModeList1(self: *const T, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC1) HRESULT {
-                return @ptrCast(*const IDXGIOutput1.VTable, self.vtable).GetDisplayModeList1(@ptrCast(*const IDXGIOutput1, self), EnumFormat, Flags, pNumModes, pDesc);
+                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).GetDisplayModeList1(@as(*const IDXGIOutput1, @ptrCast(self)), EnumFormat, Flags, pNumModes, pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput1_FindClosestMatchingMode1(self: *const T, pModeToMatch: ?*const DXGI_MODE_DESC1, pClosestMatch: ?*DXGI_MODE_DESC1, pConcernedDevice: ?*IUnknown) HRESULT {
-                return @ptrCast(*const IDXGIOutput1.VTable, self.vtable).FindClosestMatchingMode1(@ptrCast(*const IDXGIOutput1, self), pModeToMatch, pClosestMatch, pConcernedDevice);
+                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).FindClosestMatchingMode1(@as(*const IDXGIOutput1, @ptrCast(self)), pModeToMatch, pClosestMatch, pConcernedDevice);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput1_GetDisplaySurfaceData1(self: *const T, pDestination: ?*IDXGIResource) HRESULT {
-                return @ptrCast(*const IDXGIOutput1.VTable, self.vtable).GetDisplaySurfaceData1(@ptrCast(*const IDXGIOutput1, self), pDestination);
+                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).GetDisplaySurfaceData1(@as(*const IDXGIOutput1, @ptrCast(self)), pDestination);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput1_DuplicateOutput(self: *const T, pDevice: ?*IUnknown, ppOutputDuplication: ?*?*IDXGIOutputDuplication) HRESULT {
-                return @ptrCast(*const IDXGIOutput1.VTable, self.vtable).DuplicateOutput(@ptrCast(*const IDXGIOutput1, self), pDevice, ppOutputDuplication);
+                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).DuplicateOutput(@as(*const IDXGIOutput1, @ptrCast(self)), pDevice, ppOutputDuplication);
             }
         };
     }
@@ -2305,7 +2305,7 @@ pub const IDXGIDevice3 = extern struct {
             pub usingnamespace IDXGIDevice2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice3_Trim(self: *const T) void {
-                return @ptrCast(*const IDXGIDevice3.VTable, self.vtable).Trim(@ptrCast(*const IDXGIDevice3, self));
+                return @as(*const IDXGIDevice3.VTable, @ptrCast(self.vtable)).Trim(@as(*const IDXGIDevice3, @ptrCast(self)));
             }
         };
     }
@@ -2406,31 +2406,31 @@ pub const IDXGISwapChain2 = extern struct {
             pub usingnamespace IDXGISwapChain1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_SetSourceSize(self: *const T, Width: u32, Height: u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).SetSourceSize(@ptrCast(*const IDXGISwapChain2, self), Width, Height);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetSourceSize(@as(*const IDXGISwapChain2, @ptrCast(self)), Width, Height);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_GetSourceSize(self: *const T, pWidth: ?*u32, pHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).GetSourceSize(@ptrCast(*const IDXGISwapChain2, self), pWidth, pHeight);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetSourceSize(@as(*const IDXGISwapChain2, @ptrCast(self)), pWidth, pHeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_SetMaximumFrameLatency(self: *const T, MaxLatency: u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).SetMaximumFrameLatency(@ptrCast(*const IDXGISwapChain2, self), MaxLatency);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDXGISwapChain2, @ptrCast(self)), MaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_GetMaximumFrameLatency(self: *const T, pMaxLatency: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).GetMaximumFrameLatency(@ptrCast(*const IDXGISwapChain2, self), pMaxLatency);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDXGISwapChain2, @ptrCast(self)), pMaxLatency);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_GetFrameLatencyWaitableObject(self: *const T) ?HANDLE {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).GetFrameLatencyWaitableObject(@ptrCast(*const IDXGISwapChain2, self));
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetFrameLatencyWaitableObject(@as(*const IDXGISwapChain2, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_SetMatrixTransform(self: *const T, pMatrix: ?*const DXGI_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).SetMatrixTransform(@ptrCast(*const IDXGISwapChain2, self), pMatrix);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetMatrixTransform(@as(*const IDXGISwapChain2, @ptrCast(self)), pMatrix);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain2_GetMatrixTransform(self: *const T, pMatrix: ?*DXGI_MATRIX_3X2_F) HRESULT {
-                return @ptrCast(*const IDXGISwapChain2.VTable, self.vtable).GetMatrixTransform(@ptrCast(*const IDXGISwapChain2, self), pMatrix);
+                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetMatrixTransform(@as(*const IDXGISwapChain2, @ptrCast(self)), pMatrix);
             }
         };
     }
@@ -2458,7 +2458,7 @@ pub const IDXGIOutput2 = extern struct {
             pub usingnamespace IDXGIOutput1.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput2_SupportsOverlays(self: *const T) BOOL {
-                return @ptrCast(*const IDXGIOutput2.VTable, self.vtable).SupportsOverlays(@ptrCast(*const IDXGIOutput2, self));
+                return @as(*const IDXGIOutput2.VTable, @ptrCast(self.vtable)).SupportsOverlays(@as(*const IDXGIOutput2, @ptrCast(self)));
             }
         };
     }
@@ -2486,7 +2486,7 @@ pub const IDXGIFactory3 = extern struct {
             pub usingnamespace IDXGIFactory2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory3_GetCreationFlags(self: *const T) u32 {
-                return @ptrCast(*const IDXGIFactory3.VTable, self.vtable).GetCreationFlags(@ptrCast(*const IDXGIFactory3, self));
+                return @as(*const IDXGIFactory3.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const IDXGIFactory3, @ptrCast(self)));
             }
         };
     }
@@ -2615,39 +2615,39 @@ pub const IDXGIDecodeSwapChain = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_PresentBuffer(self: *const T, BufferToPresent: u32, SyncInterval: u32, Flags: u32) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).PresentBuffer(@ptrCast(*const IDXGIDecodeSwapChain, self), BufferToPresent, SyncInterval, Flags);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).PresentBuffer(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), BufferToPresent, SyncInterval, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_SetSourceRect(self: *const T, pRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).SetSourceRect(@ptrCast(*const IDXGIDecodeSwapChain, self), pRect);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetSourceRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_SetTargetRect(self: *const T, pRect: ?*const RECT) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).SetTargetRect(@ptrCast(*const IDXGIDecodeSwapChain, self), pRect);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetTargetRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_SetDestSize(self: *const T, Width: u32, Height: u32) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).SetDestSize(@ptrCast(*const IDXGIDecodeSwapChain, self), Width, Height);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetDestSize(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), Width, Height);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_GetSourceRect(self: *const T, pRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).GetSourceRect(@ptrCast(*const IDXGIDecodeSwapChain, self), pRect);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetSourceRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_GetTargetRect(self: *const T, pRect: ?*RECT) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).GetTargetRect(@ptrCast(*const IDXGIDecodeSwapChain, self), pRect);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetTargetRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_GetDestSize(self: *const T, pWidth: ?*u32, pHeight: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).GetDestSize(@ptrCast(*const IDXGIDecodeSwapChain, self), pWidth, pHeight);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetDestSize(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pWidth, pHeight);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_SetColorSpace(self: *const T, ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS) HRESULT {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).SetColorSpace(@ptrCast(*const IDXGIDecodeSwapChain, self), ColorSpace);
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetColorSpace(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), ColorSpace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDecodeSwapChain_GetColorSpace(self: *const T) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS {
-                return @ptrCast(*const IDXGIDecodeSwapChain.VTable, self.vtable).GetColorSpace(@ptrCast(*const IDXGIDecodeSwapChain, self));
+                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetColorSpace(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)));
             }
         };
     }
@@ -2705,11 +2705,11 @@ pub const IDXGIFactoryMedia = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactoryMedia_CreateSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @ptrCast(*const IDXGIFactoryMedia.VTable, self.vtable).CreateSwapChainForCompositionSurfaceHandle(@ptrCast(*const IDXGIFactoryMedia, self), pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
+                return @as(*const IDXGIFactoryMedia.VTable, @ptrCast(self.vtable)).CreateSwapChainForCompositionSurfaceHandle(@as(*const IDXGIFactoryMedia, @ptrCast(self)), pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactoryMedia_CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ?*IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGIDecodeSwapChain) HRESULT {
-                return @ptrCast(*const IDXGIFactoryMedia.VTable, self.vtable).CreateDecodeSwapChainForCompositionSurfaceHandle(@ptrCast(*const IDXGIFactoryMedia, self), pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
+                return @as(*const IDXGIFactoryMedia.VTable, @ptrCast(self.vtable)).CreateDecodeSwapChainForCompositionSurfaceHandle(@as(*const IDXGIFactoryMedia, @ptrCast(self)), pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
             }
         };
     }
@@ -2784,15 +2784,15 @@ pub const IDXGISwapChainMedia = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChainMedia_GetFrameStatisticsMedia(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS_MEDIA) HRESULT {
-                return @ptrCast(*const IDXGISwapChainMedia.VTable, self.vtable).GetFrameStatisticsMedia(@ptrCast(*const IDXGISwapChainMedia, self), pStats);
+                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).GetFrameStatisticsMedia(@as(*const IDXGISwapChainMedia, @ptrCast(self)), pStats);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChainMedia_SetPresentDuration(self: *const T, Duration: u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChainMedia.VTable, self.vtable).SetPresentDuration(@ptrCast(*const IDXGISwapChainMedia, self), Duration);
+                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).SetPresentDuration(@as(*const IDXGISwapChainMedia, @ptrCast(self)), Duration);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChainMedia_CheckPresentDurationSupport(self: *const T, DesiredPresentDuration: u32, pClosestSmallerPresentDuration: ?*u32, pClosestLargerPresentDuration: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChainMedia.VTable, self.vtable).CheckPresentDurationSupport(@ptrCast(*const IDXGISwapChainMedia, self), DesiredPresentDuration, pClosestSmallerPresentDuration, pClosestLargerPresentDuration);
+                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).CheckPresentDurationSupport(@as(*const IDXGISwapChainMedia, @ptrCast(self)), DesiredPresentDuration, pClosestSmallerPresentDuration, pClosestLargerPresentDuration);
             }
         };
     }
@@ -2833,7 +2833,7 @@ pub const IDXGIOutput3 = extern struct {
             pub usingnamespace IDXGIOutput2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput3_CheckOverlaySupport(self: *const T, EnumFormat: DXGI_FORMAT, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIOutput3.VTable, self.vtable).CheckOverlaySupport(@ptrCast(*const IDXGIOutput3, self), EnumFormat, pConcernedDevice, pFlags);
+                return @as(*const IDXGIOutput3.VTable, @ptrCast(self.vtable)).CheckOverlaySupport(@as(*const IDXGIOutput3, @ptrCast(self)), EnumFormat, pConcernedDevice, pFlags);
             }
         };
     }
@@ -2912,19 +2912,19 @@ pub const IDXGISwapChain3 = extern struct {
             pub usingnamespace IDXGISwapChain2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain3_GetCurrentBackBufferIndex(self: *const T) u32 {
-                return @ptrCast(*const IDXGISwapChain3.VTable, self.vtable).GetCurrentBackBufferIndex(@ptrCast(*const IDXGISwapChain3, self));
+                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).GetCurrentBackBufferIndex(@as(*const IDXGISwapChain3, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain3_CheckColorSpaceSupport(self: *const T, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGISwapChain3.VTable, self.vtable).CheckColorSpaceSupport(@ptrCast(*const IDXGISwapChain3, self), ColorSpace, pColorSpaceSupport);
+                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).CheckColorSpaceSupport(@as(*const IDXGISwapChain3, @ptrCast(self)), ColorSpace, pColorSpaceSupport);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain3_SetColorSpace1(self: *const T, ColorSpace: DXGI_COLOR_SPACE_TYPE) HRESULT {
-                return @ptrCast(*const IDXGISwapChain3.VTable, self.vtable).SetColorSpace1(@ptrCast(*const IDXGISwapChain3, self), ColorSpace);
+                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).SetColorSpace1(@as(*const IDXGISwapChain3, @ptrCast(self)), ColorSpace);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain3_ResizeBuffers1(self: *const T, BufferCount: u32, Width: u32, Height: u32, Format: DXGI_FORMAT, SwapChainFlags: u32, pCreationNodeMask: [*]const u32, ppPresentQueue: [*]?*IUnknown) HRESULT {
-                return @ptrCast(*const IDXGISwapChain3.VTable, self.vtable).ResizeBuffers1(@ptrCast(*const IDXGISwapChain3, self), BufferCount, Width, Height, Format, SwapChainFlags, pCreationNodeMask, ppPresentQueue);
+                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).ResizeBuffers1(@as(*const IDXGISwapChain3, @ptrCast(self)), BufferCount, Width, Height, Format, SwapChainFlags, pCreationNodeMask, ppPresentQueue);
             }
         };
     }
@@ -2965,7 +2965,7 @@ pub const IDXGIOutput4 = extern struct {
             pub usingnamespace IDXGIOutput3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput4_CheckOverlayColorSpaceSupport(self: *const T, Format: DXGI_FORMAT, ColorSpace: DXGI_COLOR_SPACE_TYPE, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIOutput4.VTable, self.vtable).CheckOverlayColorSpaceSupport(@ptrCast(*const IDXGIOutput4, self), Format, ColorSpace, pConcernedDevice, pFlags);
+                return @as(*const IDXGIOutput4.VTable, @ptrCast(self.vtable)).CheckOverlayColorSpaceSupport(@as(*const IDXGIOutput4, @ptrCast(self)), Format, ColorSpace, pConcernedDevice, pFlags);
             }
         };
     }
@@ -3010,11 +3010,11 @@ pub const IDXGIFactory4 = extern struct {
             pub usingnamespace IDXGIFactory3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory4_EnumAdapterByLuid(self: *const T, AdapterLuid: LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIFactory4.VTable, self.vtable).EnumAdapterByLuid(@ptrCast(*const IDXGIFactory4, self), AdapterLuid, riid, ppvAdapter);
+                return @as(*const IDXGIFactory4.VTable, @ptrCast(self.vtable)).EnumAdapterByLuid(@as(*const IDXGIFactory4, @ptrCast(self)), AdapterLuid, riid, ppvAdapter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory4_EnumWarpAdapter(self: *const T, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIFactory4.VTable, self.vtable).EnumWarpAdapter(@ptrCast(*const IDXGIFactory4, self), riid, ppvAdapter);
+                return @as(*const IDXGIFactory4.VTable, @ptrCast(self.vtable)).EnumWarpAdapter(@as(*const IDXGIFactory4, @ptrCast(self)), riid, ppvAdapter);
             }
         };
     }
@@ -3119,27 +3119,27 @@ pub const IDXGIAdapter3 = extern struct {
             pub usingnamespace IDXGIAdapter2.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_RegisterHardwareContentProtectionTeardownStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).RegisterHardwareContentProtectionTeardownStatusEvent(@ptrCast(*const IDXGIAdapter3, self), hEvent, pdwCookie);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).RegisterHardwareContentProtectionTeardownStatusEvent(@as(*const IDXGIAdapter3, @ptrCast(self)), hEvent, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_UnregisterHardwareContentProtectionTeardownStatus(self: *const T, dwCookie: u32) void {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).UnregisterHardwareContentProtectionTeardownStatus(@ptrCast(*const IDXGIAdapter3, self), dwCookie);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).UnregisterHardwareContentProtectionTeardownStatus(@as(*const IDXGIAdapter3, @ptrCast(self)), dwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_QueryVideoMemoryInfo(self: *const T, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO) HRESULT {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).QueryVideoMemoryInfo(@ptrCast(*const IDXGIAdapter3, self), NodeIndex, MemorySegmentGroup, pVideoMemoryInfo);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).QueryVideoMemoryInfo(@as(*const IDXGIAdapter3, @ptrCast(self)), NodeIndex, MemorySegmentGroup, pVideoMemoryInfo);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_SetVideoMemoryReservation(self: *const T, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, Reservation: u64) HRESULT {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).SetVideoMemoryReservation(@ptrCast(*const IDXGIAdapter3, self), NodeIndex, MemorySegmentGroup, Reservation);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).SetVideoMemoryReservation(@as(*const IDXGIAdapter3, @ptrCast(self)), NodeIndex, MemorySegmentGroup, Reservation);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_RegisterVideoMemoryBudgetChangeNotificationEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).RegisterVideoMemoryBudgetChangeNotificationEvent(@ptrCast(*const IDXGIAdapter3, self), hEvent, pdwCookie);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).RegisterVideoMemoryBudgetChangeNotificationEvent(@as(*const IDXGIAdapter3, @ptrCast(self)), hEvent, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter3_UnregisterVideoMemoryBudgetChangeNotification(self: *const T, dwCookie: u32) void {
-                return @ptrCast(*const IDXGIAdapter3.VTable, self.vtable).UnregisterVideoMemoryBudgetChangeNotification(@ptrCast(*const IDXGIAdapter3, self), dwCookie);
+                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).UnregisterVideoMemoryBudgetChangeNotification(@as(*const IDXGIAdapter3, @ptrCast(self)), dwCookie);
             }
         };
     }
@@ -3182,7 +3182,7 @@ pub const IDXGIOutput5 = extern struct {
             pub usingnamespace IDXGIOutput4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput5_DuplicateOutput1(self: *const T, pDevice: ?*IUnknown, Flags: u32, SupportedFormatsCount: u32, pSupportedFormats: [*]const DXGI_FORMAT, ppOutputDuplication: ?*?*IDXGIOutputDuplication) HRESULT {
-                return @ptrCast(*const IDXGIOutput5.VTable, self.vtable).DuplicateOutput1(@ptrCast(*const IDXGIOutput5, self), pDevice, Flags, SupportedFormatsCount, pSupportedFormats, ppOutputDuplication);
+                return @as(*const IDXGIOutput5.VTable, @ptrCast(self.vtable)).DuplicateOutput1(@as(*const IDXGIOutput5, @ptrCast(self)), pDevice, Flags, SupportedFormatsCount, pSupportedFormats, ppOutputDuplication);
             }
         };
     }
@@ -3239,7 +3239,7 @@ pub const IDXGISwapChain4 = extern struct {
             pub usingnamespace IDXGISwapChain3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGISwapChain4_SetHDRMetaData(self: *const T, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) HRESULT {
-                return @ptrCast(*const IDXGISwapChain4.VTable, self.vtable).SetHDRMetaData(@ptrCast(*const IDXGISwapChain4, self), Type, Size, pMetaData);
+                return @as(*const IDXGISwapChain4.VTable, @ptrCast(self.vtable)).SetHDRMetaData(@as(*const IDXGISwapChain4, @ptrCast(self)), Type, Size, pMetaData);
             }
         };
     }
@@ -3302,11 +3302,11 @@ pub const IDXGIDevice4 = extern struct {
             pub usingnamespace IDXGIDevice3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice4_OfferResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: u32) HRESULT {
-                return @ptrCast(*const IDXGIDevice4.VTable, self.vtable).OfferResources1(@ptrCast(*const IDXGIDevice4, self), NumResources, ppResources, Priority, Flags);
+                return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).OfferResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, Priority, Flags);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDevice4_ReclaimResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS) HRESULT {
-                return @ptrCast(*const IDXGIDevice4.VTable, self.vtable).ReclaimResources1(@ptrCast(*const IDXGIDevice4, self), NumResources, ppResources, pResults);
+                return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).ReclaimResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, pResults);
             }
         };
     }
@@ -3346,7 +3346,7 @@ pub const IDXGIFactory5 = extern struct {
             pub usingnamespace IDXGIFactory4.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory5_CheckFeatureSupport(self: *const T, Feature: DXGI_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory5.VTable, self.vtable).CheckFeatureSupport(@ptrCast(*const IDXGIFactory5, self), Feature, pFeatureSupportData, FeatureSupportDataSize);
+                return @as(*const IDXGIFactory5.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const IDXGIFactory5, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
             }
         };
     }
@@ -3373,7 +3373,7 @@ pub const DXGI_ADAPTER_FLAG3 = enum(u32) {
         KEYED_MUTEX_CONFORMANCE: u1 = 0,
         FORCE_DWORD: u1 = 0,
     }) DXGI_ADAPTER_FLAG3 {
-        return @enumFromInt(DXGI_ADAPTER_FLAG3, (if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SOFTWARE) else 0) | (if (o.ACG_COMPATIBLE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE) else 0) | (if (o.SUPPORT_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES) else 0) | (if (o.SUPPORT_NON_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES) else 0) | (if (o.KEYED_MUTEX_CONFORMANCE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.FORCE_DWORD) else 0));
+        return @as(DXGI_ADAPTER_FLAG3, @enumFromInt((if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SOFTWARE) else 0) | (if (o.ACG_COMPATIBLE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE) else 0) | (if (o.SUPPORT_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES) else 0) | (if (o.SUPPORT_NON_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES) else 0) | (if (o.KEYED_MUTEX_CONFORMANCE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.FORCE_DWORD) else 0)));
     }
 };
 pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3.NONE;
@@ -3422,7 +3422,7 @@ pub const IDXGIAdapter4 = extern struct {
             pub usingnamespace IDXGIAdapter3.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIAdapter4_GetDesc3(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC3) HRESULT {
-                return @ptrCast(*const IDXGIAdapter4.VTable, self.vtable).GetDesc3(@ptrCast(*const IDXGIAdapter4, self), pDesc);
+                return @as(*const IDXGIAdapter4.VTable, @ptrCast(self.vtable)).GetDesc3(@as(*const IDXGIAdapter4, @ptrCast(self)), pDesc);
             }
         };
     }
@@ -3456,7 +3456,7 @@ pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = enum(u32) {
         WINDOWED: u1 = 0,
         CURSOR_STRETCHED: u1 = 0,
     }) DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS {
-        return @enumFromInt(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS, (if (o.FULLSCREEN == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN) else 0) | (if (o.WINDOWED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED) else 0) | (if (o.CURSOR_STRETCHED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED) else 0));
+        return @as(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS, @enumFromInt((if (o.FULLSCREEN == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN) else 0) | (if (o.WINDOWED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED) else 0) | (if (o.CURSOR_STRETCHED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED) else 0)));
     }
 };
 pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN;
@@ -3496,11 +3496,11 @@ pub const IDXGIOutput6 = extern struct {
             pub usingnamespace IDXGIOutput5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput6_GetDesc1(self: *const T, pDesc: ?*DXGI_OUTPUT_DESC1) HRESULT {
-                return @ptrCast(*const IDXGIOutput6.VTable, self.vtable).GetDesc1(@ptrCast(*const IDXGIOutput6, self), pDesc);
+                return @as(*const IDXGIOutput6.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGIOutput6, @ptrCast(self)), pDesc);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIOutput6_CheckHardwareCompositionSupport(self: *const T, pFlags: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIOutput6.VTable, self.vtable).CheckHardwareCompositionSupport(@ptrCast(*const IDXGIOutput6, self), pFlags);
+                return @as(*const IDXGIOutput6.VTable, @ptrCast(self.vtable)).CheckHardwareCompositionSupport(@as(*const IDXGIOutput6, @ptrCast(self)), pFlags);
             }
         };
     }
@@ -3545,7 +3545,7 @@ pub const IDXGIFactory6 = extern struct {
             pub usingnamespace IDXGIFactory5.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory6_EnumAdapterByGpuPreference(self: *const T, Adapter: u32, GpuPreference: DXGI_GPU_PREFERENCE, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @ptrCast(*const IDXGIFactory6.VTable, self.vtable).EnumAdapterByGpuPreference(@ptrCast(*const IDXGIFactory6, self), Adapter, GpuPreference, riid, ppvAdapter);
+                return @as(*const IDXGIFactory6.VTable, @ptrCast(self.vtable)).EnumAdapterByGpuPreference(@as(*const IDXGIFactory6, @ptrCast(self)), Adapter, GpuPreference, riid, ppvAdapter);
             }
         };
     }
@@ -3587,11 +3587,11 @@ pub const IDXGIFactory7 = extern struct {
             pub usingnamespace IDXGIFactory6.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory7_RegisterAdaptersChangedEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory7.VTable, self.vtable).RegisterAdaptersChangedEvent(@ptrCast(*const IDXGIFactory7, self), hEvent, pdwCookie);
+                return @as(*const IDXGIFactory7.VTable, @ptrCast(self.vtable)).RegisterAdaptersChangedEvent(@as(*const IDXGIFactory7, @ptrCast(self)), hEvent, pdwCookie);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIFactory7_UnregisterAdaptersChangedEvent(self: *const T, dwCookie: u32) HRESULT {
-                return @ptrCast(*const IDXGIFactory7.VTable, self.vtable).UnregisterAdaptersChangedEvent(@ptrCast(*const IDXGIFactory7, self), dwCookie);
+                return @as(*const IDXGIFactory7.VTable, @ptrCast(self.vtable)).UnregisterAdaptersChangedEvent(@as(*const IDXGIFactory7, @ptrCast(self)), dwCookie);
             }
         };
     }
@@ -3610,7 +3610,7 @@ pub const DXGI_DEBUG_RLO_FLAGS = enum(u32) {
         IGNORE_INTERNAL: u1 = 0,
         ALL: u1 = 0,
     }) DXGI_DEBUG_RLO_FLAGS {
-        return @enumFromInt(DXGI_DEBUG_RLO_FLAGS, (if (o.SUMMARY == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.SUMMARY) else 0) | (if (o.DETAIL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.DETAIL) else 0) | (if (o.IGNORE_INTERNAL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL) else 0) | (if (o.ALL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.ALL) else 0));
+        return @as(DXGI_DEBUG_RLO_FLAGS, @enumFromInt((if (o.SUMMARY == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.SUMMARY) else 0) | (if (o.DETAIL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.DETAIL) else 0) | (if (o.IGNORE_INTERNAL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL) else 0) | (if (o.ALL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.ALL) else 0)));
     }
 };
 pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS.SUMMARY;
@@ -4122,151 +4122,151 @@ pub const IDXGIInfoQueue = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_SetMessageCountLimit(self: *const T, Producer: Guid, MessageCountLimit: u64) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).SetMessageCountLimit(@ptrCast(*const IDXGIInfoQueue, self), Producer, MessageCountLimit);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, MessageCountLimit);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_ClearStoredMessages(self: *const T, Producer: Guid) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).ClearStoredMessages(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetMessage(self: *const T, Producer: Guid, MessageIndex: u64, pMessage: ?*DXGI_INFO_QUEUE_MESSAGE, pMessageByteLength: ?*usize) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetMessage(@ptrCast(*const IDXGIInfoQueue, self), Producer, MessageIndex, pMessage, pMessageByteLength);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, MessageIndex, pMessage, pMessageByteLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetNumStoredMessagesAllowedByRetrievalFilters(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetNumStoredMessagesAllowedByRetrievalFilters(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilters(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetNumStoredMessages(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetNumStoredMessages(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetNumMessagesDiscardedByMessageCountLimit(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetNumMessagesDiscardedByMessageCountLimit(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetMessageCountLimit(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetMessageCountLimit(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetNumMessagesAllowedByStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetNumMessagesDeniedByStorageFilter(self: *const T, Producer: Guid) u64 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetNumMessagesDeniedByStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_AddStorageFilterEntries(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).AddStorageFilterEntries(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetStorageFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter, pFilterByteLength);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter, pFilterByteLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_ClearStorageFilter(self: *const T, Producer: Guid) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).ClearStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushEmptyStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushEmptyStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushDenyAllStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushDenyAllStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushDenyAllStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushCopyOfStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushCopyOfStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushStorageFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PopStorageFilter(self: *const T, Producer: Guid) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PopStorageFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetStorageFilterStackSize(self: *const T, Producer: Guid) u32 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetStorageFilterStackSize(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_AddRetrievalFilterEntries(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).AddRetrievalFilterEntries(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetRetrievalFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter, pFilterByteLength);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter, pFilterByteLength);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_ClearRetrievalFilter(self: *const T, Producer: Guid) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).ClearRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushEmptyRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushEmptyRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushDenyAllRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushDenyAllRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushDenyAllRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushCopyOfRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushCopyOfRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PushRetrievalFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PushRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer, pFilter);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_PopRetrievalFilter(self: *const T, Producer: Guid) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).PopRetrievalFilter(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetRetrievalFilterStackSize(self: *const T, Producer: Guid) u32 {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetRetrievalFilterStackSize(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_AddMessage(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, ID: i32, pDescription: ?[*:0]const u8) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).AddMessage(@ptrCast(*const IDXGIInfoQueue, self), Producer, Category, Severity, ID, pDescription);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category, Severity, ID, pDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_AddApplicationMessage(self: *const T, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).AddApplicationMessage(@ptrCast(*const IDXGIInfoQueue, self), Severity, pDescription);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Severity, pDescription);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_SetBreakOnCategory(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, bEnable: BOOL) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).SetBreakOnCategory(@ptrCast(*const IDXGIInfoQueue, self), Producer, Category, bEnable);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category, bEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_SetBreakOnSeverity(self: *const T, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, bEnable: BOOL) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).SetBreakOnSeverity(@ptrCast(*const IDXGIInfoQueue, self), Producer, Severity, bEnable);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Severity, bEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_SetBreakOnID(self: *const T, Producer: Guid, ID: i32, bEnable: BOOL) HRESULT {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).SetBreakOnID(@ptrCast(*const IDXGIInfoQueue, self), Producer, ID, bEnable);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, ID, bEnable);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetBreakOnCategory(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY) BOOL {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetBreakOnCategory(@ptrCast(*const IDXGIInfoQueue, self), Producer, Category);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetBreakOnSeverity(self: *const T, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY) BOOL {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetBreakOnSeverity(@ptrCast(*const IDXGIInfoQueue, self), Producer, Severity);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Severity);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetBreakOnID(self: *const T, Producer: Guid, ID: i32) BOOL {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetBreakOnID(@ptrCast(*const IDXGIInfoQueue, self), Producer, ID);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, ID);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_SetMuteDebugOutput(self: *const T, Producer: Guid, bMute: BOOL) void {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).SetMuteDebugOutput(@ptrCast(*const IDXGIInfoQueue, self), Producer, bMute);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, bMute);
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIInfoQueue_GetMuteDebugOutput(self: *const T, Producer: Guid) BOOL {
-                return @ptrCast(*const IDXGIInfoQueue.VTable, self.vtable).GetMuteDebugOutput(@ptrCast(*const IDXGIInfoQueue, self), Producer);
+                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
             }
         };
     }
@@ -4298,7 +4298,7 @@ pub const IDXGIDebug = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDebug_ReportLiveObjects(self: *const T, apiid: Guid, flags: DXGI_DEBUG_RLO_FLAGS) HRESULT {
-                return @ptrCast(*const IDXGIDebug.VTable, self.vtable).ReportLiveObjects(@ptrCast(*const IDXGIDebug, self), apiid, flags);
+                return @as(*const IDXGIDebug.VTable, @ptrCast(self.vtable)).ReportLiveObjects(@as(*const IDXGIDebug, @ptrCast(self)), apiid, flags);
             }
         };
     }
@@ -4342,15 +4342,15 @@ pub const IDXGIDebug1 = extern struct {
             pub usingnamespace IDXGIDebug.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDebug1_EnableLeakTrackingForThread(self: *const T) void {
-                return @ptrCast(*const IDXGIDebug1.VTable, self.vtable).EnableLeakTrackingForThread(@ptrCast(*const IDXGIDebug1, self));
+                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).EnableLeakTrackingForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDebug1_DisableLeakTrackingForThread(self: *const T) void {
-                return @ptrCast(*const IDXGIDebug1.VTable, self.vtable).DisableLeakTrackingForThread(@ptrCast(*const IDXGIDebug1, self));
+                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).DisableLeakTrackingForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGIDebug1_IsLeakTrackingEnabledForThread(self: *const T) BOOL {
-                return @ptrCast(*const IDXGIDebug1.VTable, self.vtable).IsLeakTrackingEnabledForThread(@ptrCast(*const IDXGIDebug1, self));
+                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).IsLeakTrackingEnabledForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
             }
         };
     }
@@ -5050,11 +5050,11 @@ pub const IDXGraphicsAnalysis = extern struct {
             pub usingnamespace IUnknown.MethodMixin(T);
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGraphicsAnalysis_BeginCapture(self: *const T) void {
-                return @ptrCast(*const IDXGraphicsAnalysis.VTable, self.vtable).BeginCapture(@ptrCast(*const IDXGraphicsAnalysis, self));
+                return @as(*const IDXGraphicsAnalysis.VTable, @ptrCast(self.vtable)).BeginCapture(@as(*const IDXGraphicsAnalysis, @ptrCast(self)));
             }
             // NOTE: method is namespaced with interface name to avoid conflicts for now
             pub inline fn IDXGraphicsAnalysis_EndCapture(self: *const T) void {
-                return @ptrCast(*const IDXGraphicsAnalysis.VTable, self.vtable).EndCapture(@ptrCast(*const IDXGraphicsAnalysis, self));
+                return @as(*const IDXGraphicsAnalysis.VTable, @ptrCast(self.vtable)).EndCapture(@as(*const IDXGraphicsAnalysis, @ptrCast(self)));
             }
         };
     }
