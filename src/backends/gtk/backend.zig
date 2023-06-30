@@ -11,6 +11,8 @@ const EventType = shared.BackendEventType;
 const BackendError = shared.BackendError;
 const MouseButton = shared.MouseButton;
 
+const GTK_VERSION = 3;
+
 pub const Capabilities = .{ .useEventLoop = true };
 
 var activeWindows = std.atomic.Atomic(usize).init(0);
@@ -1216,6 +1218,14 @@ pub fn postEmptyEvent() void {
 }
 
 pub fn runStep(step: shared.EventLoopStep) bool {
-    _ = c.gtk_main_iteration_do(@intFromBool(step == .Blocking));
-    return activeWindows.load(.Acquire) != 0;
+    const context = c.g_main_context_default();
+    _ = c.g_main_context_iteration(context, @intFromBool(step == .Blocking));
+
+    if (GTK_VERSION == 4) {
+        return c.gtk_window_get_toplevels() > 0;
+    } else if (GTK_VERSION == 3) {
+        return activeWindows.load(.Acquire) != 0;
+    } else {
+        unreachable;
+    }
 }
