@@ -32,7 +32,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 
         const result = lerpFloat(a_casted, b_casted, t);
         if (comptime std.meta.trait.isIntegral(T)) {
-            return @as(T, @intFromFloat(@round(result)));
+            return @intFromFloat(@round(result));
         } else {
             return result;
         }
@@ -211,7 +211,9 @@ pub fn Atom(comptime T: type) type {
                 fn a(_: T, int: usize) void {
                     const ptr = @as(*AnimationParameters, @ptrFromInt(int));
                     const allocator = lasting_allocator;
+                    const self_ptr = ptr.self_ptr;
                     allocator.destroy(ptr);
+                    self_ptr.deinit();
                 }
             }.a;
 
@@ -765,7 +767,7 @@ pub const Rectangle = struct {
 const expectEqual = std.testing.expectEqual;
 
 test "lerp" {
-    const floatTypes = .{ f16, f32, f64, f128 };
+    const floatTypes = .{ f16, f32, f64, f80, f128, c_longdouble };
 
     inline for (floatTypes) |Float| {
         try expectEqual(@as(Float, 0.0), lerp(@as(Float, 0), 1.0, 0.0)); // 0 |-0.0 > 1.0 = 0.0

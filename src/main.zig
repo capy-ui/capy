@@ -87,10 +87,10 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
         // TODO: mutex
         for (timer._runningTimers.items, 0..) |item, i| {
             _ = i;
-            if (now.since(item.started.?) >= item.duration) {
+            if (now.since(item.started.?) >= item.duration.get()) {
                 // TODO: tick timer
                 item.started = now;
-                item.tick();
+                item.tick(item);
             }
         }
         return backend.runStep(.Asynchronous);
