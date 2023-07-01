@@ -46,7 +46,7 @@ pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []cons
         .Error => c.GTK_MESSAGE_ERROR,
     }));
 
-    if (GTK_VERSION.includesVersion(.{ .major = 4, .minor = 10, .patch = 0 })) {
+    if (comptime GTK_VERSION.min.order(.{ .major = 4, .minor = 10, .patch = 0 }) != .lt) {
         // GTK 4.10 deprecated MessageDialog and introduced AlertDialog
         const dialog = c.gtk_alert_dialog_new("%s", msg.ptr);
         c.gtk_alert_dialog_show(dialog, null);
@@ -1230,7 +1230,7 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     const context = c.g_main_context_default();
     _ = c.g_main_context_iteration(context, @intFromBool(step == .Blocking));
 
-    if (GTK_VERSION.includesVersion(.{ .major = 4, .minor = 0, .patch = 0 })) {
+    if (GTK_VERSION.min.order(.{ .major = 4, .minor = 0, .patch = 0 }) != .lt) {
         return c.g_list_model_get_n_items(c.gtk_window_get_toplevels()) > 0;
     } else {
         return activeWindows.load(.Acquire) != 0;
