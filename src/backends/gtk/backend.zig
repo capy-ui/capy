@@ -70,6 +70,7 @@ pub const Window = struct {
     menuBar: ?*c.GtkWidget = null,
     source_dpi: u32 = 96,
     scale: f32 = 1.0,
+    child: ?*c.GtkWidget = null,
 
     pub usingnamespace Events(Window);
 
@@ -88,33 +89,55 @@ pub const Window = struct {
         c.gtk_box_set_homogeneous(@ptrCast(vbox), @intFromBool(true));
 
         c.gtk_window_set_child(@ptrCast(window), vbox);
+        c.gtk_widget_show(window);
+        c.gtk_widget_map(window);
 
         _ = c.g_signal_connect_data(window, "hide", @as(c.GCallback, @ptrCast(&gtkWindowHidden)), null, null, c.G_CONNECT_AFTER);
         randomWindow = window;
         try Window.setupEvents(window);
 
-        // TODO: window resize
-        // _ = c.g_signal_connect_data(window, "check-resize", @as(c.GCallback, @ptrCast(&gtkConfigure)), null, null, c.G_CONNECT_AFTER);
+        const surface = c.gtk_native_get_surface(@ptrCast(window));
+        _ = c.g_signal_connect_data(surface, "layout", @ptrCast(&gtkConfigure), null, null, c.G_CONNECT_AFTER);
         return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
     }
 
-    fn gtkConfigure(peer: *c.GtkWidget, userdata: usize) callconv(.C) c.gboolean {
+    fn gtkConfigure(peer: *c.GdkSurface, _: *anyopaque, userdata: usize) callconv(.C) c.gboolean {
         _ = userdata;
-        const data = getEventUserData(peer);
-        var width: c.gint = undefined;
-        var height: c.gint = undefined;
-        c.gtk_window_get_size(@as(*c.GtkWindow, @ptrCast(peer)), &width, &height);
+        const native: *c.GtkWidget = @ptrCast(@alignCast(c.gtk_native_get_for_surface(@ptrCast(peer))));
+        const data = getEventUserData(@ptrCast(native));
+        const width = c.gdk_surface_get_width(peer);
+        const height = c.gdk_surface_get_height(peer);
 
+        const child_data = getEventUserData(
+            c.gtk_widget_get_first_child(
+                c.gtk_widget_get_first_child(
+                    c.gtk_window_get_child(@ptrCast(native)),
+                ),
+            ),
+        );
+        const w_changed = if (child_data.actual_width) |old_width| width != old_width else true;
+        const h_changed = if (child_data.actual_height) |old_height| height != old_height else true;
+        const size_changed = w_changed or h_changed;
+        child_data.actual_width = @intCast(width);
+        child_data.actual_height = @intCast(height);
         if (data.class.resizeHandler) |handler|
             handler(@as(u32, @intCast(width)), @as(u32, @intCast(height)), @intFromPtr(data));
         if (data.user.resizeHandler) |handler|
             handler(@as(u32, @intCast(width)), @as(u32, @intCast(height)), data.userdata);
+        if (size_changed) {
+            if (child_data.class.resizeHandler) |handler|
+                handler(@as(u32, @intCast(width)), @as(u32, @intCast(height)), @intFromPtr(child_data));
+            if (child_data.user.resizeHandler) |handler|
+                handler(@as(u32, @intCast(width)), @as(u32, @intCast(height)), child_data.userdata);
+        }
         return 0;
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        c.gtk_window_set_default_size(@ptrCast(self), width, height);
-        // c.gtk_window_resize(@as(*c.GtkWindow, @ptrCast(self.peer)), @as(c_int, @intFromFloat(@as(f32, @floatFromInt(width)) * self.scale)), @as(c_int, @intFromFloat(@as(f32, @floatFromInt(height)) * self.scale)));
+        _ = height;
+        _ = width;
+        // c.gtk_window_set_default_size(@ptrCast(self.peer), width, height);
+        c.gtk_window_set_default_size(@ptrCast(self.peer), -1, -1);
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -131,6 +154,8 @@ pub const Window = struct {
 
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
         c.gtk_box_append(@ptrCast(self.wbin), peer);
+        self.child = peer;
+        // c.gtk_window_set_child(@ptrCast(self.peer), peer);
     }
 
     pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
@@ -191,6 +216,8 @@ pub const EventUserData = struct {
     classUserdata: usize = 0,
     peer: PeerType,
     focusOnClick: bool = false,
+    actual_width: ?u31 = null,
+    actual_height: ?u31 = null,
 };
 
 pub inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
@@ -198,10 +225,14 @@ pub inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
 }
 
 pub fn getWidthFromPeer(peer: PeerType) c_int {
+    const data = getEventUserData(peer);
+    if (data.actual_width) |width| return width;
     return c.gtk_widget_get_allocated_width(peer);
 }
 
 pub fn getHeightFromPeer(peer: PeerType) c_int {
+    const data = getEventUserData(peer);
+    if (data.actual_height) |height| return height;
     return c.gtk_widget_get_allocated_height(peer);
 }
 
@@ -209,6 +240,8 @@ pub fn getHeightFromPeer(peer: PeerType) c_int {
 /// backend.Container now directly calls this method in order to emit the event.
 pub fn widgetSizeChanged(peer: *c.GtkWidget, width: u32, height: u32) void {
     const data = getEventUserData(peer);
+    data.actual_width = @intCast(width);
+    data.actual_height = @intCast(height);
     if (data.class.resizeHandler) |handler|
         handler(width, height, @intFromPtr(data));
     if (data.user.resizeHandler) |handler|
@@ -973,22 +1006,20 @@ pub const Canvas = struct {
         }
     };
 
-    fn gtkCanvasDraw(peer: *c.GtkWidget, cr: *c.cairo_t, userdata: usize) callconv(.C) c_int {
-        _ = userdata;
-        const data = getEventUserData(peer);
-        var dc = DrawContext{ .cr = cr, .widget = peer };
+    fn gtkCanvasDraw(peer: ?*c.GtkDrawingArea, cr: ?*c.cairo_t, _: c_int, _: c_int, _: ?*anyopaque) callconv(.C) void {
+        const data = getEventUserData(@ptrCast(peer.?));
+        var dc = DrawContext{ .cr = cr.?, .widget = @ptrCast(peer.?) };
 
         if (data.class.drawHandler) |handler|
             handler(&dc, @intFromPtr(data));
         if (data.user.drawHandler) |handler|
             handler(&dc, data.userdata);
-        return 0; // propagate the event further
     }
 
     pub fn create() BackendError!Canvas {
         const peer = c.gtk_drawing_area_new() orelse return BackendError.UnknownError;
         c.gtk_widget_set_can_focus(peer, 1);
-        _ = c.g_signal_connect_data(peer, "draw", @as(c.GCallback, @ptrCast(&gtkCanvasDraw)), null, @as(c.GClosureNotify, null), 0);
+        c.gtk_drawing_area_set_draw_func(@ptrCast(peer), &gtkCanvasDraw, null, null);
 
         try Canvas.setupEvents(peer);
         getEventUserData(peer).focusOnClick = true;
@@ -1018,7 +1049,7 @@ pub const Container = struct {
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
-        // NOTE: the component might not be able to be added back
+        // TODO(fix): the component might not be able to be added back
         // to fix this every peer type (Container, Button..) would have to hold a reference
         // that GTK knows about to their GtkWidget
         c.gtk_fixed_remove(@as(*c.GtkFixed, @ptrCast(self.container)), peer);

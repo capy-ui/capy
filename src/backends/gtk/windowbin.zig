@@ -3,18 +3,7 @@ const std = @import("std");
 const c = @import("backend.zig").c;
 
 pub const WBin = extern struct { widget: c.GtkWidget };
-
-// Parent class is GtkContainerClass. But it and GtkWidgetClass fail to be translated by translate-c
-// TODO boxclass
-const GtkBoxClass = extern struct {
-    parent_class: [1024]u8,
-    _gtk_reserved1: ?*const fn () callconv(.C) void,
-    _gtk_reserved2: ?*const fn () callconv(.C) void,
-    _gtk_reserved3: ?*const fn () callconv(.C) void,
-    _gtk_reserved4: ?*const fn () callconv(.C) void,
-};
-
-pub const WBinClass = extern struct { parent_class: GtkBoxClass };
+pub const WBinClass = extern struct { parent_class: c.GtkBoxClass };
 
 var wbin_type: c.GType = 0;
 
@@ -33,8 +22,6 @@ export fn wbin_get_type() c.GType {
 
 fn wbin_class_init(class: *WBinClass) callconv(.C) void {
     const widget_class = @as(*c.GtkWidgetClass, @ptrCast(class));
-    // widget_class.get_preferred_width = wbin_get_preferred_width;
-    // widget_class.get_preferred_height = wbin_get_preferred_height;
     widget_class.measure = &wbin_measure;
     widget_class.size_allocate = &wbin_size_allocate;
     widget_class.get_request_mode = &wbin_get_request_mode;
@@ -55,36 +42,16 @@ fn wbin_get_request_mode(widget: ?*c.GtkWidget) callconv(.C) c.GtkSizeRequestMod
     return c.GTK_SIZE_REQUEST_CONSTANT_SIZE;
 }
 
-fn wbin_get_preferred_width(widget: ?*c.GtkWidget, minimum_width: ?*c.gint, natural_width: ?*c.gint) callconv(.C) void {
-    _ = widget;
-    minimum_width.?.* = 0;
-    natural_width.?.* = 0;
-}
-
-fn wbin_get_preferred_height(widget: ?*c.GtkWidget, minimum_height: ?*c.gint, natural_height: ?*c.gint) callconv(.C) void {
-    _ = widget;
-    minimum_height.?.* = 0;
-    natural_height.?.* = 0;
-}
-
-fn wbin_child_allocate(child: ?*c.GtkWidget, ptr: ?*anyopaque) callconv(.C) void {
-    const allocation = @as(?*c.GtkAllocation, @ptrCast(@alignCast(ptr)));
-    c.gtk_widget_size_allocate(child, allocation);
-}
-
 fn wbin_size_allocate(
     widget: ?*c.GtkWidget,
     width: c_int,
     height: c_int,
     baseline: c_int,
 ) callconv(.C) void {
-    _ = baseline;
-    _ = height;
-    _ = width;
-    _ = widget;
     // TODO: ???
-    // c.gtk_widget_set_allocation(widget, allocation);
-    // c.gtk_container_forall(@as(?*c.GtkContainer, @ptrCast(widget)), wbin_child_allocate, allocation);
+    c.gtk_widget_allocate(widget, width, height, baseline, null);
+    const child = c.gtk_widget_get_first_child(widget);
+    c.gtk_widget_allocate(child, width, height, baseline, null);
 }
 
 export fn wbin_init(wbin: *WBin, class: *WBinClass) void {
