@@ -4,6 +4,7 @@ const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
+    linux: LinuxOptions = .{},
     // TODO: disable android build if password is not set
     android: AndroidOptions = .{ .password = "foo" },
     args: ?[]const []const u8 = &.{},
@@ -16,6 +17,11 @@ pub const CapyBuildOptions = struct {
         package_name: []const u8 = "io.capyui.example",
         /// The password that will be used to sign the keystore. Do not share with others!
         password: []const u8,
+    };
+
+    pub const LinuxOptions = struct {
+        /// Only GTK3 and GTK4 are supported.
+        gtk_version: usize = 4,
     };
 };
 
@@ -265,7 +271,13 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 return run_step;
             } else {
                 step.linkLibC();
-                step.linkSystemLibrary("gtk+-3.0");
+                const gtk_version = options.linux.gtk_version;
+                std.debug.assert(gtk_version == 3 or gtk_version == 4);
+                if (gtk_version == 4) {
+                    step.linkSystemLibrary("gtk4");
+                } else {
+                    step.linkSystemLibrary("gtk+-3.0");
+                }
             }
         },
         .freestanding => {
