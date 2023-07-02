@@ -519,16 +519,16 @@ pub const CheckBox = struct {
     pub fn create() BackendError!CheckBox {
         const button = c.gtk_check_button_new() orelse return error.UnknownError;
         try CheckBox.setupEvents(button);
-        _ = c.g_signal_connect_data(button, "clicked", @as(c.GCallback, @ptrCast(&gtkClicked)), null, @as(c.GClosureNotify, null), 0);
+        _ = c.g_signal_connect_data(button, "toggled", @as(c.GCallback, @ptrCast(&gtkClicked)), null, @as(c.GClosureNotify, null), 0);
         return CheckBox{ .peer = button };
     }
 
     pub fn setLabel(self: *const CheckBox, label: [:0]const u8) void {
-        c.gtk_button_set_label(@as(*c.GtkButton, @ptrCast(self.peer)), label.ptr);
+        c.gtk_check_button_set_label(@ptrCast(self.peer), label.ptr);
     }
 
     pub fn getLabel(self: *const CheckBox) [:0]const u8 {
-        const label = c.gtk_button_get_label(@as(*c.GtkButton, @ptrCast(self.peer)));
+        const label = c.gtk_check_button_get_label(@ptrCast(self.peer));
         return std.mem.span(label);
     }
 
@@ -537,11 +537,11 @@ pub const CheckBox = struct {
     }
 
     pub fn setChecked(self: *const CheckBox, checked: bool) void {
-        c.gtk_toggle_button_set_active(@as(*c.GtkToggleButton, @ptrCast(self.peer)), @intFromBool(checked));
+        c.gtk_check_button_set_active(@ptrCast(self.peer), @intFromBool(checked));
     }
 
     pub fn isChecked(self: *const CheckBox) bool {
-        return c.gtk_toggle_button_get_active(@as(*c.GtkToggleButton, @ptrCast(self.peer))) != 0;
+        return c.gtk_check_button_get_active(@ptrCast(self.peer)) != 0;
     }
 };
 
@@ -1074,11 +1074,28 @@ pub const TabContainer = struct {
     pub fn create() BackendError!TabContainer {
         const layout = c.gtk_notebook_new() orelse return BackendError.UnknownError;
         try TabContainer.setupEvents(layout);
+
+        const data = getEventUserData(layout);
+        data.class.resizeHandler = onTabResize;
+        data.classUserdata = @intFromPtr(layout);
         return TabContainer{ .peer = layout };
+    }
+
+    fn onTabResize(width: u32, height: u32, data: usize) void {
+        const userdata: *EventUserData = @ptrFromInt(data);
+        const widget: *c.GtkWidget = @ptrFromInt(userdata.classUserdata);
+        const n = c.gtk_notebook_get_n_pages(@ptrCast(widget));
+
+        for (0..@intCast(n)) |i| {
+            const child = c.gtk_notebook_get_nth_page(@ptrCast(widget), @intCast(i));
+            widgetSizeChanged(child, width, height);
+        }
     }
 
     /// Returns the index of the newly added tab
     pub fn insert(self: *const TabContainer, position: usize, peer: PeerType) usize {
+        const data = getEventUserData(self.peer);
+        data.classUserdata = @intFromPtr(self.peer);
         return @as(usize, @intCast(c.gtk_notebook_insert_page(@as(*c.GtkNotebook, @ptrCast(self.peer)), peer, null, @as(c_int, @intCast(position)))));
     }
 
@@ -1168,10 +1185,12 @@ pub const NavigationSidebar = struct {
 
     pub fn create() BackendError!NavigationSidebar {
         const listBox = c.gtk_list_box_new();
+        var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(listBox);
+        c.gtk_style_context_add_class(context, "navigation-sidebar");
 
         // A custom component is used to bypass GTK's minimum size mechanism
         const wbin = wbin_new() orelse return BackendError.UnknownError;
-        c.gtk_container_add(@as(*c.GtkContainer, @ptrCast(wbin)), listBox);
+        wbin_set_child(@ptrCast(wbin), listBox);
         try NavigationSidebar.setupEvents(wbin);
 
         var sidebar = NavigationSidebar{ .peer = wbin, .list = listBox };
@@ -1185,12 +1204,12 @@ pub const NavigationSidebar = struct {
         c.gtk_list_box_prepend(@as(*c.GtkListBox, @ptrCast(self.list)), box);
 
         _ = image;
-        const icon = c.gtk_image_new_from_icon_name("dialog-warning-symbolic", c.GTK_ICON_SIZE_DIALOG);
+        const icon = c.gtk_image_new_from_icon_name("dialog-warning-symbolic");
         // TODO: create GtkImage from ImageData
-        c.gtk_container_add(@as(*c.GtkContainer, @ptrCast(box)), icon);
+        c.gtk_box_append(@ptrCast(box), icon);
 
         const label_gtk = c.gtk_label_new(label);
-        c.gtk_container_add(@as(*c.GtkContainer, @ptrCast(box)), label_gtk);
+        c.gtk_box_append(@ptrCast(box), label_gtk);
 
         var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(box);
         c.gtk_style_context_add_class(context, "activatable");
