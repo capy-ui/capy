@@ -84,10 +84,11 @@ pub const Window = struct {
         //const screen = c.gtk_window_get_screen(@ptrCast(*c.GtkWindow, window));
         //std.log.info("{d} dpi", .{c.gdk_screen_get_resolution(screen)});
         const wbin = wbin_new() orelse unreachable;
+        c.gtk_widget_set_vexpand(wbin, 1);
+        c.gtk_widget_set_vexpand_set(wbin, 1);
 
         const vbox = c.gtk_box_new(c.GTK_ORIENTATION_VERTICAL, 0) orelse return error.UnknownError;
         c.gtk_box_append(@ptrCast(vbox), wbin);
-        c.gtk_box_set_homogeneous(@ptrCast(vbox), @intFromBool(true));
 
         c.gtk_window_set_child(@ptrCast(window), vbox);
         c.gtk_widget_show(window);
@@ -111,7 +112,7 @@ pub const Window = struct {
 
         const child_data = getEventUserData(
             c.gtk_widget_get_first_child(
-                c.gtk_widget_get_first_child(
+                c.gtk_widget_get_last_child(
                     c.gtk_window_get_child(@ptrCast(native)),
                 ),
             ),
@@ -156,10 +157,13 @@ pub const Window = struct {
     }
 
     pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
-        const menuBar = c.gtk_menu_bar_new().?;
-        initMenu(@as(*c.GtkMenuShell, @ptrCast(menuBar)), bar.menus);
+        const menuBar = c.gtk_popover_menu_bar_new_from_model(null).?;
+        const menuModel = c.g_menu_new().?;
+        initMenu(menuModel, bar.menus);
 
-        c.gtk_box_pack_start(@as(*c.GtkBox, @ptrCast(self.vbox)), menuBar, 0, 0, 0);
+        c.gtk_popover_menu_bar_set_menu_model(@ptrCast(menuBar), @ptrCast(@alignCast(menuModel)));
+
+        c.gtk_box_prepend(@as(*c.GtkBox, @ptrCast(self.vbox)), menuBar);
         self.menuBar = menuBar;
     }
 
@@ -170,25 +174,27 @@ pub const Window = struct {
         self.scale = resolution / @as(f32, @floatFromInt(dpi));
     }
 
-    fn initMenu(menu: *c.GtkMenuShell, items: []const lib.MenuItem_Impl) void {
+    fn initMenu(menu: *c.GMenu, items: []const lib.MenuItem_Impl) void {
         for (items) |item| {
-            const menuItem = c.gtk_menu_item_new_with_label(item.config.label);
             if (item.items.len > 0) {
                 // The menu associated to the menu item
-                const itemMenu = c.gtk_menu_new();
-                initMenu(@as(*c.GtkMenuShell, @ptrCast(itemMenu)), item.items);
-                c.gtk_menu_item_set_submenu(@as(*c.GtkMenuItem, @ptrCast(menuItem)), itemMenu);
+                const submenu = c.g_menu_new().?;
+                initMenu(submenu, item.items);
+                c.g_menu_append_submenu(menu, item.config.label, @ptrCast(@alignCast(submenu)));
+            } else {
+                const menu_item = c.g_menu_item_new(item.config.label, null).?;
+                c.g_menu_append_item(menu, menu_item);
+                if (item.config.onClick) |callback| {
+                    const new_action = c.g_simple_action_new(item.config.label, null); // TODO: some unique id
+                    const data = @as(?*anyopaque, @ptrFromInt(@intFromPtr(callback)));
+                    _ = c.g_signal_connect_data(new_action, "activate", @as(c.GCallback, @ptrCast(&gtkActivate)), data, null, c.G_CONNECT_AFTER);
+                    c.g_menu_item_set_action_and_target_value(menu_item, item.config.label, null);
+                }
             }
-            if (item.config.onClick) |callback| {
-                const data = @as(?*anyopaque, @ptrFromInt(@intFromPtr(callback)));
-                _ = c.g_signal_connect_data(menuItem, "activate", @as(c.GCallback, @ptrCast(&gtkActivate)), data, null, c.G_CONNECT_AFTER);
-            }
-
-            c.gtk_menu_shell_append(menu, menuItem);
         }
     }
 
-    fn gtkActivate(peer: *c.GtkMenuItem, userdata: ?*anyopaque) callconv(.C) void {
+    fn gtkActivate(peer: *c.GAction, userdata: ?*anyopaque) callconv(.C) void {
         _ = peer;
 
         const callback = @as(*const fn () void, @ptrCast(userdata.?));
@@ -682,8 +688,8 @@ pub const TextArea = struct {
 
     pub fn create() BackendError!TextArea {
         const textArea = c.gtk_text_view_new() orelse return BackendError.UnknownError;
-        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
-        c.gtk_container_add(@as(*c.GtkContainer, @ptrCast(scrolledWindow)), textArea);
+        const scrolledWindow = c.gtk_scrolled_window_new() orelse return BackendError.UnknownError;
+        c.gtk_scrolled_window_set_child(@ptrCast(scrolledWindow), textArea);
         try TextArea.setupEvents(scrolledWindow);
 
         const buffer = c.gtk_text_view_get_buffer(@as(*c.GtkTextView, @ptrCast(textArea))).?;
@@ -815,7 +821,7 @@ pub const Canvas = struct {
             }
 
             pub fn init() TextLayout {
-                const context = c.gdk_pango_context_get().?;
+                const context = c.gtk_widget_create_pango_context(randomWindow).?;
                 return TextLayout{ ._context = context, ._layout = c.pango_layout_new(context).? };
             }
         };
@@ -1116,14 +1122,13 @@ pub const ScrollView = struct {
     pub usingnamespace Events(ScrollView);
 
     pub fn create() BackendError!ScrollView {
-        const scrolledWindow = c.gtk_scrolled_window_new(null, null) orelse return BackendError.UnknownError;
+        const scrolledWindow = c.gtk_scrolled_window_new() orelse return BackendError.UnknownError;
         try ScrollView.setupEvents(scrolledWindow);
         return ScrollView{ .peer = scrolledWindow };
     }
 
     pub fn setChild(self: *ScrollView, peer: PeerType, _: *const lib.Widget) void {
-        // TODO: remove old widget if there was one
-        c.gtk_container_add(@as(*c.GtkContainer, @ptrCast(self.peer)), peer);
+        c.gtk_scrolled_window_set_child(@ptrCast(self.peer), peer);
     }
 };
 
