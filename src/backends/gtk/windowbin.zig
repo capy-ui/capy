@@ -3,7 +3,10 @@ const std = @import("std");
 const c = @import("backend.zig").c;
 
 pub const WBin = extern struct { widget: c.GtkWidget };
-pub const WBinClass = extern struct { parent_class: c.GtkBoxClass };
+pub const WBinClass = extern struct {
+    parent_class: c.GtkWidgetClass,
+    padding: [8]u8,
+};
 
 var wbin_type: c.GType = 0;
 
@@ -15,16 +18,17 @@ export fn wbin_get_type() c.GType {
             .instance_size = @sizeOf(WBin),
             .instance_init = @as(c.GInstanceInitFunc, @ptrCast(&wbin_init)),
         });
-        wbin_type = c.g_type_register_static(c.gtk_box_get_type(), "WBin", &wbin_info, 0);
+        // wbin_type = c.g_type_register_static(c.gtk_box_get_type(), "WBin", &wbin_info, 0);
+        wbin_type = c.g_type_register_static(c.gtk_widget_get_type(), "WrapperBin", &wbin_info, 0);
     }
     return wbin_type;
 }
 
 fn wbin_class_init(class: *WBinClass) callconv(.C) void {
     const widget_class = @as(*c.GtkWidgetClass, @ptrCast(class));
-    widget_class.measure = &wbin_measure;
-    widget_class.size_allocate = &wbin_size_allocate;
-    widget_class.get_request_mode = &wbin_get_request_mode;
+    // widget_class.measure = wbin_measure;
+    widget_class.size_allocate = wbin_size_allocate;
+    // widget_class.get_request_mode = wbin_get_request_mode;
 }
 
 fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size: c_int, minimum: [*c]c_int, natural: [*c]c_int, minimum_baseline: [*c]c_int, natural_baseline: [*c]c_int) callconv(.C) void {
@@ -32,7 +36,7 @@ fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size
     _ = for_size;
     _ = widget;
     minimum.* = 0;
-    natural.* = 0;
+    natural.* = 100;
     minimum_baseline.* = -1; // no baseline
     natural_baseline.* = -1; // no baseline
 }
@@ -48,19 +52,29 @@ fn wbin_size_allocate(
     height: c_int,
     baseline: c_int,
 ) callconv(.C) void {
-    // TODO: ???
-    c.gtk_widget_allocate(widget, width, height, baseline, null);
     const child = c.gtk_widget_get_first_child(widget);
-    c.gtk_widget_allocate(child, width, height, baseline, null);
+    if (child != null) {
+        c.gtk_widget_allocate(child, width, height, baseline, null);
+    }
 }
 
 export fn wbin_init(wbin: *WBin, class: *WBinClass) void {
+    _ = wbin;
     _ = class;
-
-    // TODO
-    c.gtk_box_set_homogeneous(@ptrCast(wbin), @intFromBool(true));
+    // c.gtk_box_set_homogeneous(@ptrCast(wbin), @intFromBool(true));
 }
 
 pub fn wbin_new() ?*c.GtkWidget {
     return @as(?*c.GtkWidget, @ptrCast(@alignCast(c.g_object_new(wbin_get_type(), null))));
+}
+
+pub fn wbin_set_child(self: *WBin, child: ?*c.GtkWidget) void {
+    // TODO: remove old child
+    const old_child = c.gtk_widget_get_first_child(@ptrCast(self));
+    _ = old_child;
+
+    if (child != null) {
+        c.gtk_widget_set_parent(child, @ptrCast(self));
+        c.gtk_widget_show(child);
+    }
 }

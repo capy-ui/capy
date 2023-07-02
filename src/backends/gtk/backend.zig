@@ -5,6 +5,7 @@ pub const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
 const wbin_new = @import("windowbin.zig").wbin_new;
+const wbin_set_child = @import("windowbin.zig").wbin_set_child;
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -134,10 +135,7 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        _ = height;
-        _ = width;
-        // c.gtk_window_set_default_size(@ptrCast(self.peer), width, height);
-        c.gtk_window_set_default_size(@ptrCast(self.peer), -1, -1);
+        c.gtk_window_set_default_size(@ptrCast(self.peer), width, height);
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -153,9 +151,8 @@ pub const Window = struct {
     }
 
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
-        c.gtk_box_append(@ptrCast(self.wbin), peer);
         self.child = peer;
-        // c.gtk_window_set_child(@ptrCast(self.peer), peer);
+        wbin_set_child(@ptrCast(self.wbin), peer);
     }
 
     pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
@@ -1039,7 +1036,7 @@ pub const Container = struct {
 
         // A custom component is used to bypass GTK's minimum size mechanism
         const wbin = wbin_new() orelse return BackendError.UnknownError;
-        c.gtk_box_append(@as(*c.GtkBox, @ptrCast(wbin)), layout);
+        wbin_set_child(@ptrCast(wbin), layout);
         try Container.setupEvents(wbin);
         return Container{ .peer = wbin, .container = layout };
     }
@@ -1063,6 +1060,8 @@ pub const Container = struct {
         _ = self;
         c.gtk_widget_set_size_request(peer, @as(c_int, @intCast(w)), @as(c_int, @intCast(h)));
         // c.gtk_container_resize_children(@as(*c.GtkContainer, @ptrCast(self.container)));
+        // c.gtk_widget_allocate(peer, @intCast(w), @intCast(h), -1, null);
+        c.gtk_widget_queue_resize(peer);
         widgetSizeChanged(peer, w, h);
     }
 };
