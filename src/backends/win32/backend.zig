@@ -321,6 +321,13 @@ pub fn Events(comptime T: type) type {
                         TCN_SELCHANGING => {
                             return 0;
                         },
+                        TCN_SELCHANGE => {
+                            if (@hasDecl(T, "onSelChange")) {
+                                const data = getEventUserData(hwnd);
+                                const sel = win32Backend.TabCtrl_GetCurSelW(nmhdr.hwndFrom.?);
+                                T.onSelChange(data, hwnd, @as(usize, @intCast(sel)));
+                            }
+                        },
                         else => {},
                     }
                 },
@@ -1095,18 +1102,30 @@ pub const TabContainer = struct {
         };
     }
 
+    fn onSelChange(data: *EventUserData, _: HWND, index: usize) void {
+        const self = @as(*TabContainer, @ptrCast(@alignCast(data.peerPtr)));
+        if (self.shownPeer) |previousPeer| {
+            _ = win32.ShowWindow(previousPeer, win32.SW_HIDE);
+        }
+        var peer = self.peerList.items[index];
+        _ = win32.SetParent(peer, self.peer);
+        _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
+        _ = win32.UpdateWindow(peer);
+        self.shownPeer = peer;
+        TabContainer.reLayout(self.peer);
+    }
+
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
         const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
         self.peerList.append(peer) catch unreachable;
 
-        if (self.shownPeer) |previousPeer| {
-            _ = win32.ShowWindow(previousPeer, win32.SW_HIDE);
+        if (self.shownPeer == null) {
+            _ = win32.SetParent(peer, self.peer);
+            _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
+            _ = win32.UpdateWindow(peer);
+            self.shownPeer = peer;
         }
-        _ = win32.SetParent(peer, self.peer);
-        _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
-        _ = win32.UpdateWindow(peer);
-        self.shownPeer = peer;
 
         return @as(usize, @intCast(newIndex));
     }
@@ -1124,11 +1143,15 @@ pub const TabContainer = struct {
         return @as(usize, @bitCast(win32Backend.TabCtrl_GetItemCountW(self.tabControl)));
     }
 
-    fn onResize(_: *EventUserData, hwnd: HWND) void {
+    fn reLayout(hwnd: HWND) void {
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(hwnd, &rect);
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
         _ = win32.MoveWindow(child, 0, 50, rect.right - rect.left, rect.bottom - rect.top, 1);
+    }
+
+    fn onResize(_: *EventUserData, hwnd: HWND) void {
+        TabContainer.reLayout(hwnd);
     }
 };
 
