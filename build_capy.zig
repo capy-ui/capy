@@ -144,7 +144,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
             step.linkSystemLibrary("gdi32");
             step.linkSystemLibrary("gdiplus");
             switch (step.target.toTarget().cpu.arch) {
-                .x86_64 => step.addObjectFile(prefix ++ "/src/backends/win32/res/x86_64.o"),
+                .x86_64 => step.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
             }
@@ -155,9 +155,9 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
                 const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
                 const sdk_lib_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/lib" }) catch unreachable;
-                step.addFrameworkPath(sdk_framework_dir);
-                step.addSystemIncludePath(sdk_include_dir);
-                step.addLibraryPath(sdk_lib_dir);
+                step.addFrameworkPath(.{ .path = sdk_framework_dir });
+                step.addSystemIncludePath(.{ .path = sdk_include_dir });
+                step.addLibraryPath(.{ .path = sdk_lib_dir });
             }
 
             step.linkLibC();
@@ -278,7 +278,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 }
 
                 const serve = WebServerStep.create(b, step);
-                const install_step = b.addInstallArtifact(step);
+                const install_step = b.addInstallArtifact(step, .{});
                 serve.step.dependOn(&install_step.step);
                 return &serve.step;
             } else {
