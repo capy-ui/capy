@@ -64,12 +64,12 @@ pub const Color = packed struct {
         return comptime fromString(string) catch |err| @compileError(@errorName(err));
     }
 
-    pub inline fn fromARGB(alpha: u8, red: u8, green: u8, blue: u8) Color {
-        return Color{ .red = red, .green = green, .blue = blue, .alpha = alpha };    
+    pub inline fn fromARGB(alpha_value: u8, red_value: u8, green_value: u8, blue_value: u8) Color {
+        return Color{ .red = red_value, .green = green_value, .blue = blue_value, .alpha = alpha_value };    
     }
 
-    pub inline fn fromRGB(red: u8, green: u8, blue: u8) Color {
-        return fromARGB(red, green, blue, 255);
+    pub inline fn fromRGB(red_value: u8, green_value: u8, blue_value: u8) Color {
+        return fromARGB(255, red_value, green_value, blue_value);
     }
 
     fn lerpByte(a: u8, b: u8, t: f64) u8 {
