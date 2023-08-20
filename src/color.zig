@@ -65,7 +65,7 @@ pub const Color = packed struct {
     }
 
     pub inline fn fromARGB(alpha_value: u8, red_value: u8, green_value: u8, blue_value: u8) Color {
-        return Color{ .red = red_value, .green = green_value, .blue = blue_value, .alpha = alpha_value };    
+        return Color{ .red = red_value, .green = green_value, .blue = blue_value, .alpha = alpha_value };
     }
 
     pub inline fn fromRGB(red_value: u8, green_value: u8, blue_value: u8) Color {
