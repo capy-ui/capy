@@ -5,7 +5,8 @@ const Server = std.http.Server;
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
     // TODO: disable android build if password is not set
-    android: AndroidOptions = .{ .password = "foo" },
+    // TODO: use optional
+    android: AndroidOptions = .{ .password = "foo", .package_name = "org.capyui.example" },
     args: ?[]const []const u8 = &.{},
 
     pub const AndroidOptions = struct {
@@ -13,7 +14,7 @@ pub const CapyBuildOptions = struct {
         version: AndroidSdk.AndroidVersion = .android8,
         // TODO: implement sdk download
         download_sdk_automatically: bool = true,
-        package_name: []const u8 = "io.capyui.example",
+        package_name: []const u8,
         /// The password that will be used to sign the keystore. Do not share with others!
         password: []const u8,
     };
@@ -115,6 +116,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
+
 
     const zigimg = b.createModule(.{
         .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
