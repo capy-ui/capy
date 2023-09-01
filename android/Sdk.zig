@@ -92,12 +92,15 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
             .name = "zip_add",
             .root_source_file = .{ .path = sdkRoot() ++ "/tools/zip_add.zig" },
         });
-        zip_add.addCSourceFile(sdkRoot() ++ "/vendor/kuba-zip/zip.c", &[_][]const u8{
-            "-std=c99",
-            "-fno-sanitize=undefined",
-            "-D_POSIX_C_SOURCE=200112L",
+        zip_add.addCSourceFile(.{
+            .file = .{ .path = sdkRoot() ++ "/vendor/kuba-zip/zip.c" },
+            .flags = &[_][]const u8{
+                "-std=c99",
+                "-fno-sanitize=undefined",
+                "-D_POSIX_C_SOURCE=200112L",
+            },
         });
-        zip_add.addIncludePath(sdkRoot() ++ "/vendor/kuba-zip");
+        zip_add.addIncludePath(.{ .path = sdkRoot() ++ "/vendor/kuba-zip" });
         zip_add.linkLibC();
 
         break :blk HostTools{
@@ -890,7 +893,7 @@ pub fn compileAppLibrary(
 
     // exe.addIncludePath(include_dir);
 
-    exe.addLibraryPath(lib_dir);
+    exe.addLibraryPath(.{ .path = lib_dir });
 
     // exe.addIncludePath(include_dir);
     // exe.addIncludePath(system_include_dir);

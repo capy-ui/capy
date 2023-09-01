@@ -44,7 +44,7 @@ pub const MapViewer_Impl = struct {
             const n = std.math.pow(f32, 2, @as(f32, @floatFromInt(zoom)));
             const x = n * ((lon + 180) / 360);
             const lat_rad = deg2rad(lat);
-            const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
+            const y = n * (1 - (std.math.log(f32, std.math.e, std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
             return TilePosition{ .zoom = zoom, .x = @as(i32, @intFromFloat(x)), .y = @as(i32, @intFromFloat(y)) };
         }
     };
@@ -88,7 +88,7 @@ pub const MapViewer_Impl = struct {
         const n = std.math.pow(f32, 2, @as(f32, @floatFromInt(self.camZoom)));
         const x = n * ((lon + 180) / 360);
         const lat_rad = deg2rad(lat);
-        const y = n * (1 - (std.math.ln(std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
+        const y = n * (1 - (std.math.log(f32, std.math.e, std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
         self.centerX = x * 256;
         self.centerY = y * 256;
     }

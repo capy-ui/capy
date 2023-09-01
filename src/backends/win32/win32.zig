@@ -297,6 +297,14 @@ pub fn TabCtrl_GetItemCountA(hWnd: HWND) LRESULT {
     return SendMessageA(hWnd, TCM_GETITEMCOUNT, 0, 0);
 }
 
+pub fn TabCtrl_GetCurSelA(hWnd: HWND) LRESULT {
+    const curSel = SendMessageA(hWnd, zigwin32.everything.TCM_GETCURSEL, 0, 0);
+    if (curSel == -1) {
+        @panic("Failed to get cur sel");
+    }
+    return curSel;
+}
+
 pub fn TabCtrl_InsertItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) LRESULT {
     const newIndex = SendMessageW(hWnd, TCM_INSERTITEMA, @as(c_uint, @intCast(index)), @as(isize, @bitCast(@intFromPtr(tabItem))));
     if (newIndex == -1) {
@@ -319,6 +327,14 @@ pub fn TabCtrl_SetItemW(hWnd: HWND, index: c_int, tabItem: *const TCITEMA) void 
 
 pub fn TabCtrl_GetItemCountW(hWnd: HWND) LRESULT {
     return SendMessageW(hWnd, TCM_GETITEMCOUNT, 0, 0);
+}
+
+pub fn TabCtrl_GetCurSelW(hWnd: HWND) LRESULT {
+    const curSel = SendMessageW(hWnd, zigwin32.everything.TCM_GETCURSEL, 0, 0);
+    if (curSel == -1) {
+        @panic("Failed to get cur sel");
+    }
+    return curSel;
 }
 
 // Common Control: Scroll Bar

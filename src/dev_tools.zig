@@ -57,6 +57,9 @@ pub const Response = union(ResponseId) {
 };
 
 pub fn init() !void {
+    if (@import("builtin").single_threaded) {
+        return;
+    }
     const addr = try std.net.Address.parseIp("127.0.0.1", DEV_TOOLS_PORT);
     server = std.net.StreamServer.init(.{ .reuse_address = true });
     if (server.listen(addr)) {

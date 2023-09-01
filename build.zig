@@ -30,7 +30,7 @@ pub fn build(b: *std.Build) !void {
             else
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
 
-            const install_step = b.addInstallArtifact(exe);
+            const install_step = b.addInstallArtifact(exe, .{});
             const working = blk: {
                 for (broken) |broken_name| {
                     if (std.mem.eql(u8, name, broken_name))
@@ -61,7 +61,7 @@ pub fn build(b: *std.Build) !void {
     lib.linkLibC();
     _ = try install(lib, .{});
     // lib.emit_h = true;
-    const lib_install = b.addInstallArtifact(lib);
+    const lib_install = b.addInstallArtifact(lib, .{});
     b.getInstallStep().dependOn(&lib_install.step);
 
     const buildc_step = b.step("shared", "Build capy as a shared library (with C ABI)");

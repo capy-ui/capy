@@ -1,5 +1,0 @@
-id: deeztnhr07fkixemzrksabk1elbzfz1clpervtjjcgxntyop
-name: capy
-main: build_capy.zig
-license: MPL-2.0
-min_zig_version: 0.11.0-dev.2696+867441845

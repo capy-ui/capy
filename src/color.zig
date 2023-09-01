@@ -64,6 +64,14 @@ pub const Color = packed struct {
         return comptime fromString(string) catch |err| @compileError(@errorName(err));
     }
 
+    pub inline fn fromARGB(alpha_value: u8, red_value: u8, green_value: u8, blue_value: u8) Color {
+        return Color{ .red = red_value, .green = green_value, .blue = blue_value, .alpha = alpha_value };
+    }
+
+    pub inline fn fromRGB(red_value: u8, green_value: u8, blue_value: u8) Color {
+        return fromARGB(255, red_value, green_value, blue_value);
+    }
+
     fn lerpByte(a: u8, b: u8, t: f64) u8 {
         return @as(u8, @intFromFloat(@as(f64, @floatFromInt(a)) * (1 - t) + @as(f64, @floatFromInt(b)) * t));
     }
