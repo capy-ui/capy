@@ -1374,6 +1374,24 @@ pub const Container = struct {
         _ = win32.GetWindowRect(self.peer, &parent);
         _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @as(c_int, @intCast(width)), @as(c_int, @intCast(height)), 1);
     }
+
+    /// In order to work, 'peers' should contain all peers and be sorted in tab order
+    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+        _ = self;
+        for (0..peers.len) |i| {
+            const peer = peers[i];
+            const previous_peer: ?PeerType = if (i > 0) peers[i - 1] else null;
+            _ = win32.SetWindowPos(
+                peer,
+                previous_peer,
+                0,
+                0,
+                0,
+                0,
+                win32.SET_WINDOW_POS_FLAGS.initFlags(.{ .NOMOVE = 1, .NOSIZE = 1 }),
+            );
+        }
+    }
 };
 
 pub fn runStep(step: shared.EventLoopStep) bool {
@@ -1394,7 +1412,13 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     if ((msg.message & 0xFF) == 0x012) { // WM_QUIT
         return false;
     }
-    _ = win32.TranslateMessage(&msg);
-    _ = win32.DispatchMessageW(&msg);
+
+    const process_event = win32.IsDialogMessageW(defaultWHWND, &msg) == 0;
+    if (process_event) {
+        _ = win32.TranslateMessage(&msg);
+        _ = win32.DispatchMessageW(&msg);
+    } else {
+        // std.log.info("dialog message", .{});
+    }
     return true;
 }

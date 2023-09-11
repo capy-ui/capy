@@ -1,6 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
+const scratch_allocator = @import("internal.zig").scratch_allocator;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
@@ -12,6 +13,7 @@ const Callbacks = struct {
     userdata: usize,
     moveResize: *const fn (data: usize, peer: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void,
     getSize: *const fn (data: usize) Size,
+    setTabOrder: *const fn (data: usize, peers: []const backend.PeerType) void,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
     layoutConfig: [16]u8 align(4),
@@ -98,6 +100,17 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
             childY += @as(f32, @floatFromInt(size.height)) + if (isLastWidget) 0 else @as(f32, @floatFromInt(config.spacing));
         }
     }
+
+    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    defer peers.deinit();
+
+    for (widgets) |widget| {
+        if (widget.peer) |widget_peer| {
+            peers.appendAssumeCapacity(widget_peer);
+        }
+    }
+
+    peer.setTabOrder(peer.userdata, peers.items);
 }
 
 pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
@@ -161,6 +174,17 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             childX += @as(f32, @floatFromInt(size.width)) + if (isLastWidget) 0 else @as(f32, @floatFromInt(config.spacing));
         }
     }
+    
+    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    defer peers.deinit();
+
+    for (widgets) |widget| {
+        if (widget.peer) |widget_peer| {
+            peers.appendAssumeCapacity(widget_peer);
+        }
+    }
+
+    peer.setTabOrder(peer.userdata, peers.items);
 }
 
 pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
@@ -290,6 +314,7 @@ pub const Container_Impl = struct {
             .computingPreferredSize = true,
             .availableSize = available,
             .layoutConfig = self.layoutConfig,
+            .setTabOrder = fakeSetTabOrder,
         };
         self.layout(callbacks, self.childrens.items);
         return size;
@@ -337,6 +362,11 @@ pub const Container_Impl = struct {
         size.height = @max(size.height, y + h);
     }
 
+    fn fakeSetTabOrder(data: usize, widgets: []const backend.PeerType) void {
+        _ = data;
+        _ = widgets;
+    }
+
     fn getSize(data: usize) Size {
         const peer = @as(*backend.Container, @ptrFromInt(data));
         return Size{ .width = @as(u32, @intCast(peer.getWidth())), .height = @as(u32, @intCast(peer.getHeight())) };
@@ -345,6 +375,10 @@ pub const Container_Impl = struct {
     fn moveResize(data: usize, widget: backend.PeerType, x: u32, y: u32, w: u32, h: u32) void {
         @as(*backend.Container, @ptrFromInt(data)).move(widget, x, y);
         @as(*backend.Container, @ptrFromInt(data)).resize(widget, w, h);
+    }
+
+    fn setTabOrder(data: usize, widgets: []const backend.PeerType) void {
+        @as(*backend.Container, @ptrFromInt(data)).setTabOrder(widgets);
     }
 
     pub fn relayout(self: *Container_Impl) void {
@@ -357,6 +391,7 @@ pub const Container_Impl = struct {
                 .getSize = getSize,
                 .computingPreferredSize = false,
                 .layoutConfig = self.layoutConfig,
+                .setTabOrder = setTabOrder,
             };
 
             var tempItems = std.ArrayList(Widget).init(self.childrens.allocator);
