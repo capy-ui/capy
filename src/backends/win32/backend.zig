@@ -1330,7 +1330,7 @@ pub const Container = struct {
             classRegistered = true;
         }
 
-        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+        const hwnd = win32.CreateWindowExW(win32.WINDOW_EX_STYLE.initFlags(.{ .CONTROLPARENT = 1 }), // dwExtStyle
             L("capyContainerClass"), // lpClassName
             L(""), // lpWindowName
             win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1, .CLIPCHILDREN = 1 }), // dwStyle
@@ -1351,7 +1351,8 @@ pub const Container = struct {
     fn onGotFocus(hwnd: HWND) void {
         // TODO: check whether Shift+Tab was used, in which case go to the last child instead of the first
         if (win32.GetWindow(hwnd, win32.GW_CHILD)) |child| {
-            _ = win32.SetFocus(child);
+            _ = child;
+            // _ = win32.SetFocus(child);
         }
     }
 
