@@ -110,6 +110,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []Widget) void {
         }
     }
 
+    // TODO: RTL support
     peer.setTabOrder(peer.userdata, peers.items);
 }
 
@@ -174,7 +175,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
             childX += @as(f32, @floatFromInt(size.width)) + if (isLastWidget) 0 else @as(f32, @floatFromInt(config.spacing));
         }
     }
-    
+
     var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
     defer peers.deinit();
 
@@ -184,6 +185,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
         }
     }
 
+    // TODO: RTL support
     peer.setTabOrder(peer.userdata, peers.items);
 }
 

@@ -76,7 +76,7 @@ pub fn init() !void {
         if (os.isAtLeast(.windows, .win10_rs2) orelse false) {
             // tell Windows that we support high-dpi
             if (win32.SetProcessDpiAwarenessContext(win32.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) == 0) {
-                log.warn("could not set dpi awareness mode; expect the windows to look blurry on high-dpi screens", .{});
+                log.debug("could not set dpi awareness mode; windows might look blurry on high-dpi screens", .{});
             }
         }
 
@@ -86,7 +86,7 @@ pub fn init() !void {
         };
         const code = win32.InitCommonControlsEx(&initEx);
         if (code == 0) {
-            std.debug.print("Failed to initialize Common Controls.", .{});
+            log.err("Failed to initialize Common Controls", .{});
         }
 
         // var input = win32Backend.GdiplusStartupInput{};
@@ -453,6 +453,11 @@ pub fn Events(comptime T: type) type {
                         handler(&dc, data.userdata);
                     if (data.user.drawHandler) |handler|
                         handler(&dc, data.userdata);
+                },
+                win32.WM_SETFOCUS => {
+                    if (@hasDecl(T, "onGotFocus")) {
+                        T.onGotFocus(hwnd);
+                    }
                 },
                 win32.WM_DESTROY => win32.PostQuitMessage(0),
                 else => {},
@@ -1341,6 +1346,13 @@ pub const Container = struct {
         try Container.setupEvents(hwnd);
 
         return Container{ .peer = hwnd };
+    }
+
+    fn onGotFocus(hwnd: HWND) void {
+        // TODO: check whether Shift+Tab was used, in which case go to the last child instead of the first
+        if (win32.GetWindow(hwnd, win32.GW_CHILD)) |child| {
+            _ = win32.SetFocus(child);
+        }
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
