@@ -105,18 +105,19 @@ pub const Window = struct {
 
     fn gtkConfigure(peer: *c.GdkSurface, _: *anyopaque, userdata: usize) callconv(.C) c.gboolean {
         _ = userdata;
-        const native: *c.GtkWidget = @ptrCast(@alignCast(c.gtk_native_get_for_surface(@ptrCast(peer))));
+        const native: ?*c.GtkWidget = @ptrCast(@alignCast(c.gtk_native_get_for_surface(@ptrCast(peer))));
+        if (native == null) return 0;
         const data = getEventUserData(@ptrCast(native));
         const width = c.gdk_surface_get_width(peer);
         const height = c.gdk_surface_get_height(peer);
 
-        const child_data = getEventUserData(
+        const child =
             c.gtk_widget_get_first_child(
-                c.gtk_widget_get_last_child(
-                    c.gtk_window_get_child(@ptrCast(native)),
-                ),
+            c.gtk_widget_get_last_child(
+                c.gtk_window_get_child(@ptrCast(native)),
             ),
         );
+        const child_data = getEventUserData(child);
         const w_changed = if (child_data.actual_width) |old_width| width != old_width else true;
         const h_changed = if (child_data.actual_height) |old_height| height != old_height else true;
         const size_changed = w_changed or h_changed;
@@ -751,6 +752,7 @@ pub const TextField = struct {
         const buffer = c.gtk_entry_get_buffer(@as(*c.GtkEntry, @ptrCast(self.peer)));
         self.dup_text.clearRetainingCapacity();
         self.dup_text.appendSlice(text) catch return;
+        self.dup_text.append(0) catch return; // add sentinel so it becomes a NUL-terminated UTF-8 string
 
         c.gtk_entry_buffer_set_text(buffer, self.dup_text.items.ptr, numChars);
     }
@@ -1236,17 +1238,7 @@ extern fn gdk_event_new(type: c_int) [*]align(8) u8;
 extern fn gtk_main_do_event(event: [*c]u8) void;
 
 pub fn postEmptyEvent() void {
-    // const event = gdk_event_new(c.GDK_DAMAGE);
-    // const expose = @ptrCast(*c.GdkEventExpose, event);
-    // expose.window = c.gtk_widget_get_window(randomWindow);
-    // expose.send_event = 1;
-    // expose.count = 0;
-    // expose.area = c.GdkRectangle {
-    //     .x = 0, .y = 0, .width = 1000, .height = 1000
-    // };
-    // gtk_main_do_event(event);
-    var rect = c.GdkRectangle{ .x = 0, .y = 0, .width = 100, .height = 100 };
-    c.gdk_window_invalidate_rect(c.gtk_widget_get_window(randomWindow), &rect, 0);
+    // TODO: implement postEmptyEvent()
 }
 
 pub fn runStep(step: shared.EventLoopStep) bool {
