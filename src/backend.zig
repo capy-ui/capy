@@ -36,13 +36,19 @@ test "backend: create window" {
     defer window.deinit();
     window.show();
 
+    var prng = std.rand.Xoshiro256.init(0);
+    var random = prng.random();
+
     {
         var i: usize = 0;
-        while (i < 30) : (i += 1) {
-            if (i == 15) {
+        while (i < 300) : (i += 1) {
+            if (i == 150) {
                 window.close();
             }
-            try std.testing.expectEqual(i < 15, backend.runStep(.Asynchronous));
+            window.resize(random.int(u16), random.int(u16));
+            try std.testing.expectEqual(i < 150, backend.runStep(.Asynchronous));
+
+            std.time.sleep(1 * std.time.ns_per_ms);
         }
     }
 }

@@ -81,8 +81,6 @@ pub const Window = struct {
 
     pub fn create() BackendError!Window {
         const window = c.gtk_window_new() orelse return error.UnknownError;
-        //const screen = c.gtk_window_get_screen(@ptrCast(*c.GtkWindow, window));
-        //std.log.info("{d} dpi", .{c.gdk_screen_get_resolution(screen)});
         const wbin = wbin_new() orelse unreachable;
         c.gtk_widget_set_vexpand(wbin, 1);
         c.gtk_widget_set_vexpand_set(wbin, 1);
@@ -99,25 +97,24 @@ pub const Window = struct {
         try Window.setupEvents(window);
 
         const surface = c.gtk_native_get_surface(@ptrCast(window));
-        _ = c.g_signal_connect_data(surface, "layout", @ptrCast(&gtkConfigure), null, null, c.G_CONNECT_AFTER);
+        _ = c.g_signal_connect_data(surface, "layout", @ptrCast(&gtkLayout), window, null, c.G_CONNECT_AFTER);
         return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
     }
 
-    fn gtkConfigure(peer: *c.GdkSurface, _: *anyopaque, userdata: usize) callconv(.C) c.gboolean {
-        _ = userdata;
-        const native: ?*c.GtkWidget = @ptrCast(@alignCast(c.gtk_native_get_for_surface(@ptrCast(peer))));
-        if (native == null) return 0;
-        const data = getEventUserData(@ptrCast(native));
-        const width = c.gdk_surface_get_width(peer);
-        const height = c.gdk_surface_get_height(peer);
+    fn gtkLayout(peer: *c.GdkSurface, width: c.gint, height: c.gint, userdata: ?*anyopaque) callconv(.C) c.gint {
+        _ = peer;
+        const window: *c.GtkWidget = @ptrCast(@alignCast(userdata.?));
+        const data = getEventUserData(window);
 
-        const child =
-            c.gtk_widget_get_first_child(
+        const child = c.gtk_widget_get_first_child(
             c.gtk_widget_get_last_child(
-                c.gtk_window_get_child(@ptrCast(native)),
+                c.gtk_window_get_child(@ptrCast(window)),
             ),
         );
+        if (child == null) return 0;
+
         const child_data = getEventUserData(child);
+
         const w_changed = if (child_data.actual_width) |old_width| width != old_width else true;
         const h_changed = if (child_data.actual_height) |old_height| height != old_height else true;
         const size_changed = w_changed or h_changed;
@@ -225,7 +222,13 @@ pub const EventUserData = struct {
 };
 
 pub inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
-    return @as(*EventUserData, @ptrCast(@alignCast(c.g_object_get_data(@as(*c.GObject, @ptrCast(peer)), "eventUserData").?)));
+    return @as(
+        ?*EventUserData,
+        @ptrCast(@alignCast(c.g_object_get_data(
+            @as(*c.GObject, @ptrCast(peer)),
+            "eventUserData",
+        ))),
+    ).?;
 }
 
 pub fn getWidthFromPeer(peer: PeerType) c_int {
