@@ -154,7 +154,7 @@ pub const Window = struct {
         wbin_set_child(@ptrCast(self.wbin), peer);
     }
 
-    pub fn setMenuBar(self: *Window, bar: lib.MenuBar_Impl) void {
+    pub fn setMenuBar(self: *Window, bar: lib.MenuBar) void {
         const menuBar = c.gtk_popover_menu_bar_new_from_model(null).?;
         const menuModel = c.g_menu_new().?;
         initMenu(menuModel, bar.menus);
@@ -172,7 +172,7 @@ pub const Window = struct {
         self.scale = resolution / @as(f32, @floatFromInt(dpi));
     }
 
-    fn initMenu(menu: *c.GMenu, items: []const lib.MenuItem_Impl) void {
+    fn initMenu(menu: *c.GMenu, items: []const lib.MenuItem) void {
         for (items) |item| {
             if (item.items.len > 0) {
                 // The menu associated to the menu item
@@ -269,6 +269,18 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(event_controller_key, "key-pressed", @as(c.GCallback, @ptrCast(&gtkKeyPress)), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_controller(widget, event_controller_key);
 
+            const event_controller_motion = c.gtk_event_controller_motion_new();
+            _ = c.g_signal_connect_data(event_controller_motion, "motion", @as(c.GCallback, @ptrCast(&gtkMouseMotion)), null, null, c.G_CONNECT_AFTER);
+            c.gtk_widget_add_controller(widget, event_controller_motion);
+
+            const event_controller_scroll = c.gtk_event_controller_scroll_new(c.GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES | c.GTK_EVENT_CONTROLLER_SCROLL_DISCRETE);
+            _ = c.g_signal_connect_data(event_controller_scroll, "scroll", @as(c.GCallback, @ptrCast(&gtkMouseScroll)), null, null, c.G_CONNECT_AFTER);
+            c.gtk_widget_add_controller(widget, event_controller_scroll);
+
+            const event_controller_legacy = c.gtk_event_controller_legacy_new();
+            _ = c.g_signal_connect_data(event_controller_legacy, "event", @as(c.GCallback, @ptrCast(&gtkButtonPress)), null, null, c.G_CONNECT_AFTER);
+            c.gtk_widget_add_controller(widget, event_controller_legacy);
+
             var data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@as(*c.GObject, @ptrCast(widget)), "eventUserData", data);
@@ -333,9 +345,23 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        fn gtkButtonPress(peer: *c.GtkWidget, event: *c.GdkEvent, _: usize) callconv(.C) c.gboolean {
+        fn getWindow(peer: *c.GtkWidget) *c.GtkWidget {
+            var window = peer;
+            while (c.gtk_widget_get_parent(window)) |parent| {
+                window = parent;
+            }
+            return window;
+        }
+
+        fn gtkButtonPress(controller: *c.GtkEventControllerLegacy, event: *c.GdkEvent, _: usize) callconv(.C) c.gboolean {
+            const event_type = c.gdk_event_get_event_type(event);
+            if (event_type != c.GDK_BUTTON_PRESS and event_type != c.GDK_BUTTON_RELEASE)
+                return 0;
+
+            const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
+            const window = getWindow(peer);
             const data = getEventUserData(peer);
-            const pressed = switch (c.gdk_event_get_event_type(event)) {
+            const pressed = switch (event_type) {
                 c.GDK_BUTTON_PRESS => true,
                 c.GDK_BUTTON_RELEASE => false,
                 // don't send released button in case of GDK_2BUTTON_PRESS, GDK_3BUTTON_PRESS, ...
@@ -343,9 +369,13 @@ pub fn Events(comptime T: type) type {
             };
 
             var x: f64 = undefined;
-            std.debug.assert(c.gdk_event_get_axis(event, c.GDK_AXIS_X, &x));
+            std.debug.assert(c.gdk_event_get_axis(event, c.GDK_AXIS_X, &x) != 0);
             var y: f64 = undefined;
-            std.debug.assert(c.gdk_event_get_axis(event, c.GDK_AXIS_Y, &y));
+            std.debug.assert(c.gdk_event_get_axis(event, c.GDK_AXIS_Y, &y) != 0);
+
+            const point: c.graphene_point_t = .{ .x = @floatCast(x), .y = @floatCast(y) };
+            var out_point: c.graphene_point_t = undefined;
+            _ = c.gtk_widget_compute_point(window, peer, &point, &out_point);
 
             if (x < 0 or y < 0) return 0;
 
@@ -353,28 +383,29 @@ pub fn Events(comptime T: type) type {
                 1 => MouseButton.Left,
                 2 => MouseButton.Middle,
                 3 => MouseButton.Right,
-                else => @as(MouseButton, @enumFromInt(event.button)),
+                else => @as(MouseButton, @enumFromInt(c.gdk_button_event_get_button(event))),
             };
-            const mx = @as(i32, @intFromFloat(@floor(x)));
-            const my = @as(i32, @intFromFloat(@floor(y)));
+            const mx = @as(i32, @intFromFloat(@floor(out_point.x)));
+            const my = @as(i32, @intFromFloat(@floor(out_point.y)));
 
             if (data.class.mouseButtonHandler) |handler| {
                 handler(button, pressed, mx, my, @intFromPtr(data));
             }
             if (data.user.mouseButtonHandler) |handler| {
                 if (data.focusOnClick) {
-                    c.gtk_widget_grab_focus(peer);
+                    _ = c.gtk_widget_grab_focus(peer);
                 }
                 handler(button, pressed, mx, my, data.userdata);
             }
             return 0;
         }
 
-        fn gtkMouseMotion(peer: *c.GtkWidget, event: *c.GdkEvent, _: usize) callconv(.C) c.gboolean {
+        fn gtkMouseMotion(controller: *c.GtkEventControllerMotion, x: f64, y: f64, _: usize) callconv(.C) c.gboolean {
+            const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
 
-            const mx = @as(i32, @intFromFloat(@floor(event.x)));
-            const my = @as(i32, @intFromFloat(@floor(event.y)));
+            const mx = @as(i32, @intFromFloat(@floor(x)));
+            const my = @as(i32, @intFromFloat(@floor(y)));
             if (data.class.mouseMotionHandler) |handler| {
                 handler(mx, my, @intFromPtr(data));
                 if (data.user.mouseMotionHandler == null) return 1;
@@ -386,21 +417,11 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        /// Temporary hack until translate-c can translate this struct
-        const GdkEventScroll = extern struct { type: c.GdkEventType, window: *c.GdkWindow, send_event: c.gint8, time: c.guint32, x: c.gdouble, y: c.gdouble, state: c.guint, direction: c.GdkScrollDirection, device: *c.GdkDevice, x_root: c.gdouble, y_root: c.gdouble, delta_x: c.gdouble, delta_y: c.gdouble, is_stop: c.guint };
-
-        fn gtkMouseScroll(peer: *c.GtkWidget, event: *c.GdkEvent, _: usize) callconv(.C) void {
+        fn gtkMouseScroll(controller: *c.GtkEventControllerScroll, delta_x: f64, delta_y: f64, _: usize) callconv(.C) void {
+            const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
-            const dx: f32 = switch (event.direction) {
-                c.GDK_SCROLL_LEFT => -1,
-                c.GDK_SCROLL_RIGHT => 1,
-                else => @as(f32, @floatCast(event.delta_x)),
-            };
-            const dy: f32 = switch (event.direction) {
-                c.GDK_SCROLL_UP => -1,
-                c.GDK_SCROLL_DOWN => 1,
-                else => @as(f32, @floatCast(event.delta_y)),
-            };
+            const dx: f32 = @floatCast(delta_x);
+            const dy: f32 = @floatCast(delta_y);
 
             if (data.class.scrollHandler) |handler|
                 handler(dx, dy, @intFromPtr(data));

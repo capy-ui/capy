@@ -14,15 +14,15 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
 
-    try window.set(capy.Align(
+    try window.set(capy.alignment(
         .{},
-        capy.Row(.{ .spacing = 5 }, .{
-            capy.TextField(.{})
+        capy.row(.{ .spacing = 5 }, .{
+            capy.textField(.{})
                 .bind("text", &celsius),
-            capy.Label(.{ .text = "Celsius =" }),
-            capy.TextField(.{})
+            capy.label(.{ .text = "Celsius =" }),
+            capy.textField(.{})
                 .bind("text", &fahrenheit),
-            capy.Label(.{ .text = "Fahrenheit" }),
+            capy.label(.{ .text = "Fahrenheit" }),
         }),
     ));
 

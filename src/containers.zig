@@ -190,7 +190,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []Widget) void {
 }
 
 pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
-    const margin = peer.getLayoutConfig(Rectangle);
+    const margin_rect = peer.getLayoutConfig(Rectangle);
     if (widgets.len > 1) {
         std.log.scoped(.capy).warn("Margin container has more than one widget!", .{});
         return;
@@ -198,10 +198,10 @@ pub fn MarginLayout(peer: Callbacks, widgets: []Widget) void {
 
     if (widgets[0].peer) |widgetPeer| {
         const available = peer.getSize(peer.userdata);
-        const left = std.math.lossyCast(u32, margin.x());
-        const top = std.math.lossyCast(u32, margin.y());
-        const right = margin.width();
-        const bottom = margin.height();
+        const left = std.math.lossyCast(u32, margin_rect.x());
+        const top = std.math.lossyCast(u32, margin_rect.y());
+        const right = margin_rect.width();
+        const bottom = margin_rect.height();
 
         if (peer.computingPreferredSize) {
             // What to return for computing preferred size
@@ -231,21 +231,21 @@ pub fn StackLayout(peer: Callbacks, widgets: []Widget) void {
     }
 }
 
-pub const Container_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(Container_Impl);
+pub const Container = struct {
+    pub usingnamespace @import("internal.zig").All(Container);
 
     peer: ?backend.Container,
-    widget_data: Container_Impl.WidgetData = .{},
+    widget_data: Container.WidgetData = .{},
     childrens: std.ArrayList(Widget),
     expand: bool,
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     layout: Layout,
     layoutConfig: [16]u8,
 
-    /// The widget associated to this Container_Impl
+    /// The widget associated to this Container
     widget: ?*Widget = null,
 
-    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !Container_Impl {
+    pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !Container {
         const LayoutConfig = @TypeOf(layoutConfig);
         comptime std.debug.assert(@sizeOf(LayoutConfig) <= 16);
         var layoutConfigBytes: [16]u8 = undefined;
@@ -253,7 +253,7 @@ pub const Container_Impl = struct {
             layoutConfigBytes[0..@sizeOf(LayoutConfig)].* = std.mem.toBytes(layoutConfig);
         }
 
-        var container = Container_Impl.init_events(Container_Impl{
+        var container = Container.init_events(Container{
             .peer = null,
             .childrens = childrens,
             .expand = config.expand == .Fill,
@@ -265,17 +265,17 @@ pub const Container_Impl = struct {
         return container;
     }
 
-    pub fn onResize(self: *Container_Impl, size: Size) !void {
+    pub fn onResize(self: *Container, size: Size) !void {
         _ = size;
         self.relayout();
     }
 
-    pub fn getChildAt(self: *Container_Impl, index: usize) !*Widget {
+    pub fn getChildAt(self: *Container, index: usize) !*Widget {
         if (index >= self.childrens.items.len) return error.OutOfBounds;
         return &self.childrens.items[index];
     }
 
-    pub fn getChild(self: *Container_Impl, name: []const u8) ?*Widget {
+    pub fn getChild(self: *Container, name: []const u8) ?*Widget {
         // TODO: use hash map (maybe acting as cache?) for performance
         for (self.childrens.items) |*widget| {
             if (widget.name.*.get()) |widgetName| {
@@ -284,14 +284,14 @@ pub const Container_Impl = struct {
                 }
             }
 
-            if (widget.cast(Container_Impl)) |container| {
+            if (widget.cast(Container)) |container| {
                 //return container.getChild(name) orelse continue;
 
                 // workaround a stage2 bug
                 // TODO: reduce to a unit test and report to ziglang/zig
                 const function = getChild;
                 return function(container, name) orelse continue;
-            } else if (widget.cast(@import("components/Align.zig").Align_Impl)) |component| {
+            } else if (widget.cast(@import("components/Alignment.zig").Alignment)) |component| {
                 return component.getChild(name) orelse continue;
             }
         }
@@ -299,7 +299,7 @@ pub const Container_Impl = struct {
     }
 
     /// Combines getChild() and Widget.as()
-    pub fn getChildAs(self: *Container_Impl, comptime T: type, name: []const u8) ?*T {
+    pub fn getChildAs(self: *Container, comptime T: type, name: []const u8) ?*T {
         if (self.getChild(name)) |widget| {
             return widget.as(T);
         } else {
@@ -307,7 +307,7 @@ pub const Container_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Container_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Container, available: Size) Size {
         var size: Size = Size{ .width = 0, .height = 0 };
         const callbacks = Callbacks{
             .userdata = @intFromPtr(&size),
@@ -322,7 +322,7 @@ pub const Container_Impl = struct {
         return size;
     }
 
-    pub fn show(self: *Container_Impl) !void {
+    pub fn show(self: *Container) !void {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             for (self.childrens.items) |*widget| {
@@ -342,7 +342,7 @@ pub const Container_Impl = struct {
         }
     }
 
-    pub fn _showWidget(widget: *Widget, self: *Container_Impl) !void {
+    pub fn _showWidget(widget: *Widget, self: *Container) !void {
         self.widget = widget;
         for (self.childrens.items) |*child| {
             child.parent = widget;
@@ -383,7 +383,7 @@ pub const Container_Impl = struct {
         @as(*backend.Container, @ptrFromInt(data)).setTabOrder(widgets);
     }
 
-    pub fn relayout(self: *Container_Impl) void {
+    pub fn relayout(self: *Container) void {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
@@ -411,7 +411,7 @@ pub const Container_Impl = struct {
         }
     }
 
-    pub fn add(self: *Container_Impl, widget: anytype) !void {
+    pub fn add(self: *Container, widget: anytype) !void {
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(widget));
 
         var genericWidget = try @import("internal.zig").genericWidgetFrom(widget);
@@ -437,7 +437,7 @@ pub const Container_Impl = struct {
         self.relayout();
     }
 
-    pub fn removeByIndex(self: *Container_Impl, index: usize) void {
+    pub fn removeByIndex(self: *Container, index: usize) void {
         // TODO: deinit widget here?
         const widget = self.childrens.items[index];
         // Remove from the component
@@ -452,13 +452,13 @@ pub const Container_Impl = struct {
         self.relayout();
     }
 
-    pub fn removeAll(self: *Container_Impl) void {
+    pub fn removeAll(self: *Container) void {
         while (self.childrens.items.len > 0) {
             self.removeByIndex(0);
         }
     }
 
-    pub fn _deinit(self: *Container_Impl) void {
+    pub fn _deinit(self: *Container) void {
         for (self.childrens.items) |*child| {
             child.deinit();
         }
@@ -490,7 +490,7 @@ pub const GridConfig = struct {
 };
 
 /// Set the style of the child to expanded by creating and showing the widget early.
-pub inline fn Expanded(child: anytype) anyerror!Widget {
+pub inline fn expanded(child: anytype) anyerror!Widget {
     var widget = try @import("internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
         try child
     else
@@ -499,18 +499,18 @@ pub inline fn Expanded(child: anytype) anyerror!Widget {
     return widget;
 }
 
-pub inline fn Stack(childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), .{}, StackLayout, {});
+pub inline fn stack(childrens: anytype) anyerror!Container {
+    return try Container.init(try convertTupleToWidgets(childrens), .{}, StackLayout, {});
 }
 
-pub inline fn Row(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
+pub inline fn row(config: GridConfig, childrens: anytype) anyerror!Container {
+    return try Container.init(try convertTupleToWidgets(childrens), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
-pub inline fn Column(config: GridConfig, childrens: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(childrens), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
+pub inline fn column(config: GridConfig, childrens: anytype) anyerror!Container {
+    return try Container.init(try convertTupleToWidgets(childrens), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
-pub inline fn Margin(margin: Rectangle, child: anytype) anyerror!Container_Impl {
-    return try Container_Impl.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin);
+pub inline fn margin(margin_rect: Rectangle, child: anytype) anyerror!Container {
+    return try Container.init(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin_rect);
 }

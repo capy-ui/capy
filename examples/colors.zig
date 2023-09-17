@@ -7,10 +7,10 @@ var random = prng.random();
 
 pub fn animateRandomColor(button_: *anyopaque) !void {
     // This part is a workaround to ziglang/zig#12325
-    const button: *capy.Button_Impl = @ptrCast(@alignCast(button_));
+    const button: *capy.Button = @ptrCast(@alignCast(button_));
 
-    const root = button.getRoot().?.as(capy.Container_Impl);
-    const rect = root.getChild("background-rectangle").?.as(capy.Rect_Impl);
+    const root = button.getRoot().?.as(capy.Container);
+    const rect = root.getChild("background-rectangle").?.as(capy.Rect);
     const randomColor = capy.Color{ .red = random.int(u8), .green = random.int(u8), .blue = random.int(u8) };
     rect.color.animate(capy.Easings.InOut, randomColor, 1000);
 }
@@ -21,10 +21,10 @@ pub fn main() !void {
     prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
 
     window.setPreferredSize(800, 600);
-    try window.set(capy.Stack(.{
-        capy.Rect(.{ .name = "background-rectangle", .color = capy.Color.transparent }),
-        capy.Column(.{}, .{
-            capy.Align(.{}, capy.Button(.{ .label = "Random color", .onclick = animateRandomColor })),
+    try window.set(capy.stack(.{
+        capy.rect(.{ .name = "background-rectangle", .color = capy.Color.transparent }),
+        capy.column(.{}, .{
+            capy.alignment(.{}, capy.button(.{ .label = "Random color", .onclick = animateRandomColor })),
         }),
     }));
     window.show();

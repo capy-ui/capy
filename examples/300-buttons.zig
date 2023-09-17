@@ -17,11 +17,11 @@ pub fn main() !void {
     defer labelArena.deinit();
     const labelAllocator = labelArena.child_allocator;
 
-    var row = try capy.Row(.{ .wrapping = true }, .{});
+    var row = try capy.row(.{ .wrapping = true }, .{});
     var i: usize = 0;
     while (i < NUM_BUTTONS) : (i += 1) {
         const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{i});
-        try row.add(capy.Button(.{ .label = buttonLabel }));
+        try row.add(capy.button(.{ .label = buttonLabel }));
     }
 
     try window.set(row);

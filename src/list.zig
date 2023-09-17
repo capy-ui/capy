@@ -14,22 +14,22 @@ pub const GenericListModel = struct {
     userdata: *anyopaque,
 };
 
-pub const List_Impl = struct {
-    pub usingnamespace @import("internal.zig").All(List_Impl);
+pub const List = struct {
+    pub usingnamespace @import("internal.zig").All(List);
 
     peer: ?backend.ScrollView = null,
-    widget_data: List_Impl.WidgetData = .{},
+    widget_data: List.WidgetData = .{},
     child: Widget,
     model: GenericListModel,
 
     /// The child 'widget' must be the widget of a container.
-    pub fn init(widget: Widget, model: GenericListModel) List_Impl {
-        return List_Impl.init_events(List_Impl{ .child = widget, .model = model });
+    pub fn init(widget: Widget, model: GenericListModel) List {
+        return List.init_events(List{ .child = widget, .model = model });
     }
 
     fn modelSizeChanged(newSize: usize, userdata: usize) void {
-        const self = @as(*List_Impl, @ptrFromInt(userdata));
-        const container = self.child.as(containers.Container_Impl);
+        const self = @as(*List, @ptrFromInt(userdata));
+        const container = self.child.as(containers.Container);
 
         // TODO: cache widgets!
         container.removeAll();
@@ -42,7 +42,7 @@ pub const List_Impl = struct {
         }
     }
 
-    pub fn show(self: *List_Impl) !void {
+    pub fn show(self: *List) !void {
         if (self.peer == null) {
             var peer = try backend.ScrollView.create();
             try self.child.show();
@@ -54,16 +54,16 @@ pub const List_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *List_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *List, available: Size) Size {
         return self.child.getPreferredSize(available);
     }
 };
 
-pub inline fn ColumnList(config: containers.GridConfig, model: anytype) anyerror!List_Impl {
+pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror!List {
     if (comptime !std.meta.trait.isPtrTo(.Struct)(@TypeOf(model))) {
         @compileError("Expected a mutable pointer to the list model");
     }
-    var row = try containers.Column(config, .{});
+    var row = try containers.column(config, .{});
     const ModelType = @import("internal.zig").DereferencedType(@TypeOf(model)); // The type of the list model
     var genericModel = GenericListModel{
         .size = &model.size,
@@ -86,7 +86,7 @@ pub inline fn ColumnList(config: containers.GridConfig, model: anytype) anyerror
     }
 
     const widget = try @import("internal.zig").genericWidgetFrom(row);
-    var list = List_Impl.init(widget, genericModel);
+    var list = List.init(widget, genericModel);
 
     return list;
 }

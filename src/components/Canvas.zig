@@ -6,30 +6,30 @@ const Atom = @import("../data.zig").Atom;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
-pub const Canvas_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Canvas_Impl);
+pub const Canvas = struct {
+    pub usingnamespace @import("../internal.zig").All(Canvas);
 
     peer: ?backend.Canvas = null,
-    widget_data: Canvas_Impl.WidgetData = .{},
+    widget_data: Canvas.WidgetData = .{},
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
-    pub fn init() Canvas_Impl {
-        return Canvas_Impl.init_events(Canvas_Impl{});
+    pub fn init() Canvas {
+        return Canvas.init_events(Canvas{});
     }
 
-    pub fn getPreferredSize(self: *Canvas_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Canvas, available: Size) Size {
         // As it's a canvas, by default it should take the available space
         return self.preferredSize.get() orelse available;
     }
 
-    pub fn setPreferredSize(self: *Canvas_Impl, preferred: Size) Canvas_Impl {
+    pub fn setPreferredSize(self: *Canvas, preferred: Size) Canvas {
         self.preferredSize.set(preferred);
         return self.*;
     }
 
-    pub fn show(self: *Canvas_Impl) !void {
+    pub fn show(self: *Canvas) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
             try self.show_events();
@@ -37,45 +37,45 @@ pub const Canvas_Impl = struct {
     }
 };
 
-pub fn Canvas(config: Canvas_Impl.Config) Canvas_Impl {
-    var btn = Canvas_Impl.init();
-    btn.preferredSize = Atom(?Size).of(config.preferredSize);
-    btn.widget_data.atoms.name.set(config.name);
+pub fn canvas(config: Canvas.Config) Canvas {
+    var cnv = Canvas.init();
+    cnv.preferredSize = Atom(?Size).of(config.preferredSize);
+    cnv.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
-        btn.addClickHandler(onclick) catch unreachable; // TODO: improve
+        cnv.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
     if (config.ondraw) |ondraw| {
-        btn.addDrawHandler(ondraw) catch unreachable; // TODO: improve
+        cnv.addDrawHandler(ondraw) catch unreachable; // TODO: improve
     }
-    return btn;
+    return cnv;
 }
 
 const Color = @import("../color.zig").Color;
 
-pub const Rect_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Rect_Impl);
+pub const Rect = struct {
+    pub usingnamespace @import("../internal.zig").All(Rect);
 
     peer: ?backend.Canvas = null,
-    widget_data: Rect_Impl.WidgetData = .{},
+    widget_data: Rect.WidgetData = .{},
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
     color: Atom(Color) = Atom(Color).of(Color.black),
     cornerRadius: Atom([4]f32) = Atom([4]f32).of(.{0.0} ** 4),
 
-    pub fn init() Rect_Impl {
-        return Rect_Impl.init_events(Rect_Impl{});
+    pub fn init() Rect {
+        return Rect.init_events(Rect{});
     }
 
-    pub fn getPreferredSize(self: *Rect_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Rect, available: Size) Size {
         return self.preferredSize.get() orelse
             available.intersect(Size.init(0, 0));
     }
 
-    pub fn setPreferredSize(self: *Rect_Impl, preferred: Size) Rect_Impl {
+    pub fn setPreferredSize(self: *Rect, preferred: Size) Rect {
         self.preferredSize.set(preferred);
         return self.*;
     }
 
-    pub fn draw(self: *Rect_Impl, ctx: *Canvas_Impl.DrawContext) !void {
+    pub fn draw(self: *Rect, ctx: *Canvas.DrawContext) !void {
         ctx.setColorByte(self.color.get());
         if (builtin.os.tag == .windows) {
             ctx.rectangle(0, 0, self.getWidth(), self.getHeight());
@@ -85,7 +85,7 @@ pub const Rect_Impl = struct {
         ctx.fill();
     }
 
-    pub fn show(self: *Rect_Impl) !void {
+    pub fn show(self: *Rect) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
             _ = try self.color.addChangeListener(.{ .function = struct {
@@ -105,29 +105,29 @@ pub const Rect_Impl = struct {
     }
 };
 
-pub fn Rect(config: Rect_Impl.Config) Rect_Impl {
-    var rect = Rect_Impl.init();
-    rect.addDrawHandler(&Rect_Impl.draw) catch unreachable;
-    rect.preferredSize = Atom(?Size).of(config.preferredSize);
-    rect.color = Atom(Color).of(config.color);
-    rect.cornerRadius = Atom([4]f32).of(config.cornerRadius);
-    rect.widget_data.atoms.name.set(config.name);
-    return rect;
+pub fn rect(config: Rect.Config) Rect {
+    var r = Rect.init();
+    r.addDrawHandler(&Rect.draw) catch unreachable;
+    r.preferredSize = Atom(?Size).of(config.preferredSize);
+    r.color = Atom(Color).of(config.color);
+    r.cornerRadius = Atom([4]f32).of(config.cornerRadius);
+    r.widget_data.atoms.name.set(config.name);
+    return r;
 }
 
 const fuzz = @import("../fuzz.zig");
 
 test "instantiate Canvas" {
-    var canvas = Canvas(.{});
-    defer canvas.deinit();
+    var cnv = canvas(.{});
+    defer cnv.deinit();
 }
 
 test "instantiate Rect" {
-    var rect = Rect(.{ .color = Color.blue });
-    defer rect.deinit();
-    try std.testing.expectEqual(Color.blue, rect.color.get());
+    var rect1 = rect(.{ .color = Color.blue });
+    defer rect1.deinit();
+    try std.testing.expectEqual(Color.blue, rect1.color.get());
 
-    var rect2 = Rect(.{ .color = Color.yellow });
+    var rect2 = rect(.{ .color = Color.yellow });
     defer rect2.deinit();
     try std.testing.expectEqual(Color.yellow, rect2.color.get());
 }

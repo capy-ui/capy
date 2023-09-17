@@ -6,18 +6,18 @@ pub fn main() !void {
     try capy.backend.init();
 
     var window = try capy.Window.init();
-    try window.set(capy.Column(.{}, .{
-        capy.Label(.{ .text = "Top" }),
-        capy.Expanded(
-            capy.Row(.{}, .{
-                capy.Label(.{ .text = "Left" }),
-                capy.Expanded(
-                    capy.Label(.{ .text = "Center" }),
+    try window.set(capy.column(.{}, .{
+        capy.label(.{ .text = "Top", .alignment = .Center }),
+        capy.expanded(
+            capy.row(.{}, .{
+                capy.label(.{ .text = "Left", .alignment = .Center }),
+                capy.expanded(
+                    capy.label(.{ .text = "Center", .alignment = .Center }),
                 ),
-                capy.Label(.{ .text = "Right" }),
+                capy.label(.{ .text = "Right", .alignment = .Center }),
             }),
         ),
-        capy.Label(.{ .text = "Bottom " }),
+        capy.label(.{ .text = "Bottom ", .alignment = .Center }),
     }));
 
     window.setTitle("Hello");

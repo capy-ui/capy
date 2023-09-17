@@ -4,20 +4,20 @@ const std = @import("std");
 // Small block needed for correct WebAssembly support
 pub usingnamespace capy.cross_platform;
 
-var graph: LineGraph_Impl = undefined;
+var graph: LineGraph = undefined;
 
-pub const LineGraph_Impl = struct {
-    pub usingnamespace capy.internal.All(LineGraph_Impl);
+pub const LineGraph = struct {
+    pub usingnamespace capy.internal.All(LineGraph);
 
     peer: ?capy.backend.Canvas = null,
-    widget_data: LineGraph_Impl.WidgetData = .{},
+    widget_data: LineGraph.WidgetData = .{},
     dataFn: *const fn (x: f32) f32,
 
-    pub fn init(dataFn: *const fn (x: f32) f32) LineGraph_Impl {
-        return LineGraph_Impl.init_events(LineGraph_Impl{ .dataFn = dataFn });
+    pub fn init(dataFn: *const fn (x: f32) f32) LineGraph {
+        return LineGraph.init_events(LineGraph{ .dataFn = dataFn });
     }
 
-    pub fn draw(self: *LineGraph_Impl, ctx: *capy.DrawContext) !void {
+    pub fn draw(self: *LineGraph, ctx: *capy.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
         ctx.setColor(1, 1, 1);
@@ -72,24 +72,24 @@ pub const LineGraph_Impl = struct {
         }
     }
 
-    pub fn show(self: *LineGraph_Impl) !void {
+    pub fn show(self: *LineGraph) !void {
         if (self.peer == null) {
             self.peer = try capy.backend.Canvas.create();
             try self.show_events();
         }
     }
 
-    pub fn getPreferredSize(self: *LineGraph_Impl, available: capy.Size) capy.Size {
+    pub fn getPreferredSize(self: *LineGraph, available: capy.Size) capy.Size {
         _ = self;
         _ = available;
         return capy.Size{ .width = 500.0, .height = 200.0 };
     }
 };
 
-pub fn LineGraph(config: struct { dataFn: *const fn (x: f32) f32 }) !LineGraph_Impl {
-    var lineGraph = LineGraph_Impl.init(config.dataFn);
-    try lineGraph.addDrawHandler(&LineGraph_Impl.draw);
-    return lineGraph;
+pub fn lineGraph(config: struct { dataFn: *const fn (x: f32) f32 }) !LineGraph {
+    var line_graph = LineGraph.init(config.dataFn);
+    try line_graph.addDrawHandler(&LineGraph.draw);
+    return line_graph;
 }
 
 const smoothData = true;
@@ -154,7 +154,7 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*anyopaque) anyerror!void {
 }
 
 // TODO: switch back to *capy.Canvas_Impl when ziglang/zig#12325 is fixed
-fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas_Impl.DrawContext) !void {
+fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas.DrawContext) !void {
     ctx.setColor(0, 0, 0);
     ctx.rectangle(0, 0, 100, 100);
     ctx.fill();
@@ -166,25 +166,25 @@ pub fn main() !void {
     try capy.backend.init();
 
     var window = try capy.Window.init();
-    graph = try LineGraph(.{ .dataFn = easing });
+    graph = try lineGraph(.{ .dataFn = easing });
 
-    var rectangle = (try capy.Align(
+    var rectangle = (try capy.alignment(
         .{},
-        capy.Canvas(.{
+        capy.canvas(.{
             .preferredSize = capy.Size{ .width = 100, .height = 100 },
             .ondraw = drawRectangle,
         }),
     ))
         .bind("x", &rectangleX);
 
-    try window.set(capy.Column(.{}, .{
-        capy.Align(.{}, capy.Row(.{ .spacing = 10 }, .{
-            capy.Button(.{ .label = "Linear", .onclick = SetEasing(capy.Easings.Linear) }),
-            capy.Button(.{ .label = "In", .onclick = SetEasing(capy.Easings.In) }),
-            capy.Button(.{ .label = "Out", .onclick = SetEasing(capy.Easings.Out) }),
-            capy.Button(.{ .label = "In Out", .onclick = SetEasing(capy.Easings.InOut) }),
+    try window.set(capy.column(.{}, .{
+        capy.alignment(.{}, capy.row(.{ .spacing = 10 }, .{
+            capy.button(.{ .label = "Linear", .onclick = SetEasing(capy.Easings.Linear) }),
+            capy.button(.{ .label = "In", .onclick = SetEasing(capy.Easings.In) }),
+            capy.button(.{ .label = "Out", .onclick = SetEasing(capy.Easings.Out) }),
+            capy.button(.{ .label = "In Out", .onclick = SetEasing(capy.Easings.InOut) }),
         })),
-        capy.Expanded(&graph),
+        capy.expanded(&graph),
         &rectangle,
     }));
 

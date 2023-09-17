@@ -6,7 +6,7 @@ var opacity = capy.Atom(f32).of(1.0);
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn startAnimation(button_: *anyopaque) !void {
-    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(button_)));
+    const button = @as(*capy.Button, @ptrCast(@alignCast(button_)));
 
     // Ensure the current animation is done before starting another
     if (!opacity.hasAnimation()) {
@@ -29,15 +29,15 @@ pub fn main() !void {
     // const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));
 
     try window.set(
-        capy.Row(.{}, .{
-            capy.Expanded((try capy.Row(.{}, .{
-                capy.Label(.{ .text = "Hello Zig" }),
-                capy.Expanded(
-                    capy.Image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit }),
+        capy.row(.{}, .{
+            capy.expanded((try capy.row(.{}, .{
+                capy.label(.{ .text = "Hello Zig" }),
+                capy.expanded(
+                    capy.image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit }),
                 ),
             }))
                 .bind("opacity", &opacity)),
-            capy.Button(.{ .label = "Hide", .onclick = startAnimation }),
+            capy.button(.{ .label = "Hide", .onclick = startAnimation }),
         }),
     );
 

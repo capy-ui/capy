@@ -2,7 +2,7 @@ const std = @import("std");
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
-pub usingnamespace @import("components/Align.zig");
+pub usingnamespace @import("components/Alignment.zig");
 pub usingnamespace @import("components/Button.zig");
 pub usingnamespace @import("components/Canvas.zig");
 pub usingnamespace @import("components/CheckBox.zig");

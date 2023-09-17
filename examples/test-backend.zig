@@ -7,12 +7,12 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
     try window.set(
-        capy.Row(.{}, .{}),
+        capy.row(.{}, .{}),
     );
-    var row = capy.Label(.{ .text = "test" });
+    var row = capy.label(.{ .text = "test" });
     _ = row;
 
-    //window.resize(800, 450);
+    // window.resize(800, 450);
     window.show();
     capy.runEventLoop();
 }

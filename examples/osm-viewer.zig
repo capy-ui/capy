@@ -9,8 +9,8 @@ fn deg2rad(theta: f32) f32 {
     return theta / 180.0 * std.math.pi;
 }
 
-pub const MapViewer_Impl = struct {
-    pub usingnamespace capy.internal.All(MapViewer_Impl);
+pub const MapViewer = struct {
+    pub usingnamespace capy.internal.All(MapViewer);
 
     // Required fields for all components.
 
@@ -19,8 +19,8 @@ pub const MapViewer_Impl = struct {
     // a GtkDrawingBox on GTK+, a custom canvas on win32, a <canvas> element on
     // the web, etc.
     peer: ?capy.backend.Canvas = null,
-    // .Handlers and .Atoms are implemented by `capy.internal.All(MapViewer_Impl)`
-    widget_data: MapViewer_Impl.WidgetData = .{},
+    // .Handlers and .Atoms are implemented by `capy.internal.All(MapViewer)`
+    widget_data: MapViewer.WidgetData = .{},
 
     // Our own component state.
     tileCache: std.AutoHashMap(TilePosition, Tile),
@@ -51,8 +51,8 @@ pub const MapViewer_Impl = struct {
 
     const Tile = struct { data: capy.ImageData };
 
-    pub fn init(config: MapViewer_Impl.Config) MapViewer_Impl {
-        var viewer = MapViewer_Impl.init_events(MapViewer_Impl{
+    pub fn init(config: MapViewer.Config) MapViewer {
+        var viewer = MapViewer.init_events(MapViewer{
             .tileCache = std.AutoHashMap(TilePosition, Tile).init(config.allocator),
             .pendingRequests = std.AutoHashMap(TilePosition, capy.http.HttpResponse).init(config.allocator),
             .allocator = Atom(std.mem.Allocator).of(config.allocator),
@@ -63,7 +63,7 @@ pub const MapViewer_Impl = struct {
     }
 
     // Implementation Methods
-    pub fn getTile(self: *MapViewer_Impl, pos: TilePosition) ?Tile {
+    pub fn getTile(self: *MapViewer, pos: TilePosition) ?Tile {
         const modTileXY = std.math.powi(i32, 2, pos.zoom) catch unreachable;
         const actual_pos = TilePosition{
             .zoom = pos.zoom,
@@ -84,7 +84,7 @@ pub const MapViewer_Impl = struct {
         }
     }
 
-    pub fn centerTo(self: *MapViewer_Impl, lon: f32, lat: f32) void {
+    pub fn centerTo(self: *MapViewer, lon: f32, lat: f32) void {
         const n = std.math.pow(f32, 2, @as(f32, @floatFromInt(self.camZoom)));
         const x = n * ((lon + 180) / 360);
         const lat_rad = deg2rad(lat);
@@ -93,7 +93,7 @@ pub const MapViewer_Impl = struct {
         self.centerY = y * 256;
     }
 
-    pub fn search(self: *MapViewer_Impl, query: []const u8) !void {
+    pub fn search(self: *MapViewer, query: []const u8) !void {
         var buf: [2048]u8 = undefined;
         const encoded_query = try std.Uri.escapeQuery(capy.internal.scratch_allocator, query);
         defer capy.internal.scratch_allocator.free(encoded_query);
@@ -104,7 +104,7 @@ pub const MapViewer_Impl = struct {
         self.pendingSearchRequest = response;
     }
 
-    pub fn checkRequests(self: *MapViewer_Impl) !void {
+    pub fn checkRequests(self: *MapViewer) !void {
         if (self.pendingSearchRequest) |*response| {
             if (response.isReady()) {
                 try response.checkError();
@@ -155,8 +155,8 @@ pub const MapViewer_Impl = struct {
     // Component Methods (drawing, showing, ...)
 
     // Here we'll draw ourselves the content of the map
-    // It works because in MapViewer() function, we do addDrawHandler(MapViewer.draw)
-    pub fn draw(self: *MapViewer_Impl, ctx: *capy.DrawContext) !void {
+    // It works because in mapViewer() function, we do addDrawHandler(mapViewer.draw)
+    pub fn draw(self: *MapViewer, ctx: *capy.DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
         ctx.clear(0, 0, width, height);
@@ -172,7 +172,7 @@ pub const MapViewer_Impl = struct {
         }
     }
 
-    fn drawTile(self: *MapViewer_Impl, ctx: *capy.DrawContext, pos: TilePosition, camX: i32, camY: i32) void {
+    fn drawTile(self: *MapViewer, ctx: *capy.DrawContext, pos: TilePosition, camX: i32, camY: i32) void {
         const x = -camX + pos.x * 256;
         const y = -camY + pos.y * 256;
         if (self.getTile(pos)) |tile| {
@@ -185,7 +185,7 @@ pub const MapViewer_Impl = struct {
         }
     }
 
-    fn mouseButton(self: *MapViewer_Impl, button: capy.MouseButton, pressed: bool, x: i32, y: i32) !void {
+    fn mouseButton(self: *MapViewer, button: capy.MouseButton, pressed: bool, x: i32, y: i32) !void {
         if (button == .Left) {
             self.isDragging = pressed;
             self.lastMouseX = x;
@@ -193,7 +193,7 @@ pub const MapViewer_Impl = struct {
         }
     }
 
-    fn mouseMoved(self: *MapViewer_Impl, x: i32, y: i32) !void {
+    fn mouseMoved(self: *MapViewer, x: i32, y: i32) !void {
         if (self.isDragging) {
             // TODO: smooth move
             self.centerX -= @as(f32, @floatFromInt(x - self.lastMouseX));
@@ -205,7 +205,7 @@ pub const MapViewer_Impl = struct {
         }
     }
 
-    fn mouseScroll(self: *MapViewer_Impl, dx: f32, dy: f32) !void {
+    fn mouseScroll(self: *MapViewer, dx: f32, dy: f32) !void {
         _ = dx;
         if (dy > 0 and self.camZoom > 0) {
             self.camZoom -|= 2 * @as(u5, @intFromFloat(dy));
@@ -225,26 +225,26 @@ pub const MapViewer_Impl = struct {
 
     // All components have this method, which is automatically called
     // when Capy needs to create the native peers of your widget.
-    pub fn show(self: *MapViewer_Impl) !void {
+    pub fn show(self: *MapViewer) !void {
         if (self.peer == null) {
             self.peer = try capy.backend.Canvas.create();
             try self.show_events();
         }
     }
 
-    pub fn getPreferredSize(self: *MapViewer_Impl, available: capy.Size) capy.Size {
+    pub fn getPreferredSize(self: *MapViewer, available: capy.Size) capy.Size {
         _ = self;
         _ = available;
         return capy.Size{ .width = 500.0, .height = 200.0 };
     }
 };
 
-pub fn MapViewer(config: MapViewer_Impl.Config) !MapViewer_Impl {
-    var map_viewer = MapViewer_Impl.init(config);
-    _ = try map_viewer.addDrawHandler(&MapViewer_Impl.draw);
-    _ = try map_viewer.addMouseButtonHandler(&MapViewer_Impl.mouseButton);
-    _ = try map_viewer.addMouseMotionHandler(&MapViewer_Impl.mouseMoved);
-    _ = try map_viewer.addScrollHandler(&MapViewer_Impl.mouseScroll);
+pub fn mapViewer(config: MapViewer.Config) !MapViewer {
+    var map_viewer = MapViewer.init(config);
+    _ = try map_viewer.addDrawHandler(&MapViewer.draw);
+    _ = try map_viewer.addMouseButtonHandler(&MapViewer.mouseButton);
+    _ = try map_viewer.addMouseMotionHandler(&MapViewer.mouseMoved);
+    _ = try map_viewer.addScrollHandler(&MapViewer.mouseScroll);
     return map_viewer;
 }
 
@@ -253,28 +253,28 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
     try window.set(
-        capy.Column(.{}, .{
-            capy.Row(.{}, .{
-                capy.Expanded(capy.TextField(.{ .name = "location-input" })),
-                capy.Button(.{ .label = "Go!", .onclick = onGo }),
+        capy.column(.{}, .{
+            capy.row(.{}, .{
+                capy.expanded(capy.textField(.{ .name = "location-input" })),
+                capy.button(.{ .label = "Go!", .onclick = onGo }),
             }),
-            capy.Expanded(MapViewer(.{ .name = "map-viewer" })),
+            capy.expanded(mapViewer(.{ .name = "map-viewer" })),
         }),
     );
     window.setTitle("OpenStreetMap Viewer");
     window.show();
 
     while (capy.stepEventLoop(.Asynchronous)) {
-        const root = window.getChild().?.as(capy.Container_Impl);
-        const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
+        const root = window.getChild().?.as(capy.Container);
+        const viewer = root.getChildAs(MapViewer, "map-viewer").?;
         try viewer.checkRequests();
     }
 }
 
 fn onGo(self_ptr: *anyopaque) !void {
-    const self = @as(*capy.Button_Impl, @ptrCast(@alignCast(self_ptr))); // due to ZIG BUG
-    const root = self.getRoot().?.as(capy.Container_Impl);
-    const viewer = root.getChildAs(MapViewer_Impl, "map-viewer").?;
-    const input = root.getChildAs(capy.TextField_Impl, "location-input").?;
+    const self = @as(*capy.Button, @ptrCast(@alignCast(self_ptr))); // due to ZIG BUG
+    const root = self.getRoot().?.as(capy.Container);
+    const viewer = root.getChildAs(MapViewer, "map-viewer").?;
+    const input = root.getChildAs(capy.TextField, "location-input").?;
     try viewer.search(input.get("text"));
 }

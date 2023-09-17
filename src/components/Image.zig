@@ -14,11 +14,11 @@ const ScalableVectorData = @import("../image.zig").ScalableVectorData;
 
 // TODO: convert to using a flat component so a backend may provide an Image backend
 /// Component used to show an image.
-pub const Image_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Image_Impl);
+pub const Image = struct {
+    pub usingnamespace @import("../internal.zig").All(Image);
 
     peer: ?backend.Canvas = null,
-    widget_data: Image_Impl.WidgetData = .{},
+    widget_data: Image.WidgetData = .{},
     url: Atom([]const u8),
     data: Atom(?ImageData) = Atom(?ImageData).of(null),
     scaling: Atom(Scaling) = Atom(Scaling).of(.Fit),
@@ -40,17 +40,17 @@ pub const Image_Impl = struct {
     pub const DrawContext = backend.Canvas.DrawContext;
 
     // TODO: just directly accept an URL or file path if there's no data
-    pub fn init(config: Image_Impl.Config) Image_Impl {
-        var image = Image_Impl.init_events(Image_Impl{
+    pub fn init(config: Image.Config) Image {
+        var self = Image.init_events(Image{
             .url = Atom([]const u8).of(config.url),
             .data = Atom(?ImageData).of(config.data),
             .scaling = Atom(Scaling).of(config.scaling),
         });
-        image.addDrawHandler(&Image_Impl.draw) catch unreachable;
-        return image;
+        self.addDrawHandler(&Image.draw) catch unreachable;
+        return self;
     }
 
-    pub fn getPreferredSize(self: *Image_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Image, available: Size) Size {
         if (self.data.get()) |data| {
             return Size.init(data.width, data.height);
         } else {
@@ -58,7 +58,7 @@ pub const Image_Impl = struct {
         }
     }
 
-    fn loadImage(self: *Image_Impl) !void {
+    fn loadImage(self: *Image) !void {
         // TODO: asynchronous loading
         var handle = try assets.get(self.url.get());
         defer handle.deinit();
@@ -72,7 +72,7 @@ pub const Image_Impl = struct {
         self.data.set(data);
     }
 
-    pub fn draw(self: *Image_Impl, ctx: *DrawContext) !void {
+    pub fn draw(self: *Image, ctx: *DrawContext) !void {
         const width = self.getWidth();
         const height = self.getHeight();
 
@@ -88,57 +88,57 @@ pub const Image_Impl = struct {
             return;
         }
 
-        const image = self.data.get().?;
+        const img = self.data.get().?;
         switch (self.scaling.get()) {
             .None => {
-                const imageX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(image.width / 2));
-                const imageY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(image.height / 2));
+                const imgX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(img.width / 2));
+                const imgY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(img.height / 2));
                 ctx.image(
-                    imageX,
-                    imageY,
-                    image.width,
-                    image.height,
-                    image,
+                    imgX,
+                    imgY,
+                    img.width,
+                    img.height,
+                    img,
                 );
             },
             .Fit => {
-                // The aspect ratio of the image
-                const ratio = @as(f32, @floatFromInt(image.width)) / @as(f32, @floatFromInt(image.height));
-                var imageW: u32 = undefined;
-                var imageH: u32 = undefined;
+                // The aspect ratio of the img
+                const ratio = @as(f32, @floatFromInt(img.width)) / @as(f32, @floatFromInt(img.height));
+                var imgW: u32 = undefined;
+                var imgH: u32 = undefined;
 
                 if (@as(f32, @floatFromInt(width)) / ratio < @as(f32, @floatFromInt(height))) {
-                    imageW = width;
-                    imageH = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imageW)) / ratio));
+                    imgW = width;
+                    imgH = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imgW)) / ratio));
                 } else {
-                    imageH = height;
-                    imageW = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imageH)) * ratio));
+                    imgH = height;
+                    imgW = @as(u32, @intFromFloat(@as(f32, @floatFromInt(imgH)) * ratio));
                 }
 
-                const imageX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(imageW / 2));
-                const imageY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(imageH / 2));
+                const imgX = @as(i32, @intCast(width / 2)) - @as(i32, @intCast(imgW / 2));
+                const imgY = @as(i32, @intCast(height / 2)) - @as(i32, @intCast(imgH / 2));
 
                 ctx.image(
-                    imageX,
-                    imageY,
-                    imageW,
-                    imageH,
-                    image,
+                    imgX,
+                    imgY,
+                    imgW,
+                    imgH,
+                    img,
                 );
             },
             .Stretch => {
                 ctx.image(
                     0,
                     0,
-                    image.width,
-                    image.height,
-                    image,
+                    img.width,
+                    img.height,
+                    img,
                 );
             },
         }
     }
 
-    pub fn show(self: *Image_Impl) !void {
+    pub fn show(self: *Image) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
             try self.show_events();
@@ -146,7 +146,7 @@ pub const Image_Impl = struct {
     }
 };
 
-pub fn Image(config: Image_Impl.Config) Image_Impl {
-    var image = Image_Impl.init(config);
-    return image;
+pub fn image(config: Image.Config) Image {
+    var img = Image.init(config);
+    return img;
 }

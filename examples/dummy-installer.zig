@@ -7,15 +7,15 @@ pub fn main() !void {
     var window = try capy.Window.init();
 
     try window.set(
-        capy.Margin(capy.Rectangle.init(10, 10, 10, 10), capy.Column(.{}, .{
-            capy.Label(.{ .text = "Hello, World", .alignment = .Left }), // TODO: capy.Heading (= label with bold + big font)
-            capy.Label(.{ .text = 
+        capy.margin(capy.Rectangle.init(10, 10, 10, 10), capy.column(.{}, .{
+            capy.label(.{ .text = "Hello, World", .alignment = .Left }), // TODO: capy.Heading (= label with bold + big font)
+            capy.label(.{ .text = 
             \\ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             }),
-            capy.Spacing(),
-            capy.Align(.{ .x = 1.0 }, capy.Row(.{}, .{
-                capy.Button(.{ .label = "Previous", .enabled = false }),
-                capy.Button(.{ .label = "Next" }),
+            capy.spacing(),
+            capy.alignment(.{ .x = 1.0 }, capy.row(.{}, .{
+                capy.button(.{ .label = "Previous", .enabled = false }),
+                capy.button(.{ .label = "Next" }),
             })),
         })),
     );

@@ -39,7 +39,7 @@ pub fn main() !void {
         });
     }
 
-    var canvas = capy.Canvas(.{
+    var canvas = capy.canvas(.{
         .preferredSize = capy.Size.init(500, 500),
         .ondraw = @as(*const fn (*anyopaque, *capy.DrawContext) anyerror!void, @ptrCast(&onDraw)),
         .name = "ball-canvas",
@@ -51,11 +51,11 @@ pub fn main() !void {
     defer totalEnergyFormat.deinit();
 
     var window = try capy.Window.init();
-    try window.set(capy.Column(.{}, .{
-        capy.Label(.{ .text = "Balls with attraction and friction" }),
-        capy.Label(.{})
+    try window.set(capy.column(.{}, .{
+        capy.label(.{ .text = "Balls with attraction and friction" }),
+        capy.label(.{})
             .bind("text", totalEnergyFormat),
-        capy.Align(.{}, &canvas),
+        capy.alignment(.{}, &canvas),
     }));
 
     window.setTitle("Balls");
@@ -68,7 +68,7 @@ pub fn main() !void {
     capy.runEventLoop();
 }
 
-fn onMouseButton(widget: *capy.Canvas_Impl, button: capy.MouseButton, pressed: bool, x: i32, y: i32) !void {
+fn onMouseButton(widget: *capy.Canvas, button: capy.MouseButton, pressed: bool, x: i32, y: i32) !void {
     mouseX = x;
     mouseY = y;
     if (button == .Left) {
@@ -90,7 +90,7 @@ fn onMouseButton(widget: *capy.Canvas_Impl, button: capy.MouseButton, pressed: b
     }
 }
 
-fn onMouseMotion(widget: *capy.Canvas_Impl, x: i32, y: i32) !void {
+fn onMouseMotion(widget: *capy.Canvas, x: i32, y: i32) !void {
     if (selected_ball_index != null) {
         mouseX = x;
         mouseY = y;
@@ -98,7 +98,7 @@ fn onMouseMotion(widget: *capy.Canvas_Impl, x: i32, y: i32) !void {
     }
 }
 
-fn onDraw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
+fn onDraw(widget: *capy.Canvas, ctx: *capy.DrawContext) !void {
     const width = widget.getWidth();
     const height = widget.getHeight();
 
@@ -126,8 +126,8 @@ fn onDraw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
 }
 
 fn simulationThread(window: *capy.Window) !void {
-    const root = window.getChild().?.as(capy.Container_Impl);
-    const canvas = root.getChild("ball-canvas").?.as(capy.Canvas_Impl);
+    const root = window.getChild().?.as(capy.Container);
+    const canvas = root.getChild("ball-canvas").?.as(capy.Canvas);
 
     while (true) {
         const delta = 1.0 / 60.0;

@@ -68,8 +68,8 @@ export fn capy_window_get_child(window: CapyWindow) ?CapyWidget {
 // Button //
 /// Returns null on error
 export fn capy_button_new() ?CapyWidget {
-    const button = allocator.create(capy.Button_Impl) catch return null;
-    button.* = capy.Button(.{});
+    const button = allocator.create(capy.Button) catch return null;
+    button.* = capy.button(.{});
 
     const widget = allocator.create(capy.Widget) catch return null;
     widget.* = capy.internal.genericWidgetFrom(button) catch unreachable; // it can't error as the component doesn't have a widget and no allocation is necessary
@@ -78,7 +78,7 @@ export fn capy_button_new() ?CapyWidget {
 }
 
 export fn capy_button_set_label(widget: CapyWidget, label: [*:0]const u8) void {
-    const button = widget.as(capy.Button_Impl);
+    const button = widget.as(capy.Button);
     button.label.set(std.mem.span(label));
 }
 

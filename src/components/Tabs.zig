@@ -4,46 +4,46 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
-pub const Tabs_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Tabs_Impl);
+pub const Tabs = struct {
+    pub usingnamespace @import("../internal.zig").All(Tabs);
 
     peer: ?backend.TabContainer = null,
-    widget_data: Tabs_Impl.WidgetData = .{},
-    tabs: std.ArrayList(Tab_Impl),
+    widget_data: Tabs.WidgetData = .{},
+    tabs: std.ArrayList(Tab),
 
-    /// The widget associated to this Tabs_Impl
+    /// The widget associated to this Tabs
     widget: ?*Widget = null,
 
-    pub fn init(tabs: std.ArrayList(Tab_Impl)) Tabs_Impl {
-        return Tabs_Impl.init_events(Tabs_Impl{ .tabs = tabs });
+    pub fn init(tabs_list: std.ArrayList(Tab)) Tabs {
+        return Tabs.init_events(Tabs{ .tabs = tabs_list });
     }
 
-    pub fn show(self: *Tabs_Impl) !void {
+    pub fn show(self: *Tabs) !void {
         if (self.peer == null) {
             var peer = try backend.TabContainer.create();
-            for (self.tabs.items) |*tab| {
-                try tab.widget.show();
-                const tabPosition = peer.insert(peer.getTabsNumber(), tab.widget.peer.?);
-                peer.setLabel(tabPosition, tab.label);
+            for (self.tabs.items) |*tab_ptr| {
+                try tab_ptr.widget.show();
+                const tabPosition = peer.insert(peer.getTabsNumber(), tab_ptr.widget.peer.?);
+                peer.setLabel(tabPosition, tab_ptr.label);
             }
             self.peer = peer;
             try self.show_events();
         }
     }
 
-    pub fn getPreferredSize(self: *Tabs_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Tabs, available: Size) Size {
         _ = self;
         return available; // TODO
     }
 
-    pub fn _showWidget(widget: *Widget, self: *Tabs_Impl) !void {
+    pub fn _showWidget(widget: *Widget, self: *Tabs) !void {
         self.widget = widget;
         for (self.tabs.items) |*child| {
             child.widget.parent = widget;
         }
     }
 
-    pub fn add(self: *Tabs_Impl, widget: anytype) !void {
+    pub fn add(self: *Tabs, widget: anytype) !void {
         const ComponentType = @import("../internal.zig").DereferencedType(@TypeOf(widget));
 
         var genericWidget = try @import("../internal.zig").genericWidgetFrom(widget);
@@ -63,9 +63,9 @@ pub const Tabs_Impl = struct {
         }
     }
 
-    pub fn _deinit(self: *Tabs_Impl) void {
-        for (self.tabs.items) |*tab| {
-            tab.widget.deinit();
+    pub fn _deinit(self: *Tabs) void {
+        for (self.tabs.items) |*tab_ptr| {
+            tab_ptr.widget.deinit();
         }
         self.tabs.deinit();
     }
@@ -78,24 +78,24 @@ fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-pub inline fn Tabs(children: anytype) anyerror!Tabs_Impl {
+pub inline fn tabs(children: anytype) anyerror!Tabs {
     const fields = std.meta.fields(@TypeOf(children));
-    var list = std.ArrayList(Tab_Impl).init(@import("../internal.zig").lasting_allocator);
+    var list = std.ArrayList(Tab).init(@import("../internal.zig").lasting_allocator);
     inline for (fields) |field| {
         const element = @field(children, field.name);
-        const tab =
+        const tab1 =
             if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
             try element
         else
             element;
         const slot = try list.addOne();
-        slot.* = tab;
+        slot.* = tab1;
         slot.*.widget.class.setWidgetFn(&slot.*.widget);
     }
-    return Tabs_Impl.init(list);
+    return Tabs.init(list);
 }
 
-pub const Tab_Impl = struct {
+pub const Tab = struct {
     label: [:0]const u8,
     widget: Widget,
 };
@@ -104,12 +104,12 @@ pub const TabConfig = struct {
     label: [:0]const u8 = "",
 };
 
-pub inline fn Tab(config: TabConfig, child: anytype) anyerror!Tab_Impl {
+pub inline fn tab(config: TabConfig, child: anytype) anyerror!Tab {
     const widget = try @import("../internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
         try child
     else
         child);
-    return Tab_Impl{
+    return Tab{
         .label = config.label,
         .widget = widget,
     };

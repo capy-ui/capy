@@ -3,7 +3,7 @@ const backend = @import("backend.zig");
 const internal = @import("internal.zig");
 const Widget = @import("widget.zig").Widget;
 const ImageData = @import("image.zig").ImageData;
-const MenuBar_Impl = @import("components/Menu.zig").MenuBar_Impl;
+const MenuBar = @import("components/Menu.zig").MenuBar;
 const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
 
@@ -134,7 +134,7 @@ pub const Window = struct {
         self.peer.setIconName(name);
     }
 
-    pub fn setMenuBar(self: *Window, bar: MenuBar_Impl) void {
+    pub fn setMenuBar(self: *Window, bar: MenuBar) void {
         self.peer.setMenuBar(bar);
     }
 

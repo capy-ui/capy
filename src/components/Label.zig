@@ -3,32 +3,32 @@ const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 
-pub const Label_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Label_Impl);
+pub const Label = struct {
+    pub usingnamespace @import("../internal.zig").All(Label);
 
     peer: ?backend.Label = null,
-    widget_data: Label_Impl.WidgetData = .{},
+    widget_data: Label.WidgetData = .{},
     text: Atom([]const u8) = Atom([]const u8).of(""),
     alignment: Atom(TextAlignment) = Atom(TextAlignment).of(.Left),
 
-    pub fn init(config: Label_Impl.Config) Label_Impl {
-        return Label_Impl.init_events(Label_Impl{
+    pub fn init(config: Label.Config) Label {
+        return Label.init_events(Label{
             .text = Atom([]const u8).of(config.text),
             .alignment = Atom(TextAlignment).of(config.alignment),
         });
     }
 
-    pub fn _pointerMoved(self: *Label_Impl) void {
+    pub fn _pointerMoved(self: *Label) void {
         self.text.updateBinders();
         self.alignment.updateBinders();
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*Label_Impl, @ptrFromInt(userdata));
+        const self = @as(*Label, @ptrFromInt(userdata));
         self.peer.?.setText(newValue);
     }
 
-    pub fn show(self: *Label_Impl) !void {
+    pub fn show(self: *Label) !void {
         if (self.peer == null) {
             var peer = try backend.Label.create();
             peer.setText(self.text.get());
@@ -43,7 +43,7 @@ pub const Label_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Label_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Label, available: Size) Size {
         _ = available;
         if (self.peer) |peer| {
             return peer.getPreferredSize();
@@ -53,23 +53,23 @@ pub const Label_Impl = struct {
         }
     }
 
-    pub fn setText(self: *Label_Impl, text: []const u8) void {
+    pub fn setText(self: *Label, text: []const u8) void {
         self.text.set(text);
     }
 
-    pub fn getText(self: *Label_Impl) []const u8 {
+    pub fn getText(self: *Label) []const u8 {
         return self.text.get();
     }
 };
 
 pub const TextAlignment = enum { Left, Center, Right };
 
-pub fn Label(config: Label_Impl.Config) Label_Impl {
-    return Label_Impl.init(config);
+pub fn label(config: Label.Config) Label {
+    return Label.init(config);
 }
 
 // TODO: replace with an actual empty element from the backend
 // Although this is not necessary and would only provide minimal memory/performance gains
-pub fn Spacing() !@import("../widget.zig").Widget {
-    return try @import("../containers.zig").Expanded(Label(.{}));
+pub fn spacing() !@import("../widget.zig").Widget {
+    return try @import("../containers.zig").expanded(label(.{}));
 }

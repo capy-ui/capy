@@ -34,12 +34,12 @@ pub fn main() !void {
     var format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();
 
-    try window.set(capy.Align(
+    try window.set(capy.alignment(
         .{},
-        capy.Row(.{ .spacing = 5 }, .{
-            capy.TextField(.{ .readOnly = true, .name = "text-field" })
+        capy.row(.{ .spacing = 5 }, .{
+            capy.textField(.{ .readOnly = true, .name = "text-field" })
                 .bind("text", format),
-            capy.Button(.{ .label = "Count", .onclick = increment }),
+            capy.button(.{ .label = "Count", .onclick = increment }),
         }),
     ));
 

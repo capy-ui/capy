@@ -6,18 +6,18 @@ const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
 const StringAtom = dataStructures.StringAtom;
 
-pub const TextField_Impl = struct {
-    pub usingnamespace internal.All(TextField_Impl);
-    //pub usingnamespace @import("internal.zig").Property(TextField_Impl, "text");
+pub const TextField = struct {
+    pub usingnamespace internal.All(TextField);
+    //pub usingnamespace @import("internal.zig").Property(TextField, "text");
 
     peer: ?backend.TextField = null,
-    widget_data: TextField_Impl.WidgetData = .{},
+    widget_data: TextField.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
     readOnly: Atom(bool) = Atom(bool).of(false),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
-    pub fn init(config: TextField_Impl.Config) TextField_Impl {
-        var field = TextField_Impl.init_events(TextField_Impl{
+    pub fn init(config: TextField.Config) TextField {
+        var field = TextField.init_events(TextField{
             .text = StringAtom.of(config.text),
             .readOnly = Atom(bool).of(config.readOnly),
         });
@@ -27,13 +27,13 @@ pub const TextField_Impl = struct {
 
     /// Internal function used at initialization.
     /// It is used to move some pointers so things do not break.
-    pub fn _pointerMoved(self: *TextField_Impl) void {
+    pub fn _pointerMoved(self: *TextField) void {
         self.text.updateBinders();
     }
 
     /// When the text is changed in the StringAtom
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*TextField_Impl, @ptrFromInt(userdata));
+        const self = @as(*TextField, @ptrFromInt(userdata));
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
@@ -45,7 +45,7 @@ pub const TextField_Impl = struct {
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @as(*TextField_Impl, @ptrFromInt(userdata));
+        const self = @as(*TextField, @ptrFromInt(userdata));
         const text = self.peer.?.getText();
 
         self._wrapperTextBlock.store(true, .Monotonic);
@@ -53,7 +53,7 @@ pub const TextField_Impl = struct {
         self.text.set(text);
     }
 
-    pub fn show(self: *TextField_Impl) !void {
+    pub fn show(self: *TextField) !void {
         if (self.peer == null) {
             var peer = try backend.TextField.create();
             peer.setText(self.text.get());
@@ -67,7 +67,7 @@ pub const TextField_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *TextField_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *TextField, available: Size) Size {
         _ = available;
         if (self.peer) |peer| {
             return peer.getPreferredSize();
@@ -76,23 +76,23 @@ pub const TextField_Impl = struct {
         }
     }
 
-    pub fn setText(self: *TextField_Impl, text: []const u8) void {
+    pub fn setText(self: *TextField, text: []const u8) void {
         self.text.set(text);
     }
 
-    pub fn getText(self: *TextField_Impl) []const u8 {
+    pub fn getText(self: *TextField) []const u8 {
         return self.text.get();
     }
 
-    pub fn setReadOnly(self: *TextField_Impl, readOnly: bool) void {
+    pub fn setReadOnly(self: *TextField, readOnly: bool) void {
         self.readOnly.set(readOnly);
     }
 
-    pub fn isReadOnly(self: *TextField_Impl) bool {
+    pub fn isReadOnly(self: *TextField) bool {
         return self.readOnly.get();
     }
 };
 
-pub fn TextField(config: TextField_Impl.Config) TextField_Impl {
-    return TextField_Impl.init(config);
+pub fn textField(config: TextField.Config) TextField {
+    return TextField.init(config);
 }

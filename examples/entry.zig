@@ -6,7 +6,7 @@ pub usingnamespace capy.cross_platform;
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const capy_allocator = gpa.allocator();
 
-fn draw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
+fn draw(widget: *capy.Canvas, ctx: *capy.DrawContext) !void {
     _ = widget;
     std.log.info("drawing widget", .{});
     ctx.setColor(0, 0, 0);
@@ -22,7 +22,7 @@ fn draw(widget: *capy.Canvas_Impl, ctx: *capy.DrawContext) !void {
     ctx.fill();
 }
 
-fn scroll(widget: *capy.Canvas_Impl, dx: f32, dy: f32) !void {
+fn scroll(widget: *capy.Canvas, dx: f32, dy: f32) !void {
     std.log.info("Scroll by {d}, {d}", .{ dx, dy });
     try widget.requestDraw();
 }
@@ -34,17 +34,17 @@ pub fn main() !void {
     var window = try capy.Window.init();
     defer window.deinit();
 
-    var canvas = capy.Canvas(.{});
+    var canvas = capy.canvas(.{});
     try canvas.addDrawHandler(&draw);
     try canvas.addScrollHandler(&scroll);
 
-    try window.set(capy.Column(.{}, .{
-        capy.Row(.{}, .{
-            capy.Expanded(capy.TextField(.{ .text = "gemini://gemini.circumlunar.space/" })),
-            capy.Button(.{ .label = "Go!" }),
+    try window.set(capy.column(.{}, .{
+        capy.row(.{}, .{
+            capy.expanded(capy.textField(.{ .text = "gemini://gemini.circumlunar.space/" })),
+            capy.button(.{ .label = "Go!" }),
         }),
-        capy.TextField(.{ .text = "other text" }),
-        capy.Expanded(&canvas),
+        capy.textField(.{ .text = "other text" }),
+        capy.expanded(&canvas),
     }));
 
     window.setPreferredSize(800, 600);

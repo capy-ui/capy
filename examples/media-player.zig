@@ -16,9 +16,9 @@ pub fn main() !void {
     defer window.deinit();
 
     try window.set(
-        capy.Align(.{}, capy.Column(.{}, .{
-            RotatingDisc(), // TODO
-            capy.Label(.{ .text = "Audio Name", .alignment = .Center }),
+        capy.alignment(.{}, capy.column(.{}, .{
+            rotatingDisc(), // TODO
+            capy.label(.{ .text = "Audio Name", .alignment = .Center }),
         })),
     );
 
@@ -27,15 +27,15 @@ pub fn main() !void {
 }
 
 /// A spinning CD disc with the thumbnail of the audio or none if there isn't any
-fn RotatingDisc() !capy.Canvas_Impl {
-    var canvas = capy.Canvas(.{
+fn rotatingDisc() !capy.Canvas {
+    var canvas = capy.canvas(.{
         .preferredSize = capy.Size.init(256, 256),
     });
-    try canvas.addDrawHandler(&drawRotatingDisk);
+    try canvas.addDrawHandler(&drawRotatingDisc);
     return canvas;
 }
 
-fn drawRotatingDisk(self: *capy.Canvas_Impl, ctx: *capy.DrawContext) anyerror!void {
+fn drawRotatingDisc(self: *capy.Canvas, ctx: *capy.DrawContext) anyerror!void {
     const width = self.getWidth();
     const height = self.getHeight();
 

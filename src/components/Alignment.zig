@@ -5,19 +5,19 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
-pub const Align_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Align_Impl);
+pub const Alignment = struct {
+    pub usingnamespace @import("../internal.zig").All(Alignment);
 
     peer: ?backend.Container = null,
-    widget_data: Align_Impl.WidgetData = .{},
+    widget_data: Alignment.WidgetData = .{},
 
     child: Widget,
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     x: Atom(f32) = Atom(f32).of(0.5),
     y: Atom(f32) = Atom(f32).of(0.5),
 
-    pub fn init(config: Align_Impl.Config, widget: Widget) !Align_Impl {
-        var component = Align_Impl.init_events(Align_Impl{ .child = widget });
+    pub fn init(config: Alignment.Config, widget: Widget) !Alignment {
+        var component = Alignment.init_events(Alignment{ .child = widget });
         component.x.set(config.x);
         component.y.set(config.y);
         try component.addResizeHandler(&onResize);
@@ -25,16 +25,16 @@ pub const Align_Impl = struct {
         return component;
     }
 
-    pub fn _pointerMoved(self: *Align_Impl) void {
+    pub fn _pointerMoved(self: *Alignment) void {
         self.x.updateBinders();
         self.y.updateBinders();
     }
 
-    pub fn onResize(self: *Align_Impl, _: Size) !void {
+    pub fn onResize(self: *Alignment, _: Size) !void {
         self.relayout();
     }
 
-    pub fn getChild(self: *Align_Impl, name: []const u8) ?*Widget {
+    pub fn getChild(self: *Alignment, name: []const u8) ?*Widget {
         if (self.child.name.*.get()) |child_name| {
             if (std.mem.eql(u8, child_name, name)) {
                 return &self.child;
@@ -45,16 +45,16 @@ pub const Align_Impl = struct {
 
     /// When alignX or alignY is changed, this will trigger a parent relayout
     fn alignChanged(_: f32, userdata: usize) void {
-        const self = @as(*Align_Impl, @ptrFromInt(userdata));
+        const self = @as(*Alignment, @ptrFromInt(userdata));
         self.relayout();
     }
 
-    pub fn _showWidget(widget: *Widget, self: *Align_Impl) !void {
+    pub fn _showWidget(widget: *Widget, self: *Alignment) !void {
         self.child.parent = widget;
         self.child.class.setWidgetFn(&self.child);
     }
 
-    pub fn show(self: *Align_Impl) !void {
+    pub fn show(self: *Alignment) !void {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             self.peer = peer;
@@ -70,7 +70,7 @@ pub const Align_Impl = struct {
         }
     }
 
-    pub fn relayout(self: *Align_Impl) void {
+    pub fn relayout(self: *Alignment) void {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
@@ -94,16 +94,16 @@ pub const Align_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Align_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Alignment, available: Size) Size {
         return self.child.getPreferredSize(available);
     }
 
-    pub fn _deinit(self: *Align_Impl) void {
+    pub fn _deinit(self: *Alignment) void {
         self.child.deinit();
     }
 };
 
-pub fn Align(opts: Align_Impl.Config, child: anytype) anyerror!Align_Impl {
+pub fn alignment(opts: Alignment.Config, child: anytype) anyerror!Alignment {
     const element =
         if (comptime internal.isErrorUnion(@TypeOf(child)))
         try child
@@ -111,5 +111,5 @@ pub fn Align(opts: Align_Impl.Config, child: anytype) anyerror!Align_Impl {
         child;
 
     const widget = try internal.genericWidgetFrom(element);
-    return try Align_Impl.init(opts, widget);
+    return try Alignment.init(opts, widget);
 }

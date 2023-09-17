@@ -37,15 +37,15 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
     try window.set(
-        capy.Column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
-            capy.Row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
-                capy.Button(.{ .label = "Save", .onclick = buttonClicked }),
-                capy.Button(.{ .label = "Run",  .onclick = buttonClicked })
+        capy.column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
+            capy.row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
+                capy.button(.{ .label = "Save", .onclick = &buttonClicked }),
+                capy.button(.{ .label = "Run",  .onclick = &buttonClicked })
             }),
             // Expanded means the widget will take all the space it can
             // in the parent container
-            capy.Expanded(
-                capy.TextArea(.{ .text = "Hello World!" })
+            capy.expanded(
+                capy.textArea(.{ .text = "Hello World!" })
             )
         })
     );
@@ -55,7 +55,7 @@ pub fn main() !void {
     capy.runEventLoop();
 }
 
-fn buttonClicked(button: *capy.Button_Impl) !void {
+fn buttonClicked(button: *capy.Button) !void {
     std.log.info("You clicked button with text {s}", .{button.getLabel()});
 }
 ```

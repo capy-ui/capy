@@ -14,37 +14,37 @@ pub fn main() !void {
 
     app_window = try capy.Window.init();
     try app_window.set(
-        capy.Navigation(.{ .routeName = "Connect" }, .{
-            .Connect = capy.Align(.{}, capy.Column(.{}, .{
-                capy.Label(.{ .text = "Address" }),
-                capy.TextField(.{ .name = "server-address", .text = "localhost" }),
-                capy.Label(.{ .text = "Port" }),
-                capy.TextField(.{ .name = "server-port", .text = "42671" }),
-                capy.Align(.{ .x = 1 }, capy.Button(.{ .label = "Connect", .onclick = onConnect })),
+        capy.navigation(.{ .routeName = "Connect" }, .{
+            .Connect = capy.alignment(.{}, capy.column(.{}, .{
+                capy.label(.{ .text = "Address" }),
+                capy.textField(.{ .name = "server-address", .text = "localhost" }),
+                capy.label(.{ .text = "Port" }),
+                capy.textField(.{ .name = "server-port", .text = "42671" }),
+                capy.alignment(.{ .x = 1 }, capy.button(.{ .label = "Connect", .onclick = onConnect })),
             })),
-            .@"Dev Tools" = capy.Column(.{}, .{
-                capy.Label(.{ .text = "Dev Tools", .alignment = .Center }),
-                capy.Expanded(capy.Tabs(.{
-                    capy.Tab(
+            .@"Dev Tools" = capy.column(.{}, .{
+                capy.label(.{ .text = "Dev Tools", .alignment = .Center }),
+                capy.expanded(capy.tabs(.{
+                    capy.tab(
                         .{ .label = "Inspector" },
-                        capy.Row(.{}, .{
-                            capy.Expanded(
+                        capy.row(.{}, .{
+                            capy.expanded(
                                 // TODO: widget tree
-                                capy.Label(.{ .text = "test" }),
+                                capy.label(.{ .text = "test" }),
                             ),
-                            capy.Expanded(capy.Tabs(.{
-                                capy.Tab(.{ .label = "Properties" }, capy.Column(.{}, .{
-                                    capy.Label(.{ .text = "Hello" }),
+                            capy.expanded(capy.tabs(.{
+                                capy.tab(.{ .label = "Properties" }, capy.column(.{}, .{
+                                    capy.label(.{ .text = "Hello" }),
                                 })),
-                                capy.Tab(.{ .label = "Source Code" }, capy.Column(.{}, .{
-                                    capy.TextArea(.{ .text = "capy.Row(.{}, .{})" }),
+                                capy.tab(.{ .label = "Source Code" }, capy.column(.{}, .{
+                                    capy.textArea(.{ .text = "capy.row(.{}, .{})" }),
                                 })),
                             })),
                         }),
                     ),
-                    capy.Tab(
-                        .{ .label = "Tab 2" },
-                        capy.Button(.{ .label = "Test 2" }),
+                    capy.tab(
+                        .{ .label = "tab 2" },
+                        capy.button(.{ .label = "Test 2" }),
                     ),
                 })),
             }),
@@ -59,12 +59,12 @@ pub fn main() !void {
 }
 
 fn onConnect(widget: *anyopaque) !void {
-    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(widget)));
-    const parent = button.getParent().?.getParent().?.as(capy.Container_Impl);
-    const root = button.getRoot().?.as(capy.Navigation_Impl);
+    const button = @as(*capy.Button, @ptrCast(@alignCast(widget)));
+    const parent = button.getParent().?.getParent().?.as(capy.Container);
+    const root = button.getRoot().?.as(capy.Navigation);
 
-    const serverAddress = parent.getChildAs(capy.TextField_Impl, "server-address").?;
-    const serverPort = parent.getChildAs(capy.TextField_Impl, "server-port").?;
+    const serverAddress = parent.getChildAs(capy.TextField, "server-address").?;
+    const serverPort = parent.getChildAs(capy.TextField, "server-port").?;
 
     const port = try std.fmt.parseUnsigned(u16, serverPort.get("text"), 10);
     const addressList = try std.net.getAddressList(app_allocator, serverAddress.get("text"), port);

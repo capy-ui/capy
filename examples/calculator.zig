@@ -3,19 +3,14 @@ const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
 // Short names to avoid writing 'capy.' each time
-const Button = capy.Button;
-const Margin = capy.Margin;
-const Expanded = capy.Expanded;
-const Row = capy.Row;
-
 const Allocator = std.mem.Allocator;
 
-var computationLabel: capy.Label_Impl = undefined;
+var computationLabel: capy.Label = undefined;
 var allocator: Allocator = undefined;
 
-// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+// TODO: switch back to *capy.button_Impl when ziglang/zig#12325 is fixed
 pub fn pressedKey(button_: *anyopaque) !void {
-    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(button_)));
+    const button = @as(*capy.Button, @ptrCast(@alignCast(button_)));
 
     const buttonLabel = button.getLabel();
     const labelText = computationLabel.getText();
@@ -29,7 +24,7 @@ pub fn pressedKey(button_: *anyopaque) !void {
     allocator.free(labelText);
 }
 
-// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+// TODO: switch back to *capy.button_Impl when ziglang/zig#12325 is fixed
 pub fn erase(_: *anyopaque) !void {
     allocator.free(computationLabel.getText());
     computationLabel.setText("");
@@ -39,7 +34,7 @@ fn findOperator(computation: []const u8, pos: usize) ?usize {
     return std.mem.indexOfScalarPos(u8, computation, pos, '+') orelse std.mem.indexOfScalarPos(u8, computation, pos, '-') orelse std.mem.indexOfScalarPos(u8, computation, pos, '*') orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
 }
 
-// TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
+// TODO: switch back to *capy.button_Impl when ziglang/zig#12325 is fixed
 pub fn compute(_: *anyopaque) !void {
     const rawText = computationLabel.getText();
     const computation = rawText;
@@ -96,35 +91,37 @@ pub fn main() !void {
     }
 
     var window = try capy.Window.init();
-    computationLabel = capy.Label(.{ .text = "", .alignment = .Left });
+    computationLabel = capy.label(.{ .text = "", .alignment = .Left });
     defer allocator.free(computationLabel.getText());
-    try window.set(capy.Column(.{ .expand = .Fill, .spacing = 10 }, .{
+    try window.set(capy.column(.{ .expand = .Fill, .spacing = 10 }, .{
         &computationLabel,
-        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
-            Button(.{ .label = "7", .onclick = pressedKey }),
-            Button(.{ .label = "8", .onclick = pressedKey }),
-            Button(.{ .label = "9", .onclick = pressedKey }),
-            Button(.{ .label = "+", .onclick = pressedKey }),
+        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
+            capy.button(.{ .label = "7", .onclick = pressedKey }),
+            capy.button(.{ .label = "8", .onclick = pressedKey }),
+            capy.button(.{ .label = "9", .onclick = pressedKey }),
+            capy.button(.{ .label = "+", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
-            Button(.{ .label = "4", .onclick = pressedKey }),
-            Button(.{ .label = "5", .onclick = pressedKey }),
-            Button(.{ .label = "6", .onclick = pressedKey }),
-            Button(.{ .label = "-", .onclick = pressedKey }),
+        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
+            capy.button(.{ .label = "4", .onclick = pressedKey }),
+            capy.button(.{ .label = "5", .onclick = pressedKey }),
+            capy.button(.{ .label = "6", .onclick = pressedKey }),
+            capy.button(.{ .label = "-", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
-            Button(.{ .label = "1", .onclick = pressedKey }),
-            Button(.{ .label = "2", .onclick = pressedKey }),
-            Button(.{ .label = "3", .onclick = pressedKey }),
-            Button(.{ .label = "*", .onclick = pressedKey }),
+        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
+            capy.button(.{ .label = "1", .onclick = pressedKey }),
+            capy.button(.{ .label = "2", .onclick = pressedKey }),
+            capy.button(.{ .label = "3", .onclick = pressedKey }),
+            capy.button(.{ .label = "*", .onclick = pressedKey }),
         })),
-        Expanded(Row(.{ .expand = .Fill, .spacing = 10 }, .{
-            Button(.{ .label = "/", .onclick = pressedKey }),
-            Button(.{ .label = "0", .onclick = pressedKey }),
-            Button(.{ .label = "CE", .onclick = erase }),
-            Button(.{ .label = ".", .onclick = pressedKey }),
+        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
+            capy.button(.{ .label = "/", .onclick = pressedKey }),
+            capy.button(.{ .label = "0", .onclick = pressedKey }),
+            capy.button(.{ .label = "CE", .onclick = erase }),
+            capy.button(.{ .label = ".", .onclick = pressedKey }),
         })),
-        Expanded(Button(.{ .label = "=", .onclick = compute })),
+        capy.expanded(
+            capy.button(.{ .label = "=", .onclick = compute }),
+        ),
     }));
     window.setPreferredSize(400, 500);
     window.setTitle("Calculator");

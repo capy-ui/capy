@@ -5,21 +5,21 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
-pub const Navigation_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Navigation_Impl);
+pub const Navigation = struct {
+    pub usingnamespace @import("../internal.zig").All(Navigation);
 
     peer: ?backend.Container = null,
-    widget_data: Navigation_Impl.WidgetData = .{},
+    widget_data: Navigation.WidgetData = .{},
 
     relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
     routeName: Atom([]const u8),
     activeChild: *Widget,
     routes: std.StringHashMap(Widget),
 
-    pub fn init(config: Navigation_Impl.Config, routes: std.StringHashMap(Widget)) !Navigation_Impl {
+    pub fn init(config: Navigation.Config, routes: std.StringHashMap(Widget)) !Navigation {
         var iterator = routes.valueIterator();
         const activeChild = iterator.next() orelse @panic("navigation component is empty");
-        var component = Navigation_Impl.init_events(Navigation_Impl{
+        var component = Navigation.init_events(Navigation{
             .routeName = Atom([]const u8).of(config.routeName),
             .routes = routes,
             .activeChild = activeChild,
@@ -29,15 +29,15 @@ pub const Navigation_Impl = struct {
         return component;
     }
 
-    pub fn _pointerMoved(self: *Navigation_Impl) void {
+    pub fn _pointerMoved(self: *Navigation) void {
         self.routeName.updateBinders();
     }
 
-    pub fn onResize(self: *Navigation_Impl, _: Size) !void {
+    pub fn onResize(self: *Navigation, _: Size) !void {
         self.relayout();
     }
 
-    pub fn getChild(self: *Navigation_Impl, name: []const u8) ?*Widget {
+    pub fn getChild(self: *Navigation, name: []const u8) ?*Widget {
         // TODO: check self.activeChild.get if it's a container or something like that
         if (self.activeChild.name.*.get()) |child_name| {
             if (std.mem.eql(u8, child_name, name)) {
@@ -47,12 +47,12 @@ pub const Navigation_Impl = struct {
         return null;
     }
 
-    pub fn _showWidget(widget: *Widget, self: *Navigation_Impl) !void {
+    pub fn _showWidget(widget: *Widget, self: *Navigation) !void {
         self.activeChild.parent = widget;
         self.activeChild.class.setWidgetFn(self.activeChild);
     }
 
-    pub fn show(self: *Navigation_Impl) !void {
+    pub fn show(self: *Navigation) !void {
         if (self.peer == null) {
             var peer = try backend.Container.create();
             self.peer = peer;
@@ -65,7 +65,7 @@ pub const Navigation_Impl = struct {
         }
     }
 
-    pub fn relayout(self: *Navigation_Impl) void {
+    pub fn relayout(self: *Navigation) void {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
             self.relayouting.store(true, .SeqCst);
@@ -86,14 +86,14 @@ pub const Navigation_Impl = struct {
     /// Go deep inside the given URI.
     /// This will show up as entering the given screen, which you can exit using pop()
     /// This is analoguous to zooming in on a screen.
-    pub fn push(self: *Navigation_Impl, name: []const u8, params: anytype) void {
+    pub fn push(self: *Navigation, name: []const u8, params: anytype) void {
         // TODO: implement push
         self.navigateTo(name, params);
     }
 
     /// Navigate to a given screen without pushing it on the stack.
     /// This is analoguous to sliding to a screen.
-    pub fn navigateTo(self: *Navigation_Impl, name: []const u8, params: anytype) !void {
+    pub fn navigateTo(self: *Navigation, name: []const u8, params: anytype) !void {
         _ = params;
         if (self.peer) |*peer| {
             peer.remove(self.activeChild.peer.?);
@@ -104,16 +104,16 @@ pub const Navigation_Impl = struct {
         }
     }
 
-    pub fn pop(self: *Navigation_Impl) void {
+    pub fn pop(self: *Navigation) void {
         _ = self;
         // TODO: implement pop
     }
 
-    pub fn getPreferredSize(self: *Navigation_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Navigation, available: Size) Size {
         return self.activeChild.getPreferredSize(available);
     }
 
-    pub fn _deinit(self: *Navigation_Impl) void {
+    pub fn _deinit(self: *Navigation) void {
         var iterator = self.routes.valueIterator();
         while (iterator.next()) |widget| {
             widget.deinit();
@@ -121,7 +121,7 @@ pub const Navigation_Impl = struct {
     }
 };
 
-pub fn Navigation(opts: Navigation_Impl.Config, children: anytype) anyerror!Navigation_Impl {
+pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!Navigation {
     var routes = std.StringHashMap(Widget).init(internal.lasting_allocator);
     const fields = std.meta.fields(@TypeOf(children));
 
@@ -136,5 +136,5 @@ pub fn Navigation(opts: Navigation_Impl.Config, children: anytype) anyerror!Navi
         try routes.put(field.name, widget);
     }
 
-    return try Navigation_Impl.init(opts, routes);
+    return try Navigation.init(opts, routes);
 }

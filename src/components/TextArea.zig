@@ -6,11 +6,11 @@ const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
 const StringAtom = dataStructures.StringAtom;
 
-pub const TextArea_Impl = struct {
-    pub usingnamespace internal.All(TextArea_Impl);
+pub const TextArea = struct {
+    pub usingnamespace internal.All(TextArea);
 
     peer: ?backend.TextArea = null,
-    widget_data: TextArea_Impl.WidgetData = .{},
+    widget_data: TextArea.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
     _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
@@ -18,8 +18,8 @@ pub const TextArea_Impl = struct {
     /// Whether to let the system choose a monospace font for us and use it in this TextArea..
     monospace: Atom(bool) = Atom(bool).of(false),
 
-    pub fn init(config: TextArea_Impl.Config) TextArea_Impl {
-        var area = TextArea_Impl.init_events(TextArea_Impl{
+    pub fn init(config: TextArea.Config) TextArea {
+        var area = TextArea.init_events(TextArea{
             .text = StringAtom.of(config.text),
             .monospace = Atom(bool).of(config.monospace),
         });
@@ -27,25 +27,25 @@ pub const TextArea_Impl = struct {
         return area;
     }
 
-    pub fn _pointerMoved(self: *TextArea_Impl) void {
+    pub fn _pointerMoved(self: *TextArea) void {
         self.text.updateBinders();
         self.monospace.updateBinders();
     }
 
     fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
+        const self = @as(*TextArea, @ptrFromInt(userdata));
         if (self._wrapperTextBlock.load(.Monotonic) == true) return;
 
         self.peer.?.setText(newValue);
     }
 
     fn wrapperMonospaceChanged(newValue: bool, userdata: usize) void {
-        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
+        const self = @as(*TextArea, @ptrFromInt(userdata));
         self.peer.?.setMonospaced(newValue);
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @as(*TextArea_Impl, @ptrFromInt(userdata));
+        const self = @as(*TextArea, @ptrFromInt(userdata));
         const text = self.peer.?.getText();
 
         self._wrapperTextBlock.store(true, .Monotonic);
@@ -53,7 +53,7 @@ pub const TextArea_Impl = struct {
         self.text.set(text);
     }
 
-    pub fn show(self: *TextArea_Impl) !void {
+    pub fn show(self: *TextArea) !void {
         if (self.peer == null) {
             var peer = try backend.TextArea.create();
             peer.setText(self.text.get());
@@ -67,7 +67,7 @@ pub const TextArea_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *TextArea_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *TextArea, available: Size) Size {
         _ = available;
         if (self.peer) |peer| {
             return peer.getPreferredSize();
@@ -76,15 +76,15 @@ pub const TextArea_Impl = struct {
         }
     }
 
-    pub fn setText(self: *TextArea_Impl, text: []const u8) void {
+    pub fn setText(self: *TextArea, text: []const u8) void {
         self.text.set(text);
     }
 
-    pub fn getText(self: *TextArea_Impl) []const u8 {
+    pub fn getText(self: *TextArea) []const u8 {
         return self.text.get();
     }
 };
 
-pub fn TextArea(config: TextArea_Impl.Config) TextArea_Impl {
-    return TextArea_Impl.init(config);
+pub fn textArea(config: TextArea.Config) TextArea {
+    return TextArea.init(config);
 }

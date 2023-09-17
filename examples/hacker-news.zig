@@ -7,8 +7,8 @@ const ListModel = struct {
     size: capy.Atom(usize) = capy.Atom(usize).of(10),
     arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator),
 
-    pub fn getComponent(self: *ListModel, index: usize) capy.Label_Impl {
-        return capy.Label(.{
+    pub fn getComponent(self: *ListModel, index: usize) capy.Label {
+        return capy.label(.{
             .text = std.fmt.allocPrintZ(self.arena.allocator(), "Label #{d}", .{index + 1}) catch unreachable,
         });
     }
@@ -21,17 +21,17 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
     try window.set(
-        capy.Stack(.{
-            capy.Rect(.{ .color = capy.Color.comptimeFromString("#f6f6ef") }),
-            capy.Column(.{}, .{
-                capy.Stack(.{
-                    capy.Rect(.{
+        capy.stack(.{
+            capy.rect(.{ .color = capy.Color.comptimeFromString("#f6f6ef") }),
+            capy.column(.{}, .{
+                capy.stack(.{
+                    capy.rect(.{
                         .color = capy.Color.comptimeFromString("#ff6600"),
                         .cornerRadius = .{ 0.0, 0.0, 5.0, 5.0 },
                     }),
-                    capy.Label(.{ .text = "Hacker News", .alignment = .Center }),
+                    capy.label(.{ .text = "Hacker News", .alignment = .Center }),
                 }),
-                capy.ColumnList(.{}, &hn_list_model),
+                capy.columnList(.{}, &hn_list_model),
             }),
         }),
     );

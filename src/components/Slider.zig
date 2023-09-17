@@ -12,11 +12,11 @@ pub const Orientation = enum { Horizontal, Vertical };
 ///
 /// To avoid any cross-platform bugs, ensure that min/stepSize and
 /// max/stepSize both are between -32767 and 32768.
-pub const Slider_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(Slider_Impl);
+pub const Slider = struct {
+    pub usingnamespace @import("../internal.zig").All(Slider);
 
     peer: ?backend.Slider = null,
-    widget_data: Slider_Impl.WidgetData = .{},
+    widget_data: Slider.WidgetData = .{},
     value: Atom(f32) = Atom(f32).of(0),
     /// The minimum value of the slider.
     /// Note that min MUST be below or equal to max.
@@ -29,14 +29,14 @@ pub const Slider_Impl = struct {
     step: Atom(f32) = Atom(f32).of(1),
     enabled: Atom(bool) = Atom(bool).of(true),
 
-    pub fn init() Slider_Impl {
-        return Slider_Impl.init_events(Slider_Impl{
+    pub fn init() Slider {
+        return Slider.init_events(Slider{
             .min = Atom(f32).of(undefined),
             .max = Atom(f32).of(undefined),
         });
     }
 
-    pub fn _pointerMoved(self: *Slider_Impl) void {
+    pub fn _pointerMoved(self: *Slider) void {
         self.enabled.updateBinders();
     }
 
@@ -65,14 +65,14 @@ pub const Slider_Impl = struct {
         peer.*.?.setEnabled(newValue);
     }
 
-    fn onPropertyChange(self: *Slider_Impl, property_name: []const u8, new_value: *const anyopaque) !void {
+    fn onPropertyChange(self: *Slider, property_name: []const u8, new_value: *const anyopaque) !void {
         if (std.mem.eql(u8, property_name, "value")) {
             const value = @as(*const f32, @ptrCast(@alignCast(new_value)));
             self.value.set(value.*);
         }
     }
 
-    pub fn show(self: *Slider_Impl) !void {
+    pub fn show(self: *Slider) !void {
         if (self.peer == null) {
             self.peer = try backend.Slider.create();
             self.peer.?.setMinimum(self.min.get());
@@ -92,7 +92,7 @@ pub const Slider_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *Slider_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *Slider, available: Size) Size {
         _ = available;
         if (self.peer) |peer| {
             return peer.getPreferredSize();
@@ -101,21 +101,21 @@ pub const Slider_Impl = struct {
         }
     }
 
-    pub fn _deinit(self: *Slider_Impl) void {
+    pub fn _deinit(self: *Slider) void {
         self.enabled.deinit();
     }
 };
 
-pub fn Slider(config: Slider_Impl.Config) Slider_Impl {
-    var slider = Slider_Impl.init();
-    slider.min.set(config.min);
-    slider.max.set(config.max);
-    slider.value.set(config.value);
-    slider.step.set(config.step);
-    slider.enabled.set(config.enabled);
-    slider.widget_data.atoms.name.set(config.name);
+pub fn slider(config: Slider.Config) Slider {
+    var s = Slider.init();
+    s.min.set(config.min);
+    s.max.set(config.max);
+    s.value.set(config.value);
+    s.step.set(config.step);
+    s.enabled.set(config.enabled);
+    s.widget_data.atoms.name.set(config.name);
     if (config.onclick) |onclick| {
-        slider.addClickHandler(onclick) catch unreachable; // TODO: improve
+        s.addClickHandler(onclick) catch unreachable; // TODO: improve
     }
-    return slider;
+    return s;
 }

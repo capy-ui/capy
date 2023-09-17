@@ -4,20 +4,20 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Container_Impl = @import("../containers.zig").Container_Impl;
 
-pub const CheckBox_Impl = struct {
-    pub usingnamespace @import("../internal.zig").All(CheckBox_Impl);
+pub const CheckBox = struct {
+    pub usingnamespace @import("../internal.zig").All(CheckBox);
 
     peer: ?backend.CheckBox = null,
-    widget_data: CheckBox_Impl.WidgetData = .{},
+    widget_data: CheckBox.WidgetData = .{},
     checked: Atom(bool) = Atom(bool).of(false),
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
     enabled: Atom(bool) = Atom(bool).of(true),
 
-    pub fn init() CheckBox_Impl {
-        return CheckBox_Impl.init_events(CheckBox_Impl{});
+    pub fn init() CheckBox {
+        return CheckBox.init_events(CheckBox{});
     }
 
-    pub fn _pointerMoved(self: *CheckBox_Impl) void {
+    pub fn _pointerMoved(self: *CheckBox) void {
         self.enabled.updateBinders();
         self.checked.updateBinders();
     }
@@ -37,11 +37,11 @@ pub const CheckBox_Impl = struct {
         peer.*.?.setLabel(newValue);
     }
 
-    fn onClick(self: *CheckBox_Impl) !void {
+    fn onClick(self: *CheckBox) !void {
         self.checked.set(self.peer.?.isChecked());
     }
 
-    pub fn show(self: *CheckBox_Impl) !void {
+    pub fn show(self: *CheckBox) !void {
         if (self.peer == null) {
             self.peer = try backend.CheckBox.create();
             self.peer.?.setChecked(self.checked.get());
@@ -57,7 +57,7 @@ pub const CheckBox_Impl = struct {
         }
     }
 
-    pub fn getPreferredSize(self: *CheckBox_Impl, available: Size) Size {
+    pub fn getPreferredSize(self: *CheckBox, available: Size) Size {
         _ = available;
         if (self.peer) |peer| {
             return peer.getPreferredSize();
@@ -66,21 +66,21 @@ pub const CheckBox_Impl = struct {
         }
     }
 
-    pub fn setLabel(self: *CheckBox_Impl, label: [:0]const u8) void {
+    pub fn setLabel(self: *CheckBox, label: [:0]const u8) void {
         self.label.set(label);
     }
 
-    pub fn getLabel(self: *CheckBox_Impl) [:0]const u8 {
+    pub fn getLabel(self: *CheckBox) [:0]const u8 {
         return self.label.get();
     }
 
-    pub fn _deinit(self: *CheckBox_Impl) void {
+    pub fn _deinit(self: *CheckBox) void {
         self.enabled.deinit();
     }
 };
 
-pub fn CheckBox(config: CheckBox_Impl.Config) CheckBox_Impl {
-    var btn = CheckBox_Impl.init();
+pub fn checkBox(config: CheckBox.Config) CheckBox {
+    var btn = CheckBox.init();
     btn.checked.set(config.checked);
     btn.label.set(config.label);
     btn.enabled.set(config.enabled);

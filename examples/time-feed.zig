@@ -19,15 +19,15 @@ const ListModel = struct {
         self.size.set(self.size.get() + 1);
     }
 
-    pub fn getComponent(self: *ListModel, index: usize) capy.Container_Impl {
+    pub fn getComponent(self: *ListModel, index: usize) capy.Container {
         const activity = self.data.items[index];
         const start_epoch = std.time.epoch.EpochSeconds{ .secs = activity.start };
         const start_day = start_epoch.getDaySeconds();
 
         const end_epoch = std.time.epoch.EpochSeconds{ .secs = activity.end };
         const end_day = end_epoch.getDaySeconds();
-        return Card(capy.Column(.{}, .{
-            capy.Label(.{
+        return Card(capy.column(.{}, .{
+            capy.label(.{
                 .text = std.fmt.allocPrintZ(self.arena.allocator(), "{d:0>2}:{d:0>2} - {d:0>2}:{d:0>2}", .{
                     start_day.getHoursIntoDay(),
                     start_day.getMinutesIntoHour(),
@@ -35,16 +35,16 @@ const ListModel = struct {
                     end_day.getMinutesIntoHour(),
                 }) catch unreachable,
             }),
-            capy.Label(.{ .text = activity.description }),
-            capy.Align(.{ .x = 1 }, capy.Button(.{ .label = "Edit" })),
+            capy.label(.{ .text = activity.description }),
+            capy.alignment(.{ .x = 1 }, capy.button(.{ .label = "Edit" })),
         })) catch unreachable;
     }
 };
 
-pub fn Card(child: anytype) anyerror!capy.Container_Impl {
-    return try capy.Stack(.{
-        capy.Rect(.{ .color = capy.Color.comptimeFromString("#ffffff") }),
-        capy.Margin(capy.Rectangle.init(10, 10, 10, 10), try child),
+pub fn Card(child: anytype) anyerror!capy.Container {
+    return try capy.stack(.{
+        capy.rect(.{ .color = capy.Color.comptimeFromString("#ffffff") }),
+        capy.margin(capy.Rectangle.init(10, 10, 10, 10), try child),
     });
 }
 
@@ -63,22 +63,22 @@ fn onSubmit(_: *anyopaque) !void {
     submitDesc.set("");
 }
 
-pub fn InsertCard() anyerror!capy.Container_Impl {
+pub fn InsertCard() anyerror!capy.Container {
     submitEnabled.dependOn(.{&submitDesc}, &(struct {
         fn callback(description: []const u8) bool {
             return description.len > 0;
         }
     }.callback)) catch unreachable;
 
-    return try capy.Column(.{}, .{
+    return try capy.column(.{}, .{
         // TODO: TextArea when it supports data wrappers
-        capy.TextField(.{ .name = "description" })
+        capy.textField(.{ .name = "description" })
             .bind("text", &submitDesc), // placeholder = "Task description..."
-        capy.Label(.{ .text = "Going on since.. 00:00:20" }),
-        capy.Align(.{ .x = 1 }, capy.Row(.{}, .{
-            capy.Button(.{ .label = "Submit", .onclick = onSubmit })
+        capy.label(.{ .text = "Going on since.. 00:00:20" }),
+        capy.alignment(.{ .x = 1 }, capy.row(.{}, .{
+            capy.button(.{ .label = "Submit", .onclick = onSubmit })
                 .bind("enabled", &submitEnabled),
-            capy.Button(.{ .label = "Delete" }), // TODO: icon
+            capy.button(.{ .label = "Delete" }), // TODO: icon
         })),
     });
 }
@@ -90,11 +90,11 @@ pub fn main() !void {
         .data = std.ArrayList(TimeActivity).init(capy.internal.lasting_allocator),
     };
     var window = try capy.Window.init();
-    try window.set(capy.Column(.{}, .{
-        capy.Label(.{ .text = "Feed" }), // TODO: capy.Heading ?
+    try window.set(capy.column(.{}, .{
+        capy.label(.{ .text = "Feed" }), // TODO: capy.Heading ?
         InsertCard(),
         // TODO: days labels / list categories
-        capy.ColumnList(.{}, &list_model),
+        capy.columnList(.{}, &list_model),
     }));
 
     window.setTitle("Time Feed");
