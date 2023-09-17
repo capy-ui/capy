@@ -195,6 +195,7 @@ pub fn Atom(comptime T: type) type {
                 easing: Easing,
                 duration: u64,
                 self_ptr: *Self,
+                is_deinit: bool = false,
             };
 
             const userdata = try self.allocator.?.create(AnimationParameters);
@@ -211,9 +212,18 @@ pub fn Atom(comptime T: type) type {
                 fn a(_: T, int: usize) void {
                     const ptr = @as(*AnimationParameters, @ptrFromInt(int));
                     const allocator = lasting_allocator;
+                    const is_deinit = ptr.is_deinit;
                     const self_ptr = ptr.self_ptr;
                     allocator.destroy(ptr);
-                    self_ptr.deinit();
+
+                    if (!is_deinit) self_ptr.deinit();
+                }
+            }.a;
+
+            const self_destroy_fn = struct {
+                fn a(_: T, int: usize) void {
+                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
+                    ptr.is_deinit = true;
                 }
             }.a;
 
@@ -224,6 +234,11 @@ pub fn Atom(comptime T: type) type {
             });
             _ = try original.addChangeListener(.{
                 .function = destroy_fn,
+                .userdata = @intFromPtr(userdata),
+                .type = .Destroy,
+            });
+            _ = try self.addChangeListener(.{
+                .function = self_destroy_fn,
                 .userdata = @intFromPtr(userdata),
                 .type = .Destroy,
             });

@@ -4,6 +4,7 @@ const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
+    linux: LinuxOptions = .{},
     // TODO: disable android build if password is not set
     // TODO: use optional
     android: AndroidOptions = .{ .password = "foo", .package_name = "org.capyui.example" },
@@ -18,6 +19,8 @@ pub const CapyBuildOptions = struct {
         /// The password that will be used to sign the keystore. Do not share with others!
         password: []const u8,
     };
+
+    pub const LinuxOptions = struct {};
 };
 
 /// Step used to run a web server for WebAssembly apps
@@ -116,7 +119,6 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
-
 
     const zigimg = b.createModule(.{
         .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
@@ -267,7 +269,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 return run_step;
             } else {
                 step.linkLibC();
-                step.linkSystemLibrary("gtk+-3.0");
+                step.linkSystemLibrary("gtk4");
             }
         },
         .freestanding => {
