@@ -20,10 +20,7 @@ pub const CapyBuildOptions = struct {
         password: []const u8,
     };
 
-    pub const LinuxOptions = struct {
-        /// Only GTK3 and GTK4 are supported.
-        gtk_version: usize = 4,
-    };
+    pub const LinuxOptions = struct {};
 };
 
 /// Step used to run a web server for WebAssembly apps
@@ -122,7 +119,6 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
-
 
     const zigimg = b.createModule(.{
         .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
@@ -273,13 +269,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 return run_step;
             } else {
                 step.linkLibC();
-                const gtk_version = options.linux.gtk_version;
-                std.debug.assert(gtk_version == 3 or gtk_version == 4);
-                if (gtk_version == 4) {
-                    step.linkSystemLibrary("gtk4");
-                } else {
-                    step.linkSystemLibrary("gtk+-3.0");
-                }
+                step.linkSystemLibrary("gtk4");
             }
         },
         .freestanding => {
