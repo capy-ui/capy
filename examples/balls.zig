@@ -186,7 +186,7 @@ fn simulationThread(window: *capy.Window) !void {
                     const dr6 = dr2 * dr2 * dr2;
                     const dr12 = dr6 * dr6;
                     //const attractionForce = 10 / (distance * distance);
-                    const attractionForce = 10 * 4 * -(dr12 - dr6);
+                    const attractionForce = 10 * 1 * -(dr12 - dr6);
                     if (distance > BALL_DIAMETER) {
                         ball.velX += (dx / distance) * attractionForce;
                         ball.velY += (dy / distance) * attractionForce;

@@ -22,6 +22,7 @@ void capy_window_set(CapyWindow window, CapyWidget widget);
 CapyWidget capy_window_get_child(CapyWindow window);
 
 // button
-CapyWidget capy_button(const char* label);
+CapyWidget capy_button_new();
+void capy_button_set_label(CapyWidget button, const char* label);
 
 #endif

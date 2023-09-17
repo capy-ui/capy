@@ -194,10 +194,17 @@ pub const Window = struct {
             return Win32Error.InitializationError;
         }
 
+        // Layered windows sometimes fail on Wine and fresh install of Windows
+        // See https://stackoverflow.com/questions/19951379/ws-ex-layered-invisible-window-and-a-fresh-install-of-windows
+        const layered = false;
+
         const hwnd = win32.CreateWindowExW(
-        // composited and layered don't work in wine for some reason, but only in wine
-        win32.WS_EX_LEFT, // | win32.WS_EX_COMPOSITED | win32.WS_EX_LAYERED | win32.WS_EX_APPWINDOW, // dwExtStyle
-            className, // lpClassName
+        // layered don't work in wine for some reason, but only in wine
+        win32.WINDOW_EX_STYLE.initFlags(.{
+            .COMPOSITED = 1,
+            .LAYERED = @intFromBool(layered),
+            .APPWINDOW = 1,
+        }), className, // lpClassName
             _T(""), // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
             win32.CW_USEDEFAULT, // X
@@ -210,6 +217,20 @@ pub const Window = struct {
             null // lpParam
         ) orelse return Win32Error.InitializationError;
         try Window.setupEvents(hwnd);
+
+        if (layered) {
+            _ = win32.UpdateLayeredWindow(
+                hwnd,
+                null,
+                null,
+                null,
+                null,
+                null,
+                0xFFFFFFFF,
+                null,
+                win32.ULW_OPAQUE,
+            );
+        }
 
         defaultWHWND = hwnd;
         return Window{ .hwnd = hwnd };
@@ -1333,7 +1354,7 @@ pub const Container = struct {
         const hwnd = win32.CreateWindowExW(win32.WINDOW_EX_STYLE.initFlags(.{ .CONTROLPARENT = 1 }), // dwExtStyle
             L("capyContainerClass"), // lpClassName
             L(""), // lpWindowName
-            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1, .CLIPCHILDREN = 1 }), // dwStyle
+            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1, .CLIPCHILDREN = 1 }), // dwStyle
             0, // X
             0, // Y
             100, // nWidth

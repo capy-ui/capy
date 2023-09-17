@@ -1048,6 +1048,12 @@ pub const Container = struct {
         c.gtk_widget_set_size_request(peer, @as(c_int, @intCast(w)), @as(c_int, @intCast(h)));
         c.gtk_container_resize_children(@as(*c.GtkContainer, @ptrCast(self.container)));
     }
+
+    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
+        // TODO
+    }
 };
 
 pub const TabContainer = struct {

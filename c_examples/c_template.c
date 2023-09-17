@@ -9,7 +9,8 @@ void main() {
 	window = capy_window_init();
 	capy_window_set_preferred_size(window, 800, 600);
 
-	button = capy_button("Hello, World");
+	button = capy_button_new();
+	capy_button_set_label(button, "Hello, World");
 	capy_window_set(window, button);
 
 	capy_window_show(window);
