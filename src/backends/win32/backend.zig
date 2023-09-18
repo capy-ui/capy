@@ -178,24 +178,22 @@ pub const Window = struct {
         return 1;
     }
 
-    fn process(hwnd: HWND, wm: c_uint, wp: WPARAM, lp: LPARAM) callconv(WINAPI) LRESULT {
-        switch (wm) {
-            win32.WM_SIZE => {
-                _ = win32.EnumChildWindows(hwnd, relayoutChild, @as(isize, @bitCast(@intFromPtr(hwnd))));
-            },
-            win32.WM_DPICHANGED => {
-                // TODO: update scale factor
-            },
-            else => {},
-        }
-        return win32.DefWindowProcW(hwnd, wm, wp, lp);
+    pub fn onResize(data: *EventUserData, hwnd: HWND) void {
+        _ = data;
+        _ = win32.EnumChildWindows(hwnd, relayoutChild, @as(isize, @bitCast(@intFromPtr(hwnd))));
+    }
+
+    pub fn onDpiChanged(self: *EventUserData, hwnd: HWND) void {
+        _ = hwnd;
+        _ = self;
+        // TODO: update scale factor
     }
 
     pub fn create() !Window {
         var wc: win32.WNDCLASSEXW = .{
             .cbSize = @sizeOf(win32.WNDCLASSEXW),
             .style = win32.WNDCLASS_STYLES.initFlags(.{ .HREDRAW = 1, .VREDRAW = 1 }),
-            .lpfnWndProc = process,
+            .lpfnWndProc = Window.process,
             .cbClsExtra = 0,
             .cbWndExtra = 0,
             .hInstance = hInst,
@@ -328,18 +326,20 @@ pub fn Events(comptime T: type) type {
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @as(u16, @intCast(wp >> 16));
-                    const data = getEventUserData(@as(HWND, @ptrFromInt(@as(usize, @bitCast(lp)))));
-                    switch (code) {
-                        win32.BN_CLICKED => {
-                            if (data.user.clickHandler) |handler|
-                                handler(data.userdata);
-                        },
-                        win32.EN_CHANGE => {
-                            // Doesn't appear to work.
-                            if (data.user.changedTextHandler) |handler|
-                                handler(data.userdata);
-                        },
-                        else => {},
+                    if (lp != 0) {
+                        const data = getEventUserData(@as(HWND, @ptrFromInt(@as(usize, @bitCast(lp)))));
+                        switch (code) {
+                            win32.BN_CLICKED => {
+                                if (data.user.clickHandler) |handler|
+                                    handler(data.userdata);
+                            },
+                            win32.EN_CHANGE => {
+                                // Doesn't appear to work.
+                                if (data.user.changedTextHandler) |handler|
+                                    handler(data.userdata);
+                            },
+                            else => {},
+                        }
                     }
                 },
                 win32.WM_CTLCOLOREDIT => {
@@ -439,8 +439,10 @@ pub fn Events(comptime T: type) type {
                         }
                     }
                 },
-                win32.WM_PAINT => {
+                win32.WM_PAINT => blk: {
                     const data = getEventUserData(hwnd);
+                    if (data.class.drawHandler == null and data.user.drawHandler == null) break :blk;
+
                     var rc: win32.RECT = undefined;
                     _ = win32.GetClientRect(hwnd, &rc);
 
