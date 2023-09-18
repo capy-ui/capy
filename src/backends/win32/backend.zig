@@ -1015,7 +1015,7 @@ pub const Label = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             L("STATIC"), // lpClassName
             L(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 })) | win32.SS_CENTERIMAGE)), // dwStyle
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1 })) | win32.SS_CENTERIMAGE)), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
