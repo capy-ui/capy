@@ -72,11 +72,21 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
     });
-    // tests.emit_docs = .emit;
     const run_tests = try install(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(run_tests);
+
+    const docs = b.addTest(.{
+        .root_source_file = FileSource.relative("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
+    const run_docs = try install(docs, .{});
+
+    const docs_step = b.step("docs", "Generate documentation and run unit tests");
+    docs_step.dependOn(run_docs);
 
     const coverage_tests = b.addTest(.{
         .root_source_file = FileSource.relative("src/main.zig"),
