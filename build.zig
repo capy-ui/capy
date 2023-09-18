@@ -82,7 +82,7 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
     });
-    b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
+    // b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
     const run_docs = try install(docs, .{});
 
     const docs_step = b.step("docs", "Generate documentation and run unit tests");
