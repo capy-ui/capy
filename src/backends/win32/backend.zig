@@ -55,6 +55,7 @@ var hInst: HINSTANCE = undefined;
 /// anti-aliasing. So we take the real default caption font from
 /// NONFCLIENTEMETRICS and apply it manually to every widget.
 var captionFont: win32.HFONT = undefined;
+var monospaceFont: win32.HFONT = undefined;
 /// Default arrow cursor used to avoid components keeping the last cursor icon
 /// that's been set (which is usually the resize cursor or loading cursor)
 var defaultCursor: win32.HCURSOR = undefined;
@@ -101,6 +102,23 @@ pub fn init() !void {
             win32.SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.initFlags(.{}),
         );
         captionFont = win32.CreateFontIndirectW(&ncMetrics.lfCaptionFont).?;
+        monospaceFont = @ptrCast(win32.GetStockObject(win32.ANSI_FIXED_FONT));
+        monospaceFont = win32.CreateFontW(
+            ncMetrics.lfCaptionFont.lfHeight,
+            ncMetrics.lfCaptionFont.lfWidth,
+            0,
+            0,
+            win32.FW_REGULAR,
+            0,
+            0,
+            0,
+            win32.DEFAULT_CHARSET,
+            win32.OUT_DEFAULT_PRECIS,
+            win32.CLIP_DEFAULT_PRECIS,
+            win32.DEFAULT_QUALITY,
+            .MODERN,
+            _T("Courier"),
+        ).?;
 
         // Load the default arrow cursor so that components can use it
         // This avoids components keeping the last cursor (resize cursor or loading cursor)
@@ -834,6 +852,68 @@ pub const TextField = struct {
     }
 };
 
+pub const TextArea = struct {
+    peer: HWND,
+    arena: std.heap.ArenaAllocator,
+
+    pub usingnamespace Events(TextArea);
+
+    pub fn create() !TextArea {
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("EDIT"), // lpClassName
+            _T(""), // lpWindowName
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_BORDER) | win32.ES_MULTILINE | win32.ES_AUTOVSCROLL | win32.ES_WANTRETURN)), // dwStyle
+            0, // X
+            0, // Y
+            100, // nWidth
+            100, // nHeight
+            defaultWHWND, // hWindParent
+            null, // hMenu
+            hInst, // hInstance
+            null // lpParam
+        ) orelse return Win32Error.InitializationError;
+        try TextArea.setupEvents(hwnd);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
+
+        return TextArea{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+    }
+
+    pub fn setText(self: *TextArea, text: []const u8) void {
+        const allocator = lib.internal.scratch_allocator;
+        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
+        defer allocator.free(wide);
+        if (win32.SetWindowTextW(self.peer, wide) == 0) {
+            std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
+        }
+
+        const len = win32.GetWindowTextLengthW(self.peer);
+        getEventUserData(self.peer).last_text_len = len;
+    }
+
+    pub fn getText(self: *TextArea) [:0]const u8 {
+        const allocator = self.arena.allocator();
+        const len = win32.GetWindowTextLengthW(self.peer);
+        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        defer allocator.free(buf);
+        const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
+        const utf16Slice = buf[0..realLen];
+        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        return text;
+    }
+
+    pub fn setReadOnly(self: *TextArea, readOnly: bool) void {
+        _ = win32.SendMessageW(self.peer, win32.EM_SETREADONLY, @intFromBool(readOnly), undefined);
+    }
+
+    pub fn setMonospaced(self: *TextArea, monospaced: bool) void {
+        if (monospaced) {
+            _ = win32.SendMessageW(self.peer, win32.WM_SETFONT, @intFromPtr(monospaceFont), 1);
+        } else {
+            _ = win32.SendMessageW(self.peer, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
+        }
+    }
+};
+
 pub const Button = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
@@ -892,10 +972,10 @@ pub const CheckBox = struct {
     pub usingnamespace Events(CheckBox);
 
     pub fn create() !CheckBox {
-        const hwnd = win32.CreateWindowEx(win32.WS_EX_LEFT, // dwExtStyle
-            "BUTTON", // lpClassName
-            "", // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD | win32.BS_AUTOCHECKBOX, // dwStyle
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
+            _T("BUTTON"), // lpClassName
+            _T(""), // lpWindowName
+            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_AUTOCHECKBOX)), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -904,7 +984,7 @@ pub const CheckBox = struct {
             null, // hMenu
             hInst, // hInstance
             null // lpParam
-        );
+        ) orelse return Win32Error.InitializationError;
         try CheckBox.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
@@ -926,14 +1006,17 @@ pub const CheckBox = struct {
 
     pub fn setChecked(self: *CheckBox, checked: bool) void {
         const state: win32.WPARAM = switch (checked) {
-            true => win32.BST_CHECKED,
-            false => win32.BST_UNCHECKED,
+            true => @intFromEnum(win32.BST_CHECKED),
+            false => @intFromEnum(win32.BST_UNCHECKED),
         };
         _ = win32.SendMessageW(self.peer, win32.BM_SETCHECK, state, 0);
     }
 
     pub fn isChecked(self: *CheckBox) bool {
-        return win32.SendMessageW(self.peer, win32.BM_GETCHECK, 0, 0) != win32.BST_UNCHECKED;
+        const state: win32.DLG_BUTTON_CHECK_STATE = @enumFromInt(
+            win32.SendMessageW(self.peer, win32.BM_GETCHECK, 0, 0),
+        );
+        return state != win32.BST_UNCHECKED;
     }
 };
 
