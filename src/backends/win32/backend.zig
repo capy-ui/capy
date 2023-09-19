@@ -402,11 +402,15 @@ pub fn Events(comptime T: type) type {
                     // For menubar item events, HIWORD(wp) and lp are set to 0.
                     else if (code == 0) {
                         const data = getEventUserData(hwnd);
-                        const window: *Window = @ptrFromInt(data.classUserdata);
+                        const window_ptr: ?*Window = @ptrFromInt(data.classUserdata);
                         const id: u16 = @intCast(wp & 0xFFFF);
 
-                        if (window.menu_item_callbacks.items[id]) |callback| {
-                            callback();
+                        if (window_ptr) |window| {
+                            if (id < window.menu_item_callbacks.items.len) {
+                                if (window.menu_item_callbacks.items[id]) |callback| {
+                                    callback();
+                                }
+                            }
                         }
                     }
                 },
