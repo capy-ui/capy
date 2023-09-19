@@ -163,8 +163,7 @@ var defaultWHWND: HWND = undefined;
 pub const Window = struct {
     hwnd: HWND,
     source_dpi: u32 = 96,
-    /// List of menus and submenus
-    menus: std.ArrayList(HMENU),
+    root_menu: ?HMENU,
     /// List of menu item callbacks, where the index is the menu item ID
     menu_item_callbacks: std.ArrayList(?*const fn () void),
 
@@ -256,7 +255,7 @@ pub const Window = struct {
         defaultWHWND = hwnd;
         return Window{
             .hwnd = hwnd,
-            .menus = std.ArrayList(HMENU).init(lib.internal.lasting_allocator),
+            .root_menu = null,
             .menu_item_callbacks = std.ArrayList(?*const fn () void).init(
                 lib.internal.lasting_allocator,
             ),
@@ -297,8 +296,6 @@ pub const Window = struct {
                     item.config.label,
                 );
                 try initMenu(self, submenu, item.items);
-                // Append submenus in reverse order for freeing correctly
-                try self.menus.append(submenu);
             } else {
                 _ = win32.AppendMenuA(
                     menu,
@@ -312,27 +309,27 @@ pub const Window = struct {
     }
 
     fn clearAndFreeMenus(self: *Window) void {
-        for (self.menus.items) |menu| {
-            var position_index: u32 = 0;
-            // Delete all items until failure to delete
-            while (win32.DeleteMenu(menu, position_index, win32.MF_BYPOSITION) != 0) {
-                position_index += 1;
-            }
-        }
-        self.menus.clearAndFree();
+        _ = win32.DestroyMenu(self.root_menu);
         self.menu_item_callbacks.clearAndFree();
+        self.root_menu = null;
     }
 
     pub fn setMenuBar(self: *Window, bar: lib.MenuBar) void {
-        const rootMenu = win32.CreateMenu().?;
+        // Detach and free current menu (if exists) from window first.
+        _ = win32.SetMenu(self.hwnd, null);
         self.clearAndFreeMenus();
-        self.initMenu(rootMenu, bar.menus) catch {
+
+        const root_menu = win32.CreateMenu().?;
+        self.initMenu(root_menu, bar.menus) catch {
             // TODO: Handle error in appropriate way
         };
-        self.menus.append(rootMenu) catch {
-            // TODO: Handle error in appropriate way
-        };
-        _ = win32.SetMenu(self.hwnd, rootMenu);
+        if (win32.SetMenu(self.hwnd, root_menu) != 0) {
+            self.root_menu = root_menu;
+        } else {
+            self.menu_item_callbacks.clearAndFree();
+        }
+
+        // Ensure menu item callbacks can be accessed during event processing.
         getEventUserData(self.hwnd).classUserdata = @intFromPtr(self);
     }
 
