@@ -12,6 +12,7 @@ const zigwin32 = @import("zigwin32");
 const win32 = zigwin32.everything;
 const gdi = @import("gdip.zig");
 const HWND = win32.HWND;
+const HMENU = win32.HMENU;
 const HINSTANCE = win32.HINSTANCE;
 const RECT = win32.RECT;
 const MSG = win32.MSG;
@@ -162,6 +163,10 @@ var defaultWHWND: HWND = undefined;
 pub const Window = struct {
     hwnd: HWND,
     source_dpi: u32 = 96,
+    /// List of menus and submenus
+    menus: std.ArrayList(HMENU),
+    /// List of menu item callbacks, where the index is the menu item ID
+    menu_item_callbacks: std.ArrayList(?*const fn () void),
 
     const className = _T("capyWClass");
     pub usingnamespace Events(Window);
@@ -249,7 +254,13 @@ pub const Window = struct {
         }
 
         defaultWHWND = hwnd;
-        return Window{ .hwnd = hwnd };
+        return Window{
+            .hwnd = hwnd,
+            .menus = std.ArrayList(HMENU).init(lib.internal.lasting_allocator),
+            .menu_item_callbacks = std.ArrayList(?*const fn () void).init(
+                lib.internal.lasting_allocator,
+            ),
+        };
     }
 
     // TODO: handle the fact that ONLY the root child must forcibly draw a background
@@ -273,6 +284,56 @@ pub const Window = struct {
         defer lib.internal.scratch_allocator.free(utf16);
 
         _ = win32.SetWindowTextW(self.hwnd, utf16);
+    }
+
+    fn initMenu(self: *Window, menu: HMENU, items: []const lib.MenuItem) !void {
+        for (items) |item| {
+            if (item.items.len > 0) {
+                const submenu = win32.CreateMenu().?;
+                _ = win32.AppendMenuA(
+                    menu,
+                    win32.MENU_ITEM_FLAGS.initFlags(.{ .POPUP = 1 }),
+                    @intFromPtr(submenu),
+                    item.config.label,
+                );
+                try initMenu(self, submenu, item.items);
+                // Append submenus in reverse order for freeing correctly
+                try self.menus.append(submenu);
+            } else {
+                _ = win32.AppendMenuA(
+                    menu,
+                    win32.MENU_ITEM_FLAGS.initFlags(.{}),
+                    self.menu_item_callbacks.items.len,
+                    item.config.label,
+                );
+                try self.menu_item_callbacks.append(item.config.onClick);
+            }
+        }
+    }
+
+    fn clearAndFreeMenus(self: *Window) void {
+        for (self.menus.items) |menu| {
+            var position_index: u32 = 0;
+            // Delete all items until failure to delete
+            while (win32.DeleteMenu(menu, position_index, win32.MF_BYPOSITION) != 0) {
+                position_index += 1;
+            }
+        }
+        self.menus.clearAndFree();
+        self.menu_item_callbacks.clearAndFree();
+    }
+
+    pub fn setMenuBar(self: *Window, bar: lib.MenuBar) void {
+        const rootMenu = win32.CreateMenu().?;
+        self.clearAndFreeMenus();
+        self.initMenu(rootMenu, bar.menus) catch {
+            // TODO: Handle error in appropriate way
+        };
+        self.menus.append(rootMenu) catch {
+            // TODO: Handle error in appropriate way
+        };
+        _ = win32.SetMenu(self.hwnd, rootMenu);
+        getEventUserData(self.hwnd).classUserdata = @intFromPtr(self);
     }
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
@@ -339,6 +400,16 @@ pub fn Events(comptime T: type) type {
                                     handler(data.userdata);
                             },
                             else => {},
+                        }
+                    }
+                    // For menubar item events, HIWORD(wp) and lp are set to 0.
+                    else if (code == 0) {
+                        const data = getEventUserData(hwnd);
+                        const window: *Window = @ptrFromInt(data.classUserdata);
+                        const id: u16 = @intCast(wp & 0xFFFF);
+
+                        if (window.menu_item_callbacks.items[id]) |callback| {
+                            callback();
                         }
                     }
                 },
