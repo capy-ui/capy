@@ -328,9 +328,6 @@ pub const Window = struct {
         } else {
             self.menu_item_callbacks.clearAndFree();
         }
-
-        // Ensure menu item callbacks can be accessed during event processing.
-        getEventUserData(self.hwnd).classUserdata = @intFromPtr(self);
     }
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
@@ -402,7 +399,7 @@ pub fn Events(comptime T: type) type {
                     // For menubar item events, HIWORD(wp) and lp are set to 0.
                     else if (code == 0) {
                         const data = getEventUserData(hwnd);
-                        const window_ptr: ?*Window = @ptrFromInt(data.classUserdata);
+                        const window_ptr: ?*Window = @ptrCast(@alignCast(data.peerPtr));
                         const id: u16 = @intCast(wp & 0xFFFF);
 
                         if (window_ptr) |window| {
