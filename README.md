@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Capy is a **graphical user interface library for Zig**. It is mainly intended for creating applications using native controls from the operating system.
+Capy is a **GUI library for Zig**. It is mainly intended for creating applications using native controls from the operating system.
 Capy is a declarative UI library aiming to be easy to write for and versatile.
 
 It has been made with the goal to empower standalone UI applications, integration in games or any other rendering process is a non-goal.
@@ -39,8 +39,8 @@ pub fn main() !void {
     try window.set(
         capy.column(.{ .spacing = 10 }, .{ // have 10px spacing between each column's element
             capy.row(.{ .spacing = 5 }, .{ // have 5px spacing between each row's element
-                capy.button(.{ .label = "Save", .onclick = &buttonClicked }),
-                capy.button(.{ .label = "Run",  .onclick = &buttonClicked })
+                capy.button(.{ .label = "Save", .onclick = @ptrCast(&buttonClicked) }),
+                capy.button(.{ .label = "Run",  .onclick = @ptrCast(&buttonClicked) })
             }),
             // Expanded means the widget will take all the space it can
             // in the parent container
@@ -50,7 +50,7 @@ pub fn main() !void {
         })
     );
 
-    window.resize(800, 600);
+    window.setPreferredSize(800, 600);
     window.show();
     capy.runEventLoop();
 }
