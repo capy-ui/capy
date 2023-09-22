@@ -108,7 +108,7 @@ A platform is considered supported only if it can be built to from every other O
 - 🧪 Experimental
 - 🏃 Planned
 
-Note: As there's no "official" GUI library for Linux, GTK 3 has been chosen as it is the one
+Note: As there's no "official" GUI library for Linux, GTK 4 has been chosen as it is the one
 that works and can be configured on the most distros. It's also the reason Libadwaita won't
 be adopted, as it's meant for GNOME and GNOME only by disallowing styling and integration
 with other DEs.
