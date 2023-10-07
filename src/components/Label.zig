@@ -12,10 +12,9 @@ pub const Label = struct {
     alignment: Atom(TextAlignment) = Atom(TextAlignment).of(.Left),
 
     pub fn init(config: Label.Config) Label {
-        return Label.init_events(Label{
-            .text = Atom([]const u8).of(config.text),
-            .alignment = Atom(TextAlignment).of(config.alignment),
-        });
+        var lbl = Label.init_events(Label{});
+        @import("../internal.zig").applyConfigStruct(&lbl, config);
+        return lbl;
     }
 
     pub fn _pointerMoved(self: *Label) void {

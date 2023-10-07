@@ -39,14 +39,7 @@ pub const Canvas = struct {
 
 pub fn canvas(config: Canvas.Config) Canvas {
     var cnv = Canvas.init();
-    cnv.preferredSize = Atom(?Size).of(config.preferredSize);
-    cnv.widget_data.atoms.name.set(config.name);
-    if (config.onclick) |onclick| {
-        cnv.addClickHandler(onclick) catch unreachable; // TODO: improve
-    }
-    if (config.ondraw) |ondraw| {
-        cnv.addDrawHandler(ondraw) catch unreachable; // TODO: improve
-    }
+    @import("../internal.zig").applyConfigStruct(&cnv, config);
     return cnv;
 }
 
@@ -108,10 +101,7 @@ pub const Rect = struct {
 pub fn rect(config: Rect.Config) Rect {
     var r = Rect.init();
     r.addDrawHandler(&Rect.draw) catch unreachable;
-    r.preferredSize = Atom(?Size).of(config.preferredSize);
-    r.color = Atom(Color).of(config.color);
-    r.cornerRadius = Atom([4]f32).of(config.cornerRadius);
-    r.widget_data.atoms.name.set(config.name);
+    @import("../internal.zig").applyConfigStruct(&r, config);
     return r;
 }
 

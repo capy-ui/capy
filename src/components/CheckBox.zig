@@ -81,12 +81,6 @@ pub const CheckBox = struct {
 
 pub fn checkBox(config: CheckBox.Config) CheckBox {
     var btn = CheckBox.init();
-    btn.checked.set(config.checked);
-    btn.label.set(config.label);
-    btn.enabled.set(config.enabled);
-    btn.widget_data.atoms.name.set(config.name);
-    if (config.onclick) |onclick| {
-        btn.addClickHandler(onclick) catch unreachable; // TODO: improve
-    }
+    @import("../internal.zig").applyConfigStruct(&btn, config);
     return btn;
 }

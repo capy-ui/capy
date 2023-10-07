@@ -41,12 +41,9 @@ pub const Image = struct {
 
     // TODO: just directly accept an URL or file path if there's no data
     pub fn init(config: Image.Config) Image {
-        var self = Image.init_events(Image{
-            .url = Atom([]const u8).of(config.url),
-            .data = Atom(?ImageData).of(config.data),
-            .scaling = Atom(Scaling).of(config.scaling),
-        });
+        var self = Image.init_events(Image{ .url = Atom([]const u8).of(config.url) });
         self.addDrawHandler(&Image.draw) catch unreachable;
+        @import("../internal.zig").applyConfigStruct(&self, config);
         return self;
     }
 
@@ -147,6 +144,5 @@ pub const Image = struct {
 };
 
 pub fn image(config: Image.Config) Image {
-    var img = Image.init(config);
-    return img;
+    return Image.init(config);
 }

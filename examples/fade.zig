@@ -33,10 +33,10 @@ pub fn main() !void {
             capy.expanded((try capy.row(.{}, .{
                 capy.label(.{ .text = "Hello Zig" }),
                 capy.expanded(
-                    capy.image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit }),
+                    capy.image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit, .opacity = 0 })
+                        .bind("opacity", &opacity),
                 ),
-            }))
-                .bind("opacity", &opacity)),
+            }))),
             capy.button(.{ .label = "Hide", .onclick = startAnimation }),
         }),
     );

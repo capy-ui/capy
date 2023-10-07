@@ -46,7 +46,7 @@ pub const ImageData = struct {
     /// Load from a png file using a buffer (which can be provided by @embedFile)
     pub fn fromBuffer(allocator: std.mem.Allocator, buf: []const u8) !ImageData {
         // stage1 crashes with LLVM ERROR: Unable to expand fixed point multiplication.
-        //const img = try zigimg.Image.fromMemory(allocator, buf);
+        // const img = try zigimg.Image.fromMemory(allocator, buf);
 
         var stream = std.io.StreamSource{ .const_buffer = std.io.fixedBufferStream(buf) };
         return readFromStream(allocator, &stream);

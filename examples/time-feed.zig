@@ -56,7 +56,7 @@ fn onSubmit(_: *anyopaque) !void {
     try list_model.add(.{
         .start = @as(u64, @intCast(std.time.timestamp() - 1000)),
         .end = @as(u64, @intCast(std.time.timestamp())),
-        .description = submitDesc.get(),
+        .description = try capy.internal.lasting_allocator.dupe(u8, submitDesc.get()),
     });
 
     // clear description
@@ -72,7 +72,7 @@ pub fn InsertCard() anyerror!capy.Container {
 
     return try capy.column(.{}, .{
         // TODO: TextArea when it supports data wrappers
-        capy.textField(.{ .name = "description" })
+        capy.textArea(.{ .name = "description" })
             .bind("text", &submitDesc), // placeholder = "Task description..."
         capy.label(.{ .text = "Going on since.. 00:00:20" }),
         capy.alignment(.{ .x = 1 }, capy.row(.{}, .{
