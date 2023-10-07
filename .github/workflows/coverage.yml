@@ -17,7 +17,7 @@ jobs:
       - name: Install Zig
         uses: goto-bus-stop/setup-zig@v2
         with:
-          version: master
+          version: 0.11.0
 
       - name: Test Coverage Capy for native
         run: xvfb-run -a zig build coverage
