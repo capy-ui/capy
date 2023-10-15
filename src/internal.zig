@@ -578,7 +578,6 @@ pub fn Events(comptime T: type) type {
         /// When the value is changed in the opacity data wrapper
         fn opacityChanged(newValue: f32, userdata: usize) void {
             const widget = @as(*T, @ptrFromInt(userdata));
-            std.log.info("opaccity changed to {d}", .{newValue});
             if (widget.peer) |*peer| {
                 peer.setOpacity(newValue);
             }

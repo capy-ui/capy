@@ -1,5 +1,4 @@
-let domObjects = [];
-let canvasContexts = [];
+let obj = null;
 let pendingEvents = [];
 let networkRequests = [];
 let networkRequestsCompletion = [];
@@ -9,46 +8,9 @@ let events = [];
 let executeProgram = true;
 let rootElementId = -1;
 
-/**
-	@type SharedArrayBuffer
-**/
-let arrayBuffer = undefined;
-/**
-	@type SharedArrayBuffer
-**/
-let pendingAnswer = undefined;
-
 function pushEvent(evt) {
 	const eventId = events.push(evt);
 	pendingEvents.push(eventId - 1);
-}
-
-async function pushAnswer(type, value) {
-	if (type == "int" && typeof value !== "number") {
-		throw Error("Type mismatch, got " + (typeof value));
-	}
-
-	const WAITING = 0;
-	const DONE = 1;
-	const view = new DataView(pendingAnswer);
-	while (view.getUint8(0) != WAITING) {
-		// throw Error("Expected waiting state");
-		await wait(100);
-		console.log("Await waiting state");
-	}
-
-	const left = value & 0xFFFFFFFF;
-	const right = value >> 32;
-	view.setUint32(1, left, true);
-	view.setUint32(5, right, true);
-	view.setInt8(0, DONE);
-}
-
-async function wait(msecs) {
-	const promise = new Promise((resolve, reject) => {
-		setTimeout(resolve, msecs);
-	});
-	return promise;
 }
 
 function readString(addr, len) {
@@ -56,157 +18,97 @@ function readString(addr, len) {
 	len = len >>> 0;
 
 	let utf8Decoder = new TextDecoder();
-	let view = new Uint8Array(arrayBuffer);
+	// let view = new Uint8Array(obj.instance.exports.memory.buffer);
+	let view = new Uint8Array(env.memory.buffer);
+	// console.debug("read string @ " + addr + " for " + len + " bytes");
 	
 	return utf8Decoder.decode(view.slice(addr, addr + len));
 }
+
+// 1 byte for making and 8 bytes for data (64 bits)
+let pendingAnswer = new SharedArrayBuffer(9);
+/**
+	@param {string} type The type of the answer, can only be "int"
+**/
+function waitForAnswer(type) {
+	const WAITING = 0;
+	const DONE = 1;
+	
+	const view = new DataView(pendingAnswer);
+	view.setUint8(0, WAITING);
+	while (view.getUint8(0) != DONE) {
+		wait(10);
+	}
+
+	switch (type) {
+		case "int":
+			const int = view.getUint32(5, true) << 32 | view.getUint32(1, true);
+			console.log("Received answer " + int);
+			return int;
+	}
+
+	throw Error("Type invalid (" + type + ")");
+}
+
+/**
+	@param {int} msecs Time to wait in milliseconds
+**/
+function wait(msecs) {
+	const start = Date.now();
+	while (Date.now() >= start + msecs) {
+		// Wait.
+	}
+
+	return;
+}
+
+const memory = new WebAssembly.Memory({
+	initial: 20,
+	maximum: 100,
+	// shared: true, // NOT SUPPORTED ON FIREFOX
+});
 const env = {
+		memory: memory,
 		jsPrint: function(arg, len) {
 			console.log(readString(arg, len));
 		},
 		jsCreateElement: function(name, nameLen, elementType, elementTypeLen) {
-			const elem = document.createElement(readString(name, nameLen));
-			const idx = domObjects.push(elem) - 1;
-
-			elem.style.position = "absolute";
-			elem.classList.add("capy-" + readString(elementType, elementTypeLen));
-			elem.addEventListener("click", function(e) {
-				pushEvent({
-					type: 1,
-					target: idx
-				});
-			});
-			elem.addEventListener("change", function(e) {
-				pushEvent({
-					type: 2,
-					target: idx
-				});
-			});
-
-			// mouse
-			elem.addEventListener("mousedown", function(e) {
-				pushEvent({
-					type: 3,
-					target: idx,
-					args: [e.button, true, e.clientX, e.clientY]
-				});
-			});
-			elem.addEventListener("mouseup", function(e) {
-				pushEvent({
-					type: 3,
-					target: idx,
-					args: [e.button, false, e.clientX, e.clientY]
-				});
-			});
-			elem.addEventListener("mouseleave", function(e) {
-				pushEvent({
-					type: 3,
-					target: idx,
-					args: [0, false, e.clientX, e.clientY]
-				});
-			});
-			elem.addEventListener("mousemove", function(e) {
-				pushEvent({
-					type: 4,
-					target: idx,
-					args: [e.clientX, e.clientY]
-				});
-			});
-			elem.addEventListener("wheel", function(e) {
-				console.log(e.deltaY);
-				pushEvent({
-					type: 5,
-					target: idx,
-					//args: [Math.round(e.deltaX / 100), Math.round(e.deltaY / 100)]
-					// the way it works is very browser and OS dependent so just assume
-					// we scrolled 1 'tick'
-					args: [1 * Math.sign(e.deltaX), 1 * Math.sign(e.deltaY)]
-				});
-			});
-
-			// touch
-			elem.addEventListener("touchstart", function(e) {
-				pushEvent({
-					type: 3,
-					target: idx,
-					args: [0, true, e.touches[0].clientX, e.touches[0].clientY]
-				});
-			});
-			elem.addEventListener("touchend", function(e) {
-				pushEvent({
-					type: 3,
-					target: idx,
-					args: [0, false, e.touches[0].clientX, e.touches[0].clientY]
-				});
-			});
-			elem.addEventListener("touchmove", function(e) {
-				pushEvent({
-					type: 4,
-					target: idx,
-					args: [e.touches[0].clientX, e.touches[0].clientY]
-				});
-			});
-			return idx;
+      self.postMessage(["jsCreateElement", name, nameLen, elementType, elementTypeLen]);
+			const a = waitForAnswer("int");
+			return a;
 		},
 		appendElement: function(parent, child) {
-			domObjects[parent].appendChild(domObjects[child]);
+      self.postMessage(["appendElement", parent, child]);
 		},
+		/**
+		 * @param {int} root
+		**/
 		setRoot: function(root) {
-			document.querySelector("#application").innerHTML = "";
-			document.querySelector("#application").appendChild(domObjects[root]);
-			domObjects[root].style.width  = "100%";
-			domObjects[root].style.height = "100%";
-			rootElementId = root;
+      self.postMessage(["setRoot", root]);
 		},
 		setText: function(element, textPtr, textLen) {
-			const elem = domObjects[element];
-			if (elem.nodeName === "INPUT") {
-				elem.value = readString(textPtr, textLen);
-			} else {
-				elem.innerText = readString(textPtr, textLen);
-			}
+      self.postMessage(["setText", element, readString(textPtr, textLen)]);
 		},
 		getTextLen: function(element) {
-			const elem = domObjects[element];
-			let text = "";
-			if (elem.nodeName === "INPUT") text = elem.value;
-			else text = elem.innerText;
-			const length = new TextEncoder().encode(text).length;
-			//console.log(text.length + " <= " + length);
-			return length;
+      self.postMessage(["getTextLen", element]);
+			return waitForAnswer("int");
 		},
 		getText: function(element, textPtr) {
-			const elem = domObjects[element];
-			let text = "";
-			if (elem.nodeName === "INPUT") text = elem.value;
-			else text = elem.innerText;
-
-			const encoded = new TextEncoder().encode(text);
-
-			let view = new Uint8Array(obj.instance.exports.memory.buffer);
-			for (let i = 0; i < encoded.length; i++) {
-				view[textPtr + i] = encoded[i];
-			}
+			self.postMessage(["getText", element, textPtr]);
 		},
 		setPos: function(element, x, y) {
-			domObjects[element].style.transform = "translate(" + x + "px, " + y + "px)";
+			self.postMessage(["setPos", element, x, y])
 		},
 		setSize: function(element, w, h) {
-			domObjects[element].style.width  = w + "px";
-			domObjects[element].style.height = h + "px";
-			if (domObjects[element].classList.contains("capy-label")) {
-				domObjects[element].style.lineHeight = h + "px";
-			}
-			pushEvent({
-				type: 0,
-				target: element
-			});
+			self.postMessage(["setSize", element, w, h]);
 		},
 		getWidth: function(element) {
-			return domObjects[element].clientWidth;
+      self.postMessage(["getWidth", element]);
+      return waitForAnswer("int");
 		},
 		getHeight: function(element) {
-			return domObjects[element].clientHeight;
+      self.postMessage(["getHeight", element]);
+      return waitForAnswer("int");
 		},
 		now: function() {
 			return Date.now();
@@ -356,46 +258,24 @@ const env = {
 		},
 
 		stopExecution: function() {
-			executeProgram = false;
-			console.error("STOP EXECUTION!");
+      postMessage(["stopExecution"]);
 		},
-};
+	};
 
+console.log("WEB WORKER RUN");
 
 (async function() {
-	if (!window.Worker) {
-		alert("Capy requires Web Workers until Zig supports async");
-	}
-	const wasmWorker = new Worker("capy-worker.js");
-	wasmWorker.postMessage("test");
-	wasmWorker.onmessage = (e) => {
-		console.log("message", e.data);
-		const name = e.data[0];
-		if (name === "setBuffer") {
-			arrayBuffer = e.data[1];
-			pendingAnswer = e.data[2];
-		} else if (name === "stopExecution") {
-			wasmWorker.terminate();
-		} else {
-			const value = env[name].apply(null, e.data.slice(1));
-			if (value !== undefined) {
-				pushAnswer("int", value);
-			}
-		}
+	const importObject = {
+		env: env,
 	};
-
-	// TODO: when we're in blocking mode, avoid updating so often
-	function update() {
-		if (executeProgram) {
-			// obj.instance.exports._zgtContinue();
-			// requestAnimationFrame(update);
-		}
+	if (WebAssembly.instantiateStreaming) {
+		obj = await WebAssembly.instantiateStreaming(fetch("zig-app.wasm"), importObject);
+	} else {
+		const response = await fetch("zig-app.wasm");
+		obj = await WebAssembly.instantiate(await response.arrayBuffer(), importObject);
 	}
-	//setInterval(update, 32);
-	requestAnimationFrame(update);
 
-	window.onresize = function() {
-		pushEvent({ type: 0, target: rootElementId });
-	};
-	window.onresize(); // call resize handler atleast once, to setup layout
+  // const buffer = obj.instance.exports.memory.buffer;
+  self.postMessage(["setBuffer", memory.buffer, pendingAnswer]);
+	obj.instance.exports._start();
 })();

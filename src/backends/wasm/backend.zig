@@ -46,11 +46,16 @@ pub fn init() !void {
 var globalWindow: ?*Window = null;
 
 pub const Window = struct {
+    peer: *GuiWidget,
     child: ?PeerType = null,
     scale: f32 = 1.0,
 
+    pub usingnamespace Events(Window);
+
     pub fn create() !Window {
-        return Window{};
+        return Window{
+            .peer = try GuiWidget.init(Window, lasting_allocator, "div", "window"),
+        };
     }
 
     pub fn show(self: *Window) void {
@@ -119,6 +124,7 @@ pub fn Events(comptime T: type) type {
                 },
                 .KeyType => self.peer.user.keyTypeHandler = cb,
                 .KeyPress => self.peer.user.keyPressHandler = cb,
+                .PropertyChange => self.peer.user.propertyChangeHandler = cb,
             }
         }
 
@@ -188,11 +194,11 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getWidth(self: *const T) c_int {
-            return std.math.max(10, js.getWidth(self.peer.element));
+            return @max(10, js.getWidth(self.peer.element));
         }
 
         pub fn getHeight(self: *const T) c_int {
-            return std.math.max(10, js.getHeight(self.peer.element));
+            return @max(10, js.getHeight(self.peer.element));
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
@@ -241,7 +247,7 @@ pub const TextField = struct {
 pub const Label = struct {
     peer: *GuiWidget,
     /// The text returned by getText(), it's invalidated everytime setText is called
-    temp_text: ?[:0]const u8 = null,
+    temp_text: ?[]const u8 = null,
 
     pub usingnamespace Events(Label);
 
@@ -251,7 +257,7 @@ pub const Label = struct {
 
     pub fn setAlignment(_: *Label, _: f32) void {}
 
-    pub fn setText(self: *Label, text: [:0]const u8) void {
+    pub fn setText(self: *Label, text: []const u8) void {
         js.setText(self.peer.element, text.ptr, text.len);
         if (self.temp_text) |slice| {
             lasting_allocator.free(slice);
@@ -259,7 +265,7 @@ pub const Label = struct {
         }
     }
 
-    pub fn getText(self: *Label) [:0]const u8 {
+    pub fn getText(self: *Label) []const u8 {
         if (self.temp_text) |text| {
             return text;
         } else {
@@ -463,6 +469,16 @@ pub const Container = struct {
         self.children.append(peer) catch unreachable;
     }
 
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
+    }
+
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         _ = self;
         js.setPos(peer.element, x, y);
@@ -496,9 +512,27 @@ pub const HttpResponse = struct {
     }
 };
 
-// Execution
+var stopExecution = false;
 
-fn executeMain() callconv(.Async) void {
+// Temporary execution until async is added back in Zig
+pub fn runStep(step: shared.EventLoopStep) bool {
+    _ = step;
+    while (js.hasEvent()) {
+        const eventId = js.popEvent();
+        switch (js.getEventType(eventId)) {
+            else => {
+                if (globalWindow) |window| {
+                    if (window.child) |child| {
+                        child.processEventFn(child.object, eventId);
+                    }
+                }
+            },
+        }
+    }
+    return !stopExecution;
+}
+
+fn executeMain() void {
     const mainFn = @import("root").main;
     const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
     if (ReturnType == void) {
@@ -507,13 +541,28 @@ fn executeMain() callconv(.Async) void {
         mainFn() catch |err| @panic(@errorName(err));
     }
     js.stopExecution();
+    stopExecution = true;
 }
 
-var frame: @Frame(executeMain) = undefined;
-var result: void = {};
-var suspending: bool = false;
+// Execution
+// TODO: reuse the old system when async is finally reimplemented in the zig compiler
 
-var resumePtr: anyframe = undefined;
+// fn executeMain() callconv(.Async) void {
+//     const mainFn = @import("root").main;
+//     const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
+//     if (ReturnType == void) {
+//         mainFn();
+//     } else {
+//         mainFn() catch |err| @panic(@errorName(err));
+//     }
+//     js.stopExecution();
+// }
+
+// var frame: @Frame(executeMain) = undefined;
+// var result: void = {};
+// var suspending: bool = false;
+
+// var resumePtr: anyframe = undefined;
 
 fn milliTimestamp() i64 {
     return @as(i64, @intFromFloat(js.now()));
@@ -556,10 +605,11 @@ pub const backendExport = struct {
 
                 const start = milliTimestamp();
                 while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
-                    suspending = true;
-                    suspend {
-                        resumePtr = @frame();
-                    }
+                    // suspending = true;
+                    // suspend {
+                    //     resumePtr = @frame();
+                    // }
+                    // TODO: better way to sleep like calling a jS function for sleep
                 }
                 return 0;
             }
@@ -600,37 +650,43 @@ pub const backendExport = struct {
 
         //@breakpoint();
         js.stopExecution();
+        stopExecution = true;
+        while (true) {}
     }
 
     pub export fn _start() callconv(.C) void {
-        _ = @asyncCall(&frame, &result, executeMain, .{});
+        executeMain();
     }
 
-    pub export fn _zgtContinue() callconv(.C) void {
-        if (suspending) {
-            suspending = false;
-            resume resumePtr;
-        }
-    }
+    // pub export fn _start() callconv(.C) void {
+    //     _ = @asyncCall(&frame, &result, executeMain, .{});
+    // }
+
+    // pub export fn _zgtContinue() callconv(.C) void {
+    //     if (suspending) {
+    //         suspending = false;
+    //         resume resumePtr;
+    //     }
+    // }
 };
 
-pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
-    _ = step;
-    while (js.hasEvent()) {
-        const eventId = js.popEvent();
-        switch (js.getEventType(eventId)) {
-            else => {
-                if (globalWindow) |window| {
-                    if (window.child) |child| {
-                        child.processEventFn(child.object, eventId);
-                    }
-                }
-            },
-        }
-    }
-    suspending = true;
-    suspend {
-        resumePtr = @frame();
-    }
-    return true;
-}
+// pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
+//     _ = step;
+//     while (js.hasEvent()) {
+//         const eventId = js.popEvent();
+//         switch (js.getEventType(eventId)) {
+//             else => {
+//                 if (globalWindow) |window| {
+//                     if (window.child) |child| {
+//                         child.processEventFn(child.object, eventId);
+//                     }
+//                 }
+//             },
+//         }
+//     }
+//     suspending = true;
+//     suspend {
+//         resumePtr = @frame();
+//     }
+//     return true;
+// }

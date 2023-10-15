@@ -87,24 +87,42 @@ const WebServerStep = struct {
             } else if (std.mem.eql(u8, path, "/capy.js")) {
                 file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy.js" });
                 content_type = "application/javascript";
+            } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
+                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy-worker.js" });
+                content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
                 file_path = self.exe.getOutputSource().getPath2(build, &self.step);
                 content_type = "application/wasm";
             }
 
-            var file = try std.fs.openFileAbsolute(file_path, .{ .mode = .read_only });
-            defer file.close();
-            const content = try file.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+            std.log.info("{s} -> {s}", .{ path, file_path });
+            const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
+                switch (err) {
+                    error.FileNotFound => break :blk null,
+                    else => return err,
+                }
+            };
+            const content = blk: {
+                if (file) |f| {
+                    defer f.close();
+                    break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+                } else {
+                    break :blk "404 Not Found";
+                }
+            };
 
             res.transfer_encoding = .{ .content_length = content.len };
-            try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
+            // try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
+            try res.headers.append("Connection", "close");
             try res.headers.append("Content-Type", content_type);
+            try res.headers.append("Cross-Origin-Opener-Policy", "same-origin");
+            try res.headers.append("Cross-Origin-Embedder-Policy", "require-corp");
 
             try res.do();
             try res.writer().writeAll(content);
             try res.finish();
 
-            if (res.connection.closing) break;
+            if (res.connection.closing or true) break;
         }
     }
 };
@@ -280,6 +298,8 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 if (step.optimize == .ReleaseSmall) {
                     step.strip = true;
                 }
+                step.export_symbol_names = &.{"_start"};
+                step.import_memory = true;
 
                 const serve = WebServerStep.create(b, step);
                 const install_step = b.addInstallArtifact(step, .{});
