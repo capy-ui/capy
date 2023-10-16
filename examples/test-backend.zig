@@ -9,8 +9,6 @@ pub fn main() !void {
     try window.set(
         capy.row(.{}, .{}),
     );
-    var row = capy.label(.{ .text = "test" });
-    _ = row;
 
     // window.resize(800, 450);
     window.show();
