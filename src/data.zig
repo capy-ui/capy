@@ -103,6 +103,7 @@ pub var _animatedAtoms = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
 }).init(lasting_allocator);
+pub var _animatedAtomsLength = Atom(usize).of(0);
 pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
 fn isAnimableType(comptime T: type) bool {
@@ -296,6 +297,7 @@ pub fn Atom(comptime T: type) type {
             }
             if (!contains) {
                 _animatedAtoms.append(.{ .fnPtr = @as(*const fn (*anyopaque) bool, @ptrCast(&Self.update)), .userdata = self }) catch {};
+                _animatedAtomsLength.set(_animatedAtoms.items.len);
             }
         }
 
@@ -847,6 +849,7 @@ test "animated atom" {
     var animated = try Atom(i32).animated(&original, Easings.Linear, 1000);
     defer animated.deinit();
     defer _animatedAtoms.clearAndFree();
+    _animatedAtomsLength.set(0);
 
     original.set(1000);
     try std.testing.expect(animated.hasAnimation());

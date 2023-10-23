@@ -92,19 +92,32 @@ const WebServerStep = struct {
                 content_type = "application/wasm";
             }
 
-            var file = try std.fs.openFileAbsolute(file_path, .{ .mode = .read_only });
-            defer file.close();
-            const content = try file.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+            std.log.info("{s}", .{path});
+            const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
+                switch (err) {
+                    error.FileNotFound => break :blk null,
+                    else => return err,
+                }
+            };
+            const content = blk: {
+                if (file) |f| {
+                    defer f.close();
+                    break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+                } else {
+                    break :blk "404 Not Found";
+                }
+            };
 
             res.transfer_encoding = .{ .content_length = content.len };
-            try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
+            // try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
+            try res.headers.append("Connection", "close");
             try res.headers.append("Content-Type", content_type);
 
             try res.do();
             try res.writer().writeAll(content);
             try res.finish();
 
-            if (res.connection.closing) break;
+            if (res.connection.closing or true) break;
         }
     }
 };
@@ -277,6 +290,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
+                step.export_symbol_names = &.{ "_start", "_capyStep" };
                 if (step.optimize == .ReleaseSmall) {
                     step.strip = true;
                 }

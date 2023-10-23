@@ -22,10 +22,15 @@ const GuiWidget = struct {
     element: js.ElementId = 0,
 
     processEventFn: *const fn (object: ?*anyopaque, event: js.EventId) void,
+    children: std.ArrayList(*GuiWidget),
 
     pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8, typeName: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
-        self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name, typeName) };
+        self.* = .{
+            .processEventFn = T.processEvent,
+            .element = js.createElement(name, typeName),
+            .children = std.ArrayList(*GuiWidget).init(allocator),
+        };
         return self;
     }
 };
@@ -46,11 +51,16 @@ pub fn init() !void {
 var globalWindow: ?*Window = null;
 
 pub const Window = struct {
+    peer: *GuiWidget,
     child: ?PeerType = null,
     scale: f32 = 1.0,
 
+    pub usingnamespace Events(Window);
+
     pub fn create() !Window {
-        return Window{};
+        return Window{
+            .peer = try GuiWidget.init(Window, lasting_allocator, "div", "window"),
+        };
     }
 
     pub fn show(self: *Window) void {
@@ -106,6 +116,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
+            self.peer.object = self;
             switch (eType) {
                 .Click => self.peer.user.clickHandler = cb,
                 .Draw => self.peer.user.drawHandler = cb,
@@ -119,6 +130,7 @@ pub fn Events(comptime T: type) type {
                 },
                 .KeyType => self.peer.user.keyTypeHandler = cb,
                 .KeyPress => self.peer.user.keyPressHandler = cb,
+                .PropertyChange => self.peer.user.propertyChangeHandler = cb,
             }
         }
 
@@ -181,18 +193,18 @@ pub fn Events(comptime T: type) type {
                     },
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
-                for (self.children.items) |child| {
+                for (self.peer.children.items) |child| {
                     child.processEventFn(child.object, event);
                 }
             }
         }
 
         pub fn getWidth(self: *const T) c_int {
-            return std.math.max(10, js.getWidth(self.peer.element));
+            return @max(10, js.getWidth(self.peer.element));
         }
 
         pub fn getHeight(self: *const T) c_int {
-            return std.math.max(10, js.getHeight(self.peer.element));
+            return @max(10, js.getHeight(self.peer.element));
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
@@ -241,7 +253,7 @@ pub const TextField = struct {
 pub const Label = struct {
     peer: *GuiWidget,
     /// The text returned by getText(), it's invalidated everytime setText is called
-    temp_text: ?[:0]const u8 = null,
+    temp_text: ?[]const u8 = null,
 
     pub usingnamespace Events(Label);
 
@@ -375,6 +387,11 @@ pub const Canvas = struct {
             js.rectPath(self.ctx, x, y, w, h);
         }
 
+        pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
+            _ = corner_radiuses;
+            js.rectPath(self.ctx, x, y, w, h);
+        }
+
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             // TODO: layout
             _ = layout;
@@ -447,20 +464,28 @@ pub const ImageData = struct {
 
 pub const Container = struct {
     peer: *GuiWidget,
-    children: std.ArrayList(*GuiWidget),
 
     pub usingnamespace Events(Container);
 
     pub fn create() !Container {
         return Container{
             .peer = try GuiWidget.init(Container, lasting_allocator, "div", "container"),
-            .children = std.ArrayList(*GuiWidget).init(lasting_allocator),
         };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
         js.appendElement(self.peer.element, peer.element);
-        self.children.append(peer) catch unreachable;
+        self.peer.children.append(peer) catch unreachable;
+    }
+
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn setTabOrder(self: *Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
@@ -498,22 +523,28 @@ pub const HttpResponse = struct {
 
 // Execution
 
-fn executeMain() callconv(.Async) void {
-    const mainFn = @import("root").main;
-    const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
+fn executeStart() void {
+    const startFn = @import("root").start;
+    const ReturnType = @typeInfo(@TypeOf(startFn)).Fn.return_type.?;
     if (ReturnType == void) {
-        mainFn();
+        startFn();
     } else {
-        mainFn() catch |err| @panic(@errorName(err));
+        startFn() catch |err| @panic(@errorName(err));
     }
-    js.stopExecution();
 }
 
-var frame: @Frame(executeMain) = undefined;
-var result: void = {};
-var suspending: bool = false;
-
-var resumePtr: anyframe = undefined;
+fn executeStep() void {
+    // Check for events
+    while (js.hasEvent()) {
+        const eventId = js.popEvent();
+        if (globalWindow) |window| {
+            if (window.child) |child| {
+                child.processEventFn(child.object, eventId);
+            }
+        }
+    }
+    lib.eventStep.callListeners();
+}
 
 fn milliTimestamp() i64 {
     return @as(i64, @intFromFloat(js.now()));
@@ -556,10 +587,11 @@ pub const backendExport = struct {
 
                 const start = milliTimestamp();
                 while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
-                    suspending = true;
-                    suspend {
-                        resumePtr = @frame();
-                    }
+                    // TODO: when zig async is restored, use suspend here
+                    // suspending = true;
+                    // suspend {
+                    //     resumePtr = @frame();
+                    // }
                 }
                 return 0;
             }
@@ -596,6 +628,7 @@ pub const backendExport = struct {
     }
 
     pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
+        @setRuntimeSafety(false);
         js.print(msg);
 
         //@breakpoint();
@@ -603,34 +636,27 @@ pub const backendExport = struct {
     }
 
     pub export fn _start() callconv(.C) void {
-        _ = @asyncCall(&frame, &result, executeMain, .{});
+        executeStart();
     }
 
-    pub export fn _zgtContinue() callconv(.C) void {
-        if (suspending) {
-            suspending = false;
-            resume resumePtr;
-        }
+    pub export fn _capyStep() callconv(.C) void {
+        executeStep();
     }
 };
 
-pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
-    _ = step;
-    while (js.hasEvent()) {
-        const eventId = js.popEvent();
-        switch (js.getEventType(eventId)) {
-            else => {
-                if (globalWindow) |window| {
-                    if (window.child) |child| {
-                        child.processEventFn(child.object, eventId);
-                    }
-                }
-            },
-        }
-    }
-    suspending = true;
-    suspend {
-        resumePtr = @frame();
-    }
-    return true;
-}
+// pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
+//     _ = step;
+//     while (js.hasEvent()) {
+//         const eventId = js.popEvent();
+//         switch (js.getEventType(eventId)) {
+//             else => {
+//                 if (globalWindow) |window| {
+//                     if (window.child) |child| {
+//                         child.processEventFn(child.object, eventId);
+//                     }
+//                 }
+//             },
+//         }
+//     }
+//     return true;
+// }

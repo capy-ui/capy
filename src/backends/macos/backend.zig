@@ -160,7 +160,7 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         std.log.info("show window", .{});
-        objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true))}) catch unreachable;
+        objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
         objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
         std.log.info("showed window", .{});
         _ = activeWindows.fetchAdd(1, .Release);
