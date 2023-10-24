@@ -263,7 +263,7 @@ pub const Label = struct {
 
     pub fn setAlignment(_: *Label, _: f32) void {}
 
-    pub fn setText(self: *Label, text: [:0]const u8) void {
+    pub fn setText(self: *Label, text: []const u8) void {
         js.setText(self.peer.element, text.ptr, text.len);
         if (self.temp_text) |slice| {
             lasting_allocator.free(slice);
@@ -271,7 +271,7 @@ pub const Label = struct {
         }
     }
 
-    pub fn getText(self: *Label) [:0]const u8 {
+    pub fn getText(self: *Label) []const u8 {
         if (self.temp_text) |text| {
             return text;
         } else {
