@@ -9,6 +9,7 @@ pub const NSWindowStyleMask = struct {
     pub const Resizable: NSUInteger = 1 << 3;
     pub const Utility: NSUInteger = 1 << 4;
     pub const FullScreen: NSUInteger = 1 << 14;
+    pub const FullSizeContentView: NSUInteger = 1 << 15;
 };
 
 pub const NSBackingStore = enum(NSUInteger) {

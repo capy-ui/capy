@@ -22,10 +22,15 @@ const GuiWidget = struct {
     element: js.ElementId = 0,
 
     processEventFn: *const fn (object: ?*anyopaque, event: js.EventId) void,
+    children: std.ArrayList(*GuiWidget),
 
     pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8, typeName: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
-        self.* = .{ .processEventFn = T.processEvent, .element = js.createElement(name, typeName) };
+        self.* = .{
+            .processEventFn = T.processEvent,
+            .element = js.createElement(name, typeName),
+            .children = std.ArrayList(*GuiWidget).init(allocator),
+        };
         return self;
     }
 };
@@ -111,6 +116,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
+            self.peer.object = self;
             switch (eType) {
                 .Click => self.peer.user.clickHandler = cb,
                 .Draw => self.peer.user.drawHandler = cb,
@@ -187,7 +193,7 @@ pub fn Events(comptime T: type) type {
                     },
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
-                for (self.children.items) |child| {
+                for (self.peer.children.items) |child| {
                     child.processEventFn(child.object, event);
                 }
             }
@@ -381,9 +387,9 @@ pub const Canvas = struct {
             js.rectPath(self.ctx, x, y, w, h);
         }
 
-        pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, cornerRadiuses: [4]f32) void {
-            _ = cornerRadiuses;
-            self.rectangle(x, y, w, h);
+        pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
+            _ = corner_radiuses;
+            js.rectPath(self.ctx, x, y, w, h);
         }
 
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
@@ -458,20 +464,28 @@ pub const ImageData = struct {
 
 pub const Container = struct {
     peer: *GuiWidget,
-    children: std.ArrayList(*GuiWidget),
 
     pub usingnamespace Events(Container);
 
     pub fn create() !Container {
         return Container{
             .peer = try GuiWidget.init(Container, lasting_allocator, "div", "container"),
-            .children = std.ArrayList(*GuiWidget).init(lasting_allocator),
         };
     }
 
     pub fn add(self: *Container, peer: PeerType) void {
         js.appendElement(self.peer.element, peer.element);
-        self.children.append(peer) catch unreachable;
+        self.peer.children.append(peer) catch unreachable;
+    }
+
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn setTabOrder(self: *Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
@@ -611,10 +625,6 @@ pub const backendExport = struct {
 
                 const start = milliTimestamp();
                 while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
-                    // suspending = true;
-                    // suspend {
-                    //     resumePtr = @frame();
-                    // }
                     // TODO: better way to sleep like calling a jS function for sleep
                 }
                 return 0;
@@ -652,6 +662,7 @@ pub const backendExport = struct {
     }
 
     pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
+        @setRuntimeSafety(false);
         js.print(msg);
 
         //@breakpoint();
@@ -668,7 +679,7 @@ pub const backendExport = struct {
     //     _ = @asyncCall(&frame, &result, executeMain, .{});
     // }
 
-    // pub export fn _zgtContinue() callconv(.C) void {
+    // pub export fn _capyStep() callconv(.C) void {
     //     if (suspending) {
     //         suspending = false;
     //         resume resumePtr;

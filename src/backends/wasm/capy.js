@@ -78,10 +78,12 @@ const env = {
 			elem.style.position = "absolute";
 			elem.classList.add("capy-" + readString(elementType, elementTypeLen));
 			elem.addEventListener("click", function(e) {
-				pushEvent({
-					type: 1,
-					target: idx
-				});
+				if (elem.nodeName == "BUTTON") {
+					pushEvent({
+						type: 1,
+						target: idx
+					});
+				}
 			});
 			elem.addEventListener("change", function(e) {
 				pushEvent({
@@ -393,7 +395,7 @@ const env = {
 	// TODO: when we're in blocking mode, avoid updating so often
 	function update() {
 		if (executeProgram) {
-			// obj.instance.exports._zgtContinue();
+			// obj.instance.exports._capyStep();
 			// requestAnimationFrame(update);
 		}
 	}

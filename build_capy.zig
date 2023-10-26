@@ -95,7 +95,7 @@ const WebServerStep = struct {
                 content_type = "application/wasm";
             }
 
-            std.log.info("{s} -> {s}", .{ path, file_path });
+            std.log.info("{s}", .{path});
             const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
                 switch (err) {
                     error.FileNotFound => break :blk null,

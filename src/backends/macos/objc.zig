@@ -13,36 +13,36 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
         const FnType = blk: {
             {
                 // TODO(hazeycode): replace this hack with the more generalised code above once it doens't crash the compiler
-                break :blk switch (args_meta.len) {
+                break :blk *const switch (args_meta.len) {
                     0 => fn (@TypeOf(target), SEL) callconv(.C) ReturnType,
-                    1 => fn (@TypeOf(target), SEL, args_meta[0].field_type) callconv(.C) ReturnType,
-                    2 => fn (@TypeOf(target), SEL, args_meta[0].field_type, args_meta[1].field_type) callconv(.C) ReturnType,
-                    3 => fn (@TypeOf(target), SEL, args_meta[0].field_type, args_meta[1].field_type, args_meta[2].field_type) callconv(.C) ReturnType,
-                    4 => fn (@TypeOf(target), SEL, args_meta[0].field_type, args_meta[1].field_type, args_meta[2].field_type, args_meta[3].field_type) callconv(.C) ReturnType,
-                    5 => fn (@TypeOf(target), SEL, args_meta[0].field_type, args_meta[1].field_type, args_meta[2].field_type, args_meta[3].field_type, args_meta[4].field_type) callconv(.C) ReturnType,
+                    1 => fn (@TypeOf(target), SEL, args_meta[0].type) callconv(.C) ReturnType,
+                    2 => fn (@TypeOf(target), SEL, args_meta[0].type, args_meta[1].type) callconv(.C) ReturnType,
+                    3 => fn (@TypeOf(target), SEL, args_meta[0].type, args_meta[1].type, args_meta[2].type) callconv(.C) ReturnType,
+                    4 => fn (@TypeOf(target), SEL, args_meta[0].type, args_meta[1].type, args_meta[2].type, args_meta[3].type) callconv(.C) ReturnType,
+                    5 => fn (@TypeOf(target), SEL, args_meta[0].type, args_meta[1].type, args_meta[2].type, args_meta[3].type, args_meta[4].type) callconv(.C) ReturnType,
                     else => @compileError("Unsupported number of args: add more variants in zig-objcrt/src/message.zig"),
                 };
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @as(FnType, @ptrCast(c.objc_msgSend));
-        return @call(.{}, func, .{ target, selector } ++ args);
+        var func = @as(FnType, @ptrCast(&c.objc_msgSend));
+        return @call(.auto, func, .{ target, selector } ++ args);
     } else {
         const FnType = blk: {
             {
                 // TODO(hazeycode): replace this hack with the more generalised code above once it doens't crash the compiler
-                break :blk switch (args_meta.len) {
+                break :blk *const switch (args_meta.len) {
                     0 => fn (*ReturnType, @TypeOf(target), SEL) callconv(.C) void,
-                    1 => fn (*ReturnType, @TypeOf(target), SEL, args_meta[0].field_type) callconv(.C) void,
-                    2 => fn (*ReturnType, @TypeOf(target), SEL, args_meta[0].field_type, args_meta[1].field_type) callconv(.C) void,
+                    1 => fn (*ReturnType, @TypeOf(target), SEL, args_meta[0].type) callconv(.C) void,
+                    2 => fn (*ReturnType, @TypeOf(target), SEL, args_meta[0].type, args_meta[1].type) callconv(.C) void,
                     else => @compileError("Unsupported number of args: add more variants in zig-objcrt/src/message.zig"),
                 };
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @as(FnType, @ptrCast(c.objc_msgSend_stret));
+        var func = @as(FnType, @ptrCast(&c.objc_msgSend_stret));
         var stret: ReturnType = undefined;
-        _ = @call(.{}, func, .{ &stret, target, selector } ++ args);
+        _ = @call(.auto, func, .{ &stret, target, selector } ++ args);
         return stret;
     }
 }
@@ -143,20 +143,13 @@ pub fn getClass(class_name: [:0]const u8) Error!Class {
     return c.objc_getClass(class_name) orelse Error.ClassNotRegisteredWithRuntime;
 }
 
-pub const CGFloat = switch (@import("builtin").cpu.arch.ptrBitWidth()) {
+pub const CGFloat = switch (@import("builtin").target.ptrBitWidth()) {
     64 => f64,
     32 => f32,
     else => unreachable,
 };
 
 pub const NSRect = CGRect;
-pub const NSRectMake = CGRectMake;
-pub fn CGRectMake(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) CGRect {
-    return CGRect{
-        .origin = .{ .x = x, .y = y },
-        .size = .{ .width = width, .height = height },
-    };
-}
 
 pub const CGPoint = extern struct {
     x: CGFloat,
@@ -171,4 +164,11 @@ pub const CGSize = extern struct {
 pub const CGRect = extern struct {
     origin: CGPoint,
     size: CGSize,
+
+    pub fn make(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) CGRect {
+        return .{
+            .origin = .{ .x = x, .y = y },
+            .size = .{ .width = w, .height = h },
+        };
+    }
 };

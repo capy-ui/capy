@@ -103,6 +103,7 @@ pub var _animatedAtoms = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
 }).init(lasting_allocator);
+pub var _animatedAtomsLength = Atom(usize).of(0);
 pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
 fn isAnimableType(comptime T: type) bool {
@@ -126,6 +127,7 @@ pub fn Atom(comptime T: type) type {
         onChange: ChangeListenerList = .{},
         /// List of all Atoms this one is bound to.
         bindings: BindingList = .{},
+
         /// This boolean is used to protect from recursive relations between wrappers
         /// For example if there are two two-way binded data wrappers A and B:
         /// When A is set, B is set too. Since B is set, it will set A too. A is set, it will set B too, and so on..
@@ -133,6 +135,7 @@ pub fn Atom(comptime T: type) type {
         /// If the lock is equal to true, set() returns without calling the other. For example:
         /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
         /// A notices that bindLock is already set to true, and thus returns.
+        /// TODO: make the bind lock more general and just use it for any change, and explicit how this favors completeness instead of consistency (in case an onChange triggers set method manually)
         bindLock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
 
         /// If dependOn has been called, this is a pointer to the callback function
@@ -294,6 +297,7 @@ pub fn Atom(comptime T: type) type {
             }
             if (!contains) {
                 _animatedAtoms.append(.{ .fnPtr = @as(*const fn (*anyopaque) bool, @ptrCast(&Self.update)), .userdata = self }) catch {};
+                _animatedAtomsLength.set(_animatedAtoms.items.len);
             }
         }
 
@@ -845,6 +849,7 @@ test "animated atom" {
     var animated = try Atom(i32).animated(&original, Easings.Linear, 1000);
     defer animated.deinit();
     defer _animatedAtoms.clearAndFree();
+    _animatedAtomsLength.set(0);
 
     original.set(1000);
     try std.testing.expect(animated.hasAnimation());

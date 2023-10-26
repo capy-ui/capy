@@ -8,8 +8,9 @@ const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
 const BackendError = shared.BackendError;
 const MouseButton = shared.MouseButton;
-//pub const PeerType = *c.GtkWidget;
-pub const PeerType = *opaque {};
+
+// pub const PeerType = *opaque {};
+pub const PeerType = objc.id;
 
 var activeWindows = std.atomic.Atomic(usize).init(0);
 var hasInit: bool = false;
@@ -40,14 +41,62 @@ pub const EventUserData = struct {
     focusOnClick: bool = false,
 };
 
+var test_data = EventUserData{ .peer = undefined };
 pub inline fn getEventUserData(peer: PeerType) *EventUserData {
     _ = peer;
+    return &test_data;
     //return @ptrCast(*EventUserData, @alignCast(@alignOf(EventUserData), c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
 }
 
 pub fn Events(comptime T: type) type {
-    _ = T;
-    return struct {};
+    return struct {
+        const Self = @This();
+
+        pub fn setUserData(self: *T, data: anytype) void {
+            comptime {
+                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                    @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
+                }
+            }
+
+            getEventUserData(self.peer).userdata = @intFromPtr(data);
+        }
+
+        pub inline fn setCallback(self: *T, comptime eType: EventType, cb: anytype) !void {
+            const data = &getEventUserData(self.peer).user;
+            switch (eType) {
+                .Click => data.clickHandler = cb,
+                .Draw => data.drawHandler = cb,
+                .MouseButton => data.mouseButtonHandler = cb,
+                .MouseMotion => data.mouseMotionHandler = cb,
+                .Scroll => data.scrollHandler = cb,
+                .TextChanged => data.changedTextHandler = cb,
+                .Resize => data.resizeHandler = cb,
+                .KeyType => data.keyTypeHandler = cb,
+                .KeyPress => data.keyPressHandler = cb,
+                .PropertyChange => data.propertyChangeHandler = cb,
+            }
+        }
+
+        pub fn setOpacity(self: *const T, opacity: f32) void {
+            _ = opacity;
+            _ = self;
+        }
+
+        pub fn getWidth(self: *const T) u32 {
+            _ = self;
+            return 100;
+        }
+
+        pub fn getHeight(self: *const T) u32 {
+            _ = self;
+            return 100;
+        }
+
+        pub fn deinit(self: *const T) void {
+            _ = self;
+        }
+    };
 }
 
 pub const Window = struct {
@@ -59,8 +108,8 @@ pub const Window = struct {
 
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow") catch return BackendError.InitializationError;
-        const rect = objc.NSRectMake(100, 100, 200, 200);
-        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable;
+        const rect = objc.NSRect.make(100, 100, 200, 200);
+        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable | AppKit.NSWindowStyleMask.FullSizeContentView;
 
         std.log.info("make new rect", .{});
         const newRect = objc.msgSendByName(objc.NSRect, NSWindow, "frameRectForContentRect:styleMask:", .{ rect, style }) catch unreachable;
@@ -82,7 +131,12 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        const frame = objc.NSRectMake(100, 100, @as(objc.CGFloat, @floatFromInt(width)), @as(objc.CGFloat, @floatFromInt(height)));
+        const frame = objc.NSRect.make(
+            100,
+            100,
+            @as(objc.CGFloat, @floatFromInt(width)),
+            @as(objc.CGFloat, @floatFromInt(height)),
+        );
         // TODO: resize animation can be handled using a DataWrapper on the user-facing API
         _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
     }
@@ -106,6 +160,7 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         std.log.info("show window", .{});
+        objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
         objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
         std.log.info("showed window", .{});
         _ = activeWindows.fetchAdd(1, .Release);
@@ -115,6 +170,51 @@ pub const Window = struct {
         _ = self;
         @panic("TODO: close window");
     }
+};
+
+pub const Container = struct {
+    peer: objc.id,
+
+    pub usingnamespace Events(Container);
+
+    pub fn create() BackendError!Container {
+        return Container{ .peer = undefined };
+    }
+
+    pub fn add(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+        _ = y;
+        _ = x;
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
+        _ = h;
+        _ = w;
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
+    }
+};
+
+pub const Canvas = struct {
+    pub usingnamespace Events(Canvas);
+
+    pub const DrawContext = struct {};
 };
 
 pub fn postEmptyEvent() void {
