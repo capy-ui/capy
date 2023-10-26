@@ -87,6 +87,9 @@ const WebServerStep = struct {
             } else if (std.mem.eql(u8, path, "/capy.js")) {
                 file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy.js" });
                 content_type = "application/javascript";
+            } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
+                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy-worker.js" });
+                content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
                 file_path = self.exe.getOutputSource().getPath2(build, &self.step);
                 content_type = "application/wasm";
@@ -112,6 +115,8 @@ const WebServerStep = struct {
             // try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
             try res.headers.append("Connection", "close");
             try res.headers.append("Content-Type", content_type);
+            try res.headers.append("Cross-Origin-Opener-Policy", "same-origin");
+            try res.headers.append("Cross-Origin-Embedder-Policy", "require-corp");
 
             try res.do();
             try res.writer().writeAll(content);
@@ -290,10 +295,11 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
-                step.export_symbol_names = &.{ "_start", "_capyStep" };
                 if (step.optimize == .ReleaseSmall) {
                     step.strip = true;
                 }
+                step.export_symbol_names = &.{"_start"};
+                step.import_memory = true;
 
                 const serve = WebServerStep.create(b, step);
                 const install_step = b.addInstallArtifact(step, .{});

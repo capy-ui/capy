@@ -31,6 +31,7 @@ pub extern fn getEventType(event: EventId) EventType;
 pub extern fn getEventTarget(event: EventId) ElementId;
 pub extern fn getEventArg(event: EventId, argIdx: usize) usize;
 pub extern fn stopExecution() noreturn;
+pub extern fn yield() void;
 
 // Canvas related
 pub extern fn openContext(element: ElementId) CanvasContextId;

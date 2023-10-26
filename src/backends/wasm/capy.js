@@ -1,4 +1,3 @@
-let obj = null;
 let domObjects = [];
 let canvasContexts = [];
 let pendingEvents = [];
@@ -10,9 +9,53 @@ let events = [];
 let executeProgram = true;
 let rootElementId = -1;
 
+/**
+	@type SharedArrayBuffer
+**/
+let arrayBuffer = undefined;
+/**
+	@type SharedArrayBuffer
+**/
+let pendingAnswer = undefined;
+
 function pushEvent(evt) {
 	const eventId = events.push(evt);
 	pendingEvents.push(eventId - 1);
+}
+
+async function pushAnswer(type, value) {
+	// Convert booleans to integers
+	if (value === true) value = 1;
+	if (value === false) value = 0;
+	
+	if (type == "int" && typeof value !== "number") {
+		throw Error("Type mismatch, got " + (typeof value));
+	}
+
+	const WAITING = 0;
+	const DONE = 1;
+	const view = new Int32Array(pendingAnswer);
+	while (view[0] != WAITING) {
+		// throw Error("Expected waiting state");
+		await wait(100);
+		console.log("Await waiting state");
+	}
+
+	const left = value & 0xFFFFFFFF;
+	const right = value >> 32;
+	view[1] = left;
+	view[2] = right;
+	view[0] = DONE;
+	if (Atomics.notify(view, 0) != 1) {
+		throw new Error("Expected 1 agent to be awoken.");
+	}
+}
+
+async function wait(msecs) {
+	const promise = new Promise((resolve, reject) => {
+		setTimeout(resolve, msecs);
+	});
+	return promise;
 }
 
 function readString(addr, len) {
@@ -20,13 +63,11 @@ function readString(addr, len) {
 	len = len >>> 0;
 
 	let utf8Decoder = new TextDecoder();
-	let view = new Uint8Array(obj.instance.exports.memory.buffer);
-	// console.debug("read string @ " + addr + " for " + len + " bytes");
+	let view = new Uint8Array(arrayBuffer);
 	
 	return utf8Decoder.decode(view.slice(addr, addr + len));
 }
-const importObj = {
-	env: {
+const env = {
 		jsPrint: function(arg, len) {
 			console.log(readString(arg, len));
 		},
@@ -126,12 +167,12 @@ const importObj = {
 			domObjects[root].style.height = "100%";
 			rootElementId = root;
 		},
-		setText: function(element, textPtr, textLen) {
+		setText: function(element, text) {
 			const elem = domObjects[element];
 			if (elem.nodeName === "INPUT") {
-				elem.value = readString(textPtr, textLen);
+				elem.value = text;
 			} else {
-				elem.innerText = readString(textPtr, textLen);
+				elem.innerText = text;
 			}
 		},
 		getTextLen: function(element) {
@@ -211,10 +252,10 @@ const importObj = {
 			canvas.width = window.devicePixelRatio * canvas.clientWidth;
 			canvas.height = window.devicePixelRatio * canvas.clientHeight;
 
-			for (ctxId in canvasContexts) {
+			for (let ctxId in canvasContexts) {
 				if (canvasContexts[ctxId].owner === element) {
 					canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
-					return ctxId;
+					return Number.parseInt(ctxId);
 				}
 			}
 			const ctx = canvas.getContext("2d");
@@ -327,23 +368,35 @@ const importObj = {
 			executeProgram = false;
 			console.error("STOP EXECUTION!");
 		},
-	}
 };
 
+
 (async function() {
-	if (WebAssembly.instantiateStreaming) {
-		obj = await WebAssembly.instantiateStreaming(fetch("zig-app.wasm"), importObj);
-	} else {
-		const response = await fetch("zig-app.wasm");
-		obj = await WebAssembly.instantiate(await response.arrayBuffer(), importObj);
+	if (!window.Worker) {
+		alert("Capy requires Web Workers until Zig supports async");
 	}
-	obj.instance.exports._start();
+	const wasmWorker = new Worker("capy-worker.js");
+	wasmWorker.postMessage("test");
+	wasmWorker.onmessage = (e) => {
+		const name = e.data[0];
+		if (name === "setBuffer") {
+			arrayBuffer = e.data[1];
+			pendingAnswer = e.data[2];
+		} else if (name === "stopExecution") {
+			wasmWorker.terminate();
+		} else {
+			const value = env[name].apply(null, e.data.slice(1));
+			if (value !== undefined) {
+				pushAnswer("int", value);
+			}
+		}
+	};
 
 	// TODO: when we're in blocking mode, avoid updating so often
 	function update() {
 		if (executeProgram) {
-			obj.instance.exports._capyStep();
-			requestAnimationFrame(update);
+			// obj.instance.exports._capyStep();
+			// requestAnimationFrame(update);
 		}
 	}
 	//setInterval(update, 32);

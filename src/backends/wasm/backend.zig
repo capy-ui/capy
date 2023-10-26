@@ -488,6 +488,16 @@ pub const Container = struct {
         _ = self;
     }
 
+    pub fn remove(self: *const Container, peer: PeerType) void {
+        _ = peer;
+        _ = self;
+    }
+
+    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+        _ = peers;
+        _ = self;
+    }
+
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         _ = self;
         js.setPos(peer.element, x, y);
@@ -521,30 +531,58 @@ pub const HttpResponse = struct {
     }
 };
 
-// Execution
+var stopExecution = false;
 
-fn executeStart() void {
-    const startFn = @import("root").start;
-    const ReturnType = @typeInfo(@TypeOf(startFn)).Fn.return_type.?;
-    if (ReturnType == void) {
-        startFn();
-    } else {
-        startFn() catch |err| @panic(@errorName(err));
-    }
-}
-
-fn executeStep() void {
-    // Check for events
+// Temporary execution until async is added back in Zig
+pub fn runStep(step: shared.EventLoopStep) bool {
+    _ = step;
+    js.yield();
     while (js.hasEvent()) {
         const eventId = js.popEvent();
-        if (globalWindow) |window| {
-            if (window.child) |child| {
-                child.processEventFn(child.object, eventId);
-            }
+        switch (js.getEventType(eventId)) {
+            else => {
+                if (globalWindow) |window| {
+                    if (window.child) |child| {
+                        child.processEventFn(child.object, eventId);
+                    }
+                }
+            },
         }
     }
-    lib.eventStep.callListeners();
+    return !stopExecution;
 }
+
+fn executeMain() void {
+    const mainFn = @import("root").main;
+    const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
+    if (ReturnType == void) {
+        mainFn();
+    } else {
+        mainFn() catch |err| @panic(@errorName(err));
+    }
+    js.stopExecution();
+    stopExecution = true;
+}
+
+// Execution
+// TODO: reuse the old system when async is finally reimplemented in the zig compiler
+
+// fn executeMain() callconv(.Async) void {
+//     const mainFn = @import("root").main;
+//     const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
+//     if (ReturnType == void) {
+//         mainFn();
+//     } else {
+//         mainFn() catch |err| @panic(@errorName(err));
+//     }
+//     js.stopExecution();
+// }
+
+// var frame: @Frame(executeMain) = undefined;
+// var result: void = {};
+// var suspending: bool = false;
+
+// var resumePtr: anyframe = undefined;
 
 fn milliTimestamp() i64 {
     return @as(i64, @intFromFloat(js.now()));
@@ -587,11 +625,7 @@ pub const backendExport = struct {
 
                 const start = milliTimestamp();
                 while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
-                    // TODO: when zig async is restored, use suspend here
-                    // suspending = true;
-                    // suspend {
-                    //     resumePtr = @frame();
-                    // }
+                    // TODO: better way to sleep like calling a jS function for sleep
                 }
                 return 0;
             }
@@ -633,15 +667,24 @@ pub const backendExport = struct {
 
         //@breakpoint();
         js.stopExecution();
+        stopExecution = true;
+        while (true) {}
     }
 
     pub export fn _start() callconv(.C) void {
-        executeStart();
+        executeMain();
     }
 
-    pub export fn _capyStep() callconv(.C) void {
-        executeStep();
-    }
+    // pub export fn _start() callconv(.C) void {
+    //     _ = @asyncCall(&frame, &result, executeMain, .{});
+    // }
+
+    // pub export fn _capyStep() callconv(.C) void {
+    //     if (suspending) {
+    //         suspending = false;
+    //         resume resumePtr;
+    //     }
+    // }
 };
 
 // pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
@@ -657,6 +700,10 @@ pub const backendExport = struct {
 //                 }
 //             },
 //         }
+//     }
+//     suspending = true;
+//     suspend {
+//         resumePtr = @frame();
 //     }
 //     return true;
 // }
