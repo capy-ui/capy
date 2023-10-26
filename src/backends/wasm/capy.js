@@ -18,6 +18,11 @@ let arrayBuffer = undefined;
 **/
 let pendingAnswer = undefined;
 
+/**
+	Draw commands scheduled for the next frame
+**/
+let drawCommands = [];
+
 function pushEvent(evt) {
 	const eventId = events.push(evt);
 	pendingEvents.push(eventId - 1);
@@ -115,11 +120,11 @@ const env = {
 				});
 			});
 			elem.addEventListener("mousemove", function(e) {
-				pushEvent({
-					type: 4,
-					target: idx,
-					args: [e.clientX, e.clientY]
-				});
+				// pushEvent({
+				// 	type: 4,
+				// 	target: idx,
+				// 	args: [e.clientX, e.clientY]
+				// });
 			});
 			elem.addEventListener("wheel", function(e) {
 				console.log(e.deltaY);
@@ -254,7 +259,7 @@ const env = {
 
 			for (let ctxId in canvasContexts) {
 				if (canvasContexts[ctxId].owner === element) {
-					canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
+					// canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
 					return Number.parseInt(ctxId);
 				}
 			}
@@ -265,25 +270,22 @@ const env = {
 			return canvasContexts.push(ctx) - 1;
 		},
 		setColor: function(ctx, r, g, b, a) {
-			canvasContexts[ctx].fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
-			canvasContexts[ctx].strokeStyle = canvasContexts[ctx].fillStyle;
+			drawCommands.push([ctx, "setColor", r, g, b, a]);
 		},
 		rectPath: function(ctx, x, y, w, h) {
-			canvasContexts[ctx].rect(x, y, w, h);
+			drawCommands.push([ctx, "rectPath", x, y, w, h]);
 		},
 		moveTo: function(ctx, x, y) {
-			canvasContexts[ctx].moveTo(x, y);
+			drawCommands.push([ctx, "moveTo", x, y]);
 		},
 		lineTo: function(ctx, x, y) {
-			canvasContexts[ctx].lineTo(x, y);
+			drawCommands.push([ctx, "lineTo", x, y]);
 		},
-		fillText: function(ctx, textPtr, textLen, x, y) {
-			const text = readString(textPtr, textLen);
-			canvasContexts[ctx].textAlign = "left";
-			canvasContexts[ctx].textBaseline = "top";
-			canvasContexts[ctx].fillText(text, x, y);
+		fillText: function(ctx, text, x, y) {
+			drawCommands.push([ctx, "fillText", text, x, y]);
 		},
 		fillImage: function(ctx, img, x, y) {
+			drawCommands.push([ctx, "fillImage", img, x, y]);
 			const canvas = canvasContexts[ctx];
 			const image = resources[img];
 			if (!image.imageDatas[ctx]) {
@@ -308,12 +310,10 @@ const env = {
 			canvas.putImageData(image.imageDatas[ctx], x, y);
 		},
 		fill: function(ctx) {
-			canvasContexts[ctx].fill();
-			canvasContexts[ctx].beginPath();
+			drawCommands.push([ctx, "fill"]);
 		},
 		stroke: function(ctx) {
-			canvasContexts[ctx].stroke();
-			canvasContexts[ctx].beginPath();
+			drawCommands.push([ctx, "stroke"]);
 		},
 
 		// Resources
@@ -394,10 +394,45 @@ const env = {
 
 	// TODO: when we're in blocking mode, avoid updating so often
 	function update() {
-		if (executeProgram) {
-			// obj.instance.exports._capyStep();
-			// requestAnimationFrame(update);
+		// Fulfill draw commands
+		for (const command of drawCommands) {
+			const ctx = canvasContexts[command[0]];
+			
+			switch (command[1]) {
+				case "moveTo":
+					ctx.moveTo(command[2], command[3]);
+					break;
+				case "lineTo":
+					ctx.lineTo(command[2], command[3]);
+					break;
+				case "rectPath":
+					ctx.rect(command[2], command[3], command[4], command[5]);
+					break;
+				case "fillText":
+					ctx.textAlign = "left"; ctx.textBaseline = "top";
+					ctx.fillText(command[2], command[3], command[4]);
+					break;
+				case "setColor":
+					const r = command[2];
+					const g = command[3];
+					const b = command[4];
+					const a = command[5];
+					ctx.fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
+					ctx.strokeStyle = ctx.fillStyle;
+					break;
+				case "stroke":
+					ctx.stroke();
+					ctx.beginPath();
+					break;
+				case "fill":
+					ctx.fill();
+					ctx.beginPath();
+					break;
+			}
 		}
+		drawCommands = [];
+
+		requestAnimationFrame(update);
 	}
 	//setInterval(update, 32);
 	requestAnimationFrame(update);

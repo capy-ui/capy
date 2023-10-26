@@ -157,7 +157,7 @@ const env = {
 			self.postMessage(["lineTo", ctx, x, y]);
 		},
 		fillText: function(ctx, textPtr, textLen, x, y) {
-			throw new Error("TODO: fill text");
+      self.postMessage(["fillText", ctx, readString(textPtr, textLen), x, y]);
 		},
 		fillImage: function(ctx, img, x, y) {
 			self.postMessage(["fillImage", ctx, img, x, y]);
@@ -225,8 +225,6 @@ const env = {
       postMessage(["stopExecution"]);
 		},
 	};
-
-console.log("WEB WORKER RUN");
 
 (async function() {
 	const importObject = {
