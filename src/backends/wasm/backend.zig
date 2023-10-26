@@ -381,6 +381,11 @@ pub const Canvas = struct {
             js.rectPath(self.ctx, x, y, w, h);
         }
 
+        pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, cornerRadiuses: [4]f32) void {
+            _ = cornerRadiuses;
+            self.rectangle(x, y, w, h);
+        }
+
         pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             // TODO: layout
             _ = layout;
@@ -517,6 +522,7 @@ var stopExecution = false;
 // Temporary execution until async is added back in Zig
 pub fn runStep(step: shared.EventLoopStep) bool {
     _ = step;
+    js.yield();
     while (js.hasEvent()) {
         const eventId = js.popEvent();
         switch (js.getEventType(eventId)) {

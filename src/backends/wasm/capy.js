@@ -24,14 +24,18 @@ function pushEvent(evt) {
 }
 
 async function pushAnswer(type, value) {
+	// Convert booleans to integers
+	if (value === true) value = 1;
+	if (value === false) value = 0;
+	
 	if (type == "int" && typeof value !== "number") {
 		throw Error("Type mismatch, got " + (typeof value));
 	}
 
 	const WAITING = 0;
 	const DONE = 1;
-	const view = new DataView(pendingAnswer);
-	while (view.getUint8(0) != WAITING) {
+	const view = new Int32Array(pendingAnswer);
+	while (view[0] != WAITING) {
 		// throw Error("Expected waiting state");
 		await wait(100);
 		console.log("Await waiting state");
@@ -39,9 +43,12 @@ async function pushAnswer(type, value) {
 
 	const left = value & 0xFFFFFFFF;
 	const right = value >> 32;
-	view.setUint32(1, left, true);
-	view.setUint32(5, right, true);
-	view.setInt8(0, DONE);
+	view[1] = left;
+	view[2] = right;
+	view[0] = DONE;
+	if (Atomics.notify(view, 0) != 1) {
+		throw new Error("Expected 1 agent to be awoken.");
+	}
 }
 
 async function wait(msecs) {
@@ -158,12 +165,12 @@ const env = {
 			domObjects[root].style.height = "100%";
 			rootElementId = root;
 		},
-		setText: function(element, textPtr, textLen) {
+		setText: function(element, text) {
 			const elem = domObjects[element];
 			if (elem.nodeName === "INPUT") {
-				elem.value = readString(textPtr, textLen);
+				elem.value = text;
 			} else {
-				elem.innerText = readString(textPtr, textLen);
+				elem.innerText = text;
 			}
 		},
 		getTextLen: function(element) {
@@ -243,10 +250,10 @@ const env = {
 			canvas.width = window.devicePixelRatio * canvas.clientWidth;
 			canvas.height = window.devicePixelRatio * canvas.clientHeight;
 
-			for (ctxId in canvasContexts) {
+			for (let ctxId in canvasContexts) {
 				if (canvasContexts[ctxId].owner === element) {
 					canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
-					return ctxId;
+					return Number.parseInt(ctxId);
 				}
 			}
 			const ctx = canvas.getContext("2d");
@@ -369,7 +376,6 @@ const env = {
 	const wasmWorker = new Worker("capy-worker.js");
 	wasmWorker.postMessage("test");
 	wasmWorker.onmessage = (e) => {
-		console.log("message", e.data);
 		const name = e.data[0];
 		if (name === "setBuffer") {
 			arrayBuffer = e.data[1];

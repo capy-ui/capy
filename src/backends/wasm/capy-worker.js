@@ -26,24 +26,27 @@ function readString(addr, len) {
 }
 
 // 1 byte for making and 8 bytes for data (64 bits)
-let pendingAnswer = new SharedArrayBuffer(9);
+let pendingAnswer = new SharedArrayBuffer(12);
 /**
 	@param {string} type The type of the answer, can only be "int"
 **/
 function waitForAnswer(type) {
 	const WAITING = 0;
 	const DONE = 1;
-	
-	const view = new DataView(pendingAnswer);
-	view.setUint8(0, WAITING);
-	while (view.getUint8(0) != DONE) {
-		wait(10);
+	if (type == "bool") {
+		return waitForAnswer("int") != 0;
 	}
+	
+	const view = new Int32Array(pendingAnswer);
+	view[0] = WAITING;
+	// while (view.getUint8(0) != DONE) {
+	// 	wait(10);
+	// }
+	Atomics.wait(view, 0, WAITING);
 
 	switch (type) {
 		case "int":
-			const int = view.getUint32(5, true) << 32 | view.getUint32(1, true);
-			console.log("Received answer " + int);
+			const int = view[1] << 32 | view[2];
 			return int;
 	}
 
@@ -51,15 +54,17 @@ function waitForAnswer(type) {
 }
 
 /**
+	Shared array buffer used for sleeping with Atomics.wait()
+**/
+const AB = new Int32Array(new SharedArrayBuffer(4));
+/**
 	@param {int} msecs Time to wait in milliseconds
 **/
 function wait(msecs) {
 	const start = Date.now();
-	while (Date.now() >= start + msecs) {
-		// Wait.
+	while (Date.now() <= start + msecs) {
+		Atomics.wait(AB, 0, 0, msecs - (Date.now() - start));
 	}
-
-	return;
 }
 
 const memory = new WebAssembly.Memory({
@@ -114,99 +119,54 @@ const env = {
 			return Date.now();
 		},
 		hasEvent: function() {
-			return pendingEvents.length > 0;
+			self.postMessage(["hasEvent"]);
+			return waitForAnswer("bool");
 		},
 		popEvent: function() {
-			if (pendingEvents.length > 0) {
-				return pendingEvents.shift();
-			} else {
-				console.error("Popping event even though none is available!");
-			}
+			self.postMessage(["popEvent"]);
+			return waitForAnswer("int");
 		},
 		getEventType: function(event) {
-			return events[event].type;
+			self.postMessage(["getEventType", event]);
+			return waitForAnswer("int");
 		},
 		getEventTarget: function(event) {
-			if (events[event].target === undefined) {
-				console.error("Tried getting the target of a global event");
-			}
-			return events[event].target;
+			self.postMessage(["getEventTarget", event]);
+			return waitForAnswer("int");
 		},
 		getEventArg: function(event, idx) {
-			if (events[event].args === undefined || events[event].args[idx] === undefined) {
-				console.error("Tried getting non-existent arg:" + idx);
-			}
-			return events[event].args[idx];
+			self.postMessage(["getEventArg", event, idx]);
+			return waitForAnswer("int");
 		},
 
 		// Canvas
 		openContext: function(element) {
-			const canvas = domObjects[element];
-			canvas.width = window.devicePixelRatio * canvas.clientWidth;
-			canvas.height = window.devicePixelRatio * canvas.clientHeight;
-
-			for (ctxId in canvasContexts) {
-				if (canvasContexts[ctxId].owner === element) {
-					canvasContexts[ctxId].clearRect(0, 0, canvas.width, canvas.height);
-					return ctxId;
-				}
-			}
-			const ctx = canvas.getContext("2d");
-			ctx.owner = element;
-			ctx.lineWidth = 2.5;
-			ctx.beginPath();
-			return canvasContexts.push(ctx) - 1;
+      self.postMessage(["openContext", element]);
+			return waitForAnswer("int");
 		},
 		setColor: function(ctx, r, g, b, a) {
-			canvasContexts[ctx].fillStyle = "rgba(" + r + "," + g + "," + b + "," + a + ")";
-			canvasContexts[ctx].strokeStyle = canvasContexts[ctx].fillStyle;
+			self.postMessage(["setColor", ctx, r, g, b, a]);
 		},
 		rectPath: function(ctx, x, y, w, h) {
-			canvasContexts[ctx].rect(x, y, w, h);
+			self.postMessage(["rectPath", ctx, x, y, w, h]);
 		},
 		moveTo: function(ctx, x, y) {
-			canvasContexts[ctx].moveTo(x, y);
+			self.postMessage(["moveTo", ctx, x, y]);
 		},
 		lineTo: function(ctx, x, y) {
-			canvasContexts[ctx].lineTo(x, y);
+			self.postMessage(["lineTo", ctx, x, y]);
 		},
 		fillText: function(ctx, textPtr, textLen, x, y) {
-			const text = readString(textPtr, textLen);
-			canvasContexts[ctx].textAlign = "left";
-			canvasContexts[ctx].textBaseline = "top";
-			canvasContexts[ctx].fillText(text, x, y);
+			throw new Error("TODO: fill text");
 		},
 		fillImage: function(ctx, img, x, y) {
-			const canvas = canvasContexts[ctx];
-			const image = resources[img];
-			if (!image.imageDatas[ctx]) {
-				image.imageDatas[ctx] = canvas.createImageData(image.width, image.height);
-				const data = image.imageDatas[ctx].data;
-				const Bpp = image.stride / image.width; // source bytes per pixel
-				for (let y = 0; y < image.height; y++) {
-					for (let x = 0; x < image.width; x++) {
-						data[y*image.width*4+x*4+0] = image.bytes[y*image.stride+x*Bpp+0];
-						data[y*image.width*4+x*4+1] = image.bytes[y*image.stride+x*Bpp+1];
-						data[y*image.width*4+x*4+2] = image.bytes[y*image.stride+x*Bpp+2];
-						if (!image.isRgb) {
-							data[y*image.width*4+x*4+3] = image.bytes[y*image.stride+x*Bpp+3];
-						} else {
-							data[y*image.width*4+x*4+3] = 0xFF;
-						}
-					}
-				}
-				image.bytes = undefined; // try to free up some space
-				resources[img] = image;
-			}
-			canvas.putImageData(image.imageDatas[ctx], x, y);
+			self.postMessage(["fillImage", ctx, img, x, y]);
 		},
 		fill: function(ctx) {
-			canvasContexts[ctx].fill();
-			canvasContexts[ctx].beginPath();
+			self.postMessage(["fill", ctx]);
 		},
 		stroke: function(ctx) {
-			canvasContexts[ctx].stroke();
-			canvasContexts[ctx].beginPath();
+			self.postMessage(["stroke", ctx]);
 		},
 
 		// Resources
@@ -256,7 +216,11 @@ const env = {
 
 			return slice.length;
 		},
-
+		yield: function() {
+			// TODO: use Atomics.wait to wait until there is an event (if step is Blocking)
+			//       or to wait until requestAnimationFrame is called (if step is Asynchronous)
+			wait(32);
+		},
 		stopExecution: function() {
       postMessage(["stopExecution"]);
 		},
