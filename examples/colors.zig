@@ -15,7 +15,7 @@ pub fn animateRandomColor(button_: *anyopaque) !void {
     rect.color.animate(capy.Easings.InOut, randomColor, 1000);
 }
 
-pub fn start() !void {
+pub fn main() !void {
     try capy.init();
     var window = try capy.Window.init();
     prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
@@ -28,5 +28,5 @@ pub fn start() !void {
         }),
     }));
     window.show();
-    // capy.runEventLoop();
+    capy.runEventLoop();
 }

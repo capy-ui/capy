@@ -488,16 +488,6 @@ pub const Container = struct {
         _ = self;
     }
 
-    pub fn remove(self: *const Container, peer: PeerType) void {
-        _ = peer;
-        _ = self;
-    }
-
-    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
-        _ = peers;
-        _ = self;
-    }
-
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         _ = self;
         js.setPos(peer.element, x, y);
