@@ -8,6 +8,7 @@ pub const CapyBuildOptions = struct {
     // TODO: disable android build if password is not set
     // TODO: use optional
     android: AndroidOptions = .{ .password = "foo", .package_name = "org.capyui.example" },
+    wasm: WasmOptions = .{},
     args: ?[]const []const u8 = &.{},
 
     pub const AndroidOptions = struct {
@@ -20,6 +21,11 @@ pub const CapyBuildOptions = struct {
         password: []const u8,
     };
 
+    pub const WasmOptions = struct {
+        extras_js_file: ?[]const u8 = null,
+        debug_requests: bool = true,
+    };
+
     pub const LinuxOptions = struct {};
 };
 
@@ -27,8 +33,9 @@ pub const CapyBuildOptions = struct {
 const WebServerStep = struct {
     step: std.build.Step,
     exe: *std.build.CompileStep,
+    options: CapyBuildOptions.WasmOptions,
 
-    pub fn create(owner: *std.build.Builder, exe: *std.build.LibExeObjStep) *WebServerStep {
+    pub fn create(owner: *std.build.Builder, exe: *std.build.LibExeObjStep, options: CapyBuildOptions.WasmOptions) *WebServerStep {
         const self = owner.allocator.create(WebServerStep) catch unreachable;
         self.* = .{
             .step = std.build.Step.init(.{
@@ -38,6 +45,7 @@ const WebServerStep = struct {
                 .makeFn = WebServerStep.make,
             }),
             .exe = exe,
+            .options = options,
         };
         return self;
     }
@@ -69,7 +77,8 @@ const WebServerStep = struct {
 
     fn handler(self: *WebServerStep, build: *std.Build, res: *Server.Response) !void {
         const allocator = build.allocator;
-        const build_root = build.build_root.path orelse unreachable;
+        const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
+
         while (true) {
             defer _ = res.reset();
             try res.wait();
@@ -82,20 +91,27 @@ const WebServerStep = struct {
             var file_path: []const u8 = "";
             var content_type: []const u8 = "text/html";
             if (std.mem.eql(u8, path, "/")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/index.html" });
+                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/index.html" });
                 content_type = "text/html";
             } else if (std.mem.eql(u8, path, "/capy.js")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy.js" });
+                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy.js" });
                 content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ build_root, "src/backends/wasm/capy-worker.js" });
+                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
                 content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
                 file_path = self.exe.getOutputSource().getPath2(build, &self.step);
                 content_type = "application/wasm";
+            } else if (std.mem.eql(u8, path, "/extras.js")) {
+                if (self.options.extras_js_file) |extras_path| {
+                    file_path = extras_path;
+                    content_type = "application/javascript";
+                }
             }
 
-            std.log.info("{s}", .{path});
+            if (self.options.debug_requests) {
+                std.log.debug("{s} -> {s}", .{ path, file_path });
+            }
             const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
                 switch (err) {
                     error.FileNotFound => break :blk null,
@@ -107,6 +123,7 @@ const WebServerStep = struct {
                     defer f.close();
                     break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
                 } else {
+                    res.status = .not_found;
                     break :blk "404 Not Found";
                 }
             };
@@ -301,7 +318,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 step.export_symbol_names = &.{"_start"};
                 step.import_memory = true;
 
-                const serve = WebServerStep.create(b, step);
+                const serve = WebServerStep.create(b, step, options.wasm);
                 const install_step = b.addInstallArtifact(step, .{});
                 serve.step.dependOn(&install_step.step);
                 return &serve.step;

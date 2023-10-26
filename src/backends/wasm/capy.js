@@ -72,7 +72,8 @@ function readString(addr, len) {
 	
 	return utf8Decoder.decode(view.slice(addr, addr + len));
 }
-const env = {
+
+let env = {
 		jsPrint: function(arg, len) {
 			console.log(readString(arg, len));
 		},
@@ -171,6 +172,7 @@ const env = {
 			domObjects[root].style.width  = "100%";
 			domObjects[root].style.height = "100%";
 			rootElementId = root;
+			window.onresize(); // call resize handler atleast once, to setup layout
 		},
 		setText: function(element, text) {
 			const elem = domObjects[element];
@@ -370,11 +372,24 @@ const env = {
 		},
 };
 
+async function loadExtras() {
+	const obj = await import("./extras.js");
+	for (const key in obj.env) {
+		env[key] = obj.env[key];
+	}
+}
 
 (async function() {
 	if (!window.Worker) {
 		alert("Capy requires Web Workers until Zig supports async");
 	}
+
+	try {
+		await loadExtras();
+	} catch (e) {
+		console.debug("No extras.js");
+	}
+	
 	const wasmWorker = new Worker("capy-worker.js");
 	wasmWorker.postMessage("test");
 	wasmWorker.onmessage = (e) => {
@@ -440,5 +455,4 @@ const env = {
 	window.onresize = function() {
 		pushEvent({ type: 0, target: rootElementId });
 	};
-	window.onresize(); // call resize handler atleast once, to setup layout
 })();

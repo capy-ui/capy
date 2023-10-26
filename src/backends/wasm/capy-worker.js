@@ -226,7 +226,20 @@ const env = {
 		},
 	};
 
+async function loadExtras() {
+	const obj = await import("./extras.js");
+	for (const key in obj.envWorker) {
+		env[key] = obj.envWorker[key];
+	}
+}
+
 (async function() {
+	try {
+		await loadExtras();
+	} catch (e) {
+		console.debug("No extras.js (worker)");
+	}
+	
 	const importObject = {
 		env: env,
 	};
