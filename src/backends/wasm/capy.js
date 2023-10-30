@@ -219,9 +219,15 @@ let env = {
 			});
 		},
 		getWidth: function(element) {
+			if (domObjects[element].width) {
+				return domObjects[element].width;
+			}
 			return domObjects[element].clientWidth;
 		},
 		getHeight: function(element) {
+			if (domObjects[element].height) {
+				return domObjects[element].height;
+			}
 			return domObjects[element].clientHeight;
 		},
 		now: function() {
