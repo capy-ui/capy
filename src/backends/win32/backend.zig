@@ -1582,22 +1582,29 @@ pub const Container = struct {
     }
 };
 
+extern "ntdll" fn RtlQueryPerformanceCounter(*u64) callconv(WINAPI) c_int;
 pub fn runStep(step: shared.EventLoopStep) bool {
+    const QPC = RtlQueryPerformanceCounter;
+    var qpc: u64 = undefined;
     var msg: MSG = undefined;
     switch (step) {
         .Blocking => {
-            if (win32.GetMessageW(&msg, null, 0, 0) <= 0) {
+            const result = win32.GetMessageW(&msg, null, 0, 0);
+            _ = QPC(&qpc);
+            if (result <= 0) {
                 return false; // error or WM_QUIT message
             }
         },
         .Asynchronous => {
-            if (win32.PeekMessageW(&msg, null, 0, 0, .REMOVE) == 0) {
+            const result = win32.PeekMessageW(&msg, null, 0, 0, .REMOVE);
+            _ = QPC(&qpc);
+            if (result == 0) {
                 return true; // no message available
             }
         },
     }
 
-    if ((msg.message & 0xFF) == 0x012) { // WM_QUIT
+    if (msg.message == 0x012) { // WM_QUIT
         return false;
     }
 
