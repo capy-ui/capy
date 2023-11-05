@@ -353,6 +353,7 @@ const EventUserData = struct {
     classUserdata: usize = 0,
     // (very) weak method to detect if a text box's text has actually changed
     last_text_len: std.os.windows.INT = 0,
+    qpc_timestamp: u64 = 0,
 };
 
 inline fn getEventUserData(peer: HWND) *EventUserData {
@@ -378,6 +379,7 @@ pub fn Events(comptime T: type) type {
                 else => {},
             }
             if (win32Backend.getWindowLongPtr(hwnd, win32.GWL_USERDATA) == 0) return win32.DefWindowProcW(hwnd, wm, wp, lp);
+            getEventUserData(hwnd).qpc_timestamp = qpc;
             switch (wm) {
                 win32.WM_COMMAND => {
                     const code = @as(u16, @intCast(wp >> 16));
@@ -1583,9 +1585,9 @@ pub const Container = struct {
 };
 
 extern "ntdll" fn RtlQueryPerformanceCounter(*u64) callconv(WINAPI) c_int;
+threadlocal var qpc: u64 = 0;
 pub fn runStep(step: shared.EventLoopStep) bool {
     const QPC = RtlQueryPerformanceCounter;
-    var qpc: u64 = undefined;
     var msg: MSG = undefined;
     switch (step) {
         .Blocking => {
