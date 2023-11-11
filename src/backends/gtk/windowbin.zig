@@ -29,6 +29,15 @@ fn wbin_class_init(class: *WBinClass) callconv(.C) void {
     // widget_class.measure = wbin_measure;
     widget_class.size_allocate = wbin_size_allocate;
     // widget_class.get_request_mode = wbin_get_request_mode;
+    // Get the gtk_widget_focus_child method from Gtk.Box's class
+    const focus_fn = blk: {
+        const box_class = c.g_type_class_ref(c.gtk_box_get_type());
+        defer c.g_type_class_unref(box_class);
+
+        const box_widget_class: *c.GtkWidgetClass = @ptrCast(@alignCast(box_class));
+        break :blk box_widget_class.focus;
+    };
+    widget_class.focus = focus_fn;
 }
 
 fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size: c_int, minimum: [*c]c_int, natural: [*c]c_int, minimum_baseline: [*c]c_int, natural_baseline: [*c]c_int) callconv(.C) void {

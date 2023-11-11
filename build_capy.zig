@@ -135,7 +135,8 @@ const WebServerStep = struct {
             try res.headers.append("Cross-Origin-Opener-Policy", "same-origin");
             try res.headers.append("Cross-Origin-Embedder-Policy", "require-corp");
 
-            try res.do();
+            if (@hasDecl(std.http.Server.Response, "do"))
+                try res.do();
             try res.writer().writeAll(content);
             try res.finish();
 

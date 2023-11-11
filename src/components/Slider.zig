@@ -57,7 +57,7 @@ pub const Slider = struct {
 
     fn wrapperStepChanged(newValue: f32, userdata: usize) void {
         const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setStepSize(@fabs(newValue));
+        peer.*.?.setStepSize(newValue * std.math.sign(newValue));
     }
 
     fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
@@ -78,7 +78,7 @@ pub const Slider = struct {
             self.peer.?.setMinimum(self.min.get());
             self.peer.?.setMaximum(self.max.get());
             self.peer.?.setValue(self.value.get());
-            self.peer.?.setStepSize(@fabs(self.step.get()));
+            self.peer.?.setStepSize(self.step.get() * std.math.sign(self.step.get()));
             self.peer.?.setEnabled(self.enabled.get());
             try self.show_events();
 

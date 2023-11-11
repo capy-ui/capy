@@ -11,11 +11,11 @@ var corner_3 = capy.Atom(f32).of(5);
 var corner_4 = capy.Atom(f32).of(5);
 
 pub fn main() !void {
-    try capy.init();
-    defer capy.deinit();
-
     gpa = .{};
     defer _ = gpa.deinit();
+
+    try capy.init();
+    defer capy.deinit();
 
     var window = try capy.Window.init();
     defer window.deinit();

@@ -69,7 +69,7 @@ function wait(msecs) {
 
 const memory = new WebAssembly.Memory({
 	initial: 20,
-	maximum: 100,
+	maximum: 1000,
 	// shared: true, // NOT SUPPORTED ON FIREFOX
 });
 const env = {

@@ -790,7 +790,6 @@ pub const TextField = struct {
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
         c.gtk_editable_set_editable(@as(*c.GtkEditable, @ptrCast(self.peer)), @intFromBool(!readOnly));
-        c.gtk_widget_set_can_focus(self.peer, @intFromBool(!readOnly));
     }
 
     pub fn _deinit(self: *const TextField) void {
@@ -1070,6 +1069,24 @@ pub const Container = struct {
         const wbin = wbin_new() orelse return BackendError.UnknownError;
         wbin_set_child(@ptrCast(wbin), layout);
         try Container.setupEvents(wbin);
+
+        // Enable focus on Gtk.Fixed
+
+        // Get the gtk_widget_focus_child method from Gtk.Box's class
+        const focus_fn = blk: {
+            const box_class = c.g_type_class_ref(c.gtk_box_get_type());
+            defer c.g_type_class_unref(box_class);
+
+            const box_widget_class: *c.GtkWidgetClass = @ptrCast(@alignCast(box_class));
+            break :blk box_widget_class.focus;
+        };
+
+        const fixed_class = c.g_type_class_peek(c.gtk_fixed_get_type());
+        const widget_class: *c.GtkWidgetClass = @ptrCast(@alignCast(fixed_class));
+        std.log.info("old: {*} new: {*}", .{ widget_class.focus, focus_fn });
+        widget_class.focus = focus_fn;
+        c.gtk_widget_class_set_accessible_role(widget_class, c.GTK_ACCESSIBLE_ROLE_GENERIC);
+
         return Container{ .peer = wbin, .container = layout };
     }
 
@@ -1098,9 +1115,12 @@ pub const Container = struct {
     }
 
     pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
-        _ = peers;
-        _ = self;
-        // TODO
+        std.log.info("{}", .{c.gtk_widget_grab_focus(peers[0])});
+        var previous: ?*c.GtkWidget = null;
+        for (peers) |peer| {
+            c.gtk_widget_insert_after(peer, self.container, previous);
+            previous = peer;
+        }
     }
 };
 
