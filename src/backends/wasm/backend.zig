@@ -191,6 +191,7 @@ pub fn Events(comptime T: type) type {
                             handler(dx, dy, self.peer.userdata);
                         }
                     },
+                    .UpdateAudio => unreachable,
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
                 for (self.peer.children.items) |child| {
@@ -411,12 +412,7 @@ pub const Canvas = struct {
         }
 
         pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
-            // TODO
-            _ = self;
-            _ = x;
-            _ = y;
-            _ = w;
-            _ = h;
+            js.ellipse(self.ctx, x, y, w, h);
         }
 
         pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
@@ -530,6 +526,9 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     while (js.hasEvent()) {
         const eventId = js.popEvent();
         switch (js.getEventType(eventId)) {
+            .UpdateAudio => {
+                std.log.info("update audio", .{});
+            },
             else => {
                 if (globalWindow) |window| {
                     if (window.child) |child| {

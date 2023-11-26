@@ -18,11 +18,18 @@ function readString(addr, len) {
 	len = len >>> 0;
 
 	let utf8Decoder = new TextDecoder();
-	// let view = new Uint8Array(obj.instance.exports.memory.buffer);
-	let view = new Uint8Array(env.memory.buffer);
+	let view = new Uint8Array(obj.instance.exports.memory.buffer);
 	// console.debug("read string @ " + addr + " for " + len + " bytes");
 	
 	return utf8Decoder.decode(view.slice(addr, addr + len));
+}
+
+function readBuffer(addr, len) {
+	addr = addr >>> 0; // convert from i32 to u32
+	len = len >>> 0;
+
+	let view = new Uint8Array(obj.instance.exports.memory.buffer);
+	return view.slice(addr, addr + len);
 }
 
 // 1 byte for making and 8 bytes for data (64 bits)
@@ -67,18 +74,12 @@ function wait(msecs) {
 	}
 }
 
-const memory = new WebAssembly.Memory({
-	initial: 20,
-	maximum: 1000,
-	// shared: true, // NOT SUPPORTED ON FIREFOX
-});
 const env = {
-		memory: memory,
 		jsPrint: function(arg, len) {
 			console.log(readString(arg, len));
 		},
 		jsCreateElement: function(name, nameLen, elementType, elementTypeLen) {
-      self.postMessage(["jsCreateElement", name, nameLen, elementType, elementTypeLen]);
+      self.postMessage(["jsCreateElement", readString(name, nameLen), readString(elementType, elementTypeLen)]);
 			const a = waitForAnswer("int");
 			return a;
 		},
@@ -162,6 +163,9 @@ const env = {
 		fillImage: function(ctx, img, x, y) {
 			self.postMessage(["fillImage", ctx, img, x, y]);
 		},
+		ellipse: function(ctx, x, y, w, h) {
+			self.postMessage(["ellipse", ctx, x, y, w, h]);
+		},
 		fill: function(ctx) {
 			self.postMessage(["fill", ctx]);
 		},
@@ -221,6 +225,20 @@ const env = {
 			//       or to wait until requestAnimationFrame is called (if step is Asynchronous)
 			wait(32);
 		},
+		// Audio
+		createSource: function(sampleRate, delay) {
+			self.postMessage(["createSource", sampleRate, delay]);
+			return waitForAnswer("int");
+		},
+		audioCopyToChannel: function(source, bufferPtr, bufferLen, channel) {
+			const buffer = readBuffer(bufferPtr, bufferLen);
+			self.postMessage(["audioCopyToChannel", source, buffer, channel]);
+		},
+
+		stopExecution: function() {
+			executeProgram = false;
+			console.error("STOP EXECUTION!");
+		},
 		stopExecution: function() {
       postMessage(["stopExecution"]);
 		},
@@ -250,7 +268,7 @@ async function loadExtras() {
 		obj = await WebAssembly.instantiate(await response.arrayBuffer(), importObject);
 	}
 
-  // const buffer = obj.instance.exports.memory.buffer;
-  self.postMessage(["setBuffer", memory.buffer, pendingAnswer]);
+  const buffer = obj.instance.exports.memory.buffer;
+  self.postMessage(["setBuffer", buffer, pendingAnswer]);
 	obj.instance.exports._start();
 })();

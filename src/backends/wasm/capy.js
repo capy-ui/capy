@@ -9,10 +9,10 @@ let events = [];
 let executeProgram = true;
 let rootElementId = -1;
 
-/**
-	@type SharedArrayBuffer
-**/
-let arrayBuffer = undefined;
+let audioSources = [];
+
+let audioContext = new AudioContext();
+let lastAudioUpdateTime = 0;
 /**
 	@type SharedArrayBuffer
 **/
@@ -42,8 +42,8 @@ async function pushAnswer(type, value) {
 	const view = new Int32Array(pendingAnswer);
 	while (view[0] != WAITING) {
 		// throw Error("Expected waiting state");
-		await wait(100);
-		console.log("Await waiting state");
+		await wait(24);
+		// console.log("Await waiting state");
 	}
 
 	const left = value & 0xFFFFFFFF;
@@ -52,7 +52,7 @@ async function pushAnswer(type, value) {
 	view[2] = right;
 	view[0] = DONE;
 	if (Atomics.notify(view, 0) != 1) {
-		throw new Error("Expected 1 agent to be awoken.");
+		console.warn("Expected 1 agent to be awoken.");
 	}
 }
 
@@ -63,26 +63,13 @@ async function wait(msecs) {
 	return promise;
 }
 
-function readString(addr, len) {
-	addr = addr >>> 0; // convert from i32 to u32
-	len = len >>> 0;
-
-	let utf8Decoder = new TextDecoder();
-	let view = new Uint8Array(arrayBuffer);
-	
-	return utf8Decoder.decode(view.slice(addr, addr + len));
-}
-
 let env = {
-		jsPrint: function(arg, len) {
-			console.log(readString(arg, len));
-		},
-		jsCreateElement: function(name, nameLen, elementType, elementTypeLen) {
-			const elem = document.createElement(readString(name, nameLen));
+		jsCreateElement: function(name, elementType) {
+			const elem = document.createElement(name);
 			const idx = domObjects.push(elem) - 1;
 
 			elem.style.position = "absolute";
-			elem.classList.add("capy-" + readString(elementType, elementTypeLen));
+			elem.classList.add("capy-"  + elementType);
 			elem.addEventListener("click", function(e) {
 				if (elem.nodeName == "BUTTON") {
 					pushEvent({
@@ -311,6 +298,9 @@ let env = {
 			}
 			canvas.putImageData(image.imageDatas[ctx], x, y);
 		},
+		ellipse: function(ctx, x, y, w, h) {
+			drawCommands.push([ctx, "ellipse", x + w / 2, y + h / 2, w / 2, h / 2]);
+		},
 		fill: function(ctx) {
 			drawCommands.push([ctx, "fill"]);
 		},
@@ -366,6 +356,29 @@ let env = {
 			return slice.length;
 		},
 
+		// Audio
+		createSource: function(sampleRate, delay) {
+	    const frameCount = sampleRate * delay;
+	    const audioBuffer = audioContext.createBuffer(2, frameCount, sampleRate);
+
+	    const source = new AudioBufferSourceNode(audioContext, {
+	      buffer: audioBuffer,
+	    });
+	    source.connect(audioContext.destination);
+
+			const audioSource = {
+				source: source,
+				buffer: audioBuffer,
+				frameCount: frameCount,
+			};
+			return audioSources.push(audioSource) - 1;
+		},
+		audioCopyToChannel: function(source, buffer, channel) {
+			audioSources[source].buffer.copyToChannel(buffer, channel);
+			const timeAdded = buffer.duration;
+			lastAudioUpdateTime = lastAudioUpdateTime + timeAdded;
+		},
+
 		stopExecution: function() {
 			executeProgram = false;
 			console.error("STOP EXECUTION!");
@@ -378,6 +391,7 @@ async function loadExtras() {
 		env[key] = obj.env[key];
 	}
 }
+
 
 (async function() {
 	if (!window.Worker) {
@@ -395,7 +409,6 @@ async function loadExtras() {
 	wasmWorker.onmessage = (e) => {
 		const name = e.data[0];
 		if (name === "setBuffer") {
-			arrayBuffer = e.data[1];
 			pendingAnswer = e.data[2];
 		} else if (name === "stopExecution") {
 			wasmWorker.terminate();
@@ -427,6 +440,9 @@ async function loadExtras() {
 					ctx.textAlign = "left"; ctx.textBaseline = "top";
 					ctx.fillText(command[2], command[3], command[4]);
 					break;
+				case "ellipse":
+					ctx.ellipse(command[2], command[3], command[4], command[5], 0, 0, 2 * Math.PI);
+					break;
 				case "setColor":
 					const r = command[2];
 					const g = command[3];
@@ -447,6 +463,17 @@ async function loadExtras() {
 		}
 		drawCommands = [];
 
+		// Audio
+		const latency = 0.1; // The latency we want, in seconds.
+		if (audioContext.currentTime > lastAudioUpdateTime - latency) {
+			// Trigger an event so the audio buffer is refilled
+			pushEvent({
+				type: 6,
+				args: [],
+			});
+		}
+		
+		
 		requestAnimationFrame(update);
 	}
 	//setInterval(update, 32);

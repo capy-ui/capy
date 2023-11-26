@@ -11,6 +11,7 @@ pub const EventType = enum(usize) {
     MouseButton,
     MouseMotion,
     MouseScroll,
+    UpdateAudio,
 };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
@@ -41,6 +42,7 @@ pub extern fn moveTo(ctx: CanvasContextId, x: i32, y: i32) void;
 pub extern fn lineTo(ctx: CanvasContextId, x: i32, y: i32) void;
 pub extern fn fillText(ctx: CanvasContextId, textPtr: [*]const u8, textLen: usize, x: i32, y: i32) void;
 pub extern fn fillImage(ctx: CanvasContextId, img: ResourceId, x: i32, y: i32) void;
+pub extern fn ellipse(ctx: CanvasContextId, x: i32, y: i32, w: u32, h: u32) void;
 pub extern fn fill(ctx: CanvasContextId) void;
 pub extern fn stroke(ctx: CanvasContextId) void;
 

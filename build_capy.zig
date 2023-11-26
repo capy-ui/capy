@@ -135,8 +135,11 @@ const WebServerStep = struct {
             try res.headers.append("Cross-Origin-Opener-Policy", "same-origin");
             try res.headers.append("Cross-Origin-Embedder-Policy", "require-corp");
 
-            if (@hasDecl(std.http.Server.Response, "do"))
+            if (@hasDecl(std.http.Server.Response, "do")) {
                 try res.do();
+            } else {
+                try res.send();
+            }
             try res.writer().writeAll(content);
             try res.finish();
 
@@ -317,7 +320,6 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                     step.strip = true;
                 }
                 step.export_symbol_names = &.{"_start"};
-                step.import_memory = true;
 
                 const serve = WebServerStep.create(b, step, options.wasm);
                 const install_step = b.addInstallArtifact(step, .{});
