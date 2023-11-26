@@ -55,6 +55,9 @@ function waitForAnswer(type) {
 		case "int":
 			const int = view[1] << 32 | view[2];
 			return int;
+		case "float":
+			const float = new DataView(view.buffer).getFloat64(4);
+			return float;
 	}
 
 	throw Error("Type invalid (" + type + ")");
@@ -83,6 +86,19 @@ const env = {
 			const a = waitForAnswer("int");
 			return a;
 		},
+		jsSetAttribute: function(element, name, nameLen, value, valueLen) {
+			self.postMessage(["jsSetAttribute", element, readString(name, nameLen), readString(value, valueLen)]);
+		},
+		getAttributeLen: function(element, name, nameLen) {
+			self.postMessage(["getAttributeLen", element, readString(name, nameLen)]);
+			const a = waitForAnswer("int");
+			return a;
+		},
+		jsGetAttribute: function(element, name, nameLen, valuePtr) {
+			self.postMessage(["jsGetAttribute", element, readString(name, nameLen)]);
+			const a = waitForAnswer("string");
+			// TODO
+		},
 		appendElement: function(parent, child) {
       self.postMessage(["appendElement", parent, child]);
 		},
@@ -101,6 +117,11 @@ const env = {
 		},
 		getText: function(element, textPtr) {
 			self.postMessage(["getText", element, textPtr]);
+		},
+		getValue: function(element) {
+			self.postMessage(["getValue", element]);
+			const a = waitForAnswer("float");
+			return a;
 		},
 		setPos: function(element, x, y) {
 			self.postMessage(["setPos", element, x, y])
@@ -231,8 +252,11 @@ const env = {
 			return waitForAnswer("int");
 		},
 		audioCopyToChannel: function(source, bufferPtr, bufferLen, channel) {
-			const buffer = readBuffer(bufferPtr, bufferLen);
-			self.postMessage(["audioCopyToChannel", source, buffer, channel]);
+			const buffer = new Float32Array(readBuffer(bufferPtr, bufferLen).buffer);
+			self.postMessage(["audioCopyToChannel", source, buffer, channel], [buffer.buffer]);
+		},
+		uploadAudio: function(sourceId) {
+			self.postMessage(["uploadAudio", sourceId]);
 		},
 
 		stopExecution: function() {

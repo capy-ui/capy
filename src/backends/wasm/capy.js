@@ -11,7 +11,9 @@ let rootElementId = -1;
 
 let audioSources = [];
 
-let audioContext = new AudioContext();
+let audioContext = new AudioContext({
+	latencyHint: "balanced",
+});
 let lastAudioUpdateTime = 0;
 /**
 	@type SharedArrayBuffer
@@ -36,6 +38,9 @@ async function pushAnswer(type, value) {
 	if (type == "int" && typeof value !== "number") {
 		throw Error("Type mismatch, got " + (typeof value));
 	}
+	if (type == "float" && typeof value !== "number") {
+		throw Error("Type mismatch, got " + (typeof value));
+	}
 
 	const WAITING = 0;
 	const DONE = 1;
@@ -46,10 +51,14 @@ async function pushAnswer(type, value) {
 		// console.log("Await waiting state");
 	}
 
-	const left = value & 0xFFFFFFFF;
-	const right = value >> 32;
-	view[1] = left;
-	view[2] = right;
+	if (type == "int") {
+		const left = value & 0xFFFFFFFF;
+		const right = value >> 32;
+		view[1] = left;
+		view[2] = right;
+	} else if (type == "float") {
+		new DataView(view.buffer).setFloat64(4, value);
+	}
 	view[0] = DONE;
 	if (Atomics.notify(view, 0) != 1) {
 		console.warn("Expected 1 agent to be awoken.");
@@ -63,10 +72,90 @@ async function wait(msecs) {
 	return promise;
 }
 
+class SoundBuffer {
+		constructor(ctx, sampleRate, bufferSize, debug) {
+			this.ctx = ctx;
+			this.sampleRate = sampleRate;
+			this.bufferSize = bufferSize || 6;
+			this.debug = debug;
+
+			this.chunks = [];
+			this.isPlaying = true;
+			this.startTime = true;
+			this.lastChunkOffset = 0;
+		}
+
+    createChunk(chunk)  {
+				/**
+					@type {AudioBuffer}
+				**/
+        var audioBuffer = this.ctx.createBuffer(2, chunk[0].length, this.sampleRate);
+        // audioBuffer.getChannelData(0).set(chunk[0]);
+        // audioBuffer.getChannelData(1).set(chunk[1]);
+				audioBuffer.copyToChannel(chunk[0], 0);
+				audioBuffer.copyToChannel(chunk[1], 1);
+        var source = this.ctx.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(this.ctx.destination);
+        source.onended = (e) => { 
+            this.chunks.splice(this.chunks.indexOf(source),1);
+            if (this.chunks.length == 0) {
+                this.isPlaying = false;
+                this.startTime = 0;
+                this.lastChunkOffset = 0;
+            }
+        };
+
+        return source;
+    }
+
+    log(data) {
+        if (this.debug) {
+            console.log(new Date().toUTCString() + " : " + data);
+        }
+    }
+
+		/**
+			@param {Float32Array[]} data
+		**/
+    addChunk(data) {
+        if (this.isPlaying && (this.chunks.length > this.bufferSize)) {
+            this.log("chunk discarded");
+            return; // throw away
+        } else if (this.isPlaying && (this.chunks.length <= this.bufferSize)) { // schedule & add right now
+            this.log("chunk accepted");
+            let chunk = this.createChunk(data);
+            chunk.start(this.startTime + this.lastChunkOffset);
+            this.lastChunkOffset += chunk.buffer.duration;
+            this.chunks.push(chunk);
+        } else if ((this.chunks.length < (this.bufferSize / 2)) && !this.isPlaying) {  // add & don't schedule
+            this.log("chunk queued");
+            let chunk = this.createChunk(data);
+            this.chunks.push(chunk);
+        } else  { // add & schedule entire buffer
+            this.log("queued chunks scheduled");
+            this.isPlaying = true;
+            let chunk = this.createChunk(data);
+            this.chunks.push(chunk);
+            this.startTime = this.ctx.currentTime;
+            this.lastChunkOffset = 0;
+            for (let i = 0;i<this.chunks.length;i++) {
+                let chunk = this.chunks[i];
+                chunk.start(this.startTime + this.lastChunkOffset);
+                this.lastChunkOffset += chunk.buffer.duration;
+            }
+        }
+    }
+}
+
 let env = {
 		jsCreateElement: function(name, elementType) {
 			const elem = document.createElement(name);
 			const idx = domObjects.push(elem) - 1;
+
+			if (elementType === "slider") {
+				elem.type = "range";
+			}
 
 			elem.style.position = "absolute";
 			elem.classList.add("capy-"  + elementType);
@@ -83,6 +172,14 @@ let env = {
 					type: 2,
 					target: idx
 				});
+			});
+			elem.addEventListener("input", (e) => {
+				if (elementType === "slider") {
+					pushEvent({
+						type: 7,
+						target: idx
+					});
+				}
 			});
 
 			// mouse
@@ -149,6 +246,19 @@ let env = {
 				});
 			});
 			return idx;
+		},
+		jsSetAttribute: function(element, name, value) {
+			domObjects[element].setAttribute(name, value);
+		},
+		getAttributeLen: function(element, name) {
+			return domObjects[element].getAttribute(name).length;
+		},
+		getAttribute: function(element, name) {
+			const attr = domObjects[element].getAttribute(name);
+			// TODO: send
+		},
+		getValue: function(element) {
+			return Number.parseFloat(domObjects[element].value);
 		},
 		appendElement: function(parent, child) {
 			domObjects[parent].appendChild(domObjects[child]);
@@ -364,19 +474,27 @@ let env = {
 	    const source = new AudioBufferSourceNode(audioContext, {
 	      buffer: audioBuffer,
 	    });
-	    source.connect(audioContext.destination);
-
 			const audioSource = {
 				source: source,
-				buffer: audioBuffer,
 				frameCount: frameCount,
+				nextUpdate: audioContext.currentTime,
+				soundBuffer: new SoundBuffer(audioContext, 44100, 6, false),
 			};
 			return audioSources.push(audioSource) - 1;
 		},
-		audioCopyToChannel: function(source, buffer, channel) {
-			audioSources[source].buffer.copyToChannel(buffer, channel);
-			const timeAdded = buffer.duration;
-			lastAudioUpdateTime = lastAudioUpdateTime + timeAdded;
+		audioCopyToChannel: function(sourceId, buffer, channel) {
+			const source = audioSources[sourceId];
+			if (channel == 0) {
+				source.left = buffer;
+			} else {
+				source.right = buffer;
+			}
+		},
+		uploadAudio: function(sourceId) {
+			const source = audioSources[sourceId];
+			const latency = 0.1;
+			source.nextUpdate += latency;
+			source.soundBuffer.addChunk([source.left, source.right]);
 		},
 
 		stopExecution: function() {
@@ -415,7 +533,11 @@ async function loadExtras() {
 		} else {
 			const value = env[name].apply(null, e.data.slice(1));
 			if (value !== undefined) {
-				pushAnswer("int", value);
+				let answerType = "int";
+				if (name === "getValue") {
+					answerType = "float";
+				}
+				pushAnswer(answerType, value);
 			}
 		}
 	};
@@ -471,6 +593,7 @@ async function loadExtras() {
 				type: 6,
 				args: [],
 			});
+			lastAudioUpdateTime += latency;
 		}
 		
 		
@@ -482,4 +605,7 @@ async function loadExtras() {
 	window.onresize = function() {
 		pushEvent({ type: 0, target: rootElementId });
 	};
+	window.onclick = function() {
+		audioContext.resume();
+	}
 })();

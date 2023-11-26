@@ -3,6 +3,7 @@ pub const CanvasContextId = usize;
 pub const EventId = usize;
 pub const NetworkRequestId = usize;
 pub const ResourceId = usize;
+pub const AudioSourceId = usize;
 
 pub const EventType = enum(usize) {
     Resize = 0,
@@ -12,15 +13,20 @@ pub const EventType = enum(usize) {
     MouseMotion,
     MouseScroll,
     UpdateAudio,
+    PropertyChange,
 };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;
 pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize, elementType: [*]const u8, elementTypeLen: usize) ElementId;
+pub extern fn jsSetAttribute(element: ElementId, name: [*]const u8, nameLen: usize, value: [*]const u8, valueLen: usize) void;
+pub extern fn getAttributeLen(element: ElementId, name: [*]const u8, nameLen: usize) usize;
+pub extern fn jsGetAttribute(element: ElementId, name: [*]const u8, nameLen: usize, bufPtr: [*]u8) void;
+pub extern fn getValue(element: ElementId) f32;
 pub extern fn appendElement(parent: ElementId, child: ElementId) void;
 pub extern fn setRoot(root: ElementId) void;
 pub extern fn setText(element: ElementId, textPtr: [*]const u8, textLen: usize) void;
 pub extern fn getTextLen(element: ElementId) usize;
-pub extern fn getText(element: ElementId, textPtr: [*]const u8) void;
+pub extern fn getText(element: ElementId, textPtr: [*]u8) void;
 pub extern fn setPos(element: ElementId, x: usize, y: usize) void;
 pub extern fn setSize(element: ElementId, w: usize, h: usize) void;
 pub extern fn getWidth(element: ElementId) c_int;
@@ -55,12 +61,25 @@ pub extern fn fetchHttp(urlPtr: [*]const u8, urlLen: usize) NetworkRequestId;
 pub extern fn isRequestReady(id: NetworkRequestId) usize;
 pub extern fn readRequest(id: NetworkRequestId, bufPtr: [*]u8, bufLen: usize) usize;
 
+// Audio
+pub extern fn createSource(sampleRate: f32, delay: f32) AudioSourceId;
+pub extern fn audioCopyToChannel(source: AudioSourceId, bufferPtr: *anyopaque, bufferLen: usize, channel: u32) void;
+pub extern fn uploadAudio(source: AudioSourceId) void;
+
 pub fn print(msg: []const u8) void {
     jsPrint(msg.ptr, msg.len);
 }
 
 pub fn createElement(name: []const u8, elementType: []const u8) ElementId {
     return jsCreateElement(name.ptr, name.len, elementType.ptr, elementType.len);
+}
+
+pub fn getAttribute(element: ElementId, name: []const u8, value: [*]u8) void {
+    jsGetAttribute(element, name.ptr, name.len, value);
+}
+
+pub fn setAttribute(element: ElementId, name: []const u8, value: []const u8) void {
+    jsSetAttribute(element, name.ptr, name.len, value.ptr, value.len);
 }
 
 pub fn write(_: void, msg: []const u8) error{}!usize {

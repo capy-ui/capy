@@ -192,6 +192,12 @@ pub fn Events(comptime T: type) type {
                         }
                     },
                     .UpdateAudio => unreachable,
+                    .PropertyChange => {
+                        if (self.peer.user.propertyChangeHandler) |handler| {
+                            const value_f32 = js.getValue(self.peer.element);
+                            handler("value", &value_f32, self.peer.userdata);
+                        }
+                    },
                 }
             } else if (T == Container) { // if we're a container, iterate over our children to propagate the event
                 for (self.peer.children.items) |child| {
@@ -322,6 +328,57 @@ pub const Button = struct {
         _ = self;
         _ = enabled;
         // TODO: enabled property
+    }
+};
+
+pub const Slider = struct {
+    peer: *GuiWidget,
+
+    pub usingnamespace Events(Slider);
+
+    pub fn create() !Slider {
+        return Slider{
+            .peer = try GuiWidget.init(Slider, lasting_allocator, "input", "slider"),
+        };
+    }
+
+    pub fn getValue(self: *const Slider) f32 {
+        return js.getValue(self.peer.element);
+    }
+
+    pub fn setValue(self: *Slider, value: f32) void {
+        var buf: [100]u8 = undefined;
+        const slice = std.fmt.bufPrint(&buf, "{}", .{value}) catch unreachable;
+        js.setAttribute(self.peer.element, "value", slice);
+    }
+
+    pub fn setMinimum(self: *Slider, minimum: f32) void {
+        var buf: [100]u8 = undefined;
+        const slice = std.fmt.bufPrint(&buf, "{}", .{minimum}) catch unreachable;
+        js.setAttribute(self.peer.element, "min", slice);
+    }
+
+    pub fn setMaximum(self: *Slider, maximum: f32) void {
+        var buf: [100]u8 = undefined;
+        const slice = std.fmt.bufPrint(&buf, "{}", .{maximum}) catch unreachable;
+        js.setAttribute(self.peer.element, "max", slice);
+    }
+
+    pub fn setStepSize(self: *Slider, stepSize: f32) void {
+        var buf: [100]u8 = undefined;
+        const slice = std.fmt.bufPrint(&buf, "{}", .{stepSize}) catch unreachable;
+        js.setAttribute(self.peer.element, "step", slice);
+    }
+
+    pub fn setEnabled(self: *Slider, enabled: bool) void {
+        var buf: [100]u8 = undefined;
+        const slice = std.fmt.bufPrint(&buf, "{}", .{enabled}) catch unreachable;
+        js.setAttribute(self.peer.element, "enabled", slice);
+    }
+
+    pub fn setOrientation(self: *Slider, orientation: lib.Orientation) void {
+        _ = orientation;
+        _ = self;
     }
 };
 
@@ -498,6 +555,49 @@ pub const Container = struct {
     }
 };
 
+pub const AudioGenerator = struct {
+    source: js.AudioSourceId,
+    buffers: [][]f32,
+
+    pub fn create(sampleRate: f32) !AudioGenerator {
+        const allocator = lib.internal.lasting_allocator;
+        const channels = 2;
+        const channelDatas = try allocator.alloc([]f32, channels);
+        for (channelDatas) |*buffer| {
+            buffer.* = try allocator.alloc(f32, 44100); // 1 second of buffer
+            @memset(buffer.*, 0);
+        }
+        return AudioGenerator{
+            .source = js.createSource(sampleRate, 500.0),
+            .buffers = channelDatas,
+        };
+    }
+
+    pub fn getBuffer(self: AudioGenerator, channel: u16) []f32 {
+        return self.buffers[channel];
+    }
+
+    pub fn copyBuffer(self: AudioGenerator, channel: u16) void {
+        js.audioCopyToChannel(
+            self.source,
+            self.buffers[channel].ptr,
+            self.buffers[channel].len,
+            channel,
+        );
+    }
+
+    pub fn doneWrite(self: AudioGenerator) void {
+        js.uploadAudio(self.source);
+    }
+
+    pub fn deinit(self: AudioGenerator) void {
+        for (self.buffers) |buffer| {
+            lib.internal.lasting_allocator.free(buffer);
+        }
+        lib.internal.lasting_allocator.free(self.buffers);
+    }
+};
+
 // Misc
 pub const Http = struct {
     pub fn send(url: []const u8) HttpResponse {
@@ -527,7 +627,7 @@ pub fn runStep(step: shared.EventLoopStep) bool {
         const eventId = js.popEvent();
         switch (js.getEventType(eventId)) {
             .UpdateAudio => {
-                std.log.info("update audio", .{});
+                lib.audio.backendUpdate();
             },
             else => {
                 if (globalWindow) |window| {
