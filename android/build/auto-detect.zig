@@ -155,7 +155,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
         };
 
         // Get the android studio registry entry
-        var android_studio_key: HKEY = for ([_]HKEY{ HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE }) |root_key| {
+        const android_studio_key: HKEY = for ([_]HKEY{ HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE }) |root_key| {
             var software: HKEY = null;
             if (reg.RegOpenKeyA(root_key, "software", &software) == ERROR_SUCCESS) {
                 defer _ = reg.RegCloseKey(software);

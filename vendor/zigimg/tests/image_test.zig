@@ -180,7 +180,7 @@ test "Should detect BMP properly" {
 
 test "Should detect Memory BMP properly" {
     var MemoryRGBABitmap: [200 * 1024]u8 = undefined;
-    var buffer = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
+    const buffer = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
 
     var test_image = try Image.fromMemory(helpers.zigimg_test_allocator, buffer);
     defer test_image.deinit();
@@ -290,7 +290,7 @@ test "Should detect JPEG properly" {
 }
 
 test "Should error on invalid file" {
-    var invalidFile = helpers.testImageFromFile("tests/helpers.zig");
+    const invalidFile = helpers.testImageFromFile("tests/helpers.zig");
     try helpers.expectError(invalidFile, ImageError.Unsupported);
 }
 

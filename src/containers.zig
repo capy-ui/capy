@@ -238,7 +238,7 @@ pub const Container = struct {
     widget_data: Container.WidgetData = .{},
     childrens: std.ArrayList(Widget),
     expand: bool,
-    relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     layout: Layout,
     layoutConfig: [16]u8,
 

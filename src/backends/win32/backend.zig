@@ -516,7 +516,7 @@ pub fn Events(comptime T: type) type {
                     _ = win32.GetClientRect(hwnd, &rc);
 
                     var render_target: ?*win32.ID2D1HwndRenderTarget = null;
-                    var hresult = d2dFactory.ID2D1Factory_CreateHwndRenderTarget(
+                    const hresult = d2dFactory.ID2D1Factory_CreateHwndRenderTarget(
                         &win32.D2D1_RENDER_TARGET_PROPERTIES{
                             .type = win32.D2D1_RENDER_TARGET_TYPE_DEFAULT,
                             .pixelFormat = .{
@@ -576,7 +576,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn setupEvents(peer: HWND) !void {
-            var data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{}; // ensure that it uses default values
             _ = win32Backend.setWindowLongPtr(peer, win32.GWL_USERDATA, @intFromPtr(data));
         }
@@ -1287,7 +1287,7 @@ pub const TabContainer = struct {
         if (self.shownPeer) |previousPeer| {
             _ = win32.ShowWindow(previousPeer, win32.SW_HIDE);
         }
-        var peer = self.peerList.items[index];
+        const peer = self.peerList.items[index];
         _ = win32.SetParent(peer, self.peer);
         _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);

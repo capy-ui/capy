@@ -43,7 +43,7 @@ test "Read zero.qoi file" {
     try testing.expect(pixels == .rgba32);
 
     var buffer: [1025 * 1024]u8 = undefined;
-    var zero_raw_pixels = try helpers.testReadFile(zero_raw_file, buffer[0..]);
+    const zero_raw_pixels = try helpers.testReadFile(zero_raw_file, buffer[0..]);
     try testing.expectEqualSlices(u8, zero_raw_pixels, std.mem.sliceAsBytes(pixels.rgba32));
 }
 
@@ -52,7 +52,7 @@ test "Write qoi file" {
     defer source_image.deinit();
 
     var buffer: [1025 * 1024]u8 = undefined;
-    var zero_raw_pixels = try helpers.testReadFile(zero_raw_file, buffer[0..]);
+    const zero_raw_pixels = try helpers.testReadFile(zero_raw_file, buffer[0..]);
     std.mem.copy(u8, std.mem.sliceAsBytes(source_image.pixels.rgba32), std.mem.bytesAsSlice(u8, zero_raw_pixels));
 
     var image_buffer: [100 * 1024]u8 = undefined;

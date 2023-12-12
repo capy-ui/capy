@@ -2,6 +2,7 @@ const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
 const internal = @import("internal.zig");
 const lasting_allocator = internal.lasting_allocator;
+const trait = @import("trait.zig");
 
 /// Linear interpolation between floats a and b with factor t.
 fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
@@ -13,9 +14,9 @@ fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
 pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     const T = @TypeOf(a);
 
-    if (comptime std.meta.trait.isNumber(T)) {
+    if (comptime trait.isNumber(T)) {
         const a_casted = blk: {
-            if (comptime std.meta.trait.isIntegral(T)) {
+            if (comptime trait.isIntegral(T)) {
                 break :blk @as(f64, @floatFromInt(a));
             } else {
                 break :blk a;
@@ -23,7 +24,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         };
 
         const b_casted = blk: {
-            if (comptime std.meta.trait.isIntegral(T)) {
+            if (comptime trait.isIntegral(T)) {
                 break :blk @as(f64, @floatFromInt(b));
             } else {
                 break :blk b;
@@ -31,12 +32,12 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         };
 
         const result = lerpFloat(a_casted, b_casted, t);
-        if (comptime std.meta.trait.isIntegral(T)) {
+        if (comptime trait.isIntegral(T)) {
             return @intFromFloat(@round(result));
         } else {
             return result;
         }
-    } else if (comptime std.meta.trait.isContainer(T) and @hasDecl(T, "lerp")) {
+    } else if (comptime trait.isContainer(T) and @hasDecl(T, "lerp")) {
         return T.lerp(a, b, t);
     } else if (comptime std.meta.trait.is(.Optional)(T)) {
         if (a != null and b != null) {
@@ -94,7 +95,7 @@ pub fn Animation(comptime T: type) type {
 }
 
 pub fn isAtom(comptime T: type) bool {
-    if (!comptime std.meta.trait.is(.Struct)(T))
+    if (!comptime trait.is(.Struct)(T))
         return false;
     return @hasDecl(T, "ValueType") and T == Atom(T.ValueType);
 }
@@ -107,9 +108,9 @@ pub var _animatedAtomsLength = Atom(usize).of(0);
 pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
 fn isAnimableType(comptime T: type) bool {
-    if (std.meta.trait.isNumber(T) or (std.meta.trait.isContainer(T) and @hasDecl(T, "lerp"))) {
+    if (trait.isNumber(T) or (trait.isContainer(T) and @hasDecl(T, "lerp"))) {
         return true;
-    } else if (std.meta.trait.is(.Optional)(T)) {
+    } else if (trait.is(.Optional)(T)) {
         return isAnimableType(std.meta.Child(T));
     }
     return false;
@@ -136,7 +137,7 @@ pub fn Atom(comptime T: type) type {
         /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
         /// A notices that bindLock is already set to true, and thus returns.
         /// TODO: make the bind lock more general and just use it for any change, and explicit how this favors completeness instead of consistency (in case an onChange triggers set method manually)
-        bindLock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+        bindLock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
@@ -427,7 +428,7 @@ pub fn Atom(comptime T: type) type {
             // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
-            if (self.bindLock.compareAndSwap(false, true, .SeqCst, .SeqCst) == null) {
+            if (self.bindLock.cmpxchgStrong(false, true, .SeqCst, .SeqCst) == null) {
                 defer self.bindLock.store(false, .SeqCst);
 
                 {
@@ -608,7 +609,7 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
                 tuple[i] = child.get();
             }
 
-            var str = std.fmt.allocPrint(ptr.wrapper.allocator.?, fmt, tuple) catch unreachable;
+            const str = std.fmt.allocPrint(ptr.wrapper.allocator.?, fmt, tuple) catch unreachable;
             ptr.wrapper.allocator.?.free(ptr.wrapper.get());
             ptr.wrapper.set(str);
         }

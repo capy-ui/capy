@@ -1,6 +1,7 @@
 // Courtesy of https://github.com/hazeycode/zig-objcrt
 const std = @import("std");
 const c = @import("c.zig");
+const trait = @import("../../trait.zig");
 
 /// Sends a message to an id or Class and returns the return value of the called method
 pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: anytype) ReturnType {
@@ -9,7 +10,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
 
     const args_meta = @typeInfo(@TypeOf(args)).Struct.fields;
 
-    if (comptime !std.meta.trait.isContainer(ReturnType)) {
+    if (comptime !trait.isContainer(ReturnType)) {
         const FnType = blk: {
             {
                 // TODO(hazeycode): replace this hack with the more generalised code above once it doens't crash the compiler
@@ -25,7 +26,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @as(FnType, @ptrCast(&c.objc_msgSend));
+        const func = @as(FnType, @ptrCast(&c.objc_msgSend));
         return @call(.auto, func, .{ target, selector } ++ args);
     } else {
         const FnType = blk: {
@@ -40,7 +41,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
             }
         };
         // NOTE: func is a var because making it const causes a compile error which I believe is a compiler bug
-        var func = @as(FnType, @ptrCast(&c.objc_msgSend_stret));
+        const func = @as(FnType, @ptrCast(&c.objc_msgSend_stret));
         var stret: ReturnType = undefined;
         _ = @call(.auto, func, .{ &stret, target, selector } ++ args);
         return stret;

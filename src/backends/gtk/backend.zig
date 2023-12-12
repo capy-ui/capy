@@ -281,7 +281,7 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(event_controller_legacy, "event", @as(c.GCallback, @ptrCast(&gtkButtonPress)), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_controller(widget, event_controller_legacy);
 
-            var data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@as(*c.GObject, @ptrCast(widget)), "eventUserData", data);
             _ = c.g_object_ref(@as(*c.GObject, @ptrCast(widget)));
@@ -1242,7 +1242,7 @@ pub const NavigationSidebar = struct {
 
     pub fn create() BackendError!NavigationSidebar {
         const listBox = c.gtk_list_box_new();
-        var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(listBox);
+        const context: *c.GtkStyleContext = c.gtk_widget_get_style_context(listBox);
         c.gtk_style_context_add_class(context, "navigation-sidebar");
 
         // A custom component is used to bypass GTK's minimum size mechanism
@@ -1268,7 +1268,7 @@ pub const NavigationSidebar = struct {
         const label_gtk = c.gtk_label_new(label);
         c.gtk_box_append(@ptrCast(box), label_gtk);
 
-        var context: *c.GtkStyleContext = c.gtk_widget_get_style_context(box);
+        const context: *c.GtkStyleContext = c.gtk_widget_get_style_context(box);
         c.gtk_style_context_add_class(context, "activatable");
         c.gtk_style_context_add_class(context, "row");
     }

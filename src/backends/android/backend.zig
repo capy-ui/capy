@@ -129,7 +129,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn setupEvents(widget: PeerType) BackendError!void {
             const jni = theApp.getJni();
-            var data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.lasting_allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
 
             // Wrap the memory address in a Long object
@@ -751,7 +751,7 @@ pub const backendExport = struct {
             self.pipe = try std.os.pipe();
             android.ALooper_acquire(self.uiThreadLooper);
 
-            var native_activity = android.NativeActivity.init(self.activity);
+            const native_activity = android.NativeActivity.init(self.activity);
             self.uiJni = native_activity.jni;
             const jni = native_activity.jni;
 
@@ -836,7 +836,7 @@ pub const backendExport = struct {
         }
 
         pub fn getJni(self: *AndroidApp) *android.JNI {
-            var native_activity = android.NativeActivity.get(self.activity);
+            const native_activity = android.NativeActivity.get(self.activity);
             return native_activity.jni;
         }
 
@@ -869,7 +869,7 @@ pub const backendExport = struct {
         }
 
         fn mainLoop(self: *AndroidApp) !void {
-            var native_activity = android.NativeActivity.init(self.activity);
+            const native_activity = android.NativeActivity.init(self.activity);
             self.mainJni = native_activity.jni;
 
             try self.runOnUiThread(setAppContentView, .{self});

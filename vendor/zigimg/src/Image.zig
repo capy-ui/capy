@@ -136,7 +136,7 @@ pub fn fromMemory(allocator: Allocator, buffer: []const u8) !Self {
 
 /// Create a pixel surface from scratch
 pub fn create(allocator: Allocator, width: usize, height: usize, pixel_format: PixelFormat) !Self {
-    var result = Self{
+    const result = Self{
         .allocator = allocator,
         .width = width,
         .height = height,

@@ -61,7 +61,7 @@ pub const Window = struct {
 
     /// wrappedContainer can be an error union, a pointer to the container or the container itself.
     pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
-        var container =
+        const container =
             if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
             try wrappedContainer
         else

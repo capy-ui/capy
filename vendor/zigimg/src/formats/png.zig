@@ -101,7 +101,7 @@ pub const PNG = struct {
         if (header.filter_method != .adaptive)
             return ImageWriteError.Unsupported;
 
-        var writer = write_stream.writer();
+        const writer = write_stream.writer();
 
         try writeSignature(writer);
         try writeHeader(writer, header);
@@ -155,7 +155,7 @@ pub const PNG = struct {
         // Note: there may be more than 1 chunk
         // TODO: provide choice of how much it buffers (how much data per idat chunk)
         var chunks = chunk_writer.chunkWriter(writer, "IDAT");
-        var chunk_wr = chunks.writer();
+        const chunk_wr = chunks.writer();
 
         var zlib: ZlibCompressor(@TypeOf(chunk_wr)) = undefined;
         try zlib.init(allocator, chunk_wr);

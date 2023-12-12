@@ -197,7 +197,7 @@ const ColorContainer = struct {
 test "simple struct init" {
     var all = forAll(@import("color.zig").Color);
     while (all.next()) |color| {
-        var container = ColorContainer{ .color = color };
+        const container = ColorContainer{ .color = color };
         try std.testing.expectEqual(color, container.color);
     }
 }
