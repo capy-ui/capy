@@ -9,8 +9,7 @@ pub fn msgSend(comptime ReturnType: type, target: anytype, selector: SEL, args: 
     if ((target_type == id or target_type == Class) == false) @compileError("msgSend target should be of type id or Class");
 
     const args_meta = @typeInfo(@TypeOf(args)).Struct.fields;
-
-    if (comptime !trait.isContainer(ReturnType)) {
+    if (comptime !trait.isContainer(ReturnType) or @import("builtin").cpu.arch == .aarch64) {
         const FnType = blk: {
             {
                 // TODO(hazeycode): replace this hack with the more generalised code above once it doens't crash the compiler

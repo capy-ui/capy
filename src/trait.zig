@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub usingnamespace if (@hasField(std.meta,"trait")) std.meta.trait else struct {
+pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct {
     pub fn isNumber(comptime T: type) bool {
         return switch (@typeInfo(T)) {
             .Int, .Float, .ComptimeInt, .ComptimeFloat => true,
