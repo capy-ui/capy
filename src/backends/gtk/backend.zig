@@ -1,6 +1,7 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
+const trait = @import("../../trait.zig");
 pub const c = @cImport({
     @cInclude("gtk/gtk.h");
 });
@@ -441,7 +442,7 @@ pub fn Events(comptime T: type) type {
 
         pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
-                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                if (!trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
                 }
             }
