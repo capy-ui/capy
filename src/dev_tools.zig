@@ -1,6 +1,7 @@
 //! Capy Development Tools Server
 const std = @import("std");
 const internal = @import("internal.zig");
+const trait = @import("trait.zig");
 
 const DEV_TOOLS_PORT = 42671;
 const log = std.log.scoped(.dev_tools);
@@ -73,7 +74,7 @@ pub fn init() !void {
 }
 
 fn readStructField(comptime T: type, reader: anytype) !T {
-    if (comptime std.meta.trait.isIntegral(T)) {
+    if (comptime trait.isIntegral(T)) {
         return try reader.readIntBig(T);
     } else if (T == []const u8) {
         const length = try std.leb.readULEB128(u32, reader);
@@ -84,7 +85,7 @@ fn readStructField(comptime T: type, reader: anytype) !T {
 }
 
 fn writeStructField(comptime T: type, writer: anytype, value: T) !void {
-    if (comptime std.meta.trait.isIntegral(T)) {
+    if (comptime trait.isIntegral(T)) {
         try writer.writeIntBig(T, value);
     } else if (T == []const u8) {
         try std.leb.writeULEB128(writer, value.len);
