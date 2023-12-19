@@ -14,7 +14,7 @@ pub const TextField = struct {
     widget_data: TextField.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
     readOnly: Atom(bool) = Atom(bool).of(false),
-    _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    _wrapperTextBlock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
     pub fn init(config: TextField.Config) TextField {
         var field = TextField.init_events(TextField{

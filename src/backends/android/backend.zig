@@ -10,7 +10,7 @@ const MouseButton = shared.MouseButton;
 
 pub const PeerType = *anyopaque; // jobject but not optional
 
-var activeWindows = std.atomic.Atomic(usize).init(0);
+var activeWindows = std.atomic.Value(usize).init(0);
 var hasInit: bool = false;
 var theApp: *backendExport.AndroidApp = undefined;
 
@@ -732,7 +732,7 @@ pub const backendExport = struct {
         pipe: [2]std.os.fd_t = undefined,
         // This is used with futexes so that runOnUiThread waits until the callback is completed
         // before returning.
-        uiThreadCondition: std.atomic.Atomic(u32) = std.atomic.Atomic(u32).init(0),
+        uiThreadCondition: std.atomic.Value(u32) = std.atomic.Value(u32).init(0),
 
         // TODO: add an interface in capy for handling stored state
         pub fn init(allocator: std.mem.Allocator, activity: *android.ANativeActivity, stored_state: ?[]const u8) !AndroidApp {

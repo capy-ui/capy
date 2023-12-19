@@ -64,7 +64,7 @@ pub const AndroidApp = struct {
     pipe: [2]std.os.fd_t = undefined,
     // This is used with futexes so that runOnUiThread waits until the callback is completed
     // before returning.
-    uiThreadCondition: std.atomic.Atomic(u32) = std.atomic.Atomic(u32).init(0),
+    uiThreadCondition: std.atomic.Value(u32) = std.atomic.Value(u32).init(0),
     uiThreadLooper: *android.ALooper = undefined,
     uiThreadId: std.Thread.Id = undefined,
 

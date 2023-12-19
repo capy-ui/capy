@@ -20,7 +20,7 @@ const GTK_VERSION = std.SemanticVersion.Range{
 
 pub const Capabilities = .{ .useEventLoop = true };
 
-var activeWindows = std.atomic.Atomic(usize).init(0);
+var activeWindows = std.atomic.Value(usize).init(0);
 var randomWindow: *c.GtkWidget = undefined;
 
 var hasInit: bool = false;
