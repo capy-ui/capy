@@ -13,7 +13,7 @@ const MouseButton = shared.MouseButton;
 // pub const PeerType = *opaque {};
 pub const PeerType = objc.id;
 
-const atomicValue = if (@hasField(std.atomic,"Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
+const atomicValue = if (@hasDecl(std.atomic,"Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 var activeWindows = atomicValue(usize).init(0);
 var hasInit: bool = false;
 
