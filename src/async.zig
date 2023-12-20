@@ -15,7 +15,7 @@ pub const ThreadPool = struct {
         thread: std.Thread,
         /// The last time a task was executed on this thread, in milliseconds.
         last_used: i64,
-        busy: std.atomic.Atomic(bool) = false,
+        busy: std.atomic.Value(bool) = false,
     };
 
     pub fn init(allocator: std.mem.Allocator) ThreadPool {

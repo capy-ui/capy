@@ -340,7 +340,7 @@ fn iterateApplyFields(comptime T: type, target: anytype, config: GenerateConfigS
             @field(target, field.name).set(
                 @field(config, name),
             );
-        } else if (comptime std.meta.trait.is(.Struct)(FieldType)) {
+        } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateApplyFields(T, &@field(target, field.name), config);
         }
     }

@@ -1,6 +1,7 @@
 const std = @import("std");
 const lib = @import("../../main.zig");
 const shared = @import("../shared.zig");
+const trait = @import("../../trait.zig");
 const os = @import("builtin").target.os;
 const log = std.log.scoped(.win32);
 
@@ -583,7 +584,7 @@ pub fn Events(comptime T: type) type {
 
         pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
-                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                if (!trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
                 }
             }
