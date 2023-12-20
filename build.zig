@@ -7,7 +7,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
+    var examplesDir = try if (@hasField(std.fs.Dir.OpenDirOptions,"iterate")) std.fs.cwd().openDir("examples",.{ .iterate = true }) else std.fs.cwd().openIterableDir("examples",.{}); // support zig 0.11 as well as current master
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {

@@ -137,7 +137,7 @@ pub fn Atom(comptime T: type) type {
         /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
         /// A notices that bindLock is already set to true, and thus returns.
         /// TODO: make the bind lock more general and just use it for any change, and explicit how this favors completeness instead of consistency (in case an onChange triggers set method manually)
-        bindLock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
+        bindLock: atomicValue(bool) = atomicValue(bool).init(false),
 
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
@@ -148,6 +148,7 @@ pub fn Atom(comptime T: type) type {
 
         const Self = @This();
         const isAnimable = isAnimableType(T);
+        const atomicValue = if (@hasField(std.atomic,"Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 
         pub const ValueType = T;
         pub const ChangeListener = struct {
@@ -428,7 +429,8 @@ pub fn Atom(comptime T: type) type {
             // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
-            if (self.bindLock.cmpxchgStrong(false, true, .SeqCst, .SeqCst) == null) {
+            if ((if (@hasField(atomicValue(bool),"cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .SeqCst, .SeqCst) else self.bindLock.cmpxchg(true,false, true, .SeqCst, .SeqCst) // support zig 0.11 as well as current master
+                 ) == null) {
                 defer self.bindLock.store(false, .SeqCst);
 
                 {

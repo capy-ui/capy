@@ -1,5 +1,6 @@
 const std = @import("std");
 
+// support zig 0.11 as well as current master
 pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct {
     const TraitFn = fn (type) bool;
     pub fn isNumber(comptime T: type) bool {
