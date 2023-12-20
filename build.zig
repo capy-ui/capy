@@ -7,7 +7,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    var examplesDir = try std.fs.cwd().openDir("examples", .{});
+    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
     defer examplesDir.close();
 
     const broken = switch (target.getOsTag()) {

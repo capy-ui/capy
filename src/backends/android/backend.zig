@@ -2,6 +2,7 @@ const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const android = @import("android");
+const trait = @import("../../trait.zig");
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -10,7 +11,7 @@ const MouseButton = shared.MouseButton;
 
 pub const PeerType = *anyopaque; // jobject but not optional
 
-var activeWindows = std.atomic.Atomic(usize).init(0);
+var activeWindows = std.atomic.Value(usize).init(0);
 var hasInit: bool = false;
 var theApp: *backendExport.AndroidApp = undefined;
 
@@ -154,7 +155,7 @@ pub fn Events(comptime T: type) type {
 
         pub inline fn setUserData(self: *T, data: anytype) void {
             comptime {
-                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                if (!trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
                 }
             }
@@ -732,7 +733,7 @@ pub const backendExport = struct {
         pipe: [2]std.os.fd_t = undefined,
         // This is used with futexes so that runOnUiThread waits until the callback is completed
         // before returning.
-        uiThreadCondition: std.atomic.Atomic(u32) = std.atomic.Atomic(u32).init(0),
+        uiThreadCondition: std.atomic.Value(u32) = std.atomic.Value(u32).init(0),
 
         // TODO: add an interface in capy for handling stored state
         pub fn init(allocator: std.mem.Allocator, activity: *android.ANativeActivity, stored_state: ?[]const u8) !AndroidApp {

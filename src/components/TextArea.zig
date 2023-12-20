@@ -12,7 +12,7 @@ pub const TextArea = struct {
     peer: ?backend.TextArea = null,
     widget_data: TextArea.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
-    _wrapperTextBlock: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    _wrapperTextBlock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
     // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?
     /// Whether to let the system choose a monospace font for us and use it in this TextArea..

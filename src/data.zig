@@ -39,7 +39,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         }
     } else if (comptime trait.isContainer(T) and @hasDecl(T, "lerp")) {
         return T.lerp(a, b, t);
-    } else if (comptime std.meta.trait.is(.Optional)(T)) {
+    } else if (comptime trait.is(.Optional)(T)) {
         if (a != null and b != null) {
             return lerp(a.?, b.?, t);
         } else {
