@@ -1283,6 +1283,33 @@ pub const NavigationSidebar = struct {
     }
 };
 
+// Stub.
+pub const AudioGenerator = struct {
+    pub fn create(sampleRate: f32) !AudioGenerator {
+        _ = sampleRate;
+        return AudioGenerator{};
+    }
+
+    pub fn getBuffer(self: AudioGenerator, channel: u16) []f32 {
+        _ = channel;
+        _ = self;
+        return &([0]f32{});
+    }
+
+    pub fn copyBuffer(self: AudioGenerator, channel: u16) void {
+        _ = channel;
+        _ = self;
+    }
+
+    pub fn doneWrite(self: AudioGenerator) void {
+        _ = self;
+    }
+
+    pub fn deinit(self: AudioGenerator) void {
+        _ = self;
+    }
+};
+
 // downcasting to [*]u8 due to translate-c bugs which won't even accept
 // pointer to an event.
 extern fn gdk_event_new(type: c_int) [*]align(8) u8;

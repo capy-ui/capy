@@ -21,7 +21,7 @@ pub fn main() !void {
     defer window.deinit();
 
     var somesliderValue = capy.Atom(f32).of(0);
-    var somesliderText = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.1}", .{&somesliderValue});
+    const somesliderText = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.1}", .{&somesliderValue});
 
     try window.set(capy.row(.{ .spacing = 0 }, .{
         capy.navigationSidebar(.{}),
