@@ -1,19 +1,19 @@
 // Implement PNG image format according to W3C Portable Network Graphics (PNG) specification second edition (ISO/IEC 15948:2003 (E))
 // Last version: https://www.w3.org/TR/PNG/
 
-const std = @import("std");
-const types = @import("png/types.zig");
-const reader = @import("png/reader.zig");
+const Allocator = std.mem.Allocator;
 const chunk_writer = @import("png/chunk_writer.zig");
-const filter = @import("png/filtering.zig");
 const color = @import("../color.zig");
-const PixelFormat = @import("../pixel_format.zig").PixelFormat;
-const ZlibCompressor = @import("png/zlib_compressor.zig").ZlibCompressor;
+const filter = @import("png/filtering.zig");
+const FormatInterface = @import("../FormatInterface.zig");
 const Image = @import("../Image.zig");
-const FormatInterface = @import("../format_interface.zig").FormatInterface;
 const ImageReadError = Image.ReadError;
 const ImageWriteError = Image.WriteError;
-const Allocator = std.mem.Allocator;
+const PixelFormat = @import("../pixel_format.zig").PixelFormat;
+const reader = @import("png/reader.zig");
+const std = @import("std");
+const types = @import("png/types.zig");
+const ZlibCompressor = @import("png/zlib_compressor.zig").ZlibCompressor;
 
 pub const HeaderData = types.HeaderData;
 pub const ColorType = types.ColorType;
@@ -79,8 +79,8 @@ pub const PNG = struct {
         try ensureWritable(image);
 
         const header = HeaderData{
-            .width = @as(u32, @truncate(image.width)),
-            .height = @as(u32, @truncate(image.height)),
+            .width = @truncate(image.width),
+            .height = @truncate(image.height),
             .bit_depth = image.pixelFormat().bitsPerChannel(),
             .color_type = try types.ColorType.fromPixelFormat(image.pixelFormat()),
             .compression_method = .deflate,
@@ -105,7 +105,7 @@ pub const PNG = struct {
 
         try writeSignature(writer);
         try writeHeader(writer, header);
-        if (PixelFormat.isIndex(pixels)) {
+        if (PixelFormat.isIndexed(pixels)) {
             try writePalette(writer, pixels);
             try writeTransparencyInfo(writer, pixels); // TODO: pixel format where there is no transparency
         }
@@ -139,13 +139,13 @@ pub const PNG = struct {
         var chunk = chunk_writer.chunkWriter(writer, "IHDR");
         var chunk_wr = chunk.writer();
 
-        try chunk_wr.writeIntBig(u32, header.width);
-        try chunk_wr.writeIntBig(u32, header.height);
-        try chunk_wr.writeIntBig(u8, header.bit_depth);
-        try chunk_wr.writeIntBig(u8, @intFromEnum(header.color_type));
-        try chunk_wr.writeIntBig(u8, @intFromEnum(header.compression_method));
-        try chunk_wr.writeIntBig(u8, @intFromEnum(header.filter_method));
-        try chunk_wr.writeIntBig(u8, @intFromEnum(header.interlace_method));
+        try chunk_wr.writeInt(u32, header.width, .big);
+        try chunk_wr.writeInt(u32, header.height, .big);
+        try chunk_wr.writeInt(u8, header.bit_depth, .big);
+        try chunk_wr.writeInt(u8, @intFromEnum(header.color_type), .big);
+        try chunk_wr.writeInt(u8, @intFromEnum(header.compression_method), .big);
+        try chunk_wr.writeInt(u8, @intFromEnum(header.filter_method), .big);
+        try chunk_wr.writeInt(u8, @intFromEnum(header.interlace_method), .big);
 
         try chunk.flush();
     }

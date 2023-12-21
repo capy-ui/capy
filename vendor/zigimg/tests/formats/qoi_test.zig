@@ -53,7 +53,7 @@ test "Write qoi file" {
 
     var buffer: [1025 * 1024]u8 = undefined;
     const zero_raw_pixels = try helpers.testReadFile(zero_raw_file, buffer[0..]);
-    std.mem.copy(u8, std.mem.sliceAsBytes(source_image.pixels.rgba32), std.mem.bytesAsSlice(u8, zero_raw_pixels));
+    @memcpy(std.mem.sliceAsBytes(source_image.pixels.rgba32), std.mem.bytesAsSlice(u8, zero_raw_pixels));
 
     var image_buffer: [100 * 1024]u8 = undefined;
     var zero_qoi = try helpers.testReadFile(zero_qoi_file, buffer[0..]);

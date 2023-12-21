@@ -115,11 +115,11 @@ pub const Colorf32 = extern struct {
     }
 
     pub fn toArray(self: Self) [4]f32 {
-        return @as([4]f32, @bitCast(self));
+        return @bitCast(self);
     }
 
     pub fn fromArray(value: [4]f32) Self {
-        return @as(Self, @bitCast(value));
+        return @bitCast(value);
     }
 };
 
@@ -127,15 +127,17 @@ fn isAll8BitColor(comptime red_type: type, comptime green_type: type, comptime b
     return red_type == u8 and green_type == u8 and blue_type == u8 and (alpha_type == u8 or alpha_type == void);
 }
 
-fn RgbMethods(comptime Self: type) type {
+// FIXME: Workaround for https://github.com/zigimg/zigimg/issues/101, before it was only passed Self and getting RedT, GreenT, BlueT and AlphaT from Self fields.
+fn RgbMethods(
+    comptime Self: type,
+    comptime RedT: type,
+    comptime GreenT: type,
+    comptime BlueT: type,
+    comptime AlphaT: type,
+) type {
     const has_alpha_type = @hasField(Self, "a");
 
     return struct {
-        const RedT = std.meta.fieldInfo(Self, .r).type;
-        const GreenT = std.meta.fieldInfo(Self, .g).type;
-        const BlueT = std.meta.fieldInfo(Self, .b).type;
-        const AlphaT = if (has_alpha_type) std.meta.fieldInfo(Self, .a).type else void;
-
         pub fn initRgb(r: RedT, g: GreenT, b: BlueT) Self {
             return Self{
                 .r = r,
@@ -342,32 +344,48 @@ fn RgbColor(comptime T: type) type {
         g: T align(1),
         b: T align(1),
 
-        pub usingnamespace RgbMethods(@This());
+        pub usingnamespace RgbMethods(@This(), T, T, T, void);
     };
 }
 
+// NOTE: For all the packed structs colors, the order of color is reversed
+// because the least significant part of the struct needs to be first, as per packed struct rules.
+// Also little endian is assumed for those formats.
+
+// Bgr555
+// OpenGL: n/a
+// Vulkan: VK_FORMAT_B5G5R5A1_UNORM_PACK16
+// Direct3D/DXGI: n/a
+pub const Bgr555 = packed struct {
+    r: u5 = 0,
+    g: u5 = 0,
+    b: u5 = 0,
+
+    pub usingnamespace RgbMethods(@This(), u5, u5, u5, void);
+};
+
 // Rgb555
 // OpenGL: GL_RGB5
-// Vulkan: VK_FORMAT_R5G6B5_UNORM_PACK16
+// Vulkan: VK_FORMAT_R5G5B5A1_UNORM_PACK16
 // Direct3D/DXGI: n/a
 pub const Rgb555 = packed struct {
-    r: u5,
-    g: u5,
     b: u5,
+    g: u5,
+    r: u5,
 
-    pub usingnamespace RgbMethods(@This());
+    pub usingnamespace RgbMethods(@This(), u5, u5, u5, void);
 };
 
 // Rgb565
 // OpenGL: n/a
-// Vulkan: n/a
+// Vulkan: VK_FORMAT_R5G6B5_UNORM_PACK16
 // Direct3D/DXGI: n/a
 pub const Rgb565 = packed struct {
-    r: u5,
-    g: u6,
     b: u5,
+    g: u6,
+    r: u5,
 
-    pub usingnamespace RgbMethods(@This());
+    pub usingnamespace RgbMethods(@This(), u5, u6, u5, void);
 };
 
 fn RgbaColor(comptime T: type) type {
@@ -377,7 +395,7 @@ fn RgbaColor(comptime T: type) type {
         b: T align(1),
         a: T align(1) = math.maxInt(T),
 
-        pub usingnamespace RgbMethods(@This());
+        pub usingnamespace RgbMethods(@This(), T, T, T, T);
         pub usingnamespace RgbaMethods(@This());
     };
 }
@@ -412,7 +430,7 @@ fn BgrColor(comptime T: type) type {
         g: T align(1),
         r: T align(1),
 
-        pub usingnamespace RgbMethods(@This());
+        pub usingnamespace RgbMethods(@This(), T, T, T, void);
     };
 }
 
@@ -423,7 +441,7 @@ fn BgraColor(comptime T: type) type {
         r: T align(1),
         a: T = math.maxInt(T),
 
-        pub usingnamespace RgbMethods(@This());
+        pub usingnamespace RgbMethods(@This(), T, T, T, T);
         pub usingnamespace RgbaMethods(@This());
     };
 }
@@ -450,15 +468,15 @@ pub fn IndexedStorage(comptime T: type) type {
         const Self = @This();
 
         pub fn init(allocator: Allocator, pixel_count: usize) !Self {
-            const res = Self{
+            const result = Self{
                 .indices = try allocator.alloc(T, pixel_count),
                 .palette = try allocator.alloc(Rgba32, PaletteSize),
             };
 
             // Since not all palette entries need to be filled we make sure
             // they are all zero at the start.
-            @memset(res.palette, Rgba32.initRgba(0, 0, 0, 0));
-            return res;
+            @memset(result.palette, Rgba32.initRgba(0, 0, 0, 0));
+            return result;
         }
 
         pub fn deinit(self: Self, allocator: Allocator) void {
@@ -533,10 +551,11 @@ pub const PixelStorage = union(PixelFormat) {
     grayscale16: []Grayscale16,
     grayscale8Alpha: []Grayscale8Alpha,
     grayscale16Alpha: []Grayscale16Alpha,
-    rgb565: []Rgb565,
     rgb555: []Rgb555,
+    rgb565: []Rgb565,
     rgb24: []Rgb24,
     rgba32: []Rgba32,
+    bgr555: []Bgr555,
     bgr24: []Bgr24,
     bgra32: []Bgra32,
     rgb48: []Rgb48,
@@ -632,6 +651,11 @@ pub const PixelStorage = union(PixelFormat) {
                     .rgb555 = try allocator.alloc(Rgb555, pixel_count),
                 };
             },
+            .bgr555 => {
+                return Self{
+                    .bgr555 = try allocator.alloc(Bgr555, pixel_count),
+                };
+            },
             .bgr24 => {
                 return Self{
                     .bgr24 = try allocator.alloc(Bgr24, pixel_count),
@@ -679,6 +703,7 @@ pub const PixelStorage = union(PixelFormat) {
             .rgba32 => |data| allocator.free(data),
             .rgb565 => |data| allocator.free(data),
             .rgb555 => |data| allocator.free(data),
+            .bgr555 => |data| allocator.free(data),
             .bgr24 => |data| allocator.free(data),
             .bgra32 => |data| allocator.free(data),
             .rgb48 => |data| allocator.free(data),
@@ -706,6 +731,7 @@ pub const PixelStorage = union(PixelFormat) {
             .rgba32 => |data| data.len,
             .rgb565 => |data| data.len,
             .rgb555 => |data| data.len,
+            .bgr555 => |data| data.len,
             .bgr24 => |data| data.len,
             .bgra32 => |data| data.len,
             .rgb48 => |data| data.len,
@@ -756,11 +782,69 @@ pub const PixelStorage = union(PixelFormat) {
             .rgba32 => |data| std.mem.sliceAsBytes(data),
             .rgb565 => |data| std.mem.sliceAsBytes(data),
             .rgb555 => |data| std.mem.sliceAsBytes(data),
+            .bgr555 => |data| std.mem.sliceAsBytes(data),
             .bgr24 => |data| std.mem.sliceAsBytes(data),
             .bgra32 => |data| std.mem.sliceAsBytes(data),
             .rgb48 => |data| std.mem.sliceAsBytes(data),
             .rgba64 => |data| std.mem.sliceAsBytes(data),
             .float32 => |data| std.mem.sliceAsBytes(data),
+        };
+    }
+
+    pub fn asConstBytes(self: Self) []const u8 {
+        return switch (self) {
+            .invalid => &[_]u8{},
+            .indexed1 => |data| std.mem.sliceAsBytes(data.indices),
+            .indexed2 => |data| std.mem.sliceAsBytes(data.indices),
+            .indexed4 => |data| std.mem.sliceAsBytes(data.indices),
+            .indexed8 => |data| std.mem.sliceAsBytes(data.indices),
+            .indexed16 => |data| std.mem.sliceAsBytes(data.indices),
+            .grayscale1 => |data| std.mem.sliceAsBytes(data),
+            .grayscale2 => |data| std.mem.sliceAsBytes(data),
+            .grayscale4 => |data| std.mem.sliceAsBytes(data),
+            .grayscale8 => |data| std.mem.sliceAsBytes(data),
+            .grayscale8Alpha => |data| std.mem.sliceAsBytes(data),
+            .grayscale16 => |data| std.mem.sliceAsBytes(data),
+            .grayscale16Alpha => |data| std.mem.sliceAsBytes(data),
+            .rgb24 => |data| std.mem.sliceAsBytes(data),
+            .rgba32 => |data| std.mem.sliceAsBytes(data),
+            .rgb565 => |data| std.mem.sliceAsBytes(data),
+            .rgb555 => |data| std.mem.sliceAsBytes(data),
+            .bgr555 => |data| std.mem.sliceAsBytes(data),
+            .bgr24 => |data| std.mem.sliceAsBytes(data),
+            .bgra32 => |data| std.mem.sliceAsBytes(data),
+            .rgb48 => |data| std.mem.sliceAsBytes(data),
+            .rgba64 => |data| std.mem.sliceAsBytes(data),
+            .float32 => |data| std.mem.sliceAsBytes(data),
+        };
+    }
+
+    /// Return a slice of the current pixel storage
+    pub fn slice(self: Self, begin: usize, end: usize) Self {
+        return switch (self) {
+            .invalid => .invalid,
+            .indexed1 => |data| .{ .indexed1 = .{ .palette = data.palette, .indices = data.indices[begin..end] } },
+            .indexed2 => |data| .{ .indexed2 = .{ .palette = data.palette, .indices = data.indices[begin..end] } },
+            .indexed4 => |data| .{ .indexed4 = .{ .palette = data.palette, .indices = data.indices[begin..end] } },
+            .indexed8 => |data| .{ .indexed8 = .{ .palette = data.palette, .indices = data.indices[begin..end] } },
+            .indexed16 => |data| .{ .indexed16 = .{ .palette = data.palette, .indices = data.indices[begin..end] } },
+            .grayscale1 => |data| .{ .grayscale1 = data[begin..end] },
+            .grayscale2 => |data| .{ .grayscale2 = data[begin..end] },
+            .grayscale4 => |data| .{ .grayscale4 = data[begin..end] },
+            .grayscale8 => |data| .{ .grayscale8 = data[begin..end] },
+            .grayscale8Alpha => |data| .{ .grayscale8Alpha = data[begin..end] },
+            .grayscale16 => |data| .{ .grayscale16 = data[begin..end] },
+            .grayscale16Alpha => |data| .{ .grayscale16Alpha = data[begin..end] },
+            .rgb24 => |data| .{ .rgb24 = data[begin..end] },
+            .rgba32 => |data| .{ .rgba32 = data[begin..end] },
+            .rgb565 => |data| .{ .rgb565 = data[begin..end] },
+            .rgb555 => |data| .{ .rgb555 = data[begin..end] },
+            .bgr555 => |data| .{ .bgr555 = data[begin..end] },
+            .bgr24 => |data| .{ .bgr24 = data[begin..end] },
+            .bgra32 => |data| .{ .bgra32 = data[begin..end] },
+            .rgb48 => |data| .{ .rgb48 = data[begin..end] },
+            .rgba64 => |data| .{ .rgba64 = data[begin..end] },
+            .float32 => |data| .{ .float32 = data[begin..end] },
         };
     }
 };
@@ -802,6 +886,7 @@ pub const PixelStorageIterator = struct {
             .rgba32 => |data| data[self.current_index].toColorf32(),
             .rgb565 => |data| data[self.current_index].toColorf32(),
             .rgb555 => |data| data[self.current_index].toColorf32(),
+            .bgr555 => |data| data[self.current_index].toColorf32(),
             .bgr24 => |data| data[self.current_index].toColorf32(),
             .bgra32 => |data| data[self.current_index].toColorf32(),
             .rgb48 => |data| data[self.current_index].toColorf32(),

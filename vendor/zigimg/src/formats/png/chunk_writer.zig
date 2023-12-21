@@ -19,7 +19,7 @@ pub fn ChunkWriter(comptime buffer_size: usize, comptime WriterType: type) type 
         const Self = @This();
 
         pub fn flush(self: *Self) !void {
-            try self.unbuffered_writer.writeIntBig(u32, @as(u32, @truncate(self.end)));
+            try self.unbuffered_writer.writeInt(u32, @as(u32, @truncate(self.end)), .big);
 
             var crc = Crc.init();
 
@@ -28,7 +28,7 @@ pub fn ChunkWriter(comptime buffer_size: usize, comptime WriterType: type) type 
             crc.update(self.buf[0..self.end]);
             try self.unbuffered_writer.writeAll(self.buf[0..self.end]);
 
-            try self.unbuffered_writer.writeIntBig(u32, crc.final());
+            try self.unbuffered_writer.writeInt(u32, crc.final(), .big);
 
             self.end = 0;
         }
@@ -44,14 +44,16 @@ pub fn ChunkWriter(comptime buffer_size: usize, comptime WriterType: type) type 
                     return self.unbuffered_writer.write(bytes);
             }
 
-            mem.copy(u8, self.buf[self.end..], bytes);
+            @memcpy(self.buf[self.end..][0..bytes.len], bytes);
             self.end += bytes.len;
             return bytes.len;
         }
     };
 }
 
-pub fn chunkWriter(underlying_stream: anytype, comptime id: []const u8) ChunkWriter(1 << 14, @TypeOf(underlying_stream)) {
+const ChunkBufferSize = 1 << 14; // 16 kb
+
+pub fn chunkWriter(underlying_stream: anytype, comptime id: []const u8) ChunkWriter(ChunkBufferSize, @TypeOf(underlying_stream)) {
     if (id.len != 4)
         @compileError("PNG chunk id must be 4 characters");
 

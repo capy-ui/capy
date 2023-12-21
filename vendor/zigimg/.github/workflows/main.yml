@@ -9,6 +9,10 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{matrix.os}}
     steps:
+      - name: Prepare git
+        run: |-
+          git config --global core.autocrlf false
+          git config --global core.eol lf
       - name: Checkout zigmimg
         uses: actions/checkout@v2
         with:

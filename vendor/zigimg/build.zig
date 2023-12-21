@@ -1,13 +1,25 @@
-const Builder = @import("std").build.Builder;
+const Build = @import("std").Build;
 
-pub fn build(b: *Builder) void {
-    const buildMode = b.standardReleaseOptions();
+pub fn build(b: *Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
 
-    const zigimg_build_test = b.addTestExe("zigimgtest", "zigimg.zig");
-    zigimg_build_test.setBuildMode(buildMode);
-    zigimg_build_test.install();
+    _ = b.addModule("zigimg", .{
+        .source_file = .{ .path = "zigimg.zig" },
+    });
 
-    const run_test_cmd = zigimg_build_test.run();
+    const zigimg_build_test = b.addTest(.{
+        .name = "zigimgtest",
+        .root_source_file = .{ .path = "zigimg.zig" },
+        .target = target,
+        .optimize = optimize,
+    });
+
+    b.installArtifact(zigimg_build_test);
+
+    const run_test_cmd = b.addRunArtifact(zigimg_build_test);
+    // Force running of the test command even if you don't have changes
+    run_test_cmd.has_side_effects = true;
     run_test_cmd.step.dependOn(b.getInstallStep());
 
     const test_step = b.step("test", "Run library tests");

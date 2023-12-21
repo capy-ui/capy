@@ -12,9 +12,7 @@
             "preLaunchTask": "build tests",
             "stopAtEntry": false,
             "program": "zig-out/bin/zigimgtest.exe",
-            "args": [
-                "path/to/zig/exe/not/really/needed"
-            ],
+            "args": [],
         },
         {
             "name": "Debug tests (UNIX)",
@@ -25,7 +23,7 @@
             "stopAtEntry": false,
             "target": "zig-out/bin/zigimgtest",
             "valuesFormatting": "parseText",
-            "arguments": "path/to/zig/exe/not/really/needed"
+            "arguments": ""
         }
     ]
 }

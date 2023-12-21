@@ -8,7 +8,7 @@ const testing = std.testing;
 const Image = @import("../../src/Image.zig");
 const helpers = @import("../helpers.zig");
 
-fn verifyBitmapRGBAV5(the_bitmap: bmp.Bitmap, pixels: color.PixelStorage) !void {
+fn verifyBitmapRGBAV5(the_bitmap: bmp.BMP, pixels: color.PixelStorage) !void {
     try helpers.expectEq(the_bitmap.file_header.size, 153738);
     try helpers.expectEq(the_bitmap.file_header.reserved, 0);
     try helpers.expectEq(the_bitmap.file_header.pixel_offset, 138);
@@ -94,7 +94,7 @@ test "Read simple version 4 24-bit RGB bitmap" {
     const file = try helpers.testOpenFile(helpers.fixtures_path ++ "bmp/simple_v4.bmp");
     defer file.close();
 
-    var the_bitmap = bmp.Bitmap{};
+    var the_bitmap = bmp.BMP{};
 
     var stream_source = std.io.StreamSource{ .file = file };
 
@@ -153,7 +153,7 @@ test "Read a valid version 5 RGBA bitmap from file" {
 
     var stream_source = std.io.StreamSource{ .file = file };
 
-    var the_bitmap = bmp.Bitmap{};
+    var the_bitmap = bmp.BMP{};
 
     const pixels = try the_bitmap.read(helpers.zigimg_test_allocator, &stream_source);
     defer pixels.deinit(helpers.zigimg_test_allocator);
@@ -166,7 +166,7 @@ test "Read a valid version 5 RGBA bitmap from memory" {
     const buffer: []const u8 = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
     var stream_source = std.io.StreamSource{ .const_buffer = std.io.fixedBufferStream(buffer) };
 
-    var the_bitmap = bmp.Bitmap{};
+    var the_bitmap = bmp.BMP{};
 
     const pixels = try the_bitmap.read(helpers.zigimg_test_allocator, &stream_source);
     defer pixels.deinit(helpers.zigimg_test_allocator);
@@ -180,8 +180,129 @@ test "Should error when reading an invalid file" {
 
     var stream_source = std.io.StreamSource{ .file = file };
 
-    var the_bitmap = bmp.Bitmap{};
+    var the_bitmap = bmp.BMP{};
 
     const invalidFile = the_bitmap.read(helpers.zigimg_test_allocator, &stream_source);
     try helpers.expectError(invalidFile, ImageReadError.InvalidData);
+}
+
+test "Write a v4 bitmap when writing an image with bgr24 pixel format" {
+    const expected_colors = [_]u32{ 0xff0000, 0x00ff00, 0x0000ff, 0x000000, 0xffffff, 0x00ffff, 0xff00ff, 0xffff00 };
+
+    const image_file_name = "zigimg_bmp_v4.bmp";
+    const width = expected_colors.len;
+    const height = 1;
+
+    var source_image = try Image.create(helpers.zigimg_test_allocator, width, height, PixelFormat.bgr24);
+    defer source_image.deinit();
+
+    const pixels = source_image.pixels;
+
+    try testing.expect(pixels == .bgr24);
+    try testing.expect(pixels.bgr24.len == width * height);
+
+    // R, G, B
+    pixels.bgr24[0] = color.Bgr24.initRgb(255, 0, 0);
+    pixels.bgr24[1] = color.Bgr24.initRgb(0, 255, 0);
+    pixels.bgr24[2] = color.Bgr24.initRgb(0, 0, 255);
+
+    // Black, white
+    pixels.bgr24[3] = color.Bgr24.initRgb(0, 0, 0);
+    pixels.bgr24[4] = color.Bgr24.initRgb(255, 255, 255);
+
+    // Cyan, Magenta, Yellow
+    pixels.bgr24[5] = color.Bgr24.initRgb(0, 255, 255);
+    pixels.bgr24[6] = color.Bgr24.initRgb(255, 0, 255);
+    pixels.bgr24[7] = color.Bgr24.initRgb(255, 255, 0);
+
+    try source_image.writeToFilePath(image_file_name, Image.EncoderOptions{
+        .bmp = .{},
+    });
+
+    defer {
+        std.fs.cwd().deleteFile(image_file_name) catch {};
+    }
+
+    const read_file = try helpers.testOpenFile(image_file_name);
+    defer read_file.close();
+
+    var stream_source = std.io.StreamSource{ .file = read_file };
+
+    var read_bmp = bmp.BMP{};
+
+    const read_image_pixels = try read_bmp.read(helpers.zigimg_test_allocator, &stream_source);
+    defer read_image_pixels.deinit(helpers.zigimg_test_allocator);
+
+    try std.testing.expect(read_bmp.info_header == .v4);
+
+    try helpers.expectEq(read_bmp.width(), @as(i32, @intCast(width)));
+    try helpers.expectEq(read_bmp.height(), @as(i32, @intCast(height)));
+
+    try testing.expect(read_image_pixels == .bgr24);
+
+    for (expected_colors, 0..) |hex_color, index| {
+        try helpers.expectEq(read_image_pixels.bgr24[index].toU32Rgb(), hex_color);
+    }
+}
+
+test "Write a v5 bitmap when writing an image with bgra32 pixel format" {
+    const expected_colors = [_]u32{ 0xff0000, 0x00ff00, 0x0000ff, 0x000000, 0xffffff, 0x00ffff, 0xff00ff, 0xffff00, 0x000000000 };
+
+    const image_file_name = "zigimg_bmp_v5.bmp";
+    const width = expected_colors.len;
+    const height = 1;
+
+    var source_image = try Image.create(helpers.zigimg_test_allocator, width, height, PixelFormat.bgra32);
+    defer source_image.deinit();
+
+    const pixels = source_image.pixels;
+
+    try testing.expect(pixels == .bgra32);
+    try testing.expect(pixels.bgra32.len == width * height);
+
+    // R, G, B
+    pixels.bgra32[0] = color.Bgra32.initRgb(255, 0, 0);
+    pixels.bgra32[1] = color.Bgra32.initRgb(0, 255, 0);
+    pixels.bgra32[2] = color.Bgra32.initRgb(0, 0, 255);
+
+    // Black, white
+    pixels.bgra32[3] = color.Bgra32.initRgb(0, 0, 0);
+    pixels.bgra32[4] = color.Bgra32.initRgb(255, 255, 255);
+
+    // Cyan, Magenta, Yellow
+    pixels.bgra32[5] = color.Bgra32.initRgb(0, 255, 255);
+    pixels.bgra32[6] = color.Bgra32.initRgb(255, 0, 255);
+    pixels.bgra32[7] = color.Bgra32.initRgb(255, 255, 0);
+
+    // Transparent pixel
+    pixels.bgra32[8] = color.Bgra32.initRgba(0, 0, 0, 0);
+
+    try source_image.writeToFilePath(image_file_name, Image.EncoderOptions{
+        .bmp = .{},
+    });
+
+    defer {
+        std.fs.cwd().deleteFile(image_file_name) catch {};
+    }
+
+    const read_file = try helpers.testOpenFile(image_file_name);
+    defer read_file.close();
+
+    var stream_source = std.io.StreamSource{ .file = read_file };
+
+    var read_bmp = bmp.BMP{};
+
+    const read_image_pixels = try read_bmp.read(helpers.zigimg_test_allocator, &stream_source);
+    defer read_image_pixels.deinit(helpers.zigimg_test_allocator);
+
+    try std.testing.expect(read_bmp.info_header == .v5);
+
+    try helpers.expectEq(read_bmp.width(), @as(i32, @intCast(width)));
+    try helpers.expectEq(read_bmp.height(), @as(i32, @intCast(height)));
+
+    try testing.expect(read_image_pixels == .bgra32);
+
+    for (expected_colors, 0..) |hex_color, index| {
+        try helpers.expectEq(read_image_pixels.bgra32[index].toU32Rgb(), hex_color);
+    }
 }
