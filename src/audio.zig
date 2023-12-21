@@ -83,7 +83,7 @@ pub fn backendUpdate() void {
     generatorsMutex.lock();
     defer generatorsMutex.unlock();
     for (generators.items) |generator| {
-        generator.onWriteRequested(44100);
+        generator.onWriteRequested(4410);
     }
 }
 

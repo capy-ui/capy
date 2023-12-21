@@ -478,7 +478,7 @@ let env = {
 				source: source,
 				frameCount: frameCount,
 				nextUpdate: audioContext.currentTime,
-				soundBuffer: new SoundBuffer(audioContext, 44100, 6, false),
+				soundBuffer: new SoundBuffer(audioContext, 44100, 6, true),
 			};
 			return audioSources.push(audioSource) - 1;
 		},
@@ -585,22 +585,24 @@ async function loadExtras() {
 		}
 		drawCommands = [];
 
+		requestAnimationFrame(update);
+	}
+	//setInterval(update, 32);
+	requestAnimationFrame(update);
+
+	function audioUpdate() {
 		// Audio
 		const latency = 0.1; // The latency we want, in seconds.
-		if (audioContext.currentTime > lastAudioUpdateTime - latency) {
+		if (audioContext.currentTime > lastAudioUpdateTime + latency) {
 			// Trigger an event so the audio buffer is refilled
 			pushEvent({
 				type: 6,
 				args: [],
 			});
-			lastAudioUpdateTime += latency;
+			lastAudioUpdateTime = audioContext.currentTime - 0.01;
 		}
-		
-		
-		requestAnimationFrame(update);
 	}
-	//setInterval(update, 32);
-	requestAnimationFrame(update);
+	setInterval(audioUpdate, 50);
 
 	window.onresize = function() {
 		pushEvent({ type: 0, target: rootElementId });

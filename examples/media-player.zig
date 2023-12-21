@@ -14,9 +14,13 @@ fn sine(generator: *const capy.audio.AudioGenerator, time: u64, n_frames: u32) v
     var i: u32 = 0;
     const frequency = pitch.get();
 
+    const seconds_per_frame = 1.0 / 44100.0;
+
+    const time_seconds: f64 = @as(f64, @floatFromInt(time)) / 44100.0;
+
     while (i < n_frames) : (i += 1) {
-        const inner_time = @as(f32, @floatFromInt((time + i) % 44100)) / 44100 * frequency * 2 * std.math.pi;
-        const value = @sin(inner_time);
+        const inner_time = (time_seconds + @as(f64, @floatFromInt(i)) * seconds_per_frame) * 2 * std.math.pi * frequency;
+        const value: f32 = @floatCast(@sin(inner_time));
         left[i] = value;
         right[i] = value;
     }
@@ -36,7 +40,7 @@ pub fn main() !void {
         capy.alignment(.{}, capy.column(.{}, .{
             rotatingDisc(), // TODO
             capy.label(.{ .text = "Audio Name", .alignment = .Center }),
-            capy.slider(.{ .min = 20, .max = 2000, .step = 1 })
+            capy.slider(.{ .min = 40, .max = 2000, .step = 1 })
                 .bind("value", &pitch),
         })),
     );

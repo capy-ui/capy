@@ -566,11 +566,11 @@ pub const AudioGenerator = struct {
         const channels = 2;
         const channelDatas = try allocator.alloc([]f32, channels);
         for (channelDatas) |*buffer| {
-            buffer.* = try allocator.alloc(f32, 44100); // 1 second of buffer
+            buffer.* = try allocator.alloc(f32, 4410); // 0.1 seconds of buffer
             @memset(buffer.*, 0);
         }
         return AudioGenerator{
-            .source = js.createSource(sampleRate, 500.0),
+            .source = js.createSource(sampleRate, 0.1),
             .buffers = channelDatas,
         };
     }
@@ -583,7 +583,7 @@ pub const AudioGenerator = struct {
         js.audioCopyToChannel(
             self.source,
             self.buffers[channel].ptr,
-            self.buffers[channel].len,
+            self.buffers[channel].len * @sizeOf(f32),
             channel,
         );
     }
