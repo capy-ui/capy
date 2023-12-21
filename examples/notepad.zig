@@ -11,7 +11,7 @@ pub fn main() !void {
     var monospace = capy.Atom(bool).of(false);
     var text = capy.Atom([]const u8).of("");
 
-    var text_length = try capy.Atom(usize).derived(.{&text}, &struct {
+    const text_length = try capy.Atom(usize).derived(.{&text}, &struct {
         fn callback(txt: []const u8) usize {
             return txt.len;
         }

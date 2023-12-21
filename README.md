@@ -65,7 +65,7 @@ structs (`.{ .label = "Save" }`). You can also see that simply wrapping a widget
 
 ## Getting Started
 
-*Note:* You will at least need Zig `0.11.0`
+*Note:* Capy targets **Zig master** so please try to get the latest version
 
 If you're starting a new project, simply clone [capy-template](https://github.com/capy-ui/capy-template) and follow build instructions.
 

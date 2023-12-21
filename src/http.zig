@@ -65,8 +65,9 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             const uri = try std.Uri.parse(self.url);
             var headers = std.http.Headers{ .allocator = internal.lasting_allocator };
             try headers.append("Connection", "close");
-            var request = try client.request(.GET, uri, headers, .{});
-            try request.start();
+            var request = try client.open(.GET, uri, headers, .{});
+            try request.send(.{});
+            try request.finish();
             return HttpResponse{ .request = request, .client = client };
         }
     };
@@ -81,7 +82,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub fn isReady(self: *HttpResponse) bool {
             // self.request.wait() catch return true;
             if (self.request.connection == null) return true;
-            const connection = &self.request.connection.?.data;
+            const connection = self.request.connection.?;
             connection.fill() catch return true;
             if (connection.read_end != 0) {
                 self.request.wait() catch {};

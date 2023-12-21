@@ -17,7 +17,7 @@ pub fn pressedKey(button_: *anyopaque) !void {
 
     // Concat the computation label with the first character of the button's label
     var larger = try allocator.alloc(u8, labelText.len + 1); // allocate a string one character longer than labelText
-    std.mem.copy(u8, larger, labelText); // copy labelText's contents to the newly allocated string
+    @memcpy(larger, labelText); // copy labelText's contents to the newly allocated string
     larger[labelText.len] = buttonLabel[0]; // finally, set the last letter
 
     computationLabel.setText(larger); // and now we can put that as our new computation label text

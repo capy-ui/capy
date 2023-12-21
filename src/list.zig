@@ -60,9 +60,9 @@ pub const List = struct {
 };
 
 pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror!List {
-    if (comptime !std.meta.trait.isPtrTo(.Struct)(@TypeOf(model))) {
-        @compileError("Expected a mutable pointer to the list model");
-    }
+    // if (comptime !std.meta.trait.isPtrTo(.Struct)(@TypeOf(model))) {
+    //     @compileError("Expected a mutable pointer to the list model");
+    // }
     var row = try containers.column(config, .{});
     const ModelType = @import("internal.zig").DereferencedType(@TypeOf(model)); // The type of the list model
     const genericModel = GenericListModel{
