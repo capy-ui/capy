@@ -245,7 +245,7 @@ pub const Container = struct {
     /// The widget associated to this Container
     widget: ?*Widget = null,
 
-    const atomicValue = if (@hasDecl(std.atomic,"Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
+    const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
     pub fn init(childrens: std.ArrayList(Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !Container {
         const LayoutConfig = @TypeOf(layoutConfig);
         comptime std.debug.assert(@sizeOf(LayoutConfig) <= 16);

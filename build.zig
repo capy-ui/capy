@@ -26,7 +26,7 @@ pub fn build(b: *std.Build) !void {
             const programPath = FileSource.relative(b.pathJoin(&.{ "examples", entry.path }));
 
             const exe: *std.build.LibExeObjStep = if (target.toTarget().isWasm())
-                b.addSharedLibrary(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
+                b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
             else
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
 
