@@ -174,7 +174,7 @@ pub fn Iterator(comptime T: type) type {
         }
 
         pub fn next(self: *Self) ?T {
-            if (!comptime std.meta.trait.hasUniqueRepresentation(T)) {
+            if (!comptime std.meta.hasUniqueRepresentation(T)) {
                 @compileError(@typeName(T) ++ " doesn't have an unique representation");
             }
             //if (self.count >= 10) return null;
