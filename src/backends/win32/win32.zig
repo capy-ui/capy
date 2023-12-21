@@ -1,8 +1,8 @@
 const std = @import("std");
 const zigwin32 = @import("zigwin32");
 
-pub usingnamespace std.os.windows.user32;
 pub usingnamespace std.os.windows.kernel32;
+// pub usingnamespace zigwin32.user32;
 
 pub const HINSTANCE = std.os.windows.HINSTANCE;
 pub const HWND = @import("zigwin32").everything.HWND;
@@ -42,6 +42,10 @@ pub const BST_UNCHECKED = 0;
 
 // TRACKBAR control
 pub const TBM_SETPOS = 0x0405;
+pub const TBM_GETPOS = 0x0400;
+pub const TBM_SETRANGE = 0x0406;
+pub const TBM_SETRANGEMIN = 0x0407;
+pub const TBM_SETRANGEMAX = 0x0408;
 
 // STATIC controls
 /// Centers text horizontally.

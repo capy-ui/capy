@@ -1104,7 +1104,7 @@ pub const Slider = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             _T("msctls_trackbar32"), // lpClassName
             _T(""), // lpWindowName
-            win32.WS_TABSTOP | win32.WS_CHILD, // dwStyle
+            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1 }), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1121,14 +1121,14 @@ pub const Slider = struct {
     }
 
     pub fn getValue(self: *const Slider) f32 {
-        const valueInt = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 0, 0);
+        const valueInt = win32.SendMessageW(self.peer, win32Backend.TBM_GETPOS, 0, 0);
         const value = @as(f32, @floatFromInt(valueInt)) * self.stepSize;
         return value;
     }
 
     pub fn setValue(self: *Slider, value: f32) void {
         const valueInt = @as(i32, @intFromFloat(value / self.stepSize));
-        _ = win32.SendMessageW(self.peer, win32.TBM_GETPOS, 1, valueInt);
+        _ = win32.SendMessageW(self.peer, win32Backend.TBM_SETPOS, 1, valueInt);
     }
 
     pub fn setMinimum(self: *Slider, minimum: f32) void {
@@ -1151,8 +1151,8 @@ pub const Slider = struct {
     fn updateMinMax(self: *const Slider) void {
         const maxInt = @as(i16, @intFromFloat(self.max / self.stepSize));
         const minInt = @as(i16, @intFromFloat(self.min / self.stepSize));
-        _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMIN, 1, minInt);
-        _ = win32.SendMessageW(self.peer, win32.TBM_SETRANGEMAX, 1, maxInt);
+        _ = win32.SendMessageW(self.peer, win32Backend.TBM_SETRANGEMIN, 1, minInt);
+        _ = win32.SendMessageW(self.peer, win32Backend.TBM_SETRANGEMAX, 1, maxInt);
     }
 
     pub fn setEnabled(self: *Slider, enabled: bool) void {

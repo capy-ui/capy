@@ -50,8 +50,8 @@ pub const Guid = extern union {
     const big_endian_hex_offsets = [16]u6{ 0, 2, 4, 6, 9, 11, 14, 16, 19, 21, 24, 26, 28, 30, 32, 34 };
     const little_endian_hex_offsets = [16]u6{ 6, 4, 2, 0, 11, 9, 16, 14, 19, 21, 24, 26, 28, 30, 32, 34 };
     const hex_offsets = switch (builtin.target.cpu.arch.endian()) {
-        .Big => big_endian_hex_offsets,
-        .Little => little_endian_hex_offsets,
+        .big => big_endian_hex_offsets,
+        .little => little_endian_hex_offsets,
     };
 
     pub fn initString(s: []const u8) Guid {
