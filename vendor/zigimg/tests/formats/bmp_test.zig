@@ -163,7 +163,7 @@ test "Read a valid version 5 RGBA bitmap from file" {
 
 test "Read a valid version 5 RGBA bitmap from memory" {
     var MemoryRGBABitmap: [200 * 1024]u8 = undefined;
-    var buffer: []const u8 = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
+    const buffer: []const u8 = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
     var stream_source = std.io.StreamSource{ .const_buffer = std.io.fixedBufferStream(buffer) };
 
     var the_bitmap = bmp.Bitmap{};

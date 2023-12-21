@@ -56,7 +56,7 @@ const RLEDecoder = struct {
 
     fn readByte(self: *RLEDecoder) ImageReadError!u8 {
         if (self.current_run) |*run| {
-            var result = run.value;
+            const result = run.value;
             run.remaining -= 1;
             if (run.remaining == 0) {
                 self.current_run = null;
@@ -64,7 +64,7 @@ const RLEDecoder = struct {
             return result;
         } else {
             while (true) {
-                var byte = try self.reader.readByte();
+                const byte = try self.reader.readByte();
                 if (byte == 0xC0) // skip over "zero length runs"
                     continue;
                 if ((byte & 0xC0) == 0xC0) {

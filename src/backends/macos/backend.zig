@@ -3,6 +3,7 @@ const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const objc = @import("objc.zig");
 const AppKit = @import("AppKit.zig");
+const trait = @import("../../trait.zig");
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -12,7 +13,8 @@ const MouseButton = shared.MouseButton;
 // pub const PeerType = *opaque {};
 pub const PeerType = objc.id;
 
-var activeWindows = std.atomic.Atomic(usize).init(0);
+const atomicValue = if (@hasDecl(std.atomic,"Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
+var activeWindows = atomicValue(usize).init(0);
 var hasInit: bool = false;
 
 pub fn init() BackendError!void {
@@ -54,7 +56,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn setUserData(self: *T, data: anytype) void {
             comptime {
-                if (!std.meta.trait.isSingleItemPtr(@TypeOf(data))) {
+                if (!trait.isSingleItemPtr(@TypeOf(data))) {
                     @compileError(std.fmt.comptimePrint("Expected single item pointer, got {s}", .{@typeName(@TypeOf(data))}));
                 }
             }

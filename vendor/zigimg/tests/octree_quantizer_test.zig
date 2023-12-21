@@ -18,7 +18,7 @@ test "Build the oct tree with 3 colors" {
     try quantizer.addColor(green);
     try quantizer.addColor(blue);
     var paletteStorage: [256]color.Rgba32 = undefined;
-    var palette = try quantizer.makePalette(256, paletteStorage[0..]);
+    const palette = try quantizer.makePalette(256, paletteStorage[0..]);
     try helpers.expectEq(palette.len, 3);
 
     try helpers.expectEq(try quantizer.getPaletteIndex(red), 2);
@@ -32,7 +32,7 @@ test "Build the oct tree with 3 colors" {
 
 test "Build a oct tree with 32-bit RGBA bitmap" {
     var MemoryRGBABitmap: [200 * 1024]u8 = undefined;
-    var buffer = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
+    const buffer = try helpers.testReadFile(helpers.fixtures_path ++ "bmp/windows_rgba_v5.bmp", MemoryRGBABitmap[0..]);
 
     var image = try Image.fromMemory(helpers.zigimg_test_allocator, buffer);
     defer image.deinit();
@@ -47,17 +47,17 @@ test "Build a oct tree with 32-bit RGBA bitmap" {
     }
 
     var paletteStorage: [256]color.Rgba32 = undefined;
-    var palette = try quantizer.makePalette(255, paletteStorage[0..]);
+    const palette = try quantizer.makePalette(255, paletteStorage[0..]);
     try helpers.expectEq(palette.len, 255);
 
-    var paletteIndex = try quantizer.getPaletteIndex(color.Rgba32.initRgba(110, 0, 0, 255));
+    const paletteIndex = try quantizer.getPaletteIndex(color.Rgba32.initRgba(110, 0, 0, 255));
     try helpers.expectEq(paletteIndex, 93);
     try helpers.expectEq(palette[93].r, 110);
     try helpers.expectEq(palette[93].g, 2);
     try helpers.expectEq(palette[93].b, 2);
     try helpers.expectEq(palette[93].a, 255);
 
-    var secondPaletteIndex = try quantizer.getPaletteIndex(color.Rgba32.initRgba(0, 0, 119, 255));
+    const secondPaletteIndex = try quantizer.getPaletteIndex(color.Rgba32.initRgba(0, 0, 119, 255));
     try helpers.expectEq(secondPaletteIndex, 53);
     try helpers.expectEq(palette[53].r, 0);
     try helpers.expectEq(palette[53].g, 0);

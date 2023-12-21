@@ -31,7 +31,7 @@ test "loadHeader_valid" {
     const expectEqual = std.testing.expectEqual;
     var buffer = valid_header_data.*;
     var stream = Image.Stream{ .buffer = std.io.fixedBufferStream(&buffer) };
-    var header = try png.loadHeader(&stream);
+    const header = try png.loadHeader(&stream);
     try expectEqual(@as(u32, 0xff), header.width);
     try expectEqual(@as(u32, 0x75), header.height);
     try expectEqual(@as(u8, 8), header.bit_depth);
@@ -97,7 +97,7 @@ test "PNG loadHeader() should error on invalid data in header" {
 }
 
 fn testHeaderWithInvalidValue(buf: []u8, position: usize, val: u8) !void {
-    var origin = buf[position];
+    const origin = buf[position];
     buf[position] = val;
     var stream = Image.Stream{ .buffer = std.io.fixedBufferStream(buf) };
     try expectError(Image.ReadError.InvalidData, png.loadHeader(&stream));
@@ -131,7 +131,7 @@ pub fn testWithDir(directory: []const u8, testMd5Sig: bool) !void {
             var default_options = png.DefaultOptions{};
             var header = try png.loadHeader(&stream);
             if (entry.name[0] == 'x') {
-                var error_result = png.loadWithHeader(&stream, &header, std.testing.allocator, default_options.get());
+                const error_result = png.loadWithHeader(&stream, &header, std.testing.allocator, default_options.get());
                 try std.testing.expectError(Image.ReadError.InvalidData, error_result);
                 if (testMd5Sig) std.debug.print("OK\n", .{});
                 continue;
@@ -142,7 +142,7 @@ pub fn testWithDir(directory: []const u8, testMd5Sig: bool) !void {
 
             if (!testMd5Sig) continue;
 
-            var result_bytes = result.asBytes();
+            const result_bytes = result.asBytes();
             var md5_val: [16]u8 = undefined;
             std.crypto.hash.Md5.hash(result_bytes, &md5_val, .{});
 
@@ -157,9 +157,9 @@ pub fn testWithDir(directory: []const u8, testMd5Sig: bool) !void {
                 var treader = tdata.reader();
                 var expected_md5: [16]u8 = undefined;
                 var read_buffer: [50]u8 = undefined;
-                var str_format = try treader.readUntilDelimiter(read_buffer[0..], '\n');
-                var expected_pixel_format = std.meta.stringToEnum(PixelFormat, str_format).?;
-                var str_md5 = try treader.readUntilDelimiterOrEof(read_buffer[0..], '\n');
+                const str_format = try treader.readUntilDelimiter(read_buffer[0..], '\n');
+                const expected_pixel_format = std.meta.stringToEnum(PixelFormat, str_format).?;
+                const str_md5 = try treader.readUntilDelimiterOrEof(read_buffer[0..], '\n');
                 _ = try std.fmt.hexToBytes(expected_md5[0..], str_md5.?);
                 try std.testing.expectEqual(expected_pixel_format, std.meta.activeTag(result));
                 try std.testing.expectEqualSlices(u8, expected_md5[0..], md5_val[0..]); // catch std.debug.print("MD5 Expected: {s} Got {s}\n", .{std.fmt.fmtSliceHexUpper(expected_md5[0..]), std.fmt.fmtSliceHexUpper(md5_val[0..])});

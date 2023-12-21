@@ -450,7 +450,7 @@ pub fn IndexedStorage(comptime T: type) type {
         const Self = @This();
 
         pub fn init(allocator: Allocator, pixel_count: usize) !Self {
-            var res = Self{
+            const res = Self{
                 .indices = try allocator.alloc(T, pixel_count),
                 .palette = try allocator.alloc(Rgba32, PaletteSize),
             };

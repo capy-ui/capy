@@ -55,7 +55,7 @@ pub const Listener = struct {
     };
 
     pub fn init(config: Listener.Config) std.mem.Allocator.Error!*Listener {
-        var listener = try lasting_allocator.create(Listener);
+        const listener = try lasting_allocator.create(Listener);
         listener.* = .{
             .listened = config.listened,
             .callback = config.callback,

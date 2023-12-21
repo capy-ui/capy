@@ -12,7 +12,7 @@ pub const Alignment = struct {
     widget_data: Alignment.WidgetData = .{},
 
     child: Widget,
-    relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     x: Atom(f32) = Atom(f32).of(0.5),
     y: Atom(f32) = Atom(f32).of(0.5),
 

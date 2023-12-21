@@ -210,7 +210,7 @@ pub const QOI = struct {
         const pixels_size: usize = @as(usize, self.header.width) * @as(usize, self.header.height);
 
         while (index < pixels_size) {
-            var byte = try reader.readByte();
+            const byte = try reader.readByte();
 
             var new_color = current_color;
             var count: usize = 1;

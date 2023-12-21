@@ -11,6 +11,7 @@ const Atom = dataStructures.Atom;
 const Container = @import("containers.zig").Container;
 const Layout = @import("containers.zig").Layout;
 const MouseButton = @import("backends/shared.zig").MouseButton;
+const trait = @import("trait.zig");
 
 const link_libc = @import("builtin").link_libc;
 
@@ -311,7 +312,7 @@ fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, 
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
             }};
-        } else if (comptime std.meta.trait.is(.Struct)(FieldType)) {
+        } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateFields(config_fields, FieldType);
         }
     }
@@ -339,7 +340,7 @@ fn iterateApplyFields(comptime T: type, target: anytype, config: GenerateConfigS
             @field(target, field.name).set(
                 @field(config, name),
             );
-        } else if (comptime std.meta.trait.is(.Struct)(FieldType)) {
+        } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateApplyFields(T, &@field(target, field.name), config);
         }
     }
@@ -348,7 +349,7 @@ fn iterateApplyFields(comptime T: type, target: anytype, config: GenerateConfigS
 /// If T is a pointer, return the type it points to, otherwise return T.
 /// Example: DereferencedType(*Button_Impl) = Button_Impl
 pub fn DereferencedType(comptime T: type) type {
-    return if (comptime std.meta.trait.isSingleItemPtr(T))
+    return if (comptime trait.isSingleItemPtr(T))
         std.meta.Child(T)
     else
         T;
@@ -366,8 +367,8 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
 
     // Unless it is already a pointer, we clone the component so that
     // it can be referenced by the Widget we're gonna create.
-    var cp = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) component else blk: {
-        var copy = try lasting_allocator.create(ComponentType);
+    var cp = if (comptime trait.isSingleItemPtr(ComponentType)) component else blk: {
+        const copy = try lasting_allocator.create(ComponentType);
         copy.* = component;
         break :blk copy;
     };
@@ -381,7 +382,7 @@ pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
         .data = cp,
         .class = &Dereferenced.WidgetClass,
         .name = &cp.widget_data.atoms.name,
-        .allocator = if (comptime std.meta.trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
+        .allocator = if (comptime trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
     };
 }
 

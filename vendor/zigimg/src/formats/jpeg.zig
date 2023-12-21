@@ -828,7 +828,7 @@ const Frame = struct {
     }
 
     fn renderToPixelsRgb(self: *Frame, pixels: []color.Rgb24) ImageReadError!void {
-        var width = self.frame_header.samples_per_row;
+        const width = self.frame_header.samples_per_row;
         var mcu_id: usize = 0;
         while (mcu_id < self.mcu_storage.len) : (mcu_id += 1) {
             const mcus_per_row = width / 8;

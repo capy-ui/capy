@@ -11,7 +11,7 @@ pub const Navigation = struct {
     peer: ?backend.Container = null,
     widget_data: Navigation.WidgetData = .{},
 
-    relayouting: std.atomic.Atomic(bool) = std.atomic.Atomic(bool).init(false),
+    relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     routeName: Atom([]const u8),
     activeChild: *Widget,
     routes: std.StringHashMap(Widget),

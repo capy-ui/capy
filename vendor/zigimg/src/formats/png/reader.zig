@@ -73,7 +73,7 @@ const IDatChunksReader = struct {
 
     fn fillBuffer(self: *Self, to_read: usize) Image.ReadError!usize {
         std.mem.copy(u8, self.buffer[0..self.data.len], self.data);
-        var new_start = self.data.len;
+        const new_start = self.data.len;
         var max = self.buffer.len;
         if (max - new_start > self.remaining_chunk_length) {
             max = new_start + self.remaining_chunk_length;
@@ -246,7 +246,7 @@ pub fn loadWithHeader(
                         return Image.ReadError.InvalidData;
                     }
                     palette = try options.temp_allocator.alloc(color.Rgb24, palette_entries);
-                    var palette_bytes = mem.sliceAsBytes(palette);
+                    const palette_bytes = mem.sliceAsBytes(palette);
                     try reader.readNoEof(palette_bytes);
 
                     const expected_crc = try reader.readIntBig(u32);
@@ -282,7 +282,7 @@ fn readAllData(
     var result = try PixelStorage.init(allocator, dest_format, width * height);
     errdefer result.deinit(allocator);
     var idat_chunks_reader = IDatChunksReader.init(stream, options.processors, chunk_process_data);
-    var idat_reader: IDATReader = .{ .context = &idat_chunks_reader };
+    const idat_reader: IDATReader = .{ .context = &idat_chunks_reader };
     var decompress_stream = std.compress.zlib.decompressStream(options.temp_allocator, idat_reader) catch return Image.ReadError.InvalidData;
 
     if (palette.len > 0) {
@@ -436,7 +436,7 @@ fn readAllData(
 
     // Just make sure zip stream gets to its end
     var buf: [8]u8 = undefined;
-    var shouldBeZero = decompress_stream.read(buf[0..]) catch return Image.ReadError.InvalidData;
+    const shouldBeZero = decompress_stream.read(buf[0..]) catch return Image.ReadError.InvalidData;
 
     std.debug.assert(shouldBeZero == 0);
 
@@ -524,7 +524,7 @@ fn spreadRowData(
             }
         },
         16 => {
-            var current_row16 = mem.bytesAsSlice(u16, current_row);
+            const current_row16 = mem.bytesAsSlice(u16, current_row);
             var dest_row16 = mem.bytesAsSlice(u16, dest_row);
             const pixel_stride16 = pixel_stride / 2;
             source_index /= 2;
@@ -811,7 +811,7 @@ pub const PlteProcessor = struct {
         if (!data.src_format.isIndex() or self.palette.len == 0) {
             return data.src_format;
         }
-        var pixel_stride: u8 = switch (data.dest_format) {
+        const pixel_stride: u8 = switch (data.dest_format) {
             .rgba32, .bgra32 => 4,
             .rgba64 => 8,
             else => return data.src_format,

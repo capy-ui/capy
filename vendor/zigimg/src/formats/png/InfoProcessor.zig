@@ -43,7 +43,7 @@ pub fn processor(self: *Self) ReaderProcessor {
 
 fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelFormat {
     // This is critical chunk so it is already read and there is no need to read it here
-    var result_format = data.current_format;
+    const result_format = data.current_format;
 
     var reader = data.stream.reader();
     var buffer: [1024]u8 = undefined;
@@ -55,7 +55,7 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                     try data.stream.seekBy(data.chunk_length);
                     self.writer.print("gAMA: Invalid Length {}\n", .{data.chunk_length}) catch return result_format;
                 } else {
-                    var gama = try reader.readIntBig(u32);
+                    const gama = try reader.readIntBig(u32);
                     self.writer.print("gAMA: {}\n", .{gama}) catch return result_format;
                 }
             },
@@ -64,7 +64,7 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                     try data.stream.seekBy(data.chunk_length);
                     self.writer.print("sBIT: Invalid length {}\n", .{data.chunk_length}) catch return result_format;
                 } else {
-                    var vals = buffer[0..data.chunk_length];
+                    const vals = buffer[0..data.chunk_length];
                     try reader.readNoEof(vals);
                     self.writer.print("sBIT (significant bits): ", .{}) catch return result_format;
                     switch (data.chunk_length) {
@@ -77,12 +77,12 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                 }
             },
             png.Chunks.tEXt.id => {
-                var to_read = if (data.chunk_length <= buffer.len) data.chunk_length else buffer.len;
+                const to_read = if (data.chunk_length <= buffer.len) data.chunk_length else buffer.len;
                 var txt = buffer[0..to_read];
                 try reader.readNoEof(txt);
                 if (data.chunk_length > buffer.len) try data.stream.seekBy(@as(i64, data.chunk_length) - buffer.len);
                 self.writer.print("tEXt Length {s}:\n", .{std.fmt.fmtIntSizeBin(data.chunk_length)}) catch return result_format;
-                var strEnd = std.mem.indexOfScalar(u8, txt, 0).?;
+                const strEnd = std.mem.indexOfScalar(u8, txt, 0).?;
                 self.writer.print("               Keyword: {s}\n", .{txt[0..strEnd]}) catch return result_format;
                 txt = txt[strEnd + 1 ..];
                 self.writer.print("                  Text: {s}\n", .{txt[0..]}) catch return result_format;
@@ -92,7 +92,7 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                 var txt = buffer[0..to_read];
                 try reader.readNoEof(txt);
                 self.writer.print("zTXt Length {s}:\n", .{std.fmt.fmtIntSizeBin(data.chunk_length)}) catch return result_format;
-                var strEnd = std.mem.indexOfScalar(u8, txt, 0).?;
+                const strEnd = std.mem.indexOfScalar(u8, txt, 0).?;
                 self.writer.print("               Keyword: {s}\n", .{txt[0..strEnd]}) catch return result_format;
                 if (txt[strEnd + 1] == 0) {
                     self.writer.print("           Compression: Zlib Deflate\n", .{}) catch return result_format;
@@ -111,7 +111,7 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                 }
             },
             png.Chunks.iTXt.id => {
-                var to_read = if (data.chunk_length <= buffer.len) data.chunk_length else buffer.len;
+                const to_read = if (data.chunk_length <= buffer.len) data.chunk_length else buffer.len;
                 var txt = buffer[0..to_read];
                 try reader.readNoEof(txt);
                 if (data.chunk_length > buffer.len) try data.stream.seekBy(@as(i64, data.chunk_length) - buffer.len);
@@ -159,8 +159,8 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                     self.writer.print("pHYs: Invalid Length {}\n", .{data.chunk_length}) catch return result_format;
                 } else {
                     self.writer.print("pHYs: ", .{}) catch return result_format;
-                    var x = try reader.readIntBig(u32);
-                    var y = try reader.readIntBig(u32);
+                    const x = try reader.readIntBig(u32);
+                    const y = try reader.readIntBig(u32);
                     self.writer.print("{} x {}", .{ x, y }) catch return result_format;
                     if ((try reader.readIntBig(u8)) == 1) {
                         self.writer.print(" metres\n", .{}) catch return result_format;
@@ -172,16 +172,16 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
             png.Chunks.tRNS.id => {
                 self.writer.print("tRNS Length {s}: ", .{std.fmt.fmtIntSizeBin(data.chunk_length)}) catch return result_format;
                 if (data.chunk_length == 2 and data.header.color_type != .indexed) {
-                    var val = try reader.readIntBig(u16);
+                    const val = try reader.readIntBig(u16);
                     self.writer.print("{}\n", .{val}) catch return result_format;
                 } else if (data.chunk_length == 6 and data.header.color_type != .indexed) {
-                    var r = try reader.readIntBig(u16);
-                    var g = try reader.readIntBig(u16);
-                    var b = try reader.readIntBig(u16);
+                    const r = try reader.readIntBig(u16);
+                    const g = try reader.readIntBig(u16);
+                    const b = try reader.readIntBig(u16);
                     self.writer.print("RGB {}, {}, {}\n", .{ r, g, b }) catch return result_format;
                 } else {
                     const to_print = if (data.chunk_length > 20) 20 else data.chunk_length;
-                    var vals = buffer[0..to_print];
+                    const vals = buffer[0..to_print];
                     try reader.readNoEof(vals);
                     self.writer.print("{d}", .{vals}) catch return result_format;
                     if (data.chunk_length > 20) {
@@ -193,15 +193,15 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
             png.Chunks.bKGD.id => {
                 self.writer.print("bKGD Length {s}: ", .{std.fmt.fmtIntSizeBin(data.chunk_length)}) catch return result_format;
                 if (data.chunk_length == 1) {
-                    var val = try reader.readIntBig(u8);
+                    const val = try reader.readIntBig(u8);
                     self.writer.print("Index {}\n", .{val}) catch return result_format;
                 } else if (data.chunk_length == 2) {
-                    var val = try reader.readIntBig(u16);
+                    const val = try reader.readIntBig(u16);
                     self.writer.print("{}\n", .{val}) catch return result_format;
                 } else if (data.chunk_length == 6) {
-                    var r = try reader.readIntBig(u16);
-                    var g = try reader.readIntBig(u16);
-                    var b = try reader.readIntBig(u16);
+                    const r = try reader.readIntBig(u16);
+                    const g = try reader.readIntBig(u16);
+                    const b = try reader.readIntBig(u16);
                     self.writer.print("RGB {}, {}, {}\n", .{ r, g, b }) catch return result_format;
                 } else {
                     self.writer.print("Invalid Length\n", .{}) catch return result_format;
@@ -214,8 +214,8 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                     self.writer.print("tIME: Invalid Length {}: ", .{data.chunk_length}) catch return result_format;
                 } else {
                     self.writer.print("tIME: ", .{}) catch return result_format;
-                    var year = try reader.readIntBig(u16);
-                    var rest = buffer[0 .. data.chunk_length - 2];
+                    const year = try reader.readIntBig(u16);
+                    const rest = buffer[0 .. data.chunk_length - 2];
                     try reader.readNoEof(rest);
                     self.writer.print("{}-{}-{} {}:{}:{}\n", .{ year, rest[0], rest[1], rest[2], rest[3], rest[4] }) catch return result_format;
                 }
@@ -242,7 +242,7 @@ fn processChunk(self: *Self, data: *ChunkProcessData) Image.ReadError!PixelForma
                     self.writer.print("sRGB: Invalid Length {}: ", .{data.chunk_length}) catch return result_format;
                 } else {
                     self.writer.print("sRGB: ", .{}) catch return result_format;
-                    var srgb = try reader.readByte();
+                    const srgb = try reader.readByte();
                     switch (srgb) {
                         0 => self.writer.print("Perceptual\n", .{}) catch return result_format,
                         1 => self.writer.print("Relative colorimetric\n", .{}) catch return result_format,

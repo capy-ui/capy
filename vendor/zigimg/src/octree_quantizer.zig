@@ -203,7 +203,7 @@ const OctTreeQuantizerNode = struct {
 
     inline fn getColorIndex(color: Rgba32, level: i32) usize {
         var index: usize = 0;
-        var mask = @as(u8, 0b10000000) >> @as(u3, @intCast(level));
+        const mask = @as(u8, 0b10000000) >> @as(u3, @intCast(level));
         if (color.r & mask != 0) {
             index |= 0b100;
         }

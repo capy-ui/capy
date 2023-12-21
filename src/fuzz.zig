@@ -1,5 +1,6 @@
 //! Randomly test data and lower it down
 const std = @import("std");
+const trait = @import("trait.zig");
 
 pub fn forAll(comptime T: type) Iterator(T) {
     return Iterator(T).init();
@@ -115,7 +116,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
 
         pub fn hypothetize(self: *Self, callback: fn (T) anyerror!void) !Hypothesis {
             var elements = std.ArrayList(Hypothesis.HypothesisElement).init(std.testing.allocator);
-            if (comptime std.meta.trait.isNumber(T)) {
+            if (comptime trait.isNumber(T)) {
                 std.sort.sort(T, self.items, {}, comptime std.sort.asc(T));
                 const smallest = self.items[0];
                 const biggest = self.items[self.items.len - 1];
@@ -197,7 +198,7 @@ const ColorContainer = struct {
 test "simple struct init" {
     var all = forAll(@import("color.zig").Color);
     while (all.next()) |color| {
-        var container = ColorContainer{ .color = color };
+        const container = ColorContainer{ .color = color };
         try std.testing.expectEqual(color, container.color);
     }
 }

@@ -65,7 +65,7 @@ pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror
     }
     var row = try containers.column(config, .{});
     const ModelType = @import("internal.zig").DereferencedType(@TypeOf(model)); // The type of the list model
-    var genericModel = GenericListModel{
+    const genericModel = GenericListModel{
         .size = &model.size,
         .userdata = model,
         .getComponent = struct {
@@ -86,7 +86,7 @@ pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror
     }
 
     const widget = try @import("internal.zig").genericWidgetFrom(row);
-    var list = List.init(widget, genericModel);
+    const list = List.init(widget, genericModel);
 
     return list;
 }
