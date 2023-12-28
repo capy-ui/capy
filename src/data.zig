@@ -121,7 +121,7 @@ pub fn Atom(comptime T: type) type {
         value: if (isAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
         // TODO: switch to a lock that allow concurrent reads but one concurrent write
         lock: std.Thread.Mutex = .{},
-        /// List of every change listener listening to this data wrapper.
+        /// List of every change listener listening to this atom.
         /// A linked list is used for minimal stack overhead and to take
         /// advantage of the fact that most Atoms don't have a
         /// change listener.
@@ -130,7 +130,7 @@ pub fn Atom(comptime T: type) type {
         bindings: BindingList = .{},
 
         /// This boolean is used to protect from recursive relations between wrappers
-        /// For example if there are two two-way binded data wrappers A and B:
+        /// For example if there are two two-way binded atoms A and B:
         /// When A is set, B is set too. Since B is set, it will set A too. A is set, it will set B too, and so on..
         /// To prevent that, the bindLock is set to true when setting the value of the other.
         /// If the lock is equal to true, set() returns without calling the other. For example:
@@ -141,7 +141,7 @@ pub fn Atom(comptime T: type) type {
 
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
-        /// If dependOn has been called, this is the list of data wrappers it depends on.
+        /// If dependOn has been called, this is the list of atoms it depends on.
         depend_on_wrappers: []?*anyopaque = &.{},
 
         allocator: ?std.mem.Allocator = null,
@@ -172,14 +172,7 @@ pub fn Atom(comptime T: type) type {
             }
         }
 
-        /// Shorthand for Atom.of(undefined).dependOn(...)
-        pub fn derived(tuple: anytype, function: anytype) !*Self {
-            var wrapper = Self.alloc(undefined);
-            try wrapper.dependOn(tuple, function);
-            return wrapper;
-        }
-
-        /// Allocates a new data wrapper and initializes it with the given value.
+        /// Allocates a new atom and initializes it with the given value.
         /// This function assumes that there will be no memory errors.
         /// If you want to handle OutOfMemory, you must manually allocate the Atom
         pub fn alloc(value: T) *Self {
@@ -191,8 +184,16 @@ pub fn Atom(comptime T: type) type {
             return ptr;
         }
 
-        /// Allocates a new atom and make it follow the value of the original atom, albeit
+        /// Shorthand for Atom.of(undefined).dependOn(...)
+        pub fn derived(tuple: anytype, function: anytype) !*Self {
+            var wrapper = Self.alloc(undefined);
+            try wrapper.dependOn(tuple, function);
+            return wrapper;
+        }
+
+        /// Allocates a new atom and make it follow the value of the original atom, but
         /// with an animation.
+        /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
         pub fn animated(original: *Self, easing: Easing, duration: u64) !*Self {
             var self = Self.alloc(original.get());
 
@@ -383,7 +384,7 @@ pub fn Atom(comptime T: type) type {
             return self.getUnsafe();
         }
 
-        /// This gets the value of the data wrapper without accounting for
+        /// This gets the value of the atom without accounting for
         /// multi-threading. Do not use it! If you have an app with only one thread,
         /// then use the single_threaded build flag, don't use this function.
         pub fn getUnsafe(self: Self) T {
@@ -404,21 +405,7 @@ pub fn Atom(comptime T: type) type {
             self.extendedSet(value, .{});
         }
 
-        /// Thread-safe set operation without calling change listeners
-        /// This should only be used in widget implementations when calling
-        /// change listeners would cause an infinite recursion.
-        /// This also removes any previously set animation!
-        ///
-        /// Example: A text field listens for data wrapper changes in order to
-        /// change its text. When the user edits the text, it wants to
-        /// change the data wrapper, but without setNoListen, it would
-        /// cause an infinite recursion.
-        pub fn setNoListen(self: *Self, value: T) void {
-            self.extendedSet(value, .{ .callHandlers = false });
-        }
-
         const ExtendedSetOptions = struct {
-            callHandlers: bool = true,
             /// If true, lock before setting the value and unlock after.
             /// If false, do not lock before setting the value, but still unlock after.
             locking: bool = true,
@@ -444,10 +431,9 @@ pub fn Atom(comptime T: type) type {
                     }
                 }
 
-                if (options.callHandlers)
-                    self.callHandlers();
+                self.callHandlers();
 
-                // Update bounded data wrappers
+                // Update bound atoms
                 var nullableNode = self.bindings.first;
                 while (nullableNode) |node| {
                     node.data.bound_to.set(value);
@@ -472,15 +458,15 @@ pub fn Atom(comptime T: type) type {
         // TODO: optionally provide the function with an arena allocator which will automatically
         // handle freeing and lifetime so it's less of a pain in the
 
-        /// This makes the value of this data wrapper entirely dependent
+        /// This makes the value of this atom entirely dependent
         /// on the given parameters (variable-based reactivity), it can only be reverted by calling set()
-        /// 'tuple' must be a tuple with pointers to data wrappers
-        /// 'function' must be a function accepting as arguments the value types of the data wrappers and returning a new value.
-        /// This function relies on the data wrapper not moving in memory and the self pointer still pointing at the same data wrapper
+        /// 'tuple' must be a tuple with pointers to atoms
+        /// 'function' must be a function accepting as arguments the value types of the atoms and returning a new value.
+        /// This function relies on the atom not moving in memory and the self pointer still pointing at the same atom
         pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
             const FunctionType = @TypeOf(function);
 
-            // Data Wrapper types
+            // Atom types
             // e.g. Atom(u32), Atom([]const u8)
             const AtomTypes = comptime blk: {
                 var types: [tuple.len]type = undefined;
@@ -522,7 +508,7 @@ pub fn Atom(comptime T: type) type {
                 }
             }.handler;
 
-            // List of Atoms, casted to ?*anyopaque
+            // List of Atoms, cast to ?*anyopaque
             const wrappers = try lasting_allocator.alloc(?*anyopaque, tuple.len);
             {
                 comptime var i: usize = 0;
@@ -593,7 +579,7 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
 
     const childTypes = comptime blk: {
         var types: []const type = &[_]type{};
-        // Iterate over the 'childs' tuple for each data wrapper
+        // Iterate over the 'childs' tuple for each atom
         for (std.meta.fields(@TypeOf(childs))) |field| {
             const T = @import("internal.zig").DereferencedType(
                 @TypeOf(@field(childs, field.name)),
@@ -852,7 +838,7 @@ test "animated atom" {
     var animated = try Atom(i32).animated(&original, Easings.Linear, 1000);
     defer animated.deinit();
     defer _animatedAtoms.clearAndFree();
-    _animatedAtomsLength.set(0);
+    defer _animatedAtomsLength.set(0);
 
     original.set(1000);
     try std.testing.expect(animated.hasAnimation());

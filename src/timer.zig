@@ -23,7 +23,6 @@ pub const Timer = struct {
     duration: Atom(u64) = Atom(u64).of(0),
     event_source: EventSource,
 
-    // TODO: timeout events
     pub fn init() !*Timer {
         const timer = try lasting_allocator.create(Timer);
         timer.* = .{

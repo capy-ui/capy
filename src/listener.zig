@@ -9,6 +9,13 @@ pub const EventSource = struct {
         return .{ .listeners = std.ArrayList(*Listener).init(allocator) };
     }
 
+    /// Create a new Listener tied to this EventSource.
+    pub fn listen(self: *EventSource, config: Listener.Config) std.mem.Allocator.Error!*Listener {
+        const listener = try Listener.init(self, config);
+        try self.listeners.append(listener);
+        return listener;
+    }
+
     pub fn add(self: *EventSource, listener: *Listener) std.mem.Allocator.Error!void {
         try self.listeners.append(listener);
     }
@@ -47,23 +54,20 @@ pub const Listener = struct {
     enabled: Atom(bool) = Atom(bool).of(true),
 
     pub const Config = struct {
-        listened: *EventSource,
         callback: *const fn (userdata: ?*anyopaque) void,
         userdata: ?*anyopaque = null,
         /// The listener is called only if enabled is set to true.
         enabled: bool = true,
     };
 
-    pub fn init(config: Listener.Config) std.mem.Allocator.Error!*Listener {
+    fn init(listened: *EventSource, config: Listener.Config) std.mem.Allocator.Error!*Listener {
         const listener = try lasting_allocator.create(Listener);
         listener.* = .{
-            .listened = config.listened,
+            .listened = listened,
             .callback = config.callback,
             .userdata = config.userdata,
             .enabled = Atom(bool).of(config.enabled),
         };
-
-        try config.listened.add(listener);
         return listener;
     }
 

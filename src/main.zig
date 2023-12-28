@@ -54,10 +54,11 @@ pub fn init() !void {
         try dev_tools.init();
     }
 
-    var listener = Listener.init(.{ .listened = eventStep, .callback = animateAtoms }) catch unreachable;
+    var listener = eventStep.listen(.{ .callback = animateAtoms }) catch unreachable;
+    // The listener is enabled only if there is at least 1 atom currently being animated
     listener.enabled.dependOn(.{&@import("data.zig")._animatedAtomsLength}, &struct {
         fn a(num: usize) bool {
-            return num > 0;
+            return num >= 1;
         }
     }.a) catch unreachable;
 }
