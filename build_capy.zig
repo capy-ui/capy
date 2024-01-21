@@ -184,13 +184,13 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                 .Debug => step.subsystem = .Console,
                 else => step.subsystem = .Windows,
             }
-            step.linkSystemLibrary("comctl32");
-            step.linkSystemLibrary("gdi32");
-            step.linkSystemLibrary("gdiplus");
+            capy.linkSystemLibrary("comctl32", .{});
+            capy.linkSystemLibrary("gdi32", .{});
+            capy.linkSystemLibrary("gdiplus", .{});
 
             // TODO: use capy.addWin32ResourceFile
             switch (step.rootModuleTarget().cpu.arch) {
-                .x86_64 => step.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
+                .x86_64 => capy.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
             }

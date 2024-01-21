@@ -61,7 +61,8 @@ pub fn build(b: *std.Build) !void {
     lib.linkLibC();
     _ = try install(lib, .{});
     // lib.emit_h = true;
-    b.addInstallFile(lib.getEmittedH(), "headers");
+    const h_install = b.addInstallFile(lib.getEmittedH(), "headers");
+    b.getInstallStep().dependOn(&h_install.step);
     const lib_install = b.addInstallArtifact(lib, .{});
     b.getInstallStep().dependOn(&lib_install.step);
 
