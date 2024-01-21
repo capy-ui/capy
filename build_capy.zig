@@ -62,7 +62,7 @@ const WebServerStep = struct {
         const self = @fieldParentPtr(WebServerStep, "step", step);
         const allocator = step.owner.allocator;
 
-        var server = Server.init(allocator, .{ .reuse_address = true });
+        var server = Server.init(.{ .reuse_address = true });
         defer server.deinit();
 
         try server.listen(try std.net.Address.parseIp("127.0.0.1", 8080));
