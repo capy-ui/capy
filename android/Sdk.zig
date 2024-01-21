@@ -91,6 +91,10 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
         const zip_add = b.addExecutable(.{
             .name = "zip_add",
             .root_source_file = .{ .path = sdkRoot() ++ "/tools/zip_add.zig" },
+
+            //TODO is there a better way to get this info?
+            .target = b.standardTargetOptions(.{}),
+            .optimize = b.standardOptimizeOption(.{}),
         });
         zip_add.addCSourceFile(.{
             .file = .{ .path = sdkRoot() ++ "/vendor/kuba-zip/zip.c" },
@@ -554,7 +558,7 @@ pub fn createApp(
     const unaligned_apk_file = make_unsigned_apk.addOutputFileArg(unaligned_apk_name);
 
     make_unsigned_apk.addArg("-M"); // specify full path to AndroidManifest.xml to include in zip
-    make_unsigned_apk.addLazyPathArg(manifest_file_source);
+    make_unsigned_apk.addFileArg(manifest_file_source);
 
     make_unsigned_apk.addArg("-S"); // directory in which to find resources.  Multiple directories will be scanned and the first match found (left to right) will take precedence
     make_unsigned_apk.addDirectorySourceArg(resource_dir_step.getOutputDirectory());
@@ -583,11 +587,11 @@ pub fn createApp(
     build_options.add(bool, "enable_opensl", app_config.opensl);
 
     const android_module = sdk.b.addModule("android", .{
-        .source_file = .{ .path = "android/src/android-support.zig" },
-        .dependencies = &.{.{
-            .name = "build_options",
-            .module = build_options.getModule(),
-        }},
+        .root_source_file = .{ .path = "android/src/android-support.zig" },
+        //.dependencies = &.{.{
+        //    .name = "build_options",
+        //    .module = build_options.getModule(),
+        //}},
     });
     _ = android_module;
 
@@ -704,13 +708,13 @@ pub fn createApp(
 
 const CreateResourceDirectory = struct {
     const Self = @This();
-    builder: *std.Build.Builder,
+    builder: *std.Build,
     step: std.Build.Step,
 
     resources: std.ArrayList(Resource),
     directory: std.Build.GeneratedFile,
 
-    pub fn create(b: *std.Build.Builder) *Self {
+    pub fn create(b: *std.Build) *Self {
         const self = b.allocator.create(Self) catch @panic("out of memory");
         self.* = Self{
             .builder = b,
@@ -772,7 +776,7 @@ const CreateResourceDirectory = struct {
     }
 };
 
-fn run_copy_to_zip(sdk: *Sdk, input_file: std.Build.LazyPath, apk_file: std.Build.LazyPath, target_file: []const u8) *std.Build.RunStep {
+fn run_copy_to_zip(sdk: *Sdk, input_file: std.Build.LazyPath, apk_file: std.Build.LazyPath, target_file: []const u8) *std.Build.Step.Run {
     const run_cp = sdk.b.addRunArtifact(sdk.host_tools.zip_add);
 
     run_cp.addLazyPathArg(apk_file);
@@ -784,12 +788,12 @@ fn run_copy_to_zip(sdk: *Sdk, input_file: std.Build.LazyPath, apk_file: std.Buil
 
 const WriteToZip = struct {
     output_source: std.Build.LazyPath,
-    run_step: *std.Build.RunStep,
+    run_step: *std.Build.Step.Run,
 
     pub fn init(sdk: *Sdk, zip_file: std.Build.LazyPath, out_name: []const u8) WriteToZip {
         const run_cp = sdk.b.addRunArtifact(sdk.host_tools.zip_add);
 
-        run_cp.addLazyPathArg(zip_file);
+        run_cp.addFileArg(zip_file);
         const output_source = run_cp.addOutputFileArg(out_name);
 
         return WriteToZip{
@@ -1214,18 +1218,18 @@ const BuildOptionStep = struct {
     }
 };
 
-fn createCacheBuilder(b: *std.Build.Builder) CacheBuilder {
+fn createCacheBuilder(b: *std.Build) CacheBuilder {
     return CacheBuilder.init(b, "android-sdk");
 }
 
 const CacheBuilder = struct {
     const Self = @This();
 
-    builder: *std.Build.Builder,
+    builder: *std.Build,
     hasher: std.crypto.hash.Sha1,
     subdir: ?[]const u8,
 
-    pub fn init(builder: *std.Build.Builder, subdir: ?[]const u8) Self {
+    pub fn init(builder: *std.Build, subdir: ?[]const u8) Self {
         return Self{
             .builder = builder,
             .hasher = std.crypto.hash.Sha1.init(.{}),
