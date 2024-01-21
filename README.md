@@ -26,7 +26,7 @@ It has been made with the goal to empower standalone UI applications, integratio
 
 ## Usage
 
-**Target Zig Version: `0.12.0-dev.2159+7916cf6f8`**
+**Target Zig Version: `0.12.0-dev.2063+804cee3b9` ([`2024.1.0-mach`](https://machengine.org/about/nominated-zig/))**
 
 A simple application using capy:
 
