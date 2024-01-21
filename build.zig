@@ -1,16 +1,16 @@
 const std = @import("std");
 pub const install = @import("build_capy.zig").install;
 pub const CapyBuildOptions = @import("build_capy.zig").CapyBuildOptions;
-const FileSource = std.build.FileSource;
+const LazyPath = std.Build.LazyPath;
 
 pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    var examplesDir = try if (@hasField(std.fs.Dir.OpenDirOptions,"iterate")) std.fs.cwd().openDir("examples",.{ .iterate = true }) else std.fs.cwd().openIterableDir("examples",.{}); // support zig 0.11 as well as current master
+    var examplesDir = try if (@hasField(std.fs.Dir.OpenDirOptions, "iterate")) std.fs.cwd().openDir("examples", .{ .iterate = true }) else std.fs.cwd().openIterableDir("examples", .{}); // support zig 0.11 as well as current master
     defer examplesDir.close();
 
-    const broken = switch (target.getOsTag()) {
+    const broken = switch (target.result.os.tag) {
         .windows => &[_][]const u8{ "osm-viewer", "fade", "slide-viewer", "demo", "notepad", "dev-tools", "many-counters" },
         else => &[_][]const u8{"many-counters"},
     };
@@ -23,9 +23,9 @@ pub fn build(b: *std.Build) !void {
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
-            const programPath = FileSource.relative(b.pathJoin(&.{ "examples", entry.path }));
+            const programPath = LazyPath.relative(b.pathJoin(&.{ "examples", entry.path }));
 
-            const exe: *std.build.LibExeObjStep = if (target.toTarget().isWasm())
+            const exe: *std.Build.Step.Compile = if (target.result.isWasm())
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
             else
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
@@ -53,14 +53,15 @@ pub fn build(b: *std.Build) !void {
 
     const lib = b.addSharedLibrary(.{
         .name = "capy",
-        .root_source_file = FileSource.relative("src/c_api.zig"),
-        .version = std.SemanticVersion{ .major = 0, .minor = 3, .patch = 0 },
+        .root_source_file = LazyPath.relative("src/c_api.zig"),
+        .version = std.SemanticVersion{ .major = 0, .minor = 4, .patch = 0 },
         .target = target,
         .optimize = optimize,
     });
     lib.linkLibC();
     _ = try install(lib, .{});
     // lib.emit_h = true;
+    b.addInstallFile(lib.getEmittedH(), "headers");
     const lib_install = b.addInstallArtifact(lib, .{});
     b.getInstallStep().dependOn(&lib_install.step);
 
@@ -68,7 +69,7 @@ pub fn build(b: *std.Build) !void {
     buildc_step.dependOn(&lib_install.step);
 
     const tests = b.addTest(.{
-        .root_source_file = FileSource.relative("src/main.zig"),
+        .root_source_file = LazyPath.relative("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -78,18 +79,18 @@ pub fn build(b: *std.Build) !void {
     test_step.dependOn(run_tests);
 
     const docs = b.addTest(.{
-        .root_source_file = FileSource.relative("src/main.zig"),
+        .root_source_file = LazyPath.relative("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
-    // b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
+    b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
     const run_docs = try install(docs, .{});
 
     const docs_step = b.step("docs", "Generate documentation and run unit tests");
     docs_step.dependOn(run_docs);
 
     const coverage_tests = b.addTest(.{
-        .root_source_file = FileSource.relative("src/main.zig"),
+        .root_source_file = LazyPath.relative("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });

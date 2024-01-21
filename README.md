@@ -26,6 +26,8 @@ It has been made with the goal to empower standalone UI applications, integratio
 
 ## Usage
 
+**Target Zig Version: `0.12.0-dev.2159+7916cf6f8`**
+
 A simple application using capy:
 
 ```zig

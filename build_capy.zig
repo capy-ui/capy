@@ -31,14 +31,14 @@ pub const CapyBuildOptions = struct {
 
 /// Step used to run a web server for WebAssembly apps
 const WebServerStep = struct {
-    step: std.build.Step,
-    exe: *std.build.CompileStep,
+    step: std.Build.Step,
+    exe: *std.Build.Step.Compile,
     options: CapyBuildOptions.WasmOptions,
 
-    pub fn create(owner: *std.build.Builder, exe: *std.build.LibExeObjStep, options: CapyBuildOptions.WasmOptions) *WebServerStep {
+    pub fn create(owner: *std.Build, exe: *std.Build.Step.Compile, options: CapyBuildOptions.WasmOptions) *WebServerStep {
         const self = owner.allocator.create(WebServerStep) catch unreachable;
         self.* = .{
-            .step = std.build.Step.init(.{
+            .step = std.Build.Step.init(.{
                 .id = .custom,
                 .name = "webserver",
                 .owner = owner,
@@ -51,11 +51,11 @@ const WebServerStep = struct {
     }
 
     const Context = struct {
-        exe: *std.build.CompileStep,
-        builder: *std.build.Builder,
+        exe: *std.Build.Step.Compile,
+        builder: *std.Build,
     };
 
-    pub fn make(step: *std.build.Step, prog_node: *std.Progress.Node) !void {
+    pub fn make(step: *std.Build.Step, prog_node: *std.Progress.Node) !void {
         // There's no progress to report on.
         _ = prog_node;
 
@@ -100,7 +100,7 @@ const WebServerStep = struct {
                 file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
                 content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
-                file_path = self.exe.getOutputSource().getPath2(build, &self.step);
+                file_path = self.exe.getEmittedBin().getPath2(build, &self.step);
                 content_type = "application/wasm";
             } else if (std.mem.eql(u8, path, "/extras.js")) {
                 if (self.options.extras_js_file) |extras_path| {
@@ -154,39 +154,42 @@ const WebServerStep = struct {
 /// for WebAssembly or using ADB to upload your Android app to your phone.
 /// If you do not wish to run your CompileStep, ignore the run step by doing
 /// _ = install(step, .{ ... });
-pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Build.Step {
+pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.Build.Step {
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
 
     const zigimg = b.createModule(.{
-        .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+        .root_source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     });
 
     const zigwin32 = b.createModule(.{
-        .source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
+        .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
     });
 
-    step.addModule("zigwin32", zigwin32);
-    step.addAnonymousModule("capy", .{
-        .source_file = .{ .path = prefix ++ "/src/main.zig" },
-        .dependencies = &.{
+    const capy = b.createModule(.{
+        .root_source_file = .{ .path = prefix ++ "/src/main.zig" },
+        .target = step.root_module.resolved_target,
+        .imports = &.{
             .{ .name = "zigimg", .module = zigimg },
             // TODO: do not put as dependency if target os isn't windows
             .{ .name = "zigwin32", .module = zigwin32 },
         },
     });
+    step.root_module.addImport("capy", capy);
 
-    switch (step.target.getOsTag()) {
+    switch (step.rootModuleTarget().os.tag) {
         .windows => {
-            switch (step.optimize) {
+            switch (step.root_module.optimize orelse .Debug) {
                 .Debug => step.subsystem = .Console,
                 else => step.subsystem = .Windows,
             }
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
             step.linkSystemLibrary("gdiplus");
-            switch (step.target.toTarget().cpu.arch) {
+
+            // TODO: use capy.addWin32ResourceFile
+            switch (step.rootModuleTarget().cpu.arch) {
                 .x86_64 => step.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
@@ -209,14 +212,14 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
             step.linkFramework("CoreFoundation");
             step.linkFramework("Foundation");
             step.linkFramework("AppKit");
-            step.linkSystemLibraryName("objc");
+            step.linkSystemLibrary2("objc", .{ .use_pkg_config = .no });
         },
         .linux, .freebsd => {
-            if (step.target.toTarget().isAndroid()) {
+            if (step.rootModuleTarget().isAndroid()) {
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
                 const sdk = AndroidSdk.init(b, null, .{});
-                const optimize = step.optimize;
+                const optimize = step.root_module.optimize orelse .Debug;
 
                 // Provide some KeyStore structure so we can sign our app.
                 // Recommendation: Don't hardcore your password here, everyone can read it.
@@ -261,7 +264,7 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
 
                 const app = sdk.createApp(
                     "zig-out/capy-app.apk",
-                    step.root_src.?.getPath(b),
+                    step.root_module.root_source_file.?.getPath(b),
                     &.{ "android/src/CanvasView.java", "android/src/NativeInvocationHandler.java" },
                     config,
                     optimize,
@@ -277,23 +280,11 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 const android_module = b.modules.get("android").?;
                 for (app.libraries) |exe| {
                     // Provide the "android" package in each executable we build
-                    exe.addAnonymousModule("capy", .{
-                        .source_file = .{ .path = prefix ++ "/src/main.zig" },
-                        .dependencies = &.{
-                            .{ .name = "zigimg", .module = zigimg },
-                            .{ .name = "android", .module = android_module },
-                        },
-                    });
-                    exe.addModule("android", android_module);
+                    exe.root_module.addImport("capy", capy);
+                    exe.root_module.addImport("android", android_module);
                 }
-                step.addAnonymousModule("capy", .{
-                    .source_file = .{ .path = prefix ++ "/src/main.zig" },
-                    .dependencies = &.{
-                        .{ .name = "zigimg", .module = zigimg },
-                        .{ .name = "android", .module = android_module },
-                    },
-                });
-                step.export_symbol_names = &.{"ANativeActivity_onCreate"};
+                step.root_module.addImport("capy", capy);
+                step.root_module.export_symbol_names = &.{"ANativeActivity_onCreate"};
 
                 // Make the app build when we invoke "zig build" or "zig build install"
                 // TODO: only invoke keystore if .build_config/android.keystore doesn't exist
@@ -307,19 +298,19 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
                 run_step.dependOn(install_step);
                 return run_step;
             } else {
-                step.linkLibC();
-                step.linkSystemLibrary("gtk4");
+                capy.link_libc = true;
+                capy.linkSystemLibrary("gtk4", .{});
             }
         },
         .freestanding => {
-            if (step.target.toTarget().isWasm()) {
+            if (step.rootModuleTarget().isWasm()) {
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
-                if (step.optimize == .ReleaseSmall) {
-                    step.strip = true;
+                if (step.root_module.optimize == .ReleaseSmall) {
+                    step.root_module.strip = true;
                 }
-                step.export_symbol_names = &.{"_start"};
+                capy.export_symbol_names = &.{"_start"};
 
                 const serve = WebServerStep.create(b, step, options.wasm);
                 const install_step = b.addInstallArtifact(step, .{});

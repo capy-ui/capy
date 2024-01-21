@@ -1,6 +1,6 @@
 const std = @import("std");
 const builtin = @import("builtin");
-const Builder = std.build.Builder;
+const Builder = std.Build;
 
 const Sdk = @import("../Sdk.zig");
 const UserConfig = Sdk.UserConfig;
