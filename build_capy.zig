@@ -10,6 +10,8 @@ pub const CapyBuildOptions = struct {
     android: AndroidOptions = .{ .password = "foo", .package_name = "org.capyui.example" },
     wasm: WasmOptions = .{},
     args: ?[]const []const u8 = &.{},
+    target: std.Build.ResolvedTarget,
+    optimize: std.builtin.OptimizeMode,
 
     pub const AndroidOptions = struct {
         // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher
@@ -31,14 +33,14 @@ pub const CapyBuildOptions = struct {
 
 /// Step used to run a web server for WebAssembly apps
 const WebServerStep = struct {
-    step: std.build.Step,
-    exe: *std.build.CompileStep,
+    step: std.Build.Step,
+    exe: *std.Build.Step.Compile,
     options: CapyBuildOptions.WasmOptions,
 
-    pub fn create(owner: *std.build.Builder, exe: *std.build.LibExeObjStep, options: CapyBuildOptions.WasmOptions) *WebServerStep {
+    pub fn create(owner: *std.Build, exe: *std.Build.Step.Compile, options: CapyBuildOptions.WasmOptions) *WebServerStep {
         const self = owner.allocator.create(WebServerStep) catch unreachable;
         self.* = .{
-            .step = std.build.Step.init(.{
+            .step = std.Build.Step.init(.{
                 .id = .custom,
                 .name = "webserver",
                 .owner = owner,
@@ -55,14 +57,14 @@ const WebServerStep = struct {
         builder: *std.build.Builder,
     };
 
-    pub fn make(step: *std.build.Step, prog_node: *std.Progress.Node) !void {
+    pub fn make(step: *std.Build.Step, prog_node: *std.Progress.Node) !void {
         // There's no progress to report on.
         _ = prog_node;
 
         const self = @fieldParentPtr(WebServerStep, "step", step);
         const allocator = step.owner.allocator;
 
-        var server = Server.init(allocator, .{ .reuse_address = true });
+        var server = Server.init(.{ .reuse_address = true });
         defer server.deinit();
 
         try server.listen(try std.net.Address.parseIp("127.0.0.1", 8080));
@@ -100,8 +102,9 @@ const WebServerStep = struct {
                 file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
                 content_type = "application/javascript";
             } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
-                file_path = self.exe.getOutputSource().getPath2(build, &self.step);
-                content_type = "application/wasm";
+                @panic("TODO: reimplement this");
+                //file_path = self.exe.getOutputSource().getPath2(build, &self.step);
+                //content_type = "application/wasm";
             } else if (std.mem.eql(u8, path, "/extras.js")) {
                 if (self.options.extras_js_file) |extras_path| {
                     file_path = extras_path;
@@ -154,39 +157,39 @@ const WebServerStep = struct {
 /// for WebAssembly or using ADB to upload your Android app to your phone.
 /// If you do not wish to run your CompileStep, ignore the run step by doing
 /// _ = install(step, .{ ... });
-pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Build.Step {
+pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.Build.Step {
     const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
     const b = step.step.owner;
     step.subsystem = .Native;
 
-    const zigimg = b.createModule(.{
-        .source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+    const zigimg = b.addModule("zigimg", .{
+        .root_source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
     });
 
-    const zigwin32 = b.createModule(.{
-        .source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
+    const zigwin32 = b.addModule("zigwin32", .{
+        .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
+    });
+    _ = zigwin32;
+
+    _ = b.addModule("capy", .{
+        .root_source_file = .{ .path = prefix ++ "/src/main.zig" },
+        //.dependencies = &.{
+        //    .{ .name = "zigimg", .module = zigimg },
+        //    // TODO: do not put as dependency if target os isn't windows
+        //    .{ .name = "zigwin32", .module = zigwin32 },
+        //},
     });
 
-    step.addModule("zigwin32", zigwin32);
-    step.addAnonymousModule("capy", .{
-        .source_file = .{ .path = prefix ++ "/src/main.zig" },
-        .dependencies = &.{
-            .{ .name = "zigimg", .module = zigimg },
-            // TODO: do not put as dependency if target os isn't windows
-            .{ .name = "zigwin32", .module = zigwin32 },
-        },
-    });
-
-    switch (step.target.getOsTag()) {
+    switch (options.target.result.os.tag) {
         .windows => {
-            switch (step.optimize) {
+            switch (options.optimize) {
                 .Debug => step.subsystem = .Console,
                 else => step.subsystem = .Windows,
             }
             step.linkSystemLibrary("comctl32");
             step.linkSystemLibrary("gdi32");
             step.linkSystemLibrary("gdiplus");
-            switch (step.target.toTarget().cpu.arch) {
+            switch (options.target.result.cpu.arch) {
                 .x86_64 => step.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
@@ -209,14 +212,14 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
             step.linkFramework("CoreFoundation");
             step.linkFramework("Foundation");
             step.linkFramework("AppKit");
-            step.linkSystemLibraryName("objc");
+            step.linkSystemLibrary("objc");
         },
         .linux, .freebsd => {
-            if (step.target.toTarget().isAndroid()) {
+            if (options.target.result.isAndroid()) {
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
                 const sdk = AndroidSdk.init(b, null, .{});
-                const optimize = step.optimize;
+                const optimize = options.optimize;
 
                 // Provide some KeyStore structure so we can sign our app.
                 // Recommendation: Don't hardcore your password here, everyone can read it.
@@ -261,7 +264,8 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
 
                 const app = sdk.createApp(
                     "zig-out/capy-app.apk",
-                    step.root_src.?.getPath(b),
+                    b.build_root.path.?,
+                    //step.root_src.?.getPath(b),
                     &.{ "android/src/CanvasView.java", "android/src/NativeInvocationHandler.java" },
                     config,
                     optimize,
@@ -312,14 +316,14 @@ pub fn install(step: *std.Build.CompileStep, options: CapyBuildOptions) !*std.Bu
             }
         },
         .freestanding => {
-            if (step.target.toTarget().isWasm()) {
+            if (options.target.result.isWasm()) {
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
                 step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
-                if (step.optimize == .ReleaseSmall) {
-                    step.strip = true;
-                }
-                step.export_symbol_names = &.{"_start"};
+                //if (options.optimize == .ReleaseSmall) {
+                //    step.strip = true;
+                //}
+                //step.export_symbol_names = &.{"_start"};
 
                 const serve = WebServerStep.create(b, step, options.wasm);
                 const install_step = b.addInstallArtifact(step, .{});
