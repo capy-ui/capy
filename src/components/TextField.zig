@@ -8,20 +8,15 @@ const StringAtom = dataStructures.StringAtom;
 
 pub const TextField = struct {
     pub usingnamespace internal.All(TextField);
-    //pub usingnamespace @import("internal.zig").Property(TextField, "text");
 
     peer: ?backend.TextField = null,
     widget_data: TextField.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
     readOnly: Atom(bool) = Atom(bool).of(false),
-    _wrapperTextBlock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
     pub fn init(config: TextField.Config) TextField {
-        var field = TextField.init_events(TextField{
-            .text = StringAtom.of(config.text),
-            .readOnly = Atom(bool).of(config.readOnly),
-        });
-        field.setName(config.name);
+        var field = TextField.init_events(TextField{});
+        internal.applyConfigStruct(&field, config);
         return field;
     }
 
@@ -32,24 +27,20 @@ pub const TextField = struct {
     }
 
     /// When the text is changed in the StringAtom
-    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*TextField, @ptrFromInt(userdata));
-        if (self._wrapperTextBlock.load(.Monotonic) == true) return;
-
+    fn onTextAtomChange(newValue: []const u8, userdata: ?*anyopaque) void {
+        const self: *TextField = @ptrCast(@alignCast(userdata));
+        if (std.mem.eql(u8, self.peer.?.getText(), newValue)) return;
         self.peer.?.setText(newValue);
     }
 
-    fn wrapperReadOnlyChanged(newValue: bool, userdata: usize) void {
-        const peer = @as(*?backend.TextField, @ptrFromInt(userdata));
-        peer.*.?.setReadOnly(newValue);
+    fn onReadOnlyAtomChange(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *TextField = @ptrCast(@alignCast(userdata));
+        self.peer.?.setReadOnly(newValue);
     }
 
     fn textChanged(userdata: usize) void {
-        const self = @as(*TextField, @ptrFromInt(userdata));
+        const self: *TextField = @ptrFromInt(userdata);
         const text = self.peer.?.getText();
-
-        self._wrapperTextBlock.store(true, .Monotonic);
-        defer self._wrapperTextBlock.store(false, .Monotonic);
         self.text.set(text);
     }
 
@@ -60,10 +51,10 @@ pub const TextField = struct {
             peer.setReadOnly(self.readOnly.get());
             self.peer = peer;
 
-            try self.show_events();
+            try self.setupEvents();
             try peer.setCallback(.TextChanged, textChanged);
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @intFromPtr(self) });
-            _ = try self.readOnly.addChangeListener(.{ .function = wrapperReadOnlyChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.text.addChangeListener(.{ .function = onTextAtomChange, .userdata = self });
+            _ = try self.readOnly.addChangeListener(.{ .function = onReadOnlyAtomChange, .userdata = self });
         }
     }
 
@@ -93,6 +84,6 @@ pub const TextField = struct {
     }
 };
 
-pub fn textField(config: TextField.Config) TextField {
-    return TextField.init(config);
+pub fn textField(config: TextField.Config) *TextField {
+    return TextField.alloc(config);
 }

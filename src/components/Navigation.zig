@@ -14,15 +14,15 @@ pub const Navigation = struct {
     relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     routeName: Atom([]const u8),
     activeChild: *Widget,
-    routes: std.StringHashMap(Widget),
+    routes: std.StringHashMap(*Widget),
 
-    pub fn init(config: Navigation.Config, routes: std.StringHashMap(Widget)) !Navigation {
+    pub fn init(config: Navigation.Config, routes: std.StringHashMap(*Widget)) !Navigation {
         var iterator = routes.valueIterator();
         const activeChild = iterator.next() orelse @panic("navigation component is empty");
         var component = Navigation.init_events(Navigation{
             .routeName = Atom([]const u8).of(config.routeName),
             .routes = routes,
-            .activeChild = activeChild,
+            .activeChild = activeChild.*,
         });
         try component.addResizeHandler(&onResize);
 
@@ -49,7 +49,6 @@ pub const Navigation = struct {
 
     pub fn _showWidget(widget: *Widget, self: *Navigation) !void {
         self.activeChild.parent = widget;
-        self.activeChild.class.setWidgetFn(self.activeChild);
     }
 
     pub fn show(self: *Navigation) !void {
@@ -57,11 +56,10 @@ pub const Navigation = struct {
             var peer = try backend.Container.create();
             self.peer = peer;
 
-            self.activeChild.class.setWidgetFn(self.activeChild);
             try self.activeChild.show();
             peer.add(self.activeChild.peer.?);
 
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
@@ -97,7 +95,7 @@ pub const Navigation = struct {
         _ = params;
         if (self.peer) |*peer| {
             peer.remove(self.activeChild.peer.?);
-            const child = self.routes.getPtr(name) orelse return error.NoSuchRoute;
+            const child = self.routes.get(name) orelse return error.NoSuchRoute;
             self.activeChild = child;
             try self.activeChild.show();
             peer.add(self.activeChild.peer.?);
@@ -116,13 +114,13 @@ pub const Navigation = struct {
     pub fn _deinit(self: *Navigation) void {
         var iterator = self.routes.valueIterator();
         while (iterator.next()) |widget| {
-            widget.deinit();
+            widget.*.deinit();
         }
     }
 };
 
-pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!Navigation {
-    var routes = std.StringHashMap(Widget).init(internal.lasting_allocator);
+pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!*Navigation {
+    var routes = std.StringHashMap(*Widget).init(internal.lasting_allocator);
     const fields = std.meta.fields(@TypeOf(children));
 
     inline for (fields) |field| {
@@ -132,9 +130,12 @@ pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!Navigatio
             try child
         else
             child;
-        const widget = try internal.genericWidgetFrom(element);
+        const widget = internal.getWidgetFrom(element);
         try routes.put(field.name, widget);
     }
 
-    return try Navigation.init(opts, routes);
+    const instance = @import("../internal.zig").lasting_allocator.create(Navigation) catch @panic("out of memory");
+    instance.* = try Navigation.init(opts, routes);
+    instance.widget_data.widget = @import("../internal.zig").genericWidgetFrom(instance);
+    return instance;
 }

@@ -19,7 +19,7 @@ const ListModel = struct {
         self.size.set(self.size.get() + 1);
     }
 
-    pub fn getComponent(self: *ListModel, index: usize) capy.Container {
+    pub fn getComponent(self: *ListModel, index: usize) *capy.Container {
         const activity = self.data.items[index];
         const start_epoch = std.time.epoch.EpochSeconds{ .secs = activity.start };
         const start_day = start_epoch.getDaySeconds();
@@ -41,7 +41,7 @@ const ListModel = struct {
     }
 };
 
-pub fn Card(child: anytype) anyerror!capy.Container {
+pub fn Card(child: anytype) anyerror!*capy.Container {
     return try capy.stack(.{
         capy.rect(.{ .color = capy.Color.comptimeFromString("#ffffff") }),
         capy.margin(capy.Rectangle.init(10, 10, 10, 10), try child),
@@ -63,7 +63,7 @@ fn onSubmit(_: *anyopaque) !void {
     submitDesc.set("");
 }
 
-pub fn InsertCard() anyerror!capy.Container {
+pub fn InsertCard() anyerror!*capy.Container {
     submitEnabled.dependOn(.{&submitDesc}, &(struct {
         fn callback(description: []const u8) bool {
             return description.len > 0;

@@ -59,6 +59,10 @@ pub const MapViewer = struct {
         });
         viewer.centerTo(2.3200, 48.8589);
         viewer.setName(config.name);
+        _ = viewer.addDrawHandler(&MapViewer.draw) catch unreachable;
+        _ = viewer.addMouseButtonHandler(&MapViewer.mouseButton) catch unreachable;
+        _ = viewer.addMouseMotionHandler(&MapViewer.mouseMoved) catch unreachable;
+        _ = viewer.addScrollHandler(&MapViewer.mouseScroll) catch unreachable;
         return viewer;
     }
 
@@ -228,7 +232,7 @@ pub const MapViewer = struct {
     pub fn show(self: *MapViewer) !void {
         if (self.peer == null) {
             self.peer = try capy.backend.Canvas.create();
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
@@ -239,13 +243,8 @@ pub const MapViewer = struct {
     }
 };
 
-pub fn mapViewer(config: MapViewer.Config) !MapViewer {
-    var map_viewer = MapViewer.init(config);
-    _ = try map_viewer.addDrawHandler(&MapViewer.draw);
-    _ = try map_viewer.addMouseButtonHandler(&MapViewer.mouseButton);
-    _ = try map_viewer.addMouseMotionHandler(&MapViewer.mouseMoved);
-    _ = try map_viewer.addScrollHandler(&MapViewer.mouseScroll);
-    return map_viewer;
+pub fn mapViewer(config: MapViewer.Config) *MapViewer {
+    return MapViewer.alloc(config);
 }
 
 pub fn main() !void {

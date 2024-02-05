@@ -27,7 +27,7 @@ pub const Tabs = struct {
                 peer.setLabel(tabPosition, tab_ptr.label);
             }
             self.peer = peer;
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
@@ -44,18 +44,13 @@ pub const Tabs = struct {
     }
 
     pub fn add(self: *Tabs, widget: anytype) !void {
-        const ComponentType = @import("../internal.zig").DereferencedType(@TypeOf(widget));
-
-        var genericWidget = try @import("../internal.zig").genericWidgetFrom(widget);
+        var genericWidget = @import("../internal.zig").getWidgetFrom(widget);
         if (self.widget) |parent| {
             genericWidget.parent = parent;
         }
 
         const slot = try self.tab.addOne();
         slot.* = .{ .label = "Untitled Tab", .widget = genericWidget };
-        if (@hasField(ComponentType, "dataWrappers")) {
-            genericWidget.as(ComponentType).dataWrappers.widget = slot;
-        }
 
         if (self.peer) |*peer| {
             try slot.show();
@@ -78,7 +73,7 @@ fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-pub inline fn tabs(children: anytype) anyerror!Tabs {
+pub inline fn tabs(children: anytype) anyerror!*Tabs {
     const fields = std.meta.fields(@TypeOf(children));
     var list = std.ArrayList(Tab).init(@import("../internal.zig").lasting_allocator);
     inline for (fields) |field| {
@@ -90,14 +85,17 @@ pub inline fn tabs(children: anytype) anyerror!Tabs {
             element;
         const slot = try list.addOne();
         slot.* = tab1;
-        slot.*.widget.class.setWidgetFn(&slot.*.widget);
     }
-    return Tabs.init(list);
+
+    const instance = @import("../internal.zig").lasting_allocator.create(Tabs) catch @panic("out of memory");
+    instance.* = Tabs.init(list);
+    instance.widget_data.widget = @import("../internal.zig").genericWidgetFrom(instance);
+    return instance;
 }
 
 pub const Tab = struct {
     label: [:0]const u8,
-    widget: Widget,
+    widget: *Widget,
 };
 
 pub const TabConfig = struct {
@@ -105,7 +103,7 @@ pub const TabConfig = struct {
 };
 
 pub inline fn tab(config: TabConfig, child: anytype) anyerror!Tab {
-    const widget = try @import("../internal.zig").genericWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
+    const widget = @import("../internal.zig").getWidgetFrom(if (comptime isErrorUnion(@TypeOf(child)))
         try child
     else
         child);

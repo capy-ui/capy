@@ -47,16 +47,13 @@ pub fn All(comptime T: type) type {
         pub const WidgetData = struct {
             handlers: T.Handlers = undefined,
             atoms: T.Atoms = .{},
+
+            /// The widget representing this component
+            /// It is initialised in alloc()
+            widget: Widget = undefined,
         };
     };
 }
-
-// Styling
-// pub fn Styling(comptime T: type) type {
-//     return struct {
-//         pub usingnamespace Measurement(T);
-//     };
-// }
 
 /// Convenience function for creating widgets
 pub fn Widgeting(comptime T: type) type {
@@ -67,7 +64,7 @@ pub fn Widgeting(comptime T: type) type {
             .showFn = showWidget,
             .deinitFn = deinitWidget,
             .preferredSizeFn = getPreferredSizeWidget,
-            .setWidgetFn = setWidgetFn,
+
             .getParentFn = widget_getParent,
             .isDisplayedFn = isDisplayedFn,
         };
@@ -76,12 +73,22 @@ pub fn Widgeting(comptime T: type) type {
             opacity: Atom(f32) = Atom(f32).of(1.0),
             displayed: Atom(bool) = Atom(bool).of(true),
             name: Atom(?[]const u8) = Atom(?[]const u8).of(null),
-
-            /// The widget representing this component
-            widget: ?*Widget = null,
         };
 
         pub const Config = GenerateConfigStruct(T);
+
+        /// Allocates an instance of the component.
+        ///
+        /// By default, all components are allocated using lasting_allocator, why is it this way and not
+        /// with a different allocator for each component? It's because it would cause a lot of trouble if a
+        /// was allocated with a different allocator than its children. Enforcing one single allocator
+        /// prevents those kind of situations.
+        pub fn alloc(config: Config) *T {
+            const instance = lasting_allocator.create(T) catch @panic("out of memory");
+            instance.* = T.init(config);
+            instance.widget_data.widget = genericWidgetFrom(instance);
+            return instance;
+        }
 
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = widget.as(T);
@@ -94,11 +101,6 @@ pub fn Widgeting(comptime T: type) type {
             }
         }
 
-        pub fn setWidgetFn(widget: *Widget) void {
-            const component = widget.as(T);
-            component.widget_data.atoms.widget = widget;
-        }
-
         pub fn isDisplayedFn(widget: *const Widget) bool {
             const component = widget.as(T);
             return component.widget_data.atoms.displayed.get();
@@ -107,8 +109,6 @@ pub fn Widgeting(comptime T: type) type {
         pub fn deinitWidget(widget: *Widget) void {
             const component = widget.as(T);
             component.deinit();
-
-            if (widget.allocator) |allocator| allocator.destroy(component);
         }
 
         pub fn deinit(self: *T) void {
@@ -116,7 +116,6 @@ pub fn Widgeting(comptime T: type) type {
                 self._deinit();
             }
 
-            self.widget_data.atoms.widget = null;
             self.widget_data.atoms.opacity.deinit();
 
             self.widget_data.handlers.clickHandlers.deinit();
@@ -129,6 +128,8 @@ pub fn Widgeting(comptime T: type) type {
 
             // TODO: deinit all datawrapper properties
             if (self.peer) |peer| peer.deinit();
+
+            lasting_allocator.destroy(self);
         }
 
         pub fn pointerMoved(self: *T) void {
@@ -143,18 +144,42 @@ pub fn Widgeting(comptime T: type) type {
             return component.getPreferredSize(available);
         }
 
+        /// Get the X position relative to this component's parent
+        pub fn getX(self: *T) u32 {
+            if (self.peer) |peer| {
+                return @intCast(peer.getX());
+            } else {
+                return 0;
+            }
+        }
+
+        /// Get the Y position relative to this component's parent
+        pub fn getY(self: *T) u32 {
+            if (self.peer) |peer| {
+                return @intCast(peer.getY());
+            } else {
+                return 0;
+            }
+        }
+
         pub fn getWidth(self: *T) u32 {
-            if (self.peer == null) return 0;
-            return @as(u32, @intCast(self.peer.?.getWidth()));
+            if (self.peer) |peer| {
+                return @intCast(peer.getWidth());
+            } else {
+                return 0;
+            }
         }
 
         pub fn getHeight(self: *T) u32 {
-            if (self.peer == null) return 0;
-            return @as(u32, @intCast(self.peer.?.getHeight()));
+            if (self.peer) |peer| {
+                return @intCast(peer.getHeight());
+            } else {
+                return 0;
+            }
         }
 
-        pub fn asWidget(self: *T) anyerror!Widget {
-            return try genericWidgetFrom(self);
+        pub fn asWidget(self: *T) *Widget {
+            return &self.widget_data.widget;
         }
 
         // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
@@ -203,18 +228,14 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         /// Bind the given property to argument
-        pub fn bind(immutable_self: *const T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) T {
-            // TODO: use another system for binding components
-            // This is DANGEROUSLY unsafe (and unoptimized)
-            const self = @as(*T, @ptrFromInt(@intFromPtr(immutable_self)));
-
+        pub fn bind(self: *T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) *T {
             if (@hasField(Atoms, name)) {
                 @field(self.widget_data.atoms, name).bind(other);
             } else {
                 @field(self, name).bind(other);
             }
             self.set(name, other.get());
-            return immutable_self.*;
+            return self;
         }
 
         pub fn getName(self: *T) ?[]const u8 {
@@ -225,18 +246,10 @@ pub fn Widgeting(comptime T: type) type {
             self.widget_data.atoms.name.set(name);
         }
 
-        pub fn getWidget(self: *T) ?*Widget {
-            return self.widget_data.atoms.widget;
-        }
-
         // Returns the parent of the current widget
         pub fn getParent(self: *T) ?*Widget {
-            if (self.widget_data.atoms.widget) |widget| {
-                if (widget.parent) |parent| {
-                    return parent;
-                }
-            }
-            return null;
+            const widget = self.widget_data.widget;
+            return widget.parent;
         }
 
         fn widget_getParent(widget: *const Widget) ?*Widget {
@@ -259,6 +272,29 @@ pub fn Widgeting(comptime T: type) type {
             }
 
             return parent;
+        }
+
+        /// Clone the component but with the peer set to null
+        pub fn clone(self: *T) !*T {
+            if (@hasDecl(T, "cloneImpl")) {
+                return try self.cloneImpl();
+            }
+            // Clone properties only
+            var config: GenerateConfigStruct(T) = undefined;
+            inline for (comptime std.meta.fieldNames(GenerateConfigStruct(T))) |property_name| {
+                if (comptime !std.mem.eql(u8, property_name, "onclick") and !std.mem.eql(u8, property_name, "ondraw")) {
+                    @field(config, property_name) = self.get(property_name);
+                }
+            }
+
+            const cloned = T.alloc(config);
+            return cloned;
+        }
+
+        pub fn widget_clone(widget: *const Widget) anyerror!Widget {
+            const component = widget.as(T);
+            const cloned = try component.clone();
+            return try cloned.asWidget();
         }
     };
 }
@@ -356,34 +392,27 @@ pub fn DereferencedType(comptime T: type) type {
 }
 
 /// Create a generic Widget struct from the given component.
-/// This method will set atoms.widget field and can only be called once.
-pub fn genericWidgetFrom(component: anytype) anyerror!Widget {
+pub fn genericWidgetFrom(component: anytype) Widget {
     const ComponentType = @TypeOf(component);
-    if (ComponentType == Widget) return component;
-
-    if (component.widget_data.atoms.widget != null) {
-        return error.ComponentAlreadyHasWidget;
-    }
+    comptime std.debug.assert(ComponentType != Widget and ComponentType != *Widget);
 
     // Unless it is already a pointer, we clone the component so that
     // it can be referenced by the Widget we're gonna create.
-    var cp = if (comptime trait.isSingleItemPtr(ComponentType)) component else blk: {
-        const copy = try lasting_allocator.create(ComponentType);
-        copy.* = component;
-        break :blk copy;
-    };
-
-    // Update things like data wrappers, this happens once, at initialization,
-    // after that the component isn't moved in memory anymore
-    cp.pointerMoved();
-
+    comptime std.debug.assert(trait.isSingleItemPtr(ComponentType));
     const Dereferenced = DereferencedType(ComponentType);
     return Widget{
-        .data = cp,
+        .data = component,
         .class = &Dereferenced.WidgetClass,
-        .name = &cp.widget_data.atoms.name,
-        .allocator = if (comptime trait.isSingleItemPtr(ComponentType)) null else lasting_allocator,
+        .name = &component.widget_data.atoms.name,
     };
+}
+
+pub fn getWidgetFrom(component: anytype) *Widget {
+    if (@TypeOf(component) == *Widget) {
+        return component;
+    } else {
+        return component.asWidget();
+    }
 }
 
 pub fn isErrorUnion(comptime T: type) bool {
@@ -393,9 +422,9 @@ pub fn isErrorUnion(comptime T: type) bool {
     };
 }
 
-pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) {
+pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget) {
     const fields = std.meta.fields(@TypeOf(childrens));
-    var list = std.ArrayList(Widget).init(lasting_allocator);
+    var list = std.ArrayList(*Widget).init(lasting_allocator);
     inline for (fields) |field| {
         const element = @field(childrens, field.name);
         const child =
@@ -404,14 +433,8 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(Widget) 
         else
             element;
 
-        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(child));
-        const widget = try @import("internal.zig").genericWidgetFrom(child);
-        const slot = try list.addOne();
-        slot.* = widget;
-
-        if (ComponentType != Widget) {
-            widget.as(ComponentType).widget_data.atoms.widget = slot;
-        }
+        const widget = getWidgetFrom(child);
+        try list.append(widget);
     }
 
     return list;
@@ -577,14 +600,14 @@ pub fn Events(comptime T: type) type {
         }
 
         /// When the value is changed in the opacity data wrapper
-        fn opacityChanged(newValue: f32, userdata: usize) void {
-            const widget = @as(*T, @ptrFromInt(userdata));
+        fn opacityChanged(newValue: f32, userdata: ?*anyopaque) void {
+            const widget: *T = @ptrCast(@alignCast(userdata.?));
             if (widget.peer) |*peer| {
                 peer.setOpacity(newValue);
             }
         }
 
-        pub fn show_events(self: *T) !void {
+        pub fn setupEvents(self: *T) !void {
             self.peer.?.setUserData(self);
             try self.peer.?.setCallback(.Click, clickHandler);
             try self.peer.?.setCallback(.Draw, drawHandler);
@@ -596,8 +619,8 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.KeyPress, keyPressHandler);
             try self.peer.?.setCallback(.PropertyChange, propertyChangeHandler);
 
-            _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = @intFromPtr(self) });
-            opacityChanged(self.widget_data.atoms.opacity.get(), @intFromPtr(self)); // call it so it's updated
+            _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = self });
+            opacityChanged(self.widget_data.atoms.opacity.get(), self); // call it so it's updated
         }
 
         pub fn addClickHandler(self: *T, handler: anytype) !void {
@@ -633,7 +656,7 @@ pub fn Events(comptime T: type) type {
         }
 
         /// This shouldn't be used by user applications directly.
-        /// Instead set a change listener to the corresponding data wrapper.
+        /// Instead set a change listener to the corresponding atom.
         pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
             try self.widget_data.handlers.propertyChangeHandlers.append(@as(PropertyChangeCallback, @ptrCast(handler)));
         }

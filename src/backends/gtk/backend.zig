@@ -218,6 +218,8 @@ pub const EventUserData = struct {
     classUserdata: usize = 0,
     peer: PeerType,
     focusOnClick: bool = false,
+    actual_x: ?u31 = null,
+    actual_y: ?u31 = null,
     actual_width: ?u31 = null,
     actual_height: ?u31 = null,
 };
@@ -230,6 +232,16 @@ pub inline fn getEventUserData(peer: *c.GtkWidget) *EventUserData {
             "eventUserData",
         ))),
     ).?;
+}
+
+pub fn getXPosFromPeer(peer: PeerType) c_int {
+    const data = getEventUserData(peer);
+    return data.actual_x orelse 0;
+}
+
+pub fn getYPosFromPeer(peer: PeerType) c_int {
+    const data = getEventUserData(peer);
+    return data.actual_y orelse 0;
 }
 
 pub fn getWidthFromPeer(peer: PeerType) c_int {
@@ -473,6 +485,14 @@ pub fn Events(comptime T: type) type {
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
             c.gtk_widget_queue_draw(self.peer);
+        }
+
+        pub fn getX(self: *const T) c_int {
+            return getXPosFromPeer(self.peer);
+        }
+
+        pub fn getY(self: *const T) c_int {
+            return getYPosFromPeer(self.peer);
         }
 
         pub fn getWidth(self: *const T) c_int {
@@ -1084,7 +1104,7 @@ pub const Container = struct {
 
         const fixed_class = c.g_type_class_peek(c.gtk_fixed_get_type());
         const widget_class: *c.GtkWidgetClass = @ptrCast(@alignCast(fixed_class));
-        std.log.info("old: {*} new: {*}", .{ widget_class.focus, focus_fn });
+        // std.log.info("old: {*} new: {*}", .{ widget_class.focus, focus_fn });
         widget_class.focus = focus_fn;
         c.gtk_widget_class_set_accessible_role(widget_class, c.GTK_ACCESSIBLE_ROLE_GENERIC);
 
@@ -1104,6 +1124,9 @@ pub const Container = struct {
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
         c.gtk_fixed_move(@ptrCast(self.container), peer, @floatFromInt(x), @floatFromInt(y));
+        const data = getEventUserData(peer);
+        data.actual_x = @intCast(x);
+        data.actual_y = @intCast(y);
     }
 
     pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
@@ -1116,7 +1139,7 @@ pub const Container = struct {
     }
 
     pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
-        std.log.info("{}", .{c.gtk_widget_grab_focus(peers[0])});
+        // std.log.info("{}", .{c.gtk_widget_grab_focus(peers[0])});
         var previous: ?*c.GtkWidget = null;
         for (peers) |peer| {
             c.gtk_widget_insert_after(peer, self.container, previous);
@@ -1180,7 +1203,7 @@ pub const ScrollView = struct {
         return ScrollView{ .peer = scrolledWindow };
     }
 
-    pub fn setChild(self: *ScrollView, peer: PeerType, _: *const lib.Widget) void {
+    pub fn setChild(self: *ScrollView, peer: PeerType, _: *lib.Widget) void {
         c.gtk_scrolled_window_set_child(@ptrCast(self.peer), peer);
     }
 };

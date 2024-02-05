@@ -60,9 +60,8 @@ pub fn build(b: *std.Build) !void {
     });
     lib.linkLibC();
     _ = try install(lib, .{});
-    // lib.emit_h = true;
-    const h_install = b.addInstallFile(lib.getEmittedH(), "headers");
-    b.getInstallStep().dependOn(&h_install.step);
+    // const h_install = b.addInstallFile(lib.getEmittedH(), "headers.h");
+    // b.getInstallStep().dependOn(&h_install.step);
     const lib_install = b.addInstallArtifact(lib, .{});
     b.getInstallStep().dependOn(&lib_install.step);
 
@@ -74,7 +73,7 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
     });
-    const run_tests = try install(tests, .{});
+    const run_tests = try install(tests, .{ .link_libraries_on_root_module = true });
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(run_tests);
@@ -84,9 +83,11 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
     });
-    b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
-    const run_docs = try install(docs, .{});
+    // b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
+    const run_docs = try install(docs, .{ .link_libraries_on_root_module = true });
+    _ = run_docs;
 
+    // DISABLED UNTIL ZIG DOESN'T CRASH WHILE GENERATING DOCS
     const docs_step = b.step("docs", "Generate documentation and run unit tests");
     docs_step.dependOn(run_docs);
 
@@ -96,7 +97,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     coverage_tests.setExecCmd(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null });
-    _ = try install(coverage_tests, .{});
+    _ = try install(coverage_tests, .{ .link_libraries_on_root_module = true });
 
     const run_coverage_tests = b.addSystemCommand(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output" });
     run_coverage_tests.addArtifactArg(coverage_tests);

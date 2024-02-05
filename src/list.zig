@@ -10,7 +10,7 @@ const Atom = @import("data.zig").Atom;
 
 pub const GenericListModel = struct {
     size: *Atom(usize),
-    getComponent: *const fn (self: *anyopaque, index: usize) Widget,
+    getComponent: *const fn (self: *anyopaque, index: usize) *Widget,
     userdata: *anyopaque,
 };
 
@@ -19,16 +19,16 @@ pub const List = struct {
 
     peer: ?backend.ScrollView = null,
     widget_data: List.WidgetData = .{},
-    child: Widget,
+    child: *Widget,
     model: GenericListModel,
 
     /// The child 'widget' must be the widget of a container.
-    pub fn init(widget: Widget, model: GenericListModel) List {
+    pub fn init(widget: *Widget, model: GenericListModel) List {
         return List.init_events(List{ .child = widget, .model = model });
     }
 
-    fn modelSizeChanged(newSize: usize, userdata: usize) void {
-        const self = @as(*List, @ptrFromInt(userdata));
+    fn modelSizeChanged(newSize: usize, userdata: ?*anyopaque) void {
+        const self: *List = @ptrCast(@alignCast(userdata));
         const container = self.child.as(containers.Container);
 
         // TODO: cache widgets!
@@ -46,20 +46,25 @@ pub const List = struct {
         if (self.peer == null) {
             var peer = try backend.ScrollView.create();
             try self.child.show();
-            peer.setChild(self.child.peer.?, &self.child);
+            peer.setChild(self.child.peer.?, self.child);
             self.peer = peer;
-            try self.show_events();
+            try self.setupEvents();
 
-            _ = try self.model.size.addChangeListener(.{ .function = modelSizeChanged, .userdata = @intFromPtr(self) });
+            _ = try self.model.size.addChangeListener(.{ .function = modelSizeChanged, .userdata = self });
         }
     }
 
     pub fn getPreferredSize(self: *List, available: Size) Size {
         return self.child.getPreferredSize(available);
     }
+
+    pub fn cloneImpl(self: *List) !*List {
+        _ = self;
+        return undefined;
+    }
 };
 
-pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror!List {
+pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror!*List {
     // if (comptime !std.meta.trait.isPtrTo(.Struct)(@TypeOf(model))) {
     //     @compileError("Expected a mutable pointer to the list model");
     // }
@@ -69,10 +74,10 @@ pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror
         .size = &model.size,
         .userdata = model,
         .getComponent = struct {
-            fn getComponent(self: *anyopaque, index: usize) Widget {
+            fn getComponent(self: *anyopaque, index: usize) *Widget {
                 const component = ModelType.getComponent(@as(*ModelType, @ptrCast(@alignCast(self))), index);
                 // Convert the component (Label, Button..) to a widget
-                const widget = @import("internal.zig").genericWidgetFrom(component) catch unreachable; // TODO: handle error
+                const widget = @import("internal.zig").getWidgetFrom(component);
                 return widget;
             }
         }.getComponent,
@@ -85,8 +90,10 @@ pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror
         try row.add(component);
     }
 
-    const widget = try @import("internal.zig").genericWidgetFrom(row);
-    const list = List.init(widget, genericModel);
+    const widget = @import("internal.zig").getWidgetFrom(row);
 
-    return list;
+    const instance = lasting_allocator.create(List) catch @panic("out of memory");
+    instance.* = List.init(widget, genericModel);
+    instance.widget_data.widget = @import("internal.zig").genericWidgetFrom(instance);
+    return instance;
 }

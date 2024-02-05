@@ -879,8 +879,7 @@ pub fn compileAppLibrary(
 
     exe.link_emit_relocs = true;
     exe.link_eh_frame_hdr = true;
-    // exe.force_pic = true;
-    exe.pie = true;
+    exe.root_module.pic = true;
     exe.link_function_sections = true;
     exe.bundle_compiler_rt = true;
     exe.root_module.strip = (mode == .ReleaseSmall);

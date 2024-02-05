@@ -5,7 +5,7 @@ pub usingnamespace capy.cross_platform;
 // Short names to avoid writing 'capy.' each time
 const Allocator = std.mem.Allocator;
 
-var computationLabel: capy.Label = undefined;
+var computationLabel: *capy.Label = undefined;
 var allocator: Allocator = undefined;
 
 // TODO: switch back to *capy.button_Impl when ziglang/zig#12325 is fixed
@@ -94,7 +94,7 @@ pub fn main() !void {
     computationLabel = capy.label(.{ .text = "", .alignment = .Left });
     defer allocator.free(computationLabel.getText());
     try window.set(capy.column(.{ .expand = .Fill, .spacing = 10 }, .{
-        &computationLabel,
+        computationLabel,
         capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
             capy.button(.{ .label = "7", .onclick = pressedKey }),
             capy.button(.{ .label = "8", .onclick = pressedKey }),

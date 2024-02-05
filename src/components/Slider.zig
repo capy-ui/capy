@@ -29,40 +29,42 @@ pub const Slider = struct {
     step: Atom(f32) = Atom(f32).of(1),
     enabled: Atom(bool) = Atom(bool).of(true),
 
-    pub fn init() Slider {
-        return Slider.init_events(Slider{
+    pub fn init(config: Slider.Config) Slider {
+        var component = Slider.init_events(Slider{
             .min = Atom(f32).of(undefined),
             .max = Atom(f32).of(undefined),
         });
+        @import("../internal.zig").applyConfigStruct(&component, config);
+        return component;
     }
 
     pub fn _pointerMoved(self: *Slider) void {
         self.enabled.updateBinders();
     }
 
-    fn wrapperValueChanged(newValue: f32, userdata: usize) void {
-        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setValue(newValue);
+    fn onValueAtomChanged(newValue: f32, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setValue(newValue);
     }
 
-    fn wrapperMinChanged(newValue: f32, userdata: usize) void {
-        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setMinimum(newValue);
+    fn onMinAtomChanged(newValue: f32, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setMinimum(newValue);
     }
 
-    fn wrapperMaxChanged(newValue: f32, userdata: usize) void {
-        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setMaximum(newValue);
+    fn onMaxAtomChanged(newValue: f32, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setMaximum(newValue);
     }
 
-    fn wrapperStepChanged(newValue: f32, userdata: usize) void {
-        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setStepSize(newValue * std.math.sign(newValue));
+    fn onStepAtomChanged(newValue: f32, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setStepSize(newValue);
     }
 
-    fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @as(*?backend.Slider, @ptrFromInt(userdata));
-        peer.*.?.setEnabled(newValue);
+    fn onEnabledAtomChanged(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setEnabled(newValue);
     }
 
     fn onPropertyChange(self: *Slider, property_name: []const u8, new_value: *const anyopaque) !void {
@@ -80,13 +82,13 @@ pub const Slider = struct {
             self.peer.?.setValue(self.value.get());
             self.peer.?.setStepSize(self.step.get() * std.math.sign(self.step.get()));
             self.peer.?.setEnabled(self.enabled.get());
-            try self.show_events();
+            try self.setupEvents();
 
-            _ = try self.value.addChangeListener(.{ .function = wrapperValueChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.min.addChangeListener(.{ .function = wrapperMinChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.max.addChangeListener(.{ .function = wrapperMaxChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.step.addChangeListener(.{ .function = wrapperStepChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.value.addChangeListener(.{ .function = onValueAtomChanged, .userdata = self });
+            _ = try self.min.addChangeListener(.{ .function = onMinAtomChanged, .userdata = self });
+            _ = try self.max.addChangeListener(.{ .function = onMaxAtomChanged, .userdata = self });
+            _ = try self.enabled.addChangeListener(.{ .function = onEnabledAtomChanged, .userdata = self });
+            _ = try self.step.addChangeListener(.{ .function = onStepAtomChanged, .userdata = self });
 
             try self.addPropertyChangeHandler(&onPropertyChange);
         }
@@ -102,20 +104,14 @@ pub const Slider = struct {
     }
 
     pub fn _deinit(self: *Slider) void {
+        self.value.deinit();
+        self.min.deinit();
+        self.max.deinit();
+        self.step.deinit();
         self.enabled.deinit();
     }
 };
 
-pub fn slider(config: Slider.Config) Slider {
-    var s = Slider.init();
-    s.min.set(config.min);
-    s.max.set(config.max);
-    s.value.set(config.value);
-    s.step.set(config.step);
-    s.enabled.set(config.enabled);
-    s.widget_data.atoms.name.set(config.name);
-    if (config.onclick) |onclick| {
-        s.addClickHandler(onclick) catch unreachable; // TODO: improve
-    }
-    return s;
+pub fn slider(config: Slider.Config) *Slider {
+    return Slider.alloc(config);
 }

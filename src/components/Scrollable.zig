@@ -1,7 +1,7 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
-const DataWrapper = @import("../data.zig").DataWrapper;
+const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
 pub const Scrollable = struct {
@@ -9,34 +9,37 @@ pub const Scrollable = struct {
 
     peer: ?backend.ScrollView = null,
     widget_data: Scrollable.WidgetData = .{},
-    child: Widget,
+    child: Atom(*Widget),
 
-    pub fn init(widget: Widget) Scrollable {
-        return Scrollable.init_events(Scrollable{ .child = widget });
+    pub fn init(config: Scrollable.Config) Scrollable {
+        var component = Scrollable.init_events(Scrollable{ .child = Atom(*Widget).of(config.child) });
+        @import("../internal.zig").applyConfigStruct(&component, config);
+        return component;
     }
+
+    // TODO: handle child change
 
     pub fn show(self: *Scrollable) !void {
         if (self.peer == null) {
             var peer = try backend.ScrollView.create();
-            try self.child.show();
-            peer.setChild(self.child.peer.?, &self.child);
+            try self.child.get().show();
+            peer.setChild(self.child.get().peer.?, self.child.get());
             self.peer = peer;
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
     pub fn getPreferredSize(self: *Scrollable, available: Size) Size {
-        return self.child.getPreferredSize(available);
+        return self.child.get().getPreferredSize(available);
     }
 };
 
-pub fn scrollable(element: anytype) anyerror!Scrollable {
+pub fn scrollable(element: anytype) anyerror!*Scrollable {
     const child =
         if (comptime @import("../internal.zig").isErrorUnion(@TypeOf(element)))
         try element
     else
         element;
-    const widget = try @import("../internal.zig").genericWidgetFrom(child);
-
-    return Scrollable.init(widget);
+    const widget = @import("../internal.zig").getWidgetFrom(child);
+    return Scrollable.alloc(.{ .child = widget });
 }

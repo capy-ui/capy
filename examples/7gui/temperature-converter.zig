@@ -36,7 +36,7 @@ pub fn main() !void {
     capy.runEventLoop();
 }
 
-pub fn onCelsiusChange(newValue: []const u8, _: usize) void {
+pub fn onCelsiusChange(newValue: []const u8, _: ?*anyopaque) void {
     if (std.fmt.parseFloat(f32, newValue)) |number| {
         const fahrenheitTemp = number * (9.0 / 5.0) + 32;
 
@@ -50,7 +50,7 @@ pub fn onCelsiusChange(newValue: []const u8, _: usize) void {
     }
 }
 
-pub fn onFahrenheitChange(newValue: []const u8, _: usize) void {
+pub fn onFahrenheitChange(newValue: []const u8, _: ?*anyopaque) void {
     if (std.fmt.parseFloat(f32, newValue)) |number| {
         const celsiusTemp = (number - 32) * (5.0 / 9.0);
         const text = std.fmt.bufPrint(&celsiusBuffer, "{d:.1}", .{celsiusTemp}) catch unreachable;

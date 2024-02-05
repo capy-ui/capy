@@ -64,6 +64,10 @@ pub fn init() !void {
 }
 
 pub fn deinit() void {
+    @import("data.zig")._animatedAtoms.deinit();
+    @import("data.zig")._animatedAtomsLength.deinit();
+
+    eventStep.deinitAllListeners();
     if (ENABLE_DEV_TOOLS) {
         dev_tools.deinit();
     }

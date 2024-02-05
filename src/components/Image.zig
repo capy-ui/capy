@@ -39,7 +39,6 @@ pub const Image = struct {
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
-    // TODO: just directly accept an URL or file path if there's no data
     pub fn init(config: Image.Config) Image {
         var self = Image.init_events(Image{ .url = Atom([]const u8).of(config.url) });
         self.addDrawHandler(&Image.draw) catch unreachable;
@@ -138,11 +137,11 @@ pub const Image = struct {
     pub fn show(self: *Image) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 };
 
-pub fn image(config: Image.Config) Image {
-    return Image.init(config);
+pub fn image(config: Image.Config) *Image {
+    return Image.alloc(config);
 }

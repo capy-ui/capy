@@ -15,8 +15,15 @@ fn increment(_: *anyopaque) !void {
 }
 
 var buf: [128]u8 = undefined;
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+
+pub const capy_allocator = gpa.allocator();
 pub fn main() !void {
+    defer _ = gpa.deinit();
     try capy.init();
+    defer capy.deinit();
+    defer count.deinit();
+
     std.log.info(
         "Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes",
         .{ @sizeOf(capy.Atom(i64)) - @sizeOf(i64), @alignOf(capy.Atom(i64)) },

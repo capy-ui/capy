@@ -152,8 +152,8 @@ pub fn Atom(comptime T: type) type {
 
         pub const ValueType = T;
         pub const ChangeListener = struct {
-            function: *const fn (newValue: T, userdata: usize) void,
-            userdata: usize = 0,
+            function: *const fn (newValue: T, userdata: ?*anyopaque) void,
+            userdata: ?*anyopaque = null,
             type: enum { Change, Destroy } = .Change,
         };
         pub const Binding = struct {
@@ -208,15 +208,15 @@ pub fn Atom(comptime T: type) type {
             userdata.* = .{ .easing = easing, .duration = duration, .self_ptr = self };
 
             const animate_fn = struct {
-                fn a(new_value: T, int: usize) void {
-                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
+                fn a(new_value: T, uncast: ?*anyopaque) void {
+                    const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
                 }
             }.a;
 
             const destroy_fn = struct {
-                fn a(_: T, int: usize) void {
-                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
+                fn a(_: T, uncast: ?*anyopaque) void {
+                    const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     const allocator = lasting_allocator;
                     const is_deinit = ptr.is_deinit;
                     const self_ptr = ptr.self_ptr;
@@ -227,25 +227,25 @@ pub fn Atom(comptime T: type) type {
             }.a;
 
             const self_destroy_fn = struct {
-                fn a(_: T, int: usize) void {
-                    const ptr = @as(*AnimationParameters, @ptrFromInt(int));
+                fn a(_: T, uncast: ?*anyopaque) void {
+                    const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     ptr.is_deinit = true;
                 }
             }.a;
 
             _ = try original.addChangeListener(.{
                 .function = animate_fn,
-                .userdata = @intFromPtr(userdata),
+                .userdata = userdata,
                 .type = .Change,
             });
             _ = try original.addChangeListener(.{
                 .function = destroy_fn,
-                .userdata = @intFromPtr(userdata),
+                .userdata = userdata,
                 .type = .Destroy,
             });
             _ = try self.addChangeListener(.{
                 .function = self_destroy_fn,
-                .userdata = @intFromPtr(userdata),
+                .userdata = userdata,
                 .type = .Destroy,
             });
             return self;
@@ -528,12 +528,12 @@ pub fn Atom(comptime T: type) type {
                     const wrapper = tuple[i];
                     const WrapperValueType = ValueTypes[i];
                     const changeListener = struct {
-                        fn changeListener(_: WrapperValueType, userdata: usize) void {
-                            const self_ptr = @as(*Self, @ptrFromInt(userdata));
+                        fn changeListener(_: WrapperValueType, userdata: ?*anyopaque) void {
+                            const self_ptr: *Self = @ptrCast(@alignCast(userdata.?));
                             handler(self_ptr, self_ptr.depend_on_callback.?, self_ptr.depend_on_wrappers);
                         }
                     }.changeListener;
-                    _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = @intFromPtr(self) });
+                    _ = try wrapper.addChangeListener(.{ .function = changeListener, .userdata = self });
                 }
             }
 
@@ -561,6 +561,9 @@ pub fn Atom(comptime T: type) type {
                     node.data.function(undefined, node.data.userdata);
                 }
                 lasting_allocator.destroy(node);
+            }
+            if (self.depend_on_wrappers.len > 0) {
+                lasting_allocator.free(self.depend_on_wrappers);
             }
             if (self.allocator) |allocator| {
                 allocator.destroy(self);
@@ -610,14 +613,26 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
         const childF = childFs[i];
         const child = @field(childs, childF.name);
         const T = @TypeOf(child.*).ValueType;
-        _ = try child.addChangeListener(.{ .userdata = @intFromPtr(self), .function = struct {
-            fn callback(newValue: T, userdata: usize) void {
+        _ = try child.addChangeListener(.{ .userdata = self, .function = struct {
+            fn callback(newValue: T, userdata: ?*anyopaque) void {
                 _ = newValue;
-                const ptr = @as(*Self, @ptrFromInt(userdata));
+                const ptr: *Self = @ptrCast(@alignCast(userdata.?));
                 format(ptr);
             }
         }.callback });
     }
+    const deinitFn = struct {
+        fn deinit(_: []const u8, userdata: ?*anyopaque) void {
+            const ptr: *Self = @ptrCast(@alignCast(userdata));
+            ptr.wrapper.allocator.?.free(ptr.wrapper.get());
+        }
+    }.deinit;
+    _ = try self.wrapper.addChangeListener(.{
+        .function = deinitFn,
+        .userdata = self,
+        .type = .Destroy,
+    });
+
     return &self.wrapper;
 }
 

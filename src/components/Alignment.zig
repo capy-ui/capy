@@ -11,47 +11,40 @@ pub const Alignment = struct {
     peer: ?backend.Container = null,
     widget_data: Alignment.WidgetData = .{},
 
-    child: Widget,
+    child: *Widget,
     relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     x: Atom(f32) = Atom(f32).of(0.5),
     y: Atom(f32) = Atom(f32).of(0.5),
 
-    pub fn init(config: Alignment.Config, widget: Widget) !Alignment {
+    pub fn init(config: Alignment.Config, widget: *Widget) !Alignment {
         var component = Alignment.init_events(Alignment{ .child = widget });
-        component.x.set(config.x);
-        component.y.set(config.y);
+        internal.applyConfigStruct(&component, config);
         try component.addResizeHandler(&onResize);
 
         return component;
     }
 
-    pub fn _pointerMoved(self: *Alignment) void {
-        self.x.updateBinders();
-        self.y.updateBinders();
-    }
-
-    pub fn onResize(self: *Alignment, _: Size) !void {
+    fn onResize(self: *Alignment, _: Size) !void {
         self.relayout();
     }
 
     pub fn getChild(self: *Alignment, name: []const u8) ?*Widget {
         if (self.child.name.*.get()) |child_name| {
             if (std.mem.eql(u8, child_name, name)) {
-                return &self.child;
+                return self.child;
             }
         }
         return null;
     }
 
     /// When alignX or alignY is changed, this will trigger a parent relayout
-    fn alignChanged(_: f32, userdata: usize) void {
-        const self = @as(*Alignment, @ptrFromInt(userdata));
+    fn alignChanged(_: f32, userdata: ?*anyopaque) void {
+        const self: *Alignment = @ptrCast(@alignCast(userdata));
         self.relayout();
     }
 
     pub fn _showWidget(widget: *Widget, self: *Alignment) !void {
         self.child.parent = widget;
-        self.child.class.setWidgetFn(&self.child);
     }
 
     pub fn show(self: *Alignment) !void {
@@ -59,14 +52,13 @@ pub const Alignment = struct {
             var peer = try backend.Container.create();
             self.peer = peer;
 
-            _ = try self.x.addChangeListener(.{ .function = alignChanged, .userdata = @intFromPtr(self) });
-            _ = try self.y.addChangeListener(.{ .function = alignChanged, .userdata = @intFromPtr(self) });
+            _ = try self.x.addChangeListener(.{ .function = alignChanged, .userdata = self });
+            _ = try self.y.addChangeListener(.{ .function = alignChanged, .userdata = self });
 
-            self.child.class.setWidgetFn(&self.child);
             try self.child.show();
             peer.add(self.child.peer.?);
 
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
@@ -98,18 +90,29 @@ pub const Alignment = struct {
         return self.child.getPreferredSize(available);
     }
 
+    pub fn cloneImpl(self: *Alignment) !*Alignment {
+        const widget_clone = try self.child.clone();
+        const ptr = try internal.lasting_allocator.create(Alignment);
+        const component = try Alignment.init(.{ .x = self.x.get(), .y = self.y.get() }, widget_clone);
+        ptr.* = component;
+        return ptr;
+    }
+
     pub fn _deinit(self: *Alignment) void {
         self.child.deinit();
     }
 };
 
-pub fn alignment(opts: Alignment.Config, child: anytype) anyerror!Alignment {
+pub fn alignment(opts: Alignment.Config, child: anytype) anyerror!*Alignment {
     const element =
         if (comptime internal.isErrorUnion(@TypeOf(child)))
         try child
     else
         child;
 
-    const widget = try internal.genericWidgetFrom(element);
-    return try Alignment.init(opts, widget);
+    const widget = internal.getWidgetFrom(element);
+    const instance = internal.lasting_allocator.create(Alignment) catch @panic("out of memory");
+    instance.* = try Alignment.init(opts, widget);
+    instance.widget_data.widget = internal.genericWidgetFrom(instance);
+    return instance;
 }

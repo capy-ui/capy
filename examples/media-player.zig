@@ -56,7 +56,7 @@ pub fn main() !void {
 }
 
 /// A spinning CD disc with the thumbnail of the audio or none if there isn't any
-fn rotatingDisc() !capy.Canvas {
+fn rotatingDisc() !*capy.Canvas {
     var canvas = capy.canvas(.{
         .preferredSize = capy.Size.init(256, 256),
     });

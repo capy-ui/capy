@@ -16,7 +16,6 @@ pub const Class = struct {
     /// paired to a widget. However, in order to pair them you need to be able to edit
     /// the dataWrappers.widget field, which is impossible if the component type is
     /// unknown. This function is thus called internally to pair the widget.
-    setWidgetFn: *const fn (widget: *Widget) void,
     getParentFn: *const fn (widget: *const Widget) ?*Widget,
     isDisplayedFn: *const fn (widget: *const Widget) bool,
     // offset into a list of updater optional pointers
@@ -28,8 +27,6 @@ pub const Widget = struct {
     /// Similarly to std.mem.Allocator, this is a pointer to the actual component class that
     /// its class methods use.
     data: *anyopaque,
-    /// The allocator that can be used to free 'data'
-    allocator: ?Allocator = null,
     class: *const Class,
     peer: ?backend.PeerType = null,
     container_expanded: bool = false,
@@ -60,6 +57,7 @@ pub const Widget = struct {
 
     /// Asserts widget data is of type T
     pub fn as(self: *const Widget, comptime T: type) *T {
+        // TODO: use @fieldParentPtr when it is guarenteed that Widget are inside components
         if (std.debug.runtime_safety) {
             if (!self.is(T)) {
                 std.debug.panic("Tried to cast widget to " ++ @typeName(T) ++ " but type is {s}", .{self.class.typeName});
@@ -98,9 +96,9 @@ const TestType = struct {
         .showFn = undefined,
         .deinitFn = undefined,
         .preferredSizeFn = undefined,
-        .setWidgetFn = undefined,
         .getParentFn = undefined,
         .isDisplayedFn = undefined,
+        // .cloneFn = undefined,
     };
 };
 

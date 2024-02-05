@@ -1,10 +1,11 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
+const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 
 pub const Label = struct {
-    pub usingnamespace @import("../internal.zig").All(Label);
+    pub usingnamespace internal.All(Label);
 
     peer: ?backend.Label = null,
     widget_data: Label.WidgetData = .{},
@@ -13,18 +14,22 @@ pub const Label = struct {
 
     pub fn init(config: Label.Config) Label {
         var lbl = Label.init_events(Label{});
-        @import("../internal.zig").applyConfigStruct(&lbl, config);
+        internal.applyConfigStruct(&lbl, config);
         return lbl;
     }
 
-    pub fn _pointerMoved(self: *Label) void {
-        self.text.updateBinders();
-        self.alignment.updateBinders();
+    fn onTextAtomChange(newValue: []const u8, userdata: ?*anyopaque) void {
+        const self: *Label = @ptrCast(@alignCast(userdata.?));
+        self.peer.?.setText(newValue);
     }
 
-    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*Label, @ptrFromInt(userdata));
-        self.peer.?.setText(newValue);
+    fn onAlignmentAtomChange(newValue: TextAlignment, userdata: ?*anyopaque) void {
+        const self: *Label = @ptrCast(@alignCast(userdata.?));
+        self.peer.?.setAlignment(switch (newValue) {
+            .Left => 0,
+            .Center => 0.5,
+            .Right => 1,
+        });
     }
 
     pub fn show(self: *Label) !void {
@@ -37,8 +42,8 @@ pub const Label = struct {
                 .Right => 1,
             });
             self.peer = peer;
-            try self.show_events();
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @intFromPtr(self) });
+            try self.setupEvents();
+            _ = try self.text.addChangeListener(.{ .function = onTextAtomChange, .userdata = self });
         }
     }
 
@@ -47,6 +52,7 @@ pub const Label = struct {
         if (self.peer) |peer| {
             return peer.getPreferredSize();
         } else {
+            // Crude approximation
             const len = self.text.get().len;
             return Size{ .width = @as(u32, @intCast(10 * len)), .height = 40.0 };
         }
@@ -63,12 +69,12 @@ pub const Label = struct {
 
 pub const TextAlignment = enum { Left, Center, Right };
 
-pub fn label(config: Label.Config) Label {
-    return Label.init(config);
+pub fn label(config: Label.Config) *Label {
+    return Label.alloc(config);
 }
 
 // TODO: replace with an actual empty element from the backend
 // Although this is not necessary and would only provide minimal memory/performance gains
-pub fn spacing() !@import("../widget.zig").Widget {
+pub fn spacing() !*@import("../widget.zig").Widget {
     return try @import("../containers.zig").expanded(label(.{}));
 }

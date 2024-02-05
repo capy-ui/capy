@@ -1,5 +1,6 @@
 const std = @import("std");
 const backend = @import("../backend.zig");
+const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Container_Impl = @import("../containers.zig").Container_Impl;
@@ -13,34 +14,31 @@ pub const Button = struct {
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
     enabled: Atom(bool) = Atom(bool).of(true),
 
-    pub fn init() Button {
-        return Button.init_events(Button{});
+    pub fn init(config: Button.Config) Button {
+        var btn = Button.init_events(Button{});
+        internal.applyConfigStruct(&btn, config);
+        return btn;
     }
 
-    pub fn _pointerMoved(self: *Button) void {
-        self.enabled.updateBinders();
-        self.label.updateBinders();
+    fn onEnabledAtomChange(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *Button = @ptrCast(@alignCast(userdata));
+        self.peer.?.setEnabled(newValue);
     }
 
-    fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @as(*?backend.Button, @ptrFromInt(userdata));
-        peer.*.?.setEnabled(newValue);
-    }
-
-    fn wrapperLabelChanged(newValue: [:0]const u8, userdata: usize) void {
-        const peer = @as(*?backend.Button, @ptrFromInt(userdata));
-        peer.*.?.setLabel(newValue);
+    fn onLabelAtomChange(newValue: [:0]const u8, userdata: ?*anyopaque) void {
+        const self: *Button = @ptrCast(@alignCast(userdata));
+        self.peer.?.setLabel(newValue);
     }
 
     pub fn show(self: *Button) !void {
         if (self.peer == null) {
-            self.peer = try backend.Button.create();
-            self.peer.?.setEnabled(self.enabled.get());
-
-            self.peer.?.setLabel(self.label.get());
-            try self.show_events();
-            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @intFromPtr(&self.peer) });
+            var peer = try backend.Button.create();
+            peer.setEnabled(self.enabled.get());
+            peer.setLabel(self.label.get());
+            self.peer = peer;
+            try self.setupEvents();
+            _ = try self.enabled.addChangeListener(.{ .function = onEnabledAtomChange, .userdata = self });
+            _ = try self.label.addChangeListener(.{ .function = onLabelAtomChange, .userdata = self });
         }
     }
 
@@ -67,14 +65,13 @@ pub const Button = struct {
     }
 };
 
-pub fn button(config: Button.Config) Button {
-    var btn = Button.init();
-    @import("../internal.zig").applyConfigStruct(&btn, config);
-    return btn;
+pub fn button(config: Button.Config) *Button {
+    return Button.alloc(config);
 }
 
 test "button" {
     var btn = button(.{ .label = "Test Label" });
+    defer btn.deinit();
     try std.testing.expectEqualStrings("Test Label", btn.getLabel());
 
     btn.setLabel("New Label");
@@ -82,7 +79,6 @@ test "button" {
 
     try backend.init();
     try btn.show();
-    defer btn.deinit();
 
     btn.enabled.set(true);
 

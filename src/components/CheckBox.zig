@@ -13,8 +13,10 @@ pub const CheckBox = struct {
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
     enabled: Atom(bool) = Atom(bool).of(true),
 
-    pub fn init() CheckBox {
-        return CheckBox.init_events(CheckBox{});
+    pub fn init(config: CheckBox.Config) CheckBox {
+        var btn = CheckBox.init_events(CheckBox{});
+        @import("../internal.zig").applyConfigStruct(&btn, config);
+        return btn;
     }
 
     pub fn _pointerMoved(self: *CheckBox) void {
@@ -22,19 +24,19 @@ pub const CheckBox = struct {
         self.checked.updateBinders();
     }
 
-    fn wrapperCheckedChanged(newValue: bool, userdata: usize) void {
-        const peer = @as(*?backend.CheckBox, @ptrFromInt(userdata));
-        peer.*.?.setChecked(newValue);
+    fn wrapperCheckedChanged(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *CheckBox = @ptrCast(@alignCast(userdata));
+        self.peer.?.setChecked(newValue);
     }
 
-    fn wrapperEnabledChanged(newValue: bool, userdata: usize) void {
-        const peer = @as(*?backend.CheckBox, @ptrFromInt(userdata));
-        peer.*.?.setEnabled(newValue);
+    fn wrapperEnabledChanged(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *CheckBox = @ptrCast(@alignCast(userdata));
+        self.peer.?.setEnabled(newValue);
     }
 
-    fn wrapperLabelChanged(newValue: [:0]const u8, userdata: usize) void {
-        const peer = @as(*?backend.CheckBox, @ptrFromInt(userdata));
-        peer.*.?.setLabel(newValue);
+    fn wrapperLabelChanged(newValue: [:0]const u8, userdata: ?*anyopaque) void {
+        const self: *CheckBox = @ptrCast(@alignCast(userdata));
+        self.peer.?.setLabel(newValue);
     }
 
     fn onClick(self: *CheckBox) !void {
@@ -47,11 +49,11 @@ pub const CheckBox = struct {
             self.peer.?.setChecked(self.checked.get());
             self.peer.?.setEnabled(self.enabled.get());
             self.peer.?.setLabel(self.label.get());
-            try self.show_events();
+            try self.setupEvents();
 
-            _ = try self.checked.addChangeListener(.{ .function = wrapperCheckedChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = @intFromPtr(&self.peer) });
-            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = @intFromPtr(&self.peer) });
+            _ = try self.checked.addChangeListener(.{ .function = wrapperCheckedChanged, .userdata = self });
+            _ = try self.enabled.addChangeListener(.{ .function = wrapperEnabledChanged, .userdata = self });
+            _ = try self.label.addChangeListener(.{ .function = wrapperLabelChanged, .userdata = self });
 
             try self.addClickHandler(&onClick);
         }
@@ -79,8 +81,6 @@ pub const CheckBox = struct {
     }
 };
 
-pub fn checkBox(config: CheckBox.Config) CheckBox {
-    var btn = CheckBox.init();
-    @import("../internal.zig").applyConfigStruct(&btn, config);
-    return btn;
+pub fn checkBox(config: CheckBox.Config) *CheckBox {
+    return CheckBox.alloc(config);
 }

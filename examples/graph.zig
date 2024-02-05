@@ -4,17 +4,17 @@ const std = @import("std");
 // Small block needed for correct WebAssembly support
 pub usingnamespace capy.cross_platform;
 
-var graph: LineGraph = undefined;
-
 pub const LineGraph = struct {
     pub usingnamespace capy.internal.All(LineGraph);
 
     peer: ?capy.backend.Canvas = null,
     widget_data: LineGraph.WidgetData = .{},
-    dataFn: *const fn (x: f32) f32,
+    dataFn: capy.Atom(*const fn (x: f32) f32),
 
-    pub fn init(dataFn: *const fn (x: f32) f32) LineGraph {
-        return LineGraph.init_events(LineGraph{ .dataFn = dataFn });
+    pub fn init(config: LineGraph.Config) LineGraph {
+        var line_graph = LineGraph.init_events(LineGraph{ .dataFn = capy.Atom(*const fn (x: f32) f32).of(config.dataFn) });
+        line_graph.addDrawHandler(&LineGraph.draw) catch unreachable;
+        return line_graph;
     }
 
     pub fn draw(self: *LineGraph, ctx: *capy.DrawContext) !void {
@@ -28,7 +28,7 @@ pub const LineGraph = struct {
         var minValue: f32 = 0;
         var maxValue: f32 = 0;
         while (x < 10) : (x += 0.1) {
-            const value = self.dataFn(x);
+            const value = self.dataFn.get()(x);
             maxValue = @max(maxValue, value);
             minValue = @min(minValue, value);
         }
@@ -55,7 +55,7 @@ pub const LineGraph = struct {
         var oldX: i32 = 0;
         var oldY: i32 = 0;
         while (x < 10) : (x += 0.1) {
-            const y = self.dataFn(x);
+            const y = self.dataFn.get()(x);
             var dy = @as(i32, @intCast(height)) - @as(i32, @intFromFloat(@floor((y - minValue) * (@as(f32, @floatFromInt(height)) / (maxValue - minValue)))));
             var dx = @as(i32, @intFromFloat(@floor(x * 100))) + 50;
             if (dy < 0) dy = 0;
@@ -72,10 +72,16 @@ pub const LineGraph = struct {
         }
     }
 
+    fn onDataFnAtomChanged(_: *const fn (f32) f32, userdata: ?*anyopaque) void {
+        const self: *LineGraph = @ptrCast(@alignCast(userdata.?));
+        self.requestDraw() catch {};
+    }
+
     pub fn show(self: *LineGraph) !void {
         if (self.peer == null) {
             self.peer = try capy.backend.Canvas.create();
-            try self.show_events();
+            _ = try self.dataFn.addChangeListener(.{ .function = onDataFnAtomChanged, .userdata = self });
+            try self.setupEvents();
         }
     }
 
@@ -86,10 +92,8 @@ pub const LineGraph = struct {
     }
 };
 
-pub fn lineGraph(config: struct { dataFn: *const fn (x: f32) f32 }) !LineGraph {
-    var line_graph = LineGraph.init(config.dataFn);
-    try line_graph.addDrawHandler(&LineGraph.draw);
-    return line_graph;
+pub fn lineGraph(config: LineGraph.Config) *LineGraph {
+    return LineGraph.alloc(config);
 }
 
 const smoothData = true;
@@ -146,7 +150,7 @@ fn SetEasing(comptime Easing: fn (x: f64) f64) fn (*anyopaque) anyerror!void {
     const callback = struct {
         // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
         pub fn callback(_: *anyopaque) anyerror!void {
-            graph.dataFn = func;
+            graph.dataFn.set(func);
             try graph.requestDraw();
         }
     }.callback;
@@ -160,22 +164,13 @@ fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas.DrawContext) !void {
     ctx.fill();
 }
 
-var rectangleX = capy.Atom(f32).of(0.1);
-var animStart: i64 = 0;
+var graph: *LineGraph = undefined;
 pub fn main() !void {
     try capy.backend.init();
 
+    var rectangleX = capy.Atom(f32).of(0);
     var window = try capy.Window.init();
-    graph = try lineGraph(.{ .dataFn = easing });
-
-    var rectangle = (try capy.alignment(
-        .{},
-        capy.canvas(.{
-            .preferredSize = capy.Size{ .width = 100, .height = 100 },
-            .ondraw = drawRectangle,
-        }),
-    ))
-        .bind("x", &rectangleX);
+    graph = lineGraph(.{ .dataFn = easing });
 
     try window.set(capy.column(.{}, .{
         capy.alignment(.{}, capy.row(.{ .spacing = 10 }, .{
@@ -184,13 +179,21 @@ pub fn main() !void {
             capy.button(.{ .label = "Out", .onclick = SetEasing(capy.Easings.Out) }),
             capy.button(.{ .label = "In Out", .onclick = SetEasing(capy.Easings.InOut) }),
         })),
-        capy.expanded(&graph),
-        &rectangle,
+        capy.expanded(graph),
+        (try capy.alignment(
+            .{},
+            capy.rect(.{
+                .preferredSize = capy.Size{ .width = 100, .height = 100 },
+                .color = capy.Color.black,
+            }),
+        ))
+            .bind("x", &rectangleX),
     }));
 
     window.setPreferredSize(800, 600);
     window.show();
 
+    var animStart: i64 = 0;
     while (capy.stepEventLoop(.Asynchronous)) {
         var dt = std.time.milliTimestamp() - animStart;
         if (dt > 1500) {
@@ -200,7 +203,7 @@ pub fn main() !void {
             dt = 1000;
         }
         const t = @as(f32, @floatFromInt(dt)) / 1000;
-        rectangleX.set(graph.dataFn(t * 10.0));
+        rectangleX.set(graph.dataFn.get()(t * 10.0));
         std.time.sleep(30);
     }
 }

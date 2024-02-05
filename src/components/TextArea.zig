@@ -12,7 +12,6 @@ pub const TextArea = struct {
     peer: ?backend.TextArea = null,
     widget_data: TextArea.WidgetData = .{},
     text: StringAtom = StringAtom.of(""),
-    _wrapperTextBlock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
     // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?
     /// Whether to let the system choose a monospace font for us and use it in this TextArea..
@@ -23,6 +22,7 @@ pub const TextArea = struct {
             .text = StringAtom.of(config.text),
             .monospace = Atom(bool).of(config.monospace),
         });
+        @import("../internal.zig").applyConfigStruct(&area, config);
         area.setName(config.name);
         return area;
     }
@@ -32,24 +32,20 @@ pub const TextArea = struct {
         self.monospace.updateBinders();
     }
 
-    fn wrapperTextChanged(newValue: []const u8, userdata: usize) void {
-        const self = @as(*TextArea, @ptrFromInt(userdata));
-        if (self._wrapperTextBlock.load(.Monotonic) == true) return;
-
+    fn onTextAtomChanged(newValue: []const u8, userdata: ?*anyopaque) void {
+        const self: *TextArea = @ptrCast(@alignCast(userdata));
+        if (std.mem.eql(u8, self.peer.?.getText(), newValue)) return;
         self.peer.?.setText(newValue);
     }
 
-    fn wrapperMonospaceChanged(newValue: bool, userdata: usize) void {
-        const self = @as(*TextArea, @ptrFromInt(userdata));
+    fn onMonospaceAtomChanged(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *TextArea = @ptrCast(@alignCast(userdata));
         self.peer.?.setMonospaced(newValue);
     }
 
     fn textChanged(userdata: usize) void {
         const self = @as(*TextArea, @ptrFromInt(userdata));
         const text = self.peer.?.getText();
-
-        self._wrapperTextBlock.store(true, .Monotonic);
-        defer self._wrapperTextBlock.store(false, .Monotonic);
         self.text.set(text);
     }
 
@@ -59,11 +55,11 @@ pub const TextArea = struct {
             peer.setText(self.text.get());
             peer.setMonospaced(self.monospace.get());
             self.peer = peer;
-            try self.show_events();
+            try self.setupEvents();
 
             try peer.setCallback(.TextChanged, textChanged);
-            _ = try self.text.addChangeListener(.{ .function = wrapperTextChanged, .userdata = @intFromPtr(self) });
-            _ = try self.monospace.addChangeListener(.{ .function = wrapperMonospaceChanged, .userdata = @intFromPtr(self) });
+            _ = try self.text.addChangeListener(.{ .function = onTextAtomChanged, .userdata = self });
+            _ = try self.monospace.addChangeListener(.{ .function = onMonospaceAtomChanged, .userdata = self });
         }
     }
 
@@ -85,6 +81,6 @@ pub const TextArea = struct {
     }
 };
 
-pub fn textArea(config: TextArea.Config) TextArea {
-    return TextArea.init(config);
+pub fn textArea(config: TextArea.Config) *TextArea {
+    return TextArea.alloc(config);
 }

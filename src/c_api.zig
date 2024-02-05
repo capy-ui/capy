@@ -1,6 +1,6 @@
 //! Export capy as a C API
 const std = @import("std");
-const capy = @import("main.zig");
+const capy = @import("capy");
 
 const allocator = std.heap.c_allocator;
 
@@ -50,34 +50,21 @@ export fn capy_window_set_preferred_size(window: CapyWindow, width: c_uint, heig
 }
 
 export fn capy_window_set(window: CapyWindow, widget: CapyWidget) c_int {
-    // TODO: do something about original widget object
-    window.set(widget.*) catch |err| {
+    window.set(widget) catch |err| {
         return @as(c_int, @intCast(@intFromError(err) + 1));
     };
     return 0;
 }
 
 export fn capy_window_get_child(window: CapyWindow) ?CapyWidget {
-    if (window._child) |*child| {
-        return child;
-    } else {
-        return null;
-    }
+    return window._child;
 }
 
 // Button //
 /// Returns null on error
 export fn capy_button_new() ?CapyWidget {
-    const button = allocator.create(capy.Button) catch return null;
-    button.* = capy.button(.{});
-
-    const widget = allocator.create(capy.Widget) catch {
-        allocator.destroy(button);
-        return null;
-    };
-    widget.* = capy.internal.genericWidgetFrom(button) catch unreachable; // it can't error as the component doesn't have a widget and no allocation is necessary
-    button.widget_data.atoms.widget = widget;
-    return widget;
+    const button = capy.button(.{});
+    return capy.internal.getWidgetFrom(button);
 }
 
 export fn capy_button_set_label(widget: CapyWidget, label: [*:0]const u8) void {

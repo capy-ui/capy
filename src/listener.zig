@@ -22,7 +22,7 @@ pub const EventSource = struct {
 
     pub fn remove(self: *EventSource, listener: *Listener) void {
         const index = std.mem.indexOfScalar(*Listener, self.listeners.items, listener) orelse return;
-        self.listeners.swapRemove(index);
+        std.debug.assert(self.listeners.swapRemove(index) == listener);
     }
 
     pub fn callListeners(self: *const EventSource) void {
@@ -43,6 +43,16 @@ pub const EventSource = struct {
         }
 
         return result;
+    }
+
+    /// Deinits all listeners associated to this event source.
+    /// Make sure this is executed at last resort as this will make every Listener invalid and cause a
+    /// use-after-free if you still use them. So be sure their lifetime is all over.
+    pub fn deinitAllListeners(self: *const EventSource) void {
+        for (self.listeners.items) |listener| {
+            listener.deinit();
+        }
+        self.listeners.deinit();
     }
 };
 
@@ -76,6 +86,8 @@ pub const Listener = struct {
     }
 
     pub fn deinit(self: *Listener) void {
+        self.listened.remove(self);
+        self.enabled.deinit();
         lasting_allocator.destroy(self);
     }
 };

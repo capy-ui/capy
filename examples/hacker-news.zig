@@ -7,7 +7,7 @@ const ListModel = struct {
     size: capy.Atom(usize) = capy.Atom(usize).of(10),
     arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator),
 
-    pub fn getComponent(self: *ListModel, index: usize) capy.Label {
+    pub fn getComponent(self: *ListModel, index: usize) *capy.Label {
         return capy.label(.{
             .text = std.fmt.allocPrintZ(self.arena.allocator(), "Label #{d}", .{index + 1}) catch unreachable,
         });

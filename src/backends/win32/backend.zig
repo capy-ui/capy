@@ -1340,7 +1340,7 @@ pub const TabContainer = struct {
 pub const ScrollView = struct {
     peer: HWND,
     child: ?HWND = null,
-    widget: ?*const lib.Widget = null,
+    widget: ?*lib.Widget = null,
 
     pub usingnamespace Events(ScrollView);
 
@@ -1387,7 +1387,7 @@ pub const ScrollView = struct {
         return ScrollView{ .peer = hwnd };
     }
 
-    pub fn setChild(self: *ScrollView, peer: PeerType, widget: *const lib.Widget) void {
+    pub fn setChild(self: *ScrollView, peer: PeerType, widget: *lib.Widget) void {
         // TODO: remove old widget if there was one
         self.child = peer;
         self.widget = widget;

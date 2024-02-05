@@ -55,7 +55,7 @@ pub fn main() !void {
         capy.label(.{ .text = "Balls with attraction and friction" }),
         capy.label(.{})
             .bind("text", totalEnergyFormat),
-        capy.alignment(.{}, &canvas),
+        capy.alignment(.{}, canvas),
     }));
 
     window.setTitle("Balls");

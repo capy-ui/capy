@@ -44,7 +44,7 @@ pub fn main() !void {
             capy.button(.{ .label = "Go!" }),
         }),
         capy.textField(.{ .text = "other text" }),
-        capy.expanded(&canvas),
+        capy.expanded(canvas),
     }));
 
     window.setPreferredSize(800, 600);

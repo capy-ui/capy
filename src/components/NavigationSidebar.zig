@@ -10,8 +10,10 @@ pub const NavigationSidebar = struct {
     peer: ?backend.NavigationSidebar = null,
     widget_data: NavigationSidebar.WidgetData = .{},
 
-    pub fn init() NavigationSidebar {
-        return NavigationSidebar.init_events(NavigationSidebar{});
+    pub fn init(config: NavigationSidebar.Config) NavigationSidebar {
+        var component = NavigationSidebar.init_events(NavigationSidebar{});
+        @import("../internal.zig").applyConfigStruct(&component, config);
+        return component;
     }
 
     pub fn _pointerMoved(self: *NavigationSidebar) void {
@@ -21,7 +23,7 @@ pub const NavigationSidebar = struct {
     pub fn show(self: *NavigationSidebar) !void {
         if (self.peer == null) {
             self.peer = try backend.NavigationSidebar.create();
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 
@@ -35,11 +37,6 @@ pub const NavigationSidebar = struct {
     }
 };
 
-pub fn navigationSidebar(config: NavigationSidebar.Config) NavigationSidebar {
-    var btn = NavigationSidebar.init();
-    btn.widget_data.atoms.name.set(config.name);
-    if (config.onclick) |onclick| {
-        btn.addClickHandler(onclick) catch unreachable; // TODO: improve
-    }
-    return btn;
+pub fn navigationSidebar(config: NavigationSidebar.Config) *NavigationSidebar {
+    return NavigationSidebar.alloc(config);
 }

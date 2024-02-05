@@ -18,7 +18,7 @@ const devices = std.ComptimeStringMap(Display, .{
 
 pub const Window = struct {
     peer: backend.Window,
-    _child: ?Widget = null,
+    _child: ?*Widget = null,
     // TODO: make it call setPreferredSize, if resizing ended up doing a no-up then revert
     // 'size' to what it was before
     // TODO: maybe implement vetoable changes to make it work
@@ -66,19 +66,12 @@ pub const Window = struct {
             try wrappedContainer
         else
             wrappedContainer;
-        const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(container));
-
-        self._child = try @import("internal.zig").genericWidgetFrom(container);
-        if (ComponentType != Widget) {
-            self._child.?.as(ComponentType).widget_data.atoms.widget = &self._child.?;
-        }
-
+        self._child = internal.getWidgetFrom(container);
         try self._child.?.show();
-
         self.peer.setChild(self._child.?.peer);
     }
 
-    pub fn getChild(self: Window) ?Widget {
+    pub fn getChild(self: Window) ?*Widget {
         return self._child;
     }
 
@@ -144,7 +137,7 @@ pub const Window = struct {
     }
 
     pub fn deinit(self: *Window) void {
-        if (self._child) |*child| {
+        if (self._child) |child| {
             child.deinit();
         }
         self.peer.deinit();

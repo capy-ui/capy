@@ -10,6 +10,7 @@ pub const CapyBuildOptions = struct {
     android: AndroidOptions = .{ .password = "foo", .package_name = "org.capyui.example" },
     wasm: WasmOptions = .{},
     args: ?[]const []const u8 = &.{},
+    link_libraries_on_root_module: bool = false,
 
     pub const AndroidOptions = struct {
         // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher
@@ -178,19 +179,23 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
     });
     step.root_module.addImport("capy", capy);
 
+    const module = if (options.link_libraries_on_root_module)
+        &step.root_module
+    else
+        capy;
     switch (step.rootModuleTarget().os.tag) {
         .windows => {
             switch (step.root_module.optimize orelse .Debug) {
                 .Debug => step.subsystem = .Console,
                 else => step.subsystem = .Windows,
             }
-            capy.linkSystemLibrary("comctl32", .{});
-            capy.linkSystemLibrary("gdi32", .{});
-            capy.linkSystemLibrary("gdiplus", .{});
+            module.linkSystemLibrary("comctl32", .{});
+            module.linkSystemLibrary("gdi32", .{});
+            module.linkSystemLibrary("gdiplus", .{});
 
             // TODO: use capy.addWin32ResourceFile
             switch (step.rootModuleTarget().cpu.arch) {
-                .x86_64 => capy.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
+                .x86_64 => module.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
             }
@@ -201,18 +206,18 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                 const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
                 const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
                 const sdk_lib_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/lib" }) catch unreachable;
-                step.addFrameworkPath(.{ .path = sdk_framework_dir });
-                step.addSystemIncludePath(.{ .path = sdk_include_dir });
-                step.addLibraryPath(.{ .path = sdk_lib_dir });
+                module.addFrameworkPath(.{ .path = sdk_framework_dir });
+                module.addSystemIncludePath(.{ .path = sdk_include_dir });
+                module.addLibraryPath(.{ .path = sdk_lib_dir });
             }
 
-            step.linkLibC();
-            step.linkFramework("CoreData");
-            step.linkFramework("ApplicationServices");
-            step.linkFramework("CoreFoundation");
-            step.linkFramework("Foundation");
-            step.linkFramework("AppKit");
-            step.linkSystemLibrary2("objc", .{ .use_pkg_config = .no });
+            module.link_libc = true;
+            module.linkFramework("CoreData", .{});
+            module.linkFramework("ApplicationServices", .{});
+            module.linkFramework("CoreFoundation", .{});
+            module.linkFramework("Foundation", .{});
+            module.linkFramework("AppKit", .{});
+            module.linkSystemLibrary("objc", .{ .use_pkg_config = .no });
         },
         .linux, .freebsd => {
             if (step.rootModuleTarget().isAndroid()) {
@@ -298,8 +303,8 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                 run_step.dependOn(install_step);
                 return run_step;
             } else {
-                capy.link_libc = true;
-                capy.linkSystemLibrary("gtk4", .{});
+                module.link_libc = true;
+                module.linkSystemLibrary("gtk4", .{});
             }
         },
         .freestanding => {

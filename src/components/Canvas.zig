@@ -15,8 +15,10 @@ pub const Canvas = struct {
 
     pub const DrawContext = backend.Canvas.DrawContext;
 
-    pub fn init() Canvas {
-        return Canvas.init_events(Canvas{});
+    pub fn init(config: Canvas.Config) Canvas {
+        var cnv = Canvas.init_events(Canvas{});
+        @import("../internal.zig").applyConfigStruct(&cnv, config);
+        return cnv;
     }
 
     pub fn getPreferredSize(self: *Canvas, available: Size) Size {
@@ -32,15 +34,13 @@ pub const Canvas = struct {
     pub fn show(self: *Canvas) !void {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
-            try self.show_events();
+            try self.setupEvents();
         }
     }
 };
 
-pub fn canvas(config: Canvas.Config) Canvas {
-    var cnv = Canvas.init();
-    @import("../internal.zig").applyConfigStruct(&cnv, config);
-    return cnv;
+pub fn canvas(config: Canvas.Config) *Canvas {
+    return Canvas.alloc(config);
 }
 
 const Color = @import("../color.zig").Color;
@@ -54,8 +54,11 @@ pub const Rect = struct {
     color: Atom(Color) = Atom(Color).of(Color.black),
     cornerRadius: Atom([4]f32) = Atom([4]f32).of(.{0.0} ** 4),
 
-    pub fn init() Rect {
-        return Rect.init_events(Rect{});
+    pub fn init(config: Rect.Config) Rect {
+        var rectangle = Rect.init_events(Rect{});
+        @import("../internal.zig").applyConfigStruct(&rectangle, config);
+        rectangle.addDrawHandler(&Rect.draw) catch unreachable;
+        return rectangle;
     }
 
     pub fn getPreferredSize(self: *Rect, available: Size) Size {
@@ -82,27 +85,24 @@ pub const Rect = struct {
         if (self.peer == null) {
             self.peer = try backend.Canvas.create();
             _ = try self.color.addChangeListener(.{ .function = struct {
-                fn callback(_: Color, userdata: usize) void {
-                    const peer = @as(*?backend.Canvas, @ptrFromInt(userdata));
-                    peer.*.?.requestDraw() catch {};
+                fn callback(_: Color, userdata: ?*anyopaque) void {
+                    const ptr: *Rect = @ptrCast(@alignCast(userdata.?));
+                    ptr.peer.?.requestDraw() catch {};
                 }
-            }.callback, .userdata = @intFromPtr(&self.peer) });
+            }.callback, .userdata = self });
             _ = try self.cornerRadius.addChangeListener(.{ .function = struct {
-                fn callback(_: [4]f32, userdata: usize) void {
-                    const peer = @as(*?backend.Canvas, @ptrFromInt(userdata));
-                    peer.*.?.requestDraw() catch {};
+                fn callback(_: [4]f32, userdata: ?*anyopaque) void {
+                    const ptr: *Rect = @ptrCast(@alignCast(userdata.?));
+                    ptr.peer.?.requestDraw() catch {};
                 }
-            }.callback, .userdata = @intFromPtr(&self.peer) });
-            try self.show_events();
+            }.callback, .userdata = self });
+            try self.setupEvents();
         }
     }
 };
 
-pub fn rect(config: Rect.Config) Rect {
-    var r = Rect.init();
-    r.addDrawHandler(&Rect.draw) catch unreachable;
-    @import("../internal.zig").applyConfigStruct(&r, config);
-    return r;
+pub fn rect(config: Rect.Config) *Rect {
+    return Rect.alloc(config);
 }
 
 const fuzz = @import("../fuzz.zig");
