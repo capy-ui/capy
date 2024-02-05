@@ -85,7 +85,6 @@ pub fn build(b: *std.Build) !void {
     });
     // b.installDirectory(.{ .source_dir = docs.getEmittedDocs(), .install_dir = .{ .custom = "docs/" }, .install_subdir = "" });
     const run_docs = try install(docs, .{ .link_libraries_on_root_module = true });
-    _ = run_docs;
 
     // DISABLED UNTIL ZIG DOESN'T CRASH WHILE GENERATING DOCS
     const docs_step = b.step("docs", "Generate documentation and run unit tests");
