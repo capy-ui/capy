@@ -20,12 +20,6 @@ pub const TextField = struct {
         return field;
     }
 
-    /// Internal function used at initialization.
-    /// It is used to move some pointers so things do not break.
-    pub fn _pointerMoved(self: *TextField) void {
-        self.text.updateBinders();
-    }
-
     /// When the text is changed in the StringAtom
     fn onTextAtomChange(newValue: []const u8, userdata: ?*anyopaque) void {
         const self: *TextField = @ptrCast(@alignCast(userdata));

@@ -38,10 +38,6 @@ pub const Slider = struct {
         return component;
     }
 
-    pub fn _pointerMoved(self: *Slider) void {
-        self.enabled.updateBinders();
-    }
-
     fn onValueAtomChanged(newValue: f32, userdata: ?*anyopaque) void {
         const self: *Slider = @ptrCast(@alignCast(userdata));
         self.peer.?.setValue(newValue);
@@ -101,14 +97,6 @@ pub const Slider = struct {
         } else {
             return Size{ .width = 100.0, .height = 40.0 };
         }
-    }
-
-    pub fn _deinit(self: *Slider) void {
-        self.value.deinit();
-        self.min.deinit();
-        self.max.deinit();
-        self.step.deinit();
-        self.enabled.deinit();
     }
 };
 

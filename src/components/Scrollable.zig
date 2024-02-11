@@ -32,6 +32,10 @@ pub const Scrollable = struct {
     pub fn getPreferredSize(self: *Scrollable, available: Size) Size {
         return self.child.get().getPreferredSize(available);
     }
+
+    pub fn _deinit(self: *Scrollable) void {
+        self.child.get().unref();
+    }
 };
 
 pub fn scrollable(element: anytype) anyerror!*Scrollable {

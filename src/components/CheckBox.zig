@@ -75,10 +75,6 @@ pub const CheckBox = struct {
     pub fn getLabel(self: *CheckBox) [:0]const u8 {
         return self.label.get();
     }
-
-    pub fn _deinit(self: *CheckBox) void {
-        self.enabled.deinit();
-    }
 };
 
 pub fn checkBox(config: CheckBox.Config) *CheckBox {

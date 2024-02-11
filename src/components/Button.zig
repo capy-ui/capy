@@ -58,11 +58,6 @@ pub const Button = struct {
     pub fn getLabel(self: *Button) [:0]const u8 {
         return self.label.get();
     }
-
-    pub fn _deinit(self: *Button) void {
-        self.enabled.deinit();
-        self.label.deinit();
-    }
 };
 
 pub fn button(config: Button.Config) *Button {

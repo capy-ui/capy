@@ -18,6 +18,9 @@ pub const Class = struct {
     /// unknown. This function is thus called internally to pair the widget.
     getParentFn: *const fn (widget: *const Widget) ?*Widget,
     isDisplayedFn: *const fn (widget: *const Widget) bool,
+
+    unref_fn: *const fn (*anyopaque) void,
+    ref_fn: *const fn (*anyopaque) void,
     // offset into a list of updater optional pointers
     //updaters: []const usize,
 };
@@ -78,6 +81,14 @@ pub const Widget = struct {
         } else {
             return null;
         }
+    }
+
+    pub fn unref(self: *const Widget) void {
+        self.class.unref_fn(self.data);
+    }
+
+    pub fn ref(self: *const Widget) void {
+        self.class.ref_fn(self.data);
     }
 
     pub fn deinit(self: *Widget) void {

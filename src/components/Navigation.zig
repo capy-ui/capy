@@ -29,10 +29,6 @@ pub const Navigation = struct {
         return component;
     }
 
-    pub fn _pointerMoved(self: *Navigation) void {
-        self.routeName.updateBinders();
-    }
-
     pub fn onResize(self: *Navigation, _: Size) !void {
         self.relayout();
     }
@@ -114,7 +110,7 @@ pub const Navigation = struct {
     pub fn _deinit(self: *Navigation) void {
         var iterator = self.routes.valueIterator();
         while (iterator.next()) |widget| {
-            widget.*.deinit();
+            widget.*.unref();
         }
     }
 };

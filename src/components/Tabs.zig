@@ -45,6 +45,7 @@ pub const Tabs = struct {
 
     pub fn add(self: *Tabs, widget: anytype) !void {
         var genericWidget = @import("../internal.zig").getWidgetFrom(widget);
+        genericWidget.ref();
         if (self.widget) |parent| {
             genericWidget.parent = parent;
         }
@@ -60,7 +61,7 @@ pub const Tabs = struct {
 
     pub fn _deinit(self: *Tabs) void {
         for (self.tabs.items) |*tab_ptr| {
-            tab_ptr.widget.deinit();
+            tab_ptr.widget.unref();
         }
         self.tabs.deinit();
     }
@@ -83,6 +84,7 @@ pub inline fn tabs(children: anytype) anyerror!*Tabs {
             try element
         else
             element;
+        tab1.widget.ref();
         const slot = try list.addOne();
         slot.* = tab1;
     }

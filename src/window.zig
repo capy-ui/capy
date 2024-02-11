@@ -67,6 +67,7 @@ pub const Window = struct {
         else
             wrappedContainer;
         self._child = internal.getWidgetFrom(container);
+        self._child.?.ref();
         try self._child.?.show();
         self.peer.setChild(self._child.?.peer);
     }
@@ -138,7 +139,7 @@ pub const Window = struct {
 
     pub fn deinit(self: *Window) void {
         if (self._child) |child| {
-            child.deinit();
+            child.unref();
         }
         self.peer.deinit();
     }

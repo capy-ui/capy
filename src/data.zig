@@ -358,6 +358,7 @@ pub fn Atom(comptime T: type) type {
         }
 
         /// Updates binder's pointers so they point to this object.
+        /// This function should be called after the Atom has moved in memory.
         pub fn updateBinders(self: *Self) void {
             var nullableNode = self.bindings.first;
             while (nullableNode) |node| {
@@ -554,16 +555,25 @@ pub fn Atom(comptime T: type) type {
         }
 
         pub fn deinit(self: *Self) void {
-            var nullableNode = self.onChange.first;
-            while (nullableNode) |node| {
-                nullableNode = node.next;
-                if (node.data.type == .Destroy) {
-                    node.data.function(undefined, node.data.userdata);
+            {
+                var nullableNode = self.bindings.first;
+                while (nullableNode) |node| {
+                    nullableNode = node.next;
+                    lasting_allocator.destroy(node);
                 }
-                lasting_allocator.destroy(node);
             }
             if (self.depend_on_wrappers.len > 0) {
                 lasting_allocator.free(self.depend_on_wrappers);
+            }
+            {
+                var nullableNode = self.onChange.first;
+                while (nullableNode) |node| {
+                    nullableNode = node.next;
+                    if (node.data.type == .Destroy) {
+                        node.data.function(undefined, node.data.userdata);
+                    }
+                    lasting_allocator.destroy(node);
+                }
             }
             if (self.allocator) |allocator| {
                 allocator.destroy(self);

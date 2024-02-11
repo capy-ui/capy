@@ -10,9 +10,12 @@ var celsiusBuffer: [100]u8 = undefined;
 var fahrenheitBuffer: [100]u8 = undefined;
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
+    defer celsius.deinit();
+    defer fahrenheit.deinit();
 
     var window = try capy.Window.init();
+    defer window.deinit();
 
     try window.set(capy.alignment(
         .{},

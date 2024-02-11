@@ -256,13 +256,18 @@ pub const Container = struct {
 
         var container = Container.init_events(Container{
             .peer = null,
-            .children = children,
+            .children = std.ArrayList(*Widget).init(@import("internal.zig").lasting_allocator),
             .expand = config.expand == .Fill,
             .layout = layout,
             .layoutConfig = layoutConfigBytes,
         });
         _ = container.setName(config.name);
         try container.addResizeHandler(&onResize);
+
+        for (children.items) |child| {
+            try container.add(child);
+        }
+        children.deinit();
         return container;
     }
 
@@ -432,6 +437,7 @@ pub const Container = struct {
         }
 
         genericWidget.parent = self.asWidget();
+        genericWidget.ref();
         try self.children.append(genericWidget);
 
         if (self.peer) |*peer| {
@@ -443,17 +449,13 @@ pub const Container = struct {
     }
 
     pub fn removeByIndex(self: *Container, index: usize) void {
-        // TODO: deinit widget here?
-        const widget = self.children.items[index];
+        const widget = self.children.orderedRemove(index);
         // Remove from the component
         if (self.peer) |*peer| {
             peer.remove(widget.peer.?);
         }
-        // And finally remove from the list, and relayout to apply changes
-        std.debug.assert(std.meta.eql(
-            self.children.orderedRemove(index),
-            widget,
-        ));
+        widget.unref();
+        // Relayout to apply changes
         self.relayout();
     }
 
@@ -465,7 +467,7 @@ pub const Container = struct {
 
     pub fn _deinit(self: *Container) void {
         for (self.children.items) |child| {
-            child.deinit();
+            child.unref();
         }
         self.children.deinit();
     }

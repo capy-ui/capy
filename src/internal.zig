@@ -47,6 +47,7 @@ pub fn All(comptime T: type) type {
         pub const WidgetData = struct {
             handlers: T.Handlers = undefined,
             atoms: T.Atoms = .{},
+            refcount: std.atomic.Value(u32) = std.atomic.Value(u32).init(0),
 
             /// The widget representing this component
             /// It is initialised in alloc()
@@ -67,6 +68,9 @@ pub fn Widgeting(comptime T: type) type {
 
             .getParentFn = widget_getParent,
             .isDisplayedFn = isDisplayedFn,
+
+            .ref_fn = @ptrCast(&ref),
+            .unref_fn = @ptrCast(&unref),
         };
 
         pub const Atoms = struct {
@@ -90,6 +94,23 @@ pub fn Widgeting(comptime T: type) type {
             return instance;
         }
 
+        /// Increase the number of references to this component.
+        pub fn ref(self: *T) void {
+            _ = self.widget_data.refcount.fetchAdd(1, .Monotonic);
+        }
+
+        /// Decrease the number of references to this component, that is tell Capy
+        /// that you stopped using a pointer to the component.
+        /// If this number goes to 0, the function will also deinitialize the component.
+        /// This is why this function must only be called after you stopped using a pointer
+        /// to the component, as using the pointer after unref() may cause a Use-After-Free.
+        pub fn unref(self: *T) void {
+            std.debug.assert(self.widget_data.refcount.load(.Monotonic) != 0);
+            if (self.widget_data.refcount.fetchSub(1, .AcqRel) == 1) {
+                self.deinit();
+            }
+        }
+
         pub fn showWidget(widget: *Widget) anyerror!void {
             const component = widget.as(T);
             try component.show();
@@ -111,12 +132,10 @@ pub fn Widgeting(comptime T: type) type {
             component.deinit();
         }
 
-        pub fn deinit(self: *T) void {
+        fn deinit(self: *T) void {
             if (@hasDecl(T, "_deinit")) {
                 self._deinit();
             }
-
-            self.widget_data.atoms.opacity.deinit();
 
             self.widget_data.handlers.clickHandlers.deinit();
             self.widget_data.handlers.drawHandlers.deinit();
@@ -125,18 +144,14 @@ pub fn Widgeting(comptime T: type) type {
             self.widget_data.handlers.scrollHandlers.deinit();
             self.widget_data.handlers.resizeHandlers.deinit();
             self.widget_data.handlers.keyTypeHandlers.deinit();
+            self.widget_data.handlers.keyPressHandlers.deinit();
+            self.widget_data.handlers.propertyChangeHandlers.deinit();
 
-            // TODO: deinit all datawrapper properties
+            // deinit all atom properties
+            deinitAtoms(self);
             if (self.peer) |peer| peer.deinit();
 
             lasting_allocator.destroy(self);
-        }
-
-        pub fn pointerMoved(self: *T) void {
-            self.widget_data.atoms.opacity.updateBinders();
-            if (@hasDecl(T, "_pointerMoved")) {
-                self._pointerMoved();
-            }
         }
 
         pub fn getPreferredSizeWidget(widget: *const Widget, available: Size) Size {
@@ -239,7 +254,7 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         pub fn getName(self: *T) ?[]const u8 {
-            return self.widget_data.atoms.name;
+            return self.widget_data.atoms.name.get();
         }
 
         pub fn setName(self: *T, name: ?[]const u8) void {
@@ -378,6 +393,24 @@ fn iterateApplyFields(comptime T: type, target: anytype, config: GenerateConfigS
             );
         } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateApplyFields(T, &@field(target, field.name), config);
+        }
+    }
+}
+
+pub fn deinitAtoms(target: anytype) void {
+    comptime std.debug.assert(@typeInfo(std.meta.Child(@TypeOf(target))) == .Struct);
+    iterateDeinitFields(std.meta.Child(@TypeOf(target)), target);
+}
+
+fn iterateDeinitFields(comptime T: type, target: anytype) void {
+    inline for (std.meta.fields(std.meta.Child(@TypeOf(target)))) |field| {
+        const FieldType = field.type;
+        if (comptime dataStructures.isAtom(FieldType)) {
+            const name = field.name;
+            _ = name;
+            @field(target, field.name).deinit();
+        } else if (comptime trait.is(.Struct)(FieldType)) {
+            iterateDeinitFields(T, &@field(target, field.name));
         }
     }
 }

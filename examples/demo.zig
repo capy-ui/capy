@@ -14,6 +14,11 @@ pub fn main() !void {
     gpa = .{};
     defer _ = gpa.deinit();
 
+    defer corner_1.deinit();
+    defer corner_2.deinit();
+    defer corner_3.deinit();
+    defer corner_4.deinit();
+
     try capy.init();
     defer capy.deinit();
 
@@ -21,7 +26,10 @@ pub fn main() !void {
     defer window.deinit();
 
     var somesliderValue = capy.Atom(f32).of(0);
+    defer somesliderValue.deinit();
+
     const somesliderText = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.1}", .{&somesliderValue});
+    defer somesliderText.deinit();
 
     try window.set(capy.row(.{ .spacing = 0 }, .{
         capy.navigationSidebar(.{}),

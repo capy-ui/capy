@@ -27,11 +27,6 @@ pub const TextArea = struct {
         return area;
     }
 
-    pub fn _pointerMoved(self: *TextArea) void {
-        self.text.updateBinders();
-        self.monospace.updateBinders();
-    }
-
     fn onTextAtomChanged(newValue: []const u8, userdata: ?*anyopaque) void {
         const self: *TextArea = @ptrCast(@alignCast(userdata));
         if (std.mem.eql(u8, self.peer.?.getText(), newValue)) return;

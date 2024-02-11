@@ -25,18 +25,18 @@ pub fn main() !void {
     defer count.deinit();
 
     std.log.info(
-        "Overhead of DataWrapper(i64) = {d} bytes, align = {d} bytes",
+        "Overhead of Atom(i64) = {d} bytes, align = {d} bytes",
         .{ @sizeOf(capy.Atom(i64)) - @sizeOf(i64), @alignOf(capy.Atom(i64)) },
     );
 
     var window = try capy.Window.init();
     defer window.deinit();
 
-    // Capy is based around DataWrappers, which is just a way to bind properties, listen to changes, etc.
-    // This allows to implement things like `FormatDataWrapper`, which takes other data wrappers as arguments
+    // Capy is based around Atoms, which is just a way to bind properties, listen to changes, etc.
+    // This allows to implement things like `FormatAtom`, which takes other data wrappers as arguments
     // and formats them into text (same syntax as `std.fmt.format`), it can then be used like any other
-    // DataWrapper.
-    // However, FormatDataWrapper isn't bi-directional (editing the text field won't change count's value),
+    // Atom.
+    // However, FormatAtom isn't bi-directional (editing the text field won't change count's value),
     // but it remains best fit for this example as the text field is read-only.
     var format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&count});
     defer format.deinit();

@@ -20,6 +20,7 @@ pub const Alignment = struct {
         var component = Alignment.init_events(Alignment{ .child = widget });
         internal.applyConfigStruct(&component, config);
         try component.addResizeHandler(&onResize);
+        widget.ref();
 
         return component;
     }
@@ -99,7 +100,7 @@ pub const Alignment = struct {
     }
 
     pub fn _deinit(self: *Alignment) void {
-        self.child.deinit();
+        self.child.unref();
     }
 };
 
