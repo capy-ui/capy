@@ -110,6 +110,8 @@ const TestType = struct {
         .getParentFn = undefined,
         .isDisplayedFn = undefined,
         // .cloneFn = undefined,
+        .ref_fn = undefined,
+        .unref_fn = undefined,
     };
 };
 

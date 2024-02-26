@@ -860,7 +860,7 @@ test "animated atom" {
     var original = Atom(i32).of(0);
     defer original.deinit();
 
-    var animated = try Atom(i32).animated(&original, Easings.Linear, 1000);
+    var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 1000);
     defer animated.deinit();
     defer _animatedAtoms.clearAndFree();
     defer _animatedAtomsLength.set(0);

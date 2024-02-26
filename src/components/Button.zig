@@ -64,9 +64,10 @@ pub fn button(config: Button.Config) *Button {
     return Button.alloc(config);
 }
 
-test "button" {
+test Button {
     var btn = button(.{ .label = "Test Label" });
-    defer btn.deinit();
+    btn.ref(); // because we're keeping a reference, we need to ref() it
+    defer btn.unref();
     try std.testing.expectEqualStrings("Test Label", btn.getLabel());
 
     btn.setLabel("New Label");

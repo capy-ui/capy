@@ -107,17 +107,20 @@ pub fn rect(config: Rect.Config) *Rect {
 
 const fuzz = @import("../fuzz.zig");
 
-test "instantiate Canvas" {
+test Canvas {
     var cnv = canvas(.{});
-    defer cnv.deinit();
+    cnv.ref(); // because we keep a reference to canvas we must call ref()
+    defer cnv.unref();
 }
 
-test "instantiate Rect" {
+test Rect {
     var rect1 = rect(.{ .color = Color.blue });
-    defer rect1.deinit();
+    rect1.ref();
+    defer rect1.unref();
     try std.testing.expectEqual(Color.blue, rect1.color.get());
 
     var rect2 = rect(.{ .color = Color.yellow });
-    defer rect2.deinit();
+    rect2.ref();
+    defer rect2.unref();
     try std.testing.expectEqual(Color.yellow, rect2.color.get());
 }
