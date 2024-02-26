@@ -4,6 +4,8 @@ const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
     app_name: []const u8 = "Capy Example",
+    windows: WindowsOptions = .{},
+    mac: MacOptions = .{},
     linux: LinuxOptions = .{},
     // TODO: disable android build if password is not set
     // TODO: use optional
@@ -11,6 +13,10 @@ pub const CapyBuildOptions = struct {
     wasm: WasmOptions = .{},
     args: ?[]const []const u8 = &.{},
     link_libraries_on_root_module: bool = false,
+
+    pub const WindowsOptions = struct {};
+
+    pub const MacOptions = struct {};
 
     pub const AndroidOptions = struct {
         // As of 2022, 95% of Android devices use Android 8 (Oreo) or higher

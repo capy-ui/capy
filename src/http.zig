@@ -1,5 +1,6 @@
 //! Module to handle HTTP(S) requests
-//! This is useful as it is a very common operation that's not done the same on every devices
+//!
+//! The module was created because it is a very common operation that's not done the same on every devices
 //! (For example, on the Web, you can't make TCP sockets, so std.http won't work)
 const std = @import("std");
 const internal = @import("internal.zig");

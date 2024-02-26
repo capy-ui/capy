@@ -1,4 +1,4 @@
-//! Audio module with support for low-level and high-level
+//! Audio module with an high-level and low-level interface
 // TODO: move to an external package? if possible with WASM and Android?
 const std = @import("std");
 const internal = @import("internal.zig");
@@ -10,7 +10,7 @@ var generatorsMutex = std.Thread.Mutex{};
 
 pub const AudioGenerator = struct {
     write_callback: *const anyopaque, // due to a bug in zig compiler with false dependency loop
-    /// Time in frames. Note that, by desing, it overflows to 0 once the maximum is reached.
+    /// Time in frames. Note that, by design, it overflows to 0 once the maximum is reached.
     time: u32 = 0,
     channels: u16,
     playing: bool = false,

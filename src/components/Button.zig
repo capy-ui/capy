@@ -3,9 +3,8 @@ const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
-const Container_Impl = @import("../containers.zig").Container_Impl;
 
-/// A button component. Instantiated using `Button(.{ })`
+/// A button component. Instantiated using `button(.{ })`
 pub const Button = struct {
     pub usingnamespace @import("../internal.zig").All(Button);
 

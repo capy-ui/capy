@@ -70,7 +70,7 @@ pub const Easings = struct {
     }
 };
 
-pub fn Animation(comptime T: type) type {
+fn Animation(comptime T: type) type {
     return struct {
         start: i64,
         /// Assume animation won't last more than 4000000 seconds

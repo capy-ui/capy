@@ -1,4 +1,9 @@
 const std = @import("std");
+
+// Due to Zig bugs, @import("zigimg") crashes the documentation generator, so image modules cannot
+// have documentation
+const GEN_DOCS = false;
+
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
@@ -6,7 +11,7 @@ pub usingnamespace @import("components/Alignment.zig");
 pub usingnamespace @import("components/Button.zig");
 pub usingnamespace @import("components/Canvas.zig");
 pub usingnamespace @import("components/CheckBox.zig");
-pub usingnamespace @import("components/Image.zig");
+pub usingnamespace if (!GEN_DOCS) @import("components/Image.zig") else struct {};
 pub usingnamespace @import("components/Label.zig");
 pub usingnamespace @import("components/Menu.zig");
 pub usingnamespace @import("components/Navigation.zig");
@@ -20,7 +25,7 @@ pub usingnamespace @import("containers.zig");
 
 pub usingnamespace @import("color.zig");
 pub usingnamespace @import("data.zig");
-pub usingnamespace @import("image.zig");
+pub usingnamespace if (!GEN_DOCS) @import("image.zig") else struct {};
 pub usingnamespace @import("list.zig");
 pub usingnamespace @import("timer.zig");
 
@@ -43,7 +48,7 @@ pub const cross_platform = if (@hasDecl(backend, "backendExport"))
 else
     struct {};
 
-pub const GlBackend = @import("backends/gles/backend.zig");
+// pub const GlBackend = @import("backends/gles/backend.zig");
 
 pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
 pub const MouseButton = @import("backends/shared.zig").MouseButton;
@@ -73,15 +78,15 @@ pub fn deinit() void {
     }
 }
 
-/// Posts an empty event to finish the current step started in zgt.stepEventLoop
+// /// Posts an empty event to finish the current step started in zgt.stepEventLoop
 pub fn wakeEventLoop() void {
     backend.postEmptyEvent();
 }
 
-/// Returns false if the last window has been closed.
-/// Even if the wanted step type is Blocking, zgt has the right
-/// to request an asynchronous step to the backend in order to animate
-/// data wrappers.
+// /// Returns false if the last window has been closed.
+// /// Even if the wanted step type is Blocking, zgt has the right
+// /// to request an asynchronous step to the backend in order to animate
+// /// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     eventStep.callListeners();
 
