@@ -5,6 +5,7 @@ typedef void* CapyWidget;
 typedef void* CapyWindow;
 
 int capy_init_backend(void);
+int capy_init(void);
 
 void capy_run_event_loop(void);
 

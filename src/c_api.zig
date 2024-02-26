@@ -18,6 +18,13 @@ export fn capy_init_backend() c_int {
     return 0;
 }
 
+export fn capy_init() c_int {
+    capy.init() catch |err| {
+        return @intCast(@intFromError(err) + 1);
+    };
+    return 0;
+}
+
 // Window //
 
 /// Returns null on error

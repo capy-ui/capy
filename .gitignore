@@ -5,3 +5,4 @@ zig-cache/
 kcov-output/
 macos-sdk/
 deps.zig
+c_examples/libcapy.so.0

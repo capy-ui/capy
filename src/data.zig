@@ -194,7 +194,7 @@ pub fn Atom(comptime T: type) type {
         /// Allocates a new atom and make it follow the value of the original atom, but
         /// with an animation.
         /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
-        pub fn animated(original: *Self, easing: Easing, duration: u64) !*Self {
+        pub fn withImplicitAnimation(original: *Self, easing: Easing, duration: u64) !*Self {
             var self = Self.alloc(original.get());
 
             const AnimationParameters = struct {
