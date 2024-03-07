@@ -208,21 +208,32 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
         },
         .macos => {
             if (@import("builtin").os.tag != .macos) {
-                const sdk_root_dir = b.pathFromRoot("macos-sdk/");
-                const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
-                const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
-                const sdk_lib_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/lib" }) catch unreachable;
-                module.addFrameworkPath(.{ .path = sdk_framework_dir });
-                module.addSystemIncludePath(.{ .path = sdk_include_dir });
-                module.addLibraryPath(.{ .path = sdk_lib_dir });
+                // const sdk_root_dir = b.pathFromRoot("macos-sdk/");
+                // const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
+                // const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
+                // const sdk_lib_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/lib" }) catch unreachable;
+                // module.addFrameworkPath(.{ .path = sdk_framework_dir });
+                // module.addSystemIncludePath(.{ .path = sdk_include_dir });
+                // module.addLibraryPath(.{ .path = sdk_lib_dir });
+                // @import("macos_sdk").addPathsModule(module);
+                @import("macos_sdk").addPaths(step);
             }
+
+            const objc = b.dependency("zig-objc", .{ .target = step.root_module.resolved_target.?, .optimize = step.root_module.optimize.? });
+            module.addImport("objc", objc.module("objc"));
 
             module.link_libc = true;
             module.linkFramework("CoreData", .{});
             module.linkFramework("ApplicationServices", .{});
             module.linkFramework("CoreFoundation", .{});
+            module.linkFramework("CoreGraphics", .{});
+            module.linkFramework("CoreText", .{});
+            module.linkFramework("CoreServices", .{});
             module.linkFramework("Foundation", .{});
             module.linkFramework("AppKit", .{});
+            module.linkFramework("ColorSync", .{});
+            module.linkFramework("ImageIO", .{});
+            module.linkFramework("CFNetwork", .{});
             module.linkSystemLibrary("objc", .{ .use_pkg_config = .no });
         },
         .linux, .freebsd => {

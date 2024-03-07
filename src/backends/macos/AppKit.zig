@@ -20,3 +20,29 @@ pub const NSBackingStore = enum(NSUInteger) {
     /// The window renders all drawing into a display buffer and then flushes it to the screen.
     Buffered,
 };
+
+pub const CGFloat = f64;
+
+pub const CGPoint = extern struct {
+    x: CGFloat,
+    y: CGFloat,
+};
+
+pub const CGSize = extern struct {
+    width: CGFloat,
+    height: CGFloat,
+};
+
+pub const CGRect = extern struct {
+    origin: CGPoint,
+    size: CGSize,
+
+    pub fn make(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) CGRect {
+        return .{
+            .origin = .{ .x = x, .y = y },
+            .size = .{ .width = width, .height = height },
+        };
+    }
+};
+
+pub const NSRect = CGRect;

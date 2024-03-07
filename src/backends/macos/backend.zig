@@ -1,7 +1,7 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
-const objc = @import("objc.zig");
+const objc = @import("objc");
 const AppKit = @import("AppKit.zig");
 const trait = @import("../../trait.zig");
 
@@ -11,7 +11,7 @@ const BackendError = shared.BackendError;
 const MouseButton = shared.MouseButton;
 
 // pub const PeerType = *opaque {};
-pub const PeerType = objc.id;
+pub const PeerType = objc.Object;
 
 const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 var activeWindows = atomicValue(usize).init(0);
@@ -104,28 +104,27 @@ pub fn Events(comptime T: type) type {
 pub const Window = struct {
     source_dpi: u32 = 96,
     scale: f32 = 1.0,
-    peer: objc.id,
+    peer: objc.Object,
 
     pub usingnamespace Events(Window);
 
     pub fn create() BackendError!Window {
-        const NSWindow = objc.getClass("NSWindow") catch return BackendError.InitializationError;
-        const rect = objc.NSRect.make(100, 100, 200, 200);
+        const NSWindow = objc.getClass("NSWindow").?;
+        const rect = AppKit.NSRect.make(100, 100, 200, 200);
         const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable | AppKit.NSWindowStyleMask.FullSizeContentView;
 
         std.log.info("make new rect", .{});
-        const newRect = objc.msgSendByName(objc.NSRect, NSWindow, "frameRectForContentRect:styleMask:", .{ rect, style }) catch unreachable;
+        // const newRect = objc.msgSendByName(objc.NSRect, NSWindow, "frameRectForContentRect:styleMask:", .{ rect, style }) catch unreachable;
 
         std.log.info("make ", .{});
-        std.log.info("new rect: {x}", .{@as(u64, @bitCast(newRect.origin.y))});
+        // std.log.info("new rect: {x}", .{@as(u64, @bitCast(newRect.origin.y))});
         const flag: u8 = @intFromBool(false);
 
-        const window = objc.msgSendByName(
-            objc.id,
-            objc.alloc(NSWindow) catch return BackendError.UnknownError,
+        const window = NSWindow.msgSend(
+            objc.Object,
             "initWithContentRect:styleMask:backing:defer:",
             .{ rect, style, AppKit.NSBackingStore.Buffered, flag },
-        ) catch return BackendError.UnknownError;
+        );
 
         return Window{
             .peer = window,
@@ -133,14 +132,17 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        const frame = objc.NSRect.make(
-            100,
-            100,
-            @as(objc.CGFloat, @floatFromInt(width)),
-            @as(objc.CGFloat, @floatFromInt(height)),
-        );
-        // TODO: resize animation can be handled using a DataWrapper on the user-facing API
-        _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
+        _ = height;
+        _ = width;
+        _ = self;
+        // const frame = objc.NSRect.make(
+        //     100,
+        //     100,
+        //     @as(objc.CGFloat, @floatFromInt(width)),
+        //     @as(objc.CGFloat, @floatFromInt(height)),
+        // );
+        // // TODO: resize animation can be handled using a DataWrapper on the user-facing API
+        // _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
@@ -161,11 +163,12 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        std.log.info("show window", .{});
-        objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
-        objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
-        std.log.info("showed window", .{});
-        _ = activeWindows.fetchAdd(1, .Release);
+        _ = self;
+        // std.log.info("show window", .{});
+        // objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
+        // objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
+        // std.log.info("showed window", .{});
+        // _ = activeWindows.fetchAdd(1, .Release);
     }
 
     pub fn close(self: *Window) void {
@@ -175,7 +178,7 @@ pub const Window = struct {
 };
 
 pub const Container = struct {
-    peer: objc.id,
+    peer: objc.Object,
 
     pub usingnamespace Events(Container);
 

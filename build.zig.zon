@@ -1,0 +1,16 @@
+.{
+    .name = "capy",
+    .version = "0.4.0",
+    .minimum_zig_version = "0.12.0-dev.2063+804cee3b9",
+    .dependencies = .{
+        .@"zig-objc" = .{
+            .url = "https://github.com/mitchellh/zig-objc/archive/f6ed382b6db296626a9b56dadcf9d7e4fcba71d3.tar.gz",
+            .hash = "1220c94dbcdf5a799ce2b1571978ff3c97bab1341fe329084fcc3c06e5d6375469b9",
+        },
+        .macos_sdk = .{
+            .url = "https://github.com/mitchellh/zig-build-macos-sdk/archive/4186e9fd445d12041651abe59ea5f396499b0844.tar.gz",
+            .hash = "1220bc2612b57b0cfaaecbcac38e3144e5a9362ff668d71eb8334e895047bdbb7148",
+        },
+    },
+    .paths = .{ "android", "include", "src", "vendor", "LICENSE", "README.md", "build.zig", "build_capy.zig", "build.zig.zon", },
+}
