@@ -6,11 +6,13 @@ const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
 const StringAtom = dataStructures.StringAtom;
 
+/// Editable multi-line text input box.
 pub const TextArea = struct {
     pub usingnamespace internal.All(TextArea);
 
     peer: ?backend.TextArea = null,
     widget_data: TextArea.WidgetData = .{},
+    /// The text this TextArea contains.
     text: StringAtom = StringAtom.of(""),
 
     // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?

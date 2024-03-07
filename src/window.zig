@@ -3,7 +3,7 @@ const backend = @import("backend.zig");
 const internal = @import("internal.zig");
 const Widget = @import("widget.zig").Widget;
 // const ImageData = @import("image.zig").ImageData;
-// const MenuBar = @import("components/Menu.zig").MenuBar;
+const MenuBar = @import("components/Menu.zig").MenuBar;
 const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
 
@@ -43,104 +43,104 @@ pub const Window = struct {
         return window;
     }
 
-    //     pub fn show(self: *Window) void {
-    //         self.peer.setUserData(self);
-    //         return self.peer.show();
-    //     }
+    pub fn show(self: *Window) void {
+        self.peer.setUserData(self);
+        return self.peer.show();
+    }
 
-    //     pub fn close(self: *Window) void {
-    //         return self.peer.close();
-    //     }
+    pub fn close(self: *Window) void {
+        return self.peer.close();
+    }
 
-    //     fn isErrorUnion(comptime T: type) bool {
-    //         return switch (@typeInfo(T)) {
-    //             .ErrorUnion => true,
-    //             else => false,
-    //         };
-    //     }
+    fn isErrorUnion(comptime T: type) bool {
+        return switch (@typeInfo(T)) {
+            .ErrorUnion => true,
+            else => false,
+        };
+    }
 
-    //     /// wrappedContainer can be an error union, a pointer to the container or the container itself.
-    //     pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
-    //         const container =
-    //             if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
-    //             try wrappedContainer
-    //         else
-    //             wrappedContainer;
-    //         self._child = internal.getWidgetFrom(container);
-    //         self._child.?.ref();
-    //         try self._child.?.show();
-    //         self.peer.setChild(self._child.?.peer);
-    //     }
+    /// wrappedContainer can be an error union, a pointer to the container or the container itself.
+    pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
+        const container =
+            if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
+            try wrappedContainer
+        else
+            wrappedContainer;
+        self._child = internal.getWidgetFrom(container);
+        self._child.?.ref();
+        try self._child.?.show();
+        self.peer.setChild(self._child.?.peer);
+    }
 
-    //     pub fn getChild(self: Window) ?*Widget {
-    //         return self._child;
-    //     }
+    pub fn getChild(self: Window) ?*Widget {
+        return self._child;
+    }
 
-    //     var did_invalid_warning = false;
-    //     /// Attempt to resize the window to the given size.
-    //     /// On certain platforms (e.g. mobile) or configurations (e.g. tiling window manager) this function might do nothing.
-    //     pub fn setPreferredSize(self: *Window, width: u32, height: u32) void {
-    //         const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
-    //         if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
-    //             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
-    //             defer internal.scratch_allocator.free(id);
-    //             if (devices.get(id)) |device| {
-    //                 self.peer.resize(@as(c_int, @intCast(device.resolution.width)), @as(c_int, @intCast(device.resolution.height)));
-    //                 self.setSourceDpi(device.dpi);
-    //                 return;
-    //             } else if (!did_invalid_warning) {
-    //                 std.log.warn("Invalid property \"" ++ EMULATOR_KEY ++ "={s}\"", .{id});
-    //                 std.debug.print("Expected one of:\r\n", .{});
-    //                 for (devices.kvs) |entry| {
-    //                     std.debug.print("    - {s}\r\n", .{entry.key});
-    //                 }
-    //                 did_invalid_warning = true;
-    //             }
-    //         }
-    //         self.size.set(.{ .width = width, .height = height });
-    //         self.peer.setUserData(self);
-    //         self.peer.resize(@as(c_int, @intCast(width)), @as(c_int, @intCast(height)));
-    //     }
+    var did_invalid_warning = false;
+    /// Attempt to resize the window to the given size.
+    /// On certain platforms (e.g. mobile) or configurations (e.g. tiling window manager) this function might do nothing.
+    pub fn setPreferredSize(self: *Window, width: u32, height: u32) void {
+        const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
+        if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
+            const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
+            defer internal.scratch_allocator.free(id);
+            if (devices.get(id)) |device| {
+                self.peer.resize(@as(c_int, @intCast(device.resolution.width)), @as(c_int, @intCast(device.resolution.height)));
+                self.setSourceDpi(device.dpi);
+                return;
+            } else if (!did_invalid_warning) {
+                std.log.warn("Invalid property \"" ++ EMULATOR_KEY ++ "={s}\"", .{id});
+                std.debug.print("Expected one of:\r\n", .{});
+                for (devices.kvs) |entry| {
+                    std.debug.print("    - {s}\r\n", .{entry.key});
+                }
+                did_invalid_warning = true;
+            }
+        }
+        self.size.set(.{ .width = width, .height = height });
+        self.peer.setUserData(self);
+        self.peer.resize(@as(c_int, @intCast(width)), @as(c_int, @intCast(height)));
+    }
 
     fn sizeChanged(width: u32, height: u32, data: usize) void {
         const self = @as(*Window, @ptrFromInt(data));
         self.size.set(.{ .width = width, .height = height });
     }
 
-    //     // TODO: minimumSize and maximumSize
+    // TODO: minimumSize and maximumSize
 
-    //     pub fn hasFeature(self: *Window, feature: Window.Feature) void {
-    //         _ = feature;
-    //         _ = self;
-    //         // TODO
-    //         return true;
-    //     }
+    pub fn hasFeature(self: *Window, feature: Window.Feature) void {
+        _ = feature;
+        _ = self;
+        // TODO
+        return true;
+    }
 
-    //     pub fn setTitle(self: *Window, title: [:0]const u8) void {
-    //         self.peer.setTitle(title);
-    //     }
+    pub fn setTitle(self: *Window, title: [:0]const u8) void {
+        self.peer.setTitle(title);
+    }
 
-    //     pub fn setIcon(self: *Window, icon: *ImageData) void {
-    //         self.peer.setIcon(icon.data.peer);
-    //     }
+    // pub fn setIcon(self: *Window, icon: *ImageData) void {
+    //     self.peer.setIcon(icon.data.peer);
+    // }
 
-    //     pub fn setIconName(self: *Window, name: [:0]const u8) void {
-    //         self.peer.setIconName(name);
-    //     }
+    pub fn setIconName(self: *Window, name: [:0]const u8) void {
+        self.peer.setIconName(name);
+    }
 
-    //     pub fn setMenuBar(self: *Window, bar: MenuBar) void {
-    //         self.peer.setMenuBar(bar);
-    //     }
+    pub fn setMenuBar(self: *Window, bar: MenuBar) void {
+        self.peer.setMenuBar(bar);
+    }
 
-    //     /// Specify for which DPI the GUI was developed against.
-    //     pub fn setSourceDpi(self: *Window, dpi: u32) void {
-    //         self.peer.setSourceDpi(dpi);
-    //     }
+    /// Specify for which DPI the GUI was developed against.
+    pub fn setSourceDpi(self: *Window, dpi: u32) void {
+        self.peer.setSourceDpi(dpi);
+    }
 
-    //     pub fn deinit(self: *Window) void {
-    //         if (self._child) |child| {
-    //             child.unref();
-    //         }
-    //         self.peer.deinit();
-    //     }
+    pub fn deinit(self: *Window) void {
+        if (self._child) |child| {
+            child.unref();
+        }
+        self.peer.deinit();
+    }
 };

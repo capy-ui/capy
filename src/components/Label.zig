@@ -4,12 +4,16 @@ const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 
+/// Label containing text for the user to view.
 pub const Label = struct {
     pub usingnamespace internal.All(Label);
 
     peer: ?backend.Label = null,
     widget_data: Label.WidgetData = .{},
+    /// The text the label will take. For instance, if this is 'Example', the user
+    /// will see the text 'Example'.
     text: Atom([]const u8) = Atom([]const u8).of(""),
+    /// Defines how the text will take up the available horizontal space.
     alignment: Atom(TextAlignment) = Atom(TextAlignment).of(.Left),
 
     pub fn init(config: Label.Config) Label {

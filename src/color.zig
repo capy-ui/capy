@@ -60,8 +60,11 @@ pub const Color = packed struct {
         return Color{ .red = r, .green = g, .blue = b, .alpha = a };
     }
 
+    /// Creates a color during compile-time (meaning there's no parsing during runtime)
+    /// This means that if the color is wrong, a compile error will be thrown.
     pub fn comptimeFromString(comptime string: []const u8) Color {
-        return comptime fromString(string) catch |err| @compileError(@errorName(err));
+        return comptime fromString(string) catch
+            @compileError("'" ++ string ++ "' is not a valid color");
     }
 
     pub fn fromARGB(alpha_value: u8, red_value: u8, green_value: u8, blue_value: u8) Color {

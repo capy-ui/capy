@@ -5,6 +5,7 @@ const scratch_allocator = @import("internal.zig").scratch_allocator;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
+const capy = @import("main.zig");
 
 const convertTupleToWidgets = @import("internal.zig").convertTupleToWidgets;
 
@@ -39,6 +40,7 @@ const ColumnRowConfig = struct {
     wrapping: bool = false,
 };
 
+/// Arranges items vertically.
 pub fn ColumnLayout(peer: Callbacks, widgets: []*Widget) void {
     const expandedCount = getExpandedCount(widgets);
     const config = peer.getLayoutConfig(ColumnRowConfig);
@@ -114,6 +116,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []*Widget) void {
     peer.setTabOrder(peer.userdata, peers.items);
 }
 
+/// Arranges items horizontally.
 pub fn RowLayout(peer: Callbacks, widgets: []*Widget) void {
     const expandedCount = getExpandedCount(widgets);
     const config = peer.getLayoutConfig(ColumnRowConfig);
@@ -189,6 +192,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []*Widget) void {
     peer.setTabOrder(peer.userdata, peers.items);
 }
 
+/// Positions one item according to the given margins.
 pub fn MarginLayout(peer: Callbacks, widgets: []*Widget) void {
     const margin_rect = peer.getLayoutConfig(Rectangle);
     if (widgets.len > 1) {
@@ -221,6 +225,7 @@ pub fn MarginLayout(peer: Callbacks, widgets: []*Widget) void {
     }
 }
 
+/// Stacks items on top of each other, from the first to the last.
 pub fn StackLayout(peer: Callbacks, widgets: []*Widget) void {
     const size = peer.getSize(peer.userdata);
     for (widgets) |widget| {
@@ -283,11 +288,33 @@ pub const Container = struct {
         self.relayout();
     }
 
+    /// Returns the *n*-th child of the container, starting from 0. If n is too big
+    /// for the component, the function returns `error.OutOfBounds`.
     pub fn getChildAt(self: *Container, index: usize) !*Widget {
         if (index >= self.children.items.len) return error.OutOfBounds;
         return self.children.items[index];
     }
 
+    test getChildAt {
+        const c = capy.button(.{ .label = "C" });
+        c.ref();
+        defer c.unref();
+
+        const container = try capy.row(.{}, .{
+            capy.button(.{ .label = "A" }),
+            capy.button(.{ .label = "B" }),
+            c,
+        });
+        container.ref();
+        defer container.unref();
+
+        const child = container.getChildAt(2) catch unreachable;
+        // Check that 'child' holds a pointer to capy.Button(.{ .label = "C" })
+        std.debug.assert(child == c.asWidget());
+    }
+
+    /// Searches recursively for a component named `name` and returns the first one found.
+    /// If no component is found, `null` is returned.
     pub fn getChild(self: *Container, name: []const u8) ?*Widget {
         // TODO: use hash map (maybe acting as cache?) for performance
         for (self.children.items) |widget| {
@@ -311,7 +338,27 @@ pub const Container = struct {
         return null;
     }
 
-    /// Combines getChild() and Widget.as()
+    test getChild {
+        const check_box = capy.checkBox(.{ .name = "me" });
+        check_box.ref();
+        defer check_box.unref();
+
+        const container = try capy.column(.{}, .{
+            check_box,
+        });
+        container.ref();
+        defer container.unref();
+
+        // In Zig, '.?' is equivalent to 'orelse unreachable'
+        const child = container.getChild("me").?;
+        // Check that 'child' holds a pointer to capy.checkBox(.{ .name = "me" })
+        std.debug.assert(child == check_box.asWidget());
+    }
+
+    /// This function is a shorthand that is equivalent to
+    /// ```
+    /// container.getChild(name).as(T)
+    /// ```
     pub fn getChildAs(self: *Container, comptime T: type, name: []const u8) ?*T {
         if (self.getChild(name)) |widget| {
             return widget.as(T);
@@ -393,6 +440,10 @@ pub const Container = struct {
         @as(*backend.Container, @ptrFromInt(data)).setTabOrder(widgets);
     }
 
+    /// Forces the container to re-layout: the layouter will be called and children will be
+    /// repositioned and resized.
+    /// It shouldn't need to be called as all functions that affect a child's position should also
+    /// trigger a relayout. If it doesn't please [file an issue](https://github.com/capy-ui/capy/issues).
     pub fn relayout(self: *Container) void {
         if (self.relayouting.load(.SeqCst) == true) return;
         if (self.peer) |peer| {
@@ -427,6 +478,7 @@ pub const Container = struct {
         _ = self_clone;
     }
 
+    /// Adds the given component to the container.
     pub fn add(self: *Container, widget: anytype) !void {
         const ComponentType = @import("internal.zig").DereferencedType(@TypeOf(widget));
         _ = ComponentType;
@@ -448,6 +500,18 @@ pub const Container = struct {
         self.relayout();
     }
 
+    test add {
+        const container = try capy.row(.{}, .{});
+        container.ref();
+        defer container.unref();
+
+        try container.add(
+            capy.button(.{ .label = "Hello, World!" }),
+        );
+    }
+
+    /// Removes the component at the given index. In other words, removes the component that would
+    /// have otherwise been returned by `getChildAt()`.
     pub fn removeByIndex(self: *Container, index: usize) void {
         const widget = self.children.orderedRemove(index);
         // Remove from the component
@@ -459,6 +523,7 @@ pub const Container = struct {
         self.relayout();
     }
 
+    /// Removes all children from the container.
     pub fn removeAll(self: *Container) void {
         while (self.children.items.len > 0) {
             self.removeByIndex(0);
@@ -485,6 +550,20 @@ pub const Container = struct {
     }
 };
 
+test Container {
+    const container_row = try capy.row(.{}, .{
+        capy.button(.{ .label = "hello!" }),
+    });
+    container_row.ref();
+    defer container_row.unref();
+
+    const container_column = try capy.column(.{}, .{
+        capy.label(.{ .text = "hi!" }),
+    });
+    container_column.ref();
+    defer container_column.unref();
+}
+
 fn isErrorUnion(comptime T: type) bool {
     return switch (@typeInfo(T)) {
         .ErrorUnion => true,
@@ -493,16 +572,18 @@ fn isErrorUnion(comptime T: type) bool {
 }
 
 const Expand = enum {
-    /// The grid should take the minimal size that its children want
+    /// Each child is given its minimum size.
     No,
-    /// The grid should expand to its maximum size by padding non-expanded children
+    /// All children act like they're expanded, that is they take as much space as they can.
     Fill,
 };
 
 pub const GridConfig = struct {
     expand: Expand = .No,
     name: ?[]const u8 = null,
+    /// How much spacing (in pixels) should be put between elements.
     spacing: u32 = 5,
+    /// Should the Container wrap when there are too many elements?
     wrapping: bool = false,
 };
 
@@ -516,18 +597,23 @@ pub inline fn expanded(child: anytype) anyerror!*Widget {
     return widget;
 }
 
+/// Creates a Container which uses `StackLayout` as layout.
 pub inline fn stack(children: anytype) anyerror!*Container {
     return try Container.allocA(try convertTupleToWidgets(children), .{}, StackLayout, {});
 }
 
+/// Creates a Container which uses `RowLayout` as layout.
 pub inline fn row(config: GridConfig, children: anytype) anyerror!*Container {
     return try Container.allocA(try convertTupleToWidgets(children), config, RowLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
+/// Creates a Container which uses `ColumnLayout` as layout.
+/// `ColumnLayout` arranges items vertically.
 pub inline fn column(config: GridConfig, children: anytype) anyerror!*Container {
     return try Container.allocA(try convertTupleToWidgets(children), config, ColumnLayout, ColumnRowConfig{ .spacing = config.spacing, .wrapping = config.wrapping });
 }
 
+/// Creates a Container which uses `MarginLayout` as layout, with the given margins.
 pub inline fn margin(margin_rect: Rectangle, child: anytype) anyerror!*Container {
     return try Container.allocA(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin_rect);
 }

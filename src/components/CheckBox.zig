@@ -4,13 +4,22 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Container_Impl = @import("../containers.zig").Container_Impl;
 
+/// A little box you can check or leave unmarked.
+///
+/// It is mainly used to select or deselect an item from a list of multiple items that the user
+/// can choose.
 pub const CheckBox = struct {
     pub usingnamespace @import("../internal.zig").All(CheckBox);
 
     peer: ?backend.CheckBox = null,
     widget_data: CheckBox.WidgetData = .{},
+    /// Whether the check box has a small tick inside.
+    /// ☒ true
+    /// ☐ false
     checked: Atom(bool) = Atom(bool).of(false),
+    /// The label that shows next to the check box.
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
+    /// Whether the user can interact with the check box.
     enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init(config: CheckBox.Config) CheckBox {

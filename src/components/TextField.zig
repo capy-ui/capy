@@ -6,12 +6,15 @@ const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
 const StringAtom = dataStructures.StringAtom;
 
+/// Editable one-line text input box.
 pub const TextField = struct {
     pub usingnamespace internal.All(TextField);
 
     peer: ?backend.TextField = null,
     widget_data: TextField.WidgetData = .{},
+    /// The text this TextField contains
     text: StringAtom = StringAtom.of(""),
+    /// Whether the TextField is read-only
     readOnly: Atom(bool) = Atom(bool).of(false),
 
     pub fn init(config: TextField.Config) TextField {

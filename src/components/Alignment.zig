@@ -5,6 +5,16 @@ const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
 
+/// `Alignment` is a component used to align the enclosed component within the space
+/// it's been given.
+/// Using its default values, `Alignment` will center the enclosed component.
+/// ```
+/// capy.Alignment(.{}, capy.button(.{ .label = "Hi" }))
+/// ```
+/// will put out a centered button.
+///
+/// For more information, you can find a playground of the component on
+/// [the website](https://capy-ui.org/docs/api-reference/components/align)
 pub const Alignment = struct {
     pub usingnamespace @import("../internal.zig").All(Alignment);
 
@@ -13,7 +23,9 @@ pub const Alignment = struct {
 
     child: *Widget,
     relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
+    /// The horizontal alignment of the child component, from 0 (left) to 1 (right).
     x: Atom(f32) = Atom(f32).of(0.5),
+    /// The vertical alignment of the child component, from 0 (top) to 1 (bottom).
     y: Atom(f32) = Atom(f32).of(0.5),
 
     pub fn init(config: Alignment.Config, widget: *Widget) !Alignment {

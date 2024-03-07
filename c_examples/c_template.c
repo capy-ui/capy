@@ -4,7 +4,7 @@
 void main() {
 	CapyWindow window;
 	CapyWidget button;
-	capy_init_backend();
+	capy_init();
 
 	window = capy_window_init();
 	capy_window_set_preferred_size(window, 800, 600);

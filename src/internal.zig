@@ -95,9 +95,8 @@ pub fn Widgeting(comptime T: type) type {
         /// instead of directly adding it to a component or a window.
         pub fn alloc(config: Config) *T {
             const instance = lasting_allocator.create(T) catch @panic("out of memory");
-            // XXX
             instance.* = T.init(config);
-            // instance.widget_data.widget = genericWidgetFrom(instance);
+            instance.widget_data.widget = genericWidgetFrom(instance);
             return instance;
         }
 
@@ -432,53 +431,53 @@ pub fn DereferencedType(comptime T: type) type {
 }
 
 // /// Create a generic Widget struct from the given component.
-// pub fn genericWidgetFrom(component: anytype) Widget {
-//     const ComponentType = @TypeOf(component);
-//     comptime std.debug.assert(ComponentType != Widget and ComponentType != *Widget);
+pub fn genericWidgetFrom(component: anytype) Widget {
+    const ComponentType = @TypeOf(component);
+    comptime std.debug.assert(ComponentType != Widget and ComponentType != *Widget);
 
-//     // Unless it is already a pointer, we clone the component so that
-//     // it can be referenced by the Widget we're gonna create.
-//     comptime std.debug.assert(trait.isSingleItemPtr(ComponentType));
-//     const Dereferenced = DereferencedType(ComponentType);
-//     return Widget{
-//         .data = component,
-//         .class = &Dereferenced.WidgetClass,
-//         .name = &component.widget_data.atoms.name,
-//     };
-// }
+    // Unless it is already a pointer, we clone the component so that
+    // it can be referenced by the Widget we're gonna create.
+    comptime std.debug.assert(trait.isSingleItemPtr(ComponentType));
+    const Dereferenced = DereferencedType(ComponentType);
+    return Widget{
+        .data = component,
+        .class = &Dereferenced.WidgetClass,
+        .name = &component.widget_data.atoms.name,
+    };
+}
 
-// pub fn getWidgetFrom(component: anytype) *Widget {
-//     if (@TypeOf(component) == *Widget) {
-//         return component;
-//     } else {
-//         return component.asWidget();
-//     }
-// }
+pub fn getWidgetFrom(component: anytype) *Widget {
+    if (@TypeOf(component) == *Widget) {
+        return component;
+    } else {
+        return component.asWidget();
+    }
+}
 
-// pub fn isErrorUnion(comptime T: type) bool {
-//     return switch (@typeInfo(T)) {
-//         .ErrorUnion => true,
-//         else => false,
-//     };
-// }
+pub fn isErrorUnion(comptime T: type) bool {
+    return switch (@typeInfo(T)) {
+        .ErrorUnion => true,
+        else => false,
+    };
+}
 
-// pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget) {
-//     const fields = std.meta.fields(@TypeOf(childrens));
-//     var list = std.ArrayList(*Widget).init(lasting_allocator);
-//     inline for (fields) |field| {
-//         const element = @field(childrens, field.name);
-//         const child =
-//             if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
-//             try element
-//         else
-//             element;
+pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget) {
+    const fields = std.meta.fields(@TypeOf(childrens));
+    var list = std.ArrayList(*Widget).init(lasting_allocator);
+    inline for (fields) |field| {
+        const element = @field(childrens, field.name);
+        const child =
+            if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
+            try element
+        else
+            element;
 
-//         const widget = getWidgetFrom(child);
-//         try list.append(widget);
-//     }
+        const widget = getWidgetFrom(child);
+        try list.append(widget);
+    }
 
-//     return list;
-// }
+    return list;
+}
 
 // pub fn Property(comptime T: type, comptime name: []const u8) type {
 // Depends on #6709

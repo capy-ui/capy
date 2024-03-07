@@ -141,4 +141,5 @@ pub fn runEventLoop() void {
 
 test {
     _ = @import("fuzz.zig"); // testing the fuzzing library
+    std.testing.refAllDecls(@This());
 }

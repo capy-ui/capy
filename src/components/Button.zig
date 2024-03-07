@@ -4,13 +4,16 @@ const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 
-/// A button component. Instantiated using `button(.{ })`
+/// A button you can click.
 pub const Button = struct {
     pub usingnamespace @import("../internal.zig").All(Button);
 
     peer: ?backend.Button = null,
     widget_data: Button.WidgetData = .{},
+    /// The text label which appears inside the button.
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
+    /// Whether the user can interact with the button, that is
+    /// whether the button can be pressed or not.
     enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init(config: Button.Config) Button {
@@ -63,8 +66,12 @@ pub fn button(config: Button.Config) *Button {
     return Button.alloc(config);
 }
 
+fn onButtonClicked(btn: *Button) !void {
+    btn.setLabel("Stop!");
+}
+
 test Button {
-    var btn = button(.{ .label = "Test Label" });
+    var btn = button(.{ .label = "Test Label", .onclick = @ptrCast(&onButtonClicked) });
     btn.ref(); // because we're keeping a reference, we need to ref() it
     defer btn.unref();
     try std.testing.expectEqualStrings("Test Label", btn.getLabel());

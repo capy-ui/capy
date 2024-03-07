@@ -11,7 +11,7 @@ pub fn handleTimersTick() void {
     for (_runningTimers.items) |timer| {
         if (now.since(timer.started.?) >= timer.duration.get()) {
             timer.started = now;
-            timer.tick(timer);
+            timer.tick();
         }
     }
 }
@@ -48,6 +48,10 @@ pub const Timer = struct {
 
     fn computeDuration(frequency: f32) void {
         return @intFromFloat(1.0 / frequency * std.time.ns_per_ms);
+    }
+
+    fn tick(self: *Timer) void {
+        self.event_source.callListeners();
     }
 
     pub fn stop(self: *Timer) void {

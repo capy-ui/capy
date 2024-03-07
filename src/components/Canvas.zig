@@ -6,11 +6,15 @@ const Atom = @import("../data.zig").Atom;
 
 pub const DrawContext = backend.Canvas.DrawContext;
 
+/// Arbitrary size area on which the application may draw content.
+///
+/// It also has the particularity of being the only component on which the draw handler works.
 pub const Canvas = struct {
     pub usingnamespace @import("../internal.zig").All(Canvas);
 
     peer: ?backend.Canvas = null,
     widget_data: Canvas.WidgetData = .{},
+    /// The preferred size of the canvas, or null to take the least possible.
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
 
     pub const DrawContext = backend.Canvas.DrawContext;
@@ -45,13 +49,21 @@ pub fn canvas(config: Canvas.Config) *Canvas {
 
 const Color = @import("../color.zig").Color;
 
+/// Arbitrary size area filled with a given color.
+///
+/// *This widget extends `Canvas`.*
 pub const Rect = struct {
     pub usingnamespace @import("../internal.zig").All(Rect);
 
     peer: ?backend.Canvas = null,
     widget_data: Rect.WidgetData = .{},
+
+    /// The preferred size of the canvas, or null to take the least possible.
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
+    /// The color the rectangle will be filled with.
     color: Atom(Color) = Atom(Color).of(Color.black),
+    /// The radiuses of the the corners of the rectangle. It can be changed to make
+    /// a rounded rectangle.
     cornerRadius: Atom([4]f32) = Atom([4]f32).of(.{0.0} ** 4),
 
     pub fn init(config: Rect.Config) Rect {

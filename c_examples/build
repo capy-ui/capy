@@ -1,2 +1,3 @@
 #!/bin/sh
-gcc -I../include c_template.c ../zig-out/lib/libcapy.so.0 -Wl,-rpath ../zig-out/lib/ -o c_template
+cp ../zig-out/lib/libcapy.so.0 .
+gcc -I../include c_template.c libcapy.so.0 -Wl,-rpath . -o c_template

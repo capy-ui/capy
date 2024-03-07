@@ -116,6 +116,13 @@ fn isAnimableType(comptime T: type) bool {
     return false;
 }
 
+/// An atom is used to add binding, change listening, thread safety and animation capabilities to
+/// a value. It is used for all component properties.
+///
+/// For a guide on how to use it, see TODO.
+///
+/// Atom is a generic struct, which means you need to put the type `T` of your data in `Atom(T)`.
+/// Then, you can use `Atom(T).of` in order to a get an atom for the given value.
 pub fn Atom(comptime T: type) type {
     return struct {
         value: if (isAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
@@ -274,6 +281,8 @@ pub fn Atom(comptime T: type) type {
             return self.update();
         }
 
+        /// Starts an animation on the atom, from the current value to the `target` value. The
+        /// animation will last `duration` milliseconds.
         pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
             if (!isAnimable) {
                 @compileError("animate() called on data that is not animable");
@@ -344,7 +353,7 @@ pub fn Atom(comptime T: type) type {
             return link_id;
         }
 
-        /// All writes to one change the value of the other
+        /// Binds both atoms both ways. This means that they will always have the same value.
         pub fn bind(self: *Self, other: *Self) void {
             const link_id = self.getNextBindId(other);
 
@@ -402,6 +411,10 @@ pub fn Atom(comptime T: type) type {
         /// Thread-safe set operation. If doing a read-modify-write operation
         /// you must use the rmw() method.
         /// This also removes any previously set animation!
+        /// Overall, this function will:
+        /// - clear the current animation, if any
+        /// - call all the change listeners
+        /// - update all atoms that are bound to it
         pub fn set(self: *Self, value: T) void {
             self.extendedSet(value, .{});
         }
@@ -540,6 +553,27 @@ pub fn Atom(comptime T: type) type {
 
             self.depend_on_callback = fn_ptr;
             self.depend_on_wrappers = wrappers;
+        }
+
+        test dependOn {
+            var a = Atom(u64).of(1);
+            var b = Atom([]const u8).of("Hello");
+
+            const cFunction = struct {
+                fn cFunction(int: u64, string: []const u8) u64 {
+                    return int + string.len;
+                }
+            }.cFunction;
+
+            // Alternatively, you could use Atom.derived instead of .of(undefined)
+            var c = Atom(u64).of(undefined);
+            try c.dependOn(.{ &a, &b }, &cFunction);
+            // now c is equal to 6 because 1 + 5 = 6
+
+            a.set(5);
+            // now c is equal to 10
+            b.set("no");
+            // and now c is equal to 7
         }
 
         fn callHandlers(self: *Self) void {
@@ -799,7 +833,7 @@ pub const Rectangle = struct {
 
 const expectEqual = std.testing.expectEqual;
 
-test "lerp" {
+test lerp {
     const floatTypes = .{ f16, f32, f64, f80, f128, c_longdouble };
 
     inline for (floatTypes) |Float| {
@@ -810,7 +844,7 @@ test "lerp" {
     }
 }
 
-test "atoms" {
+test Atom {
     var testData = Atom(i32).of(0);
     testData.set(5);
     try expectEqual(@as(i32, 5), testData.get());
