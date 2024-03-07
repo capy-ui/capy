@@ -21,6 +21,9 @@ pub fn init() BackendError!void {
     if (!hasInit) {
         hasInit = true;
     }
+    const NSApplication = objc.getClass("NSApplication").?;
+    const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
+    std.log.info("the app is {}", .{app});
 }
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
@@ -110,17 +113,12 @@ pub const Window = struct {
 
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow").?;
-        const rect = AppKit.NSRect.make(100, 100, 200, 200);
-        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable | AppKit.NSWindowStyleMask.FullSizeContentView;
-
-        std.log.info("make new rect", .{});
-        // const newRect = objc.msgSendByName(objc.NSRect, NSWindow, "frameRectForContentRect:styleMask:", .{ rect, style }) catch unreachable;
-
-        std.log.info("make ", .{});
-        // std.log.info("new rect: {x}", .{@as(u64, @bitCast(newRect.origin.y))});
+        const rect = AppKit.NSRect.make(0, 0, 600, 200);
+        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable;
         const flag: u8 = @intFromBool(false);
 
-        const window = NSWindow.msgSend(
+        const window = NSWindow.msgSend(objc.Object, "alloc", .{});
+        _ = window.msgSend(
             objc.Object,
             "initWithContentRect:styleMask:backing:defer:",
             .{ rect, style, AppKit.NSBackingStore.Buffered, flag },
@@ -163,12 +161,12 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        _ = self;
-        // std.log.info("show window", .{});
+        std.log.info("show window", .{});
+        self.peer.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.value});
         // objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
         // objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
-        // std.log.info("showed window", .{});
-        // _ = activeWindows.fetchAdd(1, .Release);
+        std.log.info("showed window", .{});
+        _ = activeWindows.fetchAdd(1, .Release);
     }
 
     pub fn close(self: *Window) void {
