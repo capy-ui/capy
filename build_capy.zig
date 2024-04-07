@@ -68,90 +68,87 @@ const WebServerStep = struct {
 
         const self = @fieldParentPtr(WebServerStep, "step", step);
         const allocator = step.owner.allocator;
+        _ = allocator;
 
-        var server = Server.init(allocator, .{ .reuse_address = true });
-        defer server.deinit();
+        const address = std.net.Address.parseIp("::1", 8080) catch unreachable;
+        var net_server = try address.listen(.{ .reuse_address = true });
 
-        try server.listen(try std.net.Address.parseIp("127.0.0.1", 8080));
         std.debug.print("Web server opened at http://localhost:8080/\n", .{});
 
         while (true) {
-            var res = try server.accept(.{ .allocator = allocator });
-            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, &res });
+            const res = try net_server.accept();
+            var read_buffer: [4096]u8 = undefined;
+            var server = Server.init(res, &read_buffer);
+            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, &server });
             thread.detach();
         }
     }
 
-    fn handler(self: *WebServerStep, build: *std.Build, res: *Server.Response) !void {
+    fn handler(self: *WebServerStep, build: *std.Build, res: *Server) !void {
         const allocator = build.allocator;
         const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
 
-        while (true) {
-            defer _ = res.reset();
-            try res.wait();
+        var req = try res.receiveHead();
+        var arena = std.heap.ArenaAllocator.init(allocator);
+        defer arena.deinit();
+        const req_allocator = arena.allocator();
 
-            var arena = std.heap.ArenaAllocator.init(allocator);
-            defer arena.deinit();
-            const req_allocator = arena.allocator();
-
-            const path = res.request.target;
-            var file_path: []const u8 = "";
-            var content_type: []const u8 = "text/html";
-            if (std.mem.eql(u8, path, "/")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/index.html" });
-                content_type = "text/html";
-            } else if (std.mem.eql(u8, path, "/capy.js")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy.js" });
+        const path = req.head.target;
+        var file_path: []const u8 = "";
+        var content_type: []const u8 = "text/html";
+        if (std.mem.eql(u8, path, "/")) {
+            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/index.html" });
+            content_type = "text/html";
+        } else if (std.mem.eql(u8, path, "/capy.js")) {
+            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy.js" });
+            content_type = "application/javascript";
+        } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
+            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
+            content_type = "application/javascript";
+        } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
+            file_path = self.exe.getEmittedBin().getPath2(build, &self.step);
+            content_type = "application/wasm";
+        } else if (std.mem.eql(u8, path, "/extras.js")) {
+            if (self.options.extras_js_file) |extras_path| {
+                file_path = extras_path;
                 content_type = "application/javascript";
-            } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
-                file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
-                content_type = "application/javascript";
-            } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
-                file_path = self.exe.getEmittedBin().getPath2(build, &self.step);
-                content_type = "application/wasm";
-            } else if (std.mem.eql(u8, path, "/extras.js")) {
-                if (self.options.extras_js_file) |extras_path| {
-                    file_path = extras_path;
-                    content_type = "application/javascript";
-                }
             }
-
-            if (self.options.debug_requests) {
-                std.log.debug("{s} -> {s}", .{ path, file_path });
-            }
-            const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
-                switch (err) {
-                    error.FileNotFound => break :blk null,
-                    else => return err,
-                }
-            };
-            const content = blk: {
-                if (file) |f| {
-                    defer f.close();
-                    break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
-                } else {
-                    res.status = .not_found;
-                    break :blk "404 Not Found";
-                }
-            };
-
-            res.transfer_encoding = .{ .content_length = content.len };
-            // try res.headers.append("Connection", res.request.headers.getFirstValue("Connection") orelse "close");
-            try res.headers.append("Connection", "close");
-            try res.headers.append("Content-Type", content_type);
-            try res.headers.append("Cross-Origin-Opener-Policy", "same-origin");
-            try res.headers.append("Cross-Origin-Embedder-Policy", "require-corp");
-
-            if (@hasDecl(std.http.Server.Response, "do")) {
-                try res.do();
-            } else {
-                try res.send();
-            }
-            try res.writer().writeAll(content);
-            try res.finish();
-
-            if (res.connection.closing or true) break;
         }
+
+        if (self.options.debug_requests) {
+            std.log.debug("{s} -> {s}", .{ path, file_path });
+        }
+        const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk: {
+            switch (err) {
+                error.FileNotFound => break :blk null,
+                else => return err,
+            }
+        };
+
+        var status: std.http.Status = .ok;
+        const content = blk: {
+            if (file) |f| {
+                defer f.close();
+                break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+            } else {
+                status = .not_found;
+                break :blk "404 Not Found";
+            }
+        };
+
+        try req.respond(content, .{
+            .status = status,
+            .keep_alive = false,
+            .extra_headers = &.{
+                .{ .name = "Connection", .value = "close" },
+                .{ .name = "Content-Type", .value = content_type },
+                .{ .name = "Cross-Origin-Opener-Policy", .value = "same-origin" },
+                .{ .name = "Cross-Origin-Embedder-Policy", .value = "require-corp" },
+                // TODO: Content-Length ?
+            },
+            .transfer_encoding = .none,
+        });
+        res.connection.stream.close();
     }
 };
 
@@ -166,9 +163,11 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
     const b = step.step.owner;
     step.subsystem = .Native;
 
-    const zigimg = b.createModule(.{
-        .root_source_file = .{ .path = prefix ++ "/vendor/zigimg/zigimg.zig" },
+    const zigimg_dep = b.dependency("zigimg", .{
+        .target = step.root_module.resolved_target.?,
+        .optimize = step.root_module.optimize orelse .Debug,
     });
+    const zigimg = zigimg_dep.module("zigimg");
 
     const zigwin32 = b.createModule(.{
         .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },

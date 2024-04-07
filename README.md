@@ -2,6 +2,8 @@
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
+**Target Zig Version: `0.12.0-dev.3180+83e578a18` ([`2024.3.0-mach`](https://machengine.org/about/nominated-zig/))**
+
 ---
 
 [![Code Coverage](https://img.shields.io/codecov/c/github/capy-ui/capy?style=for-the-badge)](https://app.codecov.io/gh/capy-ui/capy)
@@ -25,8 +27,6 @@ It has been made with the goal to empower standalone UI applications, integratio
 - *Tiny* executables - Every [example](https://github.com/capy-ui/capy/tree/master/examples)'s size < 2MB, which is smaller than 'hello world' in Go
 
 ## Usage
-
-**Target Zig Version: `0.12.0-dev.2063+804cee3b9` ([`2024.1.0-mach`](https://machengine.org/about/nominated-zig/))**
 
 A simple application using capy:
 

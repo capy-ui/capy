@@ -64,18 +64,26 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             client.* = .{ .allocator = internal.lasting_allocator };
 
             const uri = try std.Uri.parse(self.url);
-            var headers = std.http.Headers{ .allocator = internal.lasting_allocator };
-            try headers.append("Connection", "close");
-            var request = try client.open(.GET, uri, headers, .{});
+            const server_header_buffer = try internal.lasting_allocator.alloc(u8, 64 * 1024);
+            var request = try client.open(.GET, uri, .{
+                .headers = .{},
+                .keep_alive = false,
+                .server_header_buffer = server_header_buffer,
+            });
             try request.send(.{});
             try request.finish();
-            return HttpResponse{ .request = request, .client = client };
+            return HttpResponse{
+                .request = request,
+                .client = client,
+                .server_header_buffer = server_header_buffer,
+            };
         }
     };
 
     pub const HttpResponse = struct {
         client: *std.http.Client,
         request: std.http.Client.Request,
+        server_header_buffer: []u8,
 
         pub const ReadError = std.http.Client.Request.ReadError;
         pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
@@ -113,6 +121,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
             self.request.deinit();
             self.client.deinit();
             internal.lasting_allocator.destroy(self.client);
+            internal.lasting_allocator.free(self.server_header_buffer);
         }
     };
 };
