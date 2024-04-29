@@ -16,14 +16,17 @@ pub const PeerType = objc.Object;
 const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 var activeWindows = atomicValue(usize).init(0);
 var hasInit: bool = false;
+var finishedLaunching = false;
 
 pub fn init() BackendError!void {
     if (!hasInit) {
         hasInit = true;
+        const NSApplication = objc.getClass("NSApplication").?;
+        const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
+        app.msgSend(void, "setActivationPolicy:", .{AppKit.NSApplicationActivationPolicy.Regular});
+        app.msgSend(void, "activateIgnoringOtherApps:", .{@as(u8, @intFromBool(true))});
+        std.log.info("the app is {}", .{app});
     }
-    const NSApplication = objc.getClass("NSApplication").?;
-    const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
-    std.log.info("the app is {}", .{app});
 }
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
@@ -113,8 +116,8 @@ pub const Window = struct {
 
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow").?;
-        const rect = AppKit.NSRect.make(0, 0, 600, 200);
-        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable;
+        const rect = AppKit.NSRect.make(0, 0, 800, 600);
+        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Resizable;
         const flag: u8 = @intFromBool(false);
 
         const window = NSWindow.msgSend(objc.Object, "alloc", .{});
@@ -225,6 +228,14 @@ pub fn postEmptyEvent() void {
 }
 
 pub fn runStep(step: shared.EventLoopStep) bool {
-    _ = step;
+    if (!finishedLaunching) {
+        finishedLaunching = true;
+        const NSApplication = objc.getClass("NSApplication").?;
+        const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
+        app.msgSend(void, "finishLaunching", .{});
+        if (step == .Blocking) {
+            app.msgSend(void, "run", .{});
+        }
+    }
     return activeWindows.load(.Acquire) != 0;
 }

@@ -1,6 +1,11 @@
 // TODO: auto-generator from objective-c files?
 pub const NSUInteger = u64;
 
+pub const NSApplicationActivationPolicy = enum(NSUInteger) {
+    Regular,
+    Accessory,
+};
+
 pub const NSWindowStyleMask = struct {
     pub const Borderless: NSUInteger = 0;
     pub const Titled: NSUInteger = 1 << 0;
