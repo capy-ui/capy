@@ -182,7 +182,12 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
             .{ .name = "zigwin32", .module = zigwin32 },
         },
     });
-    step.root_module.addImport("capy", capy);
+    if (options.link_libraries_on_root_module) {
+        step.root_module.addImport("zigimg", zigimg);
+        step.root_module.addImport("zigwin32", zigwin32);
+    } else {
+        step.root_module.addImport("capy", capy);
+    }
 
     const module = if (options.link_libraries_on_root_module)
         &step.root_module
