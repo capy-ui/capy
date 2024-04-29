@@ -117,7 +117,7 @@ pub const Window = struct {
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow").?;
         const rect = AppKit.NSRect.make(0, 0, 800, 600);
-        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Resizable;
+        const style = AppKit.NSWindowStyleMask.Titled | AppKit.NSWindowStyleMask.Closable | AppKit.NSWindowStyleMask.Miniaturizable | AppKit.NSWindowStyleMask.Resizable;
         const flag: u8 = @intFromBool(false);
 
         const window = NSWindow.msgSend(objc.Object, "alloc", .{});
