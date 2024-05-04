@@ -163,29 +163,12 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
     const b = step.step.owner;
     step.subsystem = .Native;
 
-    const zigimg_dep = b.dependency("zigimg", .{
-        .target = step.root_module.resolved_target.?,
-        .optimize = step.root_module.optimize orelse .Debug,
-    });
-    const zigimg = zigimg_dep.module("zigimg");
-
-    const zigwin32 = b.createModule(.{
-        .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
-    });
-
     const capy = b.createModule(.{
         .root_source_file = .{ .path = prefix ++ "/src/main.zig" },
         .target = step.root_module.resolved_target,
-        .imports = &.{
-            .{ .name = "zigimg", .module = zigimg },
-            // TODO: do not put as dependency if target os isn't windows
-            .{ .name = "zigwin32", .module = zigwin32 },
-        },
+        .imports = &.{},
     });
-    if (options.link_libraries_on_root_module) {
-        step.root_module.addImport("zigimg", zigimg);
-        step.root_module.addImport("zigwin32", zigwin32);
-    } else {
+    if (!options.link_libraries_on_root_module) {
         step.root_module.addImport("capy", capy);
     }
 
@@ -193,12 +176,24 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
         &step.root_module
     else
         capy;
+
+    const zigimg_dep = b.dependency("zigimg", .{
+        .target = step.root_module.resolved_target.?,
+        .optimize = step.root_module.optimize orelse .Debug,
+    });
+    const zigimg = zigimg_dep.module("zigimg");
+    module.addImport("zigimg", zigimg);
     switch (step.rootModuleTarget().os.tag) {
         .windows => {
             switch (step.root_module.optimize orelse .Debug) {
                 .Debug => step.subsystem = .Console,
                 else => step.subsystem = .Windows,
             }
+            const zigwin32 = b.createModule(.{
+                .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
+            });
+            module.addImport("zigwin32", zigwin32);
+
             module.linkSystemLibrary("comctl32", .{});
             module.linkSystemLibrary("gdi32", .{});
             module.linkSystemLibrary("gdiplus", .{});
