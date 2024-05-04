@@ -3,7 +3,10 @@ const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const objc = @import("objc");
 const AppKit = @import("AppKit.zig");
+const CapyAppDelegate = @import("CapyAppDelegate.zig");
 const trait = @import("../../trait.zig");
+
+const nil = objc.Object.fromId(@as(?*anyopaque, null));
 
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
@@ -17,15 +20,17 @@ const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std
 var activeWindows = atomicValue(usize).init(0);
 var hasInit: bool = false;
 var finishedLaunching = false;
+var initPool: *objc.AutoreleasePool = undefined;
 
 pub fn init() BackendError!void {
     if (!hasInit) {
         hasInit = true;
+        initPool = objc.AutoreleasePool.init();
         const NSApplication = objc.getClass("NSApplication").?;
         const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
         app.msgSend(void, "setActivationPolicy:", .{AppKit.NSApplicationActivationPolicy.Regular});
         app.msgSend(void, "activateIgnoringOtherApps:", .{@as(u8, @intFromBool(true))});
-        std.log.info("the app is {}", .{app});
+        app.msgSend(void, "setDelegate:", .{CapyAppDelegate.get()});
     }
 }
 
@@ -164,11 +169,7 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        std.log.info("show window", .{});
         self.peer.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.value});
-        // objc.msgSendByName(void, self.peer, "setIsVisible:", .{ @as(objc.id, self.peer), @as(u8, @intFromBool(true)) }) catch unreachable;
-        // objc.msgSendByName(void, self.peer, "makeKeyAndOrderFront:", .{@as(objc.id, self.peer)}) catch unreachable;
-        std.log.info("showed window", .{});
         _ = activeWindows.fetchAdd(1, .Release);
     }
 
@@ -228,14 +229,40 @@ pub fn postEmptyEvent() void {
 }
 
 pub fn runStep(step: shared.EventLoopStep) bool {
+    const NSApplication = objc.getClass("NSApplication").?;
+    const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
     if (!finishedLaunching) {
         finishedLaunching = true;
-        const NSApplication = objc.getClass("NSApplication").?;
-        const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
-        app.msgSend(void, "finishLaunching", .{});
+        // app.msgSend(void, "finishLaunching", .{});
         if (step == .Blocking) {
+            // Run the NSApplication and stop it immediately using the delegate.
+            // This is a similar technique to what GLFW does (see cocoa_window.m)
             app.msgSend(void, "run", .{});
         }
+    }
+
+    // Implement the event loop manually
+    // Passing distantFuture as the untilDate causes the behaviour of EventLoopStep.Blocking
+    // Passing distantPast as the untilDate causes the behaviour of EventLoopStep.Asynchronous
+    const pool = objc.AutoreleasePool.init();
+    defer pool.deinit();
+
+    const NSDate = objc.getClass("NSDate").?;
+    const distant_past = NSDate.msgSend(objc.Object, "distantPast", .{});
+    const distant_future = NSDate.msgSend(objc.Object, "distantFuture", .{});
+
+    const event = app.msgSend(objc.Object, "nextEventMatchingMask:untilDate:inMode:dequeue:", .{
+        AppKit.NSEventMaskAny,
+        switch (step) {
+            .Asynchronous => distant_past,
+            .Blocking => distant_future,
+        },
+        AppKit.NSDefaultRunLoopMode,
+        true,
+    });
+    if (event.value != null) {
+        app.msgSend(void, "sendEvent:", .{event});
+        // app.msgSend(void, "updateWindows", .{});
     }
     return activeWindows.load(.Acquire) != 0;
 }

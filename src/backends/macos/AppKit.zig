@@ -1,4 +1,5 @@
 // TODO: auto-generator from objective-c files?
+const objc = @import("objc");
 pub const NSUInteger = u64;
 
 pub const NSApplicationActivationPolicy = enum(NSUInteger) {
@@ -25,6 +26,10 @@ pub const NSBackingStore = enum(NSUInteger) {
     /// The window renders all drawing into a display buffer and then flushes it to the screen.
     Buffered,
 };
+
+pub extern var NSDefaultRunLoopMode: objc.c.id;
+
+pub const NSEventMaskAny: NSUInteger = @import("std").math.maxInt(NSUInteger);
 
 pub const CGFloat = f64;
 
