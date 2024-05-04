@@ -10,7 +10,8 @@ pub fn main() !void {
         capy.row(.{}, .{}),
     );
 
-    // window.resize(800, 450);
+    window.setTitle("Basic Backend Test");
+    window.setPreferredSize(800, 450);
     window.show();
     capy.runEventLoop();
 }

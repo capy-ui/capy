@@ -138,22 +138,20 @@ pub const Window = struct {
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        _ = height;
-        _ = width;
-        _ = self;
-        // const frame = objc.NSRect.make(
-        //     100,
-        //     100,
-        //     @as(objc.CGFloat, @floatFromInt(width)),
-        //     @as(objc.CGFloat, @floatFromInt(height)),
-        // );
-        // // TODO: resize animation can be handled using a DataWrapper on the user-facing API
-        // _ = objc.msgSendByName(void, self.peer, "setFrame:display:", .{ frame, true }) catch unreachable;
+        var frame = self.peer.getProperty(AppKit.NSRect, "frame");
+        frame.size.width = @floatFromInt(width);
+        frame.size.height = @floatFromInt(height);
+        self.peer.msgSend(void, "setFrame:display:", .{ frame, true });
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
-        _ = self;
-        _ = title;
+        const pool = objc.AutoreleasePool.init();
+        defer pool.deinit();
+
+        const NSString = objc.getClass("NSString").?;
+        const string = NSString.msgSend(objc.Object, "alloc", .{})
+            .msgSend(objc.Object, "initWithUTF8String:", .{title});
+        self.peer.setProperty("title", string);
     }
 
     pub fn setChild(self: *Window, peer: ?PeerType) void {
@@ -174,8 +172,8 @@ pub const Window = struct {
     }
 
     pub fn close(self: *Window) void {
-        _ = self;
-        @panic("TODO: close window");
+        self.peer.msgSend(void, "close", .{});
+        _ = activeWindows.fetchSub(1, .Release);
     }
 };
 
@@ -233,10 +231,9 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     const app = NSApplication.msgSend(objc.Object, "sharedApplication", .{});
     if (!finishedLaunching) {
         finishedLaunching = true;
-        // app.msgSend(void, "finishLaunching", .{});
         if (step == .Blocking) {
             // Run the NSApplication and stop it immediately using the delegate.
-            // This is a similar technique to what GLFW does (see cocoa_window.m)
+            // This is a similar technique to what GLFW does (see cocoa_window.m in GLFW's source code)
             app.msgSend(void, "run", .{});
         }
     }
