@@ -557,7 +557,9 @@ pub fn Atom(comptime T: type) type {
 
         test dependOn {
             var a = Atom(u64).of(1);
+            defer a.deinit();
             var b = Atom([]const u8).of("Hello");
+            defer b.deinit();
 
             const cFunction = struct {
                 fn cFunction(int: u64, string: []const u8) u64 {
@@ -567,6 +569,7 @@ pub fn Atom(comptime T: type) type {
 
             // Alternatively, you could use Atom.derived instead of .of(undefined)
             var c = Atom(u64).of(undefined);
+            defer c.deinit();
             try c.dependOn(.{ &a, &b }, &cFunction);
             // now c is equal to 6 because 1 + 5 = 6
 
