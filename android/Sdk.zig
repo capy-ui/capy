@@ -741,7 +741,7 @@ const CreateResourceDirectory = struct {
 
     fn make(step: *Step, progress: *std.Progress.Node) !void {
         _ = progress;
-        const self = @fieldParentPtr(Self, "step", step);
+        const self: *Self = @fieldParentPtr("step", step);
 
         // if (std.fs.path.dirname(strings_xml)) |dir| {
         //     std.fs.cwd().makePath(dir) catch unreachable;
@@ -1199,7 +1199,7 @@ const BuildOptionStep = struct {
 
     fn make(step: *Step, progress: *std.Progress.Node) !void {
         _ = progress;
-        const self = @fieldParentPtr(Self, "step", step);
+        const self: *Self = @fieldParentPtr("step", step);
 
         var cacher = createCacheBuilder(self.builder);
         cacher.addBytes(self.file_content.items);

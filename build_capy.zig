@@ -66,7 +66,7 @@ const WebServerStep = struct {
         // There's no progress to report on.
         _ = prog_node;
 
-        const self = @fieldParentPtr(WebServerStep, "step", step);
+        const self: *WebServerStep = @fieldParentPtr("step", step);
         const allocator = step.owner.allocator;
         _ = allocator;
 

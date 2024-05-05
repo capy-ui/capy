@@ -168,12 +168,12 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         self.peer.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.value});
-        _ = activeWindows.fetchAdd(1, .Release);
+        _ = activeWindows.fetchAdd(1, .release);
     }
 
     pub fn close(self: *Window) void {
         self.peer.msgSend(void, "close", .{});
-        _ = activeWindows.fetchSub(1, .Release);
+        _ = activeWindows.fetchSub(1, .release);
     }
 };
 
@@ -261,5 +261,5 @@ pub fn runStep(step: shared.EventLoopStep) bool {
         app.msgSend(void, "sendEvent:", .{event});
         // app.msgSend(void, "updateWindows", .{});
     }
-    return activeWindows.load(.Acquire) != 0;
+    return activeWindows.load(.acquire) != 0;
 }

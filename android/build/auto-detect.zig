@@ -367,7 +367,7 @@ pub fn findUserConfig(b: *Builder, versions: Sdk.ToolchainVersions) !UserConfig 
             print("\n", .{});
         }
 
-        std.os.exit(1);
+        std.process.exit(1);
     }
 
     if (config_dirty) {

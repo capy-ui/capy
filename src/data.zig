@@ -430,9 +430,9 @@ pub fn Atom(comptime T: type) type {
             // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
-            if ((if (@hasDecl(atomicValue(bool), "cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .SeqCst, .SeqCst) else self.bindLock.cmpxchg(true, false, true, .SeqCst, .SeqCst) // support zig 0.11 as well as current master
+            if ((if (@hasDecl(atomicValue(bool), "cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .seq_cst, .seq_cst) else self.bindLock.cmpxchg(true, false, true, .SeqCst, .SeqCst) // support zig 0.11 as well as current master
             ) == null) {
-                defer self.bindLock.store(false, .SeqCst);
+                defer self.bindLock.store(false, .seq_cst);
 
                 {
                     if (options.locking) self.lock.lock();
