@@ -1,4 +1,4 @@
-![Capy](https://capy-ui.org/img/capy_big.png)
+![Capy](https://capy-ui.org/img/capy_big2.png)
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
