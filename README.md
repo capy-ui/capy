@@ -1,4 +1,11 @@
-![Capy](https://capy-ui.org/img/capy_big2.png)
+<a href="https://capy-ui.org">
+    <p align="center">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="https://capy-ui.org/img/capy_big2_dark.png">
+            <img src="https://capy-ui.org/capy_big2.png" alt="Capy UI" height="200px">
+        </picture>
+    </p>
+</a>
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
