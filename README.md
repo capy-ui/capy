@@ -2,7 +2,7 @@
     <p align="center">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="https://capy-ui.org/img/capy_big2_dark.png">
-            <img src="https://capy-ui.org/capy_big2.png" alt="Capy UI" height="200px">
+            <img src="https://capy-ui.org/img/capy_big2.png" alt="Capy UI" height="200px">
         </picture>
     </p>
 </a>
