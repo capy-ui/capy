@@ -56,3 +56,39 @@ pub const CGRect = extern struct {
 };
 
 pub const NSRect = CGRect;
+
+pub const nil: objc.c.id = null;
+
+pub const NSStringEncoding = enum(NSUInteger) {
+    ASCII = 1,
+    NEXTSTEP,
+    JapaneseEUC,
+    UTF8,
+    ISOLatin1,
+    Symbol,
+    NonLossyASCII,
+    ShiftJIS,
+    ISOLatin2,
+    Unicode,
+    WindowsCP1251,
+    WindowsCP1252,
+    WindowsCP1253,
+    WindowsCP1254,
+    WindowsCP1250,
+    ISO2022JP,
+    MacOSRoman,
+    UTF16,
+    UTF16BigEndian,
+    UTF16LittleEndian,
+    UTF32,
+    UTF32BigEndian,
+    UTF32LittleEndian,
+    Proprietary,
+};
+
+pub fn nsString(str: [*:0]const u8) objc.Object {
+    const NSString = objc.getClass("NSString").?;
+    const object = NSString.msgSend(objc.Object, "alloc", .{})
+        .msgSend(objc.Object, "initWithUTF8String:", .{str});
+    return object;
+}

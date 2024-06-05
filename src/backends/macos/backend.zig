@@ -16,6 +16,8 @@ const MouseButton = shared.MouseButton;
 // pub const PeerType = *opaque {};
 pub const PeerType = objc.Object;
 
+pub const Button = @import("components/Button.zig");
+
 const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 var activeWindows = atomicValue(usize).init(0);
 var hasInit: bool = false;
@@ -65,6 +67,11 @@ pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
 
+        pub fn setupEvents(peer: objc.Object) BackendError!void {
+            _ = peer;
+            // TODO
+        }
+
         pub fn setUserData(self: *T, data: anytype) void {
             comptime {
                 if (!trait.isSingleItemPtr(@TypeOf(data))) {
@@ -96,6 +103,16 @@ pub fn Events(comptime T: type) type {
             _ = self;
         }
 
+        pub fn getX(self: *const T) c_int {
+            _ = self;
+            return 0;
+        }
+
+        pub fn getY(self: *const T) c_int {
+            _ = self;
+            return 0;
+        }
+
         pub fn getWidth(self: *const T) u32 {
             _ = self;
             return 100;
@@ -104,6 +121,16 @@ pub fn Events(comptime T: type) type {
         pub fn getHeight(self: *const T) u32 {
             _ = self;
             return 100;
+        }
+
+        pub fn getPreferredSize(self: *const T) lib.Size {
+            if (@hasDecl(T, "getPreferredSize_impl")) {
+                return self.getPreferredSize_impl();
+            }
+            return lib.Size.init(
+                100,
+                100,
+            );
         }
 
         pub fn deinit(self: *const T) void {
@@ -148,15 +175,15 @@ pub const Window = struct {
         const pool = objc.AutoreleasePool.init();
         defer pool.deinit();
 
-        const NSString = objc.getClass("NSString").?;
-        const string = NSString.msgSend(objc.Object, "alloc", .{})
-            .msgSend(objc.Object, "initWithUTF8String:", .{title});
-        self.peer.setProperty("title", string);
+        self.peer.setProperty("title", AppKit.nsString(title));
     }
 
-    pub fn setChild(self: *Window, peer: ?PeerType) void {
-        _ = self;
-        _ = peer;
+    pub fn setChild(self: *Window, optional_peer: ?PeerType) void {
+        if (optional_peer) |peer| {
+            self.peer.setProperty("contentView", peer);
+        } else {
+            @panic("TODO: set null child");
+        }
     }
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
