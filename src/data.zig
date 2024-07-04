@@ -100,6 +100,7 @@ pub fn isAtom(comptime T: type) bool {
     return @hasDecl(T, "ValueType") and T == Atom(T.ValueType);
 }
 
+// TODO: use ListAtom when it's done
 pub var _animatedAtoms = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
     userdata: *anyopaque,
@@ -107,11 +108,11 @@ pub var _animatedAtoms = std.ArrayList(struct {
 pub var _animatedAtomsLength = Atom(usize).of(0);
 pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
-fn isAnimableType(comptime T: type) bool {
+fn isAnimatableType(comptime T: type) bool {
     if (trait.isNumber(T) or (trait.isContainer(T) and @hasDecl(T, "lerp"))) {
         return true;
     } else if (trait.is(.Optional)(T)) {
-        return isAnimableType(std.meta.Child(T));
+        return isAnimatableType(std.meta.Child(T));
     }
     return false;
 }
@@ -125,7 +126,7 @@ fn isAnimableType(comptime T: type) bool {
 /// Then, you can use `Atom(T).of` in order to a get an atom for the given value.
 pub fn Atom(comptime T: type) type {
     return struct {
-        value: if (isAnimable) union(enum) { Single: T, Animated: Animation(T) } else T,
+        value: if (isAnimatable) union(enum) { Single: T, Animated: Animation(T) } else T,
         // TODO: switch to a lock that allow concurrent reads but one concurrent write
         lock: std.Thread.Mutex = .{},
         /// List of every change listener listening to this atom.
@@ -154,7 +155,7 @@ pub fn Atom(comptime T: type) type {
         allocator: ?std.mem.Allocator = null,
 
         const Self = @This();
-        const isAnimable = isAnimableType(T);
+        const isAnimatable = isAnimatableType(T);
         const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 
         pub const ValueType = T;
@@ -172,7 +173,7 @@ pub fn Atom(comptime T: type) type {
         const BindingList = std.SinglyLinkedList(Binding);
 
         pub fn of(value: T) Self {
-            if (isAnimable) {
+            if (isAnimatable) {
                 return Self{ .value = .{ .Single = value } };
             } else {
                 return Self{ .value = value };
@@ -261,7 +262,7 @@ pub fn Atom(comptime T: type) type {
         /// This function updates any current animation.
         /// It returns true if the animation isn't done, false otherwises.
         pub fn update(self: *Self) bool {
-            if (!isAnimable) return false;
+            if (!isAnimatable) return false;
             switch (self.value) {
                 .Animated => |animation| {
                     if (std.time.milliTimestamp() >= animation.start + animation.duration) {
@@ -278,14 +279,14 @@ pub fn Atom(comptime T: type) type {
 
         /// Returns true if there is currently an animation playing.
         pub fn hasAnimation(self: *Self) bool {
-            if (!isAnimable) return false;
+            if (!isAnimatable) return false;
             return self.update();
         }
 
         /// Starts an animation on the atom, from the current value to the `target` value. The
         /// animation will last `duration` milliseconds.
         pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
-            if (comptime !isAnimable) {
+            if (comptime !isAnimatable) {
                 @compileError("animate() called on data that is not animable");
             }
             const time = std.time.milliTimestamp();
@@ -399,7 +400,7 @@ pub fn Atom(comptime T: type) type {
         /// multi-threading. Do not use it! If you have an app with only one thread,
         /// then use the single_threaded build flag, don't use this function.
         pub fn getUnsafe(self: Self) T {
-            if (isAnimable) {
+            if (isAnimatable) {
                 return switch (self.value) {
                     .Single => |value| value,
                     .Animated => |animation| animation.get(),
@@ -439,7 +440,7 @@ pub fn Atom(comptime T: type) type {
                     if (options.locking) self.lock.lock();
                     defer self.lock.unlock();
 
-                    if (isAnimable) {
+                    if (isAnimatable) {
                         self.value = .{ .Single = value };
                     } else {
                         self.value = value;

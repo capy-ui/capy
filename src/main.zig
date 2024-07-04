@@ -44,8 +44,6 @@ pub const cross_platform = if (@hasDecl(backend, "backendExport"))
 else
     struct {};
 
-// pub const GlBackend = @import("backends/gles/backend.zig");
-
 pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
 pub const MouseButton = @import("backends/shared.zig").MouseButton;
 
