@@ -1,7 +1,7 @@
 .{
     .name = "capy",
     .version = "0.4.0",
-    .minimum_zig_version = "0.12.0-dev.2063+804cee3b9",
+    .minimum_zig_version = "0.13.0",
     .dependencies = .{
         .@"zig-objc" = .{
             .url = "https://github.com/mitchellh/zig-objc/archive/f6ed382b6db296626a9b56dadcf9d7e4fcba71d3.tar.gz",
@@ -18,5 +18,5 @@
             .hash = "1220dc313944ea71a87b4f54f26b1427ad2992a721a221cb42f7f80b8eee4e4944b7",
         },
     },
-    .paths = .{ "android", "include", "src", "vendor", "LICENSE", "README.md", "build.zig", "build_capy.zig", "build.zig.zon", },
+    .paths = .{""},
 }
