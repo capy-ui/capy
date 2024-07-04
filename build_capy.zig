@@ -186,7 +186,7 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
     switch (step.rootModuleTarget().os.tag) {
         .windows => {
             switch (step.root_module.optimize orelse .Debug) {
-                .Debug => step.subsystem = .Console,
+                .Debug => {},
                 else => step.subsystem = .Windows,
             }
             const zigwin32 = b.createModule(.{
@@ -198,12 +198,14 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
             module.linkSystemLibrary("gdi32", .{});
             module.linkSystemLibrary("gdiplus", .{});
 
-            // TODO: use capy.addWin32ResourceFile
-            switch (step.rootModuleTarget().cpu.arch) {
-                .x86_64 => module.addObjectFile(.{ .cwd_relative = prefix ++ "/src/backends/win32/res/x86_64.o" }),
-                //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
-                else => {}, // not much of a problem as it'll just lack styling
-            }
+            module.addWin32ResourceFile(.{
+                .file = .{ .cwd_relative = prefix ++ "/src/backends/win32/res/resource.rc" },
+            });
+            // switch (step.rootModuleTarget().cpu.arch) {
+            // .x86_64 => module.addObjectFile(.{ .cwd_relative = prefix ++ "/src/backends/win32/res/x86_64.o" }),
+            //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
+            // else => {}, // not much of a problem as it'll just lack styling
+            // }
         },
         .macos => {
             if (@import("builtin").os.tag != .macos) {

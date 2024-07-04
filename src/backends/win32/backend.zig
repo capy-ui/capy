@@ -331,6 +331,11 @@ pub const Window = struct {
         }
     }
 
+    pub fn registerTickCallback(self: *Window) void {
+        _ = self;
+        // TODO
+    }
+
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
         self.source_dpi = dpi;
     }
