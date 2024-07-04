@@ -48,7 +48,7 @@ pub fn Card(child: anytype) anyerror!*capy.Container {
     });
 }
 
-var submitDesc = capy.StringAtom.of("");
+var submitDesc = capy.Atom([]const u8).of("");
 var submitEnabled = capy.Atom(bool).of(false);
 var list_model: ListModel = undefined;
 
