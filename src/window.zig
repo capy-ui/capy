@@ -1,11 +1,13 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const internal = @import("internal.zig");
+const listener = @import("listener.zig");
 const Widget = @import("widget.zig").Widget;
 // const ImageData = @import("image.zig").ImageData;
 const MenuBar = @import("components/Menu.zig").MenuBar;
 const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
+const EventSource = listener.EventSource;
 
 const Display = struct { resolution: Size, dpi: u32 };
 
@@ -26,6 +28,9 @@ pub const Window = struct {
     /// The maximum refresh rate of the screen the window is atleast partially in.
     /// For instance, if a window is on both screen A (60Hz) and B (144Hz) then the value of screenRefreshRate will be 144Hz.
     screenRefreshRate: Atom(f32) = Atom(f32).of(60),
+    /// Event source called whenever a frame would be drawn.
+    /// This can be used for synchronizing animations to the window's monitor's sync rate.
+    on_frame: EventSource,
 
     pub const Feature = enum {
         Title,
@@ -35,10 +40,17 @@ pub const Window = struct {
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
-        var window = Window{ .peer = peer };
+        var window = Window{
+            .peer = peer,
+            .on_frame = EventSource.init(internal.lasting_allocator),
+        };
         window.setSourceDpi(96);
         window.setPreferredSize(640, 480);
         try window.peer.setCallback(.Resize, sizeChanged);
+        try window.peer.setCallback(.PropertyChange, propertyChanged);
+
+        // TODO: call only when there is at least one listener on EventSource
+        window.peer.registerTickCallback();
 
         return window;
     }
@@ -107,6 +119,14 @@ pub const Window = struct {
         self.size.set(.{ .width = width, .height = height });
     }
 
+    pub fn propertyChanged(name: []const u8, value: *const anyopaque, data: usize) void {
+        const self: *Window = @ptrFromInt(data);
+        if (std.mem.eql(u8, name, "tick_id")) {
+            _ = value;
+            self.on_frame.callListeners();
+        }
+    }
+
     // TODO: minimumSize and maximumSize
 
     pub fn hasFeature(self: *Window, feature: Window.Feature) bool {
@@ -137,6 +157,7 @@ pub const Window = struct {
         if (self._child) |child| {
             child.unref();
         }
+        self.on_frame.deinitAllListeners();
         self.peer.deinit();
     }
 };

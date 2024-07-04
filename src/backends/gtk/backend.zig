@@ -206,6 +206,31 @@ pub const Window = struct {
         _ = activeWindows.fetchAdd(1, .release);
     }
 
+    pub fn registerTickCallback(self: *Window) void {
+        _ = c.gtk_widget_add_tick_callback(
+            self.peer,
+            &tickCallback,
+            null,
+            null,
+        );
+    }
+
+    /// Callback called by GTK on each frame (tied to the monitor's sync rate)
+    fn tickCallback(
+        widget: ?*c.GtkWidget,
+        frame_clock: ?*c.GdkFrameClock,
+        user_data: ?*anyopaque,
+    ) callconv(.C) c.gboolean {
+        _ = frame_clock;
+        _ = user_data;
+        const data = getEventUserData(widget.?);
+        if (data.user.propertyChangeHandler) |handler| {
+            const id: u64 = 0;
+            handler("tick_id", &id, data.userdata);
+        }
+        return @intFromBool(c.G_SOURCE_CONTINUE);
+    }
+
     pub fn close(self: *Window) void {
         c.gtk_window_close(@as(*c.GtkWindow, @ptrCast(self.peer)));
     }

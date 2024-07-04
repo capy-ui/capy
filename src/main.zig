@@ -72,15 +72,15 @@ pub fn deinit() void {
     }
 }
 
-// /// Posts an empty event to finish the current step started in zgt.stepEventLoop
+/// Posts an empty event to finish the current step started in capy.stepEventLoop
 pub fn wakeEventLoop() void {
     backend.postEmptyEvent();
 }
 
-// /// Returns false if the last window has been closed.
-// /// Even if the wanted step type is Blocking, zgt has the right
-// /// to request an asynchronous step to the backend in order to animate
-// /// data wrappers.
+/// Returns false if the last window has been closed.
+/// Even if the wanted step type is Blocking, capy has the right
+/// to request an asynchronous step to the backend in order to animate
+/// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
     eventStep.callListeners();
 

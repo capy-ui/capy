@@ -3,6 +3,7 @@ const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Atom = @import("data.zig").Atom;
 
 pub const EventSource = struct {
+    // TODO: use ListAtom(*Listener)
     listeners: std.ArrayList(*Listener),
 
     pub fn init(allocator: std.mem.Allocator) EventSource {
@@ -33,6 +34,7 @@ pub const EventSource = struct {
         }
     }
 
+    /// Returns true if there is atleast one listener listening to this event source
     pub fn hasEnabledListeners(self: *const EventSource) bool {
         var result = false;
 
@@ -60,7 +62,7 @@ pub const Listener = struct {
     listened: *EventSource,
     callback: *const fn (userdata: ?*anyopaque) void,
     userdata: ?*anyopaque = null,
-    /// The listener is called only if enabled is set to true.
+    /// The listener is called only when it is enabled.
     enabled: Atom(bool) = Atom(bool).of(true),
 
     pub const Config = struct {

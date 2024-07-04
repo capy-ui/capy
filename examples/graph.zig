@@ -193,17 +193,32 @@ pub fn main() !void {
     window.setPreferredSize(800, 600);
     window.show();
 
-    var animStart: i64 = 0;
-    while (capy.stepEventLoop(.Asynchronous)) {
-        var dt = std.time.milliTimestamp() - animStart;
-        if (dt > 1500) {
-            animStart = std.time.milliTimestamp();
-            continue;
-        } else if (dt > 1000) {
-            dt = 1000;
-        }
-        const t = @as(f32, @floatFromInt(dt)) / 1000;
-        rectangleX.set(graph.dataFn.get()(t * 10.0));
-        std.time.sleep(30);
-    }
+    const ListenerData = struct {
+        rectangleX: *capy.Atom(f32),
+        animStart: i64,
+    };
+    var listener_data = ListenerData{
+        .rectangleX = &rectangleX,
+        .animStart = std.time.milliTimestamp(),
+    };
+
+    // Listeners are always deinitialized when the event source is destroyed.
+    // In this case, this means it will be deinitialized when the window is destroyed.
+    // Therefore, as long as we don't want to remove it mid-program, we don't have to deinit this listener manually
+    _ = try window.on_frame.listen(.{
+        .callback = struct {
+            fn callback(userdata: ?*anyopaque) void {
+                const data: *ListenerData = @ptrCast(@alignCast(userdata.?));
+                var dt = std.time.milliTimestamp() - data.animStart;
+                if (dt > 1500)
+                    data.animStart = std.time.milliTimestamp();
+                if (dt > 1000)
+                    dt = 1000;
+                const t = @as(f32, @floatFromInt(dt)) / 1000;
+                data.rectangleX.set(graph.dataFn.get()(t * 10.0));
+            }
+        }.callback,
+        .userdata = &listener_data,
+    });
+    capy.runEventLoop();
 }
