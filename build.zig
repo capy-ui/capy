@@ -23,7 +23,7 @@ pub fn build(b: *std.Build) !void {
             defer b.allocator.free(name);
 
             // it is not freed as the path is used later for building
-            const programPath = LazyPath.relative(b.pathJoin(&.{ "examples", entry.path }));
+            const programPath = b.path(b.pathJoin(&.{ "examples", entry.path }));
 
             const exe: *std.Build.Step.Compile = if (target.result.isWasm())
                 b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
@@ -53,7 +53,7 @@ pub fn build(b: *std.Build) !void {
 
     const lib = b.addSharedLibrary(.{
         .name = "capy",
-        .root_source_file = LazyPath.relative("src/c_api.zig"),
+        .root_source_file = b.path("src/c_api.zig"),
         .version = std.SemanticVersion{ .major = 0, .minor = 4, .patch = 0 },
         .target = target,
         .optimize = optimize,
@@ -69,7 +69,7 @@ pub fn build(b: *std.Build) !void {
     buildc_step.dependOn(&lib_install.step);
 
     const tests = b.addTest(.{
-        .root_source_file = LazyPath.relative("src/main.zig"),
+        .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -78,25 +78,28 @@ pub fn build(b: *std.Build) !void {
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(run_tests);
 
-    const docs = b.addTest(.{
-        .root_source_file = LazyPath.relative("src/main.zig"),
+    const docs = b.addObject(.{
+        .name = "capy",
+        .root_source_file = b.path("src/main.zig"),
         .target = target,
-        .optimize = optimize,
+        .optimize = .Debug,
     });
+    const run_docs = try install(docs, .{ .link_libraries_on_root_module = true });
     const install_docs = b.addInstallDirectory(.{
         .source_dir = docs.getEmittedDocs(),
         .install_dir = .prefix,
         .install_subdir = "docs",
     });
-    const run_docs = try install(docs, .{ .link_libraries_on_root_module = true });
-    _ = run_docs;
 
-    // DISABLED UNTIL ZIG DOESN'T CRASH WHILE GENERATING DOCS
+    _ = run_docs;
     const docs_step = b.step("docs", "Generate documentation and run unit tests");
     docs_step.dependOn(&install_docs.step);
+    // docs_step.dependOn(run_docs);
+
+    b.getInstallStep().dependOn(&install_docs.step);
 
     const coverage_tests = b.addTest(.{
-        .root_source_file = LazyPath.relative("src/main.zig"),
+        .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });

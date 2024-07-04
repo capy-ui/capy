@@ -4,7 +4,7 @@ const root = @import("root");
 const builtin = @import("builtin");
 const std = @import("std");
 const backend = @import("backend.zig");
-const style = @import("style.zig");
+// const style = @import("style.zig");
 const dataStructures = @import("data.zig");
 const Widget = @import("widget.zig").Widget;
 const Class = @import("widget.zig").Class;
@@ -95,14 +95,23 @@ pub fn Widgeting(comptime T: type) type {
         /// instead of directly adding it to a component or a window.
         pub fn alloc(config: Config) *T {
             const instance = lasting_allocator.create(T) catch @panic("out of memory");
-            instance.* = T.init(config);
+            const type_info = @typeInfo(@TypeOf(T.init)).Fn;
+            const return_type = type_info.return_type.?;
+            if (comptime type_info.params.len != 1) {
+                @panic("no");
+            }
+            if (comptime isErrorUnion(return_type)) {
+                instance.* = T.init(config) catch @panic("error"); // TODO: better? maybe change return type by making alloc() return an error union?
+            } else {
+                instance.* = T.init(config);
+            }
             instance.widget_data.widget = genericWidgetFrom(instance);
             return instance;
         }
 
         /// Increase the number of references to this component.
         pub fn ref(self: *T) void {
-            _ = self.widget_data.refcount.fetchAdd(1, .Monotonic);
+            _ = self.widget_data.refcount.fetchAdd(1, .monotonic);
         }
 
         /// Decrease the number of references to this component, that is tell Capy
@@ -111,8 +120,8 @@ pub fn Widgeting(comptime T: type) type {
         /// This is why this function must only be called after you stopped using a pointer
         /// to the component, as using the pointer after unref() may cause a Use-After-Free.
         pub fn unref(self: *T) void {
-            std.debug.assert(self.widget_data.refcount.load(.Monotonic) != 0);
-            if (self.widget_data.refcount.fetchSub(1, .AcqRel) == 1) {
+            std.debug.assert(self.widget_data.refcount.load(.monotonic) != 0);
+            if (self.widget_data.refcount.fetchSub(1, .acq_rel) == 1) {
                 self.deinit();
             }
         }
@@ -296,26 +305,28 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         // /// Clone the component but with the peer set to null
-        // pub fn clone(self: *T) !*T {
-        //     if (@hasDecl(T, "cloneImpl")) {
-        //         return try self.cloneImpl();
-        //     }
-        //     // Clone properties only
-        //     var config: GenerateConfigStruct(T) = undefined;
-        //     inline for (comptime std.meta.fieldNames(GenerateConfigStruct(T))) |property_name| {
-        //         if (comptime !std.mem.eql(u8, property_name, "onclick") and !std.mem.eql(u8, property_name, "ondraw")) {
-        //             @field(config, property_name) = self.get(property_name);
-        //         }
-        //     }
+        pub fn clone(self: *T) !*T {
+            _ = self;
+            @panic("TODO");
+            // if (@hasDecl(T, "cloneImpl")) {
+            //     return try self.cloneImpl();
+            // }
+            // // Clone properties only
+            // var config: GenerateConfigStruct(T) = undefined;
+            // inline for (comptime std.meta.fieldNames(GenerateConfigStruct(T))) |property_name| {
+            //     if (comptime !std.mem.eql(u8, property_name, "onclick") and !std.mem.eql(u8, property_name, "ondraw")) {
+            //         @field(config, property_name) = self.get(property_name);
+            //     }
+            // }
 
-        //     const cloned = T.alloc(config);
-        //     return cloned;
-        // }
+            // const cloned = T.alloc(config);
+            // return cloned;
+        }
 
-        pub fn widget_clone(widget: *const Widget) anyerror!Widget {
+        pub fn widget_clone(widget: *const Widget) anyerror!*Widget {
             const component = widget.as(T);
             const cloned = try component.clone();
-            return try cloned.asWidget();
+            return cloned.asWidget();
         }
     };
 }
@@ -345,7 +356,7 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         }};
 
         const t = @Type(.{ .Struct = .{
-            .layout = .Auto,
+            .layout = .auto,
             .backing_integer = null,
             .fields = config_fields,
             .decls = &.{},

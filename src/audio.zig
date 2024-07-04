@@ -5,6 +5,7 @@ const internal = @import("internal.zig");
 const backend = @import("backend.zig");
 pub const AudioWriteCallback = *const fn (generator: *const AudioGenerator, time: u64, n_frames: u32) void;
 
+// TODO: remove global variables
 var generators = std.ArrayList(*AudioGenerator).init(internal.lasting_allocator);
 var generatorsMutex = std.Thread.Mutex{};
 
@@ -61,7 +62,7 @@ pub const AudioGenerator = struct {
         generatorsMutex.unlock();
 
         if (std.mem.indexOfScalar(*AudioGenerator, generators.items, self)) |index| {
-            generators.swapRemove(index);
+            _ = generators.swapRemove(index);
         }
         self.peer.deinit();
         internal.lasting_allocator.destroy(self);
@@ -70,9 +71,10 @@ pub const AudioGenerator = struct {
 
 pub const AudioPlayer = struct {
     source: []const u8,
+    time: f32,
 
     /// Stream and play the given audio file from the URL.
-    pub fn play(self: AudioPlayer, source: []const u8) void {
+    pub fn play(self: *AudioPlayer, source: []const u8) void {
         self.source = source;
         self.time = 0;
     }

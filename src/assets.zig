@@ -5,7 +5,7 @@ const internal = @import("internal.zig");
 const log = std.log.scoped(.assets);
 const Uri = std.Uri;
 
-const GetError = Uri.ParseError || http.SendRequestError || error{UnsupportedScheme};
+const GetError = Uri.ParseError || http.SendRequestError || error{UnsupportedScheme} || std.mem.Allocator.Error;
 
 pub const AssetHandle = struct {
     data: union(enum) {
@@ -64,13 +64,22 @@ pub fn get(url: []const u8) GetError!AssetHandle {
         var buffer: [std.fs.MAX_PATH_BYTES]u8 = undefined;
         const cwd_path = try std.fs.realpath(".", &buffer);
 
-        const asset_path = try std.fs.path.join(internal.scratch_allocator, &.{ cwd_path, "assets/", uri.path });
+        // The URL path as a raw string (without percent-encoding)
+        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.scratch_allocator);
+        defer internal.scratch_allocator.free(raw_uri_path);
+
+        const asset_path = try std.fs.path.join(internal.scratch_allocator, &.{ cwd_path, "assets/", raw_uri_path });
+        defer internal.scratch_allocator.free(asset_path);
         log.debug("-> {s}", .{asset_path});
+
         const file = try std.fs.openFileAbsolute(asset_path, .{ .mode = .read_only });
         return AssetHandle{ .data = .{ .file = file } };
     } else if (std.mem.eql(u8, uri.scheme, "file")) {
-        log.debug("-> {s}", .{uri.path});
-        const file = try std.fs.openFileAbsolute(uri.path, .{ .mode = .read_only });
+        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.scratch_allocator);
+        defer internal.scratch_allocator.free(raw_uri_path);
+
+        log.debug("-> {path}", .{uri.path});
+        const file = try std.fs.openFileAbsolute(raw_uri_path, .{ .mode = .read_only });
         return AssetHandle{ .data = .{ .file = file } };
     } else if (std.mem.eql(u8, uri.scheme, "http") or std.mem.eql(u8, uri.scheme, "https")) {
         const request = http.HttpRequest.get(url);

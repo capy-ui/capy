@@ -2,9 +2,10 @@ const std = @import("std");
 const shared = @import("../shared.zig");
 const lib = @import("../../main.zig");
 const trait = @import("../../trait.zig");
-pub const c = @cImport({
-    @cInclude("gtk/gtk.h");
-});
+// const c = @cImport({
+// @cInclude("gtk/gtk.h");
+// });
+const c = @import("gtk.zig");
 const wbin_new = @import("windowbin.zig").wbin_new;
 const wbin_set_child = @import("windowbin.zig").wbin_set_child;
 
@@ -77,7 +78,7 @@ pub const Window = struct {
     pub usingnamespace Events(Window);
 
     fn gtkWindowHidden(_: *c.GtkWidget, _: usize) callconv(.C) void {
-        _ = activeWindows.fetchSub(1, .Release);
+        _ = activeWindows.fetchSub(1, .release);
     }
 
     pub fn create() BackendError!Window {
@@ -143,11 +144,11 @@ pub const Window = struct {
     }
 
     pub fn setIcon(self: *Window, data: ImageData) void {
-        c.gtk_window_set_icon(@as(*c.GtkWindow, @ptrCast(self.peer)), data.peer);
-    }
-
-    pub fn setIconName(self: *Window, name: [:0]const u8) void {
-        c.gtk_window_set_icon_name(@as(*c.GtkWindow, @ptrCast(self.peer)), name);
+        // Currently a no-op, as GTK only allows setting icon during distribution.
+        // That is the app must have a resource folder containing desired icons.
+        // TODO: maybe this could be done by creating a temporary directory and using gtk_icon_theme_add_search_path
+        _ = self;
+        _ = data;
     }
 
     pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
@@ -202,7 +203,7 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         c.gtk_widget_show(self.peer);
-        _ = activeWindows.fetchAdd(1, .Release);
+        _ = activeWindows.fetchAdd(1, .release);
     }
 
     pub fn close(self: *Window) void {
@@ -664,7 +665,7 @@ pub const Slider = struct {
     }
 
     pub fn setOrientation(self: *Slider, orientation: lib.Orientation) void {
-        const gtkOrientation = switch (orientation) {
+        const gtkOrientation: c_uint = switch (orientation) {
             .Horizontal => c.GTK_ORIENTATION_HORIZONTAL,
             .Vertical => c.GTK_ORIENTATION_VERTICAL,
         };
@@ -1233,15 +1234,41 @@ pub const ImageData = struct {
 
     // TODO: copy bytes to a new array
     pub fn from(width: usize, height: usize, stride: usize, cs: lib.Colorspace, bytes: []const u8) !ImageData {
-        const pixbuf = c.gdk_pixbuf_new_from_data(bytes.ptr, c.GDK_COLORSPACE_RGB, @intFromBool(cs == .RGBA), 8, @as(c_int, @intCast(width)), @as(c_int, @intCast(height)), @as(c_int, @intCast(stride)), null, null) orelse return BackendError.UnknownError;
+        const pixbuf = c.gdk_pixbuf_new_from_data(
+            bytes.ptr,
+            c.GDK_COLORSPACE_RGB,
+            @intFromBool(cs == .RGBA),
+            8,
+            @as(c_int, @intCast(width)),
+            @as(c_int, @intCast(height)),
+            @as(c_int, @intCast(stride)),
+            null,
+            null,
+        ) orelse return BackendError.UnknownError;
 
-        return ImageData{ .peer = pixbuf, .width = width, .height = height };
+        return ImageData{
+            .peer = pixbuf,
+            .width = width,
+            .height = height,
+        };
     }
 
     pub fn draw(self: *ImageData) DrawLock {
         self.mutex.lock();
         // TODO: just create one surface and use it forever
-        const surface = c.gdk_cairo_surface_create_from_pixbuf(self.peer, 1, null).?;
+        const stride = @divFloor(
+            @as(c_int, @intCast(c.gdk_pixbuf_get_byte_length(self.peer))),
+            c.gdk_pixbuf_get_height(self.peer),
+        );
+        const surface: *c.cairo_surface_t = c.cairo_image_surface_create_for_data(
+            c.gdk_pixbuf_get_pixels(self.peer),
+            c.CAIRO_FORMAT_RGB24,
+            c.gdk_pixbuf_get_width(self.peer),
+            c.gdk_pixbuf_get_height(self.peer),
+            stride,
+        ) orelse @panic("could not create draw surface");
+        // c.gdk_cairo_surface_paint_pixbuf(surface, self.peer);
+        // const surface = c.gdk_cairo_surface_create_from_pixbuf(self.peer, 1, null).?;
         const cr = c.cairo_create(surface).?;
         return DrawLock{
             ._surface = surface,
@@ -1349,6 +1376,6 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     if (GTK_VERSION.min.order(.{ .major = 4, .minor = 0, .patch = 0 }) != .lt) {
         return c.g_list_model_get_n_items(c.gtk_window_get_toplevels()) > 0;
     } else {
-        return activeWindows.load(.Acquire) != 0;
+        return activeWindows.load(.acquire) != 0;
     }
 }

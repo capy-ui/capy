@@ -40,13 +40,14 @@ pub const Timer = struct {
         try _runningTimers.append(self);
     }
 
-    pub fn bindFrequency(self: *Timer, frequency: Atom(f32)) void {
-        const duration = Atom(u64).derived(.{frequency}, computeDuration);
+    pub fn bindFrequency(self: *Timer, frequency: *Atom(f32)) !void {
+        var new_duration = Atom(u64).of(undefined);
+        try new_duration.dependOn(.{frequency}, &computeDuration);
         self.duration.deinit();
-        self.duration = duration;
+        self.duration = new_duration;
     }
 
-    fn computeDuration(frequency: f32) void {
+    fn computeDuration(frequency: f32) u64 {
         return @intFromFloat(1.0 / frequency * std.time.ns_per_ms);
     }
 
@@ -55,7 +56,8 @@ pub const Timer = struct {
     }
 
     pub fn stop(self: *Timer) void {
-        const index = std.mem.indexOfScalar(Timer, _runningTimers.items, self);
-        _runningTimers.swapRemove(index);
+        // TODO: make it atomic so as to avoid race conditions (or use a mutex)
+        const index = std.mem.indexOfScalar(*Timer, _runningTimers.items, self) orelse return;
+        std.debug.assert(_runningTimers.swapRemove(index) == self);
     }
 };

@@ -37,7 +37,7 @@ pub const Navigation = struct {
         // TODO: check self.activeChild.get if it's a container or something like that
         if (self.activeChild.name.*.get()) |child_name| {
             if (std.mem.eql(u8, child_name, name)) {
-                return &self.activeChild;
+                return self.activeChild;
             }
         }
         return null;
@@ -60,10 +60,10 @@ pub const Navigation = struct {
     }
 
     pub fn relayout(self: *Navigation) void {
-        if (self.relayouting.load(.SeqCst) == true) return;
+        if (self.relayouting.load(.seq_cst) == true) return;
         if (self.peer) |peer| {
-            self.relayouting.store(true, .SeqCst);
-            defer self.relayouting.store(false, .SeqCst);
+            self.relayouting.store(true, .seq_cst);
+            defer self.relayouting.store(false, .seq_cst);
 
             const available = Size{
                 .width = @as(u32, @intCast(peer.getWidth())),

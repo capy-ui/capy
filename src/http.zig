@@ -70,7 +70,7 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
                 .keep_alive = false,
                 .server_header_buffer = server_header_buffer,
             });
-            try request.send(.{});
+            try request.send();
             try request.finish();
             return HttpResponse{
                 .request = request,

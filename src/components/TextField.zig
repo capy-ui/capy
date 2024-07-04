@@ -4,7 +4,6 @@ const dataStructures = @import("../data.zig");
 const internal = @import("../internal.zig");
 const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
-const StringAtom = dataStructures.StringAtom;
 
 /// Editable one-line text input box.
 pub const TextField = struct {
@@ -13,7 +12,7 @@ pub const TextField = struct {
     peer: ?backend.TextField = null,
     widget_data: TextField.WidgetData = .{},
     /// The text this TextField contains
-    text: StringAtom = StringAtom.of(""),
+    text: Atom([]const u8) = Atom([]const u8).of(""),
     /// Whether the TextField is read-only
     readOnly: Atom(bool) = Atom(bool).of(false),
 
@@ -23,7 +22,7 @@ pub const TextField = struct {
         return field;
     }
 
-    /// When the text is changed in the StringAtom
+    /// When the text is changed in the Atom([]const u8)
     fn onTextAtomChange(newValue: []const u8, userdata: ?*anyopaque) void {
         const self: *TextField = @ptrCast(@alignCast(userdata));
         if (std.mem.eql(u8, self.peer.?.getText(), newValue)) return;

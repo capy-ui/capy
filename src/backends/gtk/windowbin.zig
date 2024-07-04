@@ -1,6 +1,6 @@
 //! Class for a Bin container with a preferred size equals to zero
 const std = @import("std");
-const c = @import("backend.zig").c;
+const c = @import("gtk.zig");
 
 pub const WBin = extern struct { widget: c.GtkWidget };
 pub const WBinClass = extern struct {

@@ -111,7 +111,7 @@ pub const Color = packed struct {
     }
 
     pub fn toBytes(self: Color, dest: []u8) void {
-        std.mem.bytesAsSlice(Color, dest).* = self;
+        std.mem.bytesAsSlice(Color, dest)[0] = self;
     }
 };
 

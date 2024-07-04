@@ -62,11 +62,11 @@ const WebServerStep = struct {
         builder: *std.Build,
     };
 
-    pub fn make(step: *std.Build.Step, prog_node: *std.Progress.Node) !void {
+    pub fn make(step: *std.Build.Step, prog_node: std.Progress.Node) !void {
         // There's no progress to report on.
         _ = prog_node;
 
-        const self = @fieldParentPtr(WebServerStep, "step", step);
+        const self: *WebServerStep = @fieldParentPtr("step", step);
         const allocator = step.owner.allocator;
         _ = allocator;
 
@@ -159,12 +159,12 @@ const WebServerStep = struct {
 /// If you do not wish to run your CompileStep, ignore the run step by doing
 /// _ = install(step, .{ ... });
 pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.Build.Step {
-    const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
+    const prefix = comptime std.fs.path.dirname(@src().file).?;
     const b = step.step.owner;
     step.subsystem = .Native;
 
     const capy = b.createModule(.{
-        .root_source_file = .{ .path = prefix ++ "/src/main.zig" },
+        .root_source_file = .{ .cwd_relative = prefix ++ "/src/main.zig" },
         .target = step.root_module.resolved_target,
         .imports = &.{},
     });
@@ -190,7 +190,7 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                 else => step.subsystem = .Windows,
             }
             const zigwin32 = b.createModule(.{
-                .root_source_file = .{ .path = prefix ++ "/vendor/zigwin32/win32.zig" },
+                .root_source_file = .{ .cwd_relative = prefix ++ "/vendor/zigwin32/win32.zig" },
             });
             module.addImport("zigwin32", zigwin32);
 
@@ -200,7 +200,7 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
 
             // TODO: use capy.addWin32ResourceFile
             switch (step.rootModuleTarget().cpu.arch) {
-                .x86_64 => module.addObjectFile(.{ .path = prefix ++ "/src/backends/win32/res/x86_64.o" }),
+                .x86_64 => module.addObjectFile(.{ .cwd_relative = prefix ++ "/src/backends/win32/res/x86_64.o" }),
                 //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
                 else => {}, // not much of a problem as it'll just lack styling
             }
@@ -215,11 +215,14 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                 // module.addSystemIncludePath(.{ .path = sdk_include_dir });
                 // module.addLibraryPath(.{ .path = sdk_lib_dir });
                 // @import("macos_sdk").addPathsModule(module);
-                @import("macos_sdk").addPaths(step);
+                if (b.lazyImport(@This(), "macos_sdk")) |macos_sdk| {
+                    macos_sdk.addPaths(step);
+                }
             }
 
-            const objc = b.dependency("zig-objc", .{ .target = step.root_module.resolved_target.?, .optimize = step.root_module.optimize.? });
-            module.addImport("objc", objc.module("objc"));
+            if (b.lazyDependency("zig-objc", .{ .target = step.root_module.resolved_target.?, .optimize = step.root_module.optimize.? })) |objc| {
+                module.addImport("objc", objc.module("objc"));
+            }
 
             module.link_libc = true;
             module.linkFramework("CoreData", .{});
@@ -269,7 +272,7 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
                     // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
                     // will provide the application icon.
                     .resources = &[_]AndroidSdk.Resource{
-                        .{ .path = "mipmap/icon.png", .content = .{ .path = "android/default_icon.png" } },
+                        .{ .path = "mipmap/icon.png", .content = b.path("android/default_icon.png") },
                     },
                     .aaudio = false,
                     .opensl = false,
@@ -356,8 +359,10 @@ pub fn install(step: *std.Build.Step.Compile, options: CapyBuildOptions) !*std.B
 }
 
 comptime {
-    const supported_zig = std.SemanticVersion.parse("0.12.0-dev.3180+83e578a18") catch unreachable;
-    if (@import("builtin").zig_version.order(supported_zig) != .eq) {
-        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.3.0-mach: https://machengine.org/about/nominated-zig/#202430-mach", .{@import("builtin").zig_version}));
+    const supported_zig = std.SemanticVersion.parse("0.13.0-dev.351+64ef45eb0") catch unreachable;
+    const other_supported_zig = std.SemanticVersion.parse("0.13.0") catch unreachable;
+    const zig_version = @import("builtin").zig_version;
+    if (zig_version.order(supported_zig) != .eq and zig_version.order(other_supported_zig) != .eq) {
+        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.5.0-mach: https://machengine.org/about/nominated-zig/#202450-mach", .{@import("builtin").zig_version}));
     }
 }

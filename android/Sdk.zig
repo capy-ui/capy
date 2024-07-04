@@ -90,18 +90,18 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
     const host_tools = blk: {
         const zip_add = b.addExecutable(.{
             .name = "zip_add",
-            .root_source_file = .{ .path = sdkRoot() ++ "/tools/zip_add.zig" },
+            .root_source_file = b.path(sdkRoot() ++ "/tools/zip_add.zig"),
             .target = b.resolveTargetQuery(.{}),
         });
         zip_add.addCSourceFile(.{
-            .file = .{ .path = sdkRoot() ++ "/vendor/kuba-zip/zip.c" },
+            .file = b.path(sdkRoot() ++ "/vendor/kuba-zip/zip.c"),
             .flags = &[_][]const u8{
                 "-std=c99",
                 "-fno-sanitize=undefined",
                 "-D_POSIX_C_SOURCE=200112L",
             },
         });
-        zip_add.addIncludePath(.{ .path = sdkRoot() ++ "/vendor/kuba-zip" });
+        zip_add.addIncludePath(b.path(sdkRoot() ++ "/vendor/kuba-zip"));
         zip_add.linkLibC();
 
         break :blk HostTools{
@@ -276,7 +276,7 @@ pub const CreateAppStep = struct {
     pub fn getAndroidPackage(self: @This(), name: []const u8) std.Build.Pkg {
         return self.sdk.b.dupePkg(std.Build.Pkg{
             .name = name,
-            .source = .{ .path = sdkRoot() ++ "/src/android-support.zig" },
+            .source = self.sdk.b.path(sdkRoot() ++ "/src/android-support.zig"),
             .dependencies = &[_]std.Build.Pkg{
                 self.build_options.getPackage("build_options"),
             },
@@ -584,7 +584,7 @@ pub fn createApp(
     build_options.add(bool, "enable_opensl", app_config.opensl);
 
     const android_module = sdk.b.addModule("android", .{
-        .root_source_file = .{ .path = "android/src/android-support.zig" },
+        .root_source_file = sdk.b.path("android/src/android-support.zig"),
         .imports = &.{.{
             .name = "build_options",
             .module = build_options.getModule(),
@@ -621,13 +621,13 @@ pub fn createApp(
                 "-d",
                 java_dir,
             });
-            javac_cmd.addFileArg(std.Build.LazyPath.relative(java_file));
+            javac_cmd.addFileArg(sdk.b.path(java_file));
 
             const name = std.fs.path.stem(java_file);
             const name_ext = sdk.b.fmt("{s}.class", .{name});
             const class_file = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{ java_dir, name_ext }) catch unreachable;
 
-            d8_cmd_builder.addFileArg(.{ .path = class_file });
+            d8_cmd_builder.addFileArg(sdk.b.path(class_file));
             d8_cmd_builder.step.dependOn(&javac_cmd.step);
         }
 
@@ -641,7 +641,7 @@ pub fn createApp(
         const dex_file = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{ java_dir, "classes.dex" }) catch unreachable;
         // make_unsigned_apk.addArg("-I");
         // make_unsigned_apk.addArg(dex_file);
-        copy_to_zip_step.addFile(.{ .path = dex_file }, "classes.dex");
+        copy_to_zip_step.addFile(sdk.b.path(dex_file), "classes.dex");
         copy_to_zip_step.run_step.step.dependOn(&d8_cmd_builder.step);
         copy_to_zip_step.run_step.step.dependOn(&make_unsigned_apk.step); // enforces creation of APK before the execution
         align_step.step.dependOn(&copy_to_zip_step.run_step.step);
@@ -736,12 +736,12 @@ const CreateResourceDirectory = struct {
     }
 
     pub fn getOutputDirectory(self: *Self) std.Build.LazyPath {
-        return .{ .generated = &self.directory };
+        return .{ .generated = .{ .file = &self.directory } };
     }
 
-    fn make(step: *Step, progress: *std.Progress.Node) !void {
+    fn make(step: *Step, progress: std.Progress.Node) !void {
         _ = progress;
-        const self = @fieldParentPtr(Self, "step", step);
+        const self: *Self = @fieldParentPtr("step", step);
 
         // if (std.fs.path.dirname(strings_xml)) |dir| {
         //     std.fs.cwd().makePath(dir) catch unreachable;
@@ -872,7 +872,7 @@ pub fn compileAppLibrary(
 
     const exe = sdk.b.addSharedLibrary(.{
         .name = app_config.app_name,
-        .root_source_file = .{ .path = src_file },
+        .root_source_file = sdk.b.path(src_file),
         .target = sdk.b.resolveTargetQuery(config.target),
         .optimize = mode,
     });
@@ -894,7 +894,7 @@ pub fn compileAppLibrary(
 
     // exe.addIncludePath(include_dir);
 
-    exe.addLibraryPath(.{ .path = lib_dir });
+    exe.addLibraryPath(sdk.b.path(lib_dir));
 
     // exe.addIncludePath(include_dir);
     // exe.addIncludePath(system_include_dir);
@@ -1104,7 +1104,7 @@ const BuildOptionStep = struct {
             .package_file = std.Build.GeneratedFile{ .step = &options.step },
         };
         const build_options = b.addModule("build_options", .{
-            .root_source_file = .{ .generated = &options.package_file },
+            .root_source_file = .{ .generated = .{ .file = &options.package_file } },
         });
         _ = build_options;
 
@@ -1197,9 +1197,9 @@ const BuildOptionStep = struct {
         out.print("pub const {}: {s} = {};\n", .{ std.zig.fmtId(name), @typeName(T), value }) catch unreachable;
     }
 
-    fn make(step: *Step, progress: *std.Progress.Node) !void {
+    fn make(step: *Step, progress: std.Progress.Node) !void {
         _ = progress;
-        const self = @fieldParentPtr(Self, "step", step);
+        const self: *Self = @fieldParentPtr("step", step);
 
         var cacher = createCacheBuilder(self.builder);
         cacher.addBytes(self.file_content.items);
@@ -1211,7 +1211,10 @@ const BuildOptionStep = struct {
             "build_options.zig",
         });
 
-        try std.fs.cwd().writeFile(self.package_file.path.?, self.file_content.items);
+        try std.fs.cwd().writeFile(.{
+            .sub_path = self.package_file.path.?,
+            .data = self.file_content.items,
+        });
     }
 };
 

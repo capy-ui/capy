@@ -4,7 +4,6 @@ const dataStructures = @import("../data.zig");
 const internal = @import("../internal.zig");
 const Size = dataStructures.Size;
 const Atom = dataStructures.Atom;
-const StringAtom = dataStructures.StringAtom;
 
 /// Editable multi-line text input box.
 pub const TextArea = struct {
@@ -13,7 +12,7 @@ pub const TextArea = struct {
     peer: ?backend.TextArea = null,
     widget_data: TextArea.WidgetData = .{},
     /// The text this TextArea contains.
-    text: StringAtom = StringAtom.of(""),
+    text: Atom([]const u8) = Atom([]const u8).of(""),
 
     // TODO: replace with TextArea.setFont(.{ .family = "monospace" }) ?
     /// Whether to let the system choose a monospace font for us and use it in this TextArea..
@@ -21,7 +20,7 @@ pub const TextArea = struct {
 
     pub fn init(config: TextArea.Config) TextArea {
         var area = TextArea.init_events(TextArea{
-            .text = StringAtom.of(config.text),
+            .text = Atom([]const u8).of(config.text),
             .monospace = Atom(bool).of(config.monospace),
         });
         @import("../internal.zig").applyConfigStruct(&area, config);

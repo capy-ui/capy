@@ -9,19 +9,19 @@ pub const Tabs = struct {
 
     peer: ?backend.TabContainer = null,
     widget_data: Tabs.WidgetData = .{},
-    tabs: std.ArrayList(Tab),
+    tabs: Atom(std.ArrayList(Tab)),
 
     /// The widget associated to this Tabs
     widget: ?*Widget = null,
 
-    pub fn init(tabs_list: std.ArrayList(Tab)) Tabs {
-        return Tabs.init_events(Tabs{ .tabs = tabs_list });
+    pub fn init(config: Tabs.Config) Tabs {
+        return Tabs.init_events(Tabs{ .tabs = Atom(std.ArrayList(Tab)).of(config.tabs) });
     }
 
     pub fn show(self: *Tabs) !void {
         if (self.peer == null) {
             var peer = try backend.TabContainer.create();
-            for (self.tabs.items) |*tab_ptr| {
+            for (self.tabs.get().items) |*tab_ptr| {
                 try tab_ptr.widget.show();
                 const tabPosition = peer.insert(peer.getTabsNumber(), tab_ptr.widget.peer.?);
                 peer.setLabel(tabPosition, tab_ptr.label);
@@ -38,7 +38,7 @@ pub const Tabs = struct {
 
     pub fn _showWidget(widget: *Widget, self: *Tabs) !void {
         self.widget = widget;
-        for (self.tabs.items) |*child| {
+        for (self.tabs.get().items) |*child| {
             child.widget.parent = widget;
         }
     }
@@ -60,10 +60,10 @@ pub const Tabs = struct {
     }
 
     pub fn _deinit(self: *Tabs) void {
-        for (self.tabs.items) |*tab_ptr| {
+        for (self.tabs.get().items) |*tab_ptr| {
             tab_ptr.widget.unref();
         }
-        self.tabs.deinit();
+        self.tabs.get().deinit();
     }
 };
 
@@ -90,7 +90,7 @@ pub inline fn tabs(children: anytype) anyerror!*Tabs {
     }
 
     const instance = @import("../internal.zig").lasting_allocator.create(Tabs) catch @panic("out of memory");
-    instance.* = Tabs.init(list);
+    instance.* = Tabs.init(.{ .tabs = list });
     instance.widget_data.widget = @import("../internal.zig").genericWidgetFrom(instance);
     return instance;
 }

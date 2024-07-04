@@ -6,7 +6,7 @@ const trait = @import("trait.zig");
 const DEV_TOOLS_PORT = 42671;
 const log = std.log.scoped(.dev_tools);
 
-var server: std.net.StreamServer = undefined;
+var server: std.net.Server = undefined;
 var serverThread: ?std.Thread = null;
 
 var run_server = true;
@@ -62,8 +62,8 @@ pub fn init() !void {
         return;
     }
     const addr = try std.net.Address.parseIp("127.0.0.1", DEV_TOOLS_PORT);
-    server = std.net.StreamServer.init(.{ .reuse_address = true });
-    if (server.listen(addr)) {
+    if (addr.listen(.{})) |addr_server| {
+        server = addr_server;
         serverThread = try std.Thread.spawn(.{}, serverRunner, .{});
         log.debug("Server opened at {}", .{addr});
         log.debug("Run 'zig build dev-tools' to debug this application", .{});
@@ -75,7 +75,7 @@ pub fn init() !void {
 
 fn readStructField(comptime T: type, reader: anytype) !T {
     if (comptime trait.isIntegral(T)) {
-        return try reader.readIntBig(T);
+        return try reader.readInt(T, .big);
     } else if (T == []const u8) {
         const length = try std.leb.readULEB128(u32, reader);
         const bytes = try internal.lasting_allocator.alloc(u8, length);
@@ -86,7 +86,7 @@ fn readStructField(comptime T: type, reader: anytype) !T {
 
 fn writeStructField(comptime T: type, writer: anytype, value: T) !void {
     if (comptime trait.isIntegral(T)) {
-        try writer.writeIntBig(T, value);
+        try writer.writeInt(T, value, .big);
     } else if (T == []const u8) {
         try std.leb.writeULEB128(writer, value.len);
         _ = try writer.writeAll(value);
@@ -109,7 +109,7 @@ fn writeStruct(comptime T: type, value: T, writer: anytype) !void {
 
 fn writeResponse(writer: anytype, response: Response) !void {
     const tag = std.meta.activeTag(response);
-    try writer.writeIntBig(u8, @intFromEnum(tag));
+    try writer.writeInt(u8, @intFromEnum(tag), .big);
     inline for (std.meta.fields(Response)) |response_field| {
         if (tag == @field(ResponseId, response_field.name)) {
             const ResponseType = response_field.type;
@@ -120,7 +120,7 @@ fn writeResponse(writer: anytype, response: Response) !void {
 
 fn writeRequest(writer: anytype, request: Request) !void {
     const tag = std.meta.activeTag(request);
-    try writer.writeIntBig(u8, @intFromEnum(tag));
+    try writer.writeInt(u8, @intFromEnum(tag), .big);
     inline for (std.meta.fields(Request)) |request_field| {
         if (tag == @field(RequestId, request_field.name)) {
             const RequestType = request_field.type;
@@ -129,7 +129,7 @@ fn writeRequest(writer: anytype, request: Request) !void {
     }
 }
 
-fn connectionRunner(connection: std.net.StreamServer.Connection) !void {
+fn connectionRunner(connection: std.net.Server.Connection) !void {
     log.debug("accepted connection from {}", .{connection.address});
     const stream = connection.stream;
 
@@ -137,7 +137,7 @@ fn connectionRunner(connection: std.net.StreamServer.Connection) !void {
     const writer = stream.writer();
 
     while (true) {
-        const request_id = try reader.readEnum(RequestId, .Big);
+        const request_id = try reader.readEnum(RequestId, .big);
         std.log.info("request id: 0x{}", .{request_id});
         inline for (std.meta.fields(Request)) |request_field| {
             const RequestType = request_field.type;

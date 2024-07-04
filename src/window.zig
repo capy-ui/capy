@@ -9,7 +9,7 @@ const Atom = @import("data.zig").Atom;
 
 const Display = struct { resolution: Size, dpi: u32 };
 
-const devices = std.ComptimeStringMap(Display, .{
+const devices = std.StaticStringMap(Display).initComptime(.{
     .{ "iphone-13-mini", .{ .resolution = Size.init(1080, 2340), .dpi = 476 } },
     .{ "iphone-13", .{ .resolution = Size.init(1170, 2532), .dpi = 460 } },
     .{ "pixel-6", .{ .resolution = Size.init(1080, 2400), .dpi = 411 } },
@@ -91,8 +91,8 @@ pub const Window = struct {
             } else if (!did_invalid_warning) {
                 std.log.warn("Invalid property \"" ++ EMULATOR_KEY ++ "={s}\"", .{id});
                 std.debug.print("Expected one of:\r\n", .{});
-                for (devices.kvs) |entry| {
-                    std.debug.print("    - {s}\r\n", .{entry.key});
+                for (devices.keys()) |key| {
+                    std.debug.print("    - {s}\r\n", .{key});
                 }
                 did_invalid_warning = true;
             }
@@ -109,7 +109,7 @@ pub const Window = struct {
 
     // TODO: minimumSize and maximumSize
 
-    pub fn hasFeature(self: *Window, feature: Window.Feature) void {
+    pub fn hasFeature(self: *Window, feature: Window.Feature) bool {
         _ = feature;
         _ = self;
         // TODO
@@ -123,10 +123,6 @@ pub const Window = struct {
     // pub fn setIcon(self: *Window, icon: *ImageData) void {
     //     self.peer.setIcon(icon.data.peer);
     // }
-
-    pub fn setIconName(self: *Window, name: [:0]const u8) void {
-        self.peer.setIconName(name);
-    }
 
     pub fn setMenuBar(self: *Window, bar: MenuBar) void {
         self.peer.setMenuBar(bar);

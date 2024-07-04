@@ -21,18 +21,19 @@ pub const Alignment = struct {
     peer: ?backend.Container = null,
     widget_data: Alignment.WidgetData = .{},
 
-    child: *Widget,
+    // TODO: when the child property changes, really change it on the Alignment component's peer
+    child: Atom(*Widget) = Atom(*Widget).of(undefined),
     relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     /// The horizontal alignment of the child component, from 0 (left) to 1 (right).
     x: Atom(f32) = Atom(f32).of(0.5),
     /// The vertical alignment of the child component, from 0 (top) to 1 (bottom).
     y: Atom(f32) = Atom(f32).of(0.5),
 
-    pub fn init(config: Alignment.Config, widget: *Widget) !Alignment {
-        var component = Alignment.init_events(Alignment{ .child = widget });
+    pub fn init(config: Alignment.Config) !Alignment {
+        var component = Alignment.init_events(Alignment{});
         internal.applyConfigStruct(&component, config);
         try component.addResizeHandler(&onResize);
-        widget.ref();
+        component.child.get().ref();
 
         return component;
     }
@@ -42,9 +43,9 @@ pub const Alignment = struct {
     }
 
     pub fn getChild(self: *Alignment, name: []const u8) ?*Widget {
-        if (self.child.name.*.get()) |child_name| {
+        if (self.child.get().name.*.get()) |child_name| {
             if (std.mem.eql(u8, child_name, name)) {
-                return self.child;
+                return self.child.get();
             }
         }
         return null;
@@ -57,7 +58,7 @@ pub const Alignment = struct {
     }
 
     pub fn _showWidget(widget: *Widget, self: *Alignment) !void {
-        self.child.parent = widget;
+        self.child.get().parent = widget;
     }
 
     pub fn show(self: *Alignment) !void {
@@ -68,26 +69,26 @@ pub const Alignment = struct {
             _ = try self.x.addChangeListener(.{ .function = alignChanged, .userdata = self });
             _ = try self.y.addChangeListener(.{ .function = alignChanged, .userdata = self });
 
-            try self.child.show();
-            peer.add(self.child.peer.?);
+            try self.child.get().show();
+            peer.add(self.child.get().peer.?);
 
             try self.setupEvents();
         }
     }
 
     pub fn relayout(self: *Alignment) void {
-        if (self.relayouting.load(.SeqCst) == true) return;
+        if (self.relayouting.load(.seq_cst) == true) return;
         if (self.peer) |peer| {
-            self.relayouting.store(true, .SeqCst);
-            defer self.relayouting.store(false, .SeqCst);
+            self.relayouting.store(true, .seq_cst);
+            defer self.relayouting.store(false, .seq_cst);
 
             const available = Size{ .width = @as(u32, @intCast(peer.getWidth())), .height = @as(u32, @intCast(peer.getHeight())) };
 
             const alignX = self.x.get();
             const alignY = self.y.get();
 
-            if (self.child.peer) |widgetPeer| {
-                const preferredSize = self.child.getPreferredSize(available);
+            if (self.child.get().peer) |widgetPeer| {
+                const preferredSize = self.child.get().getPreferredSize(available);
                 const finalSize = Size.intersect(preferredSize, available);
 
                 const x = @as(u32, @intFromFloat(alignX * @as(f32, @floatFromInt(available.width -| finalSize.width))));
@@ -100,19 +101,20 @@ pub const Alignment = struct {
     }
 
     pub fn getPreferredSize(self: *Alignment, available: Size) Size {
-        return self.child.getPreferredSize(available);
+        return self.child.get().getPreferredSize(available);
     }
 
     pub fn cloneImpl(self: *Alignment) !*Alignment {
-        const widget_clone = try self.child.clone();
+        _ = self;
+        // const widget_clone = try self.child.get().clone();
         const ptr = try internal.lasting_allocator.create(Alignment);
-        const component = try Alignment.init(.{ .x = self.x.get(), .y = self.y.get() }, widget_clone);
-        ptr.* = component;
+        // const component = try Alignment.init(.{ .x = self.x.get(), .y = self.y.get() }, widget_clone);
+        // ptr.* = component;
         return ptr;
     }
 
     pub fn _deinit(self: *Alignment) void {
-        self.child.unref();
+        self.child.get().unref();
     }
 };
 
@@ -123,9 +125,7 @@ pub fn alignment(opts: Alignment.Config, child: anytype) anyerror!*Alignment {
     else
         child;
 
-    const widget = internal.getWidgetFrom(element);
-    const instance = internal.lasting_allocator.create(Alignment) catch @panic("out of memory");
-    instance.* = try Alignment.init(opts, widget);
-    instance.widget_data.widget = internal.genericWidgetFrom(instance);
-    return instance;
+    var options = opts;
+    options.child = internal.getWidgetFrom(element);
+    return Alignment.alloc(options);
 }

@@ -1,9 +1,5 @@
 const std = @import("std");
 
-// Due to Zig bugs, @import("zigimg") crashes the documentation generator, so image modules cannot
-// have documentation
-const GEN_DOCS = false;
-
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
@@ -11,7 +7,7 @@ pub usingnamespace @import("components/Alignment.zig");
 pub usingnamespace @import("components/Button.zig");
 pub usingnamespace @import("components/Canvas.zig");
 pub usingnamespace @import("components/CheckBox.zig");
-pub usingnamespace if (!GEN_DOCS) @import("components/Image.zig") else struct {};
+pub usingnamespace @import("components/Image.zig");
 pub usingnamespace @import("components/Label.zig");
 pub usingnamespace @import("components/Menu.zig");
 pub usingnamespace @import("components/Navigation.zig");
@@ -25,7 +21,7 @@ pub usingnamespace @import("containers.zig");
 
 pub usingnamespace @import("color.zig");
 pub usingnamespace @import("data.zig");
-pub usingnamespace if (!GEN_DOCS) @import("image.zig") else struct {};
+pub usingnamespace @import("image.zig");
 pub usingnamespace @import("list.zig");
 pub usingnamespace @import("timer.zig");
 
@@ -141,5 +137,6 @@ pub fn runEventLoop() void {
 
 test {
     _ = @import("fuzz.zig"); // testing the fuzzing library
-    std.testing.refAllDecls(@This());
+    std.testing.refAllDeclsRecursive(@This());
+    _ = @import("components/Alignment.zig");
 }

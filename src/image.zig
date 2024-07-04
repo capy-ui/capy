@@ -21,7 +21,7 @@ pub const ImageData = struct {
     pub fn new(width: u32, height: u32, cs: Colorspace) !ImageData {
         const stride = width * cs.byteCount();
         const bytes = try internal.lasting_allocator.alloc(u8, stride * height);
-        std.mem.set(u8, bytes, 0x00);
+        @memset(bytes, 0x00);
         return fromBytes(width, height, stride, cs, bytes, internal.lasting_allocator);
     }
 

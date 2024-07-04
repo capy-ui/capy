@@ -191,7 +191,7 @@ pub fn Atom(comptime T: type) type {
             return ptr;
         }
 
-        /// Shorthand for Atom.of(undefined).dependOn(...)
+        /// Shorthand for Atom.alloc(undefined).dependOn(...)
         pub fn derived(tuple: anytype, function: anytype) !*Self {
             var wrapper = Self.alloc(undefined);
             try wrapper.dependOn(tuple, function);
@@ -261,6 +261,7 @@ pub fn Atom(comptime T: type) type {
         /// This function updates any current animation.
         /// It returns true if the animation isn't done, false otherwises.
         pub fn update(self: *Self) bool {
+            if (!isAnimable) return false;
             switch (self.value) {
                 .Animated => |animation| {
                     if (std.time.milliTimestamp() >= animation.start + animation.duration) {
@@ -284,7 +285,7 @@ pub fn Atom(comptime T: type) type {
         /// Starts an animation on the atom, from the current value to the `target` value. The
         /// animation will last `duration` milliseconds.
         pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
-            if (!isAnimable) {
+            if (comptime !isAnimable) {
                 @compileError("animate() called on data that is not animable");
             }
             const time = std.time.milliTimestamp();
@@ -430,9 +431,9 @@ pub fn Atom(comptime T: type) type {
             // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
-            if ((if (@hasDecl(atomicValue(bool), "cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .SeqCst, .SeqCst) else self.bindLock.cmpxchg(true, false, true, .SeqCst, .SeqCst) // support zig 0.11 as well as current master
+            if ((if (@hasDecl(atomicValue(bool), "cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .seq_cst, .seq_cst) else self.bindLock.cmpxchg(true, false, true, .seq_cst, .seq_cst) // support zig 0.11 as well as current master
             ) == null) {
-                defer self.bindLock.store(false, .SeqCst);
+                defer self.bindLock.store(false, .seq_cst);
 
                 {
                     if (options.locking) self.lock.lock();
@@ -527,6 +528,9 @@ pub fn Atom(comptime T: type) type {
             {
                 comptime var i: usize = 0;
                 inline while (i < tuple.len) : (i += 1) {
+                    if (comptime @typeInfo(@TypeOf(tuple[i])) != .Pointer) {
+                        @compileError("Dependencies must be pointers to atoms and not atoms themselves.");
+                    }
                     const wrapper = tuple[i];
                     wrappers[i] = wrapper;
                 }
@@ -620,11 +624,11 @@ pub fn Atom(comptime T: type) type {
 }
 
 // TODO: reimplement using Atom.derived and its arena allocator
-pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*StringAtom {
-    const Self = struct { wrapper: StringAtom, childs: @TypeOf(childs) };
+pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, childs: anytype) !*Atom([]const u8) {
+    const Self = struct { wrapper: Atom([]const u8), childs: @TypeOf(childs) };
     var self = try allocator.create(Self);
     const empty = try allocator.alloc(u8, 0); // alloc an empty string so it can be freed
-    self.* = Self{ .wrapper = StringAtom.of(empty), .childs = childs };
+    self.* = Self{ .wrapper = Atom([]const u8).of(empty), .childs = childs };
     self.wrapper.allocator = allocator;
 
     const childTypes = comptime blk: {
@@ -682,10 +686,6 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
 
     return &self.wrapper;
 }
-
-pub const StringAtom = Atom([]const u8);
-pub const FloatAtom = Atom(f32);
-pub const DoubleAtom = Atom(f64);
 
 /// A position expressed in display pixels.
 pub const Position = struct {

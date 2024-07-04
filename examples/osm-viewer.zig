@@ -98,10 +98,10 @@ pub const MapViewer = struct {
     }
 
     pub fn search(self: *MapViewer, query: []const u8) !void {
-        var buf: [2048]u8 = undefined;
-        const encoded_query = try std.Uri.escapeQuery(capy.internal.scratch_allocator, query);
-        defer capy.internal.scratch_allocator.free(encoded_query);
-        const url = try std.fmt.bufPrint(&buf, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{encoded_query});
+        var buf1: [2048]u8 = undefined;
+        var buf2: [2048]u8 = undefined;
+        const encoded_query = try std.fmt.bufPrint(&buf1, "{query}", .{std.Uri.Component{ .raw = query }});
+        const url = try std.fmt.bufPrint(&buf2, "https://nominatim.openstreetmap.org/search?q={s}&format=jsonv2", .{encoded_query});
 
         const request = capy.http.HttpRequest.get(url);
         const response = try request.send();
