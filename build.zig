@@ -1,13 +1,114 @@
 const std = @import("std");
-pub const install = @import("build_capy.zig").install;
+pub const runStep = @import("build_capy.zig").runStep;
 pub const CapyBuildOptions = @import("build_capy.zig").CapyBuildOptions;
+pub const CapyRunOptions = @import("build_capy.zig").CapyRunOptions;
+
 const LazyPath = std.Build.LazyPath;
+
+fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: CapyBuildOptions) !void {
+    const target = module.resolved_target.?;
+    const optimize = module.optimize.?;
+    _ = options;
+
+    const zigimg_dep = b.dependency("zigimg", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    const zigimg = zigimg_dep.module("zigimg");
+
+    module.addImport("zigimg", zigimg);
+    switch (target.result.os.tag) {
+        .windows => {
+            const zigwin32 = b.createModule(.{
+                .root_source_file = b.path("vendor/zigwin32/win32.zig"),
+            });
+            module.addImport("zigwin32", zigwin32);
+
+            module.linkSystemLibrary("comctl32", .{});
+            module.linkSystemLibrary("gdi32", .{});
+            module.linkSystemLibrary("gdiplus", .{});
+
+            module.addWin32ResourceFile(.{ .file = b.path("src/backends/win32/res/resource.rc") });
+            // switch (step.rootModuleTarget().cpu.arch) {
+            // .x86_64 => module.addObjectFile(.{ .cwd_relative = prefix ++ "/src/backends/win32/res/x86_64.o" }),
+            //.i386 => step.addObjectFile(prefix ++ "/src/backends/win32/res/i386.o"), // currently disabled due to problems with safe SEH
+            // else => {}, // not much of a problem as it'll just lack styling
+            // }
+        },
+        .macos => {
+            if (@import("builtin").os.tag != .macos) {
+                // const sdk_root_dir = b.pathFromRoot("macos-sdk/");
+                // const sdk_framework_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "System/Library/Frameworks" }) catch unreachable;
+                // const sdk_include_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/include" }) catch unreachable;
+                // const sdk_lib_dir = std.fs.path.join(b.allocator, &.{ sdk_root_dir, "usr/lib" }) catch unreachable;
+                // module.addFrameworkPath(.{ .path = sdk_framework_dir });
+                // module.addSystemIncludePath(.{ .path = sdk_include_dir });
+                // module.addLibraryPath(.{ .path = sdk_lib_dir });
+                // @import("macos_sdk").addPathsModule(module);
+                if (b.lazyImport(@This(), "macos_sdk")) |macos_sdk| {
+                    macos_sdk.addPathsModule(module);
+                }
+            }
+
+            if (b.lazyDependency("zig-objc", .{ .target = target, .optimize = optimize })) |objc| {
+                module.addImport("objc", objc.module("objc"));
+            }
+
+            module.link_libc = true;
+            module.linkFramework("CoreData", .{});
+            module.linkFramework("ApplicationServices", .{});
+            module.linkFramework("CoreFoundation", .{});
+            module.linkFramework("CoreGraphics", .{});
+            module.linkFramework("CoreText", .{});
+            module.linkFramework("CoreServices", .{});
+            module.linkFramework("Foundation", .{});
+            module.linkFramework("AppKit", .{});
+            module.linkFramework("ColorSync", .{});
+            module.linkFramework("ImageIO", .{});
+            module.linkFramework("CFNetwork", .{});
+            module.linkSystemLibrary("objc", .{ .use_pkg_config = .no });
+        },
+        .linux, .freebsd => {
+            if (target.result.isAndroid()) {
+                // TODO: find a way to contory ZigAndroidTemplate enough so it fits into the Zig build system
+            } else {
+                module.link_libc = true;
+                module.linkSystemLibrary("gtk4", .{});
+            }
+        },
+        .freestanding => {
+            if (target.result.isWasm()) {
+                // Things like the image reader require more stack than given by default
+                // TODO: remove once ziglang/zig#12589 is merged
+                module.export_symbol_names = &.{"_start"};
+            } else {
+                return error.UnsupportedOs;
+            }
+        },
+        else => {
+            return error.UnsupportedOs;
+        },
+    }
+}
 
 pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+    const app_name = b.option([]const u8, "app_name", "The name of the application, to be used for packaging purposes.");
 
-    var examplesDir = try if (@hasField(std.fs.Dir.OpenDirOptions, "iterate")) std.fs.cwd().openDir("examples", .{ .iterate = true }) else std.fs.cwd().openIterableDir("examples", .{}); // support zig 0.11 as well as current master
+    const options = CapyBuildOptions{
+        .app_name = app_name orelse "Capy Example",
+    };
+
+    const module = b.addModule("capy", .{
+        .root_source_file = b.path("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+        .imports = &.{},
+    });
+    try installCapyDependencies(b, module, options);
+
+    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
     defer examplesDir.close();
 
     const broken = switch (target.result.os.tag) {
@@ -25,26 +126,28 @@ pub fn build(b: *std.Build) !void {
             // it is not freed as the path is used later for building
             const programPath = b.path(b.pathJoin(&.{ "examples", entry.path }));
 
-            const exe: *std.Build.Step.Compile = if (target.result.isWasm())
-                b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize })
-            else
-                b.addExecutable(.{ .name = name, .root_source_file = programPath, .target = target, .optimize = optimize });
+            const exe: *std.Build.Step.Compile = b.addExecutable(.{
+                .name = name,
+                .root_source_file = programPath,
+                .target = target,
+                .optimize = optimize,
+            });
+            exe.root_module.addImport("capy", module);
 
             const install_step = b.addInstallArtifact(exe, .{});
-            const working = blk: {
+            const is_working = blk: {
                 for (broken) |broken_name| {
                     if (std.mem.eql(u8, name, broken_name))
                         break :blk false;
                 }
                 break :blk true;
             };
-            if (working) {
+            if (is_working) {
                 b.getInstallStep().dependOn(&install_step.step);
             } else {
                 std.log.warn("'{s}' is broken (disabled by default)", .{name});
             }
-
-            const run_cmd = try install(exe, .{});
+            const run_cmd = try runStep(exe, .{});
 
             const run_step = b.step(name, "Run this example");
             run_step.dependOn(run_cmd);
@@ -59,7 +162,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     lib.linkLibC();
-    _ = try install(lib, .{});
+    lib.root_module.addImport("capy", module);
     // const h_install = b.addInstallFile(lib.getEmittedH(), "headers.h");
     // b.getInstallStep().dependOn(&h_install.step);
     const lib_install = b.addInstallArtifact(lib, .{});
@@ -68,23 +171,30 @@ pub fn build(b: *std.Build) !void {
     const buildc_step = b.step("shared", "Build capy as a shared library (with C ABI)");
     buildc_step.dependOn(&lib_install.step);
 
+    //
+    // Unit tests
+    //
     const tests = b.addTest(.{
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
-    const run_tests = try install(tests, .{ .link_libraries_on_root_module = true });
+    try installCapyDependencies(b, &tests.root_module, options);
+    const run_tests = try runStep(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
     test_step.dependOn(run_tests);
 
+    //
+    // Documentation generation
+    //
     const docs = b.addObject(.{
         .name = "capy",
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = .Debug,
     });
-    _ = try install(docs, .{ .link_libraries_on_root_module = true });
+    try installCapyDependencies(b, &docs.root_module, options);
     const install_docs = b.addInstallDirectory(.{
         .source_dir = docs.getEmittedDocs(),
         .install_dir = .prefix,
@@ -98,13 +208,16 @@ pub fn build(b: *std.Build) !void {
 
     b.getInstallStep().dependOn(&install_docs.step);
 
+    //
+    // Coverage tests
+    //
     const coverage_tests = b.addTest(.{
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
     });
     coverage_tests.setExecCmd(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null });
-    _ = try install(coverage_tests, .{ .link_libraries_on_root_module = true });
+    try installCapyDependencies(b, &coverage_tests.root_module, options);
 
     const run_coverage_tests = b.addSystemCommand(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output" });
     run_coverage_tests.addArtifactArg(coverage_tests);
