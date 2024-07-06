@@ -97,6 +97,8 @@ pub fn build(b: *std.Build) !void {
     const app_name = b.option([]const u8, "app_name", "The name of the application, to be used for packaging purposes.");
 
     const options = CapyBuildOptions{
+        .target = target,
+        .optimize = optimize,
         .app_name = app_name orelse "Capy Example",
     };
 
