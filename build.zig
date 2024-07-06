@@ -108,15 +108,16 @@ pub fn build(b: *std.Build) !void {
     });
     try installCapyDependencies(b, module, options);
 
-    var examplesDir = try std.fs.cwd().openDir("examples", .{ .iterate = true });
-    defer examplesDir.close();
+    const examples_dir_path = b.path("examples").getPath(b);
+    var examples_dir = try std.fs.cwd().openDir(examples_dir_path, .{ .iterate = true });
+    defer examples_dir.close();
 
     const broken = switch (target.result.os.tag) {
         .windows => &[_][]const u8{ "osm-viewer", "fade", "slide-viewer", "demo", "notepad", "dev-tools", "many-counters" },
         else => &[_][]const u8{"many-counters"},
     };
 
-    var walker = try examplesDir.walk(b.allocator);
+    var walker = try examples_dir.walk(b.allocator);
     defer walker.deinit();
     while (try walker.next()) |entry| {
         if (entry.kind == .file and std.mem.eql(u8, std.fs.path.extension(entry.path), ".zig")) {

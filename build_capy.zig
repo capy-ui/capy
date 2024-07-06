@@ -3,7 +3,13 @@ const AndroidSdk = @import("android/Sdk.zig");
 const Server = std.http.Server;
 
 pub const CapyBuildOptions = struct {
+    // Build related
+    target: std.Build.ResolvedTarget,
+    optimize: std.builtin.OptimizeMode,
+
+    // Configuration
     app_name: []const u8 = "Capy Example",
+
     // Windows
     // Nothing.
 
