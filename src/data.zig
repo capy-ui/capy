@@ -145,7 +145,7 @@ pub fn Atom(comptime T: type) type {
         /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
         /// A notices that bindLock is already set to true, and thus returns.
         /// TODO: make the bind lock more general and just use it for any change, and explicit how this favors completeness instead of consistency (in case an onChange triggers set method manually)
-        bindLock: atomicValue(bool) = atomicValue(bool).init(false),
+        bindLock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
 
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
@@ -156,7 +156,6 @@ pub fn Atom(comptime T: type) type {
 
         const Self = @This();
         const isAnimatable = isAnimatableType(T);
-        const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
 
         pub const ValueType = T;
         pub const ChangeListener = struct {
@@ -432,8 +431,7 @@ pub fn Atom(comptime T: type) type {
             // If the old value was false, it returns null, which is what we want.
             // Otherwise, it returns the old value, but since the only value other than false is true,
             // we're not interested in the result.
-            if ((if (@hasDecl(atomicValue(bool), "cmpxchgStrong")) self.bindLock.cmpxchgStrong(false, true, .seq_cst, .seq_cst) else self.bindLock.cmpxchg(true, false, true, .seq_cst, .seq_cst) // support zig 0.11 as well as current master
-            ) == null) {
+            if (self.bindLock.cmpxchgStrong(false, true, .seq_cst, .seq_cst) == null) {
                 defer self.bindLock.store(false, .seq_cst);
 
                 {
@@ -622,6 +620,169 @@ pub fn Atom(comptime T: type) type {
             }
         }
     };
+}
+
+/// A list of atoms, that is itself an atom.
+pub fn ListAtom(comptime T: type) type {
+    return struct {
+        backing_list: ListType,
+        length: Atom(usize),
+        lock: std.Thread.RwLock = .{},
+        allocator: std.mem.Allocator,
+
+        const Self = @This();
+        const ListType = std.ArrayListUnmanaged(T);
+
+        // Possible events to be handled by ListAtom:
+        // - list size changed
+        // - an item in the list got replaced by another
+
+        // TODO: a function to get a slice (or an iterator) but it also locks the list
+        pub const Iterator = struct {
+            lock: *std.Thread.RwLock,
+            items: []const T,
+            index: usize = 0,
+
+            pub fn next(self: *Iterator) ?T {
+                const item = if (self.index < self.items.len) self.items[self.index] else null;
+                self.index += 1;
+                return item;
+            }
+
+            /// Returns a slice representing all the items in the ListAtom.
+            /// The slice should only be used during the iterator's lifetime.
+            pub fn getSlice(self: Iterator) []const T {
+                return self.items;
+            }
+
+            pub fn deinit(self: Iterator) void {
+                self.lock.unlockShared();
+            }
+        };
+
+        pub fn init(allocator: std.mem.Allocator) Self {
+            const list: ListType = ListType.initCapacity(allocator, 0) catch unreachable;
+            return Self{
+                .backing_list = list,
+                .length = Atom(usize).of(0),
+                .allocator = internal.lasting_allocator,
+            };
+        }
+
+        pub fn get(self: *Self, index: usize) T {
+            self.lock.lockShared();
+            defer self.lock.unlockShared();
+
+            return self.backing_list.items[index];
+        }
+
+        // The returned pointer is a constant pointer because if an edit
+        // was made on the pointer itself, the replace event wouldn't be
+        // invoked.
+        pub fn getPtr(self: *Self, index: usize) *const T {
+            self.lock.lockShared();
+            defer self.lock.unlockShared();
+
+            return &self.backing_list.items[index];
+        }
+
+        pub fn getLength(self: *Self) usize {
+            return self.length.get();
+        }
+
+        pub fn set(self: *Self, index: usize, value: T) void {
+            self.lock.lock();
+            defer self.lock.unlock();
+
+            self.backing_list.items[index] = value;
+        }
+
+        pub fn append(self: *Self, value: T) !void {
+            self.lock.lock();
+            defer self.lock.unlock();
+            // Given that the length is updated only at the end, the operation doesn't need a lock
+
+            try self.backing_list.append(self.allocator, value);
+            self.length.set(self.backing_list.items.len);
+        }
+
+        pub fn popOrNull(self: *Self) ?T {
+            self.lock.lock();
+            defer self.lock.unlock();
+
+            const result = self.backing_list.popOrNull();
+            self.length.set(self.backing_list.items.len);
+            return result;
+        }
+
+        pub fn pop(self: *Self) T {
+            std.debug.assert(self.getLength() > 0);
+            return self.popOrNull().?;
+        }
+
+        pub fn swapRemove(self: *Self, index: usize) T {
+            // self.lock.lock();
+            // defer self.lock.unlock();
+
+            const result = self.backing_list.swapRemove(index);
+            self.length.set(self.backing_list.items.len);
+            return result;
+        }
+
+        pub fn orderedRemove(self: *Self, index: usize) T {
+            self.lock.lock();
+            defer self.lock.unlock();
+
+            const result = self.backing_list.orderedRemove(index);
+            self.length.set(self.backing_list.items.len);
+            return result;
+        }
+
+        pub fn clear(self: *Self, mode: enum { free, retain_capacity }) void {
+            self.lock.lock();
+            defer self.lock.unlock();
+
+            switch (mode) {
+                .free => self.backing_list.clearAndFree(self.allocator),
+                .retain_capacity => self.backing_list.clearRetainingCapacity(),
+            }
+            self.length.set(0);
+        }
+
+        /// Lock the list and return an iterator.
+        /// The iterator MUST be deinit otherwise the list will remain locked forever.
+        pub fn iterate(self: *Self) Iterator {
+            self.lock.lockShared();
+            return Iterator{
+                .lock = &self.lock,
+                .items = self.backing_list.items,
+            };
+        }
+
+        pub fn deinit(self: *Self) void {
+            self.lock.lock();
+            defer self.lock.unlock();
+
+            self.backing_list.deinit(self.allocator);
+        }
+    };
+}
+
+test "list atom" {
+    var list = ListAtom(u32).init();
+    defer list.deinit();
+
+    try list.append(1);
+    try std.testing.expectEqual(1, list.getLength());
+    try list.append(2);
+    try std.testing.expectEqual(2, list.getLength());
+
+    try std.testing.expectEqual(1, list.get(0));
+    const tail = list.pop();
+    try std.testing.expectEqual(2, tail);
+
+    list.clear(.free);
+    try std.testing.expectEqual(0, list.getLength());
 }
 
 // TODO: reimplement using Atom.derived and its arena allocator

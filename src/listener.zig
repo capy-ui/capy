@@ -1,13 +1,13 @@
 const std = @import("std");
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Atom = @import("data.zig").Atom;
+const ListAtom = @import("data.zig").ListAtom;
 
 pub const EventSource = struct {
-    // TODO: use ListAtom(*Listener)
-    listeners: std.ArrayList(*Listener),
+    listeners: ListAtom(*Listener),
 
     pub fn init(allocator: std.mem.Allocator) EventSource {
-        return .{ .listeners = std.ArrayList(*Listener).init(allocator) };
+        return .{ .listeners = ListAtom(*Listener).init(allocator) };
     }
 
     /// Create a new Listener tied to this EventSource.
@@ -22,12 +22,20 @@ pub const EventSource = struct {
     }
 
     pub fn remove(self: *EventSource, listener: *Listener) void {
-        const index = std.mem.indexOfScalar(*Listener, self.listeners.items, listener) orelse return;
+        const index = blk: {
+            var iterator = self.listeners.iterate();
+            defer iterator.deinit();
+
+            break :blk std.mem.indexOfScalar(*Listener, iterator.getSlice(), listener) orelse return;
+        };
         std.debug.assert(self.listeners.swapRemove(index) == listener);
     }
 
-    pub fn callListeners(self: *const EventSource) void {
-        for (self.listeners.items) |listener| {
+    pub fn callListeners(self: *EventSource) void {
+        var iterator = self.listeners.iterate();
+        defer iterator.deinit();
+
+        while (iterator.next()) |listener| {
             if (listener.enabled.get()) {
                 listener.call();
             }
@@ -35,10 +43,12 @@ pub const EventSource = struct {
     }
 
     /// Returns true if there is atleast one listener listening to this event source
-    pub fn hasEnabledListeners(self: *const EventSource) bool {
+    pub fn hasEnabledListeners(self: *EventSource) bool {
         var result = false;
 
-        for (self.listeners.items) |listener| {
+        var iterator = self.listeners.iterate();
+        defer iterator.deinit();
+        while (iterator.next()) |listener| {
             if (listener.enabled.get()) {
                 result = true;
             }
@@ -50,9 +60,14 @@ pub const EventSource = struct {
     /// Deinits all listeners associated to this event source.
     /// Make sure this is executed at last resort as this will make every Listener invalid and cause a
     /// use-after-free if you still use them. So be sure their lifetime is all over.
-    pub fn deinitAllListeners(self: *const EventSource) void {
-        for (self.listeners.items) |listener| {
-            listener.deinit();
+    pub fn deinitAllListeners(self: *EventSource) void {
+        {
+            var iterator = self.listeners.iterate();
+            defer iterator.deinit();
+
+            while (iterator.next()) |listener| {
+                listener.deinit();
+            }
         }
         self.listeners.deinit();
     }
