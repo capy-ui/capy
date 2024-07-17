@@ -9,6 +9,7 @@ pub const HWND = @import("zigwin32").everything.HWND;
 pub const WPARAM = std.os.windows.WPARAM;
 pub const LPARAM = std.os.windows.LPARAM;
 pub const LRESULT = std.os.windows.LRESULT;
+pub const HRESULT = std.os.windows.HRESULT;
 pub const RECT = std.os.windows.RECT;
 pub const LPRECT = *RECT;
 pub const WINAPI = std.os.windows.WINAPI;
@@ -17,6 +18,7 @@ pub const HBRUSH = std.os.windows.HBRUSH;
 pub const HMENU = std.os.windows.HMENU;
 pub const HFONT = *opaque {};
 pub const HRGN = *opaque {};
+pub const HMONITOR = *opaque {};
 pub const HCURSOR = std.os.windows.HCURSOR;
 pub const COLORREF = std.os.windows.DWORD;
 pub const BOOL = std.os.windows.BOOL;
@@ -162,7 +164,6 @@ pub const DPI_AWARENESS_CONTEXT_SYSTEM_AWARE = -2;
 pub const DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE = -3;
 pub const DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = -4;
 pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = -5;
-
 pub const WM_DPICHANGED = 0x02E0;
 
 pub extern "user32" fn SetProcessDpiAwarenessContext(value: DPI_AWARENESS_CONTEXT) callconv(WINAPI) BOOL;

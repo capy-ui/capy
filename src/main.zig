@@ -25,6 +25,10 @@ pub usingnamespace @import("image.zig");
 pub usingnamespace @import("list.zig");
 pub usingnamespace @import("timer.zig");
 
+pub const Monitor = @import("monitor.zig").Monitor;
+pub const Monitors = @import("monitor.zig").Monitors;
+pub const VideoMode = @import("monitor.zig").VideoMode;
+
 pub const Listener = @import("listener.zig").Listener;
 pub const EventSource = @import("listener.zig").EventSource;
 
@@ -56,6 +60,8 @@ pub fn init() !void {
         try dev_tools.init();
     }
 
+    Monitors.init();
+
     var listener = eventStep.listen(.{ .callback = animateAtoms }) catch unreachable;
     // The listener is enabled only if there is at least 1 atom currently being animated
     listener.enabled.dependOn(.{&@import("data.zig")._animatedAtomsLength}, &struct {
@@ -66,6 +72,8 @@ pub fn init() !void {
 }
 
 pub fn deinit() void {
+    Monitors.deinit();
+
     @import("data.zig")._animatedAtoms.deinit();
     @import("data.zig")._animatedAtomsLength.deinit();
 

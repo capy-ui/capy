@@ -20,6 +20,8 @@ const GTK_VERSION = std.SemanticVersion.Range{
     .max = std.SemanticVersion.parse("4.11.0") catch unreachable,
 };
 
+pub const Monitor = @import("Monitor.zig");
+
 pub const Capabilities = .{ .useEventLoop = true };
 
 var activeWindows = std.atomic.Value(usize).init(0);
@@ -199,6 +201,21 @@ pub const Window = struct {
 
         const callback = @as(*const fn () void, @ptrCast(userdata.?));
         callback();
+    }
+
+    pub fn setFullscreen(self: *Window, monitor: ?*Monitor, video_mode: ?lib.VideoMode) void {
+        if (monitor) |mon| {
+            // Video mode is ignored as for now, GTK doesn't support exclusive fullscreen
+            _ = video_mode;
+
+            c.gtk_window_fullscreen_on_monitor(@ptrCast(self.peer), mon.peer);
+        } else {
+            c.gtk_window_fullscreen(@ptrCast(self.peer));
+        }
+    }
+
+    pub fn unfullscreen(self: *Window) void {
+        c.gtk_window_unfullscreen(@ptrCast(self.peer));
     }
 
     pub fn show(self: *Window) void {

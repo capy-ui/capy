@@ -8,6 +8,8 @@ const log = std.log.scoped(.win32);
 const EventFunctions = shared.EventFunctions(@This());
 const EventType = shared.BackendEventType;
 
+pub const Monitor = @import("Monitor.zig");
+
 const win32Backend = @import("win32.zig");
 const zigwin32 = @import("zigwin32");
 const win32 = zigwin32.everything;
@@ -167,6 +169,8 @@ pub const Window = struct {
     root_menu: ?HMENU,
     /// List of menu item callbacks, where the index is the menu item ID
     menu_item_callbacks: std.ArrayList(?*const fn () void),
+    in_fullscreen: bool = false,
+    restore_placement: win32.WINDOWPLACEMENT = undefined,
 
     const className = _T("capyWClass");
     pub usingnamespace Events(Window);
@@ -338,6 +342,71 @@ pub const Window = struct {
 
     pub fn setSourceDpi(self: *Window, dpi: u32) void {
         self.source_dpi = dpi;
+    }
+
+    pub fn setFullscreen(self: *Window, monitor: ?*Monitor, video_mode: ?lib.VideoMode) void {
+        // Capture the current window position and size
+        if (!self.in_fullscreen) {
+            _ = win32.GetWindowPlacement(self.hwnd, &self.restore_placement);
+        }
+
+        // Change video mode
+        if (video_mode) |mode| {
+            const dev_mode = std.mem.zeroInit(std.os.windows.DEVMODEW, .{
+                .dmSize = @sizeOf(win32.DEVMODEW),
+            });
+            std.debug.assert(win32.EnumDisplaySettingsW(monitor.?, win32.ENUM_CURRENT_SETTINGS, &dev_mode) != 0);
+            dev_mode.dmPelsWidth = mode.width;
+            dev_mode.dmPelsHeight = mode.height;
+            dev_mode.dmBitsPerPel = mode.bit_depth;
+            dev_mode.dmDisplayFrequency = mode.refresh_rate_millihertz / 1000;
+            dev_mode.dmFields = win32.DM_PELSWIDTH | win32.DM_PELSHEIGHT | win32.DM_BITSPERPEL | win32.DM_DISPLAYFREQUENCY;
+            _ = win32.ChangeDisplaySettingsW(&dev_mode, win32.CDS_FULLSCREEN);
+        }
+
+        // Make the window fullscreen
+        if (!self.in_fullscreen) {
+            const hmonitor = if (monitor) |mon| mon.getHmonitor() else win32.MonitorFromWindow(self.hwnd, win32.MONITOR_DEFAULTTONEAREST);
+
+            const style = win32Backend.getWindowLongPtr(self.hwnd, win32.GWL_STYLE);
+            _ = win32Backend.setWindowLongPtr(self.hwnd, win32.GWL_STYLE, style & ~(@intFromEnum(win32.WS_CAPTION) | @intFromEnum(win32.WS_THICKFRAME)));
+            const ex_style = win32Backend.getWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE);
+            _ = win32Backend.setWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE, ex_style & ~(@intFromEnum(win32.WS_EX_DLGMODALFRAME) | @intFromEnum(win32.WS_EX_WINDOWEDGE) | @intFromEnum(win32.WS_EX_CLIENTEDGE) | @intFromEnum(win32.WS_EX_STATICEDGE)));
+
+            var monitor_info = std.mem.zeroInit(win32.MONITORINFO, .{ .cbSize = @sizeOf(win32.MONITORINFO) });
+            std.debug.assert(win32.GetMonitorInfoW(hmonitor, &monitor_info) != 0);
+            const rect = monitor_info.rcMonitor;
+            _ = win32.SetWindowPos(
+                self.hwnd,
+                null,
+                rect.left,
+                rect.top,
+                rect.right - rect.left,
+                rect.bottom - rect.top,
+                win32.SET_WINDOW_POS_FLAGS.initFlags(.{ .NOZORDER = 1, .NOACTIVATE = 1, .DRAWFRAME = 1 }),
+            );
+            self.in_fullscreen = true;
+        }
+    }
+
+    pub fn unfullscreen(self: *Window) void {
+        if (self.in_fullscreen) {
+            _ = win32.ChangeDisplaySettingsW(null, win32.CDS_RESET);
+            const style = win32Backend.getWindowLongPtr(self.hwnd, win32.GWL_STYLE);
+            _ = win32Backend.setWindowLongPtr(self.hwnd, win32.GWL_STYLE, style | (@intFromEnum(win32.WS_CAPTION) | @intFromEnum(win32.WS_THICKFRAME)));
+            const ex_style = win32Backend.getWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE);
+            _ = win32Backend.setWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE, ex_style | (@intFromEnum(win32.WS_EX_DLGMODALFRAME) | @intFromEnum(win32.WS_EX_WINDOWEDGE) | @intFromEnum(win32.WS_EX_CLIENTEDGE) | @intFromEnum(win32.WS_EX_STATICEDGE)));
+            _ = win32.SetWindowPlacement(self.hwnd, &self.restore_placement);
+            _ = win32.SetWindowPos(self.hwnd, null, 0, 0, 0, 0, win32.SET_WINDOW_POS_FLAGS.initFlags(.{
+                .NOMOVE = 1,
+                .NOSIZE = 1,
+                .NOZORDER = 1,
+                .NOOWNERZORDER = 1,
+                .DRAWFRAME = 1,
+                .NOACTIVATE = 1,
+            }));
+            self.in_fullscreen = false;
+        }
     }
 
     pub fn show(self: *Window) void {
@@ -665,8 +734,6 @@ pub fn Events(comptime T: type) type {
         }
     };
 }
-
-pub const MouseButton = enum { Left, Middle, Right };
 
 pub const Canvas = struct {
     peer: HWND,

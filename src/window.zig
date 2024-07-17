@@ -9,6 +9,8 @@ const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
 const EventSource = listener.EventSource;
 
+const Monitor = @import("monitor.zig").Monitor;
+const VideoMode = @import("monitor.zig").VideoMode;
 const Display = struct { resolution: Size, dpi: u32 };
 
 const devices = std.StaticStringMap(Display).initComptime(.{
@@ -146,6 +148,28 @@ pub const Window = struct {
 
     pub fn setMenuBar(self: *Window, bar: MenuBar) void {
         self.peer.setMenuBar(bar);
+    }
+
+    pub const FullscreenMode = union(enum) {
+        /// Unfullscreens the window if it was already fullscreened.
+        none,
+        /// Make the window fullscreen borderless on a given monitor, or on its current monitor if null.
+        borderless: ?Monitor,
+        /// Make the window exclusively fullscreen on a specific monitor and with a specific video mode.
+        /// On systems where this is not supported, borderless fullscreen is used instead as a fallback.
+        exclusive: struct { Monitor, VideoMode },
+    };
+
+    /// Set the fullscreen state of the window.
+    pub fn setFullscreen(self: *Window, mode: FullscreenMode) void {
+        switch (mode) {
+            .none => self.peer.unfullscreen(),
+            .borderless => |monitor| self.peer.setFullscreen(
+                if (monitor) |mon| mon.peer else null,
+                null,
+            ),
+            .exclusive => |tuple| self.peer.setFullscreen(tuple[0].peer, tuple[1]),
+        }
     }
 
     /// Specify for which DPI the GUI was developed against.
