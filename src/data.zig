@@ -627,6 +627,7 @@ pub fn ListAtom(comptime T: type) type {
     return struct {
         backing_list: ListType,
         length: Atom(usize),
+        // TODO: since RwLock doesn't report deadlocks in Debug mode like Mutex does, do it manually here in ListAtom
         lock: std.Thread.RwLock = .{},
         allocator: std.mem.Allocator,
 
@@ -759,6 +760,12 @@ pub fn ListAtom(comptime T: type) type {
             };
         }
 
+        pub fn map(self: *Self, comptime U: type, func: *const fn (T) U) *ListAtom(U) {
+            _ = self;
+            _ = func;
+            return undefined;
+        }
+
         pub fn deinit(self: *Self) void {
             self.lock.lock();
             defer self.lock.unlock();
@@ -768,8 +775,8 @@ pub fn ListAtom(comptime T: type) type {
     };
 }
 
-test "list atom" {
-    var list = ListAtom(u32).init();
+test ListAtom {
+    var list = ListAtom(u32).init(std.testing.allocator);
     defer list.deinit();
 
     try list.append(1);

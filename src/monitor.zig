@@ -25,23 +25,32 @@ pub const Monitors = struct {
 
     /// This function is called by `capy.deinit()`, so it doesn't need to call it manually.
     pub fn deinit() void {
-        var iterator = Monitors.list.iterate();
-        defer iterator.deinit();
-        while (iterator.next()) |monitor| {
-            monitor.deinit();
+        {
+            var iterator = Monitors.list.iterate();
+            defer iterator.deinit();
+            while (iterator.next()) |monitor| {
+                monitor.deinit();
+            }
         }
-
         Monitors.list.deinit();
+        Monitors.list = ListAtom(Monitor).init(internal.lasting_allocator);
+        backend.Monitor.deinitAllPeers();
     }
 };
 
 test "Monitors" {
-    var iterator = Monitors.list.iterate();
-    defer iterator.deinit();
+    // NOTE: You don't need to initialize the API in user code. This is only for the testing environment.
+    Monitors.init();
+    defer Monitors.deinit();
 
-    std.log.info("Monitor(s):", .{});
-    while (iterator.next()) |monitor| {
-        std.log.info("  - Name: {s}", .{monitor.getName()});
+    {
+        var iterator = Monitors.list.iterate();
+        defer iterator.deinit();
+
+        std.log.info("Monitor(s):", .{});
+        while (iterator.next()) |monitor| {
+            std.log.info("  - Name: {s}", .{monitor.getName()});
+        }
     }
 }
 
@@ -113,6 +122,10 @@ pub const Monitor = struct {
     }
 
     test getSize {
+        // NOTE: You don't need to initialize the API in user code. This is only for the testing environment.
+        Monitors.init();
+        defer Monitors.deinit();
+
         const monitor = Monitors.list.get(0);
         const width, const height = monitor.getSize();
         std.log.info("Monitor pixels: {d} px x {d} px", .{ width, height });

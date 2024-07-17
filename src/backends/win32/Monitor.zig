@@ -83,6 +83,14 @@ pub fn getList() []Monitor {
     }
 }
 
+pub fn deinitAllPeers() void {
+    if (monitor_list) |list| {
+        for (list) |*monitor| monitor.deinit();
+        lib.internal.lasting_allocator.free(list);
+        monitor_list = null;
+    }
+}
+
 pub fn getName(self: *Monitor) []const u8 {
     return self.device_name;
 }

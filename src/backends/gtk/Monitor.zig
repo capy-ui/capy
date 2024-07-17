@@ -27,6 +27,14 @@ pub fn getList() []Monitor {
     }
 }
 
+pub fn deinitAllPeers() void {
+    if (monitor_list) |list| {
+        for (list) |*monitor| monitor.deinit();
+        lib.internal.lasting_allocator.free(list);
+        monitor_list = null;
+    }
+}
+
 pub fn getName(self: *Monitor) []const u8 {
     // TODO: detect if GTK version is >= 4.10 and use c.gdk_monitor_get_description if so is the case.
     return std.mem.span(c.gdk_monitor_get_connector(self.peer));
@@ -37,9 +45,10 @@ pub fn getInternalName(self: *Monitor) []const u8 {
         return internal_name;
     } else {
         self.internal_name = std.mem.concat(lib.internal.lasting_allocator, u8, &.{
-            std.mem.span(c.gdk_monitor_get_manufacturer(self.peer) orelse ""),
-            std.mem.span(c.gdk_monitor_get_model(self.peer) orelse ""),
+            std.mem.span(c.gdk_monitor_get_manufacturer(self.peer) orelse @as([:0]const u8, "").ptr),
+            std.mem.span(c.gdk_monitor_get_model(self.peer) orelse @as([:0]const u8, "").ptr),
         }) catch @panic("OOM");
+        return self.internal_name.?;
     }
 }
 
@@ -95,5 +104,6 @@ pub fn getVideoMode(self: *Monitor, index: usize) lib.VideoMode {
 pub fn deinit(self: *Monitor) void {
     if (self.internal_name) |internal_name| {
         lib.internal.lasting_allocator.free(internal_name);
+        self.internal_name = null;
     }
 }
