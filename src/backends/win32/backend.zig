@@ -352,10 +352,10 @@ pub const Window = struct {
 
         // Change video mode
         if (video_mode) |mode| {
-            const dev_mode = std.mem.zeroInit(std.os.windows.DEVMODEW, .{
+            var dev_mode = std.mem.zeroInit(win32.DEVMODEW, .{
                 .dmSize = @sizeOf(win32.DEVMODEW),
             });
-            std.debug.assert(win32.EnumDisplaySettingsW(monitor.?, win32.ENUM_CURRENT_SETTINGS, &dev_mode) != 0);
+            std.debug.assert(win32.EnumDisplaySettingsW(monitor.?.adapter_win32_name, win32.ENUM_CURRENT_SETTINGS, &dev_mode) != 0);
             dev_mode.dmPelsWidth = mode.width;
             dev_mode.dmPelsHeight = mode.height;
             dev_mode.dmBitsPerPel = mode.bit_depth;
