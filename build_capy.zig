@@ -176,10 +176,10 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
     const optimize = step.root_module.optimize.?;
     switch (step.rootModuleTarget().os.tag) {
         .windows => {
-            switch (optimize) {
-                .Debug => {},
-                else => step.subsystem = .Windows,
-            }
+            step.subsystem = switch (optimize) {
+                .Debug => .Console,
+                else => .Windows,
+            };
         },
         .macos => {},
         .linux, .freebsd => {
