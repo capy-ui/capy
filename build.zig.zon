@@ -4,13 +4,13 @@
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
         .@"zig-objc" = .{
-            .url = "https://github.com/mitchellh/zig-objc/archive/f6ed382b6db296626a9b56dadcf9d7e4fcba71d3.tar.gz",
-            .hash = "1220c94dbcdf5a799ce2b1571978ff3c97bab1341fe329084fcc3c06e5d6375469b9",
+            .url = "https://github.com/mitchellh/zig-objc/archive/fe5ac419530cf800294369d996133fe9cd067aec.tar.gz",
+            .hash = "122034b3e15d582d8d101a7713e5f13c872b8b8eb6d9cb47515b8e34ee75e122630d",
             .lazy = true,
         },
         .macos_sdk = .{
-            .url = "https://github.com/linusg/zig-build-macos-sdk/archive/4183dc3f446f419dccc9625f97a45fee97b0c03e.tar.gz",
-            .hash = "1220d397a6dfd4389b6bf9ecdd6be1421a919ae02adb4f658a6ccb2dac84804db07c",
+            .url = "https://github.com/mitchellh/zig-build-macos-sdk/archive/a4ea24f105902111633c6ae9f888b676ac5e36df.tar.gz",
+            .hash = "12209cc9ee372456eda52b71cf9ae77dcc707fa42c9f9d68996b5bf7495b53229c2e",
             .lazy = true,
         },
         .zigimg = .{
