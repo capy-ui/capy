@@ -52,6 +52,8 @@ pub fn init() !void {
 
 var globalWindow: ?*Window = null;
 
+pub const Monitor = @import("Monitor.zig");
+
 pub const Window = struct {
     peer: *GuiWidget,
     child: ?PeerType = null,
@@ -97,6 +99,11 @@ pub const Window = struct {
         // CSS pixels are somewhat undefined given they're based on the confortableness of the reader
         const resolution = @as(f32, @floatFromInt(dpi));
         self.scale = resolution / 96.0;
+    }
+
+    pub fn registerTickCallback(self: *Window) void {
+        _ = self;
+        // TODO
     }
 };
 
@@ -656,87 +663,74 @@ fn executeMain() void {
 }
 
 // Execution
-// TODO: reuse the old system when async is finally reimplemented in the zig compiler
-
-// fn executeMain() callconv(.Async) void {
-//     const mainFn = @import("root").main;
-//     const ReturnType = @typeInfo(@TypeOf(mainFn)).Fn.return_type.?;
-//     if (ReturnType == void) {
-//         mainFn();
-//     } else {
-//         mainFn() catch |err| @panic(@errorName(err));
-//     }
-//     js.stopExecution();
-// }
-
-// var frame: @Frame(executeMain) = undefined;
-// var result: void = {};
-// var suspending: bool = false;
-
-// var resumePtr: anyframe = undefined;
-
 fn milliTimestamp() i64 {
     return @as(i64, @intFromFloat(js.now()));
 }
 
+// The following WASI Preview 1 functions are implemented on JS's side:
+// - clock_time_get
+// - clock_res_get
+// - poll_oneoff (only for CLOCK pollables!)
+// - fd_write (FOR STANDARD OUTPUT AND STANDARD ERROR ONLY!)
+
 pub const backendExport = struct {
-    pub const os = struct {
-        pub const system = struct {
-            pub const E = std.os.linux.E;
-            fn errno(e: E) usize {
-                const signed_r = @as(isize, 0) - @intFromEnum(e);
-                return @as(usize, @bitCast(signed_r));
-            }
+    // pub const os = struct {
+    //     pub const system = struct {
+    //         pub const E = std.os.linux.E;
+    //         fn errno(e: E) usize {
+    //             const signed_r = @as(isize, 0) - @intFromEnum(e);
+    //             return @as(usize, @bitCast(signed_r));
+    //         }
 
-            pub fn getErrno(r: usize) E {
-                const signed_r = @as(isize, @bitCast(r));
-                const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
-                return @as(E, @enumFromInt(int));
-            }
+    //         pub fn getErrno(r: usize) E {
+    //             const signed_r = @as(isize, @bitCast(r));
+    //             const int = if (signed_r > -4096 and signed_r < 0) -signed_r else 0;
+    //             return @as(E, @enumFromInt(int));
+    //         }
 
-            // Time
-            pub const CLOCK = std.os.linux.CLOCK;
-            pub const timespec = std.os.linux.timespec;
+    //         // Time
+    //         pub const CLOCK = std.os.linux.CLOCK;
+    //         pub const timespec = std.os.linux.timespec;
 
-            pub fn clock_gettime(clk_id: i32, tp: *timespec) usize {
-                _ = clk_id;
+    //         pub fn clock_gettime(clk_id: i32, tp: *timespec) usize {
+    //             _ = clk_id;
 
-                // Time in milliseconds
-                const millis = milliTimestamp();
-                tp.tv_sec = @as(isize, @intCast(@divTrunc(millis, std.time.ms_per_s)));
-                tp.tv_nsec = @as(isize, @intCast(@rem(millis, std.time.ms_per_s) * std.time.ns_per_ms));
-                return 0;
-            }
+    //             // Time in milliseconds
+    //             const millis = milliTimestamp();
+    //             tp.tv_sec = @as(isize, @intCast(@divTrunc(millis, std.time.ms_per_s)));
+    //             tp.tv_nsec = @as(isize, @intCast(@rem(millis, std.time.ms_per_s) * std.time.ns_per_ms));
+    //             return 0;
+    //         }
 
-            /// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
-            pub fn nanosleep(req: *const timespec, rem: ?*timespec) usize {
-                _ = rem;
-                // Duration in milliseconds
-                const duration = @as(u64, @intCast(req.tv_sec)) * 1000 + @as(u64, @intCast(req.tv_nsec)) / 1000;
+    //         /// Precision DEFINITELY not guarenteed (can have up to 20ms delays)
+    //         pub fn nanosleep(req: *const timespec, rem: ?*timespec) usize {
+    //             _ = rem;
+    //             // Duration in milliseconds
+    //             const duration = @as(u64, @intCast(req.tv_sec)) * 1000 + @as(u64, @intCast(req.tv_nsec)) / 1000;
 
-                const start = milliTimestamp();
-                while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
-                    // TODO: better way to sleep like calling a jS function for sleep
-                }
-                return 0;
-            }
+    //             const start = milliTimestamp();
+    //             while (milliTimestamp() < start + @as(i64, @intCast(duration))) {
+    //                 // TODO: better way to sleep like calling a jS function for sleep
+    //             }
+    //             return 0;
+    //         }
 
-            // I/O
-            pub const fd_t = u32;
-            pub const STDOUT_FILENO = 1;
-            pub const STDERR_FILENO = 1;
+    //         // I/O
+    //         pub const fd_t = u32;
+    //         pub const STDOUT_FILENO = 1;
+    //         pub const STDERR_FILENO = 1;
 
-            pub fn write(fd: fd_t, buf: [*]const u8, size: usize) usize {
-                if (fd == STDOUT_FILENO or fd == STDERR_FILENO) {
-                    // TODO: buffer and write for each new line
-                    js.print(buf[0..size]);
-                    return size;
-                } else {
-                    return errno(E.BADF);
-                }
-            }
-        };
-    };
+    //         pub fn write(fd: fd_t, buf: [*]const u8, size: usize) usize {
+    //             if (fd == STDOUT_FILENO or fd == STDERR_FILENO) {
+    //                 // TODO: buffer and write for each new line
+    //                 js.print(buf[0..size]);
+    //                 return size;
+    //             } else {
+    //                 return errno(E.BADF);
+    //             }
+    //         }
+    //     };
+    // };
 
     pub fn log(
         comptime message_level: std.log.Level,
@@ -765,36 +759,4 @@ pub const backendExport = struct {
     pub export fn _start() callconv(.C) void {
         executeMain();
     }
-
-    // pub export fn _start() callconv(.C) void {
-    //     _ = @asyncCall(&frame, &result, executeMain, .{});
-    // }
-
-    // pub export fn _capyStep() callconv(.C) void {
-    //     if (suspending) {
-    //         suspending = false;
-    //         resume resumePtr;
-    //     }
-    // }
 };
-
-// pub fn runStep(step: shared.EventLoopStep) callconv(.Async) bool {
-//     _ = step;
-//     while (js.hasEvent()) {
-//         const eventId = js.popEvent();
-//         switch (js.getEventType(eventId)) {
-//             else => {
-//                 if (globalWindow) |window| {
-//                     if (window.child) |child| {
-//                         child.processEventFn(child.object, eventId);
-//                     }
-//                 }
-//             },
-//         }
-//     }
-//     suspending = true;
-//     suspend {
-//         resumePtr = @frame();
-//     }
-//     return true;
-// }

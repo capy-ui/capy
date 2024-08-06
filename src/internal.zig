@@ -32,12 +32,12 @@ const default_allocator = blk: {
 
 /// Allocator used for small, short-lived and repetitive allocations.
 /// You can change this by setting the `capy_scratch_allocator` field in your main file
-/// or by setting the `zgtAllocator` field which will also apply as lasting allocator.
+/// or by setting the `capy_allocator` field which will also apply as lasting allocator.
 pub const scratch_allocator = if (@hasDecl(root, "capy_scratch_allocator")) root.capy_scratch_allocator else default_allocator;
 
 /// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
 /// You can change this by setting the `capy_lasting_allocator` field in your main file
-/// or by setting the `zgtAllocator` field which will also apply as scratch allocator.
+/// or by setting the `capy_allocator` field which will also apply as scratch allocator.
 pub const lasting_allocator = if (@hasDecl(root, "capy_lasting_allocator")) root.capy_lasting_allocator else default_allocator;
 
 /// Convenience function for creating widgets

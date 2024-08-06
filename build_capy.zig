@@ -104,12 +104,6 @@ const WebServerStep = struct {
         if (std.mem.eql(u8, path, "/")) {
             file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/index.html" });
             content_type = "text/html";
-        } else if (std.mem.eql(u8, path, "/capy.js")) {
-            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy.js" });
-            content_type = "application/javascript";
-        } else if (std.mem.eql(u8, path, "/capy-worker.js")) {
-            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm/capy-worker.js" });
-            content_type = "application/javascript";
         } else if (std.mem.eql(u8, path, "/zig-app.wasm")) {
             file_path = self.exe.getEmittedBin().getPath2(build, &self.step);
             content_type = "application/wasm";
@@ -118,6 +112,9 @@ const WebServerStep = struct {
                 file_path = extras_path;
                 content_type = "application/javascript";
             }
+        } else {
+            file_path = try std.fs.path.join(req_allocator, &.{ prefix, "src/backends/wasm", path });
+            content_type = "application/javascript";
         }
 
         if (self.options.wasm_debug_requests) {
@@ -162,17 +159,8 @@ const WebServerStep = struct {
 /// Running a binary on your local machine isn't the same as spinning a local web server
 /// for WebAssembly or using ADB to upload your Android app to your phone.
 pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Build.Step {
-    const prefix = comptime std.fs.path.dirname(@src().file).?;
     const b = step.step.owner;
-    step.subsystem = .Native;
 
-    const capy = b.createModule(.{
-        .root_source_file = .{ .cwd_relative = prefix ++ "/src/main.zig" },
-        .target = step.root_module.resolved_target,
-        .imports = &.{},
-    });
-
-    const target = step.rootModuleTarget();
     const optimize = step.root_module.optimize.?;
     switch (step.rootModuleTarget().os.tag) {
         .windows => {
@@ -267,23 +255,18 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
                 // return run_step;
             }
         },
-        .freestanding => {
-            if (target.isWasm()) {
-                // Things like the image reader require more stack than given by default
-                // TODO: remove once ziglang/zig#12589 is merged
-                step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
-                if (step.root_module.optimize == .ReleaseSmall) {
-                    step.root_module.strip = true;
-                }
-                capy.export_symbol_names = &.{"_start"};
-
-                const serve = WebServerStep.create(b, step, options);
-                const install_step = b.addInstallArtifact(step, .{});
-                serve.step.dependOn(&install_step.step);
-                return &serve.step;
-            } else {
-                return error.UnsupportedOs;
+        .wasi => {
+            // Things like the image reader require more stack than given by default
+            // TODO: remove once ziglang/zig#12589 is merged
+            step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
+            if (step.root_module.optimize == .ReleaseSmall) {
+                step.root_module.strip = true;
             }
+
+            const serve = WebServerStep.create(b, step, options);
+            const install_step = b.addInstallArtifact(step, .{});
+            serve.step.dependOn(&install_step.step);
+            return &serve.step;
         },
         else => {
             return error.UnsupportedOs;

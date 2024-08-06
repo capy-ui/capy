@@ -95,7 +95,7 @@ pub const Window = struct {
     /// On certain platforms (e.g. mobile) or configurations (e.g. tiling window manager) this function might do nothing.
     pub fn setPreferredSize(self: *Window, width: u32, height: u32) void {
         const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
-        if (std.process.hasEnvVarConstant(EMULATOR_KEY)) {
+        if (std.process.hasEnvVar(internal.scratch_allocator, EMULATOR_KEY) catch return) {
             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
             defer internal.scratch_allocator.free(id);
             if (devices.get(id)) |device| {

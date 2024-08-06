@@ -76,7 +76,7 @@ fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: Ca
                 module.linkSystemLibrary("gtk4", .{});
             }
         },
-        .freestanding => {
+        .wasi => {
             if (target.result.isWasm()) {
                 // Things like the image reader require more stack than given by default
                 // TODO: remove once ziglang/zig#12589 is merged
@@ -84,6 +84,12 @@ fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: Ca
             } else {
                 return error.UnsupportedOs;
             }
+        },
+        .freestanding => {
+            if (target.result.isWasm()) {
+                std.log.warn("For targetting the Web, WebAssembly builds must now be compiled using the `wasm32-wasi` target.", .{});
+            }
+            return error.UnsupportedOs;
         },
         else => {
             return error.UnsupportedOs;
@@ -148,7 +154,7 @@ pub fn build(b: *std.Build) !void {
             if (is_working) {
                 b.getInstallStep().dependOn(&install_step.step);
             } else {
-                std.log.warn("'{s}' is broken (disabled by default)", .{name});
+                // std.log.warn("'{s}' is broken (disabled by default)", .{name});
             }
             const run_cmd = try runStep(exe, .{});
 

@@ -14,7 +14,7 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
             break :blk @import("backends/gtk/backend.zig");
         }
     },
-    .freestanding => blk: {
+    .wasi => blk: {
         if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
             break :blk @import("backends/wasm/backend.zig");
         } else {

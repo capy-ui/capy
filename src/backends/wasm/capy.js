@@ -41,6 +41,9 @@ async function pushAnswer(type, value) {
 	if (type == "float" && typeof value !== "number") {
 		throw Error("Type mismatch, got " + (typeof value));
 	}
+	if (type == "bytes" && !(value instanceof Uint8Array)) {
+		throw Error("Type mismatch, got " + (typeof value));
+	}
 
 	const WAITING = 0;
 	const DONE = 1;
@@ -57,7 +60,11 @@ async function pushAnswer(type, value) {
 		view[1] = left;
 		view[2] = right;
 	} else if (type == "float") {
-		new DataView(view.buffer).setFloat64(4, value);
+		new DataView(view.buffer).setFloat64(0x4, value);
+	} else if (type == "string") {
+		const length = value.length;
+		view[1] = length;
+		new Uint8Array(view.buffer).set(bytes, 0x8);
 	}
 	view[0] = DONE;
 	if (Atomics.notify(view, 0) != 1) {
@@ -295,11 +302,7 @@ let env = {
 			else text = elem.innerText;
 
 			const encoded = new TextEncoder().encode(text);
-
-			let view = new Uint8Array(obj.instance.exports.memory.buffer);
-			for (let i = 0; i < encoded.length; i++) {
-				view[textPtr + i] = encoded[i];
-			}
+			return encoded;
 		},
 		setPos: function(element, x, y) {
 			domObjects[element].style.transform = "translate(" + x + "px, " + y + "px)";
@@ -537,6 +540,8 @@ async function loadExtras() {
 				if (name === "getValue") {
 					answerType = "float";
 				}
+				if (value instanceof Uint8Array)
+					answerType = "bytes";
 				pushAnswer(answerType, value);
 			}
 		}
