@@ -72,7 +72,7 @@ pub const Easings = struct {
 
 fn Animation(comptime T: type) type {
     return struct {
-        start: i64,
+        start: std.time.Instant,
         /// Assume animation won't last more than 4000000 seconds
         duration: u32,
         min: T,
@@ -81,8 +81,9 @@ fn Animation(comptime T: type) type {
 
         /// Get the current value from the animation
         pub fn get(self: @This()) T {
-            const maxDiff = @as(f64, @floatFromInt(self.duration));
-            const diff = @as(f64, @floatFromInt(std.time.milliTimestamp() - self.start));
+            const now = std.time.Instant.now() catch @panic("a monotonic clock is required for animations");
+            const maxDiff = @as(f64, @floatFromInt(self.duration)) * @as(f64, std.time.ns_per_ms);
+            const diff: f64 = @floatFromInt(now.since(self.start));
             var t = diff / maxDiff;
             // Clamp t to [0, 1]
             t = std.math.clamp(t, 0.0, 1.0);
@@ -117,6 +118,10 @@ fn isAnimatableType(comptime T: type) bool {
     return false;
 }
 
+fn isPointer(comptime T: type) bool {
+    return @typeInfo(T) == .Pointer;
+}
+
 /// An atom is used to add binding, change listening, thread safety and animation capabilities to
 /// a value. It is used for all component properties.
 ///
@@ -136,6 +141,12 @@ pub fn Atom(comptime T: type) type {
         onChange: ChangeListenerList = .{},
         /// List of all Atoms this one is bound to.
         bindings: BindingList = .{},
+        /// The checksum is used to compare the equality of the old value and the new value
+        /// when calling the set() function. For instance, a real usecase is as follow:
+        /// a string at address 0x1000 has content "abc", it then changes to "def" and
+        /// Atom.set() is called. Without the checksum, Atom.set() wouldn't be able to know
+        /// whether there's been a change or not.
+        checksum: if (hasChecksum) u8 else void,
 
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
@@ -146,6 +157,7 @@ pub fn Atom(comptime T: type) type {
 
         const Self = @This();
         const isAnimatable = isAnimatableType(T);
+        const hasChecksum = isPointer(T);
 
         pub const ValueType = T;
         pub const ChangeListener = struct {
@@ -161,11 +173,25 @@ pub fn Atom(comptime T: type) type {
         const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
         const BindingList = std.SinglyLinkedList(Binding);
 
+        fn computeChecksum(value: T) u8 {
+            const Crc = std.hash.crc.Crc8Wcdma;
+            return switch (@typeInfo(T).Pointer.size) {
+                .One => Crc.hash(std.mem.asBytes(value)),
+                .Many, .C, .Slice => Crc.hash(std.mem.sliceAsBytes(value)),
+            };
+        }
+
         pub fn of(value: T) Self {
             if (isAnimatable) {
-                return Self{ .value = .{ .Single = value } };
+                // A pointer or a slice can't be animated, so no need to support
+                // hasChecksum in this branch.
+                return Self{ .value = .{ .Single = value }, .checksum = {} };
             } else {
-                return Self{ .value = value };
+                if (hasChecksum) {
+                    return Self{ .value = value, .checksum = computeChecksum(value) };
+                } else {
+                    return Self{ .value = value, .checksum = {} };
+                }
             }
         }
 
@@ -262,7 +288,8 @@ pub fn Atom(comptime T: type) type {
             if (!isAnimatable) return false;
             switch (self.value) {
                 .Animated => |animation| {
-                    if (std.time.milliTimestamp() >= animation.start + animation.duration) {
+                    const now = std.time.Instant.now() catch @panic("a monotonic clock is required for animations");
+                    if (now.since(animation.start) >= animation.duration * std.time.ns_per_ms) {
                         self.value = .{ .Single = animation.max };
                         return false;
                     } else {
@@ -286,10 +313,9 @@ pub fn Atom(comptime T: type) type {
             if (comptime !isAnimatable) {
                 @compileError("animate() called on data that is not animable");
             }
-            const time = std.time.milliTimestamp();
             const currentValue = self.get();
             self.value = .{ .Animated = Animation(T){
-                .start = time,
+                .start = std.time.Instant.now() catch @panic("a monotonic clock is required for animations"),
                 .duration = @as(u32, @intCast(duration)),
                 .min = currentValue,
                 .max = target,
@@ -437,7 +463,17 @@ pub fn Atom(comptime T: type) type {
                 // This is, however, not problematic, as the goal is to avoid infinite loops where A sets B and
                 // B sets A and so on. As the exact byte representation is copied when setting the value of an atom,
                 // the fact that the value doesn't have a unique representation is not a problem.
-                didChange = !std.mem.eql(u8, &std.mem.toBytes(old_value), &std.mem.toBytes(value));
+                didChange = !std.meta.eql(old_value, value);
+
+                // For slices and pointers, we need to handle the fact that the pointer and length
+                // can stay the same but the content can change. Sadly, we don't have access to the
+                // previous content as it may have been overwritten just before the call to the set()
+                // function. So we need to rely on a small checksum.
+                if (comptime isPointer(T)) {
+                    const new_checksum = computeChecksum(value);
+                    didChange = didChange or (new_checksum != self.checksum);
+                    self.checksum = new_checksum;
+                }
 
                 if (isAnimatable) {
                     self.value = .{ .Single = value };
