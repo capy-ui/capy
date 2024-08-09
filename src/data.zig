@@ -137,16 +137,6 @@ pub fn Atom(comptime T: type) type {
         /// List of all Atoms this one is bound to.
         bindings: BindingList = .{},
 
-        /// This boolean is used to protect from recursive relations between wrappers
-        /// For example if there are two two-way binded atoms A and B:
-        /// When A is set, B is set too. Since B is set, it will set A too. A is set, it will set B too, and so on..
-        /// To prevent that, the bindLock is set to true when setting the value of the other.
-        /// If the lock is equal to true, set() returns without calling the other. For example:
-        /// When A is set, it sets the lock to true and sets B. Since B is set, it will set A too.
-        /// A notices that bindLock is already set to true, and thus returns.
-        /// TODO: make the bind lock more general and just use it for any change, and explicit how this favors completeness instead of consistency (in case an onChange triggers set method manually)
-        bindLock: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
-
         /// If dependOn has been called, this is a pointer to the callback function
         depend_on_callback: ?*const anyopaque = null,
         /// If dependOn has been called, this is the list of atoms it depends on.
@@ -203,7 +193,14 @@ pub fn Atom(comptime T: type) type {
         /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
         pub fn withImplicitAnimation(original: *Self, easing: Easing, duration: u64) !*Self {
             var self = Self.alloc(original.get());
+            try self.implicitlyAnimate(original, easing, duration);
+            return self;
+        }
 
+        /// Makes the atom follow the value of the given atom, but with an animation added.
+        /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
+        pub fn implicitlyAnimate(self: *Self, original: *Self, easing: Easing, duration: u64) !void {
+            self.set(original.get());
             const AnimationParameters = struct {
                 easing: Easing,
                 duration: u64,
@@ -211,12 +208,13 @@ pub fn Atom(comptime T: type) type {
                 is_deinit: bool = false,
             };
 
-            const userdata = try self.allocator.?.create(AnimationParameters);
+            const userdata = try internal.lasting_allocator.create(AnimationParameters);
             userdata.* = .{ .easing = easing, .duration = duration, .self_ptr = self };
 
             const animate_fn = struct {
                 fn a(new_value: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
+                    std.log.info("animate", .{});
                     ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
                 }
             }.a;
@@ -237,6 +235,7 @@ pub fn Atom(comptime T: type) type {
                 fn a(_: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     ptr.is_deinit = true;
+                    // TODO: remove change listener on original atom
                 }
             }.a;
 
@@ -255,7 +254,6 @@ pub fn Atom(comptime T: type) type {
                 .userdata = userdata,
                 .type = .Destroy,
             });
-            return self;
         }
 
         /// This function updates any current animation.
@@ -368,7 +366,7 @@ pub fn Atom(comptime T: type) type {
         }
 
         /// Updates binder's pointers so they point to this object.
-        /// This function should be called after the Atom has moved in memory.
+        /// This function must be called whenever the Atom moves in memory.
         pub fn updateBinders(self: *Self) void {
             var nullableNode = self.bindings.first;
             while (nullableNode) |node| {
@@ -387,16 +385,16 @@ pub fn Atom(comptime T: type) type {
             }
         }
 
-        /// Thread-safe get operation. If doing a read-modify-write operation
-        /// you must use the rmw() method.
+        /// Thread-safe get operation. If what is desired is a read-modify-write operation
+        /// then you must use the rmw() method.
         pub fn get(self: *Self) T {
             self.lock.lock();
             defer self.lock.unlock();
             return self.getUnsafe();
         }
 
-        /// This gets the value of the atom without accounting for
-        /// multi-threading. Do not use it! If you have an app with only one thread,
+        /// This gets the value of the atom without locking access to the value, which
+        /// might cause race conditions. Do not use this! If you have an app with only one thread,
         /// then use the single_threaded build flag, don't use this function.
         pub fn getUnsafe(self: Self) T {
             if (isAnimatable) {
@@ -427,24 +425,28 @@ pub fn Atom(comptime T: type) type {
         };
 
         fn extendedSet(self: *Self, value: T, comptime options: ExtendedSetOptions) void {
-            // This atomically checks if bindLock is false, and sets it to true if it was.
-            // If the old value was false, it returns null, which is what we want.
-            // Otherwise, it returns the old value, but since the only value other than false is true,
-            // we're not interested in the result.
-            if (self.bindLock.cmpxchgStrong(false, true, .seq_cst, .seq_cst) == null) {
-                defer self.bindLock.store(false, .seq_cst);
+            // Whether the Atom changed to a new value or not.
+            // The variable becomes true only if the new value is different from the older one.
+            var didChange = false;
+            {
+                if (options.locking) self.lock.lock();
+                defer self.lock.unlock();
 
-                {
-                    if (options.locking) self.lock.lock();
-                    defer self.lock.unlock();
+                const old_value = self.getUnsafe();
+                // This doesn't account for the fact that some data types don't have a unique representation.
+                // This is, however, not problematic, as the goal is to avoid infinite loops where A sets B and
+                // B sets A and so on. As the exact byte representation is copied when setting the value of an atom,
+                // the fact that the value doesn't have a unique representation is not a problem.
+                didChange = !std.mem.eql(u8, &std.mem.toBytes(old_value), &std.mem.toBytes(value));
 
-                    if (isAnimatable) {
-                        self.value = .{ .Single = value };
-                    } else {
-                        self.value = value;
-                    }
+                if (isAnimatable) {
+                    self.value = .{ .Single = value };
+                } else {
+                    self.value = value;
                 }
+            }
 
+            if (didChange) {
                 self.callHandlers();
 
                 // Update bound atoms
@@ -453,8 +455,6 @@ pub fn Atom(comptime T: type) type {
                     node.data.bound_to.set(value);
                     nullableNode = node.next;
                 }
-            } else {
-                // Do nothing ...
             }
         }
 
@@ -1066,11 +1066,16 @@ test "animated atom" {
     var original = Atom(i32).of(0);
     defer original.deinit();
 
-    var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 1000);
-    defer animated.deinit();
-    defer _animatedAtoms.clearAndFree();
-    defer _animatedAtomsLength.set(0);
+    {
+        var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 1000);
+        defer animated.deinit();
+        defer _animatedAtoms.clearAndFree();
+        defer _animatedAtomsLength.set(0);
 
-    original.set(1000);
-    try std.testing.expect(animated.hasAnimation());
+        original.set(1000);
+        try std.testing.expect(animated.hasAnimation());
+    }
+
+    // Should still work even after the animated atom is destroyed
+    original.set(500);
 }
