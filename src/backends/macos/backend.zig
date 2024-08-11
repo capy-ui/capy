@@ -145,7 +145,10 @@ pub const Window = struct {
     peer: objc.Object,
 
     pub usingnamespace Events(Window);
-
+    pub fn registerTickCallback(self: *Window) void {
+        _ = self;
+        // TODO
+    }
     pub fn create() BackendError!Window {
         const NSWindow = objc.getClass("NSWindow").?;
         const rect = AppKit.NSRect.make(0, 0, 800, 600);
@@ -195,12 +198,12 @@ pub const Window = struct {
 
     pub fn show(self: *Window) void {
         self.peer.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.value});
-        _ = activeWindows.fetchAdd(1, .Release);
+        _ = activeWindows.fetchAdd(1, .release);
     }
 
     pub fn close(self: *Window) void {
         self.peer.msgSend(void, "close", .{});
-        _ = activeWindows.fetchSub(1, .Release);
+        _ = activeWindows.fetchSub(1, .release);
     }
 };
 
@@ -288,5 +291,5 @@ pub fn runStep(step: shared.EventLoopStep) bool {
         app.msgSend(void, "sendEvent:", .{event});
         // app.msgSend(void, "updateWindows", .{});
     }
-    return activeWindows.load(.Acquire) != 0;
+    return activeWindows.load(.acquire) != 0;
 }
