@@ -22,7 +22,7 @@ pub const Alignment = struct {
     widget_data: Alignment.WidgetData = .{},
 
     // TODO: when the child property changes, really change it on the Alignment component's peer
-    child: Atom(*Widget) = Atom(*Widget).of(undefined),
+    child: Atom(*Widget) = undefined,
     relayouting: std.atomic.Value(bool) = std.atomic.Value(bool).init(false),
     /// The horizontal alignment of the child component, from 0 (left) to 1 (right).
     x: Atom(f32) = Atom(f32).of(0.5),
@@ -30,7 +30,9 @@ pub const Alignment = struct {
     y: Atom(f32) = Atom(f32).of(0.5),
 
     pub fn init(config: Alignment.Config) !Alignment {
-        var component = Alignment.init_events(Alignment{});
+        var component = Alignment.init_events(Alignment{
+            .child = Atom(*Widget).of(config.child),
+        });
         internal.applyConfigStruct(&component, config);
         try component.addResizeHandler(&onResize);
         component.child.get().ref();
