@@ -55,6 +55,15 @@ pub const SS_CENTER = 0x00000001;
 /// Centers text vertically.
 pub const SS_CENTERIMAGE = 0x00000200;
 
+// COMBOBOXEX controls
+pub const CBS_SIMPLE = 0x0001;
+pub const CBS_DROPDOWN = 0x0002;
+pub const CBS_DROPDOWNLIST = 0x0003;
+pub const CBS_HASSTRINGS = 0x0200;
+pub const CB_GETCURSEL = 0x0147;
+pub const CB_SETCURSEL = 0x014E;
+pub const CB_ERR: LRESULT = -1;
+
 pub const SWP_NOACTIVATE = 0x0010;
 pub const SWP_NOOWNERZORDER = 0x0200;
 pub const SWP_NOZORDER = 0x0004;

@@ -101,6 +101,12 @@ pub fn isAtom(comptime T: type) bool {
     return @hasDecl(T, "ValueType") and T == Atom(T.ValueType);
 }
 
+pub fn isListAtom(comptime T: type) bool {
+    if (!comptime trait.is(.Struct)(T))
+        return false;
+    return @hasDecl(T, "ValueType") and T == ListAtom(T.ValueType);
+}
+
 // TODO: use ListAtom when it's done
 pub var _animatedAtoms = std.ArrayList(struct {
     fnPtr: *const fn (data: *anyopaque) bool,
@@ -119,7 +125,7 @@ fn isAnimatableType(comptime T: type) bool {
 }
 
 fn isPointer(comptime T: type) bool {
-    return @typeInfo(T) == .Pointer;
+    return @typeInfo(T) == .Pointer and std.meta.activeTag(@typeInfo(std.meta.Child(T))) != .Fn;
 }
 
 /// An atom is used to add binding, change listening, thread safety and animation capabilities to
@@ -665,16 +671,26 @@ pub fn ListAtom(comptime T: type) type {
         length: Atom(usize),
         // TODO: since RwLock doesn't report deadlocks in Debug mode like Mutex does, do it manually here in ListAtom
         lock: std.Thread.RwLock = .{},
+        /// List of every change listener listening to this atom.
+        onChange: ChangeListenerList = .{},
         allocator: std.mem.Allocator,
 
+        pub const ValueType = T;
         const Self = @This();
         const ListType = std.ArrayListUnmanaged(T);
+
+        pub const ChangeListener = struct {
+            function: *const fn (list: *Self, userdata: ?*anyopaque) void,
+            userdata: ?*anyopaque = null,
+            type: enum { Change, Destroy } = .Change,
+        };
+
+        const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
 
         // Possible events to be handled by ListAtom:
         // - list size changed
         // - an item in the list got replaced by another
 
-        // TODO: a function to get a slice (or an iterator) but it also locks the list
         pub const Iterator = struct {
             lock: *std.Thread.RwLock,
             items: []const T,
@@ -706,6 +722,8 @@ pub fn ListAtom(comptime T: type) type {
             };
         }
 
+        // TODO: init from list like .{ "a", "b", "c" }
+
         pub fn get(self: *Self, index: usize) T {
             self.lock.lockShared();
             defer self.lock.unlockShared();
@@ -728,27 +746,37 @@ pub fn ListAtom(comptime T: type) type {
         }
 
         pub fn set(self: *Self, index: usize, value: T) void {
-            self.lock.lock();
-            defer self.lock.unlock();
+            {
+                self.lock.lock();
+                defer self.lock.unlock();
 
-            self.backing_list.items[index] = value;
+                self.backing_list.items[index] = value;
+            }
+            self.callHandlers();
         }
 
         pub fn append(self: *Self, value: T) !void {
-            self.lock.lock();
-            defer self.lock.unlock();
-            // Given that the length is updated only at the end, the operation doesn't need a lock
+            {
+                self.lock.lock();
+                defer self.lock.unlock();
+                // Given that the length is updated only at the end, the operation doesn't need a lock
 
-            try self.backing_list.append(self.allocator, value);
-            self.length.set(self.backing_list.items.len);
+                try self.backing_list.append(self.allocator, value);
+                self.length.set(self.backing_list.items.len);
+            }
+            self.callHandlers();
         }
 
         pub fn popOrNull(self: *Self) ?T {
-            self.lock.lock();
-            defer self.lock.unlock();
+            const result = blk: {
+                self.lock.lock();
+                defer self.lock.unlock();
 
-            const result = self.backing_list.popOrNull();
-            self.length.set(self.backing_list.items.len);
+                const result = self.backing_list.popOrNull();
+                self.length.set(self.backing_list.items.len);
+                break :blk result;
+            };
+            self.callHandlers();
             return result;
         }
 
@@ -763,27 +791,35 @@ pub fn ListAtom(comptime T: type) type {
 
             const result = self.backing_list.swapRemove(index);
             self.length.set(self.backing_list.items.len);
+            self.callHandlers();
             return result;
         }
 
         pub fn orderedRemove(self: *Self, index: usize) T {
-            self.lock.lock();
-            defer self.lock.unlock();
+            const result = blk: {
+                self.lock.lock();
+                defer self.lock.unlock();
 
-            const result = self.backing_list.orderedRemove(index);
-            self.length.set(self.backing_list.items.len);
+                const result = self.backing_list.orderedRemove(index);
+                self.length.set(self.backing_list.items.len);
+                break :blk result;
+            };
+            self.callHandlers();
             return result;
         }
 
         pub fn clear(self: *Self, mode: enum { free, retain_capacity }) void {
-            self.lock.lock();
-            defer self.lock.unlock();
+            {
+                self.lock.lock();
+                defer self.lock.unlock();
 
-            switch (mode) {
-                .free => self.backing_list.clearAndFree(self.allocator),
-                .retain_capacity => self.backing_list.clearRetainingCapacity(),
+                switch (mode) {
+                    .free => self.backing_list.clearAndFree(self.allocator),
+                    .retain_capacity => self.backing_list.clearRetainingCapacity(),
+                }
+                self.length.set(0);
             }
-            self.length.set(0);
+            self.callHandlers();
         }
 
         /// Lock the list and return an iterator.
@@ -802,10 +838,40 @@ pub fn ListAtom(comptime T: type) type {
             return undefined;
         }
 
+        pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
+            const node = try lasting_allocator.create(ChangeListenerList.Node);
+            node.* = .{ .data = listener };
+            self.onChange.prepend(node);
+            return self.onChange.len() - 1;
+        }
+
+        fn callHandlers(self: *Self) void {
+            // Iterate over each node of the linked list
+            var nullableNode = self.onChange.first;
+            while (nullableNode) |node| {
+                if (node.data.type == .Change) {
+                    node.data.function(self, node.data.userdata);
+                }
+                nullableNode = node.next;
+            }
+        }
+
         pub fn deinit(self: *Self) void {
             self.lock.lock();
             defer self.lock.unlock();
 
+            {
+                var nullableNode = self.onChange.first;
+                while (nullableNode) |node| {
+                    nullableNode = node.next;
+                    if (node.data.type == .Destroy) {
+                        node.data.function(self, node.data.userdata);
+                    }
+                    lasting_allocator.destroy(node);
+                }
+            }
+
+            self.length.deinit();
             self.backing_list.deinit(self.allocator);
         }
     };

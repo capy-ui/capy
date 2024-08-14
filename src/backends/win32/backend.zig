@@ -47,22 +47,22 @@ pub const TCIF_STATE = 0x0010;
 const _T = zigwin32.zig._T;
 const L = zigwin32.zig.L;
 
-const Win32Error = error{ UnknownError, InitializationError };
+pub const Win32Error = error{ UnknownError, InitializationError };
 
 pub const Capabilities = .{ .useEventLoop = true };
 
 pub const PeerType = HWND;
 
-var hInst: HINSTANCE = undefined;
+pub var hInst: HINSTANCE = undefined;
 /// By default, win32 controls use DEFAULT_GUI_FONT which is an outdated
 /// font from Windows 95 days, by default it doesn't even use ClearType
 /// anti-aliasing. So we take the real default caption font from
 /// NONFCLIENTEMETRICS and apply it manually to every widget.
-var captionFont: win32.HFONT = undefined;
-var monospaceFont: win32.HFONT = undefined;
+pub var captionFont: win32.HFONT = undefined;
+pub var monospaceFont: win32.HFONT = undefined;
 /// Default arrow cursor used to avoid components keeping the last cursor icon
 /// that's been set (which is usually the resize cursor or loading cursor)
-var defaultCursor: win32.HCURSOR = undefined;
+pub var defaultCursor: win32.HCURSOR = undefined;
 
 var d2dFactory: *win32.ID2D1Factory = undefined;
 
@@ -87,7 +87,7 @@ pub fn init() !void {
 
         const initEx = win32.INITCOMMONCONTROLSEX{
             .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX),
-            .dwICC = win32.INITCOMMONCONTROLSEX_ICC.initFlags(.{ .STANDARD_CLASSES = 1, .WIN95_CLASSES = 1 }),
+            .dwICC = win32.INITCOMMONCONTROLSEX_ICC.initFlags(.{ .STANDARD_CLASSES = 1, .WIN95_CLASSES = 1, .USEREX_CLASSES = 1 }),
         };
         const code = win32.InitCommonControlsEx(&initEx);
         if (code == 0) {
@@ -161,7 +161,7 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
     _ = win32.MessageBoxW(null, msg_utf16, _T("Dialog"), icon);
 }
 
-var defaultWHWND: HWND = undefined;
+pub var defaultWHWND: HWND = undefined;
 
 pub const Window = struct {
     hwnd: HWND,
@@ -428,9 +428,10 @@ const EventUserData = struct {
     classUserdata: usize = 0,
     // (very) weak method to detect if a text box's text has actually changed
     last_text_len: std.os.windows.INT = 0,
+    extra_height: i32 = 0,
 };
 
-inline fn getEventUserData(peer: HWND) *EventUserData {
+pub inline fn getEventUserData(peer: HWND) *EventUserData {
     return @as(*EventUserData, @ptrFromInt(@as(usize, @bitCast(win32Backend.getWindowLongPtr(peer, win32.GWL_USERDATA)))));
 }
 
@@ -467,6 +468,16 @@ pub fn Events(comptime T: type) type {
                                 // Doesn't appear to work.
                                 if (data.user.changedTextHandler) |handler|
                                     handler(data.userdata);
+                            },
+                            win32.CBN_SELCHANGE => {
+                                const index: usize = @intCast(win32.SendMessageW(
+                                    @ptrFromInt(@as(usize, @bitCast(lp))),
+                                    win32.CB_GETCURSEL,
+                                    0,
+                                    0,
+                                ));
+                                if (data.user.propertyChangeHandler) |handler|
+                                    handler("selected", &index, data.userdata);
                             },
                             else => {},
                         }
@@ -711,9 +722,10 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getHeight(self: *const T) c_int {
+            const data = getEventUserData(self.peer);
             var rect: RECT = undefined;
             _ = win32.GetWindowRect(self.peer, &rect);
-            return rect.bottom - rect.top;
+            return rect.bottom - rect.top -| data.extra_height;
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
@@ -944,7 +956,8 @@ pub const Canvas = struct {
 
 pub const TextField = struct {
     peer: HWND,
-    arena: std.heap.ArenaAllocator,
+    /// Cache of the text field's text converted to UTF-8
+    text_utf8: std.ArrayList(u8) = std.ArrayList(u8).init(lib.internal.lasting_allocator),
 
     pub usingnamespace Events(TextField);
 
@@ -965,7 +978,7 @@ pub const TextField = struct {
         try TextField.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
-        return TextField{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return TextField{ .peer = hwnd };
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
@@ -981,14 +994,16 @@ pub const TextField = struct {
     }
 
     pub fn getText(self: *TextField) [:0]const u8 {
-        const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
-        defer allocator.free(buf);
+        var buf = lib.internal.scratch_allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        defer lib.internal.scratch_allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
-        return text;
+
+        self.text_utf8.clearAndFree();
+        std.unicode.utf16LeToUtf8ArrayList(&self.text_utf8, utf16Slice) catch @panic("OOM");
+        self.text_utf8.append(0) catch @panic("OOM");
+        return self.text_utf8.items[0 .. self.text_utf8.items.len - 1 :0];
     }
 
     pub fn setReadOnly(self: *TextField, readOnly: bool) void {
@@ -1108,6 +1123,8 @@ pub const Button = struct {
         _ = win32.EnableWindow(self.peer, @intFromBool(enabled));
     }
 };
+
+pub const Dropdown = @import("Dropdown.zig");
 
 pub const CheckBox = struct {
     peer: HWND,
@@ -1625,6 +1642,8 @@ pub const Container = struct {
     }
 
     pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
+        const data = getEventUserData(peer);
+
         var rect: RECT = undefined;
         _ = win32.GetWindowRect(peer, &rect);
         if (rect.right - rect.left == width and rect.bottom - rect.top == height) {
@@ -1633,7 +1652,14 @@ pub const Container = struct {
 
         var parent: RECT = undefined;
         _ = win32.GetWindowRect(self.peer, &parent);
-        _ = win32.MoveWindow(peer, rect.left - parent.left, rect.top - parent.top, @as(c_int, @intCast(width)), @as(c_int, @intCast(height)), 1);
+        _ = win32.MoveWindow(
+            peer,
+            rect.left - parent.left,
+            rect.top - parent.top,
+            @as(c_int, @intCast(width)),
+            @as(c_int, @intCast(height)) + data.extra_height,
+            1,
+        );
     }
 
     /// In order to work, 'peers' should contain all peers and be sorted in tab order

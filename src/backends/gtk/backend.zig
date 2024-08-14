@@ -62,6 +62,7 @@ pub const Monitor = @import("Monitor.zig");
 pub const Window = @import("Window.zig");
 pub const Button = @import("Button.zig");
 pub const CheckBox = @import("CheckBox.zig");
+pub const Dropdown = @import("Dropdown.zig");
 pub const Slider = @import("Slider.zig");
 pub const Label = @import("Label.zig");
 pub const TextArea = @import("TextArea.zig");
@@ -91,9 +92,5 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     const context = c.g_main_context_default();
     _ = c.g_main_context_iteration(context, @intFromBool(step == .Blocking));
 
-    if (GTK_VERSION.min.order(.{ .major = 4, .minor = 0, .patch = 0 }) != .lt) {
-        return c.g_list_model_get_n_items(c.gtk_window_get_toplevels()) > 0;
-    } else {
-        return Window.activeWindows.load(.acquire) != 0;
-    }
+    return c.g_list_model_get_n_items(c.gtk_window_get_toplevels()) > 0;
 }

@@ -380,6 +380,19 @@ fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, 
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
             }};
+        } else if (dataStructures.isListAtom(FieldType)) {
+            // const default_value = if (field.default_value) |default| @as(*const FieldType, @ptrCast(@alignCast(default))).getUnsafe() else null;
+            const default_value = null;
+            // const has_default_value = field.default_value != null;
+            const has_default_value = false;
+
+            config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
+                .name = field.name,
+                .type = []const FieldType.ValueType,
+                .default_value = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
+                .is_comptime = false,
+                .alignment = @alignOf(FieldType.ValueType),
+            }};
         } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateFields(config_fields, FieldType);
         }
@@ -408,6 +421,12 @@ fn iterateApplyFields(comptime T: type, target: anytype, config: GenerateConfigS
             @field(target, field.name).set(
                 @field(config, name),
             );
+        } else if (comptime dataStructures.isListAtom(FieldType)) {
+            const name = field.name;
+            const value = @field(config, name);
+            for (value) |item| {
+                @field(target, field.name).append(item) catch @panic("OOM");
+            }
         } else if (comptime trait.is(.Struct)(FieldType)) {
             iterateApplyFields(T, &@field(target, field.name), config);
         }

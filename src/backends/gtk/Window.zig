@@ -10,7 +10,6 @@ const wbin_new = @import("windowbin.zig").wbin_new;
 const wbin_set_child = @import("windowbin.zig").wbin_set_child;
 
 // === GLOBAL VARIABLES ===
-pub var activeWindows = std.atomic.Value(usize).init(0);
 pub var randomWindow: *c.GtkWidget = undefined;
 // === END GLOBAL VARIABLES ===
 
@@ -27,10 +26,6 @@ child: ?*c.GtkWidget = null,
 
 pub usingnamespace common.Events(Window);
 
-fn gtkWindowHidden(_: *c.GtkWidget, _: usize) callconv(.C) void {
-    _ = activeWindows.fetchSub(1, .release);
-}
-
 pub fn create() common.BackendError!Window {
     const window = c.gtk_window_new() orelse return error.UnknownError;
     const wbin = wbin_new() orelse unreachable;
@@ -44,7 +39,6 @@ pub fn create() common.BackendError!Window {
     c.gtk_widget_show(window);
     c.gtk_widget_map(window);
 
-    _ = c.g_signal_connect_data(window, "hide", @as(c.GCallback, @ptrCast(&gtkWindowHidden)), null, null, c.G_CONNECT_AFTER);
     randomWindow = window;
     try Window.setupEvents(window);
 
@@ -168,7 +162,6 @@ pub fn unfullscreen(self: *Window) void {
 
 pub fn show(self: *Window) void {
     c.gtk_widget_show(self.peer);
-    _ = activeWindows.fetchAdd(1, .release);
 }
 
 pub fn registerTickCallback(self: *Window) void {

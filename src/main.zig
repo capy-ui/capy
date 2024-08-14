@@ -7,6 +7,7 @@ pub usingnamespace @import("components/Alignment.zig");
 pub usingnamespace @import("components/Button.zig");
 pub usingnamespace @import("components/Canvas.zig");
 pub usingnamespace @import("components/CheckBox.zig");
+pub usingnamespace @import("components/Dropdown.zig");
 pub usingnamespace @import("components/Image.zig");
 pub usingnamespace @import("components/Label.zig");
 pub usingnamespace @import("components/Menu.zig");
@@ -69,6 +70,14 @@ pub fn init() !void {
             return num >= 1;
         }
     }.a) catch unreachable;
+
+    var timerListener = eventStep.listen(.{ .callback = @import("timer.zig").handleTimersTick }) catch unreachable;
+    // The listener is enabled only if there is at least 1 atom currently being animated
+    timerListener.enabled.dependOn(.{&@import("timer.zig").runningTimers.length}, &struct {
+        fn a(num: usize) bool {
+            return num >= 1;
+        }
+    }.a) catch unreachable;
 }
 
 pub fn deinit() void {
@@ -76,6 +85,7 @@ pub fn deinit() void {
 
     @import("data.zig")._animatedAtoms.deinit();
     @import("data.zig")._animatedAtomsLength.deinit();
+    @import("timer.zig").runningTimers.deinit();
 
     eventStep.deinitAllListeners();
     if (ENABLE_DEV_TOOLS) {
