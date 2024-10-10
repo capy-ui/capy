@@ -293,3 +293,32 @@ pub fn runStep(step: shared.EventLoopStep) bool {
     }
     return activeWindows.load(.acquire) != 0;
 }
+
+pub const Label = struct {
+    peer: objc.Object,
+
+    pub usingnamespace Events(Label);
+
+    pub fn create() !Label {
+        const NSTextField = objc.getClass("NSTextField").?;
+        const label = NSTextField.msgSend(objc.Object, "labelWithString:", .{AppKit.nsString("")});
+        return Label{
+            .peer = label,
+        };
+    }
+
+    pub fn setAlignment(self: *Label, alignment: f32) void {
+        _ = self;
+        _ = alignment;
+    }
+
+    pub fn setText(self: *Label, text: []const u8) void {
+        const nullTerminatedText = lib.internal.scratch_allocator.dupeZ(u8, text) catch return;
+        defer lib.internal.scratch_allocator.free(nullTerminatedText);
+        self.peer.msgSend(void, "setStringValue:", .{AppKit.nsString(nullTerminatedText)});
+    }
+
+    pub fn destroy(self: *Label) void {
+        _ = self;
+    }
+};
