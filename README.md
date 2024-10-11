@@ -89,6 +89,11 @@ If you want to help the project more directly, you can fork the project and then
 
 A platform is considered supported only if it can be built to from every other OS.
 
+Legends:
+- ✅ Working and can be cross-compile from all platforms supported by Zig
+- 🧪 Experimental
+- 🏃 Planned
+
 ### Desktop
 
 ✅ Windows x86_64  
@@ -111,10 +116,6 @@ A platform is considered supported only if it can be built to from every other O
 ### Web
 
 ✅ WebAssembly  
-
-- ✅ Working and can be cross-compile from all platforms supported by Zig
-- 🧪 Experimental
-- 🏃 Planned
 
 Note: As there's no "official" GUI library for Linux, GTK 4 has been chosen as it is the one
 that works and can be configured on the most distros. It's also the reason Libadwaita won't
