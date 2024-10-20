@@ -8,10 +8,15 @@ pub fn main() !void {
 
     var window = try capy.Window.init();
 
-    var monospace = capy.Atom(bool).of(false);
-    var text = capy.Atom([]const u8).of("");
+    // Whether the font is monospaced
+    var monospace = capy.Atom(bool).alloc(false);
+    defer monospace.deinit();
 
-    const text_length = try capy.Atom(usize).derived(.{&text}, &struct {
+    // The context of the text area
+    var text = capy.Atom([]const u8).alloc("");
+    defer text.deinit();
+
+    const text_length = try capy.Atom(usize).derived(.{text}, &struct {
         fn callback(txt: []const u8) usize {
             return txt.len;
         }
@@ -21,14 +26,18 @@ pub fn main() !void {
     defer label_text.deinit();
 
     try window.set(capy.column(.{ .spacing = 0 }, .{
-        capy.expanded(capy.textArea(.{})
-            .bind("monospace", &monospace)
-            .bind("text", &text)),
-        capy.label(.{ .text = "TODO: cursor info" })
+        // By binding the atoms, we know the text area's text and the 'text' variable are always 'synchronized',
+        // or bound. Same goes for the 'monospace' property.
+        capy.expanded(
+            capy.textArea(.{})
+                .bind("monospace", monospace)
+                .bind("text", text),
+        ),
+        capy.label(.{ .text = "" })
             .bind("text", label_text),
         // TODO: move into menu
         capy.checkBox(.{ .label = "Monospaced" })
-            .bind("checked", &monospace),
+            .bind("checked", monospace),
     }));
 
     // TODO: hotkeys for actions (Ctrl+S, Ctrl+C) plus corresponding Cmd+C on macOS

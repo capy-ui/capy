@@ -12,7 +12,9 @@ pub const LineGraph = struct {
     dataFn: capy.Atom(*const fn (x: f32) f32),
 
     pub fn init(config: LineGraph.Config) LineGraph {
-        var line_graph = LineGraph.init_events(LineGraph{ .dataFn = capy.Atom(*const fn (x: f32) f32).of(config.dataFn) });
+        var line_graph = LineGraph.init_events(LineGraph{
+            .dataFn = capy.Atom(*const fn (x: f32) f32).of(config.dataFn),
+        });
         line_graph.addDrawHandler(&LineGraph.draw) catch unreachable;
         return line_graph;
     }

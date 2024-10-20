@@ -55,6 +55,8 @@ else
 pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
 pub const MouseButton = @import("backends/shared.zig").MouseButton;
 
+// This is a private global variable used for safety.
+var isCapyInitialized: bool = false;
 pub fn init() !void {
     try backend.init();
     if (ENABLE_DEV_TOOLS) {
@@ -72,15 +74,17 @@ pub fn init() !void {
     }.a) catch unreachable;
 
     var timerListener = eventStep.listen(.{ .callback = @import("timer.zig").handleTimersTick }) catch unreachable;
-    // The listener is enabled only if there is at least 1 atom currently being animated
+    // The listener is enabled only if there is at least 1 timer is running
     timerListener.enabled.dependOn(.{&@import("timer.zig").runningTimers.length}, &struct {
         fn a(num: usize) bool {
             return num >= 1;
         }
     }.a) catch unreachable;
+    isCapyInitialized = true;
 }
 
 pub fn deinit() void {
+    isCapyInitialized = false;
     Monitors.deinit();
 
     @import("data.zig")._animatedAtoms.deinit();
@@ -103,6 +107,7 @@ pub fn wakeEventLoop() void {
 /// to request an asynchronous step to the backend in order to animate
 /// data wrappers.
 pub fn stepEventLoop(stepType: EventLoopStep) bool {
+    std.debug.assert(isCapyInitialized);
     eventStep.callListeners();
 
     // const timer = @import("timer.zig");
@@ -138,12 +143,31 @@ fn animateAtoms(_: ?*anyopaque) void {
     data._animatedAtomsMutex.lock();
     defer data._animatedAtomsMutex.unlock();
 
+    // List of atoms that are no longer animated and that need to be removed from the list
+    var toRemove = std.BoundedArray(usize, 64).init(0) catch unreachable;
     for (data._animatedAtoms.items, 0..) |item, i| {
         if (item.fnPtr(item.userdata) == false) { // animation ended
-            _ = data._animatedAtoms.swapRemove(i);
-            data._animatedAtomsLength.set(data._animatedAtoms.items.len);
+            toRemove.append(i) catch |err| switch (err) {
+                error.Overflow => {}, // It can be removed on the next call to animateAtoms()
+            };
         }
     }
+
+    // The index list is ordered in increasing index order
+    const indexList = toRemove.constSlice();
+    // So we iterate it backward in order to avoid indices being invalidated
+    if (indexList.len > 0) {
+        var i: usize = indexList.len - 1;
+        while (i >= 0) {
+            _ = data._animatedAtoms.swapRemove(indexList[i]);
+            if (i == 0) {
+                break;
+            } else {
+                i -= 1;
+            }
+        }
+    }
+    data._animatedAtomsLength.set(data._animatedAtoms.items.len);
 }
 
 pub fn runEventLoop() void {

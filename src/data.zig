@@ -246,7 +246,6 @@ pub fn Atom(comptime T: type) type {
             const animate_fn = struct {
                 fn a(new_value: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
-                    std.log.info("animate", .{});
                     ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
                 }
             }.a;
@@ -620,8 +619,11 @@ pub fn Atom(comptime T: type) type {
 
             a.set(5);
             // now c is equal to 10
+            try std.testing.expectEqual(10, c.get());
+
             b.set("no");
             // and now c is equal to 7
+            try std.testing.expectEqual(7, c.get());
         }
 
         fn callHandlers(self: *Self) void {

@@ -22,12 +22,14 @@ pub const MapViewer = struct {
     // .Handlers and .Atoms are implemented by `capy.internal.All(MapViewer)`
     widget_data: MapViewer.WidgetData = .{},
 
-    // Our own component state.
+    // State specific to this component.
     tileCache: std.AutoHashMap(TilePosition, Tile),
     pendingRequests: std.AutoHashMap(TilePosition, capy.http.HttpResponse),
     pendingSearchRequest: ?capy.http.HttpResponse = null,
-    centerX: f32 = 0,
-    centerY: f32 = 0,
+    centerX: Atom(f32) = Atom(f32).of(0),
+    centerY: Atom(f32) = Atom(f32).of(0),
+    targetCenterX: Atom(f32) = Atom(f32).of(0),
+    targetCenterY: Atom(f32) = Atom(f32).of(0),
     camZoom: u5 = 4,
     isDragging: bool = false,
     lastMouseX: i32 = 0,
@@ -57,6 +59,8 @@ pub const MapViewer = struct {
             .pendingRequests = std.AutoHashMap(TilePosition, capy.http.HttpResponse).init(config.allocator),
             .allocator = Atom(std.mem.Allocator).of(config.allocator),
         });
+        capy.internal.applyConfigStruct(&viewer, config);
+
         viewer.centerTo(2.3200, 48.8589);
         viewer.setName(config.name);
         _ = viewer.addDrawHandler(&MapViewer.draw) catch unreachable;
@@ -93,8 +97,8 @@ pub const MapViewer = struct {
         const x = n * ((lon + 180) / 360);
         const lat_rad = deg2rad(lat);
         const y = n * (1 - (std.math.log(f32, std.math.e, std.math.tan(lat_rad) + (1.0 / std.math.cos(lat_rad))) / std.math.pi)) / 2;
-        self.centerX = x * 256;
-        self.centerY = y * 256;
+        self.targetCenterX.set(x * 256);
+        self.targetCenterX.set(y * 256);
     }
 
     pub fn search(self: *MapViewer, query: []const u8) !void {
@@ -165,8 +169,8 @@ pub const MapViewer = struct {
         const height = self.getHeight();
         ctx.clear(0, 0, width, height);
 
-        const camX = @as(i32, @intFromFloat(self.centerX)) - @as(i32, @intCast(width / 2));
-        const camY = @as(i32, @intFromFloat(self.centerY)) - @as(i32, @intCast(height / 2));
+        const camX = @as(i32, @intFromFloat(self.centerX.get())) - @as(i32, @intCast(width / 2));
+        const camY = @as(i32, @intFromFloat(self.centerY.get())) - @as(i32, @intCast(height / 2));
         var x: i32 = @divFloor(camX, 256);
         while (x < @divFloor(camX + @as(i32, @intCast(width)) + 255, 256)) : (x += 1) {
             var y: i32 = @divFloor(camY, 256);
@@ -200,12 +204,11 @@ pub const MapViewer = struct {
     fn mouseMoved(self: *MapViewer, x: i32, y: i32) !void {
         if (self.isDragging) {
             // TODO: smooth move
-            self.centerX -= @as(f32, @floatFromInt(x - self.lastMouseX));
-            self.centerY -= @as(f32, @floatFromInt(y - self.lastMouseY));
+            self.targetCenterX.set(self.targetCenterX.get() - @as(f32, @floatFromInt(x - self.lastMouseX)));
+            self.targetCenterY.set(self.targetCenterY.get() - @as(f32, @floatFromInt(y - self.lastMouseY)));
 
             self.lastMouseX = x;
             self.lastMouseY = y;
-            self.requestDraw() catch unreachable;
         }
     }
 
@@ -213,17 +216,17 @@ pub const MapViewer = struct {
         _ = dx;
         if (dy > 0 and self.camZoom > 0) {
             self.camZoom -|= 2 * @as(u5, @intFromFloat(dy));
-            self.centerX /= 4 * dy;
-            self.centerY /= 4 * dy;
+            self.targetCenterX.set(self.targetCenterX.get() / (4 * dy));
+            self.targetCenterY.set(self.targetCenterY.get() / (4 * dy));
         } else if (dy < 0 and self.camZoom < 18) {
             self.camZoom +|= 2 * @as(u5, @intFromFloat(-dy));
-            self.centerX *= 4 * -dy;
-            self.centerY *= 4 * -dy;
+            self.targetCenterX.set(self.targetCenterX.get() * (4 * -dy));
+            self.targetCenterY.set(self.targetCenterY.get() * (4 * -dy));
         }
         if (self.camZoom > 18) {
             self.camZoom = 18;
         }
-        std.log.info("zoom: {d}, pos: {d}, {d}", .{ self.camZoom, self.centerX, self.centerY });
+        std.log.info("zoom: {d}, pos: {d}, {d}", .{ self.camZoom, self.centerX.get(), self.centerY.get() });
         self.requestDraw() catch unreachable;
     }
 
@@ -234,6 +237,16 @@ pub const MapViewer = struct {
             self.peer = try capy.backend.Canvas.create();
             try self.setupEvents();
         }
+        try self.centerX.implicitlyAnimate(&self.targetCenterX, capy.Easings.InOut, 50);
+        try self.centerY.implicitlyAnimate(&self.targetCenterY, capy.Easings.InOut, 50);
+
+        _ = try self.centerX.addChangeListener(.{ .function = onCenterChange, .userdata = self });
+        _ = try self.centerY.addChangeListener(.{ .function = onCenterChange, .userdata = self });
+    }
+
+    fn onCenterChange(_: f32, userdata: ?*anyopaque) void {
+        const self: *MapViewer = @ptrCast(@alignCast(userdata));
+        self.requestDraw() catch {};
     }
 
     pub fn getPreferredSize(self: *MapViewer, available: capy.Size) capy.Size {
@@ -248,7 +261,7 @@ pub fn mapViewer(config: MapViewer.Config) *MapViewer {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
 
     var window = try capy.Window.init();
     try window.set(
@@ -257,7 +270,9 @@ pub fn main() !void {
                 capy.expanded(capy.textField(.{ .name = "location-input" })),
                 capy.button(.{ .label = "Go!", .onclick = onGo }),
             }),
-            capy.expanded(mapViewer(.{ .name = "map-viewer" })),
+            capy.expanded(mapViewer(.{
+                .name = "map-viewer",
+            })),
         }),
     );
     window.setTitle("OpenStreetMap Viewer");
