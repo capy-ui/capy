@@ -295,7 +295,7 @@ pub fn Atom(comptime T: type) type {
             switch (self.value) {
                 .Animated => |animation| {
                     const now = std.time.Instant.now() catch @panic("a monotonic clock is required for animations");
-                    if (now.since(animation.start) >= animation.duration * std.time.ns_per_ms) {
+                    if (now.since(animation.start) >= @as(u64, animation.duration) * std.time.ns_per_ms) {
                         self.value = .{ .Single = animation.max };
                         return false;
                     } else {
@@ -1169,7 +1169,7 @@ test "animated atom" {
     defer original.deinit();
 
     {
-        var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 1000);
+        var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 5000);
         defer animated.deinit();
         defer _animatedAtoms.clearAndFree();
         defer _animatedAtomsLength.set(0);

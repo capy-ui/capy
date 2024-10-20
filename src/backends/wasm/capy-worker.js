@@ -101,7 +101,7 @@ const ClockIds = {
 class WasiImplementation {
 	constructor() {
 		this.environ = {};
-		this.logging = true;
+		this.logging = false;
 	}
 
 	/** Internal function. **/
@@ -165,8 +165,8 @@ class WasiImplementation {
 			const timestamp = BigInt(Date.now()) * 1_000_000n;
 			view.setBigUint64(timestamp_ptr, timestamp, true);
 			return Errno.SUCCESS;
-		} else if (clock == "MONOTONIC" && window.performance) {
-			const timestamp = BigInt(window.performance.now() * 1_000_000);
+		} else if (clock == "MONOTONIC" && performance) {
+			const timestamp = BigInt(Math.floor(performance.now() * 1_000_000));
 			view.setBigUint64(timestamp_ptr, timestamp, true);
 			return Errno.SUCCESS;
 		} else {

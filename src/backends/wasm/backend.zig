@@ -515,6 +515,16 @@ pub const Canvas = struct {
     }
 };
 
+pub const Dropdown = struct {
+    peer: js.ElementId,
+
+    pub usingnamespace Events(Dropdown);
+
+    pub fn create() !Dropdown {
+        return Dropdown{ .peer = try GuiWidget.init(Dropdown, lasting_allocator, "select", "select") };
+    }
+};
+
 pub const ImageData = struct {
     // TODO
     id: js.ResourceId,

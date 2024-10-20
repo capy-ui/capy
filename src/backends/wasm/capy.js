@@ -319,10 +319,10 @@ let env = {
 			});
 		},
 		getWidth: function(element) {
-			return domObjects[element].clientWidth;
+			return domObjects[element].width || domObjects[element].clientWidth;
 		},
 		getHeight: function(element) {
-			return domObjects[element].clientHeight;
+			return domObjects[element].height || domObjects[element].clientHeight;
 		},
 		now: function() {
 			return Date.now();
