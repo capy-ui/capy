@@ -1,5 +1,5 @@
 const std = @import("std");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const c = @import("gtk.zig");
 const Monitor = @This();
 

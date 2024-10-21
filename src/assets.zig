@@ -61,7 +61,7 @@ pub fn get(url: []const u8) GetError!AssetHandle {
         // TODO: on wasm load from the web (in relative path)
         // TODO: on pc make assets into a bundle and use @embedFile ? this would ease loading times on windows which
         //       notoriously BAD I/O performance
-        var buffer: [std.fs.MAX_PATH_BYTES]u8 = undefined;
+        var buffer: [std.fs.max_path_bytes]u8 = undefined;
         const cwd_path = try std.fs.realpath(".", &buffer);
 
         // The URL path as a raw string (without percent-encoding)

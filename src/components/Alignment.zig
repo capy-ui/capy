@@ -9,12 +9,12 @@ const Widget = @import("../widget.zig").Widget;
 /// it's been given.
 /// Using its default values, `Alignment` will center the enclosed component.
 /// ```
-/// capy.Alignment(.{}, capy.button(.{ .label = "Hi" }))
+/// capy.alignment(.{}, capy.button(.{ .label = "Hi" }))
 /// ```
-/// will put out a centered button.
+/// will display a centered button.
 ///
-/// For more information, you can find a playground of the component on
-/// [the website](https://capy-ui.org/docs/api-reference/components/align)
+/// For more information, you can find the playground of the component on
+/// [the documentation](https://capy-ui.org/docs/api-reference/components/align)
 pub const Alignment = struct {
     pub usingnamespace @import("../internal.zig").All(Alignment);
 

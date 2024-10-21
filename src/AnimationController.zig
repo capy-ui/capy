@@ -12,14 +12,14 @@ pub const AnimationCallback = struct {
 
 const AnimationController = @This();
 
-animated_atoms: ListAtom(*Atom),
+animated_atoms: ListAtom(AnimationCallback),
 on_frame: *EventSource,
-listener: *Listener,
+listener: ?*Listener,
 
 pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationController {
     const controller = try allocator.create(AnimationController);
     controller.* = .{
-        .animated_atoms = ListAtom(*Atom).init(allocator),
+        .animated_atoms = ListAtom(AnimationCallback).init(allocator),
         .on_frame = on_frame,
         .listener = undefined,
     };
@@ -28,8 +28,8 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
         .callback = update,
         .userdata = controller,
     });
-    listener.enabled.dependOn(.{controller.animated_atoms.length}, struct {
-        fn callback(length: usize) void {
+    try listener.enabled.dependOn(.{&controller.animated_atoms.length}, &struct {
+        fn callback(length: usize) bool {
             return length > 0;
         }
     }.callback);
@@ -37,9 +37,9 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
     return controller;
 }
 
-fn update(ptr: *anyopaque) void {
-    const self: *AnimationController = @ptrCast(ptr);
-    var iterator = self.animatedAtoms.iterate();
+fn update(ptr: ?*anyopaque) void {
+    const self: *AnimationController = @ptrCast(@alignCast(ptr.?));
+    var iterator = self.animated_atoms.iterate();
     defer iterator.deinit();
 
     while (iterator.next()) |item| {
@@ -51,11 +51,11 @@ fn update(ptr: *anyopaque) void {
 
 pub fn deinit(self: *AnimationController) void {
     self.animated_atoms.deinit();
-    self.listener.deinit();
+    if (self.listener) |listener| listener.deinit();
 }
 
 var null_animation_controller_instance = AnimationController{
-    .animated_atoms = ListAtom(*Atom).init(@import("internal.zig").lasting_allocator),
+    .animated_atoms = ListAtom(AnimationCallback).init(@import("internal.zig").lasting_allocator),
     .on_frame = &@import("listener.zig").null_event_source,
     .listener = null,
 };

@@ -36,7 +36,7 @@ test "backend: create window" {
     defer window.deinit();
     window.show();
 
-    var prng = std.rand.Xoshiro256.init(0);
+    var prng = std.Random.Xoshiro256.init(std.testing.random_seed);
     var random = prng.random();
 
     {

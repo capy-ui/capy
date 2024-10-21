@@ -1,6 +1,6 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const js = @import("js.zig");
 const trait = @import("../../trait.zig");
 

@@ -64,7 +64,7 @@ fn bookFlight(button_: *anyopaque) !void {
 
 /// Inaccurate sample date parsing routine.
 pub fn parseDate(date: []const u8) !u64 {
-    var split = std.mem.split(u8, date, ".");
+    var split = std.mem.splitScalar(u8, date, '.');
     const day = split.next() orelse return error.MissingDay;
     const month = split.next() orelse return error.MissingMonth;
     const year = split.next() orelse return error.MissingYear;

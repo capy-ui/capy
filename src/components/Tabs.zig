@@ -3,6 +3,7 @@ const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
+const isErrorUnion = @import("../internal.zig").isErrorUnion;
 
 pub const Tabs = struct {
     pub usingnamespace @import("../internal.zig").All(Tabs);
@@ -66,13 +67,6 @@ pub const Tabs = struct {
         self.tabs.get().deinit();
     }
 };
-
-fn isErrorUnion(comptime T: type) bool {
-    return switch (@typeInfo(T)) {
-        .ErrorUnion => true,
-        else => false,
-    };
-}
 
 pub inline fn tabs(children: anytype) anyerror!*Tabs {
     const fields = std.meta.fields(@TypeOf(children));

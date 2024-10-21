@@ -53,7 +53,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
         /// Tries to find counter-examples (case where there is no error) in the
         /// given time and adjust the hypothesis based on that counter-example.
         pub fn refine(self: *Self, time: i64, callback: fn (T) anyerror!void) void {
-            var prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
+            var prng = std.Random.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
             const random = prng.random();
 
             const timePerElement = @divFloor(time, @as(i64, @intCast(self.elements.items.len)));
@@ -157,7 +157,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
 pub fn Iterator(comptime T: type) type {
     return struct {
         count: usize = 0,
-        rand: std.rand.DefaultPrng,
+        rand: std.Random.DefaultPrng,
         start: i64,
         /// Duration in milliseconds
         duration: i64,
@@ -167,7 +167,7 @@ pub fn Iterator(comptime T: type) type {
 
         pub fn init() Self {
             return Self{
-                .rand = std.rand.DefaultPrng.init(if (DETERMINISTIC_TEST) 0 else @as(u64, @truncate(@as(u128, @bitCast(std.time.nanoTimestamp()))))),
+                .rand = std.Random.DefaultPrng.init(if (DETERMINISTIC_TEST) 0 else @as(u64, @truncate(@as(u128, @bitCast(std.time.nanoTimestamp()))))),
                 .start = std.time.milliTimestamp(),
                 .duration = 100,
             };

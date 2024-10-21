@@ -1,7 +1,7 @@
 const std = @import("std");
 const trait = @import("../../trait.zig");
 const c = @import("gtk.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 
 const shared = @import("../shared.zig");
 

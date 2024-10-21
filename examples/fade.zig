@@ -23,7 +23,7 @@ fn startAnimation(button_: *anyopaque) !void {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
 
     var window = try capy.Window.init();
     // const imageData = try capy.ImageData.fromBuffer(capy.internal.lasting_allocator, @embedFile("ziglogo.png"));

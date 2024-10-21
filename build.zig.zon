@@ -14,8 +14,8 @@
             .lazy = true,
         },
         .zigimg = .{
-            .url = "https://github.com/zigimg/zigimg/archive/588f11f24cdc3b12f46082217dc830436b7f325e.tar.gz",
-            .hash = "1220dc313944ea71a87b4f54f26b1427ad2992a721a221cb42f7f80b8eee4e4944b7",
+            .url = "git+https://github.com/zigimg/zigimg#c3bd7f9d593d75c60e70f0a950f499e55bd2a965",
+            .hash = "1220a3427cad06407fb07843cf12395de92327dc629281ae17102fe09f5c1ead81c8",
         },
     },
     .paths = .{""},

@@ -7,11 +7,14 @@ pub const Orientation = enum { Horizontal, Vertical };
 
 /// A slider that the user can move to set a numerical value.
 /// From MSDN :
-///   > Use a slider when you want your users to be able to set defined, contiguous values (such as volume or brightness) or a range of discrete values (such as screen resolution settings).
-///   > A slider is a good choice when you know that users think of the value as a relative quantity, not a numeric value. For example, users think about setting their audio volume to low or medium—not about setting the value to 2 or 5.
+///   > Use a slider when you want your users to be able to set defined, contiguous values (such as
+///   > volume or brightness) or a range of discrete values (such as screen resolution settings). A
+///   > slider is a good choice when you know that users think of the value as a relative quantity,
+///   > not a numeric value. For example, users think about setting their audio volume to low or
+///   > medium—not about setting the value to 2 or 5.
 ///
-/// To avoid any cross-platform bugs, ensure that min/stepSize and
-/// max/stepSize both are between -32767 and 32768.
+/// To avoid any cross-platform bugs, ensure that min divided by stepSize and max divided by
+/// stepSize both are between -32767 and 32768.
 pub const Slider = struct {
     pub usingnamespace @import("../internal.zig").All(Slider);
 

@@ -5,13 +5,13 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
     const TraitFn = fn (type) bool;
     pub fn isNumber(comptime T: type) bool {
         return switch (@typeInfo(T)) {
-            .Int, .Float, .ComptimeInt, .ComptimeFloat => true,
+            .int, .float, .comptime_int, .comptime_float => true,
             else => false,
         };
     }
     pub fn isContainer(comptime T: type) bool {
         return switch (@typeInfo(T)) {
-            .Struct, .Union, .Enum, .Opaque => true,
+            .@"struct", .@"union", .@"enum", .@"opaque" => true,
             else => false,
         };
     }
@@ -33,14 +33,14 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
         return Closure.trait;
     }
     pub fn isSingleItemPtr(comptime T: type) bool {
-        if (comptime is(.Pointer)(T)) {
-            return @typeInfo(T).Pointer.size == .One;
+        if (comptime is(.pointer)(T)) {
+            return @typeInfo(T).pointer.size == .One;
         }
         return false;
     }
     pub fn isIntegral(comptime T: type) bool {
         return switch (@typeInfo(T)) {
-            .Int, .ComptimeInt => true,
+            .int, .comptime_int => true,
             else => false,
         };
     }
@@ -48,7 +48,7 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
         return comptime blk: {
             // Only pointer types can be strings, no optionals
             const info = @typeInfo(T);
-            if (info != .Pointer) break :blk false;
+            if (info != .pointer) break :blk false;
 
             const ptr = &info.Pointer;
             // Check for CV qualifiers that would prevent coerction to []const u8
@@ -62,7 +62,7 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
             // Otherwise check if it's an array type that coerces to slice.
             if (ptr.size == .One) {
                 const child = @typeInfo(ptr.child);
-                if (child == .Array) {
+                if (child == .array) {
                     const arr = &child.Array;
                     break :blk arr.child == u8;
                 }
@@ -75,21 +75,21 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
         switch (@typeInfo(T)) {
             else => return false, // TODO can we know if it's true for some of these types ?
 
-            .AnyFrame,
-            .Enum,
-            .ErrorSet,
-            .Fn,
+            .@"anyframe",
+            .@"enum",
+            .error_set,
+            .@"fn",
             => return true,
 
-            .Bool => return false,
+            .bool => return false,
 
-            .Int => |info| return @sizeOf(T) * 8 == info.bits,
+            .int => |info| return @sizeOf(T) * 8 == info.bits,
 
-            .Pointer => |info| return info.size != .Slice,
+            .pointer => |info| return info.size != .Slice,
 
-            .Array => |info| return comptime hasUniqueRepresentation(info.child),
+            .array => |info| return comptime hasUniqueRepresentation(info.child),
 
-            .Struct => |info| {
+            .@"struct" => |info| {
                 var sum_size = @as(usize, 0);
 
                 inline for (info.fields) |field| {
@@ -101,7 +101,7 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
                 return @sizeOf(T) == sum_size;
             },
 
-            .Vector => |info| return comptime hasUniqueRepresentation(info.child) and
+            .vector => |info| return comptime hasUniqueRepresentation(info.child) and
                 @sizeOf(T) == @sizeOf(info.child) * info.len,
         }
     }

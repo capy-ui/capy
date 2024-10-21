@@ -13,6 +13,8 @@ const Monitor = @import("monitor.zig").Monitor;
 const VideoMode = @import("monitor.zig").VideoMode;
 const Display = struct { resolution: Size, dpi: u32 };
 
+const isErrorUnion = @import("internal.zig").isErrorUnion;
+
 const devices = std.StaticStringMap(Display).initComptime(.{
     .{ "iphone-13-mini", .{ .resolution = Size.init(1080, 2340), .dpi = 476 } },
     .{ "iphone-13", .{ .resolution = Size.init(1170, 2532), .dpi = 460 } },
@@ -66,13 +68,6 @@ pub const Window = struct {
         return self.peer.close();
     }
 
-    fn isErrorUnion(comptime T: type) bool {
-        return switch (@typeInfo(T)) {
-            .ErrorUnion => true,
-            else => false,
-        };
-    }
-
     /// wrappedContainer can be an error union, a pointer to the container or the container itself.
     pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
         const container =
@@ -121,7 +116,7 @@ pub const Window = struct {
         self.size.set(.{ .width = width, .height = height });
     }
 
-    pub fn propertyChanged(name: []const u8, value: *const anyopaque, data: usize) void {
+    fn propertyChanged(name: []const u8, value: *const anyopaque, data: usize) void {
         const self: *Window = @ptrFromInt(data);
         if (std.mem.eql(u8, name, "tick_id")) {
             _ = value;

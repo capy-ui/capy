@@ -1,6 +1,6 @@
 const std = @import("std");
 const c = @import("gtk.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const common = @import("common.zig");
 const wbin_new = @import("windowbin.zig").wbin_new;
 const wbin_set_child = @import("windowbin.zig").wbin_set_child;

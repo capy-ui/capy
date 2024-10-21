@@ -81,8 +81,8 @@ fn drawRounded(cnv: *anyopaque, ctx: *capy.DrawContext) !void {
 
     ctx.setColor(0.7, 0.9, 0.3);
     ctx.setLinearGradient(.{ .x0 = 80, .y0 = 0, .x1 = 100, .y1 = 100, .stops = &.{
-        .{ .offset = 0.1, .color = capy.Color.yellow },
-        .{ .offset = 0.8, .color = capy.Color.red },
+        .{ .offset = 0.1, .color = capy.Colors.yellow },
+        .{ .offset = 0.8, .color = capy.Colors.red },
     } });
     ctx.roundedRectangleEx(
         0,

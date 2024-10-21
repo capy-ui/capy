@@ -3,23 +3,64 @@ const std = @import("std");
 pub const Window = @import("window.zig").Window;
 pub const Widget = @import("widget.zig").Widget;
 
-pub usingnamespace @import("components/Alignment.zig");
-pub usingnamespace @import("components/Button.zig");
-pub usingnamespace @import("components/Canvas.zig");
-pub usingnamespace @import("components/CheckBox.zig");
-pub usingnamespace @import("components/Dropdown.zig");
-pub usingnamespace @import("components/Image.zig");
-pub usingnamespace @import("components/Label.zig");
-pub usingnamespace @import("components/Menu.zig");
-pub usingnamespace @import("components/Navigation.zig");
-pub usingnamespace @import("components/NavigationSidebar.zig");
-pub usingnamespace @import("components/Slider.zig");
-pub usingnamespace @import("components/Scrollable.zig");
-pub usingnamespace @import("components/Tabs.zig");
-pub usingnamespace @import("components/TextArea.zig");
-pub usingnamespace @import("components/TextField.zig");
-pub usingnamespace @import("containers.zig");
+// Components
+pub const Alignment = @import("components/Alignment.zig").Alignment;
+pub const alignment = @import("components/Alignment.zig").alignment;
 
+pub const Button = @import("components/Button.zig").Button;
+pub const button = @import("components/Button.zig").button;
+
+pub const Canvas = @import("components/Canvas.zig").Canvas;
+pub const canvas = @import("components/Canvas.zig").canvas;
+pub const DrawContext = Canvas.DrawContext;
+pub const Rect = @import("components/Canvas.zig").Rect;
+pub const rect = @import("components/Canvas.zig").rect;
+
+pub const CheckBox = @import("components/CheckBox.zig").CheckBox;
+pub const checkBox = @import("components/CheckBox.zig").checkBox;
+
+pub const Dropdown = @import("components/Dropdown.zig").Dropdown;
+pub const dropdown = @import("components/Dropdown.zig").dropdown;
+
+pub const Image = @import("components/Image.zig").Image;
+pub const image = @import("components/Image.zig").image;
+
+pub const Label = @import("components/Label.zig").Label;
+pub const label = @import("components/Label.zig").label;
+pub const spacing = @import("components/Label.zig").spacing;
+
+pub const MenuItem = @import("components/Menu.zig").MenuItem;
+pub const menu = @import("components/Menu.zig").menu;
+pub const menuItem = @import("components/Menu.zig").menuItem;
+pub const MenuBar = @import("components/Menu.zig").MenuBar;
+pub const menuBar = @import("components/Menu.zig").menuBar;
+
+pub const Navigation = @import("components/Navigation.zig").Navigation;
+pub const navigation = @import("components/Navigation.zig").navigation;
+
+pub const NavigationSidebar = @import("components/NavigationSidebar.zig").NavigationSidebar;
+pub const navigationSidebar = @import("components/NavigationSidebar.zig").navigationSidebar;
+
+pub const Slider = @import("components/Slider.zig").Slider;
+pub const slider = @import("components/Slider.zig").slider;
+pub const Orientation = @import("components/Slider.zig").Orientation;
+
+pub const Scrollable = @import("components/Scrollable.zig").Scrollable;
+pub const scrollable = @import("components/Scrollable.zig").scrollable;
+
+pub const Tabs = @import("components/Tabs.zig").Tabs;
+pub const tabs = @import("components/Tabs.zig").tabs;
+pub const Tab = @import("components/Tabs.zig").Tab;
+pub const tab = @import("components/Tabs.zig").tab;
+
+pub const TextArea = @import("components/TextArea.zig").TextArea;
+pub const textArea = @import("components/TextArea.zig").textArea;
+
+pub const TextField = @import("components/TextField.zig").TextField;
+pub const textField = @import("components/TextField.zig").textField;
+
+// Misc.
+pub usingnamespace @import("containers.zig");
 pub usingnamespace @import("color.zig");
 pub usingnamespace @import("data.zig");
 pub usingnamespace @import("image.zig");
@@ -112,24 +153,6 @@ pub fn stepEventLoop(stepType: EventLoopStep) bool {
     std.debug.assert(isCapyInitialized);
     eventStep.callListeners();
 
-    // const timer = @import("timer.zig");
-    // if (timer._runningTimers.items.len > 0) {
-    //     const now = std.time.Instant.now() catch unreachable;
-    //     // TODO: mutex
-    //     for (timer._runningTimers.items, 0..) |item, i| {
-    //         _ = i;
-    //         if (now.since(item.started.?) >= item.duration.get()) {
-    //             // TODO: tick timer
-    //             item.started = now;
-    //             item.tick(item);
-    //         }
-    //     }
-    //     return backend.runStep(.Asynchronous);
-    // }
-
-    // if (timer._runningTimers.items.len > 0) {
-    //     return backend.runStep(.Asynchronous);
-    // }
     if (eventStep.hasEnabledListeners()) {
         // TODO: don't do that and instead encourage to use something like Window.vsync
         return backend.runStep(.Asynchronous);

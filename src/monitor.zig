@@ -10,7 +10,7 @@ pub const Monitors = struct {
 
     /// Init the subsystem by filling the monitor list and by listening to events indicating
     /// that a monitor is being added or removed.
-    /// This function is called by `capy.init()`, so it doesn't need to call it manually.
+    /// This function is called by `capy.init()`, so it doesn't need to be called manually.
     pub fn init() void {
         const peer_list = backend.Monitor.getList();
         for (peer_list) |*monitor_peer| {
@@ -23,7 +23,7 @@ pub const Monitors = struct {
         return Monitors.list.get(0);
     }
 
-    /// This function is called by `capy.deinit()`, so it doesn't need to call it manually.
+    /// This function is called by `capy.deinit()`, so it doesn't need to be called manually.
     pub fn deinit() void {
         {
             var iterator = Monitors.list.iterate();

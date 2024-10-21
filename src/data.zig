@@ -39,7 +39,7 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         }
     } else if (comptime trait.isContainer(T) and @hasDecl(T, "lerp")) {
         return T.lerp(a, b, t);
-    } else if (comptime trait.is(.Optional)(T)) {
+    } else if (comptime trait.is(.optional)(T)) {
         if (a != null and b != null) {
             return lerp(a.?, b.?, t);
         } else {
@@ -96,15 +96,26 @@ fn Animation(comptime T: type) type {
 }
 
 pub fn isAtom(comptime T: type) bool {
-    if (!comptime trait.is(.Struct)(T))
+    if (!comptime trait.is(.@"struct")(T))
         return false;
     return @hasDecl(T, "ValueType") and T == Atom(T.ValueType);
 }
 
+test isAtom {
+    try std.testing.expect(isAtom(Atom(u8)));
+    try std.testing.expect(!isAtom(Size));
+}
+
 pub fn isListAtom(comptime T: type) bool {
-    if (!comptime trait.is(.Struct)(T))
+    if (!comptime trait.is(.@"struct")(T))
         return false;
     return @hasDecl(T, "ValueType") and T == ListAtom(T.ValueType);
+}
+
+test isListAtom {
+    try std.testing.expect(isListAtom(ListAtom([]const u8)));
+    try std.testing.expect(!isListAtom(Atom([][]const u8)));
+    try std.testing.expect(!isListAtom(Rectangle));
 }
 
 // TODO: use ListAtom when it's done
@@ -116,16 +127,28 @@ pub var _animatedAtomsLength = Atom(usize).of(0);
 pub var _animatedAtomsMutex = std.Thread.Mutex{};
 
 fn isAnimatableType(comptime T: type) bool {
-    if (trait.isNumber(T) or (trait.isContainer(T) and @hasDecl(T, "lerp"))) {
+    if (trait.isNumber(T) or (comptime trait.isContainer(T) and @hasDecl(T, "lerp"))) {
         return true;
-    } else if (trait.is(.Optional)(T)) {
+    } else if (comptime trait.is(.optional)(T)) {
         return isAnimatableType(std.meta.Child(T));
     }
     return false;
 }
 
+test isAnimatableType {
+    try std.testing.expect(isAnimatableType(@import("color.zig").Color));
+    try std.testing.expect(isAnimatableType(f64));
+    try std.testing.expect(!isAnimatableType([]const u8));
+}
+
 fn isPointer(comptime T: type) bool {
-    return @typeInfo(T) == .Pointer and std.meta.activeTag(@typeInfo(std.meta.Child(T))) != .Fn;
+    return @typeInfo(T) == .pointer and std.meta.activeTag(@typeInfo(std.meta.Child(T))) != .@"fn";
+}
+
+test isPointer {
+    try std.testing.expect(isPointer([]const u8));
+    try std.testing.expect(isPointer(*u8));
+    try std.testing.expect(!isPointer(*const fn (usize) bool));
 }
 
 /// An atom is used to add binding, change listening, thread safety and animation capabilities to
@@ -181,7 +204,7 @@ pub fn Atom(comptime T: type) type {
 
         fn computeChecksum(value: T) u8 {
             const Crc = std.hash.crc.Crc8Wcdma;
-            return switch (@typeInfo(T).Pointer.size) {
+            return switch (@typeInfo(T).pointer.size) {
                 .One => Crc.hash(std.mem.asBytes(value)),
                 .Many, .C, .Slice => Crc.hash(std.mem.sliceAsBytes(value)),
             };
@@ -568,7 +591,7 @@ pub fn Atom(comptime T: type) type {
             {
                 comptime var i: usize = 0;
                 inline while (i < tuple.len) : (i += 1) {
-                    if (comptime @typeInfo(@TypeOf(tuple[i])) != .Pointer) {
+                    if (comptime @typeInfo(@TypeOf(tuple[i])) != .pointer) {
                         @compileError("Dependencies must be pointers to atoms and not atoms themselves.");
                     }
                     const wrapper = tuple[i];

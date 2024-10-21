@@ -27,7 +27,7 @@ pub fn main() !void {
     balls = std.ArrayList(Ball).init(capy.internal.lasting_allocator);
 
     // Generate random balls
-    var prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
+    var prng = std.Random.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
     const random = prng.random();
     var i: usize = 0;
     while (i < 100) : (i += 1) {

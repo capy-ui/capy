@@ -5,8 +5,9 @@ const scratch_allocator = @import("internal.zig").scratch_allocator;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
-const capy = @import("main.zig");
+const capy = @import("capy.zig");
 
+const isErrorUnion = @import("internal.zig").isErrorUnion;
 const convertTupleToWidgets = @import("internal.zig").convertTupleToWidgets;
 
 pub const Layout = *const fn (peer: Callbacks, widgets: []*Widget) void;
@@ -563,13 +564,6 @@ test Container {
     });
     container_column.ref();
     defer container_column.unref();
-}
-
-fn isErrorUnion(comptime T: type) bool {
-    return switch (@typeInfo(T)) {
-        .ErrorUnion => true,
-        else => false,
-    };
 }
 
 const Expand = enum {

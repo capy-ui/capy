@@ -1,6 +1,6 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const objc = @import("objc");
 const AppKit = @import("AppKit.zig");
 const CapyAppDelegate = @import("CapyAppDelegate.zig");

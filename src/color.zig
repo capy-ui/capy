@@ -13,34 +13,13 @@ pub const Colorspace = enum {
 
 /// 8-bit sRGB color with transparency as 32 bits ordered RGBA
 pub const Color = packed struct {
-    // due to packed struct ordering, fields are in 'reverse' so that the color
-    // represented as an hex number is 0xRRGGBBAA (matching the fromString methods)
+    // Due to packed struct ordering, fields are ordered from the least significant bit to the
+    // most significant, which means that this struct represented as an hex number is 0xRRGGBBAA
+    // (matching the fromString methods)
     alpha: u8 = 255,
     blue: u8,
     green: u8,
     red: u8,
-
-    // The CSS level 2 revision 1 colors
-    pub const maroon = Color.comptimeFromString("#800000");
-    pub const red = Color.comptimeFromString("#ff0000");
-    pub const orange = Color.comptimeFromString("#ffa500");
-    pub const yellow = Color.comptimeFromString("#ffff00");
-    pub const lime = Color.comptimeFromString("#00ff00");
-    pub const green = Color.comptimeFromString("#008000");
-    pub const olive = Color.comptimeFromString("#808000");
-    pub const aqua = Color.comptimeFromString("#00ffff");
-    pub const teal = Color.comptimeFromString("#008080");
-    pub const blue = Color.comptimeFromString("#0000ff");
-    pub const navy = Color.comptimeFromString("#000080");
-    pub const fuchsia = Color.comptimeFromString("#ff00ff");
-    pub const purple = Color.comptimeFromString("#800080");
-
-    pub const black = Color.comptimeFromString("#000000");
-    pub const gray = Color.comptimeFromString("#808080");
-    pub const silver = Color.comptimeFromString("#c0c0c0");
-    pub const white = Color.comptimeFromString("#ffffff");
-
-    pub const transparent = Color.comptimeFromString("#00000000");
 
     pub fn fromString(string: []const u8) !Color {
         if (string[0] != '#') {
@@ -113,6 +92,31 @@ pub const Color = packed struct {
     pub fn toBytes(self: Color, dest: []u8) void {
         std.mem.bytesAsSlice(Color, dest)[0] = self;
     }
+};
+
+/// Standard color values. Those are the same as the CSS level 2 revision 1 colors.
+pub const Colors = struct {
+    // CSS level 2 revision 1 colors
+    pub const maroon = Color.comptimeFromString("#800000");
+    pub const red = Color.comptimeFromString("#ff0000");
+    pub const orange = Color.comptimeFromString("#ffa500");
+    pub const yellow = Color.comptimeFromString("#ffff00");
+    pub const lime = Color.comptimeFromString("#00ff00");
+    pub const green = Color.comptimeFromString("#008000");
+    pub const olive = Color.comptimeFromString("#808000");
+    pub const aqua = Color.comptimeFromString("#00ffff");
+    pub const teal = Color.comptimeFromString("#008080");
+    pub const blue = Color.comptimeFromString("#0000ff");
+    pub const navy = Color.comptimeFromString("#000080");
+    pub const fuchsia = Color.comptimeFromString("#ff00ff");
+    pub const purple = Color.comptimeFromString("#800080");
+
+    pub const black = Color.comptimeFromString("#000000");
+    pub const gray = Color.comptimeFromString("#808080");
+    pub const silver = Color.comptimeFromString("#c0c0c0");
+    pub const white = Color.comptimeFromString("#ffffff");
+
+    pub const transparent = Color.comptimeFromString("#00000000");
 };
 
 const expectEqual = std.testing.expectEqual;

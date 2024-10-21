@@ -87,7 +87,7 @@ fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: Ca
         },
         .freestanding => {
             if (target.result.isWasm()) {
-                std.log.warn("For targetting the Web, WebAssembly builds must now be compiled using the `wasm32-wasi` target.", .{});
+                std.log.warn("For targeting the Web, WebAssembly builds must now be compiled using the `wasm32-wasi` target.", .{});
             }
             return error.UnsupportedOs;
         },
@@ -109,7 +109,7 @@ pub fn build(b: *std.Build) !void {
     };
 
     const module = b.addModule("capy", .{
-        .root_source_file = b.path("src/main.zig"),
+        .root_source_file = b.path("src/capy.zig"),
         .target = target,
         .optimize = optimize,
         .imports = &.{},
@@ -184,7 +184,7 @@ pub fn build(b: *std.Build) !void {
     // Unit tests
     //
     const tests = b.addTest(.{
-        .root_source_file = b.path("src/main.zig"),
+        .root_source_file = b.path("src/capy.zig"),
         .target = target,
         .optimize = optimize,
     });
@@ -199,7 +199,7 @@ pub fn build(b: *std.Build) !void {
     //
     const docs = b.addObject(.{
         .name = "capy",
-        .root_source_file = b.path("src/main.zig"),
+        .root_source_file = b.path("src/capy.zig"),
         .target = target,
         .optimize = .Debug,
     });
@@ -219,7 +219,7 @@ pub fn build(b: *std.Build) !void {
     // Coverage tests
     //
     const coverage_tests = b.addTest(.{
-        .root_source_file = b.path("src/main.zig"),
+        .root_source_file = b.path("src/capy.zig"),
         .target = target,
         .optimize = optimize,
     });

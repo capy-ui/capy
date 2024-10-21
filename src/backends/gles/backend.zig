@@ -1,6 +1,6 @@
 const std = @import("std");
 const shared = @import("../shared.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const trait = @import("../../trait.zig");
 const c = @cImport({
     @cDefine("GLFW_INCLUDE_ES3", {});

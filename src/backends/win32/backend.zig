@@ -1,5 +1,5 @@
 const std = @import("std");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const shared = @import("../shared.zig");
 const trait = @import("../../trait.zig");
 const os = @import("builtin").target.os;

@@ -2,7 +2,7 @@
 
 const std = @import("std");
 const c = @import("gtk.zig");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const common = @import("common.zig");
 
 const AudioGenerator = @This();

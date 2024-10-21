@@ -1,5 +1,5 @@
 const std = @import("std");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 
 const win32Backend = @import("win32.zig");
 const zigwin32 = @import("zigwin32");

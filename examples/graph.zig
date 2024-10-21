@@ -186,7 +186,7 @@ pub fn main() !void {
             .{},
             capy.rect(.{
                 .preferredSize = capy.Size{ .width = 100, .height = 100 },
-                .color = capy.Color.black,
+                .color = capy.Colors.black,
             }),
         ))
             .bind("x", &rectangleX),

@@ -3,8 +3,8 @@ const builtin = @import("builtin");
 const backend = @import("../backend.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
-
-pub const DrawContext = backend.Canvas.DrawContext;
+const Color = @import("../color.zig").Color;
+const Colors = @import("../color.zig").Colors;
 
 /// Arbitrary size area on which the application may draw content.
 ///
@@ -47,8 +47,6 @@ pub fn canvas(config: Canvas.Config) *Canvas {
     return Canvas.alloc(config);
 }
 
-const Color = @import("../color.zig").Color;
-
 /// Arbitrary size area filled with a given color.
 ///
 /// *This widget extends `Canvas`.*
@@ -61,7 +59,7 @@ pub const Rect = struct {
     /// The preferred size of the canvas, or null to take the least possible.
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
     /// The color the rectangle will be filled with.
-    color: Atom(Color) = Atom(Color).of(Color.black),
+    color: Atom(Color) = Atom(Color).of(Colors.black),
     /// The radiuses of the the corners of the rectangle. It can be changed to make
     /// a rounded rectangle.
     cornerRadius: Atom([4]f32) = Atom([4]f32).of(.{0.0} ** 4),
@@ -126,13 +124,13 @@ test Canvas {
 }
 
 test Rect {
-    var rect1 = rect(.{ .color = Color.blue });
+    var rect1 = rect(.{ .color = Colors.blue });
     rect1.ref();
     defer rect1.unref();
-    try std.testing.expectEqual(Color.blue, rect1.color.get());
+    try std.testing.expectEqual(Colors.blue, rect1.color.get());
 
-    var rect2 = rect(.{ .color = Color.yellow });
+    var rect2 = rect(.{ .color = Colors.yellow });
     rect2.ref();
     defer rect2.unref();
-    try std.testing.expectEqual(Color.yellow, rect2.color.get());
+    try std.testing.expectEqual(Colors.yellow, rect2.color.get());
 }

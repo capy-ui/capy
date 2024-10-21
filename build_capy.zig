@@ -67,9 +67,9 @@ const WebServerStep = struct {
         builder: *std.Build,
     };
 
-    pub fn make(step: *std.Build.Step, prog_node: std.Progress.Node) !void {
-        // There's no progress to report on.
-        _ = prog_node;
+    pub fn make(step: *std.Build.Step, options: std.Build.Step.MakeOptions) !void {
+        // Options are unused.
+        _ = options;
 
         const self: *WebServerStep = @fieldParentPtr("step", step);
         const allocator = step.owner.allocator;
@@ -91,7 +91,7 @@ const WebServerStep = struct {
 
     fn handler(self: *WebServerStep, build: *std.Build, res: *Server) !void {
         const allocator = build.allocator;
-        const prefix = comptime std.fs.path.dirname(@src().file).? ++ std.fs.path.sep_str;
+        const prefix = (comptime std.fs.path.dirname(@src().file) orelse "./") ++ std.fs.path.sep_str;
 
         var req = try res.receiveHead();
         var arena = std.heap.ArenaAllocator.init(allocator);
@@ -281,10 +281,9 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
 }
 
 comptime {
-    const supported_zig = std.SemanticVersion.parse("0.13.0-dev.351+64ef45eb0") catch unreachable;
-    const other_supported_zig = std.SemanticVersion.parse("0.13.0") catch unreachable;
+    const supported_zig = std.SemanticVersion.parse("0.14.0-dev.1911+3bf89f55c") catch unreachable;
     const zig_version = @import("builtin").zig_version;
-    if (zig_version.order(supported_zig) != .eq and zig_version.order(other_supported_zig) != .eq) {
-        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.5.0-mach: https://machengine.org/about/nominated-zig/#202450-mach", .{@import("builtin").zig_version}));
+    if (zig_version.order(supported_zig) != .eq) {
+        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.10.0-mach: https://machengine.org/docs/nominated-zig/#2024100-mach", .{@import("builtin").zig_version}));
     }
 }

@@ -3,7 +3,7 @@
 // This implementation will use the Window Management API, whenever it's available.
 // Otherwise, it will return a dummy monitor that has the size of the browser window.
 const std = @import("std");
-const lib = @import("../../main.zig");
+const lib = @import("../../capy.zig");
 const Monitor = @This();
 
 var monitor_list: ?[]Monitor = null;

@@ -9,8 +9,8 @@
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
-**Capy targets Zig version `0.13.0-dev.351+64ef45eb0` / `2024.5.0-mach` ([Nominated Zig versions](https://machengine.org/about/nominated-zig/))**
-, but it also works on Zig `0.13.0`
+**Capy targets Zig version `0.14.0-dev.1911+3bf89f55c` / `2024.10.0-mach` ([Nominated Zig versions](https://machengine.org/docs/nominated-zig/))**
+, it doesn't work on Zig `0.13.0`
 
 ---
 
@@ -49,9 +49,10 @@ A simple application using capy:
 ```zig
 const capy = @import("capy");
 const std = @import("std");
+pub usingnamespace capy.cross_platform;
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
 
     var window = try capy.Window.init();
     try window.set(
@@ -60,7 +61,7 @@ pub fn main() !void {
                 capy.button(.{ .label = "Save", .onclick = @ptrCast(&buttonClicked) }),
                 capy.button(.{ .label = "Run",  .onclick = @ptrCast(&buttonClicked) })
             }),
-            // Expanded means the widget will take all the space it can
+            // 'expanded' means the widget will take all the space it can
             // in the parent container
             capy.expanded(
                 capy.textArea(.{ .text = "Hello World!" })
@@ -74,7 +75,7 @@ pub fn main() !void {
 }
 
 fn buttonClicked(button: *capy.Button) !void {
-    std.log.info("You clicked button with text {s}", .{button.getLabel()});
+    std.log.info("You clicked the button with text {s}", .{button.getLabel()});
 }
 ```
 

@@ -2,7 +2,7 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-var prng: std.rand.DefaultPrng = undefined; // initialized in main()
+var prng: std.Random.DefaultPrng = undefined; // initialized in main()
 var random = prng.random();
 
 pub fn animateRandomColor(button_: *anyopaque) !void {
@@ -18,13 +18,20 @@ pub fn animateRandomColor(button_: *anyopaque) !void {
 pub fn main() !void {
     try capy.init();
     var window = try capy.Window.init();
-    prng = std.rand.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
+    prng = std.Random.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
 
     window.setPreferredSize(800, 600);
+
+    const selectedValue = capy.Atom([]const u8).alloc("");
+    defer selectedValue.deinit();
+
     try window.set(capy.stack(.{
-        capy.rect(.{ .name = "background-rectangle", .color = capy.Color.transparent }),
+        capy.rect(.{ .name = "background-rectangle", .color = capy.Colors.transparent }),
         capy.column(.{}, .{
             capy.alignment(.{}, capy.button(.{ .label = "Random color", .onclick = animateRandomColor })),
+            // dropdown,
+            capy.label(.{})
+                .bind("text", selectedValue),
         }),
     }));
     window.show();
