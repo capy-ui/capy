@@ -30,6 +30,8 @@ pub const Monitor = @import("monitor.zig").Monitor;
 pub const Monitors = @import("monitor.zig").Monitors;
 pub const VideoMode = @import("monitor.zig").VideoMode;
 
+pub const AnimationController = @import("AnimationController.zig");
+
 pub const Listener = @import("listener.zig").Listener;
 pub const EventSource = @import("listener.zig").EventSource;
 
