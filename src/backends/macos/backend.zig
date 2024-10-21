@@ -207,37 +207,75 @@ pub const Window = struct {
     }
 };
 
+var cachedFlippedNSView: ?objc.Class = null;
+fn getFlippedNSView() !objc.Class {
+    if (cachedFlippedNSView) |notNull| {
+        return notNull;
+    }
+
+    const FlippedNSView = objc.allocateClassPair(objc.getClass("NSView").?, "FlippedNSView").?;
+    defer objc.registerClassPair(FlippedNSView);
+    const success = try FlippedNSView.addMethod("isFlipped", struct {
+        fn imp(target: objc.c.id, sel: objc.c.SEL) callconv(.C) u8 {
+            _ = sel;
+            _ = target;
+            return @intFromBool(true);
+        }
+    }.imp);
+    if (!success) {
+        return error.InitializationError;
+    }
+
+    cachedFlippedNSView = FlippedNSView;
+
+    return FlippedNSView;
+}
+
 pub const Container = struct {
     peer: objc.Object,
 
     pub usingnamespace Events(Container);
 
     pub fn create() BackendError!Container {
-        return Container{ .peer = undefined };
+        const view = (try getFlippedNSView())
+            .msgSend(objc.Object, "alloc", .{})
+            .msgSend(objc.Object, "initWithFrame:", .{AppKit.NSRect.make(0, 0, 1, 1)});
+        return Container{ .peer = view };
     }
 
     pub fn add(self: *const Container, peer: PeerType) void {
-        _ = peer;
-        _ = self;
+        self.peer.msgSend(void, "addSubview:", .{peer});
     }
 
     pub fn remove(self: *const Container, peer: PeerType) void {
-        _ = peer;
         _ = self;
+        peer.msgSend(void, "removeFromSuperview", .{});
     }
 
     pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
-        _ = y;
-        _ = x;
-        _ = peer;
         _ = self;
+
+        const peerFrame = peer.getProperty(AppKit.NSRect, "frame");
+
+        peer.setProperty("frame", AppKit.NSRect.make(
+            @floatFromInt(x),
+            @floatFromInt(y),
+            peerFrame.size.width,
+            peerFrame.size.height,
+        ));
     }
 
-    pub fn resize(self: *const Container, peer: PeerType, w: u32, h: u32) void {
-        _ = h;
-        _ = w;
-        _ = peer;
+    pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
         _ = self;
+
+        const peerFrame = peer.getProperty(AppKit.NSRect, "frame");
+
+        peer.setProperty("frame", AppKit.NSRect.make(
+            peerFrame.origin.x,
+            peerFrame.origin.y,
+            @floatFromInt(width),
+            @floatFromInt(height),
+        ));
     }
 
     pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
