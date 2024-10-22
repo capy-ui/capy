@@ -2,7 +2,7 @@ const std = @import("std");
 const c = @import("gtk.zig");
 const lib = @import("../../capy.zig");
 const common = @import("common.zig");
-const DrawContext = @import("Canvas.zig").DrawContext;
+const DrawContext = @import("../../backend.zig").DrawContext;
 
 const ImageData = @This();
 
@@ -22,7 +22,7 @@ pub const DrawLock = struct {
 
         c.g_object_unref(@as(*c.GObject, @ptrCast(@alignCast(self.data.peer))));
         self.data.peer = c.gdk_pixbuf_get_from_surface(self._surface, 0, 0, width, height).?;
-        c.cairo_destroy(self.draw_context.cr);
+        c.cairo_destroy(self.draw_context.impl.cr);
         c.cairo_surface_destroy(self._surface);
         self.data.mutex.unlock();
     }
@@ -68,7 +68,7 @@ pub fn draw(self: *ImageData) DrawLock {
     const cr = c.cairo_create(surface).?;
     return DrawLock{
         ._surface = surface,
-        .draw_context = .{ .cr = cr },
+        .draw_context = .{ .impl = .{ .cr = cr } },
         .data = self,
     };
 }
