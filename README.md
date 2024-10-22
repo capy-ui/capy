@@ -116,10 +116,32 @@ Legends:
 
 ### Web
 
-✅ WebAssembly  
+✅ WebAssembly
 
 Note: As there's no "official" GUI library for Linux, GTK 4 has been chosen as it is the one
 that works and can be configured on the most distros. It's also the reason Libadwaita won't
 be adopted, as it's meant for GNOME and GNOME only by disallowing styling and integration
 with other DEs.
 
+
+
+## Supported components
+For now, not every platform supports the same components. So here's a list of the ones that are supported:
+
+|                  |win32|macOS|GTK|Android|wasm|
+|------------------|-----|-----|---|-----|-----|
+|Button            |✅|✅|✅|✅|✅|
+|Canvas            |✅|❌|✅|✅|✅|
+|CheckBox          |✅|❌|✅|❌|❌|
+|Dropdown          |✅|❌|✅|❌|❌|
+|Image             |❌|❌|✅|❌|✅|
+|Label             |✅|✅|✅|✅|✅|
+|Menu              |❌|❌|❌|❌|❌|
+|Navigation        |❌|❌|❌|❌|❌|
+|NavigationSidebar |❌|❌|✅|❌|❌|
+|Scrollable        |✅|❌|✅|❌|❌|
+|Slider            |✅|❌|✅|❌|✅|
+|Tabs              |✅|❌|✅|❌|❌|
+|TextArea          |✅|❌|✅|❌|❌|
+|TextField         |✅|❌|✅|✅|✅|
+|Window            |✅|✅|✅|✅|✅
