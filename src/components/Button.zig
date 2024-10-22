@@ -10,10 +10,11 @@ pub const Button = struct {
 
     peer: ?backend.Button = null,
     widget_data: Button.WidgetData = .{},
-    /// The text label which appears inside the button.
+    /// The label the button will take. For example, if this is 'Test', the user will see a button
+    /// which, at the center, has the text 'Test'
     label: Atom([:0]const u8) = Atom([:0]const u8).of(""),
-    /// Whether the user can interact with the button, that is
-    /// whether the button can be pressed or not.
+    /// Whether the user can interact with the button, this corresponds to whether the button can be
+    /// pressed or not.
     enabled: Atom(bool) = Atom(bool).of(true),
 
     pub fn init(config: Button.Config) Button {

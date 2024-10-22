@@ -123,7 +123,7 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
     const value_type_error = @as([]const u8, "typedConst cannot convert " ++ @typeName(@TypeOf(value)) ++ " to " ++ @typeName(ReturnType));
 
     switch (@typeInfo(SwitchType)) {
-        .Int => |target_type_info| {
+        .int => |target_type_info| {
             if (value >= std.math.maxInt(SwitchType)) {
                 if (target_type_info.signedness == .signed) {
                     const UnsignedT = @Type(std.builtin.Type{ .Int = .{ .signedness = .unsigned, .bits = target_type_info.bits } });
@@ -132,10 +132,10 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             }
             return value;
         },
-        .Pointer => |target_type_info| switch (target_type_info.size) {
+        .pointer => |target_type_info| switch (target_type_info.size) {
             .One, .Many, .C => {
                 switch (@typeInfo(@TypeOf(value))) {
-                    .ComptimeInt, .Int => {
+                    .comptime_int, .int => {
                         const usize_value = if (value >= 0) value else @as(usize, @bitCast(@as(isize, value)));
                         return @as(ReturnType, @ptrFromInt(usize_value));
                     },
@@ -144,12 +144,12 @@ pub fn typedConst2(comptime ReturnType: type, comptime SwitchType: type, comptim
             },
             else => target_type_error,
         },
-        .Optional => |target_type_info| switch (@typeInfo(target_type_info.child)) {
-            .Pointer => return typedConst2(ReturnType, target_type_info.child, value),
+        .optional => |target_type_info| switch (@typeInfo(target_type_info.child)) {
+            .pointer => return typedConst2(ReturnType, target_type_info.child, value),
             else => target_type_error,
         },
-        .Enum => |_| switch (@typeInfo(@TypeOf(value))) {
-            .Int => return @as(ReturnType, @enumFromInt(value)),
+        .@"enum" => |_| switch (@typeInfo(@TypeOf(value))) {
+            .int => return @as(ReturnType, @enumFromInt(value)),
             else => target_type_error,
         },
         else => @compileError(target_type_error),

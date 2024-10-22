@@ -430,7 +430,7 @@ pub const Canvas = struct {
 
     pub usingnamespace Events(Canvas);
 
-    pub const DrawContext = struct {
+    pub const DrawContextImpl = struct {
         canvas: android.jobject,
         paint: android.jobject,
         paintClass: android.JNI.Class,
@@ -470,7 +470,13 @@ pub const Canvas = struct {
             }
         };
 
-        pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
+        pub fn setColorRGBA(self: *DrawContextImpl, r: f32, g: f32, b: f32, a: f32) void {
+            const color = lib.Color{
+                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
+                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
+                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
+                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
+            };
             self.paintClass.callVoidMethod(self.paint, "setARGB", "(IIII)V", .{
                 @as(android.jint, color.alpha),
                 @as(android.jint, color.red),
@@ -479,21 +485,7 @@ pub const Canvas = struct {
             }) catch unreachable;
         }
 
-        pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
-            self.setColorRGBA(r, g, b, 1);
-        }
-
-        pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
-            const color = lib.Color{
-                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
-                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
-                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
-                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
-            };
-            self.setColorByte(color);
-        }
-
-        pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
@@ -506,7 +498,7 @@ pub const Canvas = struct {
             }) catch unreachable;
         }
 
-        pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *DrawContextImpl, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             // TODO
             _ = self;
             _ = x;
@@ -515,7 +507,7 @@ pub const Canvas = struct {
             _ = str;
         }
 
-        pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
+        pub fn image(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
             // TODO
             _ = self;
             _ = x;
@@ -525,7 +517,7 @@ pub const Canvas = struct {
             _ = data;
         }
 
-        pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
+        pub fn line(self: *DrawContextImpl, x1: i32, y1: i32, x2: i32, y2: i32) void {
             self.class.callVoidMethod(self.canvas, "drawLine", "(FFFFLandroid/graphics/Paint;)V", .{
                 @as(f32, @floatFromInt(x1)),
                 @as(f32, @floatFromInt(y1)),
@@ -535,7 +527,7 @@ pub const Canvas = struct {
             }) catch unreachable;
         }
 
-        pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+        pub fn ellipse(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
             const PaintStyle = self.jni.findClass("android/graphics/Paint$Style") catch unreachable;
             const FILL = PaintStyle.getStaticObjectField("FILL", "Landroid/graphics/Paint$Style;") catch unreachable;
             self.paintClass.callVoidMethod(self.paint, "setStyle", "(Landroid/graphics/Paint$Style;)V", .{FILL}) catch unreachable;
@@ -549,7 +541,7 @@ pub const Canvas = struct {
             }) catch unreachable;
         }
 
-        pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+        pub fn clear(self: *DrawContextImpl, x: u32, y: u32, w: u32, h: u32) void {
             // TODO
             _ = self;
             _ = x;
@@ -558,12 +550,12 @@ pub const Canvas = struct {
             _ = h;
         }
 
-        pub fn stroke(self: *DrawContext) void {
+        pub fn stroke(self: *DrawContextImpl) void {
             // TODO
             _ = self;
         }
 
-        pub fn fill(self: *DrawContext) void {
+        pub fn fill(self: *DrawContextImpl) void {
             // TODO
             _ = self;
         }
@@ -574,7 +566,7 @@ pub const Canvas = struct {
         const class = jni.findClass("android/graphics/Canvas") catch unreachable;
         const paintClass = jni.findClass("android/graphics/Paint") catch unreachable;
         const paint = paintClass.newObject("()V", .{}) catch unreachable;
-        var ctx = Canvas.DrawContext{ .canvas = canvas, .jni = jni, .class = class, .paintClass = paintClass, .paint = paint };
+        var ctx = Canvas.DrawContextImpl{ .canvas = canvas, .jni = jni, .class = class, .paintClass = paintClass, .paint = paint };
         if (eventData.class.drawHandler) |handler| {
             handler(&ctx, eventData.classUserdata);
         }

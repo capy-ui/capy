@@ -37,7 +37,7 @@ pub const Image = struct {
         Stretch,
     };
 
-    pub const DrawContext = backend.Canvas.DrawContext;
+    pub const DrawContext = backend.DrawContext;
 
     pub fn init(config: Image.Config) Image {
         var self = Image.init_events(Image{ .url = Atom([]const u8).of(config.url) });

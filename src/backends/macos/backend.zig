@@ -287,7 +287,7 @@ pub const Container = struct {
 pub const Canvas = struct {
     pub usingnamespace Events(Canvas);
 
-    pub const DrawContext = struct {};
+    pub const DrawContextImpl = struct {};
 };
 
 pub fn postEmptyEvent() void {

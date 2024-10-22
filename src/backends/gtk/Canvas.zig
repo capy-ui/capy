@@ -2,6 +2,7 @@ const std = @import("std");
 const c = @import("gtk.zig");
 const lib = @import("../../capy.zig");
 const common = @import("common.zig");
+const shared = @import("../shared.zig");
 
 const Canvas = @This();
 const Window = @import("Window.zig");
@@ -14,7 +15,7 @@ pub usingnamespace common.Events(Canvas);
 // TODO: use f32 for coordinates?
 // avoid the burden of converting between signed and unsigned integers?
 
-pub const DrawContext = struct {
+pub const DrawContextImpl = struct {
     cr: *c.cairo_t,
     widget: ?*c.GtkWidget = null,
 
@@ -59,34 +60,12 @@ pub const DrawContext = struct {
         }
     };
 
-    pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-        self.setColorRGBA(@as(f32, @floatFromInt(color.red)) / 255.0, @as(f32, @floatFromInt(color.green)) / 255.0, @as(f32, @floatFromInt(color.blue)) / 255.0, @as(f32, @floatFromInt(color.alpha)) / 255.0);
-    }
-
-    /// Colors components are from 0 to 1.
-    pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
-        self.setColorRGBA(r, g, b, 1);
-    }
-
-    pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+    pub fn setColorRGBA(self: *DrawContextImpl, r: f32, g: f32, b: f32, a: f32) void {
         const color = c.GdkRGBA{ .red = r, .green = g, .blue = b, .alpha = a };
         c.gdk_cairo_set_source_rgba(self.cr, &color);
     }
 
-    pub const LinearGradient = struct {
-        x0: f32,
-        y0: f32,
-        x1: f32,
-        y1: f32,
-        stops: []const Stop,
-
-        pub const Stop = struct {
-            offset: f32,
-            color: lib.Color,
-        };
-    };
-
-    pub fn setLinearGradient(self: *DrawContext, gradient: LinearGradient) void {
+    pub fn setLinearGradient(self: *DrawContextImpl, gradient: shared.LinearGradient) void {
         const pattern = c.cairo_pattern_create_linear(gradient.x0, gradient.y0, gradient.x1, gradient.y1).?;
         for (gradient.stops) |stop| {
             c.cairo_pattern_add_color_stop_rgba(
@@ -101,17 +80,12 @@ pub const DrawContext = struct {
         c.cairo_set_source(self.cr, pattern);
     }
 
-    /// Add a rectangle to the current path
-    pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+    pub fn rectangle(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
         c.cairo_rectangle(self.cr, @as(f64, @floatFromInt(x)), @as(f64, @floatFromInt(y)), @as(f64, @floatFromInt(w)), @as(f64, @floatFromInt(h)));
     }
 
-    pub fn roundedRectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radius: f32) void {
-        self.roundedRectangleEx(x, y, w, h, .{corner_radius} ** 4);
-    }
-
-    /// The radiuses are in order: top left, top right, bottom left, bottom right
-    pub fn roundedRectangleEx(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
+    // The radiuses are in order: top left, top right, bottom left, bottom right
+    pub fn roundedRectangleEx(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
         var corners: [4]f32 = corner_radiuses;
         if (corners[0] + corners[1] > @as(f32, @floatFromInt(w))) {
             const left_prop = corners[0] / (corners[0] + corners[1]);
@@ -170,7 +144,7 @@ pub const DrawContext = struct {
         c.cairo_close_path(self.cr);
     }
 
-    pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+    pub fn ellipse(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
         if (w == h) { // if it is a circle, we can use something slightly faster
             c.cairo_arc(self.cr, @as(f64, @floatFromInt(x + @as(i32, @intCast(w / 2)))), @as(f64, @floatFromInt(y + @as(i32, @intCast(w / 2)))), @as(f64, @floatFromInt(w / 2)), 0, 2 * std.math.pi);
             return;
@@ -183,14 +157,14 @@ pub const DrawContext = struct {
         c.cairo_set_matrix(self.cr, &matrix);
     }
 
-    pub fn clear(self: *DrawContext, x: u32, y: u32, w: u32, h: u32) void {
+    pub fn clear(self: *DrawContextImpl, x: u32, y: u32, w: u32, h: u32) void {
         if (self.widget) |widget| {
             const styleContext = c.gtk_widget_get_style_context(widget);
             c.gtk_render_background(styleContext, self.cr, @as(f64, @floatFromInt(x)), @as(f64, @floatFromInt(y)), @as(f64, @floatFromInt(w)), @as(f64, @floatFromInt(h)));
         }
     }
 
-    pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+    pub fn text(self: *DrawContextImpl, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
         const pangoLayout = layout._layout;
         var inkRect: c.PangoRectangle = undefined;
         c.pango_layout_get_pixel_extents(pangoLayout, null, &inkRect);
@@ -205,13 +179,13 @@ pub const DrawContext = struct {
         c.pango_cairo_show_layout(self.cr, pangoLayout);
     }
 
-    pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
+    pub fn line(self: *DrawContextImpl, x1: i32, y1: i32, x2: i32, y2: i32) void {
         c.cairo_move_to(self.cr, @as(f64, @floatFromInt(x1)), @as(f64, @floatFromInt(y1)));
         c.cairo_line_to(self.cr, @as(f64, @floatFromInt(x2)), @as(f64, @floatFromInt(y2)));
         c.cairo_stroke(self.cr);
     }
 
-    pub fn image(self: *DrawContext, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
+    pub fn image(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
         c.cairo_save(self.cr);
         defer c.cairo_restore(self.cr);
 
@@ -227,24 +201,23 @@ pub const DrawContext = struct {
         c.cairo_paint(self.cr);
     }
 
-    pub fn setStrokeWidth(self: *DrawContext, width: f32) void {
+    pub fn setStrokeWidth(self: *DrawContextImpl, width: f32) void {
         c.cairo_set_line_width(self.cr, width);
     }
 
-    /// Stroke the current path and reset the path.
-    pub fn stroke(self: *DrawContext) void {
+    pub fn stroke(self: *DrawContextImpl) void {
         c.cairo_stroke(self.cr);
     }
 
-    /// Fill the current path and reset the path.
-    pub fn fill(self: *DrawContext) void {
+    pub fn fill(self: *DrawContextImpl) void {
         c.cairo_fill(self.cr);
     }
 };
 
 fn gtkCanvasDraw(peer: ?*c.GtkDrawingArea, cr: ?*c.cairo_t, _: c_int, _: c_int, _: ?*anyopaque) callconv(.C) void {
     const data = common.getEventUserData(@ptrCast(peer.?));
-    var dc = DrawContext{ .cr = cr.?, .widget = @ptrCast(peer.?) };
+    const dc_impl = DrawContextImpl{ .cr = cr.?, .widget = @ptrCast(peer.?) };
+    var dc = @import("../../backend.zig").DrawContext{ .impl = dc_impl };
 
     if (data.class.drawHandler) |handler|
         handler(&dc, @intFromPtr(data));

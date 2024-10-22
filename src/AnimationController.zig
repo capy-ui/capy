@@ -60,7 +60,7 @@ var null_animation_controller_instance = AnimationController{
     .listener = null,
 };
 
-/// This is an animation controller that is never triggered. It's used by components while they
-/// don't have a proper animation controller.
-/// This controller cannot be deinitialized.
+/// This animation controller is never triggered. It is used by components that don't have a proper
+/// animation controller.
+/// It cannot be deinitialized.
 pub var null_animation_controller = &null_animation_controller_instance;

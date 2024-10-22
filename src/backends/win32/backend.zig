@@ -146,7 +146,7 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
     };
     defer lib.internal.scratch_allocator.free(msg);
 
-    const msg_utf16 = std.unicode.utf8ToUtf16LeWithNull(lib.internal.scratch_allocator, msg) catch {
+    const msg_utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.scratch_allocator, msg) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
@@ -284,7 +284,7 @@ pub const Window = struct {
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
-        const utf16 = std.unicode.utf8ToUtf16LeWithNull(lib.internal.scratch_allocator, std.mem.span(title)) catch return;
+        const utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.scratch_allocator, std.mem.span(title)) catch return;
         defer lib.internal.scratch_allocator.free(utf16);
 
         _ = win32.SetWindowTextW(self.hwnd, utf16);
@@ -634,13 +634,14 @@ pub fn Events(comptime T: type) type {
                         &default_brush,
                     ) == 0);
 
-                    var dc = Canvas.DrawContext{
+                    const dci = Canvas.DrawContextImpl{
                         .render_target = render_target.?,
                         .brush = default_brush.?,
-                        .path = std.ArrayList(Canvas.DrawContext.PathElement)
+                        .path = std.ArrayList(Canvas.DrawContextImpl.PathElement)
                             .init(lib.internal.scratch_allocator),
                     };
-                    defer dc.path.deinit();
+                    var dc = @import("../../backend.zig").DrawContext{ .impl = dci };
+                    defer dc.impl.path.deinit();
 
                     render_target.?.ID2D1RenderTarget_BeginDraw();
                     render_target.?.ID2D1RenderTarget_Clear(&win32.D2D1_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
@@ -753,7 +754,7 @@ pub const Canvas = struct {
 
     pub usingnamespace Events(Canvas);
 
-    pub const DrawContext = struct {
+    pub const DrawContextImpl = struct {
         path: std.ArrayList(PathElement),
         render_target: *win32.ID2D1HwndRenderTarget,
         brush: *win32.ID2D1SolidColorBrush,
@@ -789,7 +790,7 @@ pub const Canvas = struct {
             pub fn setFont(self: *TextLayout, font: Font) void {
                 // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
                 const allocator = lib.internal.scratch_allocator;
-                const wideFace = std.unicode.utf8ToUtf16LeWithNull(allocator, font.face) catch return; // invalid utf8 or not enough memory
+                const wideFace = std.unicode.utf8ToUtf16LeAllocZ(allocator, font.face) catch return; // invalid utf8 or not enough memory
                 defer allocator.free(wideFace);
                 if (win32.CreateFontW(0, // cWidth
                     0, // cHeight
@@ -815,7 +816,7 @@ pub const Canvas = struct {
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var size: win32.SIZE = undefined;
                 const allocator = lib.internal.scratch_allocator;
-                const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, str) catch return; // invalid utf8 or not enough memory
+                const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, str) catch return; // invalid utf8 or not enough memory
                 defer allocator.free(wide);
                 _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @as(c_int, @intCast(str.len)), &size);
 
@@ -828,31 +829,21 @@ pub const Canvas = struct {
             }
         };
 
-        // TODO: transparency support using https://docs.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-alphablend
-        // or use GDI+ and https://docs.microsoft.com/en-us/windows/win32/gdiplus/-gdiplus-drawing-with-opaque-and-semitransparent-brushes-use
-        pub fn setColorByte(self: *DrawContext, color: lib.Color) void {
-            _ = self;
-            const colorref = (@as(u32, color.blue) << 16) |
-                (@as(u32, color.green) << 8) | color.red;
-            _ = colorref;
-            // _ = win32.SetDCBrushColor(self.hdc, colorref);
-        }
-
-        pub fn setColor(self: *DrawContext, r: f32, g: f32, b: f32) void {
-            self.setColorRGBA(r, g, b, 1);
-        }
-
-        pub fn setColorRGBA(self: *DrawContext, r: f32, g: f32, b: f32, a: f32) void {
+        pub fn setColorRGBA(self: *DrawContextImpl, r: f32, g: f32, b: f32, a: f32) void {
             const color = lib.Color{
                 .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
                 .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
                 .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
                 .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
             };
-            self.setColorByte(color);
+            const colorref = (@as(u32, color.blue) << 16) |
+                (@as(u32, color.green) << 8) | color.red;
+            _ = colorref;
+            _ = self;
+            // _ = win32.SetDCBrushColor(self.hdc, colorref);
         }
 
-        pub fn rectangle(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+        pub fn rectangle(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
             _ = h;
             _ = w;
             _ = y;
@@ -861,7 +852,7 @@ pub const Canvas = struct {
             // _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), x + @intCast(c_int, w), y + @intCast(c_int, h));
         }
 
-        pub fn ellipse(self: *DrawContext, x: i32, y: i32, w: u32, h: u32) void {
+        pub fn ellipse(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
             _ = y;
             _ = x;
             _ = self;
@@ -873,7 +864,7 @@ pub const Canvas = struct {
             // _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
         }
 
-        pub fn text(self: *DrawContext, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
+        pub fn text(self: *DrawContextImpl, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
             _ = str;
             _ = layout;
             _ = y;
@@ -890,7 +881,7 @@ pub const Canvas = struct {
             // _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null, str.ptr, @intCast(std.os.windows.UINT, str.len), null);
         }
 
-        pub fn line(self: *DrawContext, x1: i32, y1: i32, x2: i32, y2: i32) void {
+        pub fn line(self: *DrawContextImpl, x1: i32, y1: i32, x2: i32, y2: i32) void {
             _ = y2;
             _ = x2;
             _ = y1;
@@ -900,11 +891,11 @@ pub const Canvas = struct {
             // _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
         }
 
-        pub fn fill(self: *DrawContext) void {
+        pub fn fill(self: *DrawContextImpl) void {
             self.path.clearRetainingCapacity();
         }
 
-        pub fn stroke(self: *DrawContext) void {
+        pub fn stroke(self: *DrawContextImpl) void {
             self.path.clearRetainingCapacity();
         }
     };
@@ -983,7 +974,7 @@ pub const TextField = struct {
 
     pub fn setText(self: *TextField, text: []const u8) void {
         const allocator = lib.internal.scratch_allocator;
-        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
@@ -1039,7 +1030,7 @@ pub const TextArea = struct {
 
     pub fn setText(self: *TextArea, text: []const u8) void {
         const allocator = lib.internal.scratch_allocator;
-        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
@@ -1056,7 +1047,7 @@ pub const TextArea = struct {
         defer allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        const text = std.unicode.utf16LeToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
         return text;
     }
 
@@ -1101,7 +1092,7 @@ pub const Button = struct {
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
         const allocator = lib.internal.scratch_allocator;
-        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
@@ -1154,7 +1145,7 @@ pub const CheckBox = struct {
 
     pub fn setLabel(self: *CheckBox, label: [:0]const u8) void {
         const allocator = lib.internal.scratch_allocator;
-        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, label) catch return; // invalid utf8 or not enough memory
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
@@ -1282,7 +1273,7 @@ pub const Label = struct {
 
     pub fn setText(self: *Label, text: []const u8) void {
         const allocator = lib.internal.scratch_allocator;
-        const wide = std.unicode.utf8ToUtf16LeWithNull(allocator, text) catch return; // invalid utf8 or not enough memory
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
             // win32.GetLastError() catch {};

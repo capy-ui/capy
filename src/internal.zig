@@ -536,7 +536,7 @@ pub fn Events(comptime T: type) type {
 
         // Temporary workaround: use *anyopaque
         pub const Callback = *const fn (widget: *anyopaque) anyerror!void;
-        pub const DrawCallback = *const fn (widget: *anyopaque, ctx: *backend.Canvas.DrawContext) anyerror!void;
+        pub const DrawCallback = *const fn (widget: *anyopaque, ctx: *backend.DrawContext) anyerror!void;
         pub const ButtonCallback = *const fn (widget: *anyopaque, button: MouseButton, pressed: bool, x: i32, y: i32) anyerror!void;
         pub const MouseMoveCallback = *const fn (widget: *anyopaque, x: i32, y: i32) anyerror!void;
         pub const ScrollCallback = *const fn (widget: *anyopaque, dx: f32, dy: f32) anyerror!void;
@@ -613,7 +613,7 @@ pub fn Events(comptime T: type) type {
             }
         }
 
-        fn drawHandler(ctx: *backend.Canvas.DrawContext, data: usize) void {
+        fn drawHandler(ctx: *backend.DrawContext, data: usize) void {
             const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.drawHandlers.items) |func| {
                 func(self, ctx) catch |err| errorHandler(err);

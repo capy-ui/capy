@@ -17,7 +17,7 @@ pub const Canvas = struct {
     /// The preferred size of the canvas, or null to take the least possible.
     preferredSize: Atom(?Size) = Atom(?Size).of(null),
 
-    pub const DrawContext = backend.Canvas.DrawContext;
+    pub const DrawContext = backend.DrawContext;
 
     pub fn init(config: Canvas.Config) Canvas {
         var cnv = Canvas.init_events(Canvas{});

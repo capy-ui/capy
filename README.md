@@ -131,7 +131,7 @@ For now, not every platform supports the same components. So here's a list of th
 |                  |win32|macOS|GTK|Android|wasm|
 |------------------|-----|-----|---|-----|-----|
 |Button            |✅|✅|✅|✅|✅|
-|Canvas            |✅|❌|✅|✅|✅|
+|Canvas            |❌|❌|✅|✅|✅|
 |CheckBox          |✅|❌|✅|❌|❌|
 |Dropdown          |✅|❌|✅|❌|❌|
 |Image             |❌|❌|✅|❌|✅|
