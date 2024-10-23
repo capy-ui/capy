@@ -78,7 +78,9 @@ pub fn compute(_: *anyopaque) !void {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
+    defer capy.deinit();
+
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer if (comptime !@import("builtin").target.isWasm()) {
         _ = gpa.deinit();

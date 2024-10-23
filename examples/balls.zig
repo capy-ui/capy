@@ -23,7 +23,7 @@ const BALL_RADIUS = BALL_DIAMETER / 2;
 //pub const capy_allocator = gpa.allocator();
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
     balls = std.ArrayList(Ball).init(capy.internal.lasting_allocator);
 
     // Generate random balls

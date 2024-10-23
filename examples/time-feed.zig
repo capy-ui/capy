@@ -84,7 +84,7 @@ pub fn InsertCard() anyerror!*capy.Container {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
 
     list_model = ListModel{
         .data = std.ArrayList(TimeActivity).init(capy.internal.lasting_allocator),

@@ -15,7 +15,8 @@ const ListModel = struct {
 };
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
+    defer capy.deinit();
 
     var hn_list_model = ListModel{};
 

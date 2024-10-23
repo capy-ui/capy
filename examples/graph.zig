@@ -168,7 +168,7 @@ fn drawRectangle(_: *anyopaque, ctx: *capy.Canvas.DrawContext) !void {
 
 var graph: *LineGraph = undefined;
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
 
     var rectangleX = capy.Atom(f32).of(0);
     var window = try capy.Window.init();

@@ -5,7 +5,8 @@ pub usingnamespace capy.cross_platform;
 var selected_index: capy.Atom(usize) = capy.Atom(usize).of(0);
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
+    defer capy.deinit();
 
     var window = try capy.Window.init();
     try window.set(capy.column(.{}, .{

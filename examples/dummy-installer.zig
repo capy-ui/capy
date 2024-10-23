@@ -3,9 +3,10 @@ const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
 pub fn main() !void {
-    try capy.backend.init();
-    var window = try capy.Window.init();
+    try capy.init();
+    defer capy.deinit();
 
+    var window = try capy.Window.init();
     try window.set(
         capy.margin(capy.Rectangle.init(10, 10, 10, 10), capy.column(.{}, .{
             capy.label(.{ .text = "Hello, World", .alignment = .Left }), // TODO: capy.Heading (= label with bold + big font)

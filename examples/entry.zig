@@ -28,7 +28,7 @@ fn scroll(widget: *capy.Canvas, dx: f32, dy: f32) !void {
 }
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
     defer _ = gpa.deinit();
 
     var window = try capy.Window.init();

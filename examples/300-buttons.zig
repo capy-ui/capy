@@ -5,7 +5,7 @@ pub usingnamespace capy.cross_platform;
 // This is a stress test to see how well Capy performs with 300 buttons
 
 pub fn main() !void {
-    try capy.backend.init();
+    try capy.init();
     const start = std.time.milliTimestamp();
 
     var window = try capy.Window.init();
