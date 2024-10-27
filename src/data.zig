@@ -302,7 +302,6 @@ pub fn Atom(comptime T: type) type {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     ptr.is_deinit = true;
                     ptr.original_ptr.removeChangeListener(ptr.change_listener_id);
-                    // TODO: remove change listener on original atom
                 }
             }.a;
 

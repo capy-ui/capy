@@ -21,6 +21,7 @@ pub extern fn jsCreateElement(name: [*]const u8, nameLen: usize, elementType: [*
 pub extern fn jsSetAttribute(element: ElementId, name: [*]const u8, nameLen: usize, value: [*]const u8, valueLen: usize) void;
 pub extern fn getAttributeLen(element: ElementId, name: [*]const u8, nameLen: usize) usize;
 pub extern fn jsGetAttribute(element: ElementId, name: [*]const u8, nameLen: usize, bufPtr: [*]u8) void;
+pub extern fn jsRemoveAttribute(element: ElementId, name: [*]const u8, nameLen: usize) void;
 pub extern fn getValue(element: ElementId) f32;
 pub extern fn appendElement(parent: ElementId, child: ElementId) void;
 pub extern fn setRoot(root: ElementId) void;
@@ -80,6 +81,10 @@ pub fn getAttribute(element: ElementId, name: []const u8, value: [*]u8) void {
 
 pub fn setAttribute(element: ElementId, name: []const u8, value: []const u8) void {
     jsSetAttribute(element, name.ptr, name.len, value.ptr, value.len);
+}
+
+pub fn removeAttribute(element: ElementId, name: []const u8) void {
+    jsRemoveAttribute(element, name.ptr, name.len);
 }
 
 pub fn write(_: void, msg: []const u8) error{}!usize {

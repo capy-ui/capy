@@ -236,6 +236,9 @@ const env = {
 		jsSetAttribute: function(element, name, nameLen, value, valueLen) {
 			self.postMessage(["jsSetAttribute", element, readString(name, nameLen), readString(value, valueLen)]);
 		},
+		jsRemoveAttribute: function(element, name, nameLen) {
+			self.postMessage(["jsRemoveAttribute", element, readString(name, nameLen)]);
+		},
 		getAttributeLen: function(element, name, nameLen) {
 			self.postMessage(["getAttributeLen", element, readString(name, nameLen)]);
 			const a = waitForAnswer("int");

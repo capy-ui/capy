@@ -257,6 +257,9 @@ let env = {
 		jsSetAttribute: function(element, name, value) {
 			domObjects[element].setAttribute(name, value);
 		},
+		jsRemoveAttribute: function(element, name) {
+			domObjects[element].removeAttribute(name);
+		},
 		getAttributeLen: function(element, name) {
 			return domObjects[element].getAttribute(name).length;
 		},
