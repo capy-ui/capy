@@ -2,13 +2,13 @@ const std = @import("std");
 pub const runStep = @import("build_capy.zig").runStep;
 pub const CapyBuildOptions = @import("build_capy.zig").CapyBuildOptions;
 pub const CapyRunOptions = @import("build_capy.zig").CapyRunOptions;
+const AndroidSdk = @import("android/Sdk.zig");
 
 const LazyPath = std.Build.LazyPath;
 
 fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: CapyBuildOptions) !void {
     const target = module.resolved_target.?;
     const optimize = module.optimize.?;
-    _ = options;
 
     const zigimg_dep = b.dependency("zigimg", .{
         .target = target,
@@ -70,6 +70,37 @@ fn installCapyDependencies(b: *std.Build, module: *std.Build.Module, options: Ca
         },
         .linux, .freebsd => {
             if (target.result.isAndroid()) {
+                const sdk = AndroidSdk.init(b, null, .{});
+                var libraries = std.ArrayList([]const u8).init(b.allocator);
+                try libraries.append("android");
+                try libraries.append("log");
+                const config = AndroidSdk.AppConfig{
+                    .target_version = options.android_version,
+                    // This is displayed to the user
+                    .display_name = options.app_name,
+                    // This is used internally for ... things?
+                    .app_name = "capyui_example",
+                    // This is required for the APK name. This identifies your app, android will associate
+                    // your signing key with this identifier and will prevent updates if the key changes.
+                    .package_name = options.android_package_name,
+                    // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
+                    // will provide the application icon.
+                    .resources = &[_]AndroidSdk.Resource{
+                        .{ .path = "mipmap/icon.png", .content = b.path("android/default_icon.png") },
+                    },
+                    .aaudio = false,
+                    .opensl = false,
+                    // This is a list of android permissions. Check out the documentation to figure out which you need.
+                    .permissions = &[_][]const u8{
+                        "android.permission.SET_RELEASE_APP",
+                        //"android.permission.RECORD_AUDIO",
+                    },
+                    // This is a list of native android apis to link against.
+                    .libraries = libraries.items,
+                    //.fullscreen = true,
+                };
+                // TODO: other architectures
+                sdk.configureModule(module, config, .aarch64);
                 // TODO: find a way to contory ZigAndroidTemplate enough so it fits into the Zig build system
             } else {
                 module.link_libc = true;

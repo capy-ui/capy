@@ -136,6 +136,8 @@ pub const AndroidVersion = enum(u16) {
     android11 = 30, // Red Velvet Cake
     android12 = 31, // Snow Cone
     android13 = 33, // Tiramisu
+    android14 = 34, // Upside Down Cake
+    android15 = 35, // Vanilla Ice Cream
 
     _, // we allow to overwrite the defaults
 };
@@ -165,7 +167,7 @@ pub const Config = struct {
     /// and it will work. This needs to be changed to a *proper* key store
     /// when you want to publish the app.
     key_store: KeyStore = KeyStore{
-        .file = "zig-cache/",
+        .file = ".zig-cache/",
         .alias = "default",
         .password = "ziguana",
     },
@@ -192,7 +194,8 @@ pub const AppConfig = struct {
     package_name: []const u8,
 
     /// The android version which is embedded in the manifset.
-    /// The default is Android 9, it's more than 4 years old by now and should be widespread enough to be a reasonable default.
+    /// The default is Android 9, it's more than 4 years old by now and should be widespread enough
+    /// to be a reasonable default.
     target_version: AndroidVersion = .android9,
 
     /// The resource directory that will contain the manifest and other app resources.
@@ -221,12 +224,49 @@ pub const AppConfig = struct {
     libraries: []const []const u8 = &app_libs,
 };
 
+pub const TargetConfig = struct {
+    lib_dir: []const u8,
+    include_dir: []const u8,
+    out_dir: []const u8,
+    target: std.Target.Query,
+};
+
 /// One of the legal targets android can be built for.
 pub const Target = enum {
     aarch64,
     arm,
     x86,
     x86_64,
+
+    pub fn getTargetConfig(self: Target) TargetConfig {
+        const config: TargetConfig = switch (self) {
+            .aarch64 => TargetConfig{
+                .lib_dir = "aarch64-linux-android",
+                .include_dir = "aarch64-linux-android",
+                .out_dir = "arm64",
+                .target = zig_targets.aarch64,
+            },
+            .arm => TargetConfig{
+                .lib_dir = "arm-linux-androideabi",
+                .include_dir = "arm-linux-androideabi",
+                .out_dir = "armeabi",
+                .target = zig_targets.arm,
+            },
+            .x86 => TargetConfig{
+                .lib_dir = "i686-linux-android",
+                .include_dir = "i686-linux-android",
+                .out_dir = "x86",
+                .target = zig_targets.x86,
+            },
+            .x86_64 => TargetConfig{
+                .lib_dir = "x86_64-linux-android",
+                .include_dir = "x86_64-linux-android",
+                .out_dir = "x86_64",
+                .target = zig_targets.x86_64,
+            },
+        };
+        return config;
+    }
 };
 
 pub const KeyStore = struct {
@@ -805,52 +845,16 @@ const WriteToZip = struct {
     }
 };
 
-/// Compiles a single .so file for the given platform.
-/// Note that this function assumes your build script only uses a single `android_config`!
-pub fn compileAppLibrary(
+// Note that this function must be accompanied by `configureStep`
+pub fn configureModule(
     sdk: *const Sdk,
-    src_file: []const u8,
+    module: *std.Build.Module,
     app_config: AppConfig,
-    mode: std.builtin.Mode,
     target: Target,
-    // build_options: std.Build.Pkg,
-) *std.Build.Step.Compile {
+) void {
     const ndk_root = sdk.b.pathFromRoot(sdk.folders.android_ndk_root);
 
-    const TargetConfig = struct {
-        lib_dir: []const u8,
-        include_dir: []const u8,
-        out_dir: []const u8,
-        target: std.zig.CrossTarget,
-    };
-
-    const config: TargetConfig = switch (target) {
-        .aarch64 => TargetConfig{
-            .lib_dir = "aarch64-linux-android",
-            .include_dir = "aarch64-linux-android",
-            .out_dir = "arm64",
-            .target = zig_targets.aarch64,
-        },
-        .arm => TargetConfig{
-            .lib_dir = "arm-linux-androideabi",
-            .include_dir = "arm-linux-androideabi",
-            .out_dir = "armeabi",
-            .target = zig_targets.arm,
-        },
-        .x86 => TargetConfig{
-            .lib_dir = "i686-linux-android",
-            .include_dir = "i686-linux-android",
-            .out_dir = "x86",
-            .target = zig_targets.x86,
-        },
-        .x86_64 => TargetConfig{
-            .lib_dir = "x86_64-linux-android",
-            .include_dir = "x86_64-linux-android",
-            .out_dir = "x86_64",
-            .target = zig_targets.x86_64,
-        },
-    };
-
+    const config = target.getTargetConfig();
     const lib_dir = sdk.b.fmt("{s}/toolchains/llvm/prebuilt/{s}/sysroot/usr/lib/{s}/{d}/", .{
         ndk_root,
         toolchainHostTag(),
@@ -870,34 +874,56 @@ pub fn compileAppLibrary(
     }) catch unreachable;
     const system_include_dir = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{ include_dir, config.include_dir }) catch unreachable;
 
-    const exe = sdk.b.addSharedLibrary(.{
-        .name = app_config.app_name,
-        .root_source_file = sdk.b.path(src_file),
-        .target = sdk.b.resolveTargetQuery(config.target),
-        .optimize = mode,
+    module.resolved_target = sdk.b.resolveTargetQuery(config.target);
+    module.addCMacro("ANDROID", "1");
+    module.link_libc = true;
+    module.strip = (module.optimize orelse .Debug) == .ReleaseSmall;
+
+    for (app_config.libraries) |lib| {
+        module.linkSystemLibrary(lib, .{ .use_pkg_config = .no });
+    }
+
+    module.addLibraryPath(sdk.b.path(lib_dir));
+
+    module.addIncludePath(sdk.b.path(include_dir));
+    module.addIncludePath(sdk.b.path(system_include_dir));
+}
+
+pub fn configureStep(
+    sdk: *const Sdk,
+    exe: *std.Build.Step.Compile,
+    app_config: AppConfig,
+    target: Target,
+) void {
+    const ndk_root = sdk.b.pathFromRoot(sdk.folders.android_ndk_root);
+
+    const config = target.getTargetConfig();
+    const lib_dir = sdk.b.fmt("{s}/toolchains/llvm/prebuilt/{s}/sysroot/usr/lib/{s}/{d}/", .{
+        ndk_root,
+        toolchainHostTag(),
+        config.lib_dir,
+        @intFromEnum(app_config.target_version),
     });
 
+    const include_dir = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{
+        ndk_root,
+        "toolchains",
+        "llvm",
+        "prebuilt",
+        toolchainHostTag(),
+        "sysroot",
+        "usr",
+        "include",
+    }) catch unreachable;
+    const system_include_dir = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{ include_dir, config.include_dir }) catch unreachable;
+
+    configureModule(sdk, &exe.root_module, app_config, target);
     exe.link_emit_relocs = true;
     exe.link_eh_frame_hdr = true;
     exe.root_module.pic = true;
     exe.link_function_sections = true;
     exe.bundle_compiler_rt = true;
-    exe.root_module.strip = (mode == .ReleaseSmall);
     exe.export_table = true;
-
-    exe.defineCMacro("ANDROID", null);
-
-    exe.linkLibC();
-    for (app_config.libraries) |lib| {
-        exe.linkSystemLibrary2(lib, .{ .use_pkg_config = .no });
-    }
-
-    // exe.addIncludePath(include_dir);
-
-    exe.addLibraryPath(sdk.b.path(lib_dir));
-
-    // exe.addIncludePath(include_dir);
-    // exe.addIncludePath(system_include_dir);
 
     exe.setLibCFile(sdk.createLibCFile(app_config.target_version, config.out_dir, include_dir, system_include_dir, lib_dir) catch unreachable);
     exe.libc_file.?.addStepDependencies(&exe.step);
@@ -906,7 +932,30 @@ pub fn compileAppLibrary(
     if (exe.rootModuleTarget().cpu.arch == .x86) {
         exe.link_z_notext = true;
     }
+}
 
+/// Compiles a single .so file for the given platform.
+/// Note that this function assumes your build script only uses a single `android_config`!
+pub fn compileAppLibrary(
+    sdk: *const Sdk,
+    src_file: []const u8,
+    app_config: AppConfig,
+    mode: std.builtin.Mode,
+    target: Target,
+    // build_options: std.Build.Pkg,
+) *std.Build.Step.Compile {
+    const exe = sdk.b.addSharedLibrary(.{
+        .name = app_config.app_name,
+        .root_source_file = sdk.b.path(src_file),
+        .target = sdk.b.resolveTargetQuery(target.getTargetConfig().target),
+        .optimize = mode,
+    });
+    configureStep(
+        sdk,
+        exe,
+        app_config,
+        target,
+    );
     return exe;
 }
 
@@ -1048,7 +1097,7 @@ const android_os = .linux;
 const android_abi = .android;
 
 const zig_targets = struct {
-    const aarch64 = std.zig.CrossTarget{
+    const aarch64 = std.Target.Query{
         .cpu_arch = .aarch64,
         .os_tag = android_os,
         .abi = android_abi,
@@ -1056,7 +1105,7 @@ const zig_targets = struct {
         .cpu_features_add = std.Target.aarch64.featureSet(&.{.v8a}),
     };
 
-    const arm = std.zig.CrossTarget{
+    const arm = std.Target.Query{
         .cpu_arch = .arm,
         .os_tag = android_os,
         .abi = android_abi,
@@ -1064,14 +1113,14 @@ const zig_targets = struct {
         .cpu_features_add = std.Target.arm.featureSet(&.{.v7a}),
     };
 
-    const x86 = std.zig.CrossTarget{
+    const x86 = std.Target.Query{
         .cpu_arch = .x86,
         .os_tag = android_os,
         .abi = android_abi,
         .cpu_model = .baseline,
     };
 
-    const x86_64 = std.zig.CrossTarget{
+    const x86_64 = std.Target.Query{
         .cpu_arch = .x86_64,
         .os_tag = android_os,
         .abi = android_abi,

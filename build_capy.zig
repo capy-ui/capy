@@ -175,7 +175,7 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
                 // TODO: find a new way to build Android applications
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
-                // const sdk = AndroidSdk.init(b, null, .{});
+                const sdk = AndroidSdk.init(b, null, .{});
 
                 // // Provide some KeyStore structure so we can sign our app.
                 // // Recommendation: Don't hardcore your password here, everyone can read it.
@@ -186,37 +186,38 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
                 //     .password = options.android.password,
                 // };
 
-                // var libraries = std.ArrayList([]const u8).init(b.allocator);
-                // try libraries.append("GLESv2");
-                // try libraries.append("EGL");
-                // try libraries.append("android");
-                // try libraries.append("log");
+                var libraries = std.ArrayList([]const u8).init(b.allocator);
+                try libraries.append("GLESv2");
+                try libraries.append("EGL");
+                try libraries.append("android");
+                try libraries.append("log");
 
-                // const config = AndroidSdk.AppConfig{
-                //     .target_version = options.android.version,
-                //     // This is displayed to the user
-                //     .display_name = options.app_name,
-                //     // This is used internally for ... things?
-                //     .app_name = "capyui_example",
-                //     // This is required for the APK name. This identifies your app, android will associate
-                //     // your signing key with this identifier and will prevent updates if the key changes.
-                //     .package_name = options.android.package_name,
-                //     // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
-                //     // will provide the application icon.
-                //     .resources = &[_]AndroidSdk.Resource{
-                //         .{ .path = "mipmap/icon.png", .content = b.path("android/default_icon.png") },
-                //     },
-                //     .aaudio = false,
-                //     .opensl = false,
-                //     // This is a list of android permissions. Check out the documentation to figure out which you need.
-                //     .permissions = &[_][]const u8{
-                //         "android.permission.SET_RELEASE_APP",
-                //         //"android.permission.RECORD_AUDIO",
-                //     },
-                //     // This is a list of native android apis to link against.
-                //     .libraries = libraries.items,
-                //     //.fullscreen = true,
-                // };
+                const config = AndroidSdk.AppConfig{
+                    .target_version = .android9,
+                    // This is displayed to the user
+                    .display_name = "Capy",
+                    // This is used internally for ... things?
+                    .app_name = "capyui_example",
+                    // This is required for the APK name. This identifies your app, android will associate
+                    // your signing key with this identifier and will prevent updates if the key changes.
+                    .package_name = "org.capyui.example",
+                    // This is a set of resources. It should at least contain a "mipmap/icon.png" resource that
+                    // will provide the application icon.
+                    .resources = &[_]AndroidSdk.Resource{
+                        .{ .path = "mipmap/icon.png", .content = b.path("android/default_icon.png") },
+                    },
+                    .aaudio = false,
+                    .opensl = false,
+                    // This is a list of android permissions. Check out the documentation to figure out which you need.
+                    .permissions = &[_][]const u8{
+                        "android.permission.SET_RELEASE_APP",
+                        //"android.permission.RECORD_AUDIO",
+                    },
+                    // This is a list of native android apis to link against.
+                    .libraries = libraries.items,
+                    //.fullscreen = true,
+                };
+                sdk.configureStep(step, config, .aarch64);
 
                 // const app = sdk.createApp(
                 //     "zig-out/capy-app.apk",
