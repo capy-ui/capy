@@ -194,12 +194,16 @@ pub fn Atom(comptime T: type) type {
             userdata: ?*anyopaque = null,
             type: enum { Change, Destroy } = .Change,
         };
+        pub const ChangeListenerListData = struct {
+            listener: ChangeListener,
+            id: usize,
+        };
         pub const Binding = struct {
             bound_to: *Self,
             link_id: u16,
         };
 
-        const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
+        const ChangeListenerList = std.SinglyLinkedList(ChangeListenerListData);
         const BindingList = std.SinglyLinkedList(Binding);
 
         fn computeChecksum(value: T) u8 {
@@ -260,11 +264,19 @@ pub fn Atom(comptime T: type) type {
                 easing: Easing,
                 duration: u64,
                 self_ptr: *Self,
+                original_ptr: *Self,
                 is_deinit: bool = false,
+                change_listener_id: usize,
             };
 
             const userdata = try internal.lasting_allocator.create(AnimationParameters);
-            userdata.* = .{ .easing = easing, .duration = duration, .self_ptr = self };
+            userdata.* = .{
+                .easing = easing,
+                .duration = duration,
+                .self_ptr = self,
+                .original_ptr = original,
+                .change_listener_id = undefined,
+            };
 
             const animate_fn = struct {
                 fn a(new_value: T, uncast: ?*anyopaque) void {
@@ -289,11 +301,12 @@ pub fn Atom(comptime T: type) type {
                 fn a(_: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
                     ptr.is_deinit = true;
+                    ptr.original_ptr.removeChangeListener(ptr.change_listener_id);
                     // TODO: remove change listener on original atom
                 }
             }.a;
 
-            _ = try original.addChangeListener(.{
+            userdata.change_listener_id = try original.addChangeListener(.{
                 .function = animate_fn,
                 .userdata = userdata,
                 .type = .Change,
@@ -366,11 +379,43 @@ pub fn Atom(comptime T: type) type {
             }
         }
 
+        fn changeListenerExists(self: *Self, id: usize) bool {
+            var nullable_node = self.onChange.first;
+            while (nullable_node) |node| {
+                if (node.data.id == id) return true;
+                nullable_node = node.next;
+            }
+            return false;
+        }
+
         pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
+            // Generate a new ID for the change listener
+            var id: usize = 0;
+            while (self.changeListenerExists(id)) {
+                id += 1;
+            }
+
+            // Add the new change listener to the linked list
             const node = try lasting_allocator.create(ChangeListenerList.Node);
-            node.* = .{ .data = listener };
+            node.* = .{ .data = .{ .listener = listener, .id = id } };
             self.onChange.prepend(node);
-            return self.onChange.len() - 1;
+            return id;
+        }
+
+        pub fn removeChangeListener(self: *Self, id: usize) void {
+            var target_node: ?*ChangeListenerList.Node = null;
+            var nullable_node = self.onChange.first;
+            while (nullable_node) |node| {
+                if (node.data.id == id) target_node = node;
+                nullable_node = node.next;
+            }
+
+            if (target_node) |node| {
+                self.onChange.remove(node);
+                lasting_allocator.destroy(node);
+            } else {
+                // The node wasn't found (as it may have already been removed)
+            }
         }
 
         fn getNextBindId(self: *Self, other: *Self) u16 {
@@ -654,8 +699,8 @@ pub fn Atom(comptime T: type) type {
             var nullableNode = self.onChange.first;
             const value = self.get();
             while (nullableNode) |node| {
-                if (node.data.type == .Change) {
-                    node.data.function(value, node.data.userdata);
+                if (node.data.listener.type == .Change) {
+                    node.data.listener.function(value, node.data.listener.userdata);
                 }
                 nullableNode = node.next;
             }
@@ -676,8 +721,8 @@ pub fn Atom(comptime T: type) type {
                 var nullableNode = self.onChange.first;
                 while (nullableNode) |node| {
                     nullableNode = node.next;
-                    if (node.data.type == .Destroy) {
-                        node.data.function(undefined, node.data.userdata);
+                    if (node.data.listener.type == .Destroy) {
+                        node.data.listener.function(undefined, node.data.listener.userdata);
                     }
                     lasting_allocator.destroy(node);
                 }
