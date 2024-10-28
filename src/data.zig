@@ -612,7 +612,7 @@ pub fn Atom(comptime T: type) type {
 
             const handler = struct {
                 fn handler(data_wrapper: *Self, fn_ptr: ?*const anyopaque, wrappers: []?*anyopaque) void {
-                    const callback = @as(FunctionType, @ptrCast(fn_ptr));
+                    const callback = @as(FunctionType, @alignCast(@ptrCast(fn_ptr)));
                     const ArgsTuple = std.meta.Tuple(&ValueTypes);
 
                     var args: ArgsTuple = undefined;
