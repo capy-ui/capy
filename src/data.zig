@@ -248,9 +248,9 @@ pub fn Atom(comptime T: type) type {
         /// Allocates a new atom and make it follow the value of the original atom, but
         /// with an animation.
         /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
-        pub fn withImplicitAnimation(original: *Self, easing: Easing, duration: u64) !*Self {
+        pub fn withImplicitAnimation(original: *Self, controller: *AnimationController, easing: Easing, duration: u64) !*Self {
             var self = Self.alloc(original.get());
-            try self.implicitlyAnimate(original, easing, duration);
+            try self.implicitlyAnimate(original, controller, easing, duration);
             return self;
         }
 
@@ -331,6 +331,7 @@ pub fn Atom(comptime T: type) type {
                     const now = std.time.Instant.now() catch @panic("a monotonic clock is required for animations");
                     if (now.since(animation.start) >= @as(u64, animation.duration) * std.time.ns_per_ms) {
                         self.value = .{ .Single = animation.max };
+                        self.callHandlers();
                         return false;
                     } else {
                         self.callHandlers();
@@ -1241,10 +1242,13 @@ test "animated atom" {
     defer original.deinit();
 
     {
-        const animation_controller = AnimationController.null_animation_controller;
+        var on_frame = @import("listener.zig").EventSource.init(std.testing.allocator);
+        defer on_frame.deinitAllListeners();
+        var animation_controller = try AnimationController.init(std.testing.allocator, &on_frame);
+        defer animation_controller.deinit();
         var animated = try Atom(i32).withImplicitAnimation(
-            animation_controller,
             &original,
+            animation_controller,
             Easings.Linear,
             5000,
         );

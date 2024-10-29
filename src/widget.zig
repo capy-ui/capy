@@ -124,6 +124,7 @@ test "widget basics" {
         .class = &TestType.WidgetClass,
 
         .name = undefined,
+        .animation_controller = undefined,
     };
 
     try expect(widget.is(TestType));

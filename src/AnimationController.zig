@@ -15,6 +15,7 @@ const AnimationController = @This();
 animated_atoms: ListAtom(AnimationCallback),
 on_frame: *EventSource,
 listener: ?*Listener,
+allocator: std.mem.Allocator,
 
 pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationController {
     const controller = try allocator.create(AnimationController);
@@ -22,6 +23,7 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
         .animated_atoms = ListAtom(AnimationCallback).init(allocator),
         .on_frame = on_frame,
         .listener = undefined,
+        .allocator = allocator,
     };
 
     const listener = try on_frame.listen(.{
@@ -30,7 +32,7 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
     });
     try listener.enabled.dependOn(.{&controller.animated_atoms.length}, &struct {
         fn callback(length: usize) bool {
-            return length >= 0;
+            return length > 0;
         }
     }.callback);
     controller.listener = listener;
@@ -80,12 +82,15 @@ fn update(ptr: ?*anyopaque) void {
 pub fn deinit(self: *AnimationController) void {
     self.animated_atoms.deinit();
     if (self.listener) |listener| listener.deinit();
+    const allocator = self.allocator;
+    allocator.destroy(self);
 }
 
 var null_animation_controller_instance = AnimationController{
     .animated_atoms = ListAtom(AnimationCallback).init(@import("internal.zig").lasting_allocator),
     .on_frame = &@import("listener.zig").null_event_source,
     .listener = null,
+    .allocator = undefined,
 };
 
 /// This animation controller is never triggered. It is used by components that don't have a proper
