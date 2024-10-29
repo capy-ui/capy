@@ -1202,26 +1202,25 @@ test "atom change listeners" {
     // TODO
 }
 
-test "format atom" {
+test FormattedAtom {
     // FormattedAtom should be used with an arena allocator
     var arena = std.heap.ArenaAllocator.init(std.testing.allocator);
     defer arena.deinit();
     const allocator = arena.allocator();
 
-    // NOT PASSING DUE TO stage1 COMPILER BUGS
-    // var dataSource1 = Atom(i32).of(5);
-    // defer dataSource1.deinit();
-    // var dataSource2 = Atom(f32).of(1.23);
-    // defer dataSource2.deinit();
-    //
-    // var format = try FormattedAtom(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
-    // defer format.deinit();
-    //
-    // try std.testing.expectEqualStrings("5 and 1.23", format.get());
-    // dataSource1.set(10);
-    // try std.testing.expectEqualStrings("10 and 1.23", format.get());
-    // dataSource2.set(1456.89);
-    // try std.testing.expectEqualStrings("10 and 1456.89", format.get());
+    var dataSource1 = Atom(i32).of(5);
+    defer dataSource1.deinit();
+    var dataSource2 = Atom(f32).of(1.23);
+    defer dataSource2.deinit();
+
+    var format = try FormattedAtom(allocator, "{} and {d}", .{ &dataSource1, &dataSource2 });
+    defer format.deinit();
+
+    try std.testing.expectEqualStrings("5 and 1.23", format.get());
+    dataSource1.set(10);
+    try std.testing.expectEqualStrings("10 and 1.23", format.get());
+    dataSource2.set(1456.89);
+    try std.testing.expectEqualStrings("10 and 1456.89", format.get());
 
     var dataSource3 = Atom(i32).of(5);
     defer dataSource3.deinit();

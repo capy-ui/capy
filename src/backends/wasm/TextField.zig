@@ -34,8 +34,8 @@ pub fn getText(self: *TextField) [:0]const u8 {
 
 pub fn setReadOnly(self: *TextField, readOnly: bool) void {
     if (readOnly) {
-        js.removeAttribute(self.peer.element, "readonly");
-    } else {
         js.setAttribute(self.peer.element, "readonly", "readonly");
+    } else {
+        js.removeAttribute(self.peer.element, "readonly");
     }
 }
