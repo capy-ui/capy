@@ -23,6 +23,10 @@ pub extern fn jsSetAttribute(element: ElementId, name: [*]const u8, nameLen: usi
 pub extern fn getAttributeLen(element: ElementId, name: [*]const u8, nameLen: usize) usize;
 pub extern fn jsGetAttribute(element: ElementId, name: [*]const u8, nameLen: usize, bufPtr: [*]u8) void;
 pub extern fn jsRemoveAttribute(element: ElementId, name: [*]const u8, nameLen: usize) void;
+pub extern fn jsSetStyle(element: ElementId, name: [*]const u8, nameLen: usize, value: [*]const u8, valueLen: usize) void;
+pub extern fn getStyleLen(element: ElementId, name: [*]const u8, nameLen: usize) usize;
+pub extern fn jsGetStyle(element: ElementId, name: [*]const u8, nameLen: usize, bufPtr: [*]u8) void;
+pub extern fn jsRemoveStyle(element: ElementId, name: [*]const u8, nameLen: usize) void;
 pub extern fn getValue(element: ElementId) f32;
 pub extern fn appendElement(parent: ElementId, child: ElementId) void;
 pub extern fn setRoot(root: ElementId) void;
@@ -82,6 +86,14 @@ pub fn getAttribute(element: ElementId, name: []const u8, value: [*]u8) void {
 
 pub fn setAttribute(element: ElementId, name: []const u8, value: []const u8) void {
     jsSetAttribute(element, name.ptr, name.len, value.ptr, value.len);
+}
+
+pub fn getStyle(element: ElementId, name: []const u8, value: [*]u8) void {
+    jsSetStyle(element, name.ptr, name.len, value.ptr, value.len);
+}
+
+pub fn setStyle(element: ElementId, name: []const u8, value: []const u8) void {
+    jsSetStyle(element, name.ptr, name.len, value.ptr, value.len);
 }
 
 pub fn removeAttribute(element: ElementId, name: []const u8) void {

@@ -267,6 +267,19 @@ let env = {
 			const attr = domObjects[element].getAttribute(name);
 			// TODO: send
 		},
+		jsSetStyle: function(element, name, value) {
+			domObjects[element].style[name] = value;
+		},
+		jsRemoveStyle: function(element, name) {
+			domObjects[element].style[name] = null;
+		},
+		getStyleLen: function(element, name) {
+			return domObjects[element].style[name].length;
+		},
+		getStyle: function(element, name) {
+			const attr = domObjects[element].style[name];
+			// TODO: send
+		},
 		getValue: function(element) {
 			return Number.parseFloat(domObjects[element].value);
 		},

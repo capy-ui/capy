@@ -3,6 +3,7 @@ const backend = @import("../backend.zig");
 const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
+const capy = @import("../capy.zig");
 
 /// Label containing text for the user to view.
 pub const Label = struct {
@@ -13,8 +14,8 @@ pub const Label = struct {
     /// The text the label will take. For instance, if this is 'Example', the user
     /// will see the text 'Example'.
     text: Atom([]const u8) = Atom([]const u8).of(""),
-    /// Defines how the text will take up the available horizontal space.
-    alignment: Atom(TextAlignment) = Atom(TextAlignment).of(.Left),
+    /// Defines how the text will show and take up available space.
+    layout: Atom(capy.TextLayout) = Atom(capy.TextLayout).of(.{}),
 
     pub fn init(config: Label.Config) Label {
         var lbl = Label.init_events(Label{});
@@ -27,27 +28,25 @@ pub const Label = struct {
         self.peer.?.setText(newValue);
     }
 
-    fn onAlignmentAtomChange(newValue: TextAlignment, userdata: ?*anyopaque) void {
+    fn onTextLayoutAtomChange(newValue: capy.TextLayout, userdata: ?*anyopaque) void {
         const self: *Label = @ptrCast(@alignCast(userdata.?));
-        self.peer.?.setAlignment(switch (newValue) {
+        self.peer.?.setAlignment(switch (newValue.alignment) {
             .Left => 0,
             .Center => 0.5,
             .Right => 1,
         });
+        self.peer.?.setFont(newValue.font);
     }
 
     pub fn show(self: *Label) !void {
         if (self.peer == null) {
             var peer = try backend.Label.create();
             peer.setText(self.text.get());
-            peer.setAlignment(switch (self.alignment.get()) {
-                .Left => 0,
-                .Center => 0.5,
-                .Right => 1,
-            });
             self.peer = peer;
             try self.setupEvents();
             _ = try self.text.addChangeListener(.{ .function = onTextAtomChange, .userdata = self });
+            _ = try self.layout.addChangeListener(.{ .function = onTextLayoutAtomChange, .userdata = self });
+            onTextLayoutAtomChange(self.layout.get(), self);
         }
     }
 
@@ -70,8 +69,6 @@ pub const Label = struct {
         return self.text.get();
     }
 };
-
-pub const TextAlignment = enum { Left, Center, Right };
 
 pub fn label(config: Label.Config) *Label {
     return Label.alloc(config);

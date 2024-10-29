@@ -249,6 +249,22 @@ const env = {
 			const a = waitForAnswer("string");
 			// TODO
 		},
+		jsSetStyle: function(element, name, nameLen, value, valueLen) {
+			self.postMessage(["jsSetStyle", element, readString(name, nameLen), readString(value, valueLen)]);
+		},
+		jsRemoveStyle: function(element, name, nameLen) {
+			self.postMessage(["jsRemoveStyle", element, readString(name, nameLen)]);
+		},
+		getStyleLen: function(element, name, nameLen) {
+			self.postMessage(["getStyleLen", element, readString(name, nameLen)]);
+			const a = waitForAnswer("int");
+			return a;
+		},
+		jsGetStyle: function(element, name, nameLen, valuePtr) {
+			self.postMessage(["jsGetStyle", element, readString(name, nameLen)]);
+			const a = waitForAnswer("string");
+			// TODO
+		},
 		appendElement: function(parent, child) {
       self.postMessage(["appendElement", parent, child]);
 		},

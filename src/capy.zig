@@ -76,6 +76,11 @@ pub const AnimationController = @import("AnimationController.zig");
 pub const Listener = @import("listener.zig").Listener;
 pub const EventSource = @import("listener.zig").EventSource;
 
+const misc = @import("misc.zig");
+pub const TextLayout = misc.TextLayout;
+pub const Font = misc.Font;
+pub const TextAlignment = misc.TextAlignment;
+
 pub const internal = @import("internal.zig");
 pub const backend = @import("backend.zig");
 pub const http = @import("http.zig");

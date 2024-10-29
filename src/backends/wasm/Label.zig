@@ -1,3 +1,4 @@
+const std = @import("std");
 const common = @import("common.zig");
 const js = @import("js.zig");
 const lib = @import("../../capy.zig");
@@ -22,6 +23,24 @@ pub fn create() !Label {
 }
 
 pub fn setAlignment(_: *Label, _: f32) void {}
+
+pub fn setFont(self: *Label, font: lib.Font) void {
+    if (font.family) |family| {
+        js.setStyle(self.peer.element, "fontFamily", family);
+    } else {
+        js.removeAttribute(self.peer.element, "fontFamily");
+    }
+    if (font.size) |size| {
+        var buf: [100]u8 = undefined;
+        js.setStyle(
+            self.peer.element,
+            "fontSize",
+            std.fmt.bufPrint(&buf, "{d}pt", .{size}) catch unreachable,
+        );
+    } else {
+        js.removeAttribute(self.peer.element, "fontSize");
+    }
+}
 
 pub fn setText(self: *Label, text: []const u8) void {
     js.setText(self.peer.element, text.ptr, text.len);

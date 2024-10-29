@@ -19,11 +19,13 @@ pub const DrawContextImpl = struct {
     cr: *c.cairo_t,
     widget: ?*c.GtkWidget = null,
 
+    // TODO: replace by capy.Font
     pub const Font = struct {
         face: [:0]const u8,
         size: f64,
     };
 
+    // TODO: replace by capy.Size
     pub const TextSize = struct { width: u32, height: u32 };
 
     pub const TextLayout = struct {

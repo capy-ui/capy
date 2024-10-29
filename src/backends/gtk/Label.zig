@@ -47,3 +47,22 @@ pub fn setText(self: *Label, text: []const u8) void {
     };
     _ = c.g_idle_add(setText_uiThread, runOpts);
 }
+
+pub fn setFont(self: *Label, font: lib.Font) void {
+    const attr_list = c.pango_attr_list_new().?;
+
+    const font_description = c.pango_font_description_new().?;
+    if (font.family) |family| {
+        const copy = lib.internal.scratch_allocator.dupeZ(u8, family) catch @panic("OOM");
+        // The NUL-terminated string is copied by GTK, so we can free it quickly
+        defer lib.internal.scratch_allocator.free(copy);
+        c.pango_font_description_set_family(font_description, copy);
+    }
+    if (font.size) |size| {
+        c.pango_font_description_set_size(font_description, @intFromFloat(size * @as(f64, c.PANGO_SCALE)));
+    }
+
+    const attribute = c.pango_attr_font_desc_new(font_description);
+    c.pango_attr_list_insert(attr_list, attribute);
+    c.gtk_label_set_attributes(@ptrCast(self.peer), attr_list);
+}

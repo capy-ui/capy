@@ -1271,6 +1271,11 @@ pub const Label = struct {
         _ = alignment;
     }
 
+    pub fn setFont(self: *Label, font: lib.Font) void {
+        _ = self;
+        _ = font;
+    }
+
     pub fn setText(self: *Label, text: []const u8) void {
         const allocator = lib.internal.scratch_allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
