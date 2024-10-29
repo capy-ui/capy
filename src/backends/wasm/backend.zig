@@ -113,6 +113,14 @@ pub fn runStep(step: shared.EventLoopStep) bool {
             .UpdateAudio => {
                 lib.audio.backendUpdate();
             },
+            .WindowTick => {
+                if (@import("Window.zig").globalWindow) |window| {
+                    if (window.peer.user.propertyChangeHandler) |handler| {
+                        const value: u64 = 0;
+                        handler("tick_id", &value, window.peer.userdata);
+                    }
+                }
+            },
             else => {
                 if (@import("Window.zig").globalWindow) |window| {
                     if (window.child) |child| {

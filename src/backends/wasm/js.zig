@@ -14,6 +14,7 @@ pub const EventType = enum(usize) {
     MouseScroll,
     UpdateAudio,
     PropertyChange,
+    WindowTick,
 };
 
 pub extern fn jsPrint(msg: [*]const u8, len: usize) void;

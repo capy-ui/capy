@@ -593,6 +593,12 @@ async function loadExtras() {
 		}
 		drawCommands = [];
 
+		// send window tick event
+		pushEvent({
+			type: 8,
+			args: [],
+		});
+
 		requestAnimationFrame(update);
 	}
 	//setInterval(update, 32);

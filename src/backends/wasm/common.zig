@@ -126,7 +126,7 @@ pub fn Events(comptime T: type) type {
                             handler(dx, dy, self.peer.userdata);
                         }
                     },
-                    .UpdateAudio => unreachable,
+                    .UpdateAudio, .WindowTick => unreachable,
                     .PropertyChange => {
                         if (self.peer.user.propertyChangeHandler) |handler| {
                             const value_f32 = js.getValue(self.peer.element);
