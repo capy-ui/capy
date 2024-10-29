@@ -10,6 +10,12 @@ pub var null_event_source = EventSource.init(internal.lasting_allocator);
 pub const EventSource = struct {
     listeners: ListAtom(*Listener),
 
+    pub fn alloc(allocator: std.mem.Allocator) !*EventSource {
+        const source = try allocator.create(EventSource);
+        source.* = EventSource.init(allocator);
+        return source;
+    }
+
     pub fn init(allocator: std.mem.Allocator) EventSource {
         return .{ .listeners = ListAtom(*Listener).init(allocator) };
     }

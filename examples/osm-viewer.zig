@@ -237,8 +237,8 @@ pub const MapViewer = struct {
             self.peer = try capy.backend.Canvas.create();
             try self.setupEvents();
         }
-        try self.centerX.implicitlyAnimate(&self.targetCenterX, capy.Easings.InOut, 50);
-        try self.centerY.implicitlyAnimate(&self.targetCenterY, capy.Easings.InOut, 50);
+        try self.centerX.implicitlyAnimate(&self.targetCenterX, self.getAnimationController(), capy.Easings.InOut, 50);
+        try self.centerY.implicitlyAnimate(&self.targetCenterY, self.getAnimationController(), capy.Easings.InOut, 50);
 
         _ = try self.centerX.addChangeListener(.{ .function = onCenterChange, .userdata = self });
         _ = try self.centerY.addChangeListener(.{ .function = onCenterChange, .userdata = self });

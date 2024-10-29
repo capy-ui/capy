@@ -7,16 +7,17 @@ var opacity = capy.Atom(f32).of(1.0);
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
 fn startAnimation(button_: *anyopaque) !void {
     const button = @as(*capy.Button, @ptrCast(@alignCast(button_)));
+    const animator = button.getAnimationController();
 
     // Ensure the current animation is done before starting another
     if (!opacity.hasAnimation()) {
         if (opacity.get() == 0) { // if hidden
             // Show the label in 1000ms
-            opacity.animate(capy.Easings.In, 1, 1000);
+            opacity.animate(animator, capy.Easings.In, 1, 1000);
             button.setLabel("Hide");
         } else {
             // Hide the label in 1000ms
-            opacity.animate(capy.Easings.Out, 0, 1000);
+            opacity.animate(animator, capy.Easings.Out, 0, 1000);
             button.setLabel("Show");
         }
     }

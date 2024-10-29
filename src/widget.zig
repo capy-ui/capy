@@ -3,6 +3,7 @@ const backend = @import("backend.zig");
 const data = @import("data.zig");
 
 const Allocator = std.mem.Allocator;
+const AnimationController = @import("AnimationController.zig");
 
 /// A class is a constant list of methods that can be called using Widget.
 // Note: it is called Class instead of VTable as it was made before allocgate
@@ -38,6 +39,7 @@ pub const Widget = struct {
 
     // TODO: store @offsetOf these fields in the Class instead of having the cost of 3 pointers
     name: *data.Atom(?[]const u8),
+    animation_controller: *data.Atom(*AnimationController),
 
     pub fn show(self: *Widget) anyerror!void {
         try self.class.showFn(self);

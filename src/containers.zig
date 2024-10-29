@@ -5,6 +5,7 @@ const scratch_allocator = @import("internal.zig").scratch_allocator;
 const lasting_allocator = @import("internal.zig").lasting_allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
+const AnimationController = @import("AnimationController.zig");
 const capy = @import("capy.zig");
 
 const isErrorUnion = @import("internal.zig").isErrorUnion;
@@ -385,12 +386,13 @@ pub const Container = struct {
 
     pub fn show(self: *Container) !void {
         if (self.peer == null) {
+            _ = try self.widget_data.atoms.animation_controller.addChangeListener(.{ .function = onAnimationControllerChange, .userdata = self });
+            // Trigger the onAnimationControllerChange function now so that the current animation
+            // controller propagates to children
+            onAnimationControllerChange(self.widget_data.atoms.animation_controller.get(), self);
+
             var peer = try backend.Container.create();
             for (self.children.items) |widget| {
-                if (self.expand) {
-                    widget.container_expanded = true;
-                }
-                widget.parent = self.asWidget();
                 try widget.show();
                 peer.add(widget.peer.?);
             }
@@ -490,6 +492,7 @@ pub const Container = struct {
         }
 
         genericWidget.parent = self.asWidget();
+        genericWidget.animation_controller.set(self.widget_data.atoms.animation_controller.get());
         genericWidget.ref();
         try self.children.append(genericWidget);
 
@@ -536,6 +539,13 @@ pub const Container = struct {
             child.unref();
         }
         self.children.deinit();
+    }
+
+    fn onAnimationControllerChange(newValue: *AnimationController, userdata: ?*anyopaque) void {
+        const self: *Container = @ptrCast(@alignCast(userdata));
+        for (self.children.items) |child| {
+            child.animation_controller.set(newValue);
+        }
     }
 
     pub fn cloneImpl(self: *Container) !*Container {

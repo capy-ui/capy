@@ -108,14 +108,6 @@ pub fn init() !void {
 
     Monitors.init();
 
-    var listener = eventStep.listen(.{ .callback = animateAtoms }) catch unreachable;
-    // The listener is enabled only if there is at least 1 atom currently being animated
-    listener.enabled.dependOn(.{&@import("data.zig")._animatedAtomsLength}, &struct {
-        fn a(num: usize) bool {
-            return num >= 1;
-        }
-    }.a) catch unreachable;
-
     var timerListener = eventStep.listen(.{ .callback = @import("timer.zig").handleTimersTick }) catch unreachable;
     // The listener is enabled only if there is at least 1 timer is running
     timerListener.enabled.dependOn(.{&@import("timer.zig").runningTimers.length}, &struct {
@@ -130,8 +122,6 @@ pub fn deinit() void {
     isCapyInitialized = false;
     Monitors.deinit();
 
-    @import("data.zig")._animatedAtoms.deinit();
-    @import("data.zig")._animatedAtomsLength.deinit();
     @import("timer.zig").runningTimers.deinit();
 
     eventStep.deinitAllListeners();

@@ -4,6 +4,7 @@ const internal = @import("../internal.zig");
 const Size = @import("../data.zig").Size;
 const Atom = @import("../data.zig").Atom;
 const Widget = @import("../widget.zig").Widget;
+const AnimationController = @import("../AnimationController.zig");
 
 /// `Alignment` is a component used to align the enclosed component within the space
 /// it's been given.
@@ -99,11 +100,22 @@ pub const Alignment = struct {
                 peer.move(widgetPeer, x, y);
                 peer.resize(widgetPeer, finalSize.width, finalSize.height);
             }
+
+            _ = self.widget_data.atoms.animation_controller.addChangeListener(.{
+                .function = onAnimationControllerChange,
+                .userdata = self,
+            }) catch {};
+            onAnimationControllerChange(self.widget_data.atoms.animation_controller.get(), self);
         }
     }
 
     pub fn getPreferredSize(self: *Alignment, available: Size) Size {
         return self.child.get().getPreferredSize(available);
+    }
+
+    fn onAnimationControllerChange(new_value: *AnimationController, userdata: ?*anyopaque) void {
+        const self: *Alignment = @ptrCast(@alignCast(userdata));
+        self.child.get().animation_controller.set(new_value);
     }
 
     pub fn cloneImpl(self: *Alignment) !*Alignment {

@@ -30,7 +30,7 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
     });
     try listener.enabled.dependOn(.{&controller.animated_atoms.length}, &struct {
         fn callback(length: usize) bool {
-            return length > 0;
+            return length >= 0;
         }
     }.callback);
     controller.listener = listener;
@@ -39,12 +39,40 @@ pub fn init(allocator: std.mem.Allocator, on_frame: *EventSource) !*AnimationCon
 
 fn update(ptr: ?*anyopaque) void {
     const self: *AnimationController = @ptrCast(@alignCast(ptr.?));
-    var iterator = self.animated_atoms.iterate();
-    defer iterator.deinit();
 
-    while (iterator.next()) |item| {
-        if (item.fnPtr(item.userdata) == true) {
-            // TODO: remove.
+    // List of atoms that are no longer animated and that need to be removed from the list
+    var toRemove = std.BoundedArray(usize, 64).init(0) catch unreachable;
+    {
+        var iterator = self.animated_atoms.iterate();
+        defer iterator.deinit();
+        {
+            var i: usize = 0;
+            while (iterator.next()) |item| : (i += 1) {
+                if (item.fnPtr(item.userdata) == false) { // animation ended
+                    toRemove.append(i) catch |err| switch (err) {
+                        error.Overflow => {}, // It can be removed on the next call to animateAtoms()
+                    };
+                }
+            }
+        }
+
+        // The following code is part of the same block as swapRemove relies on the caller locking
+        // the mutex
+        {
+            // The index list is ordered in increasing index order
+            const indexList = toRemove.constSlice();
+            // So we iterate it backward in order to avoid indices being invalidated
+            if (indexList.len > 0) {
+                var i: usize = indexList.len - 1;
+                while (i >= 0) {
+                    _ = self.animated_atoms.swapRemove(indexList[i]);
+                    if (i == 0) {
+                        break;
+                    } else {
+                        i -= 1;
+                    }
+                }
+            }
         }
     }
 }
@@ -63,4 +91,4 @@ var null_animation_controller_instance = AnimationController{
 /// This animation controller is never triggered. It is used by components that don't have a proper
 /// animation controller.
 /// It cannot be deinitialized.
-pub var null_animation_controller = &null_animation_controller_instance;
+pub const null_animation_controller = &null_animation_controller_instance;

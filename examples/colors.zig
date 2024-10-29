@@ -12,7 +12,8 @@ pub fn animateRandomColor(button_: *anyopaque) !void {
     const root = button.getRoot().?.as(capy.Container);
     const rect = root.getChild("background-rectangle").?.as(capy.Rect);
     const randomColor = capy.Color{ .red = random.int(u8), .green = random.int(u8), .blue = random.int(u8) };
-    rect.color.animate(capy.Easings.InOut, randomColor, 1000);
+    const animator = button.getAnimationController();
+    rect.color.animate(animator, capy.Easings.InOut, randomColor, 1000);
 }
 
 pub fn main() !void {

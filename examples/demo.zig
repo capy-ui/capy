@@ -163,13 +163,14 @@ fn moveButton(button_: *anyopaque) !void {
     const button = @as(*capy.Button, @ptrCast(@alignCast(button_)));
     const parent = button.getParent().?.as(capy.Alignment);
 
+    const animator = button.getAnimationController();
     const alignX = &parent.x;
     // Ensure the current animation is done before starting another
     if (!alignX.hasAnimation()) {
         if (alignX.get() == 0) { // if on the left
-            alignX.animate(capy.Easings.InOut, 1, 1000);
+            alignX.animate(animator, capy.Easings.InOut, 1, 1000);
         } else {
-            alignX.animate(capy.Easings.InOut, 0, 1000);
+            alignX.animate(animator, capy.Easings.InOut, 0, 1000);
         }
     }
 }

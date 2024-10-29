@@ -3,6 +3,7 @@ const Container_Impl = @import("containers.zig").Container_Impl;
 const internal = @import("internal.zig");
 const lasting_allocator = internal.lasting_allocator;
 const trait = @import("trait.zig");
+const AnimationController = @import("AnimationController.zig");
 
 /// Linear interpolation between floats a and b with factor t.
 fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
@@ -118,14 +119,6 @@ test isListAtom {
     try std.testing.expect(!isListAtom(Rectangle));
 }
 
-// TODO: use ListAtom when it's done
-pub var _animatedAtoms = std.ArrayList(struct {
-    fnPtr: *const fn (data: *anyopaque) bool,
-    userdata: *anyopaque,
-}).init(lasting_allocator);
-pub var _animatedAtomsLength = Atom(usize).of(0);
-pub var _animatedAtomsMutex = std.Thread.Mutex{};
-
 fn isAnimatableType(comptime T: type) bool {
     if (trait.isNumber(T) or (comptime trait.isContainer(T) and @hasDecl(T, "lerp"))) {
         return true;
@@ -208,6 +201,11 @@ pub fn Atom(comptime T: type) type {
 
         fn computeChecksum(value: T) u8 {
             const Crc = std.hash.crc.Crc8Wcdma;
+
+            // comptime causes a lot of problems with hashing, so we just set the checksum to
+            // 0, it's only used to detect potentially changed states, so it is not a problem.
+            if (@inComptime()) return 0;
+
             return switch (@typeInfo(T).pointer.size) {
                 .One => Crc.hash(std.mem.asBytes(value)),
                 .Many, .C, .Slice => Crc.hash(std.mem.sliceAsBytes(value)),
@@ -258,7 +256,7 @@ pub fn Atom(comptime T: type) type {
 
         /// Makes the atom follow the value of the given atom, but with an animation added.
         /// Note that the animated atom is automatically destroyed when the original atom is destroyed.
-        pub fn implicitlyAnimate(self: *Self, original: *Self, easing: Easing, duration: u64) !void {
+        pub fn implicitlyAnimate(self: *Self, original: *Self, controller: *AnimationController, easing: Easing, duration: u64) !void {
             self.set(original.get());
             const AnimationParameters = struct {
                 easing: Easing,
@@ -267,6 +265,7 @@ pub fn Atom(comptime T: type) type {
                 original_ptr: *Self,
                 is_deinit: bool = false,
                 change_listener_id: usize,
+                controller: *AnimationController,
             };
 
             const userdata = try internal.lasting_allocator.create(AnimationParameters);
@@ -276,12 +275,13 @@ pub fn Atom(comptime T: type) type {
                 .self_ptr = self,
                 .original_ptr = original,
                 .change_listener_id = undefined,
+                .controller = controller,
             };
 
             const animate_fn = struct {
                 fn a(new_value: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
-                    ptr.self_ptr.animate(ptr.easing, new_value, ptr.duration);
+                    ptr.self_ptr.animate(ptr.controller, ptr.easing, new_value, ptr.duration);
                 }
             }.a;
 
@@ -349,9 +349,9 @@ pub fn Atom(comptime T: type) type {
 
         /// Starts an animation on the atom, from the current value to the `target` value. The
         /// animation will last `duration` milliseconds.
-        pub fn animate(self: *Self, anim: *const fn (f64) f64, target: T, duration: u64) void {
+        pub fn animate(self: *Self, controller: *AnimationController, anim: *const fn (f64) f64, target: T, duration: u64) void {
             if (comptime !isAnimatable) {
-                @compileError("animate() called on data that is not animable");
+                @compileError("animate() called on data that is not animatable");
             }
             const currentValue = self.get();
             self.value = .{ .Animated = Animation(T){
@@ -362,19 +362,22 @@ pub fn Atom(comptime T: type) type {
                 .animFn = anim,
             } };
 
-            var contains = false;
-            _animatedAtomsMutex.lock();
-            defer _animatedAtomsMutex.unlock();
-
-            for (_animatedAtoms.items) |item| {
-                if (@as(*anyopaque, @ptrCast(self)) == item.userdata) {
-                    contains = true;
-                    break;
+            const is_already_animated = blk: {
+                var iterator = controller.animated_atoms.iterate();
+                defer iterator.deinit();
+                while (iterator.next()) |item| {
+                    if (@as(*anyopaque, @ptrCast(self)) == item.userdata) {
+                        break :blk true;
+                    }
                 }
-            }
-            if (!contains) {
-                _animatedAtoms.append(.{ .fnPtr = @as(*const fn (*anyopaque) bool, @ptrCast(&Self.update)), .userdata = self }) catch {};
-                _animatedAtomsLength.set(_animatedAtoms.items.len);
+                break :blk false;
+            };
+
+            if (!is_already_animated) {
+                controller.animated_atoms.append(.{
+                    .fnPtr = @as(*const fn (*anyopaque) bool, @ptrCast(&Self.update)),
+                    .userdata = self,
+                }) catch {};
             }
         }
 
@@ -1238,10 +1241,14 @@ test "animated atom" {
     defer original.deinit();
 
     {
-        var animated = try Atom(i32).withImplicitAnimation(&original, Easings.Linear, 5000);
+        const animation_controller = AnimationController.null_animation_controller;
+        var animated = try Atom(i32).withImplicitAnimation(
+            animation_controller,
+            &original,
+            Easings.Linear,
+            5000,
+        );
         defer animated.deinit();
-        defer _animatedAtoms.clearAndFree();
-        defer _animatedAtomsLength.set(0);
 
         original.set(1000);
         try std.testing.expect(animated.hasAnimation());

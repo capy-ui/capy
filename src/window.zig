@@ -9,6 +9,7 @@ const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
 const EventSource = listener.EventSource;
 
+const AnimationController = @import("AnimationController.zig");
 const Monitor = @import("monitor.zig").Monitor;
 const VideoMode = @import("monitor.zig").VideoMode;
 const Display = struct { resolution: Size, dpi: u32 };
@@ -34,7 +35,8 @@ pub const Window = struct {
     screenRefreshRate: Atom(f32) = Atom(f32).of(60),
     /// Event source called whenever a frame would be drawn.
     /// This can be used for synchronizing animations to the window's monitor's sync rate.
-    on_frame: EventSource,
+    on_frame: *EventSource,
+    animation_controller: *AnimationController,
 
     pub const Feature = enum {
         Title,
@@ -44,9 +46,14 @@ pub const Window = struct {
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
+        const on_frame = try EventSource.alloc(internal.lasting_allocator);
         var window = Window{
             .peer = peer,
-            .on_frame = EventSource.init(internal.lasting_allocator),
+            .on_frame = on_frame,
+            .animation_controller = try AnimationController.init(
+                internal.lasting_allocator,
+                on_frame,
+            ),
         };
         window.setSourceDpi(96);
         window.setPreferredSize(640, 480);
@@ -77,6 +84,9 @@ pub const Window = struct {
             wrappedContainer;
         self._child = internal.getWidgetFrom(container);
         self._child.?.ref();
+
+        // Set the child's animation controller
+        self._child.?.animation_controller.set(self.animation_controller);
         try self._child.?.show();
         self.peer.setChild(self._child.?.peer);
     }

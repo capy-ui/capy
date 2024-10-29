@@ -55,6 +55,6 @@ pub fn main() !void {
     window.show();
 
     // Count to 100 in 2000ms
-    count.animate(capy.Easings.InOut, 100, 2000);
+    count.animate(window.animation_controller, capy.Easings.InOut, 100, 2000);
     capy.runEventLoop();
 }

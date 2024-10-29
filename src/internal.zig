@@ -14,6 +14,7 @@ const Container = @import("containers.zig").Container;
 const Layout = @import("containers.zig").Layout;
 const MouseButton = @import("backends/shared.zig").MouseButton;
 const trait = @import("trait.zig");
+const AnimationController = @import("AnimationController.zig");
 
 const link_libc = @import("builtin").link_libc;
 
@@ -79,6 +80,7 @@ pub fn Widgeting(comptime T: type) type {
             opacity: Atom(f32) = Atom(f32).of(1.0),
             displayed: Atom(bool) = Atom(bool).of(true),
             name: Atom(?[]const u8) = Atom(?[]const u8).of(null),
+            animation_controller: Atom(*AnimationController) = Atom(*AnimationController).of(AnimationController.null_animation_controller),
         };
 
         pub const Config = GenerateConfigStruct(T);
@@ -293,8 +295,8 @@ pub fn Widgeting(comptime T: type) type {
         pub fn getRoot(self: *T) ?*Widget {
             var parent = self.getParent() orelse return null;
             while (true) {
-                const ancester = parent.getParent();
-                if (ancester) |newParent| {
+                const ancestor = parent.getParent();
+                if (ancestor) |newParent| {
                     parent = newParent;
                 } else {
                     break;
@@ -302,6 +304,10 @@ pub fn Widgeting(comptime T: type) type {
             }
 
             return parent;
+        }
+
+        pub fn getAnimationController(self: *T) *AnimationController {
+            return self.widget_data.atoms.animation_controller.get();
         }
 
         // /// Clone the component but with the peer set to null
@@ -475,6 +481,7 @@ pub fn genericWidgetFrom(component: anytype) Widget {
         .data = component,
         .class = &Dereferenced.WidgetClass,
         .name = &component.widget_data.atoms.name,
+        .animation_controller = &component.widget_data.atoms.animation_controller,
     };
 }
 
