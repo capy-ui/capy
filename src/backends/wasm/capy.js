@@ -215,11 +215,11 @@ let env = {
 				});
 			});
 			elem.addEventListener("mousemove", function(e) {
-				// pushEvent({
-				// 	type: 4,
-				// 	target: idx,
-				// 	args: [e.clientX, e.clientY]
-				// });
+				pushEvent({
+					type: 4,
+					target: idx,
+					args: [e.clientX, e.clientY]
+				});
 			});
 			elem.addEventListener("wheel", function(e) {
 				console.log(e.deltaY);
