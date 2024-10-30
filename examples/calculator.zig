@@ -93,7 +93,7 @@ pub fn main() !void {
     }
 
     var window = try capy.Window.init();
-    computationLabel = capy.label(.{ .text = "", .alignment = .Left });
+    computationLabel = capy.label(.{ .text = "" });
     defer allocator.free(computationLabel.getText());
     try window.set(capy.column(.{ .expand = .Fill, .spacing = 10 }, .{
         computationLabel,

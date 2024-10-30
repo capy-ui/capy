@@ -145,17 +145,17 @@ pub fn drawer(config: Drawer.Config) !Drawer {
 // You can simulate a border layout using only column, row and expanded
 fn BorderLayoutExample() anyerror!*capy.Container {
     return capy.column(.{}, .{
-        capy.label(.{ .text = "Top", .alignment = .Center }),
+        capy.label(.{ .text = "Top", .layout = .{ .alignment = .Center } }),
         capy.expanded(
             capy.row(.{}, .{
-                capy.label(.{ .text = "Left", .alignment = .Center }),
+                capy.label(.{ .text = "Left", .layout = .{ .alignment = .Center } }),
                 capy.expanded(
-                    capy.label(.{ .text = "Center", .alignment = .Center }),
+                    capy.label(.{ .text = "Center", .layout = .{ .alignment = .Center } }),
                 ),
-                capy.label(.{ .text = "Right", .alignment = .Center }),
+                capy.label(.{ .text = "Right", .layout = .{ .alignment = .Center } }),
             }),
         ),
-        capy.label(.{ .text = "Bottom", .alignment = .Center }),
+        capy.label(.{ .text = "Bottom", .layout = .{ .alignment = .Center } }),
     });
 }
 

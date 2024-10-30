@@ -30,7 +30,7 @@ pub fn main() !void {
                         .color = capy.Color.comptimeFromString("#ff6600"),
                         .cornerRadius = .{ 0.0, 0.0, 5.0, 5.0 },
                     }),
-                    capy.label(.{ .text = "Hacker News", .alignment = .Center }),
+                    capy.label(.{ .text = "Hacker News", .layout = .{ .alignment = .Center } }),
                 }),
                 capy.columnList(.{}, &hn_list_model),
             }),

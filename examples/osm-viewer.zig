@@ -149,6 +149,7 @@ pub const MapViewer = struct {
                 } else |err| switch (err) {
                     error.InvalidData => {
                         std.log.err("Invalid data at {}: {s}", .{ key.*, contents });
+                        try self.tileCache.put(key.*, .{ .data = try capy.ImageData.new(1, 1, .RGB) });
                     },
                     else => return err,
                 }

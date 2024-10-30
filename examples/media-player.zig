@@ -39,7 +39,7 @@ pub fn main() !void {
     try window.set(
         capy.alignment(.{}, capy.column(.{}, .{
             rotatingDisc(), // TODO
-            capy.label(.{ .text = "Audio Name", .alignment = .Center }),
+            capy.label(.{ .text = "Audio Name", .layout = .{ .alignment = .Center } }),
             capy.slider(.{ .min = 40, .max = 2000, .step = 1 })
                 .bind("value", &pitch),
         })),

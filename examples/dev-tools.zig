@@ -23,7 +23,7 @@ pub fn main() !void {
                 capy.alignment(.{ .x = 1 }, capy.button(.{ .label = "Connect", .onclick = onConnect })),
             })),
             .@"Dev Tools" = capy.column(.{}, .{
-                capy.label(.{ .text = "Dev Tools", .alignment = .Center }),
+                capy.label(.{ .text = "Dev Tools", .layout = .{ .alignment = .Center } }),
                 capy.expanded(capy.tabs(.{
                     capy.tab(
                         .{ .label = "Inspector" },
