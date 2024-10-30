@@ -44,6 +44,9 @@ async function pushAnswer(type, value) {
 	if (type == "bytes" && !(value instanceof Uint8Array)) {
 		throw Error("Type mismatch, got " + (typeof value));
 	}
+	if (type == "string") {
+		throw Error("Type mismatch");
+	}
 
 	const WAITING = 0;
 	const DONE = 1;
@@ -61,10 +64,10 @@ async function pushAnswer(type, value) {
 		view[2] = right;
 	} else if (type == "float") {
 		new DataView(view.buffer).setFloat64(0x4, value);
-	} else if (type == "string") {
+	} else if (type == "bytes") {
 		const length = value.length;
 		view[1] = length;
-		new Uint8Array(view.buffer).set(bytes, 0x8);
+		new Uint8Array(view.buffer).set(value, 0x8);
 	}
 	view[0] = DONE;
 	if (Atomics.notify(view, 0) != 1) {
@@ -438,10 +441,7 @@ let env = {
 		},
 
 		// Resources
-		uploadImage: function(width, height, stride, isRgb, bytesPtr) {
-			const size = stride * height;
-			let view = new Uint8Array(obj.instance.exports.memory.buffer);
-			let data = Uint8ClampedArray.from(view.slice(bytesPtr, bytesPtr + size));
+		uploadImage: function(width, height, stride, isRgb, data) {
 			return resources.push({
 				type: 'image',
 				width: width,
@@ -454,8 +454,7 @@ let env = {
 		},
 
 		// Network
-		fetchHttp: function(urlPtr, urlLen) {
-			const url = readString(urlPtr, urlLen);
+		fetchHttp: function(url) {
 			const id = networkRequests.length;
 			const promise = fetch(url).then(response => response.arrayBuffer()).then(response => {
 				networkRequestsCompletion[id] = true;
@@ -466,9 +465,9 @@ let env = {
 			return networkRequests.push(promise) - 1;
 		},
 		isRequestReady: function(id) {
-			return networkRequestsCompletion[id];
+			return networkRequestsCompletion[id] ? 1 : 0;
 		},
-		readRequest: function(id, bufPtr, bufLen) {
+		readRequest: function(id, bufLen) {
 			if (networkRequestsCompletion[id] === false) return 0;
 
 			const buffer = networkRequests[id];
@@ -476,13 +475,8 @@ let env = {
 
 			const view = new Uint8Array(buffer);
 			const slice = view.slice(idx, idx + bufLen);
-			const memoryView = new Uint8Array(obj.instance.exports.memory.buffer);
-			for (let i = 0; i < slice.length; i++) {
-				memoryView[bufPtr + i] = slice[i];
-			}
 			networkRequestsReadIdx[id] += slice.length;
-
-			return slice.length;
+			return slice;
 		},
 
 		// Audio

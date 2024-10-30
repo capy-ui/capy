@@ -258,8 +258,6 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
         },
         .wasi => {
             // Things like the image reader require more stack than given by default
-            // TODO: remove once ziglang/zig#12589 is merged
-            step.stack_size = @max(step.stack_size orelse 0, 256 * 1024);
             if (step.root_module.optimize == .ReleaseSmall) {
                 step.root_module.strip = true;
             }

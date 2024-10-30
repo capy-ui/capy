@@ -36,8 +36,8 @@ function readBuffer(addr, len) {
 	return view.slice(addr, addr + len);
 }
 
-// 4 bytes for marking and 4096 bytes for data
-let pendingAnswer = new SharedArrayBuffer(4100);
+// 4 bytes for marking and 65536 bytes for data
+let pendingAnswer = new SharedArrayBuffer(65540);
 /**
 	@param {string} type The type of the answer, can be "int", "float", "bool" or "bytes"
 **/
@@ -64,7 +64,7 @@ function waitForAnswer(type) {
 			return float;
 		case "bytes":
 			const length = view[1];
-			const bytes = new Uint8Array(pendingAnswer).slice(0x4, 0x4 + length);
+			const bytes = new Uint8Array(pendingAnswer).slice(0x8, 0x8 + length);
 			return bytes;
 	}
 
@@ -222,6 +222,10 @@ class WasiImplementation {
 			console.debug(`fd_seek(${fd}, ${offset}, ${whence})`);
 		return Errno.INVAL;
 	}
+
+	fd_filestat_get = (fd, buf) => {
+		// TODO
+	}
 }
 
 const env = {
@@ -366,46 +370,23 @@ const env = {
 			const size = stride * height;
 			let view = new Uint8Array(obj.instance.exports.memory.buffer);
 			let data = Uint8ClampedArray.from(view.slice(bytesPtr, bytesPtr + size));
-			return resources.push({
-				type: 'image',
-				width: width,
-				height: height,
-				stride: stride,
-				rgb: isRgb != 0,
-				bytes: data,
-				imageDatas: {},
-			}) - 1;
+			postMessage(["uploadImage", width, height, stride, isRgb, data]);
+			return waitForAnswer("int");
 		},
 
 		// Network
 		fetchHttp: function(urlPtr, urlLen) {
-			const url = readString(urlPtr, urlLen);
-			const id = networkRequests.length;
-			const promise = fetch(url).then(response => response.arrayBuffer()).then(response => {
-				networkRequestsCompletion[id] = true;
-				networkRequests[id] = response;
-			});
-			networkRequestsCompletion.push(false);
-			networkRequestsReadIdx.push(0);
-			return networkRequests.push(promise) - 1;
+			self.postMessage(["fetchHttp", readString(urlPtr, urlLen)])
+			return waitForAnswer("int");
 		},
 		isRequestReady: function(id) {
-			return networkRequestsCompletion[id];
+			self.postMessage(["isRequestReady", id]);
+			return waitForAnswer("int") != 0;
 		},
 		readRequest: function(id, bufPtr, bufLen) {
-			if (networkRequestsCompletion[id] === false) return 0;
-
-			const buffer = networkRequests[id];
-			const idx = networkRequestsReadIdx[id];
-
-			const view = new Uint8Array(buffer);
-			const slice = view.slice(idx, idx + bufLen);
-			const memoryView = new Uint8Array(obj.instance.exports.memory.buffer);
-			for (let i = 0; i < slice.length; i++) {
-				memoryView[bufPtr + i] = slice[i];
-			}
-			networkRequestsReadIdx[id] += slice.length;
-
+			self.postMessage(["readRequest", id, bufLen]);
+			const slice = waitForAnswer("bytes");
+			writeBytes(bufPtr, slice);
 			return slice.length;
 		},
 		yield: function() {
