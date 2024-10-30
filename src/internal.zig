@@ -51,6 +51,7 @@ pub fn All(comptime T: type) type {
             handlers: T.Handlers = undefined,
             atoms: T.Atoms = .{},
             refcount: std.atomic.Value(u32) = std.atomic.Value(u32).init(0),
+            userdata: std.StringHashMapUnmanaged(*anyopaque) = std.StringHashMapUnmanaged(*anyopaque).empty,
 
             /// The widget representing this component
             /// It is initialised in alloc()
@@ -100,7 +101,7 @@ pub fn Widgeting(comptime T: type) type {
             const type_info = @typeInfo(@TypeOf(T.init)).@"fn";
             const return_type = type_info.return_type.?;
             if (comptime type_info.params.len != 1) {
-                @panic("no");
+                @compileError("no");
             }
             if (comptime isErrorUnion(return_type)) {
                 instance.* = T.init(config) catch @panic("error"); // TODO: better? maybe change return type by making alloc() return an error union?
@@ -154,6 +155,7 @@ pub fn Widgeting(comptime T: type) type {
                 self._deinit();
             }
 
+            self.widget_data.userdata.deinit(lasting_allocator);
             self.widget_data.handlers.clickHandlers.deinit();
             self.widget_data.handlers.drawHandlers.deinit();
             self.widget_data.handlers.buttonHandlers.deinit();
@@ -214,14 +216,28 @@ pub fn Widgeting(comptime T: type) type {
             return &self.widget_data.widget;
         }
 
-        // TODO: consider using something like https://github.com/MasterQ32/any-pointer for userdata
-        // to get some safety
-        pub fn setUserdata(self: *T, userdata: ?*anyopaque) void {
-            self.widget_data.handlers.userdata = userdata;
+        /// Add a userdata to the component. All the component's children can access this userdata
+        /// as long as they don't override it themselves.
+        pub fn addUserdata(self: *T, comptime U: type, userdata: *U) *T {
+            const key: []const u8 = @typeName(U);
+            self.widget_data.userdata.put(lasting_allocator, key, userdata) catch @panic("OOM");
+            return self;
         }
 
-        pub fn getUserdata(self: *T, comptime U: type) U {
-            return @as(U, @ptrCast(self.widget_data.handlers.userdata));
+        /// Get userdata attached to this component or to a component's ancestor.
+        pub fn getUserdata(self: *T, comptime U: type) ?*U {
+            const key: []const u8 = @typeName(U);
+            if (self.widget_data.userdata.get(key)) |value| {
+                return @ptrCast(@alignCast(value));
+            } else {
+                var parent: ?*Widget = self.getParent();
+                while (parent != null) : (parent = parent.?.getParent()) {
+                    if (parent.?.userdata.get(key)) |value| {
+                        return @ptrCast(@alignCast(value));
+                    }
+                }
+                return null;
+            }
         }
 
         // Properties
@@ -482,6 +498,7 @@ pub fn genericWidgetFrom(component: anytype) Widget {
         .class = &Dereferenced.WidgetClass,
         .name = &component.widget_data.atoms.name,
         .animation_controller = &component.widget_data.atoms.animation_controller,
+        .userdata = &component.widget_data.userdata,
     };
 }
 

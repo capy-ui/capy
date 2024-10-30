@@ -7,49 +7,53 @@ const std = @import("std");
 // If data wrapper -> bind
 // If value -> set
 const CounterState = struct {
-    count: capy.DataWrapper(i64) = capy.DataWrapper(i64).of(0),
+    count: capy.Atom(i64) = capy.Atom(i64).of(0),
 };
 
-fn Counter() anyerror!capy.Align_Impl {
-    var count = capy.DataWrapper(i64).alloc(0); // TODO: DataWrapper.alloc
-    var format = try capy.FormatDataWrapper(capy.internal.lasting_allocator, "{d}", .{count});
+fn counter() anyerror!*capy.Alignment {
+    var state1 = try capy.internal.lasting_allocator.create(CounterState);
+    state1.* = .{};
+    const format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&state1.count});
     // TODO: when to deinit format?
 
-    // var state = CounterState{ .count = capy.DataWrapper(i64).of(0) };
-    const state = try capy.internal.lasting_allocator.create(CounterState);
-    state.* = .{};
-
-    // TODO: .{ .state = &state } to auto-deinit when the component is deinit
-    return capy.Align(.{}, capy.Row(.{ .state = state }, .{
-        capy.Button(.{
-            .label = "-",
-            .onclick = (struct {
-                // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed
-                fn sub(button_: *anyopaque) !void {
-                    const button = @as(*capy.Button_Impl, @ptrCast(@alignCast(@alignOf(capy.Button_Impl), button_)));
-                    _ = button;
+    return capy.alignment(
+        .{},
+        (try capy.row(.{}, .{
+            capy.button(.{
+                .label = "-",
+                .onclick = (struct {
+                    fn sub(pointer: *anyopaque) !void {
+                        const button: *capy.Button = @ptrCast(@alignCast(pointer));
+                        const state: *CounterState = button.getUserdata(CounterState).?;
+                        state.count.set(state.count.get() - 1);
+                    }
+                }).sub,
+            }),
+            capy.textField(.{ .text = "0", .readOnly = true })
+                .bind("text", format),
+            capy.button(.{ .label = "+", .onclick = struct {
+                fn add(pointer: *anyopaque) anyerror!void {
+                    const button: *capy.Button = @ptrCast(@alignCast(pointer));
+                    const state: *CounterState = button.getUserdata(CounterState).?;
+                    state.count.set(state.count.get() + 1);
                 }
-            }).sub,
-        }),
-        capy.TextField(.{ .text = "0", .readOnly = true })
-            .bind("text", format),
-        capy.Button(.{ .label = "+", .onclick = struct {
-            fn add(_: *anyopaque) anyerror!void {
-                state.count.set(state.count.get() + 1);
-            }
-        }.add }),
-    }));
+            }.add }),
+        }))
+            .addUserdata(CounterState, state1),
+    );
 }
 
 pub fn main() !void {
     try capy.init();
 
     var window = try capy.Window.init();
-    try window.set(capy.Column(.{}, .{
-        capy.Column(.{ .name = "counters-column" }, .{
-            Counter(),
+    try window.set(capy.column(.{}, .{
+        capy.column(.{ .name = "counters-column" }, .{
+            counter(),
+            counter(),
+            counter(),
         }),
-        capy.Align(.{}, capy.Button(.{ .label = "+" })),
+        capy.alignment(.{}, capy.button(.{ .label = "+" })),
     }));
 
     window.setTitle("Many Counters");

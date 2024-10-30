@@ -40,6 +40,7 @@ pub const Widget = struct {
     // TODO: store @offsetOf these fields in the Class instead of having the cost of 3 pointers
     name: *data.Atom(?[]const u8),
     animation_controller: *data.Atom(*AnimationController),
+    userdata: *std.StringHashMapUnmanaged(*anyopaque),
 
     pub fn show(self: *Widget) anyerror!void {
         try self.class.showFn(self);
