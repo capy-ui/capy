@@ -4,8 +4,8 @@
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
         .@"zig-objc" = .{
-            .url = "https://github.com/mitchellh/zig-objc/archive/fe5ac419530cf800294369d996133fe9cd067aec.tar.gz",
-            .hash = "122034b3e15d582d8d101a7713e5f13c872b8b8eb6d9cb47515b8e34ee75e122630d",
+            .url = "https://github.com/mitchellh/zig-objc/archive/362d12f4d91dfde84668e0befc5a8ca76659965a.zip",
+            .hash = "12206038da3a8d42de25babfadaa3b8fb01c223850a1f1ce309034172d150df61a8c",
             .lazy = true,
         },
         .macos_sdk = .{

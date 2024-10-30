@@ -13,6 +13,8 @@ const EventType = shared.BackendEventType;
 const BackendError = shared.BackendError;
 const MouseButton = shared.MouseButton;
 
+pub const Monitor = @import("Monitor.zig");
+
 // pub const PeerType = *opaque {};
 pub const PeerType = objc.Object;
 
