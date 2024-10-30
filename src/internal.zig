@@ -101,7 +101,7 @@ pub fn Widgeting(comptime T: type) type {
             const type_info = @typeInfo(@TypeOf(T.init)).@"fn";
             const return_type = type_info.return_type.?;
             if (comptime type_info.params.len != 1) {
-                @compileError("no");
+                @panic("no");
             }
             if (comptime isErrorUnion(return_type)) {
                 instance.* = T.init(config) catch @panic("error"); // TODO: better? maybe change return type by making alloc() return an error union?

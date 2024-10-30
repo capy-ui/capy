@@ -126,6 +126,7 @@ test "widget basics" {
 
         .name = undefined,
         .animation_controller = undefined,
+        .userdata = undefined,
     };
 
     try expect(widget.is(TestType));

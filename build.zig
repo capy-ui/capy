@@ -152,8 +152,8 @@ pub fn build(b: *std.Build) !void {
     defer examples_dir.close();
 
     const broken = switch (target.result.os.tag) {
-        .windows => &[_][]const u8{ "osm-viewer", "fade", "slide-viewer", "demo", "notepad", "dev-tools", "many-counters" },
-        else => &[_][]const u8{"many-counters"},
+        .windows => &[_][]const u8{ "osm-viewer", "fade", "slide-viewer", "demo", "notepad", "dev-tools" },
+        else => &[_][]const u8{},
     };
 
     var walker = try examples_dir.walk(b.allocator);
