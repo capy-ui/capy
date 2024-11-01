@@ -358,6 +358,11 @@ pub const Label = struct {
         self.peer.msgSend(void, "setStringValue:", .{AppKit.nsString(nullTerminatedText)});
     }
 
+    pub fn setFont(self: *Label, font: lib.Font) void {
+        _ = self;
+        _ = font;
+    }
+
     pub fn destroy(self: *Label) void {
         _ = self;
     }
