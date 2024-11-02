@@ -718,41 +718,58 @@ pub fn Events(comptime T: type) type {
             opacityChanged(self.widget_data.atoms.opacity.get(), self); // call it so it's updated
         }
 
+        fn isValidHandler(comptime U: type) bool {
+            if (@typeInfo(U) != .pointer) return false;
+            const child = @typeInfo(U).pointer.child;
+            if (@typeInfo(child) != .@"fn") return false;
+            const return_type = @typeInfo(child).@"fn".return_type.?;
+            return @typeInfo(return_type) == .error_union;
+        }
+
         pub fn addClickHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.clickHandlers.append(@as(Callback, @ptrCast(handler)));
         }
 
         pub fn addDrawHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.drawHandlers.append(@as(DrawCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.buttonHandlers.append(@as(ButtonCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseMotionHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.mouseMoveHandlers.append(@as(MouseMoveCallback, @ptrCast(handler)));
         }
 
         pub fn addScrollHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.scrollHandlers.append(@as(ScrollCallback, @ptrCast(handler)));
         }
 
         pub fn addResizeHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.resizeHandlers.append(@as(ResizeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyTypeHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.keyTypeHandlers.append(@as(KeyTypeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.keyPressHandlers.append(@as(KeyPressCallback, @ptrCast(handler)));
         }
 
         /// This shouldn't be used by user applications directly.
         /// Instead set a change listener to the corresponding atom.
         pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
             try self.widget_data.handlers.propertyChangeHandlers.append(@as(PropertyChangeCallback, @ptrCast(handler)));
         }
 
