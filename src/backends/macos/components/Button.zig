@@ -3,6 +3,7 @@ const objc = @import("objc");
 const AppKit = @import("../AppKit.zig");
 const Events = backend.Events;
 const BackendError = @import("../../shared.zig").BackendError;
+const lib = @import("../../../capy.zig");
 
 const Button = @This();
 
@@ -14,7 +15,10 @@ pub fn create() BackendError!Button {
     const NSButton = objc.getClass("NSButton").?;
     // const button = NSButton.msgSend(objc.Object, "alloc", .{})
     const button = NSButton.msgSend(objc.Object, "buttonWithTitle:target:action:", .{ AppKit.nsString(""), AppKit.nil, null });
-    const peer = backend.GuiWidget{ .object = button, .data = undefined };
+    const peer = backend.GuiWidget{
+        .object = button,
+        .data = try lib.internal.lasting_allocator.create(backend.EventUserData),
+    };
     try Button.setupEvents(peer);
     return Button{ .peer = peer };
 }

@@ -62,11 +62,8 @@ pub const GuiWidget = struct {
     data: *EventUserData,
 };
 
-var test_data = EventUserData{ .peer = undefined };
-pub inline fn getEventUserData(peer: PeerType) *EventUserData {
-    _ = peer;
-    return &test_data;
-    //return @ptrCast(*EventUserData, @alignCast(@alignOf(EventUserData), c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
+pub inline fn getEventUserData(peer: GuiWidget) *EventUserData {
+    return peer.data;
 }
 
 pub fn Events(comptime T: type) type {
@@ -140,7 +137,8 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn deinit(self: *const T) void {
-            _ = self;
+            const peer = self.peer;
+            lib.internal.lasting_allocator.destroy(peer.data);
         }
     };
 }
@@ -169,7 +167,10 @@ pub const Window = struct {
         );
 
         return Window{
-            .peer = GuiWidget{ .object = window, .data = undefined },
+            .peer = GuiWidget{
+                .object = window,
+                .data = try lib.internal.lasting_allocator.create(EventUserData),
+            },
         };
     }
 
@@ -246,7 +247,10 @@ pub const Container = struct {
         const view = (try getFlippedNSView())
             .msgSend(objc.Object, "alloc", .{})
             .msgSend(objc.Object, "initWithFrame:", .{AppKit.NSRect.make(0, 0, 1, 1)});
-        return Container{ .peer = GuiWidget{ .object = view, .data = undefined } };
+        return Container{ .peer = GuiWidget{
+            .object = view,
+            .data = try lib.internal.lasting_allocator.create(EventUserData),
+        } };
     }
 
     pub fn add(self: *const Container, peer: GuiWidget) void {
@@ -347,7 +351,10 @@ pub const Label = struct {
         const NSTextField = objc.getClass("NSTextField").?;
         const label = NSTextField.msgSend(objc.Object, "labelWithString:", .{AppKit.nsString("")});
         return Label{
-            .peer = GuiWidget{ .object = label, .data = undefined },
+            .peer = GuiWidget{
+                .object = label,
+                .data = try lib.internal.lasting_allocator.create(EventUserData),
+            },
         };
     }
 
