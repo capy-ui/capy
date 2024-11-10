@@ -196,6 +196,10 @@ pub fn Widgeting(comptime T: type) type {
             }
         }
 
+        pub fn getSize(self: *T) Size {
+            return Size.init(@floatFromInt(self.getWidth()), @floatFromInt(self.getHeight()));
+        }
+
         pub fn getWidth(self: *T) u32 {
             if (self.peer) |peer| {
                 return @intCast(peer.getWidth());
@@ -681,7 +685,7 @@ pub fn Events(comptime T: type) type {
 
         fn resizeHandler(width: u32, height: u32, data: usize) void {
             const self = @as(*T, @ptrFromInt(data));
-            const size = Size{ .width = width, .height = height };
+            const size = Size{ .width = @floatFromInt(width), .height = @floatFromInt(height) };
             for (self.widget_data.handlers.resizeHandlers.items) |func| {
                 func(self, size) catch |err| errorHandler(err);
             }

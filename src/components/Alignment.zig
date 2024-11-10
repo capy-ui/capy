@@ -85,20 +85,20 @@ pub const Alignment = struct {
             self.relayouting.store(true, .seq_cst);
             defer self.relayouting.store(false, .seq_cst);
 
-            const available = Size{ .width = @as(u32, @intCast(peer.getWidth())), .height = @as(u32, @intCast(peer.getHeight())) };
+            const available = self.getSize();
 
             const alignX = self.x.get();
             const alignY = self.y.get();
 
-            if (self.child.get().peer) |widgetPeer| {
-                const preferredSize = self.child.get().getPreferredSize(available);
-                const finalSize = Size.intersect(preferredSize, available);
+            if (self.child.get().peer) |widget_peer| {
+                const preferred_size = self.child.get().getPreferredSize(available);
+                const final_size = Size.intersect(preferred_size, available);
 
-                const x = @as(u32, @intFromFloat(alignX * @as(f32, @floatFromInt(available.width -| finalSize.width))));
-                const y = @as(u32, @intFromFloat(alignY * @as(f32, @floatFromInt(available.height -| finalSize.height))));
+                const x: u32 = @intFromFloat(alignX * available.width - final_size.width);
+                const y: u32 = @intFromFloat(alignY * available.height - final_size.height);
 
-                peer.move(widgetPeer, x, y);
-                peer.resize(widgetPeer, finalSize.width, finalSize.height);
+                peer.move(widget_peer, x, y);
+                peer.resize(widget_peer, @intFromFloat(final_size.width), @intFromFloat(final_size.height));
             }
 
             _ = self.widget_data.atoms.animation_controller.addChangeListener(.{

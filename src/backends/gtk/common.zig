@@ -267,8 +267,8 @@ pub fn Events(comptime T: type) type {
             var requisition: c.GtkRequisition = undefined;
             c.gtk_widget_get_preferred_size(self.peer, null, &requisition);
             return lib.Size.init(
-                @as(u32, @intCast(requisition.width)),
-                @as(u32, @intCast(requisition.height)),
+                @floatFromInt(requisition.width),
+                @floatFromInt(requisition.height),
             );
         }
     };

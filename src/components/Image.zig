@@ -48,9 +48,9 @@ pub const Image = struct {
 
     pub fn getPreferredSize(self: *Image, available: Size) Size {
         if (self.data.get()) |data| {
-            return Size.init(data.width, data.height);
+            return Size.init(@floatFromInt(data.width), @floatFromInt(data.height));
         } else {
-            return Size.init(100, 30).intersect(available);
+            return Size.init(100, 100).intersect(available);
         }
     }
 

@@ -65,14 +65,10 @@ pub const Navigation = struct {
             self.relayouting.store(true, .seq_cst);
             defer self.relayouting.store(false, .seq_cst);
 
-            const available = Size{
-                .width = @as(u32, @intCast(peer.getWidth())),
-                .height = @as(u32, @intCast(peer.getHeight())),
-            };
-
+            const available = self.getSize();
             if (self.activeChild.peer) |widgetPeer| {
                 peer.move(widgetPeer, 0, 0);
-                peer.resize(widgetPeer, available.width, available.height);
+                peer.resize(widgetPeer, @intFromFloat(available.width), @intFromFloat(available.height));
             }
         }
     }

@@ -104,7 +104,7 @@ pub const Window = struct {
             const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
             defer internal.scratch_allocator.free(id);
             if (devices.get(id)) |device| {
-                self.peer.resize(@as(c_int, @intCast(device.resolution.width)), @as(c_int, @intCast(device.resolution.height)));
+                self.peer.resize(@as(c_int, @intFromFloat(device.resolution.width)), @as(c_int, @intFromFloat(device.resolution.height)));
                 self.setSourceDpi(device.dpi);
                 return;
             } else if (!did_invalid_warning) {
@@ -116,14 +116,14 @@ pub const Window = struct {
                 did_invalid_warning = true;
             }
         }
-        self.size.set(.{ .width = width, .height = height });
+        self.size.set(.{ .width = @floatFromInt(width), .height = @floatFromInt(height) });
         self.peer.setUserData(self);
         self.peer.resize(@as(c_int, @intCast(width)), @as(c_int, @intCast(height)));
     }
 
     fn sizeChanged(width: u32, height: u32, data: usize) void {
         const self = @as(*Window, @ptrFromInt(data));
-        self.size.set(.{ .width = width, .height = height });
+        self.size.set(.{ .width = @floatFromInt(width), .height = @floatFromInt(height) });
     }
 
     fn propertyChanged(name: []const u8, value: *const anyopaque, data: usize) void {
@@ -186,7 +186,9 @@ pub const Window = struct {
         if (self._child) |child| {
             child.unref();
         }
+        self.animation_controller.deinit();
         self.on_frame.deinitAllListeners();
+        internal.lasting_allocator.destroy(self.on_frame);
         self.peer.deinit();
     }
 };

@@ -57,7 +57,7 @@ pub const Label = struct {
         } else {
             // Crude approximation
             const len = self.text.get().len;
-            return Size{ .width = @as(u32, @intCast(10 * len)), .height = 40.0 };
+            return Size{ .width = @floatFromInt(10 * len), .height = 40.0 };
         }
     }
 

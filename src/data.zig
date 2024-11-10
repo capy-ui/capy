@@ -50,7 +50,6 @@ pub fn lerp(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
         @compileError("type " ++ @typeName(T) ++ " does not support linear interpolation");
     }
 }
-const lerpInt = lerp;
 
 pub const Easing = *const fn (t: f64) f64;
 pub const Easings = struct {
@@ -1033,34 +1032,38 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
 
 /// A position expressed in display pixels.
 pub const Position = struct {
-    x: i32,
-    y: i32,
+    x: f32,
+    y: f32,
 
     /// Shorthand for struct initialization
-    pub fn init(x: i32, y: i32) Position {
+    pub fn init(x: f32, y: f32) Position {
         return Position{ .x = x, .y = y };
     }
 
     pub fn lerp(a: Position, b: Position, t: f64) Position {
         return Position{
-            .x = lerpInt(a.x, b.x, t),
-            .y = lerpInt(a.y, b.y, t),
+            .x = lerpFloat(a.x, b.x, t),
+            .y = lerpFloat(a.y, b.y, t),
         };
     }
 };
 
 /// A size expressed in display pixels.
 pub const Size = struct {
-    width: u32,
-    height: u32,
+    width: f32,
+    height: f32,
 
     /// Shorthand for struct initialization
-    pub fn init(width: u32, height: u32) Size {
+    pub fn init(width: f32, height: f32) Size {
+        std.debug.assert(width >= 0);
+        std.debug.assert(height >= 0);
         return Size{ .width = width, .height = height };
     }
 
     /// Returns the size with the least area
     pub fn min(a: Size, b: Size) Size {
+        std.debug.assert(a.width >= 0 and a.height >= 0);
+        std.debug.assert(b.width >= 0 and b.height >= 0);
         if (a.width * a.height < b.width * b.height) {
             return a;
         } else {
@@ -1070,6 +1073,8 @@ pub const Size = struct {
 
     /// Returns the size with the most area
     pub fn max(a: Size, b: Size) Size {
+        std.debug.assert(a.width >= 0 and a.height >= 0);
+        std.debug.assert(b.width >= 0 and b.height >= 0);
         if (a.width * a.height > b.width * b.height) {
             return a;
         } else {
@@ -1079,6 +1084,8 @@ pub const Size = struct {
 
     /// Combine two sizes by taking the largest width and the largest height
     pub fn combine(a: Size, b: Size) Size {
+        std.debug.assert(a.width >= 0 and a.height >= 0);
+        std.debug.assert(b.width >= 0 and b.height >= 0);
         return Size{
             .width = @max(a.width, b.width),
             .height = @max(a.height, b.height),
@@ -1087,6 +1094,8 @@ pub const Size = struct {
 
     /// Intersect two sizes by taking the lowest width and the lowest height
     pub fn intersect(a: Size, b: Size) Size {
+        std.debug.assert(a.width >= 0 and a.height >= 0);
+        std.debug.assert(b.width >= 0 and b.height >= 0);
         return Size{
             .width = @min(a.width, b.width),
             .height = @min(a.height, b.height),
@@ -1094,9 +1103,11 @@ pub const Size = struct {
     }
 
     pub fn lerp(a: Size, b: Size, t: f64) Size {
+        std.debug.assert(a.width >= 0 and a.height >= 0);
+        std.debug.assert(b.width >= 0 and b.height >= 0);
         return Size{
-            .width = lerpInt(a.width, b.width, t),
-            .height = lerpInt(a.height, b.height, t),
+            .width = lerpFloat(a.width, b.width, t),
+            .height = lerpFloat(a.height, b.height, t),
         };
     }
 
@@ -1147,10 +1158,10 @@ pub const Rectangle = struct {
     origin: Position,
     size: Size,
 
-    pub fn init(ox: i32, oy: i32, owidth: u32, oheight: u32) Rectangle {
+    pub fn init(ox: f32, oy: f32, owidth: f32, oheight: f32) Rectangle {
         return Rectangle{
-            .origin = .{ .x = ox, .y = oy },
-            .size = .{ .width = owidth, .height = oheight },
+            .origin = Position.init(ox, oy),
+            .size = Size.init(owidth, oheight),
         };
     }
 
@@ -1161,20 +1172,45 @@ pub const Rectangle = struct {
         };
     }
 
-    pub fn x(self: Rectangle) i32 {
+    pub fn x(self: Rectangle) f32 {
         return self.origin.x;
     }
 
-    pub fn y(self: Rectangle) i32 {
+    pub fn y(self: Rectangle) f32 {
         return self.origin.y;
     }
 
-    pub fn width(self: Rectangle) u32 {
+    pub fn width(self: Rectangle) f32 {
         return self.size.width;
     }
 
-    pub fn height(self: Rectangle) u32 {
+    pub fn height(self: Rectangle) f32 {
         return self.size.height;
+    }
+
+    pub fn combine(a: Rectangle, b: Rectangle) Rectangle {
+        // The X coordinate of the right-most point of the first rectangle.
+        const right = a.origin.x + a.size.width;
+        // The Y coordinate of the bottom point of the first rectangle.
+        const bottom = a.origin.y + a.size.height;
+
+        const new_origin = Position{
+            .x = @min(a.origin.x, b.origin.x),
+            .y = @min(a.origin.y, b.origin.y),
+        };
+        return .{
+            .origin = new_origin,
+            .size = .{
+                .width = @max(right, b.origin.x + b.size.width) - new_origin.x,
+                .height = @max(bottom, b.origin.y + b.size.height) - new_origin.y,
+            },
+        };
+    }
+
+    pub fn intersection(a: Rectangle, b: Rectangle) Rectangle {
+        _ = a;
+        _ = b;
+        return undefined;
     }
 };
 
