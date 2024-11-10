@@ -94,8 +94,8 @@ pub const Alignment = struct {
                 const preferred_size = self.child.get().getPreferredSize(available);
                 const final_size = Size.intersect(preferred_size, available);
 
-                const x: u32 = @intFromFloat(alignX * available.width - final_size.width);
-                const y: u32 = @intFromFloat(alignY * available.height - final_size.height);
+                const x: u32 = @intFromFloat(alignX * @max(0, available.width - final_size.width));
+                const y: u32 = @intFromFloat(alignY * @max(0, available.height - final_size.height));
 
                 peer.move(widget_peer, x, y);
                 peer.resize(widget_peer, @intFromFloat(final_size.width), @intFromFloat(final_size.height));

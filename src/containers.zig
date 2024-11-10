@@ -48,7 +48,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []*Widget) void {
     const config = peer.getLayoutConfig(ColumnRowConfig);
     const spacing: f32 = @floatFromInt(config.spacing);
 
-    const totalAvailableHeight = peer.getSize(peer.userdata).height - @as(f32, @floatFromInt((widgets.len -| 1) * config.spacing));
+    const totalAvailableHeight: f32 = @max(0, peer.getSize(peer.userdata).height - @as(f32, @floatFromInt((widgets.len -| 1) * config.spacing)));
 
     var childHeight = if (expandedCount == 0) 0 else totalAvailableHeight / @as(f32, @floatFromInt(expandedCount));
     for (widgets) |widget| {
@@ -81,7 +81,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []*Widget) void {
 
             const available = Size{
                 .width = peer.getSize(peer.userdata).width,
-                .height = if (widget.container_expanded) childHeight else peer.getSize(peer.userdata).height - childY,
+                .height = if (widget.container_expanded) childHeight else @max(0, peer.getSize(peer.userdata).height - childY),
             };
             const preferred = widget.getPreferredSize(available);
             const size = blk: {
@@ -124,7 +124,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []*Widget) void {
     const config = peer.getLayoutConfig(ColumnRowConfig);
     const spacing: f32 = @floatFromInt(config.spacing);
 
-    const totalAvailableWidth = peer.getSize(peer.userdata).width - @as(f32, @floatFromInt((widgets.len -| 1) * config.spacing));
+    const totalAvailableWidth: f32 = @max(0, peer.getSize(peer.userdata).width - @as(f32, @floatFromInt((widgets.len -| 1) * config.spacing)));
 
     var childWidth = if (expandedCount == 0) 0 else totalAvailableWidth / @as(f32, @floatFromInt(expandedCount));
     for (widgets) |widget| {
@@ -156,7 +156,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []*Widget) void {
             }
 
             const available = Size{
-                .width = if (widget.container_expanded) childWidth else peer.getSize(peer.userdata).width - childX,
+                .width = if (widget.container_expanded) childWidth else @max(0, peer.getSize(peer.userdata).width - childX),
                 .height = peer.getSize(peer.userdata).height,
             };
             const preferred = widget.getPreferredSize(available);
