@@ -341,10 +341,17 @@ pub fn Atom(comptime T: type) type {
             }
         }
 
-        /// Returns true if there is currently an animation playing.
-        pub fn hasAnimation(self: *Self) bool {
+        /// Returns true if there is currently an animation playing. This method doesn't lock the
+        /// Atom.
+        pub fn hasAnimation(self: *const Self) bool {
             if (!isAnimatable) return false;
-            return self.update();
+            switch (self.value) {
+                .Animated => |animation| {
+                    const now = std.time.Instant.now() catch return false;
+                    return now.since(animation.start) < @as(u64, animation.duration) * std.time.ns_per_ms;
+                },
+                .Single => return false,
+            }
         }
 
         /// Starts an animation on the atom, from the current value to the `target` value. The
