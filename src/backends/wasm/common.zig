@@ -77,13 +77,25 @@ pub fn Events(comptime T: type) type {
         /// Requests a redraw
         pub fn requestDraw(self: *T) !void {
             if (@hasDecl(T, "_requestDraw")) {
-                try self._requestDraw();
+                self._requestDraw();
             }
         }
 
         pub fn processEvent(object: ?*anyopaque, event: js.EventId) void {
             const self = @as(*T, @ptrCast(@alignCast(object.?)));
 
+            // This is a global event, so calling getEventTarget on it would fail.
+            if (js.getEventType(event) == .WindowTick) {
+                if (@hasDecl(T, "_onWindowTick")) {
+                    self._onWindowTick();
+                }
+                if (T == Container) {
+                    for (self.peer.children.items) |child| {
+                        child.processEventFn(child.object, event);
+                    }
+                }
+                return;
+            }
             if (js.getEventTarget(event) == self.peer.element) {
                 // handle event
                 switch (js.getEventType(event)) {

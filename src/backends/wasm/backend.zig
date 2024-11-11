@@ -119,6 +119,9 @@ pub fn runStep(step: shared.EventLoopStep) bool {
                         const value: u64 = 0;
                         handler("tick_id", &value, window.peer.userdata);
                     }
+                    if (window.child) |child| {
+                        child.processEventFn(child.object, eventId);
+                    }
                 }
             },
             else => {

@@ -8,6 +8,7 @@ const Events = common.Events;
 const Canvas = @This();
 
 peer: *GuiWidget,
+dirty: bool,
 
 pub usingnamespace Events(Canvas);
 
@@ -107,17 +108,27 @@ pub const DrawContextImpl = struct {
 };
 
 pub fn create() !Canvas {
-    return Canvas{ .peer = try GuiWidget.init(
-        Canvas,
-        lib.lasting_allocator,
-        "canvas",
-        "canvas",
-    ) };
+    return Canvas{
+        .peer = try GuiWidget.init(
+            Canvas,
+            lib.lasting_allocator,
+            "canvas",
+            "canvas",
+        ),
+        .dirty = true, // the Canvas needs one initial draw
+    };
 }
 
-pub fn _requestDraw(self: *Canvas) !void {
-    const ctxId = js.openContext(self.peer.element);
-    const impl = DrawContextImpl{ .ctx = ctxId };
+pub fn _requestDraw(self: *Canvas) void {
+    self.dirty = true;
+}
+
+pub fn _onWindowTick(self: *Canvas) void {
+    if (!self.dirty) return;
+    defer self.dirty = false;
+
+    const ctx_id = js.openContext(self.peer.element);
+    const impl = DrawContextImpl{ .ctx = ctx_id };
     var ctx = @import("../../backend.zig").DrawContext{ .impl = impl };
     if (self.peer.class.drawHandler) |handler| {
         handler(&ctx, self.peer.classUserdata);

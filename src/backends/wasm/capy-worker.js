@@ -226,6 +226,10 @@ class WasiImplementation {
 	fd_filestat_get = (fd, buf) => {
 		// TODO
 	}
+
+	proc_exit = (code) => {
+		
+	}
 }
 
 const env = {
