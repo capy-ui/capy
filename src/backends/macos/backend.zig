@@ -15,8 +15,7 @@ const MouseButton = shared.MouseButton;
 
 pub const Monitor = @import("Monitor.zig");
 
-// pub const PeerType = *opaque {};
-pub const PeerType = objc.Object;
+pub const PeerType = GuiWidget;
 
 pub const Button = @import("components/Button.zig");
 
@@ -54,22 +53,24 @@ pub const EventUserData = struct {
     class: EventFunctions = .{},
     userdata: usize = 0,
     classUserdata: usize = 0,
-    peer: PeerType,
+    peer: objc.Object,
     focusOnClick: bool = false,
 };
 
-var test_data = EventUserData{ .peer = undefined };
-pub inline fn getEventUserData(peer: PeerType) *EventUserData {
-    _ = peer;
-    return &test_data;
-    //return @ptrCast(*EventUserData, @alignCast(@alignOf(EventUserData), c.g_object_get_data(@ptrCast(*c.GObject, peer), "eventUserData").?));
+pub const GuiWidget = struct {
+    object: objc.Object,
+    data: *EventUserData,
+};
+
+pub inline fn getEventUserData(peer: GuiWidget) *EventUserData {
+    return peer.data;
 }
 
 pub fn Events(comptime T: type) type {
     return struct {
         const Self = @This();
 
-        pub fn setupEvents(peer: objc.Object) BackendError!void {
+        pub fn setupEvents(peer: GuiWidget) BackendError!void {
             _ = peer;
             // TODO
         }
@@ -136,7 +137,8 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn deinit(self: *const T) void {
-            _ = self;
+            const peer = self.peer;
+            lib.internal.lasting_allocator.destroy(peer.data);
         }
     };
 }
@@ -144,7 +146,7 @@ pub fn Events(comptime T: type) type {
 pub const Window = struct {
     source_dpi: u32 = 96,
     scale: f32 = 1.0,
-    peer: objc.Object,
+    peer: GuiWidget,
 
     pub usingnamespace Events(Window);
     pub fn registerTickCallback(self: *Window) void {
@@ -165,27 +167,30 @@ pub const Window = struct {
         );
 
         return Window{
-            .peer = window,
+            .peer = GuiWidget{
+                .object = window,
+                .data = try lib.internal.lasting_allocator.create(EventUserData),
+            },
         };
     }
 
     pub fn resize(self: *Window, width: c_int, height: c_int) void {
-        var frame = self.peer.getProperty(AppKit.NSRect, "frame");
+        var frame = self.peer.object.getProperty(AppKit.NSRect, "frame");
         frame.size.width = @floatFromInt(width);
         frame.size.height = @floatFromInt(height);
-        self.peer.msgSend(void, "setFrame:display:", .{ frame, true });
+        self.peer.object.msgSend(void, "setFrame:display:", .{ frame, true });
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
         const pool = objc.AutoreleasePool.init();
         defer pool.deinit();
 
-        self.peer.setProperty("title", AppKit.nsString(title));
+        self.peer.object.setProperty("title", AppKit.nsString(title));
     }
 
-    pub fn setChild(self: *Window, optional_peer: ?PeerType) void {
+    pub fn setChild(self: *Window, optional_peer: ?GuiWidget) void {
         if (optional_peer) |peer| {
-            self.peer.setProperty("contentView", peer);
+            self.peer.object.setProperty("contentView", peer);
         } else {
             @panic("TODO: set null child");
         }
@@ -199,12 +204,12 @@ pub const Window = struct {
     }
 
     pub fn show(self: *Window) void {
-        self.peer.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.value});
+        self.peer.object.msgSend(void, "makeKeyAndOrderFront:", .{self.peer.object.value});
         _ = activeWindows.fetchAdd(1, .release);
     }
 
     pub fn close(self: *Window) void {
-        self.peer.msgSend(void, "close", .{});
+        self.peer.object.msgSend(void, "close", .{});
         _ = activeWindows.fetchSub(1, .release);
     }
 };
@@ -234,7 +239,7 @@ fn getFlippedNSView() !objc.Class {
 }
 
 pub const Container = struct {
-    peer: objc.Object,
+    peer: GuiWidget,
 
     pub usingnamespace Events(Container);
 
@@ -242,24 +247,27 @@ pub const Container = struct {
         const view = (try getFlippedNSView())
             .msgSend(objc.Object, "alloc", .{})
             .msgSend(objc.Object, "initWithFrame:", .{AppKit.NSRect.make(0, 0, 1, 1)});
-        return Container{ .peer = view };
+        return Container{ .peer = GuiWidget{
+            .object = view,
+            .data = try lib.internal.lasting_allocator.create(EventUserData),
+        } };
     }
 
-    pub fn add(self: *const Container, peer: PeerType) void {
-        self.peer.msgSend(void, "addSubview:", .{peer});
+    pub fn add(self: *const Container, peer: GuiWidget) void {
+        self.peer.object.msgSend(void, "addSubview:", .{peer.object});
     }
 
-    pub fn remove(self: *const Container, peer: PeerType) void {
+    pub fn remove(self: *const Container, peer: GuiWidget) void {
         _ = self;
-        peer.msgSend(void, "removeFromSuperview", .{});
+        peer.object.msgSend(void, "removeFromSuperview", .{});
     }
 
-    pub fn move(self: *const Container, peer: PeerType, x: u32, y: u32) void {
+    pub fn move(self: *const Container, peer: GuiWidget, x: u32, y: u32) void {
         _ = self;
 
-        const peerFrame = peer.getProperty(AppKit.NSRect, "frame");
+        const peerFrame = peer.object.getProperty(AppKit.NSRect, "frame");
 
-        peer.setProperty("frame", AppKit.NSRect.make(
+        peer.object.setProperty("frame", AppKit.NSRect.make(
             @floatFromInt(x),
             @floatFromInt(y),
             peerFrame.size.width,
@@ -267,12 +275,12 @@ pub const Container = struct {
         ));
     }
 
-    pub fn resize(self: *const Container, peer: PeerType, width: u32, height: u32) void {
+    pub fn resize(self: *const Container, peer: GuiWidget, width: u32, height: u32) void {
         _ = self;
 
-        const peerFrame = peer.getProperty(AppKit.NSRect, "frame");
+        const peerFrame = peer.object.getProperty(AppKit.NSRect, "frame");
 
-        peer.setProperty("frame", AppKit.NSRect.make(
+        peer.object.setProperty("frame", AppKit.NSRect.make(
             peerFrame.origin.x,
             peerFrame.origin.y,
             @floatFromInt(width),
@@ -280,7 +288,7 @@ pub const Container = struct {
         ));
     }
 
-    pub fn setTabOrder(self: *const Container, peers: []const PeerType) void {
+    pub fn setTabOrder(self: *const Container, peers: []const GuiWidget) void {
         _ = peers;
         _ = self;
     }
@@ -335,7 +343,7 @@ pub fn runStep(step: shared.EventLoopStep) bool {
 }
 
 pub const Label = struct {
-    peer: objc.Object,
+    peer: GuiWidget,
 
     pub usingnamespace Events(Label);
 
@@ -343,7 +351,10 @@ pub const Label = struct {
         const NSTextField = objc.getClass("NSTextField").?;
         const label = NSTextField.msgSend(objc.Object, "labelWithString:", .{AppKit.nsString("")});
         return Label{
-            .peer = label,
+            .peer = GuiWidget{
+                .object = label,
+                .data = try lib.internal.lasting_allocator.create(EventUserData),
+            },
         };
     }
 
@@ -355,7 +366,12 @@ pub const Label = struct {
     pub fn setText(self: *Label, text: []const u8) void {
         const nullTerminatedText = lib.internal.scratch_allocator.dupeZ(u8, text) catch return;
         defer lib.internal.scratch_allocator.free(nullTerminatedText);
-        self.peer.msgSend(void, "setStringValue:", .{AppKit.nsString(nullTerminatedText)});
+        self.peer.object.msgSend(void, "setStringValue:", .{AppKit.nsString(nullTerminatedText)});
+    }
+
+    pub fn setFont(self: *Label, font: lib.Font) void {
+        _ = self;
+        _ = font;
     }
 
     pub fn destroy(self: *Label) void {
