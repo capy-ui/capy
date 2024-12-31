@@ -44,6 +44,7 @@ pub fn create() common.BackendError!Window {
 
     const surface = c.gtk_native_get_surface(@ptrCast(window));
     _ = c.g_signal_connect_data(surface, "layout", @ptrCast(&gtkLayout), window, null, c.G_CONNECT_AFTER);
+    _ = c.g_signal_connect_data(window, "close-request", @as(c.GCallback, @ptrCast(&gtkCloseRequest)), null, null, c.G_CONNECT_AFTER);
     return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
 }
 
@@ -76,6 +77,18 @@ fn gtkLayout(peer: *c.GdkSurface, width: c.gint, height: c.gint, userdata: ?*any
         if (child_data.user.resizeHandler) |handler|
             handler(@as(u32, @intCast(width)), @as(u32, @intCast(height)), child_data.userdata);
     }
+    return 0;
+}
+
+fn gtkCloseRequest(peer: *c.GtkWindow, userdata: ?*anyopaque) callconv(.C) c.gint {
+    _ = userdata;
+    const data = common.getEventUserData(@ptrCast(peer));
+    const value_bool: bool = false;
+    if (data.class.propertyChangeHandler) |handler|
+        handler("visible", &value_bool, data.userdata);
+    if (data.user.propertyChangeHandler) |handler|
+        handler("visible", &value_bool, data.userdata);
+
     return 0;
 }
 
@@ -162,6 +175,12 @@ pub fn unfullscreen(self: *Window) void {
 
 pub fn show(self: *Window) void {
     c.gtk_widget_show(self.peer);
+    const data = common.getEventUserData(self.peer);
+    const value_bool: bool = true;
+    if (data.class.propertyChangeHandler) |handler|
+        handler("visible", &value_bool, data.userdata);
+    if (data.user.propertyChangeHandler) |handler|
+        handler("visible", &value_bool, data.userdata);
 }
 
 pub fn registerTickCallback(self: *Window) void {

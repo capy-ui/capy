@@ -6,12 +6,16 @@ const ListAtom = @import("data.zig").ListAtom;
 // TODO: when a monitor is removed, monitor.peer.deinit should be called
 pub const Monitors = struct {
     /// List of all monitors that are connected
-    pub var list = ListAtom(Monitor).init(internal.lasting_allocator);
+    pub var list: ListAtom(Monitor) = undefined;
+    /// Lock used to ensure the backend is initialized only once (at least in debug mode)
+    var initialized: std.debug.SafetyLock = .{};
 
     /// Init the subsystem by filling the monitor list and by listening to events indicating
     /// that a monitor is being added or removed.
     /// This function is called by `capy.init()`, so it doesn't need to be called manually.
     pub fn init() void {
+        initialized.lock();
+        Monitors.list = ListAtom(Monitor).init(internal.lasting_allocator);
         const peer_list = backend.Monitor.getList();
         for (peer_list) |*monitor_peer| {
             list.append(Monitor.init(monitor_peer)) catch @panic("OOM");
@@ -25,6 +29,7 @@ pub const Monitors = struct {
 
     /// This function is called by `capy.deinit()`, so it doesn't need to be called manually.
     pub fn deinit() void {
+        initialized.unlock();
         {
             var iterator = Monitors.list.iterate();
             defer iterator.deinit();
@@ -33,7 +38,6 @@ pub const Monitors = struct {
             }
         }
         Monitors.list.deinit();
-        Monitors.list = ListAtom(Monitor).init(internal.lasting_allocator);
         backend.Monitor.deinitAllPeers();
     }
 };
@@ -129,10 +133,6 @@ pub const Monitor = struct {
         const monitor = Monitors.list.get(0);
         const width, const height = monitor.getSize();
         std.log.info("Monitor pixels: {d} px x {d} px", .{ width, height });
-
-        // Alternate usage to only retrieve the monitor's height
-        _, const h = monitor.getSize();
-        _ = h;
     }
 };
 

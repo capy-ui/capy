@@ -19,12 +19,17 @@ var totalEnergy = capy.Atom(f32).of(0);
 const BALL_DIAMETER = 20;
 const BALL_RADIUS = BALL_DIAMETER / 2;
 
-//var gpa = std.heap.GeneralPurposeAllocator(.{}) {};
-//pub const capy_allocator = gpa.allocator();
+var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+pub const capy_allocator = gpa.allocator();
 
 pub fn main() !void {
+    defer _ = gpa.deinit();
     try capy.init();
+    defer capy.deinit();
+
+    defer totalEnergy.deinit();
     balls = std.ArrayList(Ball).init(capy.internal.lasting_allocator);
+    defer balls.deinit();
 
     // Generate random balls
     var prng = std.Random.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
@@ -39,6 +44,8 @@ pub fn main() !void {
         });
     }
 
+    // the canvas isn't referenced (canvas.ref()) so it will get deinitialized whenever the window
+    // is deinitialized
     var canvas = capy.canvas(.{
         .preferredSize = capy.Size.init(500, 500),
         .ondraw = @as(*const fn (*anyopaque, *capy.DrawContext) anyerror!void, @ptrCast(&onDraw)),
@@ -51,6 +58,7 @@ pub fn main() !void {
     defer totalEnergyFormat.deinit();
 
     var window = try capy.Window.init();
+    defer window.deinit();
     try window.set(capy.column(.{}, .{
         capy.label(.{ .text = "Balls with attraction and friction" }),
         capy.label(.{})
@@ -129,7 +137,7 @@ fn simulationThread(window: *capy.Window) !void {
     const root = window.getChild().?.as(capy.Container);
     const canvas = root.getChild("ball-canvas").?.as(capy.Canvas);
 
-    while (true) {
+    while (window.visible.get()) {
         const delta = 1.0 / 60.0;
         for (balls.items, 0..) |*ball, i| {
             // Moving
