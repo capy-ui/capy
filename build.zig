@@ -219,7 +219,7 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = optimize,
     });
-    try installCapyDependencies(b, &tests.root_module, options);
+    try installCapyDependencies(b, tests.root_module, options);
     const run_tests = try runStep(tests, .{});
 
     const test_step = b.step("test", "Run unit tests and also generate the documentation");
@@ -234,7 +234,7 @@ pub fn build(b: *std.Build) !void {
         .target = target,
         .optimize = .Debug,
     });
-    try installCapyDependencies(b, &docs.root_module, options);
+    try installCapyDependencies(b, docs.root_module, options);
     const install_docs = b.addInstallDirectory(.{
         .source_dir = docs.getEmittedDocs(),
         .install_dir = .prefix,
@@ -255,7 +255,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
     coverage_tests.setExecCmd(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output", null });
-    try installCapyDependencies(b, &coverage_tests.root_module, options);
+    try installCapyDependencies(b, coverage_tests.root_module, options);
 
     const run_coverage_tests = b.addSystemCommand(&.{ "kcov", "--clean", "--include-pattern=src/", "kcov-output" });
     run_coverage_tests.addArtifactArg(coverage_tests);

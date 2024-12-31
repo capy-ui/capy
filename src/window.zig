@@ -17,10 +17,10 @@ const Display = struct { resolution: Size, dpi: u32 };
 const isErrorUnion = @import("internal.zig").isErrorUnion;
 
 const devices = std.StaticStringMap(Display).initComptime(.{
-    .{ "iphone-13-mini", .{ .resolution = Size.init(1080, 2340), .dpi = 476 } },
-    .{ "iphone-13", .{ .resolution = Size.init(1170, 2532), .dpi = 460 } },
-    .{ "pixel-6", .{ .resolution = Size.init(1080, 2400), .dpi = 411 } },
-    .{ "pixel-6-pro", .{ .resolution = Size.init(1440, 3120), .dpi = 512 } },
+    .{ "iphone-13-mini", Display{ .resolution = Size.init(1080, 2340), .dpi = 476 } },
+    .{ "iphone-13", Display{ .resolution = Size.init(1170, 2532), .dpi = 460 } },
+    .{ "pixel-6", Display{ .resolution = Size.init(1080, 2400), .dpi = 411 } },
+    .{ "pixel-6-pro", Display{ .resolution = Size.init(1440, 3120), .dpi = 512 } },
 });
 
 pub const Window = struct {

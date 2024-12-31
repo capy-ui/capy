@@ -28,7 +28,7 @@ const Callbacks = struct {
     }
 };
 
-fn getExpandedCount(widgets: []*const Widget) u32 {
+fn getExpandedCount(widgets: []const *const Widget) u32 {
     var expandedCount: u32 = 0;
     for (widgets) |widget| {
         if (widget.container_expanded) expandedCount += 1;

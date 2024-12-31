@@ -917,7 +917,7 @@ pub fn configureStep(
     }) catch unreachable;
     const system_include_dir = std.fs.path.resolve(sdk.b.allocator, &[_][]const u8{ include_dir, config.include_dir }) catch unreachable;
 
-    configureModule(sdk, &exe.root_module, app_config, target);
+    configureModule(sdk, exe.root_module, app_config, target);
     exe.link_emit_relocs = true;
     exe.link_eh_frame_hdr = true;
     exe.root_module.pic = true;

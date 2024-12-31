@@ -292,9 +292,9 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
 }
 
 comptime {
-    const supported_zig = std.SemanticVersion.parse("0.14.0-dev.1911+3bf89f55c") catch unreachable;
+    const supported_zig = std.SemanticVersion.parse("0.14.0-dev.2577+271452d22") catch unreachable;
     const zig_version = @import("builtin").zig_version;
     if (zig_version.order(supported_zig) != .eq) {
-        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.10.0-mach: https://machengine.org/docs/nominated-zig/#2024100-mach", .{@import("builtin").zig_version}));
+        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.11.0-mach: https://machengine.org/docs/nominated-zig/#2024110-mach", .{@import("builtin").zig_version}));
     }
 }
