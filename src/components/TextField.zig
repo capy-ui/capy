@@ -11,7 +11,7 @@ pub const TextField = struct {
 
     peer: ?backend.TextField = null,
     widget_data: TextField.WidgetData = .{},
-    /// The text this TextField contains
+    /// The text displayed by this TextField. This is assumed to be valid UTF-8.
     text: Atom([]const u8) = Atom([]const u8).of(""),
     /// Whether the TextField is read-only
     readOnly: Atom(bool) = Atom(bool).of(false),

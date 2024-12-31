@@ -27,7 +27,7 @@ pub fn create() common.BackendError!TextField {
 }
 
 pub fn setText(self: *TextField, text: []const u8) void {
-    var view = std.unicode.Utf8View.initUnchecked(text);
+    var view = std.unicode.Utf8View.init(text) catch return;
     var iterator = view.iterator();
     var numChars: c_int = 0;
     while (iterator.nextCodepoint() != null) {

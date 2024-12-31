@@ -157,6 +157,36 @@ test "backend: text field" {
 
     field.setReadOnly(true);
     field.setReadOnly(false);
+
+    try std.testing.fuzz(fuzzTextField, .{});
+}
+
+fn fuzzTextField(input: []const u8) !void {
+    var field = try backend.TextField.create();
+    defer field.deinit();
+    field.setText(input);
+    if (std.unicode.utf8ValidateSlice(input)) {
+        // This constraint only holds if the input is valid UTF-8
+        try std.testing.expectEqualStrings(input, field.getText());
+    }
+}
+
+test "backend: button" {
+    try std.testing.fuzz(fuzzButton, .{});
+}
+
+fn fuzzButton(input: []const u8) !void {
+    var button = try backend.Button.create();
+    defer button.deinit();
+
+    const null_terminated_input = try std.testing.allocator.dupeZ(u8, input);
+    defer std.testing.allocator.free(null_terminated_input);
+
+    button.setLabel(null_terminated_input);
+    if (std.unicode.utf8ValidateSlice(input)) {
+        // This constraint only holds if the input is valid UTF-8
+        try std.testing.expectEqualStrings(null_terminated_input, button.getLabel());
+    }
 }
 
 test "backend: scrollable" {
