@@ -1526,10 +1526,10 @@ pub const ScrollView = struct {
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
         _ = win32.MoveWindow(
             child,
-            @max(rect.left - parent.left, @min(0, -(@as(c_int, @intCast(preferred.width)) - width))),
-            @max(rect.top - parent.top, @min(0, -(@as(c_int, @intCast(preferred.height)) - height))),
-            @as(c_int, @intCast(preferred.width)),
-            @as(c_int, @intCast(preferred.height)),
+            @max(rect.left - parent.left, @min(0, -(@as(c_int, @intFromFloat(preferred.width)) - width))),
+            @max(rect.top - parent.top, @min(0, -(@as(c_int, @intFromFloat(preferred.height)) - height))),
+            @as(c_int, @intFromFloat(preferred.width)),
+            @as(c_int, @intFromFloat(preferred.height)),
             1,
         );
 
@@ -1538,7 +1538,7 @@ pub const ScrollView = struct {
             .cbSize = @sizeOf(win32.SCROLLINFO),
             .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
             .nMin = 0,
-            .nMax = @as(c_int, @intCast(preferred.width)),
+            .nMax = @as(c_int, @intFromFloat(preferred.width)),
             .nPage = @as(c_uint, @intCast(width)),
             .nPos = 0,
             .nTrackPos = 0,
@@ -1549,7 +1549,7 @@ pub const ScrollView = struct {
             .cbSize = @sizeOf(win32.SCROLLINFO),
             .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
             .nMin = 0,
-            .nMax = @as(c_int, @intCast(preferred.height)),
+            .nMax = @as(c_int, @intFromFloat(preferred.height)),
             .nPage = @as(c_uint, @intCast(height)),
             .nPos = 0,
             .nTrackPos = 0,

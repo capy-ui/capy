@@ -18,6 +18,7 @@ jobs:
         uses: goto-bus-stop/setup-zig@v2
         with:
           version: 0.14.0-dev.2577+271452d22
+
       - name: Test Coverage Capy for native
         run: xvfb-run -a zig build coverage
         env:
