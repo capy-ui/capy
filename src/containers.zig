@@ -19,10 +19,10 @@ const Callbacks = struct {
     setTabOrder: *const fn (data: usize, peers: []const backend.PeerType) void,
     computingPreferredSize: bool,
     availableSize: ?Size = null,
-    layoutConfig: [16]u8 align(4),
+    layoutConfig: [Container.LAYOUT_CONFIG_SIZE]u8 align(8),
 
     pub fn getLayoutConfig(self: Callbacks, comptime T: type) T {
-        comptime std.debug.assert(@sizeOf(T) <= 16);
+        comptime std.debug.assert(@sizeOf(T) <= Container.LAYOUT_CONFIG_SIZE);
         const slice = self.layoutConfig[0..@sizeOf(T)];
         return @as(*const T, @ptrCast(@alignCast(slice))).*;
     }
@@ -259,6 +259,280 @@ pub fn StackLayout(peer: Callbacks, widgets: []*Widget) void {
     }
 }
 
+pub const GridLayoutConfig = struct {
+    pub const LengthUnit = union(enum) {
+        fraction: u32,
+        pixels: u32,
+        auto,
+    };
+
+    pub const JustifyContent = enum {
+        flow,
+        space_between,
+        space_around,
+        space_evenly,
+    };
+
+    pub const Packing = enum {
+        forward,
+        /// Densely pack the grid, although this might change the order of components.
+        dense,
+    };
+
+    pub const FlowOrder = enum { row, column };
+
+    template_columns: []const LengthUnit = &.{},
+    template_rows: []const LengthUnit = &.{},
+    justify_content: JustifyContent = .flow,
+    column_spacing: u32 = 0,
+    row_spacing: u32 = 0,
+    auto_rows: LengthUnit = .auto,
+    auto_columns: LengthUnit = .auto,
+    packing: Packing = .forward,
+    flow_order: FlowOrder = .row,
+};
+
+/// Grid layout based on the CSS Grid algorithm
+pub fn GridLayout(peer: Callbacks, widgets: []*Widget) void {
+    const size = peer.getSize(peer.userdata);
+
+    const GridColumn = struct {
+        x: f32,
+        width: f32,
+    };
+
+    const GridRow = struct {
+        y: f32,
+        height: f32,
+    };
+
+    // TODO: use explicit bounded arrays so as to avoid out-of-memory
+    const MAX_COLUMNS = 10_000;
+    const MAX_ROWS = 10_000;
+
+    var columns = std.BoundedArray(GridColumn, MAX_COLUMNS).init(0) catch unreachable;
+    var rows = std.BoundedArray(GridRow, MAX_ROWS).init(0) catch unreachable;
+    const config = peer.getLayoutConfig(GridLayoutConfig);
+
+    // 1. Columns and rows placement
+    if (config.flow_order != .row) {
+        std.debug.panic("TODO: column flow order", .{});
+    }
+    {
+        var column_x: f32 = 0;
+        var remaining_width: f32 = size.width - @as(f32, @floatFromInt(config.column_spacing * (config.template_columns.len -| 1)));
+        var total_fractions: f32 = 0;
+        for (config.template_columns) |column_length| {
+            switch (column_length) {
+                .fraction => |fr| {
+                    std.debug.assert(fr != 0);
+                    total_fractions += @floatFromInt(fr);
+                },
+                .pixels => |px| remaining_width -= @floatFromInt(px),
+                .auto => std.debug.panic("TODO: implement auto template column", .{}),
+            }
+        }
+        remaining_width = @max(0, remaining_width);
+
+        for (config.template_columns) |column_length| {
+            const width: f32 = switch (column_length) {
+                .fraction => |fr| @as(f32, @floatFromInt(fr)) * remaining_width / total_fractions,
+                .pixels => |px| @floatFromInt(px),
+                .auto => 0, // TBD using a two-pass algorithm
+            };
+            columns.appendAssumeCapacity(.{ .x = column_x, .width = width });
+            column_x += width + @as(f32, @floatFromInt(config.column_spacing));
+        }
+    }
+    if (columns.len == 0 and config.flow_order == .row) {
+        columns.appendAssumeCapacity(.{ .x = 0, .width = size.width });
+    }
+
+    {
+        var row_y: f32 = 0;
+        var remaining_height: f32 = size.height - @as(f32, @floatFromInt(config.row_spacing * (config.template_rows.len -| 1)));
+        var total_fractions: f32 = 0;
+        for (config.template_rows) |row_length| {
+            switch (row_length) {
+                .fraction => |fr| {
+                    std.debug.assert(fr != 0);
+                    total_fractions += @floatFromInt(fr);
+                },
+                .pixels => |px| remaining_height -= @floatFromInt(px),
+                .auto => std.debug.panic("TODO: implement auto template row", .{}),
+            }
+        }
+        remaining_height = @max(0, remaining_height);
+
+        for (config.template_rows) |row_length| {
+            const height: f32 = switch (row_length) {
+                .fraction => |fr| @as(f32, @floatFromInt(fr)) * remaining_height / total_fractions,
+                .pixels => |px| @floatFromInt(px),
+                .auto => 0, // TBD using a two-pass algorithm
+            };
+            rows.appendAssumeCapacity(.{ .y = row_y, .height = height });
+            row_y += height + @as(f32, @floatFromInt(config.row_spacing));
+        }
+    }
+    if (config.justify_content != .flow) {
+        std.debug.panic("TODO: non-flow justify content", .{});
+    }
+
+    // Assert that columns' X are in ascending order
+    std.debug.assert(std.sort.isSorted(GridColumn, columns.constSlice(), {}, struct {
+        fn asc(_: void, lhs: GridColumn, rhs: GridColumn) bool {
+            return lhs.x < rhs.x;
+        }
+    }.asc));
+    // and rows' Y are in ascending order
+    std.debug.assert(std.sort.isSorted(GridRow, rows.constSlice(), {}, struct {
+        fn asc(_: void, lhs: GridRow, rhs: GridRow) bool {
+            return lhs.y < rhs.y;
+        }
+    }.asc));
+
+    // If no rows are explicitely defined, then they will be created implicitely by the grid layout.
+    // Those are called "implicit rows"
+    const add_implicit_rows = rows.len == 0;
+
+    // This list contains for each row, a slice of booleans indicating whether a given spot is
+    // taken.
+    // For instance, if x is the column index and y is the row index, row_fill_tables.items[y][x]
+    // indicates whether the (x,y) spot is filled. The slices are dynamically allocated as otherwise
+    // this data structure would take MAX_COLUMNS * MAX_ROWS bytes at least, which can become quite
+    // large.
+    var row_fill_tables = std.BoundedArray([]bool, MAX_ROWS).init(0) catch unreachable;
+    defer for (row_fill_tables.constSlice()) |slice| {
+        capy.internal.lasting_allocator.free(slice);
+    };
+    for (0..rows.len) |_| {
+        // Add the corresponding row fill table
+        const slice = capy.internal.lasting_allocator.alloc(bool, columns.len) catch |err| switch (err) {
+            error.OutOfMemory => return,
+        };
+        for (slice) |*filled| filled.* = false;
+        // If we're here, we already know there is enough space in row_fill_tables as there
+        // was enough in `rows`.
+        row_fill_tables.appendAssumeCapacity(slice);
+    }
+
+    // 2. Place explicitely positioned elements
+    // TODO
+
+    // 3. Place implicitely positioned elements
+    if (config.packing != .forward) {
+        std.debug.panic("TODO: dense packing", .{});
+    }
+    var column_index: usize = 0;
+    var row_index: usize = 0;
+    var widget_index: usize = 0;
+    blk: while (widget_index < widgets.len) {
+        std.debug.assert(column_index < columns.len);
+        if (row_index >= rows.len) {
+            if (add_implicit_rows) {
+                // For implicit rows, the height is the maximum of the minimum height of the
+                // components that will be in the same row
+                var row_height: f32 = 0;
+                switch (config.auto_rows) {
+                    .pixels => |px| row_height = @floatFromInt(px),
+                    .fraction => std.debug.panic("TODO: fraction auto rows", .{}),
+                    .auto => {
+                        for (0..columns.len) |i| {
+                            if (widget_index + i < widgets.len) {
+                                const widget = widgets[widget_index + i];
+                                const widget_size = if (peer.computingPreferredSize) widget.getPreferredSize(peer.availableSize.?) else widget.getPreferredSize(Size.init(0, 0));
+                                row_height = @max(row_height, widget_size.height);
+                            }
+                        }
+                    },
+                }
+
+                const row_y = blk2: {
+                    if (rows.len >= 1) {
+                        const last_row = rows.constSlice()[rows.len - 1];
+                        break :blk2 last_row.y + last_row.height;
+                    } else {
+                        break :blk2 0;
+                    }
+                };
+                rows.append(.{ .y = row_y, .height = row_height }) catch |err| switch (err) {
+                    // Consider it as if add_implicit_rows was false
+                    error.Overflow => break :blk,
+                };
+
+                // Add the corresponding row fill table
+                const slice = capy.internal.lasting_allocator.alloc(bool, columns.len) catch |err| switch (err) {
+                    error.OutOfMemory => break :blk,
+                };
+                for (slice) |*filled| filled.* = false;
+                // If we're here, we already know there is enough space in row_fill_tables as there
+                // was enough in `rows`.
+                row_fill_tables.appendAssumeCapacity(slice);
+            } else {
+                // Ideally, all subsequent elements should be made as small as possible and put at the
+                // end of the grid layout
+                break;
+            }
+        }
+
+        const filled = row_fill_tables.constSlice()[row_index][column_index];
+        if (!filled) {
+            const grid_column = columns.constSlice()[column_index];
+            const grid_row = rows.constSlice()[row_index];
+            const widget = widgets[widget_index];
+            widget_index += 1;
+
+            // TODO: change based on other properties like align and justify
+            if (widget.peer) |widget_peer| {
+                peer.moveResize(
+                    peer.userdata,
+                    widget_peer,
+                    @intFromFloat(grid_column.x),
+                    @intFromFloat(grid_row.y),
+                    @intFromFloat(grid_column.width),
+                    @intFromFloat(grid_row.height),
+                );
+            }
+        }
+
+        column_index += 1;
+        if (column_index >= columns.len) {
+            // Wrap over to the next row
+            column_index = 0;
+            row_index += 1;
+        }
+    }
+
+    // For all remaining widgets, set a null size and put them at the bottom
+    const widget_y = blk2: {
+        if (rows.len >= 1) {
+            const last_row = rows.constSlice()[rows.len - 1];
+            break :blk2 last_row.y + last_row.height;
+        } else {
+            break :blk2 0;
+        }
+    };
+    for (widget_index..widgets.len) |i| {
+        const widget = widgets[i];
+        if (widget.peer) |widget_peer| {
+            peer.moveResize(peer.userdata, widget_peer, 0, @intFromFloat(widget_y), 1, 1);
+        }
+    }
+
+    // 4. Set focus order
+    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    defer peers.deinit();
+
+    for (widgets) |widget| {
+        if (widget.peer) |widget_peer| {
+            peers.appendAssumeCapacity(widget_peer);
+        }
+    }
+
+    // TODO: RTL support
+    peer.setTabOrder(peer.userdata, peers.items);
+}
+
 pub const Container = struct {
     pub usingnamespace @import("internal.zig").All(Container);
 
@@ -268,16 +542,18 @@ pub const Container = struct {
     expand: bool,
     relayouting: atomicValue(bool) = atomicValue(bool).init(false),
     layout: Layout,
-    layoutConfig: [16]u8,
+    layoutConfig: [LAYOUT_CONFIG_SIZE]u8,
 
     /// The widget associated to this Container
     widget: ?*Widget = null,
 
+    const LAYOUT_CONFIG_SIZE = 64;
+
     const atomicValue = if (@hasDecl(std.atomic, "Value")) std.atomic.Value else std.atomic.Atomic; // support zig 0.11 as well as current master
     pub fn init(children: std.ArrayList(*Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !Container {
         const LayoutConfig = @TypeOf(layoutConfig);
-        comptime std.debug.assert(@sizeOf(LayoutConfig) <= 16);
-        var layoutConfigBytes: [16]u8 = undefined;
+        comptime std.debug.assert(@sizeOf(LayoutConfig) <= LAYOUT_CONFIG_SIZE);
+        var layoutConfigBytes: [LAYOUT_CONFIG_SIZE]u8 = undefined;
         if (@sizeOf(LayoutConfig) > 0) {
             layoutConfigBytes[0..@sizeOf(LayoutConfig)].* = std.mem.toBytes(layoutConfig);
         }
@@ -642,4 +918,8 @@ pub inline fn column(config: GridConfig, children: anytype) anyerror!*Container 
 /// Creates a Container which uses `MarginLayout` as layout, with the given margins.
 pub inline fn margin(margin_rect: Rectangle, child: anytype) anyerror!*Container {
     return try Container.allocA(try convertTupleToWidgets(.{child}), .{}, MarginLayout, margin_rect);
+}
+
+pub fn grid(config: GridLayoutConfig, children: anytype) anyerror!*Container {
+    return try Container.allocA(try convertTupleToWidgets(children), .{}, GridLayout, config);
 }
