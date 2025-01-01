@@ -13,18 +13,23 @@ pub fn main() !void {
     const NUM_BUTTONS = 300;
 
     // This is only used for additional performance
-    var labelArena = std.heap.ArenaAllocator.init(capy.internal.scratch_allocator);
-    defer labelArena.deinit();
-    const labelAllocator = labelArena.child_allocator;
+    var label_arena = std.heap.ArenaAllocator.init(capy.internal.scratch_allocator);
+    defer label_arena.deinit();
+    const label_allocator = label_arena.child_allocator;
 
-    var row = try capy.row(.{ .wrapping = true }, .{});
+    const grid = try capy.grid(.{
+        .template_columns = &([_]capy.GridLayoutConfig.LengthUnit{.{ .fraction = 1 }} ** 5),
+        // .template_rows = &.{ .{ .pixels = 150 }, .{ .pixels = 300 } },
+        .column_spacing = 5,
+        .row_spacing = 10,
+    }, .{});
     var i: usize = 0;
     while (i < NUM_BUTTONS) : (i += 1) {
-        const buttonLabel = try std.fmt.allocPrintZ(labelAllocator, "Button #{d}", .{i});
-        try row.add(capy.button(.{ .label = buttonLabel }));
+        const button_label = try std.fmt.allocPrintZ(label_allocator, "Button #{d}", .{i + 1});
+        try grid.add(capy.button(.{ .label = button_label }));
     }
 
-    try window.set(row);
+    try window.set(capy.alignment(.{}, grid));
     window.setPreferredSize(800, 600);
     window.show();
 
