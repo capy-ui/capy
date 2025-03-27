@@ -1,5 +1,6 @@
 .{
-    .name = "capy",
+    .fingerprint = 0x4724968807e670c5,
+    .name = .capy,
     .version = "0.4.0",
     .minimum_zig_version = "0.13.0",
     .dependencies = .{
