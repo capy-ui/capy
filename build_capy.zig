@@ -183,7 +183,7 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
         },
         .macos => {},
         .linux, .freebsd => {
-            if (step.rootModuleTarget().isAndroid()) {
+            if (step.rootModuleTarget().abi.isAndroid()) {
                 // TODO: find a new way to build Android applications
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
