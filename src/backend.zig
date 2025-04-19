@@ -10,7 +10,7 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
     .windows => @import("backends/win32/backend.zig"),
     .macos => @import("backends/macos/backend.zig"),
     .linux, .freebsd => blk: {
-        if (builtin.target.isAndroid()) {
+        if (builtin.target.abi.isAndroid()) {
             break :blk @import("backends/android/backend.zig");
         } else {
             break :blk @import("backends/gtk/backend.zig");

@@ -34,7 +34,7 @@ pub usingnamespace if (@hasField(std.meta, "trait")) std.meta.trait else struct 
     }
     pub fn isSingleItemPtr(comptime T: type) bool {
         if (comptime is(.pointer)(T)) {
-            return @typeInfo(T).pointer.size == .One;
+            return @typeInfo(T).pointer.size == .one;
         }
         return false;
     }

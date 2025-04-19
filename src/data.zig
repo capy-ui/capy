@@ -206,8 +206,8 @@ pub fn Atom(comptime T: type) type {
             if (@inComptime()) return 0;
 
             return switch (@typeInfo(T).pointer.size) {
-                .One => Crc.hash(std.mem.asBytes(value)),
-                .Many, .C, .Slice => Crc.hash(std.mem.sliceAsBytes(value)),
+                .one => Crc.hash(std.mem.asBytes(value)),
+                .many, .c, .slice => Crc.hash(std.mem.sliceAsBytes(value)),
             };
         }
 

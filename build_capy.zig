@@ -183,7 +183,7 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
         },
         .macos => {},
         .linux, .freebsd => {
-            if (step.rootModuleTarget().isAndroid()) {
+            if (step.rootModuleTarget().abi.isAndroid()) {
                 // TODO: find a new way to build Android applications
                 // // TODO: automatically download the SDK and NDK and build tools?
                 // // TODO: download Material components by parsing Maven?
@@ -292,7 +292,7 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
 }
 
 comptime {
-    const supported_zig = std.SemanticVersion.parse("0.14.0-dev.2577+271452d22") catch unreachable;
+    const supported_zig = std.SemanticVersion.parse("0.15.0-dev.128+5b4759bd3") catch unreachable;
     const zig_version = @import("builtin").zig_version;
     if (zig_version.order(supported_zig) != .eq) {
         @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Required Zig version 2024.11.0-mach: https://machengine.org/docs/nominated-zig/#2024110-mach", .{@import("builtin").zig_version}));
