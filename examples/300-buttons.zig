@@ -19,7 +19,7 @@ pub fn main() !void {
 
     const grid = try capy.grid(.{
         .template_columns = &([_]capy.GridLayoutConfig.LengthUnit{.{ .fraction = 1 }} ** 5),
-        // .template_rows = &.{ .{ .pixels = 150 }, .{ .pixels = 300 } },
+        .template_rows = &.{ .{ .pixels = 150 }, .{ .pixels = 300 } },
         .column_spacing = 5,
         .row_spacing = 10,
     }, .{});

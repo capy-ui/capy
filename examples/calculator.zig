@@ -95,35 +95,35 @@ pub fn main() !void {
     var window = try capy.Window.init();
     computationLabel = capy.label(.{ .text = "" });
     defer allocator.free(computationLabel.getText());
-    try window.set(capy.column(.{ .expand = .Fill, .spacing = 10 }, .{
-        computationLabel,
-        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
-            capy.button(.{ .label = "7", .onclick = pressedKey }),
-            capy.button(.{ .label = "8", .onclick = pressedKey }),
-            capy.button(.{ .label = "9", .onclick = pressedKey }),
-            capy.button(.{ .label = "+", .onclick = pressedKey }),
+    try window.set(capy.column(.{ .spacing = 10 }, .{
+        capy.alignment(.{}, capy.column(.{}, .{
+            computationLabel,
+            capy.grid(.{
+                .template_columns = &.{ .{ .pixels = 100 }, .{ .pixels = 100 }, .{ .pixels = 100 }, .{ .pixels = 200 } },
+                .template_rows = &.{ .{ .pixels = 60 }, .{ .pixels = 60 }, .{ .pixels = 60 }, .{ .pixels = 60 }, .{ .pixels = 60 } },
+                .column_spacing = 10,
+                .row_spacing = 10,
+            }, .{
+                capy.button(.{ .label = "7", .onclick = pressedKey }),
+                capy.button(.{ .label = "8", .onclick = pressedKey }),
+                capy.button(.{ .label = "9", .onclick = pressedKey }),
+                capy.button(.{ .label = "+", .onclick = pressedKey }),
+                capy.button(.{ .label = "4", .onclick = pressedKey }),
+                capy.button(.{ .label = "5", .onclick = pressedKey }),
+                capy.button(.{ .label = "6", .onclick = pressedKey }),
+                capy.button(.{ .label = "-", .onclick = pressedKey }),
+                capy.button(.{ .label = "1", .onclick = pressedKey }),
+                capy.button(.{ .label = "2", .onclick = pressedKey }),
+                capy.button(.{ .label = "3", .onclick = pressedKey }),
+                capy.button(.{ .label = "*", .onclick = pressedKey }),
+                capy.button(.{ .label = "/", .onclick = pressedKey }),
+                capy.button(.{ .label = "0", .onclick = pressedKey }),
+                capy.button(.{ .label = "CE", .onclick = erase }),
+                capy.button(.{ .label = ".", .onclick = pressedKey }),
+                capy.spacing(),
+                capy.button(.{ .label = "=", .onclick = compute }),
+            }),
         })),
-        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
-            capy.button(.{ .label = "4", .onclick = pressedKey }),
-            capy.button(.{ .label = "5", .onclick = pressedKey }),
-            capy.button(.{ .label = "6", .onclick = pressedKey }),
-            capy.button(.{ .label = "-", .onclick = pressedKey }),
-        })),
-        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
-            capy.button(.{ .label = "1", .onclick = pressedKey }),
-            capy.button(.{ .label = "2", .onclick = pressedKey }),
-            capy.button(.{ .label = "3", .onclick = pressedKey }),
-            capy.button(.{ .label = "*", .onclick = pressedKey }),
-        })),
-        capy.expanded(capy.row(.{ .expand = .Fill, .spacing = 10 }, .{
-            capy.button(.{ .label = "/", .onclick = pressedKey }),
-            capy.button(.{ .label = "0", .onclick = pressedKey }),
-            capy.button(.{ .label = "CE", .onclick = erase }),
-            capy.button(.{ .label = ".", .onclick = pressedKey }),
-        })),
-        capy.expanded(
-            capy.button(.{ .label = "=", .onclick = compute }),
-        ),
     }));
     window.setPreferredSize(400, 500);
     window.setTitle("Calculator");

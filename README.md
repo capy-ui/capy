@@ -40,7 +40,8 @@ If you're starting a new project, simply clone [capy-template](https://github.co
 
 Otherwise or for more information, please look in the [docs](https://capy-ui.org/docs/getting-started/installation).
 
-You can ask questions and receive updates on the [#capy-ui Matrix channel](https://matrix.to/#/#capy-ui:matrix.org).
+You can ask questions and receive updates on the [#capy-ui Matrix channel](https://matrix.to/#/#capy-ui:matrix.org) or on the
+Zig Discord Server (in the #gui-dev channel).
 
 ## Usage
 
