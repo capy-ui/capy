@@ -89,14 +89,35 @@
             echo ""
             echo "Available commands:"
             echo "  zig build              - Build the project"
-            echo "  zig build run          - Build and run examples"
             echo "  zig build test         - Run tests"
-            echo "  zig build -Dexample=X  - Build specific example"
+            echo "  zig build <example>    - Build and run specific example"
             echo ""
             echo "Examples:"
-            echo "  zig build -Dexample=demo run"
-            echo "  zig build -Dexample=calculator run"
-            echo "  zig build -Dexample=notepad run"
+            echo "  zig build 300-buttons"
+            echo "  zig build abc"
+            echo "  zig build balls"
+            echo "  zig build border-layout"
+            echo "  zig build calculator"
+            echo "  zig build colors"
+            echo "  zig build demo"
+            echo "  zig build dev-tools"
+            echo "  zig build dummy-installer"
+            echo "  zig build entry"
+            echo "  zig build fade"
+            echo "  zig build foo_app"
+            echo "  zig build graph"
+            echo "  zig build hacker-news"
+            echo "  zig build many-counters"
+            echo "  zig build media-player"
+            echo "  zig build notepad"
+            echo "  zig build osm-viewer"
+            echo "  zig build slide-viewer"
+            echo "  zig build tabs"
+            echo "  zig build test-backend"
+            echo "  zig build time-feed"
+            echo "  zig build totp"
+            echo "  zig build transition"
+            echo "  zig build weather"
             echo ""
             
             # Set up pkg-config paths for GTK
@@ -111,9 +132,6 @@
               pkgs.alsa-lib
             ]}:$LD_LIBRARY_PATH"
           '';
-
-          # Environment variables for development
-          CAPY_DEV = "1";
         };
       });
 }
