@@ -1,7 +1,8 @@
 .{
-    .name = "capy",
-    .version = "0.4.0",
-    .minimum_zig_version = "0.13.0",
+    .name = .capy,
+    .fingerprint = 0x4724968847bbbb92,
+    .version = "0.4.1",
+    .minimum_zig_version = "0.14.1",
     .dependencies = .{
         .@"zig-objc" = .{
             .url = "https://github.com/mitchellh/zig-objc/archive/362d12f4d91dfde84668e0befc5a8ca76659965a.zip",
@@ -14,8 +15,8 @@
             .lazy = true,
         },
         .zigimg = .{
-            .url = "git+https://github.com/zigimg/zigimg#c3bd7f9d593d75c60e70f0a950f499e55bd2a965",
-            .hash = "1220a3427cad06407fb07843cf12395de92327dc629281ae17102fe09f5c1ead81c8",
+            .url = "git+https://github.com/zigimg/zigimg#74caab5edd7c5f1d2f7d87e5717435ce0f0affa1",
+            .hash = "zigimg-0.1.0-8_eo2nWlEgCddu8EGLOM_RkYshx3sC8tWv-yYA4-htS6",
         },
     },
     .paths = .{""},

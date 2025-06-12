@@ -22,10 +22,10 @@
         # The project requires exactly this Zig version (2024.11.0-mach)
         zigPkg = pkgs.stdenv.mkDerivation rec {
           pname = "zig";
-          version = "0.14.0-dev.2577+271452d22";
+          version = "0.14.1";
           
           src = pkgs.fetchurl {
-            url = "https://pkg.machengine.org/zig/zig-linux-x86_64-${version}.tar.xz";
+            url = "https://ziglang.org/download/${version}/zig-x86_64-linux-${version}.tar.xz";
             sha256 = "sha256-e+ar3r+pcMYTjRZbNI0EZOhPFvUx5xyyDA4FL64djI0=";
           };
           

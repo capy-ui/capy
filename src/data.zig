@@ -206,8 +206,8 @@ pub fn Atom(comptime T: type) type {
             if (@inComptime()) return 0;
 
             return switch (@typeInfo(T).pointer.size) {
-                .One => Crc.hash(std.mem.asBytes(value)),
-                .Many, .C, .Slice => Crc.hash(std.mem.sliceAsBytes(value)),
+                .one => Crc.hash(std.mem.asBytes(value)),
+                .many, .c, .slice => Crc.hash(std.mem.sliceAsBytes(value)),
             };
         }
 
@@ -851,7 +851,7 @@ pub fn ListAtom(comptime T: type) type {
                 self.lock.lock();
                 defer self.lock.unlock();
 
-                const result = self.backing_list.popOrNull();
+                const result = self.backing_list.pop();
                 self.length.set(self.backing_list.items.len);
                 break :blk result;
             };

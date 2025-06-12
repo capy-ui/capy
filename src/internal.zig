@@ -370,14 +370,14 @@ pub fn GenerateConfigStruct(comptime T: type) type {
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "onclick",
             .type = ?T.Callback,
-            .default_value = @as(?*const anyopaque, @ptrCast(&default_value)),
+            .default_value_ptr = @as(?*const anyopaque, @ptrCast(&default_value)),
             .is_comptime = false,
             .alignment = @alignOf(?T.Callback),
         }};
         config_fields = config_fields ++ &[1]std.builtin.Type.StructField{.{
             .name = "ondraw",
             .type = ?T.DrawCallback,
-            .default_value = @as(?*const anyopaque, @ptrCast(&default_draw_value)),
+            .default_value_ptr = @as(?*const anyopaque, @ptrCast(&default_draw_value)),
             .is_comptime = false,
             .alignment = @alignOf(?T.DrawCallback),
         }};
@@ -397,13 +397,13 @@ fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, 
     for (std.meta.fields(T)) |field| {
         const FieldType = field.type;
         if (dataStructures.isAtom(FieldType)) {
-            const default_value = if (field.default_value) |default| @as(*const FieldType, @ptrCast(@alignCast(default))).getUnsafe() else null;
-            const has_default_value = field.default_value != null;
+            const default_value = if (field.defaultValue()) |default| default.getUnsafe() else null;
+            const has_default_value = field.defaultValue() != null;
 
             config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
                 .name = field.name,
                 .type = FieldType.ValueType,
-                .default_value = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
+                .default_value_ptr = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
             }};
@@ -416,7 +416,7 @@ fn iterateFields(comptime config_fields: *[]const std.builtin.Type.StructField, 
             config_fields.* = config_fields.* ++ &[1]std.builtin.Type.StructField{.{
                 .name = field.name,
                 .type = []const FieldType.ValueType,
-                .default_value = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
+                .default_value_ptr = if (has_default_value) @as(?*const anyopaque, @ptrCast(@alignCast(&default_value))) else null,
                 .is_comptime = false,
                 .alignment = @alignOf(FieldType.ValueType),
             }};
@@ -528,9 +528,9 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget)
         const element = @field(childrens, field.name);
         const child =
             if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
-            try element
-        else
-            element;
+                try element
+            else
+                element;
 
         const widget = getWidgetFrom(child);
         try list.append(widget);
@@ -619,7 +619,7 @@ pub fn Events(comptime T: type) type {
             writer.print("Internal error: {s}.\n", .{@errorName(err)}) catch {};
             if (@errorReturnTrace()) |trace| {
                 std.debug.dumpStackTrace(trace.*);
-                if (@import("builtin").target.isWasm()) {
+                if (@import("builtin").target.cpu.arch.isWasm()) {
                     // can't use writeStackTrace as it is async but errorHandler should not be async!
                     // also can't use writeStackTrace when using WebAssembly
                 } else {

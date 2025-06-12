@@ -67,13 +67,13 @@ pub const ImageData = struct {
         var arena = std.heap.ArenaAllocator.init(allocator);
         defer arena.deinit();
 
-        var plte = zigimg.png.PlteProcessor{};
+        var plte = zigimg.formats.png.PlteProcessor{};
         // TRNS processor isn't included as it crashed LLVM due to saturating multiplication
-        var processors: [1]zigimg.png.ReaderProcessor = .{plte.processor()};
-        var img = try zigimg.png.load(
+        var processors: [1]zigimg.formats.png.ReaderProcessor = .{plte.processor()};
+        var img = try zigimg.formats.png.load(
             stream,
             allocator,
-            zigimg.png.ReaderOptions.initWithProcessors(
+            zigimg.formats.png.ReaderOptions.initWithProcessors(
                 arena.allocator(),
                 &processors,
             ),

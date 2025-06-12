@@ -82,11 +82,11 @@ pub fn main() !void {
     defer capy.deinit();
 
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer if (comptime !@import("builtin").target.isWasm()) {
+    defer if (comptime !@import("builtin").target.cpu.arch.isWasm()) {
         _ = gpa.deinit();
     };
 
-    if (comptime !@import("builtin").target.isWasm()) {
+    if (comptime !@import("builtin").target.cpu.arch.isWasm()) {
         allocator = gpa.allocator();
     } else {
         allocator = std.heap.page_allocator;

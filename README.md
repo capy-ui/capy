@@ -9,8 +9,8 @@
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
-**Capy targets Zig version `0.14.0-dev.1911+3bf89f55c` / `2024.10.0-mach` ([Nominated Zig versions](https://machengine.org/docs/nominated-zig/))**
-, it doesn't work on Zig `0.13.0`
+**Capy targets Zig version `0.14.1`, the plan is to return to [Nominated Zig versions](https://machengine.org/docs/nominated-zig/)
+once a new one is published**
 
 ---
 

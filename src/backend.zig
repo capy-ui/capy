@@ -7,24 +7,24 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
     //    @import("root").capyBackend
     //else
     switch (builtin.os.tag) {
-    .windows => @import("backends/win32/backend.zig"),
-    .macos => @import("backends/macos/backend.zig"),
-    .linux, .freebsd => blk: {
-        if (builtin.target.isAndroid()) {
-            break :blk @import("backends/android/backend.zig");
-        } else {
-            break :blk @import("backends/gtk/backend.zig");
-        }
-    },
-    .wasi => blk: {
-        if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
-            break :blk @import("backends/wasm/backend.zig");
-        } else {
-            @compileError("Unsupported OS: wasi");
-        }
-    },
-    else => @compileError(std.fmt.comptimePrint("Unsupported OS: {}", .{builtin.os.tag})),
-};
+        .windows => @import("backends/win32/backend.zig"),
+        .macos => @import("backends/macos/backend.zig"),
+        .linux, .freebsd => blk: {
+            if (builtin.target.abi.isAndroid()) {
+                break :blk @import("backends/android/backend.zig");
+            } else {
+                break :blk @import("backends/gtk/backend.zig");
+            }
+        },
+        .wasi => blk: {
+            if (builtin.cpu.arch == .wasm32 or builtin.cpu.arch == .wasm64) {
+                break :blk @import("backends/wasm/backend.zig");
+            } else {
+                @compileError("Unsupported OS: wasi");
+            }
+        },
+        else => @compileError(std.fmt.comptimePrint("Unsupported OS: {}", .{builtin.os.tag})),
+    };
 pub usingnamespace backend;
 
 pub const DrawContext = struct {
@@ -158,10 +158,10 @@ test "backend: text field" {
     field.setReadOnly(true);
     field.setReadOnly(false);
 
-    try std.testing.fuzz(fuzzTextField, .{});
+    try std.testing.fuzz({}, fuzzTextField, .{});
 }
 
-fn fuzzTextField(input: []const u8) !void {
+fn fuzzTextField(_: void, input: []const u8) !void {
     var field = try backend.TextField.create();
     defer field.deinit();
     field.setText(input);
@@ -172,10 +172,10 @@ fn fuzzTextField(input: []const u8) !void {
 }
 
 test "backend: button" {
-    try std.testing.fuzz(fuzzButton, .{});
+    try std.testing.fuzz({}, fuzzButton, .{});
 }
 
-fn fuzzButton(input: []const u8) !void {
+fn fuzzButton(_: void, input: []const u8) !void {
     var button = try backend.Button.create();
     defer button.deinit();
 
