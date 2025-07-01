@@ -135,9 +135,9 @@ pub const Alignment = struct {
 pub fn alignment(opts: Alignment.Config, child: anytype) anyerror!*Alignment {
     const element =
         if (comptime internal.isErrorUnion(@TypeOf(child)))
-        try child
-    else
-        child;
+            try child
+        else
+            child;
 
     var options = opts;
     options.child = internal.getWidgetFrom(element);

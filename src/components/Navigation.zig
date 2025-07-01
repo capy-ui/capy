@@ -119,9 +119,9 @@ pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!*Navigati
         const child = @field(children, field.name);
         const element =
             if (comptime internal.isErrorUnion(@TypeOf(child)))
-            try child
-        else
-            child;
+                try child
+            else
+                child;
         const widget = internal.getWidgetFrom(element);
         try routes.put(field.name, widget);
     }

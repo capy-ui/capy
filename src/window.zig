@@ -82,9 +82,9 @@ pub const Window = struct {
     pub inline fn set(self: *Window, wrappedContainer: anytype) anyerror!void {
         const container =
             if (comptime isErrorUnion(@TypeOf(wrappedContainer)))
-            try wrappedContainer
-        else
-            wrappedContainer;
+                try wrappedContainer
+            else
+                wrappedContainer;
         self._child = internal.getWidgetFrom(container);
         self._child.?.ref();
 
