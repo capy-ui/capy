@@ -75,9 +75,9 @@ pub inline fn tabs(children: anytype) anyerror!*Tabs {
         const element = @field(children, field.name);
         const tab1 =
             if (comptime isErrorUnion(@TypeOf(element))) // if it is an error union, unwrap it
-            try element
-        else
-            element;
+                try element
+            else
+                element;
         tab1.widget.ref();
         const slot = try list.addOne();
         slot.* = tab1;

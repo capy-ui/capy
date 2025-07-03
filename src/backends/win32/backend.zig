@@ -224,12 +224,12 @@ pub const Window = struct {
         const layered = false;
 
         const hwnd = win32.CreateWindowExW(
-        // layered don't work in wine for some reason, but only in wine
-        win32.WINDOW_EX_STYLE.initFlags(.{
-            .COMPOSITED = 1,
-            .LAYERED = @intFromBool(layered),
-            .APPWINDOW = 1,
-        }), className, // lpClassName
+            // layered don't work in wine for some reason, but only in wine
+            win32.WINDOW_EX_STYLE.initFlags(.{
+                .COMPOSITED = 1,
+                .LAYERED = @intFromBool(layered),
+                .APPWINDOW = 1,
+            }), className, // lpClassName
             _T(""), // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
             win32.CW_USEDEFAULT, // X

@@ -41,9 +41,9 @@ pub const Scrollable = struct {
 pub fn scrollable(element: anytype) anyerror!*Scrollable {
     const child =
         if (comptime @import("../internal.zig").isErrorUnion(@TypeOf(element)))
-        try element
-    else
-        element;
+            try element
+        else
+            element;
     const widget = @import("../internal.zig").getWidgetFrom(child);
     return Scrollable.alloc(.{ .child = widget });
 }
