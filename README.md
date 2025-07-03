@@ -54,6 +54,7 @@ pub usingnamespace capy.cross_platform;
 
 pub fn main() !void {
     try capy.init();
+    defer capy.deinit();
 
     var window = try capy.Window.init();
     try window.set(
