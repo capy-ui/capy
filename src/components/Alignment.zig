@@ -121,7 +121,7 @@ pub const Alignment = struct {
     pub fn cloneImpl(self: *Alignment) !*Alignment {
         _ = self;
         // const widget_clone = try self.child.get().clone();
-        const ptr = try internal.lasting_allocator.create(Alignment);
+        const ptr = try internal.allocator.create(Alignment);
         // const component = try Alignment.init(.{ .x = self.x.get(), .y = self.y.get() }, widget_clone);
         // ptr.* = component;
         return ptr;

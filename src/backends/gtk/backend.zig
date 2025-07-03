@@ -29,11 +29,11 @@ pub fn init() common.BackendError!void {
 }
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintZ(lib.internal.allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg);
+    defer lib.internal.allocator.free(msg);
 
     const cType = @as(c_uint, @intCast(switch (msgType) {
         .Information => c.GTK_MESSAGE_INFO,

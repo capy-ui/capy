@@ -78,7 +78,7 @@ fn readStructField(comptime T: type, reader: anytype) !T {
         return try reader.readInt(T, .big);
     } else if (T == []const u8) {
         const length = try std.leb.readULEB128(u32, reader);
-        const bytes = try internal.lasting_allocator.alloc(u8, length);
+        const bytes = try internal.allocator.alloc(u8, length);
         try reader.readNoEof(bytes);
         return bytes;
     }

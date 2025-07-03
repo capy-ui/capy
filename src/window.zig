@@ -47,12 +47,12 @@ pub const Window = struct {
 
     pub fn init() !Window {
         const peer = try backend.Window.create();
-        const on_frame = try EventSource.alloc(internal.lasting_allocator);
+        const on_frame = try EventSource.alloc(internal.allocator);
         var window = Window{
             .peer = peer,
             .on_frame = on_frame,
             .animation_controller = try AnimationController.init(
-                internal.lasting_allocator,
+                internal.allocator,
                 on_frame,
             ),
         };
@@ -103,9 +103,9 @@ pub const Window = struct {
     /// On certain platforms (e.g. mobile) or configurations (e.g. tiling window manager) this function might do nothing.
     pub fn setPreferredSize(self: *Window, width: u32, height: u32) void {
         const EMULATOR_KEY = "CAPY_MOBILE_EMULATED";
-        if (std.process.hasEnvVar(internal.scratch_allocator, EMULATOR_KEY) catch return) {
-            const id = std.process.getEnvVarOwned(internal.scratch_allocator, EMULATOR_KEY) catch unreachable;
-            defer internal.scratch_allocator.free(id);
+        if (std.process.hasEnvVar(internal.allocator, EMULATOR_KEY) catch return) {
+            const id = std.process.getEnvVarOwned(internal.allocator, EMULATOR_KEY) catch unreachable;
+            defer internal.allocator.free(id);
             if (devices.get(id)) |device| {
                 self.peer.resize(@as(c_int, @intFromFloat(device.resolution.width)), @as(c_int, @intFromFloat(device.resolution.height)));
                 self.setSourceDpi(device.dpi);
@@ -193,7 +193,7 @@ pub const Window = struct {
         }
         self.animation_controller.deinit();
         self.on_frame.deinitAllListeners();
-        internal.lasting_allocator.destroy(self.on_frame);
+        internal.allocator.destroy(self.on_frame);
         self.peer.deinit();
     }
 };

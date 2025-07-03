@@ -27,10 +27,10 @@ pub fn menuItem(config: Config) MenuItem {
 
 /// 'items' is a tuple
 pub fn menu(config: Config, items: anytype) MenuItem {
-    return MenuItem{ .config = config, .items = internal.lasting_allocator.dupe(MenuItem, &items) catch unreachable };
+    return MenuItem{ .config = config, .items = internal.allocator.dupe(MenuItem, &items) catch unreachable };
 }
 
 /// 'menus' is a tuple
 pub fn menuBar(menus: anytype) MenuBar {
-    return MenuBar{ .menus = internal.lasting_allocator.dupe(MenuItem, &menus) catch unreachable };
+    return MenuBar{ .menus = internal.allocator.dupe(MenuItem, &menus) catch unreachable };
 }

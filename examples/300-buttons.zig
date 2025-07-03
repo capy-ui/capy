@@ -13,7 +13,7 @@ pub fn main() !void {
     const NUM_BUTTONS = 300;
 
     // This is only used for additional performance
-    var label_arena = std.heap.ArenaAllocator.init(capy.internal.scratch_allocator);
+    var label_arena = std.heap.ArenaAllocator.init(capy.internal.allocator);
     defer label_arena.deinit();
     const label_allocator = label_arena.child_allocator;
 

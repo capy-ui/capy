@@ -29,18 +29,18 @@ const RunOpts = struct {
 fn setText_uiThread(userdata: ?*anyopaque) callconv(.C) c_int {
     const runOpts = @as(*RunOpts, @ptrCast(@alignCast(userdata.?)));
     const nullTerminated = runOpts.text;
-    defer lib.internal.scratch_allocator.free(nullTerminated);
-    defer lib.internal.scratch_allocator.destroy(runOpts);
+    defer lib.internal.allocator.free(nullTerminated);
+    defer lib.internal.allocator.destroy(runOpts);
 
     c.gtk_label_set_text(runOpts.label, runOpts.text);
     return c.G_SOURCE_REMOVE;
 }
 
 pub fn setText(self: *Label, text: []const u8) void {
-    self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
+    self.nullTerminated = lib.internal.allocator.dupeZ(u8, text) catch unreachable;
 
     // It must be run in UI thread otherwise set_text might crash randomly
-    const runOpts = lib.internal.scratch_allocator.create(RunOpts) catch unreachable;
+    const runOpts = lib.internal.allocator.create(RunOpts) catch unreachable;
     runOpts.* = .{
         .label = @as(*c.GtkLabel, @ptrCast(self.peer)),
         .text = self.nullTerminated.?,
@@ -53,9 +53,9 @@ pub fn setFont(self: *Label, font: lib.Font) void {
 
     const font_description = c.pango_font_description_new().?;
     if (font.family) |family| {
-        const copy = lib.internal.scratch_allocator.dupeZ(u8, family) catch @panic("OOM");
+        const copy = lib.internal.allocator.dupeZ(u8, family) catch @panic("OOM");
         // The NUL-terminated string is copied by GTK, so we can free it quickly
-        defer lib.internal.scratch_allocator.free(copy);
+        defer lib.internal.allocator.free(copy);
         c.pango_font_description_set_family(font_description, copy);
     }
     if (font.size) |size| {

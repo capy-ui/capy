@@ -28,7 +28,7 @@ pub fn main() !void {
     defer capy.deinit();
 
     defer totalEnergy.deinit();
-    balls = std.ArrayList(Ball).init(capy.internal.lasting_allocator);
+    balls = std.ArrayList(Ball).init(capy.internal.allocator);
     defer balls.deinit();
 
     // Generate random balls
@@ -54,7 +54,7 @@ pub fn main() !void {
     try canvas.addMouseButtonHandler(&onMouseButton);
     try canvas.addMouseMotionHandler(&onMouseMotion);
 
-    var totalEnergyFormat = try capy.FormattedAtom(capy.internal.lasting_allocator, "Total Kinetic Energy: {d:.2}", .{&totalEnergy});
+    var totalEnergyFormat = try capy.FormattedAtom(capy.internal.allocator, "Total Kinetic Energy: {d:.2}", .{&totalEnergy});
     defer totalEnergyFormat.deinit();
 
     var window = try capy.Window.init();

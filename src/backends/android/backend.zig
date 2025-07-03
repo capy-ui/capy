@@ -130,7 +130,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn setupEvents(widget: PeerType) BackendError!void {
             const jni = theApp.getJni();
-            const data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
 
             // Wrap the memory address in a Long object
@@ -354,9 +354,9 @@ pub const Label = struct {
         theApp.runOnUiThread(struct {
             fn callback(self: *Label, text: []const u8) void {
                 if (self.nullTerminated) |old| {
-                    lib.internal.lasting_allocator.free(old);
+                    lib.internal.allocator.free(old);
                 }
-                self.nullTerminated = lib.internal.lasting_allocator.dupeZ(u8, text) catch unreachable;
+                self.nullTerminated = lib.internal.allocator.dupeZ(u8, text) catch unreachable;
 
                 const jni = theApp.getJni();
                 const TextView = jni.findClass("android/widget/TextView") catch unreachable;

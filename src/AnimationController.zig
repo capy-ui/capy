@@ -87,7 +87,7 @@ pub fn deinit(self: *AnimationController) void {
 }
 
 var null_animation_controller_instance = AnimationController{
-    .animated_atoms = ListAtom(AnimationCallback).init(@import("internal.zig").lasting_allocator),
+    .animated_atoms = ListAtom(AnimationCallback).init(@import("internal.zig").allocator),
     .on_frame = &@import("listener.zig").null_event_source,
     .listener = null,
     .allocator = undefined,

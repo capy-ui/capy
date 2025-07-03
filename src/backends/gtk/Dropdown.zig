@@ -36,7 +36,7 @@ pub fn setSelectedIndex(self: *const Dropdown, index: usize) void {
 }
 
 pub fn setValues(self: *Dropdown, values: []const []const u8) void {
-    const allocator = lib.internal.lasting_allocator;
+    const allocator = lib.internal.allocator;
     if (self.owned_strings) |strings| {
         for (strings) |string| {
             allocator.free(std.mem.span(string.?));

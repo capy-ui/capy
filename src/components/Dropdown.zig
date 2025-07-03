@@ -24,7 +24,7 @@ pub const Dropdown = struct {
 
     pub fn init(config: Dropdown.Config) Dropdown {
         var component = Dropdown.init_events(Dropdown{
-            .values = ListAtom([]const u8).init(internal.lasting_allocator),
+            .values = ListAtom([]const u8).init(internal.allocator),
         });
         internal.applyConfigStruct(&component, config);
         // TODO: self.selected_value.dependOn(&.{ self.values, self.selected_index })

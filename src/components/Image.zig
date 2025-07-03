@@ -61,10 +61,10 @@ pub const Image = struct {
 
         var reader = handle.reader();
         // TODO: progressive when I find a way to fit AssetHandle.Reader into zigimg
-        const contents = try reader.readAllAlloc(internal.scratch_allocator, std.math.maxInt(usize));
-        defer internal.scratch_allocator.free(contents);
+        const contents = try reader.readAllAlloc(internal.allocator, std.math.maxInt(usize));
+        defer internal.allocator.free(contents);
 
-        const data = try ImageData.fromBuffer(internal.lasting_allocator, contents);
+        const data = try ImageData.fromBuffer(internal.allocator, contents);
         self.data.set(data);
     }
 

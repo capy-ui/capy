@@ -262,7 +262,7 @@ pub const Window = struct {
             .hwnd = hwnd,
             .root_menu = null,
             .menu_item_callbacks = std.ArrayList(?*const fn () void).init(
-                lib.internal.lasting_allocator,
+                lib.internal.allocator,
             ),
         };
     }
@@ -663,7 +663,7 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn setupEvents(peer: HWND) !void {
-            const data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.allocator.create(EventUserData);
             data.* = EventUserData{}; // ensure that it uses default values
             _ = win32Backend.setWindowLongPtr(peer, win32.GWL_USERDATA, @intFromPtr(data));
         }
@@ -948,7 +948,7 @@ pub const Canvas = struct {
 pub const TextField = struct {
     peer: HWND,
     /// Cache of the text field's text converted to UTF-8
-    text_utf8: std.ArrayList(u8) = std.ArrayList(u8).init(lib.internal.lasting_allocator),
+    text_utf8: std.ArrayList(u8) = std.ArrayList(u8).init(lib.internal.allocator),
 
     pub usingnamespace Events(TextField);
 
@@ -1025,7 +1025,7 @@ pub const TextArea = struct {
         try TextArea.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
-        return TextArea{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return TextArea{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
     }
 
     pub fn setText(self: *TextArea, text: []const u8) void {
@@ -1087,7 +1087,7 @@ pub const Button = struct {
         try Button.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
-        return Button{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return Button{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
@@ -1140,7 +1140,7 @@ pub const CheckBox = struct {
         try CheckBox.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
-        return CheckBox{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return CheckBox{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
     }
 
     pub fn setLabel(self: *CheckBox, label: [:0]const u8) void {
@@ -1263,7 +1263,7 @@ pub const Label = struct {
         try Label.setupEvents(hwnd);
         _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
 
-        return Label{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+        return Label{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
     }
 
     pub fn setAlignment(self: *Label, alignment: f32) void {
@@ -1363,8 +1363,8 @@ pub const TabContainer = struct {
         return TabContainer{
             .peer = wrapperHwnd,
             .tabControl = hwnd,
-            .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator),
-            .peerList = std.ArrayList(PeerType).init(lib.internal.lasting_allocator),
+            .arena = std.heap.ArenaAllocator.init(lib.internal.allocator),
+            .peerList = std.ArrayList(PeerType).init(lib.internal.allocator),
         };
     }
 

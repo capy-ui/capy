@@ -65,18 +65,18 @@ pub fn get(url: []const u8) GetError!AssetHandle {
         const cwd_path = try std.fs.realpath(".", &buffer);
 
         // The URL path as a raw string (without percent-encoding)
-        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.scratch_allocator);
-        defer internal.scratch_allocator.free(raw_uri_path);
+        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.allocator);
+        defer internal.allocator.free(raw_uri_path);
 
-        const asset_path = try std.fs.path.join(internal.scratch_allocator, &.{ cwd_path, "assets/", raw_uri_path });
-        defer internal.scratch_allocator.free(asset_path);
+        const asset_path = try std.fs.path.join(internal.allocator, &.{ cwd_path, "assets/", raw_uri_path });
+        defer internal.allocator.free(asset_path);
         log.debug("-> {s}", .{asset_path});
 
         const file = try std.fs.openFileAbsolute(asset_path, .{ .mode = .read_only });
         return AssetHandle{ .data = .{ .file = file } };
     } else if (std.mem.eql(u8, uri.scheme, "file")) {
-        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.scratch_allocator);
-        defer internal.scratch_allocator.free(raw_uri_path);
+        const raw_uri_path = try uri.path.toRawMaybeAlloc(internal.allocator);
+        defer internal.allocator.free(raw_uri_path);
 
         log.debug("-> {path}", .{uri.path});
         const file = try std.fs.openFileAbsolute(raw_uri_path, .{ .mode = .read_only });

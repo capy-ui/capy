@@ -7,7 +7,7 @@ const c = @cImport({
     @cInclude("GLFW/glfw3.h");
 });
 const gl = c;
-const lasting_allocator = lib.internal.lasting_allocator;
+const lasting_allocator = lib.internal.allocator;
 
 const EventType = shared.BackendEventType;
 

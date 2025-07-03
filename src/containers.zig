@@ -1,8 +1,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
-const scratch_allocator = @import("internal.zig").scratch_allocator;
-const lasting_allocator = @import("internal.zig").lasting_allocator;
+const global_allocator = @import("internal.zig").allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 const AnimationController = @import("AnimationController.zig");
@@ -105,7 +104,7 @@ pub fn ColumnLayout(peer: Callbacks, widgets: []*Widget) void {
         }
     }
 
-    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    var peers = std.ArrayList(backend.PeerType).initCapacity(global_allocator, widgets.len) catch return;
     defer peers.deinit();
 
     for (widgets) |widget| {
@@ -188,7 +187,7 @@ pub fn RowLayout(peer: Callbacks, widgets: []*Widget) void {
         }
     }
 
-    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    var peers = std.ArrayList(backend.PeerType).initCapacity(global_allocator, widgets.len) catch return;
     defer peers.deinit();
 
     for (widgets) |widget| {
@@ -403,11 +402,11 @@ pub fn GridLayout(peer: Callbacks, widgets: []*Widget) void {
     // large.
     var row_fill_tables = std.BoundedArray([]bool, MAX_ROWS).init(0) catch unreachable;
     defer for (row_fill_tables.constSlice()) |slice| {
-        capy.internal.lasting_allocator.free(slice);
+        capy.internal.allocator.free(slice);
     };
     for (0..rows.len) |_| {
         // Add the corresponding row fill table
-        const slice = capy.internal.lasting_allocator.alloc(bool, columns.len) catch |err| switch (err) {
+        const slice = capy.internal.allocator.alloc(bool, columns.len) catch |err| switch (err) {
             error.OutOfMemory => return,
         };
         for (slice) |*filled| filled.* = false;
@@ -461,7 +460,7 @@ pub fn GridLayout(peer: Callbacks, widgets: []*Widget) void {
                 };
 
                 // Add the corresponding row fill table
-                const slice = capy.internal.lasting_allocator.alloc(bool, columns.len) catch |err| switch (err) {
+                const slice = capy.internal.allocator.alloc(bool, columns.len) catch |err| switch (err) {
                     error.OutOfMemory => break :blk,
                 };
                 for (slice) |*filled| filled.* = false;
@@ -520,7 +519,7 @@ pub fn GridLayout(peer: Callbacks, widgets: []*Widget) void {
     }
 
     // 4. Set focus order
-    var peers = std.ArrayList(backend.PeerType).initCapacity(scratch_allocator, widgets.len) catch return;
+    var peers = std.ArrayList(backend.PeerType).initCapacity(global_allocator, widgets.len) catch return;
     defer peers.deinit();
 
     for (widgets) |widget| {
@@ -560,7 +559,7 @@ pub const Container = struct {
 
         var container = Container.init_events(Container{
             .peer = null,
-            .children = std.ArrayList(*Widget).init(@import("internal.zig").lasting_allocator),
+            .children = std.ArrayList(*Widget).init(global_allocator),
             .expand = config.expand == .Fill,
             .layout = layout,
             .layoutConfig = layoutConfigBytes,
@@ -576,7 +575,7 @@ pub const Container = struct {
     }
 
     pub fn allocA(children: std.ArrayList(*Widget), config: GridConfig, layout: Layout, layoutConfig: anytype) !*Container {
-        const instance = lasting_allocator.create(Container) catch @panic("out of memory");
+        const instance = global_allocator.create(Container) catch @panic("out of memory");
         instance.* = try Container.init(children, config, layout, layoutConfig);
         instance.widget_data.widget = @import("internal.zig").genericWidgetFrom(instance);
         return instance;
@@ -847,7 +846,7 @@ pub const Container = struct {
 
     pub fn cloneImpl(self: *Container) !*Container {
         _ = self;
-        // var children = std.ArrayList(Widget).init(lasting_allocator);
+        // var children = std.ArrayList(Widget).init(global_allocator);
         // for (self.children.items) |child| {
         // const child_clone = try child.clone();
         // try children.append(child_clone);

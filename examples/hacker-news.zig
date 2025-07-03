@@ -5,7 +5,7 @@ pub usingnamespace capy.cross_platform;
 const ListModel = struct {
     /// size is a data wrapper so that we can change it (e.g. implement infinite scrolling)
     size: capy.Atom(usize) = capy.Atom(usize).of(10),
-    arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator),
+    arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.allocator),
 
     pub fn getComponent(self: *ListModel, index: usize) *capy.Label {
         return capy.label(.{

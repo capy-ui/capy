@@ -17,7 +17,7 @@ pub fn getList() []Monitor {
     } else {
         // TODO: proper monitor detection
         const n = 1;
-        const list = lib.internal.lasting_allocator.alloc(Monitor, n) catch @panic("OOM");
+        const list = lib.internal.allocator.alloc(Monitor, n) catch @panic("OOM");
         list[0] = .{};
         monitor_list = list;
         return list;
@@ -27,7 +27,7 @@ pub fn getList() []Monitor {
 pub fn deinitAllPeers() void {
     if (monitor_list) |list| {
         for (list) |*monitor| monitor.deinit();
-        lib.internal.lasting_allocator.free(list);
+        lib.internal.allocator.free(list);
         monitor_list = null;
     }
 }

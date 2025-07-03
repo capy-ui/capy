@@ -11,7 +11,7 @@ const TimeActivity = struct {
 
 const ListModel = struct {
     size: capy.Atom(usize) = capy.Atom(usize).of(0),
-    arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator),
+    arena: std.heap.ArenaAllocator = std.heap.ArenaAllocator.init(capy.internal.allocator),
     data: std.ArrayList(TimeActivity),
 
     pub fn add(self: *ListModel, activity: TimeActivity) !void {
@@ -56,7 +56,7 @@ fn onSubmit(_: *anyopaque) !void {
     try list_model.add(.{
         .start = @as(u64, @intCast(std.time.timestamp() - 1000)),
         .end = @as(u64, @intCast(std.time.timestamp())),
-        .description = try capy.internal.lasting_allocator.dupe(u8, submitDesc.get()),
+        .description = try capy.internal.allocator.dupe(u8, submitDesc.get()),
     });
 
     // clear description
@@ -87,7 +87,7 @@ pub fn main() !void {
     try capy.init();
 
     list_model = ListModel{
-        .data = std.ArrayList(TimeActivity).init(capy.internal.lasting_allocator),
+        .data = std.ArrayList(TimeActivity).init(capy.internal.allocator),
     };
     var window = try capy.Window.init();
     try window.set(capy.column(.{}, .{

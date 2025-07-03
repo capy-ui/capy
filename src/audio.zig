@@ -6,7 +6,7 @@ const backend = @import("backend.zig");
 pub const AudioWriteCallback = *const fn (generator: *const AudioGenerator, time: u64, n_frames: u32) void;
 
 // TODO: remove global variables
-var generators = std.ArrayList(*AudioGenerator).init(internal.lasting_allocator);
+var generators = std.ArrayList(*AudioGenerator).init(internal.allocator);
 var generatorsMutex = std.Thread.Mutex{};
 
 pub const AudioGenerator = struct {
@@ -18,7 +18,7 @@ pub const AudioGenerator = struct {
     peer: backend.AudioGenerator,
 
     pub fn init(write_callback: AudioWriteCallback, channels: u16) !*AudioGenerator {
-        const generator = internal.lasting_allocator.create(AudioGenerator) catch unreachable;
+        const generator = internal.allocator.create(AudioGenerator) catch unreachable;
         const peer = try backend.AudioGenerator.create(44100.0);
         generator.* = .{ .write_callback = write_callback, .channels = channels, .peer = peer };
         return generator;
@@ -65,7 +65,7 @@ pub const AudioGenerator = struct {
             _ = generators.swapRemove(index);
         }
         self.peer.deinit();
-        internal.lasting_allocator.destroy(self);
+        internal.allocator.destroy(self);
     }
 };
 

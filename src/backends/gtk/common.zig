@@ -51,7 +51,7 @@ pub fn Events(comptime T: type) type {
             _ = c.g_signal_connect_data(event_controller_legacy, "event", @as(c.GCallback, @ptrCast(&gtkButtonPress)), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_controller(widget, event_controller_legacy);
 
-            const data = try lib.internal.lasting_allocator.create(EventUserData);
+            const data = try lib.internal.allocator.create(EventUserData);
             data.* = EventUserData{ .peer = widget }; // ensure that it uses default values
             c.g_object_set_data(@as(*c.GObject, @ptrCast(widget)), "eventUserData", data);
             _ = c.g_object_ref(@as(*c.GObject, @ptrCast(widget)));
@@ -201,7 +201,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn deinit(self: *const T) void {
             const data = getEventUserData(self.peer);
-            lib.internal.lasting_allocator.destroy(data);
+            lib.internal.allocator.destroy(data);
 
             if (@hasDecl(T, "_deinit")) {
                 self._deinit();

@@ -17,7 +17,7 @@ pub fn create() BackendError!Button {
     const button = NSButton.msgSend(objc.Object, "buttonWithTitle:target:action:", .{ AppKit.nsString(""), AppKit.nil, null });
     const peer = backend.GuiWidget{
         .object = button,
-        .data = try lib.internal.lasting_allocator.create(backend.EventUserData),
+        .data = try lib.internal.allocator.create(backend.EventUserData),
     };
     try Button.setupEvents(peer);
     return Button{ .peer = peer };

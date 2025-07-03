@@ -60,11 +60,11 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         }
 
         pub fn send(self: HttpRequest) !HttpResponse {
-            const client = try internal.lasting_allocator.create(std.http.Client);
-            client.* = .{ .allocator = internal.lasting_allocator };
+            const client = try internal.allocator.create(std.http.Client);
+            client.* = .{ .allocator = internal.allocator };
 
             const uri = try std.Uri.parse(self.url);
-            const server_header_buffer = try internal.lasting_allocator.alloc(u8, 64 * 1024);
+            const server_header_buffer = try internal.allocator.alloc(u8, 64 * 1024);
             var request = try client.open(.GET, uri, .{
                 .headers = .{},
                 .keep_alive = false,
@@ -120,8 +120,8 @@ pub usingnamespace if (@hasDecl(backend, "Http")) struct {
         pub fn deinit(self: *HttpResponse) void {
             self.request.deinit();
             self.client.deinit();
-            internal.lasting_allocator.destroy(self.client);
-            internal.lasting_allocator.free(self.server_header_buffer);
+            internal.allocator.destroy(self.client);
+            internal.allocator.free(self.server_header_buffer);
         }
     };
 };

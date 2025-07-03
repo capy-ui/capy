@@ -2,7 +2,7 @@ const std = @import("std");
 const capy = @import("capy");
 pub usingnamespace capy.cross_platform;
 
-pub const app_allocator = capy.internal.lasting_allocator;
+pub const app_allocator = capy.internal.allocator;
 var app_window: capy.Window = undefined;
 var dev_protocol_stream: ?std.net.Stream = null;
 

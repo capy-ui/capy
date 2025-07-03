@@ -70,7 +70,7 @@ pub const Tabs = struct {
 
 pub inline fn tabs(children: anytype) anyerror!*Tabs {
     const fields = std.meta.fields(@TypeOf(children));
-    var list = std.ArrayList(Tab).init(@import("../internal.zig").lasting_allocator);
+    var list = std.ArrayList(Tab).init(@import("../internal.zig").allocator);
     inline for (fields) |field| {
         const element = @field(children, field.name);
         const tab1 =
@@ -83,7 +83,7 @@ pub inline fn tabs(children: anytype) anyerror!*Tabs {
         slot.* = tab1;
     }
 
-    const instance = @import("../internal.zig").lasting_allocator.create(Tabs) catch @panic("out of memory");
+    const instance = @import("../internal.zig").allocator.create(Tabs) catch @panic("out of memory");
     instance.* = Tabs.init(.{ .tabs = list });
     instance.widget_data.widget = @import("../internal.zig").genericWidgetFrom(instance);
     return instance;

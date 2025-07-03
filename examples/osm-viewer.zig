@@ -34,7 +34,7 @@ pub const MapViewer = struct {
     isDragging: bool = false,
     lastMouseX: i32 = 0,
     lastMouseY: i32 = 0,
-    allocator: Atom(std.mem.Allocator) = Atom(std.mem.Allocator).of(capy.internal.lasting_allocator),
+    allocator: Atom(std.mem.Allocator) = Atom(std.mem.Allocator).of(capy.internal.allocator),
 
     const TilePosition = struct {
         zoom: u5,
@@ -117,10 +117,10 @@ pub const MapViewer = struct {
             if (response.isReady()) {
                 try response.checkError();
                 // Read the body of the HTTP response and store it in memory
-                const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
-                defer capy.internal.scratch_allocator.free(contents);
+                const contents = try response.reader().readAllAlloc(capy.internal.allocator, std.math.maxInt(usize));
+                defer capy.internal.allocator.free(contents);
 
-                const value = try std.json.parseFromSlice(std.json.Value, capy.internal.scratch_allocator, contents, .{});
+                const value = try std.json.parseFromSlice(std.json.Value, capy.internal.allocator, contents, .{});
                 defer value.deinit();
 
                 const root = value.value.array;
@@ -141,10 +141,10 @@ pub const MapViewer = struct {
             const response = self.pendingRequests.getPtr(key.*).?;
             if (response.isReady()) {
                 // Read the body of the HTTP response and store it in memory
-                const contents = try response.reader().readAllAlloc(capy.internal.scratch_allocator, std.math.maxInt(usize));
-                defer capy.internal.scratch_allocator.free(contents);
+                const contents = try response.reader().readAllAlloc(capy.internal.allocator, std.math.maxInt(usize));
+                defer capy.internal.allocator.free(contents);
 
-                if (capy.ImageData.fromBuffer(capy.internal.lasting_allocator, contents)) |imageData| {
+                if (capy.ImageData.fromBuffer(capy.internal.allocator, contents)) |imageData| {
                     try self.tileCache.put(key.*, .{ .data = imageData });
                 } else |err| switch (err) {
                     error.InvalidData => {

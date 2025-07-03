@@ -1,11 +1,11 @@
 const std = @import("std");
-const lasting_allocator = @import("internal.zig").lasting_allocator;
+const lasting_allocator = @import("internal.zig").allocator;
 const Atom = @import("data.zig").Atom;
 const ListAtom = @import("data.zig").ListAtom;
 const internal = @import("internal.zig");
 
 /// This event source is never triggered.
-pub var null_event_source = EventSource.init(internal.lasting_allocator);
+pub var null_event_source = EventSource.init(internal.allocator);
 
 pub const EventSource = struct {
     listeners: ListAtom(*Listener),

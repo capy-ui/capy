@@ -38,7 +38,7 @@ pub fn main() !void {
     // Atom.
     // However, FormatAtom isn't bi-directional (editing the text field won't change count's value),
     // but it remains best fit for this example as the text field is read-only.
-    var format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&count});
+    var format = try capy.FormattedAtom(capy.internal.allocator, "{d}", .{&count});
     defer format.deinit();
 
     try window.set(capy.alignment(

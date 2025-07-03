@@ -138,7 +138,7 @@ pub fn Events(comptime T: type) type {
 
         pub fn deinit(self: *const T) void {
             const peer = self.peer;
-            lib.internal.lasting_allocator.destroy(peer.data);
+            lib.internal.allocator.destroy(peer.data);
         }
     };
 }
@@ -169,7 +169,7 @@ pub const Window = struct {
         return Window{
             .peer = GuiWidget{
                 .object = window,
-                .data = try lib.internal.lasting_allocator.create(EventUserData),
+                .data = try lib.internal.allocator.create(EventUserData),
             },
         };
     }
@@ -249,7 +249,7 @@ pub const Container = struct {
             .msgSend(objc.Object, "initWithFrame:", .{AppKit.NSRect.make(0, 0, 1, 1)});
         return Container{ .peer = GuiWidget{
             .object = view,
-            .data = try lib.internal.lasting_allocator.create(EventUserData),
+            .data = try lib.internal.allocator.create(EventUserData),
         } };
     }
 
@@ -353,7 +353,7 @@ pub const Label = struct {
         return Label{
             .peer = GuiWidget{
                 .object = label,
-                .data = try lib.internal.lasting_allocator.create(EventUserData),
+                .data = try lib.internal.allocator.create(EventUserData),
             },
         };
     }

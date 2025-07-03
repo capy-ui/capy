@@ -36,7 +36,7 @@ pub fn create() !Dropdown {
 
     getEventUserData(hwnd).extra_height = 500;
 
-    return Dropdown{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.lasting_allocator) };
+    return Dropdown{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
 }
 
 pub fn getSelectedIndex(self: *const Dropdown) usize {
@@ -53,7 +53,7 @@ pub fn setValues(self: *Dropdown, values: []const []const u8) void {
     const old_index = self.getSelectedIndex();
     _ = win32.SendMessageW(self.peer, win32.CB_RESETCONTENT, 0, 0);
 
-    const allocator = lib.internal.lasting_allocator;
+    const allocator = lib.internal.allocator;
     if (self.owned_strings) |strings| {
         for (strings) |string| {
             allocator.free(std.mem.span(string.?));

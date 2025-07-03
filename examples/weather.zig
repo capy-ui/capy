@@ -14,7 +14,7 @@ pub fn main() !void {
     try capy.init();
     defer capy.deinit();
 
-    var arena = std.heap.ArenaAllocator.init(capy.internal.lasting_allocator);
+    var arena = std.heap.ArenaAllocator.init(capy.internal.allocator);
     defer arena.deinit();
 
     var weather: WeatherData = .{

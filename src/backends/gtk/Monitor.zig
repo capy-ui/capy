@@ -16,7 +16,7 @@ pub fn getList() []Monitor {
         const display = c.gdk_display_get_default();
         const list_model = c.gdk_display_get_monitors(display);
         const n: usize = c.g_list_model_get_n_items(list_model);
-        const list = lib.internal.lasting_allocator.alloc(Monitor, n) catch @panic("OOM");
+        const list = lib.internal.allocator.alloc(Monitor, n) catch @panic("OOM");
 
         for (0..c.g_list_model_get_n_items(list_model)) |i| {
             const item: *c.GdkMonitor = @ptrCast(c.g_list_model_get_item(list_model, @intCast(i)).?);
@@ -30,7 +30,7 @@ pub fn getList() []Monitor {
 pub fn deinitAllPeers() void {
     if (monitor_list) |list| {
         for (list) |*monitor| monitor.deinit();
-        lib.internal.lasting_allocator.free(list);
+        lib.internal.allocator.free(list);
         monitor_list = null;
     }
 }
@@ -44,7 +44,7 @@ pub fn getInternalName(self: *Monitor) []const u8 {
     if (self.internal_name) |internal_name| {
         return internal_name;
     } else {
-        self.internal_name = std.mem.concat(lib.internal.lasting_allocator, u8, &.{
+        self.internal_name = std.mem.concat(lib.internal.allocator, u8, &.{
             std.mem.span(c.gdk_monitor_get_manufacturer(self.peer) orelse @as([:0]const u8, "").ptr),
             std.mem.span(c.gdk_monitor_get_model(self.peer) orelse @as([:0]const u8, "").ptr),
         }) catch @panic("OOM");
@@ -103,7 +103,7 @@ pub fn getVideoMode(self: *Monitor, index: usize) lib.VideoMode {
 
 pub fn deinit(self: *Monitor) void {
     if (self.internal_name) |internal_name| {
-        lib.internal.lasting_allocator.free(internal_name);
+        lib.internal.allocator.free(internal_name);
         self.internal_name = null;
     }
 }

@@ -4,7 +4,7 @@ const lib = @import("../../capy.zig");
 const js = @import("js.zig");
 const trait = @import("../../trait.zig");
 
-const lasting_allocator = lib.internal.lasting_allocator;
+const lasting_allocator = lib.internal.allocator;
 
 const EventType = shared.BackendEventType;
 const EventFunctions = shared.EventFunctions(@This());
@@ -44,7 +44,7 @@ pub const AudioGenerator = struct {
     buffers: [][]f32,
 
     pub fn create(sampleRate: f32) !AudioGenerator {
-        const allocator = lib.internal.lasting_allocator;
+        const allocator = lib.internal.allocator;
         const channels = 2;
         const channelDatas = try allocator.alloc([]f32, channels);
         for (channelDatas) |*buffer| {
@@ -76,9 +76,9 @@ pub const AudioGenerator = struct {
 
     pub fn deinit(self: AudioGenerator) void {
         for (self.buffers) |buffer| {
-            lib.internal.lasting_allocator.free(buffer);
+            lib.internal.allocator.free(buffer);
         }
-        lib.internal.lasting_allocator.free(self.buffers);
+        lib.internal.allocator.free(self.buffers);
     }
 };
 

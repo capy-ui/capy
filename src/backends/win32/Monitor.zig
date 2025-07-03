@@ -17,7 +17,7 @@ pub fn getList() []Monitor {
     if (monitor_list) |list| {
         return list;
     } else {
-        const allocator = lib.internal.lasting_allocator;
+        const allocator = lib.internal.allocator;
         var monitors = std.ArrayList(Monitor).init(allocator);
         defer monitors.deinit();
 
@@ -86,7 +86,7 @@ pub fn getList() []Monitor {
 pub fn deinitAllPeers() void {
     if (monitor_list) |list| {
         for (list) |*monitor| monitor.deinit();
-        lib.internal.lasting_allocator.free(list);
+        lib.internal.allocator.free(list);
         monitor_list = null;
     }
 }
@@ -99,7 +99,7 @@ pub fn getInternalName(self: *Monitor) []const u8 {
     if (self.internal_name) |name| {
         return name;
     } else {
-        self.internal_name = std.unicode.utf16leToUtf8Alloc(lib.internal.lasting_allocator, self.win32_name);
+        self.internal_name = std.unicode.utf16leToUtf8Alloc(lib.internal.allocator, self.win32_name);
         return self.internal_name.?;
     }
 }
@@ -182,8 +182,8 @@ pub fn getVideoMode(self: *Monitor, index: usize) lib.VideoMode {
 
 pub fn deinit(self: *Monitor) void {
     if (self.internal_name) |name| {
-        lib.internal.lasting_allocator.free(name);
+        lib.internal.allocator.free(name);
     }
-    lib.internal.lasting_allocator.free(self.adapter_win32_name);
-    lib.internal.lasting_allocator.free(self.win32_name);
+    lib.internal.allocator.free(self.adapter_win32_name);
+    lib.internal.allocator.free(self.win32_name);
 }

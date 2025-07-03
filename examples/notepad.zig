@@ -22,7 +22,7 @@ pub fn main() !void {
         }
     }.callback);
 
-    var label_text = try capy.FormattedAtom(capy.internal.lasting_allocator, "Text length: {d}", .{text_length});
+    var label_text = try capy.FormattedAtom(capy.internal.allocator, "Text length: {d}", .{text_length});
     defer label_text.deinit();
 
     try window.set(capy.column(.{ .spacing = 0 }, .{

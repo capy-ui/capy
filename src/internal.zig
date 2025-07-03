@@ -4,8 +4,8 @@ const root = @import("root");
 const builtin = @import("builtin");
 const std = @import("std");
 const backend = @import("backend.zig");
-// const style = @import("style.zig");
 const dataStructures = @import("data.zig");
+
 const Widget = @import("widget.zig").Widget;
 const Class = @import("widget.zig").Class;
 const Size = dataStructures.Size;
@@ -16,30 +16,22 @@ const MouseButton = @import("backends/shared.zig").MouseButton;
 const trait = @import("trait.zig");
 const AnimationController = @import("AnimationController.zig");
 
-const link_libc = @import("builtin").link_libc;
-
-/// The default allocator if capy_scratch_allocator or capy_lasting_allocator isn't defined
+/// The default allocator if capy_allocator isn't defined
 const default_allocator = blk: {
     if (@hasDecl(root, "capy_allocator")) {
         break :blk root.capy_allocator;
     } else if (@import("builtin").is_test) {
         break :blk std.testing.allocator;
-    } else if (link_libc) {
+    } else if (@import("builtin").link_libc) {
         break :blk std.heap.c_allocator;
     } else {
         break :blk std.heap.page_allocator;
     }
 };
 
-/// Allocator used for small, short-lived and repetitive allocations.
-/// You can change this by setting the `capy_scratch_allocator` field in your main file
-/// or by setting the `capy_allocator` field which will also apply as lasting allocator.
-pub const scratch_allocator = if (@hasDecl(root, "capy_scratch_allocator")) root.capy_scratch_allocator else default_allocator;
-
-/// Allocator used for bigger, longer-lived but rare allocations (example: widgets).
-/// You can change this by setting the `capy_lasting_allocator` field in your main file
-/// or by setting the `capy_allocator` field which will also apply as scratch allocator.
-pub const lasting_allocator = if (@hasDecl(root, "capy_lasting_allocator")) root.capy_lasting_allocator else default_allocator;
+/// Allocator used for bigger, longer-lived but rare allocations and for shorter-lived allocations.
+/// You can change this by setting the `capy_allocator` field in your main file.
+pub const allocator = if (@hasDecl(root, "capy_allocator")) root.capy_allocator else default_allocator;
 
 /// Convenience function for creating widgets
 pub fn All(comptime T: type) type {
@@ -88,16 +80,16 @@ pub fn Widgeting(comptime T: type) type {
 
         /// Allocates an instance of the component.
         ///
-        /// By default, all components are allocated using lasting_allocator, why is it this way and not
-        /// with a different allocator for each component? It's because it would cause a lot of trouble if a
-        /// was allocated with a different allocator than its children. Enforcing one single allocator
-        /// prevents those kind of situations.
+        /// By default, all components are allocated using the global allocator, why is it this way
+        /// and not with a different allocator for each component? It's because it would cause a lot
+        /// of trouble if a was allocated with a different allocator than its children. Enforcing
+        /// one single allocator prevents those kind of situations.
         ///
-        /// It is important to note that the created component will be counted as having NO REFERENCES.
-        /// This means that you must ref() it if you wish to hold a reference to it in a variable instead
-        /// instead of directly adding it to a component or a window.
+        /// It is important to note that the created component will be counted as having NO
+        /// REFERENCES. This means that you must ref() it if you wish to hold a reference to it in a
+        /// variable instead instead of directly adding it to a component or a window.
         pub fn alloc(config: Config) *T {
-            const instance = lasting_allocator.create(T) catch @panic("out of memory");
+            const instance = allocator.create(T) catch @panic("out of memory");
             const type_info = @typeInfo(@TypeOf(T.init)).@"fn";
             const return_type = type_info.return_type.?;
             if (comptime type_info.params.len != 1) {
@@ -155,7 +147,7 @@ pub fn Widgeting(comptime T: type) type {
                 self._deinit();
             }
 
-            self.widget_data.userdata.deinit(lasting_allocator);
+            self.widget_data.userdata.deinit(allocator);
             self.widget_data.handlers.clickHandlers.deinit();
             self.widget_data.handlers.drawHandlers.deinit();
             self.widget_data.handlers.buttonHandlers.deinit();
@@ -170,7 +162,7 @@ pub fn Widgeting(comptime T: type) type {
             deinitAtoms(self);
             if (self.peer) |peer| peer.deinit();
 
-            lasting_allocator.destroy(self);
+            allocator.destroy(self);
         }
 
         pub fn getPreferredSizeWidget(widget: *const Widget, available: Size) Size {
@@ -224,7 +216,7 @@ pub fn Widgeting(comptime T: type) type {
         /// as long as they don't override it themselves.
         pub fn addUserdata(self: *T, comptime U: type, userdata: *U) *T {
             const key: []const u8 = @typeName(U);
-            self.widget_data.userdata.put(lasting_allocator, key, userdata) catch @panic("OOM");
+            self.widget_data.userdata.put(allocator, key, userdata) catch @panic("OOM");
             return self;
         }
 
@@ -523,7 +515,7 @@ pub fn isErrorUnion(comptime T: type) bool {
 
 pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget) {
     const fields = std.meta.fields(@TypeOf(childrens));
-    var list = std.ArrayList(*Widget).init(lasting_allocator);
+    var list = std.ArrayList(*Widget).init(allocator);
     inline for (fields) |field| {
         const element = @field(childrens, field.name);
         const child =
@@ -598,15 +590,15 @@ pub fn Events(comptime T: type) type {
         pub fn init_events(self: T) T {
             var obj = self;
             obj.widget_data.handlers = .{
-                .clickHandlers = HandlerList.init(lasting_allocator),
-                .drawHandlers = DrawHandlerList.init(lasting_allocator),
-                .buttonHandlers = ButtonHandlerList.init(lasting_allocator),
-                .mouseMoveHandlers = MouseMoveHandlerList.init(lasting_allocator),
-                .scrollHandlers = ScrollHandlerList.init(lasting_allocator),
-                .resizeHandlers = ResizeHandlerList.init(lasting_allocator),
-                .keyTypeHandlers = KeyTypeHandlerList.init(lasting_allocator),
-                .keyPressHandlers = KeyPressHandlerList.init(lasting_allocator),
-                .propertyChangeHandlers = PropertyChangeHandlerList.init(lasting_allocator),
+                .clickHandlers = HandlerList.init(allocator),
+                .drawHandlers = DrawHandlerList.init(allocator),
+                .buttonHandlers = ButtonHandlerList.init(allocator),
+                .mouseMoveHandlers = MouseMoveHandlerList.init(allocator),
+                .scrollHandlers = ScrollHandlerList.init(allocator),
+                .resizeHandlers = ResizeHandlerList.init(allocator),
+                .keyTypeHandlers = KeyTypeHandlerList.init(allocator),
+                .keyPressHandlers = KeyPressHandlerList.init(allocator),
+                .propertyChangeHandlers = PropertyChangeHandlerList.init(allocator),
             };
             return obj;
         }

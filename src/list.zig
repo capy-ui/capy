@@ -2,7 +2,7 @@
 const std = @import("std");
 const backend = @import("backend.zig");
 const Widget = @import("widget.zig").Widget;
-const lasting_allocator = @import("internal.zig").lasting_allocator;
+const global_allocator = @import("internal.zig").allocator;
 const Size = @import("data.zig").Size;
 const Rectangle = @import("data.zig").Rectangle;
 const containers = @import("containers.zig");
@@ -92,7 +92,7 @@ pub inline fn columnList(config: containers.GridConfig, model: anytype) anyerror
 
     const widget = @import("internal.zig").getWidgetFrom(row);
 
-    const instance = lasting_allocator.create(List) catch @panic("out of memory");
+    const instance = global_allocator.create(List) catch @panic("out of memory");
     instance.* = List.init(widget, genericModel);
     instance.widget_data.widget = @import("internal.zig").genericWidgetFrom(instance);
     return instance;

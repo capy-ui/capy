@@ -23,7 +23,7 @@ pub fn create() common.BackendError!TextField {
     const textField = c.gtk_entry_new() orelse return common.BackendError.UnknownError;
     try TextField.setupEvents(textField);
     _ = c.g_signal_connect_data(textField, "changed", @as(c.GCallback, @ptrCast(&gtkTextChanged)), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
-    return TextField{ .peer = textField, .dup_text = std.ArrayList(u8).init(lib.internal.lasting_allocator) };
+    return TextField{ .peer = textField, .dup_text = std.ArrayList(u8).init(lib.internal.allocator) };
 }
 
 pub fn setText(self: *TextField, text: []const u8) void {

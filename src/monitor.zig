@@ -15,7 +15,7 @@ pub const Monitors = struct {
     /// This function is called by `capy.init()`, so it doesn't need to be called manually.
     pub fn init() void {
         initialized.lock();
-        Monitors.list = ListAtom(Monitor).init(internal.lasting_allocator);
+        Monitors.list = ListAtom(Monitor).init(internal.allocator);
         const peer_list = backend.Monitor.getList();
         for (peer_list) |*monitor_peer| {
             list.append(Monitor.init(monitor_peer)) catch @panic("OOM");
@@ -65,7 +65,7 @@ pub const Monitor = struct {
     fn init(peer: *backend.Monitor) Monitor {
         const video_modes = blk: {
             const n = peer.getNumberOfVideoModes();
-            const modes = internal.lasting_allocator.alloc(VideoMode, n) catch @panic("OOM");
+            const modes = internal.allocator.alloc(VideoMode, n) catch @panic("OOM");
             for (0..n) |i| {
                 const video_mode = peer.getVideoMode(i);
                 modes[i] = video_mode;
@@ -77,7 +77,7 @@ pub const Monitor = struct {
     }
 
     fn deinit(self: Monitor) void {
-        internal.lasting_allocator.free(self.video_modes);
+        internal.allocator.free(self.video_modes);
     }
 
     /// Returns a human-readable name for the monitor.

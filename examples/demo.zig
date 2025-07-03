@@ -28,7 +28,7 @@ pub fn main() !void {
     var somesliderValue = capy.Atom(f32).of(0);
     defer somesliderValue.deinit();
 
-    const somesliderText = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.1}", .{&somesliderValue});
+    const somesliderText = try capy.FormattedAtom(capy.internal.allocator, "{d:.1}", .{&somesliderValue});
     defer somesliderText.deinit();
 
     try window.set(capy.row(.{ .spacing = 0 }, .{

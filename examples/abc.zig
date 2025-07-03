@@ -24,7 +24,7 @@ pub fn main() !void {
     );
 
     var window = try capy.Window.init();
-    const format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d:.3}", .{displayed_temperature});
+    const format = try capy.FormattedAtom(capy.internal.allocator, "{d:.3}", .{displayed_temperature});
     try window.set(capy.column(.{}, .{
         capy.label(.{})
             .bind("text", format),

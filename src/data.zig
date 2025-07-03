@@ -1,7 +1,7 @@
 const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
 const internal = @import("internal.zig");
-const lasting_allocator = internal.lasting_allocator;
+const lasting_allocator = internal.allocator;
 const trait = @import("trait.zig");
 const AnimationController = @import("AnimationController.zig");
 
@@ -267,7 +267,7 @@ pub fn Atom(comptime T: type) type {
                 controller: *AnimationController,
             };
 
-            const userdata = try internal.lasting_allocator.create(AnimationParameters);
+            const userdata = try internal.allocator.create(AnimationParameters);
             userdata.* = .{
                 .easing = easing,
                 .duration = duration,
@@ -797,7 +797,7 @@ pub fn ListAtom(comptime T: type) type {
             return Self{
                 .backing_list = list,
                 .length = Atom(usize).of(0),
-                .allocator = internal.lasting_allocator,
+                .allocator = internal.allocator,
             };
         }
 

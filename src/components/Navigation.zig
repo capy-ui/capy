@@ -112,7 +112,7 @@ pub const Navigation = struct {
 };
 
 pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!*Navigation {
-    var routes = std.StringHashMap(*Widget).init(internal.lasting_allocator);
+    var routes = std.StringHashMap(*Widget).init(internal.allocator);
     const fields = std.meta.fields(@TypeOf(children));
 
     inline for (fields) |field| {
@@ -126,7 +126,7 @@ pub fn navigation(opts: Navigation.Config, children: anytype) anyerror!*Navigati
         try routes.put(field.name, widget);
     }
 
-    const instance = @import("../internal.zig").lasting_allocator.create(Navigation) catch @panic("out of memory");
+    const instance = @import("../internal.zig").allocator.create(Navigation) catch @panic("out of memory");
     instance.* = try Navigation.init(opts, routes);
     instance.widget_data.widget = @import("../internal.zig").genericWidgetFrom(instance);
     return instance;

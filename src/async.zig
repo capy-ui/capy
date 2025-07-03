@@ -63,7 +63,7 @@ pub const Loop = struct {
 
     pub fn init() Loop {
         return Loop{
-            .pool = ThreadPool.init(internal.lasting_allocator),
+            .pool = ThreadPool.init(internal.allocator),
             .pending_tasks = TaskQueue.init(),
         };
     }

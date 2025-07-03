@@ -11,9 +11,9 @@ const CounterState = struct {
 };
 
 fn counter() anyerror!*capy.Alignment {
-    var state1 = try capy.internal.lasting_allocator.create(CounterState);
+    var state1 = try capy.internal.allocator.create(CounterState);
     state1.* = .{};
-    const format = try capy.FormattedAtom(capy.internal.lasting_allocator, "{d}", .{&state1.count});
+    const format = try capy.FormattedAtom(capy.internal.allocator, "{d}", .{&state1.count});
     // TODO: when to deinit format?
 
     return capy.alignment(
