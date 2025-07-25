@@ -27,7 +27,7 @@ pub fn main() !void {
     const format = try capy.FormattedAtom(capy.internal.allocator, "{d:.3}", .{displayed_temperature});
     try window.set(capy.column(.{}, .{
         capy.label(.{})
-            .bind("text", format),
+            .withBinding("text", format),
         capy.button(.{ .label = "set °c", .onclick = @ptrCast(&setCelsius) }),
         capy.button(.{ .label = "set °f", .onclick = @ptrCast(&setFahrenheit) }),
     }));

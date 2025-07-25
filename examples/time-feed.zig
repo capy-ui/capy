@@ -73,11 +73,11 @@ pub fn InsertCard() anyerror!*capy.Container {
     return try capy.column(.{}, .{
         // TODO: TextArea when it supports data wrappers
         capy.textArea(.{ .name = "description" })
-            .bind("text", &submitDesc), // placeholder = "Task description..."
+            .withBinding("text", &submitDesc), // placeholder = "Task description..."
         capy.label(.{ .text = "Going on since.. 00:00:20" }),
         capy.alignment(.{ .x = 1 }, capy.row(.{}, .{
             capy.button(.{ .label = "Submit", .onclick = onSubmit })
-                .bind("enabled", &submitEnabled),
+                .withBinding("enabled", &submitEnabled),
             capy.button(.{ .label = "Delete" }), // TODO: icon
         })),
     });

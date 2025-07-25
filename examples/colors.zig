@@ -32,7 +32,7 @@ pub fn main() !void {
             capy.alignment(.{}, capy.button(.{ .label = "Random color", .onclick = animateRandomColor })),
             // dropdown,
             capy.label(.{})
-                .bind("text", selectedValue),
+                .withBinding("text", selectedValue),
         }),
     }));
     window.show();

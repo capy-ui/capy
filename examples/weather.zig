@@ -31,7 +31,7 @@ pub fn main() !void {
                 capy.expanded(capy.textField(.{ .text = "Paris, France" })),
             }),
             capy.label(.{ .layout = .{ .font = .{ .size = 20, .family = "IBM Plex Sans" } } })
-                .bind("text", try capy.FormattedAtom(arena.allocator(), "Current Temperature: {d:.1}°C", .{&weather.current_temperature})),
+                .withBinding("text", try capy.FormattedAtom(arena.allocator(), "Current Temperature: {d:.1}°C", .{&weather.current_temperature})),
             capy.row(.{}, .{
                 capy.stack(.{
                     capy.rect(.{ .color = capy.Colors.red }),

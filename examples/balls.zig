@@ -62,7 +62,7 @@ pub fn main() !void {
     try window.set(capy.column(.{}, .{
         capy.label(.{ .text = "Balls with attraction and friction" }),
         capy.label(.{})
-            .bind("text", totalEnergyFormat),
+            .withBinding("text", totalEnergyFormat),
         capy.alignment(.{}, canvas),
     }));
 

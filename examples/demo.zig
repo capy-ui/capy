@@ -44,9 +44,9 @@ pub fn main() !void {
                 capy.checkBox(.{ .label = "Disabled", .enabled = false }),
                 capy.row(.{}, .{
                     capy.expanded(capy.slider(.{ .min = -10, .max = 10, .step = 0.1 })
-                        .bind("value", &somesliderValue)),
+                        .withBinding("value", &somesliderValue)),
                     capy.label(.{})
-                        .bind("text", somesliderText),
+                        .withBinding("text", somesliderText),
                 }),
             })),
             capy.tab(.{ .label = "Rounded Rectangle" }, capy.column(.{}, .{
@@ -56,15 +56,15 @@ pub fn main() !void {
                 ),
                 capy.row(.{}, .{
                     capy.expanded(capy.slider(.{ .min = 0, .max = 100, .step = 0.1 })
-                        .bind("value", &corner_1)),
+                        .withBinding("value", &corner_1)),
                     capy.expanded(capy.slider(.{ .min = 0, .max = 100, .step = 0.1 })
-                        .bind("value", &corner_2)),
+                        .withBinding("value", &corner_2)),
                 }),
                 capy.row(.{}, .{
                     capy.expanded(capy.slider(.{ .min = 0, .max = 100, .step = 0.1 })
-                        .bind("value", &corner_3)),
+                        .withBinding("value", &corner_3)),
                     capy.expanded(capy.slider(.{ .min = 0, .max = 100, .step = 0.1 })
-                        .bind("value", &corner_4)),
+                        .withBinding("value", &corner_4)),
                 }),
             })),
             //capy.tab(.{ .label = "Drawing" }, capy.expanded(drawer(.{}))),

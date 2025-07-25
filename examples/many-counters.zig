@@ -30,7 +30,7 @@ fn counter() anyerror!*capy.Alignment {
                 }).sub,
             }),
             capy.textField(.{ .text = "0", .readOnly = true })
-                .bind("text", format),
+                .withBinding("text", format),
             capy.button(.{ .label = "+", .onclick = struct {
                 fn add(pointer: *anyopaque) anyerror!void {
                     const button: *capy.Button = @ptrCast(@alignCast(pointer));
@@ -39,7 +39,7 @@ fn counter() anyerror!*capy.Alignment {
                 }
             }.add }),
         }))
-            .addUserdata(CounterState, state1),
+            .withUserdata(CounterState, state1),
     );
 }
 

@@ -45,7 +45,7 @@ pub fn main() !void {
         .{},
         capy.row(.{ .spacing = 5 }, .{
             capy.textField(.{ .readOnly = true, .name = "text-field" })
-                .bind("text", format),
+                .withBinding("text", format),
             capy.button(.{ .label = "Count", .onclick = increment }),
         }),
     ));

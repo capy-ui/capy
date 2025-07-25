@@ -41,7 +41,7 @@ pub fn main() !void {
             rotatingDisc(), // TODO
             capy.label(.{ .text = "Audio Name", .layout = .{ .alignment = .Center } }),
             capy.slider(.{ .min = 40, .max = 2000, .step = 1 })
-                .bind("value", &pitch),
+                .withBinding("value", &pitch),
         })),
     );
 

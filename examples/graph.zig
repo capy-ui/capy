@@ -189,7 +189,7 @@ pub fn main() !void {
                 .color = capy.Colors.black,
             }),
         ))
-            .bind("x", &rectangleX),
+            .withBinding("x", &rectangleX),
     }));
 
     window.setPreferredSize(800, 600);

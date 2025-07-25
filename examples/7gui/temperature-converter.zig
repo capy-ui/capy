@@ -21,10 +21,10 @@ pub fn main() !void {
         .{},
         capy.row(.{ .spacing = 5 }, .{
             capy.textField(.{})
-                .bind("text", &celsius),
+                .withBinding("text", &celsius),
             capy.label(.{ .text = "Celsius =" }),
             capy.textField(.{})
-                .bind("text", &fahrenheit),
+                .withBinding("text", &fahrenheit),
             capy.label(.{ .text = "Fahrenheit" }),
         }),
     ));

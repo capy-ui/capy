@@ -212,11 +212,18 @@ pub fn Widgeting(comptime T: type) type {
             return &self.widget_data.widget;
         }
 
-        /// Add a userdata to the component. All the component's children can access this userdata
+        /// Add userdata to the component. All the component's children can access this userdata
         /// as long as they don't override it themselves.
-        pub fn addUserdata(self: *T, comptime U: type, userdata: *U) *T {
+        pub fn addUserdata(self: *T, comptime U: type, userdata: *U) void {
             const key: []const u8 = @typeName(U);
             self.widget_data.userdata.put(allocator, key, userdata) catch @panic("OOM");
+        }
+
+        /// Add userdata to the component. All the component's children can access this userdata
+        /// as long as they don't override it themselves. This returns the component for chaining
+        /// methods.
+        pub fn withUserdata(self: *T, comptime U: type, userdata: *U) *T {
+            self.addUserdata(U, userdata);
             return self;
         }
 
@@ -253,8 +260,7 @@ pub fn Widgeting(comptime T: type) type {
             }
         }
 
-        // This method temporarily returns the component for chaining methods
-        // This will be reconsidered later and thus might be removed.
+        /// Set one of the component's properties to the given value.
         pub fn set(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) void {
             if (@hasField(Atoms, name)) {
                 @field(self.widget_data.atoms, name).set(value);
@@ -272,13 +278,25 @@ pub fn Widgeting(comptime T: type) type {
         }
 
         /// Bind the given property to argument
-        pub fn bind(self: *T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) *T {
+        pub fn bind(self: *T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) void {
             if (@hasField(Atoms, name)) {
                 @field(self.widget_data.atoms, name).bind(other);
             } else {
                 @field(self, name).bind(other);
             }
             self.set(name, other.get());
+        }
+
+        /// Set one of the component's properties to the given value and return the component
+        /// (for chainng methods)
+        pub fn withProperty(self: *T, comptime name: []const u8, value: TypeOfProperty(name)) *T {
+            self.set(name, value);
+            return self;
+        }
+
+        /// Bind the given property to argument and return the component (for chaining methods)
+        pub fn withBinding(self: *T, comptime name: []const u8, other: *Atom(TypeOfProperty(name))) *T {
+            self.bind(name, other);
             return self;
         }
 

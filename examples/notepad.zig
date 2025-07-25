@@ -30,14 +30,14 @@ pub fn main() !void {
         // or bound. Same goes for the 'monospace' property.
         capy.expanded(
             capy.textArea(.{})
-                .bind("monospace", monospace)
-                .bind("text", text),
+                .withBinding("monospace", monospace)
+                .withBinding("text", text),
         ),
         capy.label(.{ .text = "" })
-            .bind("text", label_text),
+            .withBinding("text", label_text),
         // TODO: move into menu
         capy.checkBox(.{ .label = "Monospaced" })
-            .bind("checked", monospace),
+            .withBinding("checked", monospace),
     }));
 
     // TODO: hotkeys for actions (Ctrl+S, Ctrl+C) plus corresponding Cmd+C on macOS

@@ -86,6 +86,7 @@ pub const backend = @import("backend.zig");
 pub const http = @import("http.zig");
 pub const dev_tools = @import("dev_tools.zig");
 pub const audio = @import("audio.zig");
+pub const testing = @import("testing.zig");
 
 pub const allocator = internal.allocator;
 

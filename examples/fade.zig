@@ -35,7 +35,7 @@ pub fn main() !void {
                 capy.label(.{ .text = "Hello Zig" }),
                 capy.expanded(
                     capy.image(.{ .url = "asset:///ziglogo.png", .scaling = .Fit, .opacity = 0 })
-                        .bind("opacity", &opacity),
+                        .withBinding("opacity", &opacity),
                 ),
             }))),
             capy.button(.{ .label = "Hide", .onclick = startAnimation }),
