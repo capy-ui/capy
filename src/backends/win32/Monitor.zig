@@ -160,10 +160,17 @@ pub fn getDpi(self: *Monitor) u32 {
     }
 }
 
+// Workaround as zigwin32 doesn't use the correct enum type for ENUM_DISPLAY_SETTINGS_MODE
+pub extern "user32" fn EnumDisplaySettingsW(
+    lpszDeviceName: ?[*:0]const u16,
+    iModeNum: u32,
+    lpDevMode: ?*win32.DEVMODEW,
+) callconv(@import("std").os.windows.WINAPI) win32.BOOL;
+
 pub fn getNumberOfVideoModes(self: *Monitor) usize {
     var count: u32 = 0;
     var dev_mode: win32.DEVMODEW = std.mem.zeroInit(win32.DEVMODEW, .{ .dmSize = @sizeOf(win32.DEVMODEW) });
-    while (win32.EnumDisplaySettingsW(self.adapter_win32_name, @enumFromInt(count), &dev_mode) != 0) {
+    while (EnumDisplaySettingsW(self.adapter_win32_name, count, &dev_mode) != 0) {
         count += 1;
     }
     return count;
@@ -171,7 +178,7 @@ pub fn getNumberOfVideoModes(self: *Monitor) usize {
 
 pub fn getVideoMode(self: *Monitor, index: usize) lib.VideoMode {
     var dev_mode: win32.DEVMODEW = std.mem.zeroInit(win32.DEVMODEW, .{ .dmSize = @sizeOf(win32.DEVMODEW) });
-    std.debug.assert(win32.EnumDisplaySettingsW(self.adapter_win32_name, @enumFromInt(index), &dev_mode) != 0);
+    std.debug.assert(EnumDisplaySettingsW(self.adapter_win32_name, @intCast(index), &dev_mode) != 0);
     return .{
         .width = @intCast(dev_mode.dmPelsWidth),
         .height = @intCast(dev_mode.dmPelsHeight),
