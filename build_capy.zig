@@ -48,7 +48,7 @@ const WebServerStep = struct {
     options: CapyRunOptions,
 
     pub fn create(owner: *std.Build, exe: *std.Build.Step.Compile, options: CapyRunOptions) *WebServerStep {
-        const self = owner.allocator.create(WebServerStep) catch unreachable;
+        const self = owner.allocator.create(WebServerStep) catch @panic("OOM");
         self.* = .{
             .step = std.Build.Step.init(.{
                 .id = .custom,

@@ -35,8 +35,8 @@ pub fn getList() []Monitor {
             while (win32.EnumDisplayDevicesW(null, i, &display_device, 0) != 0) : (i += 1) {
                 if (display_device.StateFlags & win32.DISPLAY_DEVICE_ATTACHED_TO_DESKTOP != 0) {
                     const device_name: [:0]const u16 = std.mem.span(@as([*:0]u16, @ptrCast(&display_device.DeviceName)));
-                    const cloned_device_name = allocator.dupeZ(u16, device_name) catch unreachable;
-                    adapters.append(cloned_device_name) catch unreachable;
+                    const cloned_device_name = allocator.dupeZ(u16, device_name) catch @panic("OOM");
+                    adapters.append(cloned_device_name) catch @panic("OOM");
                 }
             }
         }
@@ -62,23 +62,23 @@ pub fn getList() []Monitor {
                 var i: u32 = 0;
                 while (win32.EnumDisplayDevicesW(adapter, i, &display_device, 0) != 0) : (i += 1) {
                     const device_name: [:0]const u16 = std.mem.span(@as([*:0]u16, @ptrCast(&display_device.DeviceName)));
-                    const cloned_device_name = allocator.dupeZ(u16, device_name) catch unreachable;
+                    const cloned_device_name = allocator.dupeZ(u16, device_name) catch @panic("OOM");
                     const device_string: [:0]const u16 = std.mem.span(@as([*:0]u16, @ptrCast(&display_device.DeviceString)));
-                    const cloned_device_string = std.unicode.utf16LeToUtf8Alloc(allocator, device_string) catch unreachable;
-                    monitor_names.append(.{ .adapter = adapter, .monitor_name = cloned_device_name, .monitor_friendly_name = cloned_device_string }) catch unreachable;
+                    const cloned_device_string = std.unicode.utf16LeToUtf8Alloc(allocator, device_string) catch @panic("OOM");
+                    monitor_names.append(.{ .adapter = adapter, .monitor_name = cloned_device_name, .monitor_friendly_name = cloned_device_string }) catch @panic("OOM");
                 }
             }
         }
 
         for (monitor_names.items) |name| {
             monitors.append(Monitor{
-                .adapter_win32_name = allocator.dupeZ(u16, name.adapter) catch unreachable,
-                .win32_name = allocator.dupeZ(u16, name.monitor_name) catch unreachable,
-                .device_name = allocator.dupe(u8, name.monitor_friendly_name) catch unreachable,
-            }) catch unreachable;
+                .adapter_win32_name = allocator.dupeZ(u16, name.adapter) catch @panic("OOM"),
+                .win32_name = allocator.dupeZ(u16, name.monitor_name) catch @panic("OOM"),
+                .device_name = allocator.dupe(u8, name.monitor_friendly_name) catch @panic("OOM"),
+            }) catch @panic("OOM");
         }
 
-        monitor_list = monitors.toOwnedSlice() catch unreachable;
+        monitor_list = monitors.toOwnedSlice() catch @panic("OOM");
         return monitor_list.?;
     }
 }

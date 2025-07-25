@@ -305,7 +305,6 @@ pub fn GridLayout(peer: Callbacks, widgets: []*Widget) void {
         height: f32,
     };
 
-    // TODO: use explicit bounded arrays so as to avoid out-of-memory
     const MAX_COLUMNS = 10_000;
     const MAX_ROWS = 10_000;
 

@@ -999,7 +999,7 @@ pub const TextField = struct {
 
     pub fn getText(self: *TextField) [:0]const u8 {
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = lib.internal.allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        var buf = lib.internal.allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch @panic("OOM");
         defer lib.internal.allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
@@ -1060,11 +1060,11 @@ pub const TextArea = struct {
     pub fn getText(self: *TextArea) [:0]const u8 {
         const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch @panic("OOM");
         defer allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16LeToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        const text = std.unicode.utf16LeToUtf8AllocZ(allocator, utf16Slice) catch @panic("OOM");
         return text;
     }
 
@@ -1122,11 +1122,11 @@ pub const Button = struct {
     pub fn getLabel(self: *Button) [:0]const u8 {
         const allocator = self.arena.allocator();
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        var buf = allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch @panic("OOM");
         defer allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
-        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch unreachable; // TODO return error
+        const text = std.unicode.utf16leToUtf8AllocZ(allocator, utf16Slice) catch @panic("OOM");
         return text;
     }
 
@@ -1415,7 +1415,7 @@ pub const TabContainer = struct {
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
         const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
-        self.peerList.append(peer) catch unreachable;
+        self.peerList.append(peer) catch @panic("OOM");
 
         if (self.shownPeer == null) {
             _ = win32.SetParent(peer, self.peer);

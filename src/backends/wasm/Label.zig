@@ -35,7 +35,7 @@ pub fn setFont(self: *Label, font: lib.Font) void {
         js.setStyle(
             self.peer.element,
             "fontSize",
-            std.fmt.bufPrint(&buf, "{d}pt", .{size}) catch unreachable,
+            std.fmt.bufPrint(&buf, "{d}pt", .{size}) catch @panic("OOM"),
         );
     } else {
         js.removeAttribute(self.peer.element, "fontSize");
@@ -55,7 +55,7 @@ pub fn getText(self: *Label) []const u8 {
         return text;
     } else {
         const len = js.getTextLen(self.peer.element);
-        const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
+        const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch @panic("OOM");
         js.getText(self.peer.element, text.ptr);
         self.temp_text = text;
 

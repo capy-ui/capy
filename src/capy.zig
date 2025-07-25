@@ -112,13 +112,13 @@ pub fn init() !void {
 
     Monitors.init();
 
-    var timerListener = eventStep.listen(.{ .callback = @import("timer.zig").handleTimersTick }) catch unreachable;
+    var timerListener = eventStep.listen(.{ .callback = @import("timer.zig").handleTimersTick }) catch @panic("OOM");
     // The listener is enabled only if there is at least 1 timer is running
     timerListener.enabled.dependOn(.{&@import("timer.zig").runningTimers.length}, &struct {
         fn a(num: usize) bool {
             return num >= 1;
         }
-    }.a) catch unreachable;
+    }.a) catch @panic("OOM");
     isCapyInitialized = true;
 }
 

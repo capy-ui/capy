@@ -34,7 +34,7 @@ pub fn getLabel(self: *const Button) [:0]const u8 {
         return text;
     } else {
         const len = js.getTextLen(self.peer.element);
-        const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
+        const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch @panic("OOM");
         js.getText(self.peer.element, text.ptr);
         self.temp_label = text;
 

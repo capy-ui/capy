@@ -37,10 +37,10 @@ fn setText_uiThread(userdata: ?*anyopaque) callconv(.C) c_int {
 }
 
 pub fn setText(self: *Label, text: []const u8) void {
-    self.nullTerminated = lib.internal.allocator.dupeZ(u8, text) catch unreachable;
+    self.nullTerminated = lib.internal.allocator.dupeZ(u8, text) catch @panic("OOM");
 
     // It must be run in UI thread otherwise set_text might crash randomly
-    const runOpts = lib.internal.allocator.create(RunOpts) catch unreachable;
+    const runOpts = lib.internal.allocator.create(RunOpts) catch @panic("OOM");
     runOpts.* = .{
         .label = @as(*c.GtkLabel, @ptrCast(self.peer)),
         .text = self.nullTerminated.?,

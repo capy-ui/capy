@@ -7,6 +7,7 @@ const Events = common.Events;
 const TextField = @This();
 
 peer: *GuiWidget,
+text: ?[:0]const u8 = null,
 
 pub usingnamespace Events(TextField);
 
@@ -24,11 +25,14 @@ pub fn setText(self: *TextField, text: []const u8) void {
 }
 
 pub fn getText(self: *TextField) [:0]const u8 {
-    const len = js.getTextLen(self.peer.element);
-    // TODO: fix the obvious memory leak
-    const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch unreachable;
-    js.getText(self.peer.element, text.ptr);
+    if (self.text) |previous_text| {
+        lib.allocator.free(previous_text);
+    }
 
+    const len = js.getTextLen(self.peer.element);
+    const text = lib.lasting_allocator.allocSentinel(u8, len, 0) catch @panic("OOM");
+    js.getText(self.peer.element, text.ptr);
+    self.text = text;
     return text;
 }
 

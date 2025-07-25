@@ -90,7 +90,7 @@ pub fn Events(comptime T: type) type {
             if (finalKeyval >= 32768) return 0;
             const codepoint = c.gdk_keyval_to_unicode(finalKeyval);
             var buf: [4]u8 = undefined;
-            const str_length = std.unicode.utf8Encode(@intCast(codepoint), &buf) catch unreachable;
+            const str_length = std.unicode.utf8Encode(@intCast(codepoint), &buf) catch unreachable; // unreachable because 'buf' is big enough
             const str = buf[0..str_length];
 
             if (str.len != 0) {

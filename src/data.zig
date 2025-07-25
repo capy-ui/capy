@@ -1,7 +1,7 @@
 const std = @import("std");
 const Container_Impl = @import("containers.zig").Container_Impl;
 const internal = @import("internal.zig");
-const lasting_allocator = internal.allocator;
+const global_allocator = internal.allocator;
 const trait = @import("trait.zig");
 const AnimationController = @import("AnimationController.zig");
 
@@ -229,11 +229,11 @@ pub fn Atom(comptime T: type) type {
         /// This function assumes that there will be no memory errors.
         /// If you want to handle OutOfMemory, you must manually allocate the Atom
         pub fn alloc(value: T) *Self {
-            const ptr = lasting_allocator.create(Self) catch |err| switch (err) {
+            const ptr = global_allocator.create(Self) catch |err| switch (err) {
                 error.OutOfMemory => unreachable,
             };
             ptr.* = Self.of(value);
-            ptr.allocator = lasting_allocator;
+            ptr.allocator = global_allocator;
             return ptr;
         }
 
@@ -287,7 +287,7 @@ pub fn Atom(comptime T: type) type {
             const destroy_fn = struct {
                 fn a(_: T, uncast: ?*anyopaque) void {
                     const ptr: *AnimationParameters = @ptrCast(@alignCast(uncast));
-                    const allocator = lasting_allocator;
+                    const allocator = global_allocator;
                     const is_deinit = ptr.is_deinit;
                     const self_ptr = ptr.self_ptr;
                     allocator.destroy(ptr);
@@ -405,7 +405,7 @@ pub fn Atom(comptime T: type) type {
             }
 
             // Add the new change listener to the linked list
-            const node = try lasting_allocator.create(ChangeListenerList.Node);
+            const node = try global_allocator.create(ChangeListenerList.Node);
             node.* = .{ .data = .{ .listener = listener, .id = id } };
             self.onChange.prepend(node);
             return id;
@@ -421,7 +421,7 @@ pub fn Atom(comptime T: type) type {
 
             if (target_node) |node| {
                 self.onChange.remove(node);
-                lasting_allocator.destroy(node);
+                global_allocator.destroy(node);
             } else {
                 // The node wasn't found (as it may have already been removed)
             }
@@ -464,11 +464,11 @@ pub fn Atom(comptime T: type) type {
         pub fn bind(self: *Self, other: *Self) void {
             const link_id = self.getNextBindId(other);
 
-            const node = lasting_allocator.create(BindingList.Node) catch unreachable;
+            const node = global_allocator.create(BindingList.Node) catch @panic("OOM");
             node.* = .{ .data = .{ .bound_to = other, .link_id = link_id } };
             self.bindings.prepend(node);
 
-            const otherNode = lasting_allocator.create(BindingList.Node) catch unreachable;
+            const otherNode = global_allocator.create(BindingList.Node) catch @panic("OOM");
             otherNode.* = .{ .data = .{ .bound_to = self, .link_id = link_id } };
             other.bindings.prepend(otherNode);
         }
@@ -595,7 +595,7 @@ pub fn Atom(comptime T: type) type {
         /// 'tuple' must be a tuple with pointers to atoms
         /// 'function' must be a function accepting as arguments the value types of the atoms and returning a new value.
         /// This function relies on the atom not moving in memory and the self pointer still pointing at the same atom
-        pub fn dependOn(self: *Self, tuple: anytype, function: anytype) !void {
+        pub fn dependOn(self: *Self, tuple: anytype, function: anytype) std.mem.Allocator.Error!void {
             const FunctionType = @TypeOf(function);
 
             // Atom types
@@ -641,7 +641,7 @@ pub fn Atom(comptime T: type) type {
             }.handler;
 
             // List of Atoms, cast to ?*anyopaque
-            const wrappers = try lasting_allocator.alloc(?*anyopaque, tuple.len);
+            const wrappers = try global_allocator.alloc(?*anyopaque, tuple.len);
             {
                 comptime var i: usize = 0;
                 inline while (i < tuple.len) : (i += 1) {
@@ -720,11 +720,11 @@ pub fn Atom(comptime T: type) type {
                 var nullableNode = self.bindings.first;
                 while (nullableNode) |node| {
                     nullableNode = node.next;
-                    lasting_allocator.destroy(node);
+                    global_allocator.destroy(node);
                 }
             }
             if (self.depend_on_wrappers.len > 0) {
-                lasting_allocator.free(self.depend_on_wrappers);
+                global_allocator.free(self.depend_on_wrappers);
             }
             {
                 var nullableNode = self.onChange.first;
@@ -733,7 +733,7 @@ pub fn Atom(comptime T: type) type {
                     if (node.data.listener.type == .Destroy) {
                         node.data.listener.function(undefined, node.data.listener.userdata);
                     }
-                    lasting_allocator.destroy(node);
+                    global_allocator.destroy(node);
                 }
             }
             if (self.allocator) |allocator| {
@@ -911,14 +911,57 @@ pub fn ListAtom(comptime T: type) type {
             };
         }
 
+        test iterate {
+            var list = ListAtom(usize).init(std.testing.allocator);
+            defer list.deinit();
+
+            try list.append(1);
+            try list.append(2);
+
+            var iterator = list.iterate();
+            var i: usize = 1;
+            defer iterator.deinit();
+            while (iterator.next()) |item| {
+                try std.testing.expectEqual(i, item);
+                i += 1;
+            }
+
+            const slice = iterator.getSlice();
+            try std.testing.expectEqual(1, slice[0]);
+            try std.testing.expectEqual(2, slice[1]);
+            try std.testing.expectEqual(2, slice.len);
+        }
+
         pub fn map(self: *Self, comptime U: type, func: *const fn (T) U) *ListAtom(U) {
             _ = self;
             _ = func;
             return undefined;
         }
 
+        test map {
+            if (true) return error.SkipZigTest;
+
+            var list = ListAtom([]const u8).init(std.testing.allocator);
+            defer list.deinit();
+
+            try list.append("hello");
+            try list.append("world");
+            try list.append("test");
+
+            var mapped_list = list.map(usize, (struct {
+                pub fn map(str: []const u8) usize {
+                    return str.len;
+                }
+            }).map);
+            defer mapped_list.deinit();
+
+            try std.testing.expectEqual(5, mapped_list.get(0));
+            try std.testing.expectEqual(5, mapped_list.get(1));
+            try std.testing.expectEqual(4, mapped_list.get(2));
+        }
+
         pub fn addChangeListener(self: *Self, listener: ChangeListener) !usize {
-            const node = try lasting_allocator.create(ChangeListenerList.Node);
+            const node = try global_allocator.create(ChangeListenerList.Node);
             node.* = .{ .data = listener };
             self.onChange.prepend(node);
             return self.onChange.len() - 1;
@@ -946,7 +989,7 @@ pub fn ListAtom(comptime T: type) type {
                     if (node.data.type == .Destroy) {
                         node.data.function(self, node.data.userdata);
                     }
-                    lasting_allocator.destroy(node);
+                    global_allocator.destroy(node);
                 }
             }
 
@@ -1001,7 +1044,7 @@ pub fn FormattedAtom(allocator: std.mem.Allocator, comptime fmt: []const u8, chi
                 tuple[i] = child.get();
             }
 
-            const str = std.fmt.allocPrint(ptr.wrapper.allocator.?, fmt, tuple) catch unreachable;
+            const str = std.fmt.allocPrint(ptr.wrapper.allocator.?, fmt, tuple) catch @panic("OOM");
             ptr.wrapper.allocator.?.free(ptr.wrapper.get());
             ptr.wrapper.set(str);
         }

@@ -31,7 +31,7 @@ pub fn erase(_: *anyopaque) !void {
 }
 
 fn findOperator(computation: []const u8, pos: usize) ?usize {
-    return std.mem.indexOfScalarPos(u8, computation, pos, '+') orelse std.mem.indexOfScalarPos(u8, computation, pos, '-') orelse std.mem.indexOfScalarPos(u8, computation, pos, '*') orelse std.mem.indexOfScalarPos(u8, computation, pos, '/');
+    return std.mem.indexOfAnyPos(u8, computation, pos, "+-*/");
 }
 
 // TODO: switch back to *capy.button_Impl when ziglang/zig#12325 is fixed

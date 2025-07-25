@@ -23,7 +23,7 @@ pub fn create() !Container {
 
 pub fn add(self: *Container, peer: *GuiWidget) void {
     js.appendElement(self.peer.element, peer.element);
-    self.peer.children.append(peer) catch unreachable;
+    self.peer.children.append(peer) catch @panic("OOM");
 }
 
 pub fn remove(self: *const Container, peer: *GuiWidget) void {

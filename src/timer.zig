@@ -8,7 +8,7 @@ const EventSource = @import("listener.zig").EventSource;
 pub var runningTimers = ListAtom(*Timer).init(internal.allocator);
 
 pub fn handleTimersTick(_: ?*anyopaque) void {
-    const now = std.time.Instant.now() catch unreachable;
+    const now = std.time.Instant.now() catch @panic("a monotonic clock is required for timers");
 
     var iterator = runningTimers.iterate();
     defer iterator.deinit();
